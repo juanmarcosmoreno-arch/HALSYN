@@ -196,8 +196,8 @@ public struct HalsynScoreRing: View {
                     .overlay(Circle().strokeBorder(Color.halsynSurface, lineWidth: 2))
                     .frame(width: lineWidth * 1.1, height: lineWidth * 1.1)
                     .position(
-                        x: proxy.size.width / 2 + radius * cos(angle.radians),
-                        y: proxy.size.height / 2 + radius * sin(angle.radians)
+                        x: proxy.size.width / 2 + radius * CGFloat(cos(angle.radians)),
+                        y: proxy.size.height / 2 + radius * CGFloat(sin(angle.radians))
                     )
                     .opacity(score == nil || animatedProgress == 0 ? 0 : 1)
             }

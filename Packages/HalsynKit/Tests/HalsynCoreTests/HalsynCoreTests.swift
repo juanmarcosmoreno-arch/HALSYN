@@ -41,7 +41,7 @@ struct PaletteTests {
     }
 
     @Test func contrastRatioMatchesWCAGExtremes() {
-        let black = RGBColor(hex: 0x000000), white = RGBColor(hex: 0xFFFFFF)
+        let black = HalsynRGBColor(hex: 0x000000), white = HalsynRGBColor(hex: 0xFFFFFF)
         #expect(abs(black.contrastRatio(with: white) - 21) < 0.01)
         #expect(abs(white.contrastRatio(with: white) - 1) < 0.0001)
     }

@@ -99,7 +99,7 @@ public struct HalsynSymbol: View {
     }
 
     private static func stops(_ values: [(UInt32, Double)]) -> Gradient {
-        Gradient(stops: values.map { Gradient.Stop(color: Color(RGBColor(hex: $0.0)), location: $0.1) })
+        Gradient(stops: values.map { Gradient.Stop(color: Color(HalsynRGBColor(hex: $0.0)), location: $0.1) })
     }
 
     private static func drawColor(in context: inout GraphicsContext) {
@@ -227,7 +227,8 @@ public struct HalsynBackdrop: View {
 
     public var body: some View {
         GeometryReader { proxy in
-            let w = proxy.size.width, h = proxy.size.height
+            let w = proxy.size.width
+            let h = proxy.size.height
             ZStack {
                 Ellipse()
                     .fill(Color.halsynAccentSoft.opacity(0.35))

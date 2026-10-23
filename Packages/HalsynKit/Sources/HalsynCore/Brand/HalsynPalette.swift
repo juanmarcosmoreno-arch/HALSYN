@@ -2,7 +2,7 @@ import Foundation
 
 /// Color en sRGB definido por su valor hexadecimal. Es la única fuente de los
 /// valores de color de la marca; la capa SwiftUI los traduce a `Color`.
-public struct RGBColor: Hashable, Sendable {
+public struct HalsynRGBColor: Hashable, Sendable {
     public let red: Double
     public let green: Double
     public let blue: Double
@@ -27,7 +27,7 @@ public struct RGBColor: Hashable, Sendable {
     }
 
     /// Relación de contraste WCAG entre dos colores (1...21).
-    public func contrastRatio(with other: RGBColor) -> Double {
+    public func contrastRatio(with other: HalsynRGBColor) -> Double {
         let l1 = relativeLuminance, l2 = other.relativeLuminance
         return (max(l1, l2) + 0.05) / (min(l1, l2) + 0.05)
     }
@@ -36,46 +36,46 @@ public struct RGBColor: Hashable, Sendable {
 /// Paleta base de HÅLSYN (referencia visual aprobada).
 public enum HalsynPalette {
     // Marca
-    public static let deepGreen = RGBColor(hex: 0x0E2D2A)
-    public static let turquoise = RGBColor(hex: 0x1FB99A)
-    public static let mint = RGBColor(hex: 0xA7E5C9)
-    public static let warmWhite = RGBColor(hex: 0xF7F8F5)
-    public static let textDark = RGBColor(hex: 0x2E4441)
-    public static let textLight = RGBColor(hex: 0xE8F6F1)
+    public static let deepGreen = HalsynRGBColor(hex: 0x0E2D2A)
+    public static let turquoise = HalsynRGBColor(hex: 0x1FB99A)
+    public static let mint = HalsynRGBColor(hex: 0xA7E5C9)
+    public static let warmWhite = HalsynRGBColor(hex: 0xF7F8F5)
+    public static let textDark = HalsynRGBColor(hex: 0x2E4441)
+    public static let textLight = HalsynRGBColor(hex: 0xE8F6F1)
 
     // Modo oscuro
-    public static let darkBackground = RGBColor(hex: 0x081B1A)
-    public static let darkSurface = RGBColor(hex: 0x103330)
-    public static let darkPrimary = RGBColor(hex: 0x072B26)
-    public static let darkSecondary = RGBColor(hex: 0x1ED1A6)
-    public static let darkAccent = RGBColor(hex: 0x5FECCF)
+    public static let darkBackground = HalsynRGBColor(hex: 0x081B1A)
+    public static let darkSurface = HalsynRGBColor(hex: 0x103330)
+    public static let darkPrimary = HalsynRGBColor(hex: 0x072B26)
+    public static let darkSecondary = HalsynRGBColor(hex: 0x1ED1A6)
+    public static let darkAccent = HalsynRGBColor(hex: 0x5FECCF)
 
     // Complementos derivados para accesibilidad (no forman parte de la referencia).
     /// Turquesa oscurecido para texto y glifos pequeños sobre fondos claros:
     /// el turquesa de marca no alcanza 4,5:1 sobre blanco.
-    public static let turquoiseInk = RGBColor(hex: 0x0D7A64)
-    public static let surfaceLight = RGBColor(hex: 0xFFFFFF)
-    public static let secondaryTextLight = RGBColor(hex: 0x5A6E6A)
-    public static let secondaryTextDark = RGBColor(hex: 0x9DBDB4)
-    public static let hairlineLight = RGBColor(hex: 0xE2E8E4)
-    public static let hairlineDark = RGBColor(hex: 0x1C4541)
+    public static let turquoiseInk = HalsynRGBColor(hex: 0x0D7A64)
+    public static let surfaceLight = HalsynRGBColor(hex: 0xFFFFFF)
+    public static let secondaryTextLight = HalsynRGBColor(hex: 0x5A6E6A)
+    public static let secondaryTextDark = HalsynRGBColor(hex: 0x9DBDB4)
+    public static let hairlineLight = HalsynRGBColor(hex: 0xE2E8E4)
+    public static let hairlineDark = HalsynRGBColor(hex: 0x1C4541)
 
     // Estados (siempre acompañados de icono o texto, nunca solo color).
-    public static let positiveLight = RGBColor(hex: 0x0D7A64)
-    public static let positiveDark = RGBColor(hex: 0x5FECCF)
-    public static let cautionLight = RGBColor(hex: 0x9A6200)
-    public static let cautionDark = RGBColor(hex: 0xF2C14E)
-    public static let alertLight = RGBColor(hex: 0xB3261E)
-    public static let alertDark = RGBColor(hex: 0xFF8A80)
+    public static let positiveLight = HalsynRGBColor(hex: 0x0D7A64)
+    public static let positiveDark = HalsynRGBColor(hex: 0x5FECCF)
+    public static let cautionLight = HalsynRGBColor(hex: 0x9A6200)
+    public static let cautionDark = HalsynRGBColor(hex: 0xF2C14E)
+    public static let alertLight = HalsynRGBColor(hex: 0xB3261E)
+    public static let alertDark = HalsynRGBColor(hex: 0xFF8A80)
 }
 
 /// Token semántico con su variante clara y oscura.
 public struct SemanticColor: Sendable {
     public let name: String
-    public let light: RGBColor
-    public let dark: RGBColor
+    public let light: HalsynRGBColor
+    public let dark: HalsynRGBColor
 
-    public init(_ name: String, light: RGBColor, dark: RGBColor) {
+    public init(_ name: String, light: HalsynRGBColor, dark: HalsynRGBColor) {
         self.name = name
         self.light = light
         self.dark = dark

@@ -10,7 +10,7 @@ import AppKit
 
 extension Color {
     /// Color fijo de la paleta (no cambia con el modo claro/oscuro).
-    public init(_ rgb: RGBColor, opacity: Double = 1) {
+    public init(_ rgb: HalsynRGBColor, opacity: Double = 1) {
         self.init(.sRGB, red: rgb.red, green: rgb.green, blue: rgb.blue, opacity: opacity)
     }
 

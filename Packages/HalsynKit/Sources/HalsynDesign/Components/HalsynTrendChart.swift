@@ -68,31 +68,36 @@ public struct HalsynTrendChart: View {
         }
     }
 
-    @ViewBuilder
     private var chart: some View {
         Chart {
-            ForEach(values) { item in
-                switch style {
-                case .line:
+            if style == .line {
+                ForEach(values) { item in
                     AreaMark(
                         x: .value("Día", item.day, unit: .day),
                         yStart: .value(title, resolvedDomain.lowerBound),
                         yEnd: .value(title, item.value)
                     )
                     .interpolationMethod(.catmullRom)
-                    .foregroundStyle(LinearGradient(
-                        colors: [Color.halsynAccent.opacity(0.25), Color.halsynAccent.opacity(0.0)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    ))
-                    LineMark(x: .value("Día", item.day, unit: .day), y: .value(title, item.value))
-                        .interpolationMethod(.catmullRom)
-                        .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round))
-                        .foregroundStyle(Color.halsynAccent)
-                case .bar:
-                    BarMark(x: .value("Día", item.day, unit: .day), y: .value(title, item.value), width: .ratio(0.45))
-                        .cornerRadius(4)
-                        .foregroundStyle(HalsynGradients.brand)
+                    .foregroundStyle(areaGradient)
+                }
+                ForEach(values) { item in
+                    LineMark(
+                        x: .value("Día", item.day, unit: .day),
+                        y: .value(title, item.value)
+                    )
+                    .interpolationMethod(.catmullRom)
+                    .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round))
+                    .foregroundStyle(Color.halsynAccent)
+                }
+            } else {
+                ForEach(values) { item in
+                    BarMark(
+                        x: .value("Día", item.day, unit: .day),
+                        y: .value(title, item.value),
+                        width: .ratio(0.45)
+                    )
+                    .cornerRadius(4)
+                    .foregroundStyle(HalsynGradients.brand)
                 }
             }
             if showsAverage, let average {
@@ -101,6 +106,14 @@ public struct HalsynTrendChart: View {
                     .foregroundStyle(Color.halsynSecondaryText.opacity(0.6))
             }
         }
+    }
+
+    private var areaGradient: LinearGradient {
+        LinearGradient(
+            colors: [Color.halsynAccent.opacity(0.25), Color.halsynAccent.opacity(0.0)],
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
 }
 #endif
