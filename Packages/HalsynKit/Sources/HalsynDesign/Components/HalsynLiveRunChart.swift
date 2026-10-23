@@ -18,7 +18,20 @@ public struct HalsynLiveRunChart: View {
     private let heartRate: Double?
     private let paceTarget: PaceRange?
     private let unit: UnitSystem
+    /// Zonas cardíacas configuradas: se pintan de fondo en el gráfico de pulso.
+    private let zones: [HeartRateZone]
     @State private var metric: Metric
+
+    /// Color de cada zona (Z1 azul → Z5 rojo), igual en el reloj y en el iPhone.
+    public static func zoneColor(_ index: Int) -> Color {
+        switch index {
+        case 1: Color(HalsynRGBColor(hex: 0x5FA8D3))
+        case 2: Color(HalsynRGBColor(hex: 0x1FB99A))
+        case 3: Color(HalsynRGBColor(hex: 0xF2C14E))
+        case 4: Color(HalsynRGBColor(hex: 0xFF8A4C))
+        default: Color(HalsynRGBColor(hex: 0xFF5A4E))
+        }
+    }
 
     public init(
         paceSamples: [LiveSample],
@@ -28,8 +41,10 @@ public struct HalsynLiveRunChart: View {
         heartRate: Double?,
         paceTarget: PaceRange? = nil,
         unit: UnitSystem = .metric,
+        zones: [HeartRateZone] = [],
         initialMetric: Metric = .pace
     ) {
+        self.zones = zones
         // Fuera ritmos de paseo (> 15 min/km): aplanarían la escala.
         self.paceSamples = paceSamples.filter { $0.value <= 900 }.smoothed(window: 3).downsampled(maxPoints: 240)
         self.heartRateSamples = heartRateSamples.downsampled(maxPoints: 240)
@@ -41,8 +56,16 @@ public struct HalsynLiveRunChart: View {
         _metric = State(initialValue: initialMetric)
     }
 
+    private var showsZones: Bool { metric == .heartRate && !zones.isEmpty }
+
+    private func zone(for bpm: Double) -> HeartRateZone? {
+        zones.last { bpm >= $0.lowerBound }
+    }
+
     private var tint: Color {
-        metric == .pace ? Color(HalsynPalette.darkSecondary) : Color(HalsynPalette.alertDark)
+        if metric == .pace { return Color(HalsynPalette.darkSecondary) }
+        // Con zonas de fondo, la línea va en blanco para destacar sobre los colores.
+        return showsZones ? Color.white : Color(HalsynPalette.alertDark)
     }
 
     /// En ritmo se dibuja el valor negado para que lo rápido quede arriba.
@@ -113,7 +136,28 @@ public struct HalsynLiveRunChart: View {
     private var chart: some View {
         let data = points
         let last = data.last
+        let domain = domain
         return Chart {
+            if showsZones {
+                // Bandas de zona recortadas a la escala visible; la zona actual, más intensa.
+                let current = heartRate.flatMap(zone(for:))?.index
+                ForEach(zones) { zone in
+                    let low = max(zone.lowerBound, domain.lowerBound)
+                    let high = min(zone.upperBound, domain.upperBound)
+                    if high > low {
+                        RectangleMark(yStart: .value("Desde", low), yEnd: .value("Hasta", high))
+                            .foregroundStyle(Self.zoneColor(zone.index).opacity(zone.index == current ? 0.42 : 0.2))
+                            .annotation(position: .overlay, alignment: .trailing) {
+                                if high - low > (domain.upperBound - domain.lowerBound) * 0.12 {
+                                    Text(verbatim: "Z\(zone.index)")
+                                        .font(.system(size: 9, weight: .bold).monospacedDigit())
+                                        .foregroundStyle(Self.zoneColor(zone.index))
+                                        .padding(.trailing, 2)
+                                }
+                            }
+                    }
+                }
+            }
             if metric == .pace, let paceTarget {
                 RectangleMark(
                     yStart: .value("Objetivo rápido", -paceTarget.fastest * unit.metersPerDistanceUnit / 1000),
@@ -131,10 +175,12 @@ public struct HalsynLiveRunChart: View {
                             .foregroundStyle(Color.white.opacity(0.5))
                     }
             }
-            ForEach(data, id: \.elapsed) { sample in
-                AreaMark(x: .value("Tiempo", sample.elapsed), yStart: .value("Base", domain.lowerBound), yEnd: .value("Valor", sample.value))
-                    .interpolationMethod(.monotone)
-                    .foregroundStyle(LinearGradient(colors: [tint.opacity(0.35), tint.opacity(0)], startPoint: .top, endPoint: .bottom))
+            if !showsZones {
+                ForEach(data, id: \.elapsed) { sample in
+                    AreaMark(x: .value("Tiempo", sample.elapsed), yStart: .value("Base", domain.lowerBound), yEnd: .value("Valor", sample.value))
+                        .interpolationMethod(.monotone)
+                        .foregroundStyle(LinearGradient(colors: [tint.opacity(0.35), tint.opacity(0)], startPoint: .top, endPoint: .bottom))
+                }
             }
             ForEach(data, id: \.elapsed) { sample in
                 LineMark(x: .value("Tiempo", sample.elapsed), y: .value("Valor", sample.value))
@@ -148,7 +194,7 @@ public struct HalsynLiveRunChart: View {
                     .foregroundStyle(Color.black)
                 PointMark(x: .value("Tiempo", last.elapsed), y: .value("Valor", last.value))
                     .symbolSize(40)
-                    .foregroundStyle(tint)
+                    .foregroundStyle(showsZones ? zone(for: last.value).map { Self.zoneColor($0.index) } ?? tint : tint)
             }
         }
         .chartYScale(domain: domain)

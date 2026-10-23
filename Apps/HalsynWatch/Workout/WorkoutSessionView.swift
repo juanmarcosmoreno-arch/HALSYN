@@ -264,7 +264,8 @@ private struct WorkoutChartView: View {
                 currentPace: snapshot.currentPace,
                 heartRate: snapshot.heartRate,
                 paceTarget: snapshot.paceTarget,
-                unit: unitSystem
+                unit: unitSystem,
+                zones: RunSettingsStore.shared.settings.zones.zones
             )
             .padding(.horizontal, 4)
             .overlay(alignment: .top) {
@@ -510,7 +511,8 @@ private struct WorkoutSummaryView: View {
                         currentPace: nil,
                         heartRate: nil,
                         paceTarget: nil,
-                        unit: unitSystem
+                        unit: unitSystem,
+                        zones: RunSettingsStore.shared.settings.zones.zones
                     )
                     .frame(height: 130)
                 }

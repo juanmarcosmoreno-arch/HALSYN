@@ -46,6 +46,12 @@ final class ChartSnapshotTests: XCTestCase {
                 .padding(8)
                 .background(Color.black)
         )))
+        views.append(("11b-reloj-pulso-zonas", AnyView(
+            HalsynLiveRunChart(paceSamples: pace, heartRateSamples: pulse, averagePace: nil, currentPace: nil, heartRate: 148, zones: HeartRateZoneConfiguration(maxHeartRate: 190).zones, initialMetric: .heartRate)
+                .frame(width: 198, height: 220)
+                .padding(8)
+                .background(Color.black)
+        )))
         views.append(("12-reloj-zona", AnyView(HalsynZoneGauge(zone: 3).frame(width: 180).padding(12).background(Color.black))))
         // Análisis de una carrera demo.
         if let workout = await provider.recentWorkouts(limit: 1).first {
