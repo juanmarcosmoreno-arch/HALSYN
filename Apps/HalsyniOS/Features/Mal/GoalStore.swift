@@ -1,5 +1,6 @@
 import Foundation
 import HalsynCore
+import HalsynDesign
 import Observation
 import UserNotifications
 
