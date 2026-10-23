@@ -70,7 +70,7 @@ struct VilaView: View {
 
 // MARK: - Recuperación
 
-private struct RecoveryCard: View {
+struct RecoveryCard: View {
     let estimate: RecoveryEstimate?
     let history: [RecoveryEstimate]
 
@@ -205,7 +205,7 @@ private struct RecoveryComponentRow: View {
 
 // MARK: - Última noche
 
-private struct LastNightCard: View {
+struct LastNightCard: View {
     let night: SleepNight
     let targetHours: Double
 
@@ -275,7 +275,7 @@ private struct LastNightCard: View {
 
 // MARK: - Horarios y regularidad
 
-private struct SleepScheduleCard: View {
+struct SleepScheduleCard: View {
     let nights: [SleepNight]
     @Binding var targetHours: Double
 
@@ -349,7 +349,7 @@ private struct SleepScheduleCard: View {
 
 // MARK: - HRV y FC en reposo
 
-private struct BaselineTrendCard: View {
+struct BaselineTrendCard: View {
     let title: LocalizedStringKey
     let eyebrow: String
     let series: MetricSeries

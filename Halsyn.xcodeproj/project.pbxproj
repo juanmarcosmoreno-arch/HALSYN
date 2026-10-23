@@ -27,6 +27,7 @@
 		49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */; };
 		4CA610B235E91DE973008222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A6208785D9C37B5AAD2808 /* Assets.xcassets */; };
 		4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */; };
+		4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */; };
 		5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDDA395B13EEDF085E1836 /* HistoryView.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
@@ -117,6 +118,7 @@
 		7CCDDA395B13EEDF085E1836 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Halsyn.entitlements; sourceTree = "<group>"; };
 		8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSnapshotTests.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */,
+				8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */,
 			);
 			path = HalsyniOSTests;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3109D7BF800BE694DFF6E19 /* AppLayerTests.swift in Sources */,
+				4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

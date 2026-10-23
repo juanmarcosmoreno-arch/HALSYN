@@ -46,6 +46,14 @@ jobs:
         run: |
           DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c "import json,sys; d=json.load(sys.stdin)['devices']; print(next(x['udid'] for k,v in d.items() if 'iOS' in k for x in v if x['name'].startswith('iPhone')))")
           echo "Simulador: $DEVICE_ID"
+          export TEST_RUNNER_SNAPSHOT_DIR="$RUNNER_TEMP/capturas"
           xcodebuild test -project Halsyn.xcodeproj -scheme Halsyn \
             -destination "id=$DEVICE_ID" \
             CODE_SIGNING_ALLOWED=NO -quiet
+      - name: Adjuntar capturas de las gráficas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas-graficas
+          path: ${{ runner.temp }}/capturas
+          if-no-files-found: ignore
