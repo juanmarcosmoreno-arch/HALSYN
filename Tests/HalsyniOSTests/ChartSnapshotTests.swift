@@ -26,7 +26,7 @@ final class ChartSnapshotTests: XCTestCase {
         let night = try XCTUnwrap(nights.last)
         let report = await provider.computeInsights(endingOn: today, calendar: .current, origin: .demo)
 
-        let views: [(String, AnyView)] = [
+        var views: [(String, AnyView)] = [
             ("01-recuperacion", AnyView(RecoveryCard(estimate: recovery.last, history: recovery))),
             ("02-anoche", AnyView(LastNightCard(night: night, targetHours: 8))),
             ("03-noches", AnyView(HalsynCard { HalsynSleepScheduleChart(nights: nights, targetHours: 8) })),
@@ -35,10 +35,18 @@ final class ChartSnapshotTests: XCTestCase {
             ("05-pasos", AnyView(HalsynCard { HalsynTrendChart(values: steps.values, title: "Pasos", style: .bar, target: 8000, unit: "pasos").frame(height: 210) })),
             ("06-puntuacion", AnyView(HalsynCard { HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100, usualRange: usualRange(scores.map { Double($0.value) })).frame(height: 230) })),
         ]
-        + report.trends.prefix(1).map { ("07-cambio", AnyView(TrendInsightCard(insight: $0))) }
-        + report.relationships.prefix(2).enumerated().map { ("08-patron-\($0.offset)", AnyView(RelationshipInsightCard(insight: $0.element))) }
-        + report.weekdays.prefix(1).map { ("09-semana", AnyView(WeekdayInsightCard(insight: $0))) }
-        + (report.records.isEmpty ? [] : [("10-records", AnyView(RecordsCard(records: report.records)))])
+        if let trend = report.trends.first {
+            views.append(("07-cambio", AnyView(TrendInsightCard(insight: trend))))
+        }
+        for (index, relation) in report.relationships.prefix(2).enumerated() {
+            views.append(("08-patron-\(index)", AnyView(RelationshipInsightCard(insight: relation))))
+        }
+        if let weekday = report.weekdays.first {
+            views.append(("09-semana", AnyView(WeekdayInsightCard(insight: weekday))))
+        }
+        if !report.records.isEmpty {
+            views.append(("10-records", AnyView(RecordsCard(records: report.records))))
+        }
         for (name, view) in views {
             for scheme in [ColorScheme.light, .dark] {
                 let content = view
