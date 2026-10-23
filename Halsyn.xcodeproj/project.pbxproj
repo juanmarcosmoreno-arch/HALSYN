@@ -33,6 +33,7 @@
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
 		75E9CC5B5C2C51BC1512D127 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */; };
 		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
+		865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */; };
 		875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */; };
 		9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
@@ -99,6 +100,7 @@
 		118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetailView.swift; sourceTree = "<group>"; };
+		1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HalsyniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		343D34F06545512784831879 /* Halsyn.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Halsyn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,6 +379,7 @@
 		D01C071F06BA57D6F6E74752 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */,
 				C287A71EB2C50957EA5FACDE /* SharedViews.swift */,
 			);
 			path = Shared;
@@ -614,6 +617,7 @@
 				3770D0C2A4656F9AF8F2B291 /* MetricDetailView.swift in Sources */,
 				409FA53999DCE71CC27C5CCA /* NightlySummaryNotifications.swift in Sources */,
 				ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */,
+				865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */,
 				0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */,
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,

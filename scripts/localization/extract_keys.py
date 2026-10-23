@@ -25,7 +25,7 @@ IGNORE = {
     "FART", "RÖRELSE", "Easy Run", "Intervals", "Race", "EASY RUN", "Apple Health", "DEMO", "—", "--", "·",
     "%d:%02d", "%d:%02d:%02d", "#%02X%02X%02X", "ml/kg·min", "CFBundleShortVersionString", "CFBundleVersion",
     "MARCA", "TOKENS", "COMPONENTES", "WATCH", "VACÍO · CARGA", "PULS · SÖMN · STEG", "HRV", "SpO₂", "VO₂ máx.",
-    "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "RecoveryEngine", "RecoveryEngine %@", "InsightEngine", "± %@ min", "%@ → %@", "intro-dark", "intro-light", "Apple Watch", "HealthScoreEngine %@", "RecoveryEngine %@", "± %@ min", "%@ → %@",
+    "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "RecoveryEngine", "RecoveryEngine %@", "InsightEngine", "± %@ min", "%@ → %@", "intro-dark", "intro-light", "profile-photo.jpg", "Apple Watch", "HealthScoreEngine %@", "RecoveryEngine %@", "± %@ min", "%@ → %@",
     "plan-%@", "screen-%@", "6x400", "5x1k", "8x1min", "6 × 400 m", "5 × 1 km", "8 × 1 min", "<Z1",
     "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
 }

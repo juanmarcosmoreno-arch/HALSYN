@@ -28,6 +28,8 @@ struct ProfileView: View {
                     .listRowBackground(Color.clear)
                 }
 
+                ProfileIdentitySection()
+
                 Section {
                     LabeledContent("Fuente activa") {
                         HStack(spacing: 6) {

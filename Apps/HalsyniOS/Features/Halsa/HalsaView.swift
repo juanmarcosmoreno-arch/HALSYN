@@ -39,6 +39,7 @@ enum HalsaDestination: Hashable {
 
 struct HalsaView: View {
     @Environment(AppModel.self) private var model
+    @AppStorage(AppPreferences.userNameKey) private var userName = ""
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var snapshot: HalsaSnapshot?
 
@@ -94,6 +95,13 @@ struct HalsaView: View {
                 if model.isDemo {
                     HalsynDemoBadge()
                 }
+                Button {
+                    model.selectedTab = .profile
+                } label: {
+                    ProfileAvatar(size: 36)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text("Perfil"))
             }
             VStack(alignment: .leading, spacing: 2) {
                 Text(greeting)
@@ -108,10 +116,14 @@ struct HalsaView: View {
     }
 
     private var greeting: LocalizedStringKey {
-        switch Calendar.current.component(.hour, from: .now) {
-        case 5..<13: "Buenos días"
-        case 13..<20: "Buenas tardes"
-        default: "Buenas noches"
+        let name = userName.trimmingCharacters(in: .whitespaces).split(separator: " ").first.map(String.init) ?? ""
+        switch (Calendar.current.component(.hour, from: .now), name.isEmpty) {
+        case (5..<13, true): return "Buenos días"
+        case (13..<20, true): return "Buenas tardes"
+        case (_, true): return "Buenas noches"
+        case (5..<13, false): return "Buenos días, \(name)"
+        case (13..<20, false): return "Buenas tardes, \(name)"
+        default: return "Buenas noches, \(name)"
         }
     }
 

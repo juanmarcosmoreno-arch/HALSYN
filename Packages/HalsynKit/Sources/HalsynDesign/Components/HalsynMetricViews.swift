@@ -182,9 +182,13 @@ public struct HalsynScoreRing: View {
 
     public var body: some View {
         ZStack {
+            // El trazo se mete medio grosor hacia dentro: así el arco, la pista y la
+            // bola del extremo comparten exactamente el mismo radio (centro del trazo).
             Circle()
+                .inset(by: lineWidth / 2)
                 .stroke(Color.halsynAccentSoft.opacity(0.35), lineWidth: lineWidth)
             Circle()
+                .inset(by: lineWidth / 2)
                 .trim(from: 0, to: animatedProgress)
                 .stroke(HalsynGradients.ring, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                 .rotationEffect(.degrees(-90))
