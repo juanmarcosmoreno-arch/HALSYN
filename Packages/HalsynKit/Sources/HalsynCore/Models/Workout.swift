@@ -74,7 +74,9 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
 /// Objetivo del módulo MÅL. `target` y `current` usan la unidad base de la
 /// métrica (`MetricKind.unit`): metros para distancia, horas para sueño, etc.
 public struct Goal: Hashable, Identifiable, Sendable {
-    public enum Period: String, Sendable {
+    public enum Period: String, Codable, CaseIterable, Identifiable, Sendable {
+        public var id: String { rawValue }
+
         case daily, weekly, monthly
 
         public var title: String {

@@ -8,13 +8,14 @@ struct HalsaSnapshot: Sendable {
     var recovery: DailyScore?
     var metrics: [MetricDisplay] = []
     var stepsTrend: [DailyValue] = []
-    var firstGoal: Goal?
+    /// Primer objetivo del usuario y su progreso.
+    var goal: (definition: GoalDefinition, progress: GoalProgress)?
     var lastWorkout: WorkoutSummary?
     var summary: [SummaryStatement] = []
 
     static let dashboardMetrics: [MetricKind] = [.sleepDuration, .restingHeartRate, .heartRateVariability, .steps, .activeEnergy, .exerciseTime]
 
-    static func load(from provider: any HealthDataProviding, unitSystem: UnitSystem, today: Date = .now) async -> HalsaSnapshot {
+    static func load(from provider: any HealthDataProviding, unitSystem: UnitSystem, goals: [GoalDefinition] = [], today: Date = .now) async -> HalsaSnapshot {
         var snapshot = HalsaSnapshot()
         snapshot.score = await provider.dailyScore(on: today)
         snapshot.recovery = await provider.recoveryScore(on: today)
@@ -22,7 +23,10 @@ struct HalsaSnapshot: Sendable {
             snapshot.metrics.append(MetricDisplay(await provider.latest(kind, on: today), kind: kind, unitSystem: unitSystem))
         }
         snapshot.stepsTrend = await provider.dailySeries(.steps, days: 7, endingOn: today).values
-        snapshot.firstGoal = await provider.goals().first
+        if let first = goals.first {
+            let data = await provider.goalData(for: [first], endingOn: today, calendar: .current)
+            snapshot.goal = (first, GoalEvaluator(calendar: .current).progress(first, data: data, now: today))
+        }
         snapshot.lastWorkout = await provider.recentWorkouts(limit: 1).first
         snapshot.summary = await provider.dailySummary(on: today, calendar: .current)
         return snapshot
@@ -75,14 +79,14 @@ struct HalsaView: View {
                 case .metric(let kind): MetricDetailView(kind: kind)
                 }
             }
-            .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)") {
-                snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem)
+            .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)|\(GoalStore.shared.goals.hashValue)") {
+                snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem, goals: GoalStore.shared.goals)
             }
             .sheet(isPresented: Binding(get: { model.isShowingDailySummary }, set: { model.isShowingDailySummary = $0 })) {
                 DailySummaryView()
             }
             .refreshable {
-                snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem)
+                snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem, goals: GoalStore.shared.goals)
             }
         }
     }
@@ -267,24 +271,25 @@ struct HalsaView: View {
 
     @ViewBuilder
     private func goalCard(_ snapshot: HalsaSnapshot) -> some View {
-        if let goal = snapshot.firstGoal {
+        if let goal = snapshot.goal {
             NavigationLink(value: HalsaDestination.mal) {
                 HalsynCard {
-                    VStack(alignment: .leading, spacing: HalsynSpacing.s) {
-                        HStack {
+                    HStack(spacing: HalsynSpacing.m) {
+                        GoalRing(fraction: goal.progress.fraction, completed: goal.progress.isCompleted, systemImage: goal.definition.kind.systemImage)
+                            .frame(width: 52, height: 52)
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(verbatim: HalsynModule.mal.brandName).halsynEyebrowStyle()
-                            Spacer()
-                            Image(systemName: "chevron.right")
+                            Text(verbatim: GoalText.title(goal.definition, unit: .current, target: goal.progress.target))
+                                .font(.halsynHeadline)
+                                .foregroundStyle(.halsynPrimaryText)
+                            Text(verbatim: GoalText.period(goal.definition.period))
+                                .font(.halsynCaption)
                                 .foregroundStyle(.halsynSecondaryText)
-                                .accessibilityHidden(true)
                         }
-                        Text(LocalizedStringKey(goal.title))
-                            .font(.halsynHeadline)
-                            .foregroundStyle(.halsynPrimaryText)
-                        HalsynProgressBar(progress: goal.progress)
-                        Text(goal.progress, format: .percent.precision(.fractionLength(0)))
-                            .font(.halsynCaption)
+                        Spacer()
+                        Image(systemName: "chevron.right")
                             .foregroundStyle(.halsynSecondaryText)
+                            .accessibilityHidden(true)
                     }
                 }
             }

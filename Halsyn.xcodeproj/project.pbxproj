@@ -30,6 +30,7 @@
 		4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */; };
 		5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDDA395B13EEDF085E1836 /* HistoryView.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
+		6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */; };
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
 		75E9CC5B5C2C51BC1512D127 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */; };
 		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
@@ -48,6 +49,7 @@
 		C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */; };
 		C9B76934A0B24C5F8EF19B43 /* intro-dark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D250FF30FFD4688AE26DFDE4 /* intro-dark.mp4 */; };
 		CD89E046AFDC8366E2A2D151 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = F8BC070349D54F9995A35913 /* HalsynCore */; };
+		CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE91FF6016BAB5F98966A /* GoalStore.swift */; };
 		CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */; };
 		D0E2AA999EEF1E5ECA8CE41F /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = E9C32CF0013303F8BBAB96F9 /* HalsynDesign */; };
 		D3109D7BF800BE694DFF6E19 /* AppLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */; };
@@ -95,6 +97,7 @@
 /* Begin PBXFileReference section */
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
+		076BE91FF6016BAB5F98966A /* GoalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStore.swift; sourceTree = "<group>"; };
 		0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
 		0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTexts.swift; sourceTree = "<group>"; };
+		73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditorView.swift; sourceTree = "<group>"; };
 		77138D7BC2F85CADF76184DF /* HalsynWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalsynWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDetailView.swift; sourceTree = "<group>"; };
 		7B7E2B3491782961A00596E7 /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 		39D830EA03192C0871F9DE23 /* Mal */ = {
 			isa = PBXGroup;
 			children = (
+				73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */,
+				076BE91FF6016BAB5F98966A /* GoalStore.swift */,
 				EDE07533E91D0B4E58019475 /* MalView.swift */,
 			);
 			path = Mal;
@@ -607,6 +613,8 @@
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
+				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
+				CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */,
 				E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */,
 				04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */,
 				5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */,
