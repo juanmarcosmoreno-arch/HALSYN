@@ -36,8 +36,13 @@ struct IntroVideoView: View {
     let preference: IntroPreference
     let onFinish: () -> Void
 
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.colorScheme) private var systemScheme
+    @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @State private var showsSkipHint = false
+
+    /// La apariencia elegida en la app manda; el entorno puede llegar todavía con
+    /// la del sistema en el primer cuadro y el video ya no cambia después.
+    private var colorScheme: ColorScheme { appearance.colorScheme ?? systemScheme }
 
     /// Color del fondo de cada video, para extender el lienzo sin costuras.
     private var background: Color {
@@ -50,6 +55,8 @@ struct IntroVideoView: View {
             if let url = Bundle.main.url(forResource: colorScheme == .dark ? "intro-dark" : "intro-light", withExtension: "mp4"),
                let segment = preference.segment {
                 IntroPlayerView(url: url, segment: segment, onFinish: onFinish)
+                    // Si cambia el modo, se crea un reproductor nuevo con el video correcto.
+                    .id(colorScheme)
                     .aspectRatio(16 / 9, contentMode: .fit)
                     // Funde los bordes del video con el fondo (el viñeteado del video varía un poco).
                     .mask(
