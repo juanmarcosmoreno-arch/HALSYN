@@ -89,3 +89,19 @@ public enum SleepAggregator {
         return end > start ? DateInterval(start: start, end: end) : nil
     }
 }
+
+extension SleepSample.Stage {
+    /// Fases mostradas en el hipnograma, de arriba (despierto) a abajo (profundo).
+    public static let hypnogramOrder: [SleepSample.Stage] = [.awake, .asleepREM, .asleepCore, .asleepDeep]
+
+    public var title: String {
+        switch self {
+        case .inBed: "En cama"
+        case .awake: "Despierto"
+        case .asleepUnspecified: "Dormido"
+        case .asleepCore: "Esencial"
+        case .asleepDeep: "Profundo"
+        case .asleepREM: "REM"
+        }
+    }
+}

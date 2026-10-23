@@ -53,8 +53,12 @@ public protocol HealthDataProviding: Sendable {
     /// Puntuaciones de los últimos `days` días que terminan en `endingOn`.
     /// Solo incluye los días con puntuación.
     func dailyScores(endingOn end: Date, days: Int) async -> [DailyScore]
-    /// Recuperación estimada (0–100). El motor real llega en la Fase 6.
+    /// Recuperación estimada (0–100) de `RecoveryEngine`, si hay datos suficientes.
     func recoveryScore(on day: Date) async -> DailyScore?
+    /// Recuperación con desglose de los `days` días que terminan en `end`.
+    func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate]
+    /// Noches con sueño registrado de los `days` días que terminan en `end`.
+    func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight]
     func goals() async -> [Goal]
     /// Emite cuando cambian los datos de origen (para refrescar la interfaz).
     func changes() -> AsyncStream<Void>
@@ -64,4 +68,8 @@ extension HealthDataProviding {
     public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
         .empty(workout.origin)
     }
+
+    public func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate] { [] }
+
+    public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] { [] }
 }

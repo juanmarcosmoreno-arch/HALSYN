@@ -135,6 +135,8 @@ enum AppPreferences {
     static let unitSystemKey = "halsyn.unitSystem"
     static let dataModeKey = "halsyn.dataMode"
     static let onboardingCompletedKey = "halsyn.onboardingCompleted"
+    static let introKey = "halsyn.intro"
+    static let sleepTargetKey = "halsyn.vila.sleepTarget"
     static let focusAreasKey = "halsyn.focusAreas"
     static let nightlySummaryEnabledKey = "halsyn.nightlySummary.enabled"
     /// Minutos desde medianoche (por defecto, 21:30).

@@ -99,6 +99,15 @@ public enum HalsynColorTokens {
     public static let caution = SemanticColor("caution", light: HalsynPalette.cautionLight, dark: HalsynPalette.cautionDark)
     public static let alert = SemanticColor("alert", light: HalsynPalette.alertLight, dark: HalsynPalette.alertDark)
 
+    // Gráficos (validados con el validador de paletas de dataviz; ver DESIGN_SYSTEM.md).
+    /// Línea y barras principales: ≥ 3:1 sobre la superficie en ambos modos.
+    public static let chartPrimary = SemanticColor("chartPrimary", light: HalsynRGBColor(hex: 0x14917A), dark: HalsynPalette.darkSecondary)
+    /// Fases del sueño: rampa ordinal de un solo tono (más profundo = más intenso).
+    public static let sleepAwake = SemanticColor("sleepAwake", light: HalsynRGBColor(hex: 0x5BBFAA), dark: HalsynRGBColor(hex: 0x0F7A6A))
+    public static let sleepREM = SemanticColor("sleepREM", light: HalsynRGBColor(hex: 0x1E9C83), dark: HalsynRGBColor(hex: 0x1ED1A6))
+    public static let sleepCore = SemanticColor("sleepCore", light: HalsynRGBColor(hex: 0x12705F), dark: HalsynRGBColor(hex: 0x7FE6CF))
+    public static let sleepDeep = SemanticColor("sleepDeep", light: HalsynRGBColor(hex: 0x0B4440), dark: HalsynRGBColor(hex: 0xC8F5EA))
+
     /// Tokens que se usan como texto y deben cumplir WCAG AA (4,5:1) sobre
     /// `background` y `surface` en ambos modos. Verificado en tests.
     public static let textTokens: [SemanticColor] = [primaryText, secondaryText, accentText, positive, caution, alert]

@@ -50,6 +50,7 @@ extension ShapeStyle where Self == Color {
     public static var halsynPositive: Color { Color(HalsynColorTokens.positive) }
     public static var halsynCaution: Color { Color(HalsynColorTokens.caution) }
     public static var halsynAlert: Color { Color(HalsynColorTokens.alert) }
+    public static var halsynChart: Color { Color(HalsynColorTokens.chartPrimary) }
 }
 
 public enum HalsynGradients {

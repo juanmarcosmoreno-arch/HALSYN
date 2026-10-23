@@ -9,6 +9,7 @@ struct ProfileView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    @AppStorage(AppPreferences.introKey) private var intro: IntroPreference = .brief
     @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = true
     @Environment(\.openURL) private var openURL
     @State private var isConnecting = false
@@ -87,6 +88,11 @@ struct ProfileView: View {
                         }
                     }
                     LanguageRow()
+                    Picker("Animación de apertura", selection: $intro) {
+                        ForEach(IntroPreference.allCases) { option in
+                            Text(option.title).tag(option)
+                        }
+                    }
                     Picker("Unidades", selection: $unitSystem) {
                         ForEach(UnitSystem.allCases) { system in
                             Text(LocalizedStringKey(system.title)).tag(system)

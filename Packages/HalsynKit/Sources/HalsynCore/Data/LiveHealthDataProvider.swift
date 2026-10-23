@@ -142,8 +142,26 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return await computeDailyScores(endingOn: last, days: days, calendar: calendar, origin: .derived(engine: "HealthScoreEngine"))
     }
 
-    /// RecoveryEngine llega en la Fase 6.
-    public func recoveryScore(on day: Date) async -> DailyScore? { nil }
+    /// `RecoveryEngine` sobre los datos de Apple Health. `nil` si no hay datos suficientes.
+    public func recoveryScore(on day: Date) async -> DailyScore? {
+        await recoveryEstimates(endingOn: day, days: 1).last?.dailyScore
+    }
+
+    public func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate] {
+        guard client.isHealthDataAvailable else { return [] }
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        return await computeRecovery(endingOn: last, days: days, calendar: calendar, origin: .derived(engine: "RecoveryEngine"))
+    }
+
+    public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] {
+        guard client.isHealthDataAvailable, days > 0 else { return [] }
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        let window = SleepAnalysis.window(endingOn: last, days: days, calendar: calendar)
+        guard let samples = try? await client.sleepSamples(in: window) else { return [] }
+        return SleepAnalysis.nights(samples, endingOn: last, days: days, calendar: calendar, origin: .healthKit(sourceName: nil)).map { night in
+            SleepNight(day: night.day, asleep: night.asleep, sleepStart: night.sleepStart, sleepEnd: night.sleepEnd, awake: night.awake, stages: night.stages, segments: night.segments, sourceName: night.sourceName, origin: .healthKit(sourceName: night.sourceName))
+        }
+    }
 
     /// Los objetivos del usuario se crean en la Fase 9.
     public func goals() async -> [Goal] { [] }

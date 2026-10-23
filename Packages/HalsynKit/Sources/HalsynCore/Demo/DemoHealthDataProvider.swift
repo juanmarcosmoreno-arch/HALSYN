@@ -111,12 +111,59 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         AsyncStream { $0.finish() }
     }
 
+    /// Recuperación calculada por el mismo `RecoveryEngine` que en modo real.
     public func recoveryScore(on day: Date) async -> DailyScore? {
+        await recoveryEstimates(endingOn: day, days: 1).last?.dailyScore
+    }
+
+    public func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate] {
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        return await computeRecovery(endingOn: last, days: days, calendar: calendar, origin: .demo)
+    }
+
+    /// Noches demo con fases, analizadas con el mismo `SleepAnalysis` que los datos reales.
+    /// El tiempo dormido coincide con la serie demo de sueño.
+    public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] {
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        guard days > 0 else { return [] }
+        let samples = (0..<days).flatMap { offset -> [SleepSample] in
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: last) else { return [] }
+            return sleepSamples(endingOn: day)
+        }
+        return SleepAnalysis.nights(samples, endingOn: last, days: days, calendar: calendar, origin: .demo)
+    }
+
+    /// Hipnograma sintético: ciclos de ~90 min con más sueño profundo al principio
+    /// y más REM al final, y despertares breves. Determinista por día.
+    func sleepSamples(endingOn day: Date) -> [SleepSample] {
         let start = calendar.startOfDay(for: day)
-        guard start <= calendar.startOfDay(for: now()) else { return nil }
-        var rng = generator(for: start, salt: 0x7EC0)
-        let value = Int((72 + 10 * sin(Double(dayNumber(start)) / 4) + 8 * Double.random(in: -1...1, using: &rng)).rounded())
-        return DailyScore(day: start, value: value, weeklyChange: nil, origin: .demo)
+        var rng = generator(for: start, salt: 0x5EE9)
+        let asleepTarget = value(.sleepDuration, on: start) * 3600
+        let bedtimeOffset = Double.random(in: -50...45, using: &rng) * 60
+        var cursor = start.addingTimeInterval(-60 * 60 + bedtimeOffset) // ~23:00
+        var asleep: TimeInterval = 0
+        var samples: [SleepSample] = []
+        var cycle = 0
+        let source = "Apple Watch"
+        func add(_ stage: SleepSample.Stage, _ minutes: Double) {
+            let seconds = stage.isAsleep ? min(minutes * 60, asleepTarget - asleep) : minutes * 60
+            guard seconds > 0 else { return }
+            samples.append(SleepSample(start: cursor, end: cursor.addingTimeInterval(seconds), stage: stage, sourceName: source))
+            cursor = cursor.addingTimeInterval(seconds)
+            if stage.isAsleep { asleep += seconds }
+        }
+        while asleep < asleepTarget - 1 {
+            let late = Double(cycle) / 4
+            add(.asleepCore, Double.random(in: 18...30, using: &rng))
+            add(.asleepDeep, max(4, (1 - late) * Double.random(in: 18...34, using: &rng)))
+            add(.asleepCore, Double.random(in: 14...24, using: &rng))
+            add(.asleepREM, 8 + late * Double.random(in: 10...24, using: &rng))
+            if Double.random(in: 0..<1, using: &rng) < 0.45 {
+                add(.awake, Double.random(in: 2...9, using: &rng))
+            }
+            cycle += 1
+        }
+        return samples
     }
 
     public func goals() async -> [Goal] {

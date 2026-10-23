@@ -1,6 +1,7 @@
 import HalsynCore
 import HalsynDesign
 import SwiftUI
+import UIKit
 import UserNotifications
 
 @main
@@ -11,10 +12,19 @@ struct HalsynApp: App {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     /// Ajustes de SPRING; al crearse activa WatchConnectivity para enviarlos al reloj.
     @State private var runSettings = RunSettingsStore.shared
+    @AppStorage(AppPreferences.introKey) private var intro: IntroPreference = .brief
+    /// La intro solo se muestra en el arranque en frío, no al volver a primer plano.
+    @State private var showsIntro = !UIAccessibility.isReduceMotionEnabled
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
+    }
+
+    /// La primera vez siempre se ve completa; después, según la preferencia.
+    private var resolvedIntro: IntroPreference? {
+        if !onboardingCompleted { return .full }
+        return intro == .off ? nil : intro
     }
 
     var body: some Scene {
@@ -23,7 +33,18 @@ struct HalsynApp: App {
                 .environment(model)
                 .preferredColorScheme(appearance.colorScheme)
                 .tint(Color.halsynAccent)
-                .fullScreenCover(isPresented: Binding(get: { !onboardingCompleted }, set: { onboardingCompleted = !$0 })) {
+                .overlay {
+                    if showsIntro, let preference = resolvedIntro {
+                        IntroVideoView(preference: preference) {
+                            withAnimation(.easeOut(duration: 0.45)) { showsIntro = false }
+                        }
+                        .preferredColorScheme(appearance.colorScheme)
+                        .transition(.opacity)
+                        .zIndex(1)
+                    }
+                }
+                // La introducción espera a que termine la animación de apertura.
+                .fullScreenCover(isPresented: Binding(get: { !onboardingCompleted && !(showsIntro && resolvedIntro != nil) }, set: { onboardingCompleted = !$0 })) {
                     OnboardingView {
                         onboardingCompleted = true
                     }

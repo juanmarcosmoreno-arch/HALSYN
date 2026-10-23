@@ -56,9 +56,10 @@ targets:
         CFBundleDevelopmentRegion: es
         CFBundleLocalizations: [es, en, pt-BR, fr, it, sv, da, zh-Hans, hi]
         LSRequiresIPhoneOS: true
+        # El fondo coincide con el primer fotograma de la animación de apertura
+        # (claro #F6F7F4, oscuro negro) para que no haya saltos.
         UILaunchScreen:
           UIColorName: LaunchBackground
-          UIImageName: LaunchSymbol
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UISupportedInterfaceOrientations:
