@@ -8,6 +8,7 @@
 | `Packages/HalsynKit/Tests/HalsynCoreTests/LiveHealthDataProviderTests.swift` | Swift Testing | igual | Proveedor real con `MockHealthStoreClient`: permisos, estados de error, sueño (fases, solapes, ventana), último valor y su fecha, series sin ceros, sin puntuaciones inventadas |
 | `Packages/HalsynKit/Tests/HalsynCoreTests/HealthScoreEngineTests.swift` | Swift Testing | igual | Curvas del motor, día parcial y descanso sin penalización, tope de pasos, carga, cobertura mínima, renormalización, pesos configurables, puntuación demo/real, resumen del día |
 | `Packages/HalsynKit/Tests/HalsynCoreTests/RunningEngineTests.swift` | Swift Testing | igual | GPS (recta, ruido, parado, curvas, saltos, pérdida de señal, desnivel), ritmo (estable, cambio, ruido, parada), máquina de estados, tiempo activo, vueltas, sesión completa con pausa, prioridad de la distancia de HealthKit, FC, campos sin dato |
+| `Packages/HalsynKit/Tests/HalsynCoreTests/SpringProTests.swift` | Swift Testing | igual | Zonas (% máx., Karvonen, valores no plausibles, FC máx. observada), tiempo en zonas con huecos y pausas, intervalos (expansión, tiempo/distancia/abierto, actualizaciones tardías, sesión completa con avisos), alertas (picos, espera, repetición, histéresis, sin dato, zona, pausa), ajustes (JSON, datos dañados, normalización de pantallas), parciales desde la ruta (pausas, millas), zonas desde muestras, ruta demo determinista |
 | `Tests/HalsyniOSTests` | XCTest | ⌘U en el esquema Halsyn | `AppModel` (conexión, persistencia de la fuente, vuelta a demo, fallo de conexión), `HalsaSnapshot` demo y real sin datos, INSIKT |
 
 ## Fixtures
@@ -39,6 +40,6 @@ Fase 4, GitHub Actions (commit `0e66974`): job de iOS + watchOS **en verde** —
 
 - Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).
 - Fase 4 (pendiente): carrera real en dispositivo (precisión, batería, muñeca bajada, sin iPhone, recuperación).
-- Fase 5: zonas cardíacas, vueltas, intervalos.
+- Fase 5 (pendiente): hápticos, intervalos, mapa y sincronización de ajustes en dispositivo físico.
 - Fases 5, 6, 8: `TrainingLoadEngine`, `RecoveryEngine`, `ReferencePercentileEngine`.
 - UI tests de navegación y snapshots de modo claro/oscuro.

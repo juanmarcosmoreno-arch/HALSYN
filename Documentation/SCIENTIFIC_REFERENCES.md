@@ -56,3 +56,10 @@ compatible_con_apple_watch:   # sí / con advertencia / no, y por qué
 ## Edad fisiológica
 
 Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validado aplicable a los datos del Apple Watch. Mientras tanto solo se mostrarán indicadores y percentiles.
+
+## Zonas cardíacas (Fase 5)
+
+- **Método de la reserva cardíaca**: Karvonen MJ, Kentala E, Mustala O. *The effects of training on heart rate; a longitudinal study.* Ann Med Exp Biol Fenn. 1957;35(3):307–315. Intensidad = FC reposo + (FC máx − FC reposo) × fracción.
+- **Modelo de 5 zonas (50/60/70/80/90 %)**: convención extendida en entrenamiento de resistencia y en dispositivos deportivos; **no** es un estándar clínico. Las guías del ACSM (*ACSM's Guidelines for Exercise Testing and Prescription*) describen la intensidad por % de FC máx. y % de reserva con rangos parecidos, pero sus categorías no coinciden exactamente con estas 5 zonas.
+- **FC máxima**: HÅLSYN **no la estima por la edad** (las fórmulas tipo 220 − edad tienen un error individual grande). Solo usa un valor introducido por el usuario o el máximo registrado en sus carreras, y lo dice.
+- La interfaz presenta las zonas como guía de entrenamiento, nunca como indicación médica.

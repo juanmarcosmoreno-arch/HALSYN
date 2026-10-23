@@ -7,7 +7,7 @@
 | 2 | HealthKit real: permisos, pasos, FC, FC reposo, HRV, sueño, entrenamientos, ausencia de datos, onboarding | ✅ compila y pasa tests en CI · ⏳ prueba en dispositivo |
 | 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones, resumen nocturno | ✅ compila y pasa tests en CI |
 | 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
-| 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | |
+| 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | ⏳ en CI · ⏳ prueba corriendo con el reloj |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
 | 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | |
@@ -66,3 +66,23 @@
 
 - **Probar en un Apple Watch real corriendo**: precisión de distancia y ritmo, batería, comportamiento con la muñeca bajada y sin iPhone.
 - Las pantallas configurables, zonas, alertas, intervalos y mapas llegan en la Fase 5.
+
+## Fase 5 — entregado
+
+- **Ajustes de carrera** en el iPhone (SPRING › Ajustes de carrera), enviados al reloj con WatchConnectivity (`updateApplicationContext`); el reloj guarda la última copia y funciona sin el iPhone. Solo viajan preferencias, nunca datos de salud.
+- **Editor de pantallas**: hasta 4 pantallas, 1/2/3/4/6 campos, sin campos repetidos (al elegir uno ya usado se intercambian), vista previa con valores de ejemplo.
+- **Vuelta automática** configurable (desactivada, 400 m, 1 km, 1 milla, 5 km).
+- **Zonas cardíacas**: 5 zonas (50/60/70/80/90 %) por % de FC máx. o reserva (Karvonen). La FC máxima la introduce el usuario o es la más alta registrada en sus carreras; nunca se estima por la edad. Sin FC máxima no hay zonas ("--").
+- **Alertas hápticas** de ritmo y de zona: avisan tras 10 s fuera de rango, repiten cada 60 s y avisan al volver (con histéresis en el ritmo).
+- **Intervalos**: planes con calentamiento, n × (serie + recuperación) por tiempo, distancia o "hasta pulsar Vuelta", ritmo objetivo opcional por serie, vuelta a la calma. Página propia en el reloj con lo que falta y hápticos en cada cambio.
+- **Mapa** en el reloj (ruta recorrida y posición) y en el detalle del iPhone.
+- **Detalle de carrera**: ruta, parciales por km/milla calculados desde la ruta, gráfico de FC y tiempo en zonas.
+- Potencia de carrera en vivo si el reloj la entrega; si no, "--".
+
+## Pendientes conocidos de la Fase 5
+
+- **Probar en un Apple Watch real**: hápticos, intervalos, mapa, sincronización de ajustes, potencia.
+- Cadencia en vivo: sin mostrar hasta verificar su disponibilidad en dispositivo.
+- Tras un cierre inesperado de la app, la carrera recuperada sigue como libre (el plan de intervalos no se conserva).
+- Los parciales se calculan desde la ruta GPS: pueden diferir ligeramente de la distancia total de Apple Health.
+- Los permisos piden ahora también leer la ruta de los entrenamientos: quien ya conectó Apple Health debe aceptarlo (Perfil › Gestionar permisos o al volver a conectar).
