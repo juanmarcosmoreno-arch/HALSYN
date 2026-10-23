@@ -118,6 +118,65 @@
           }
         }
       }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN usa tu ubicación durante las carreras al aire libre para medir distancia, ritmo y ruta."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN uses your location during outdoor runs to measure distance, pace and route."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O HÅLSYN usa sua localização durante as corridas ao ar livre para medir distância, ritmo e percurso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN utilise ta position pendant les courses en extérieur pour mesurer la distance, l’allure et le parcours."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN usa la tua posizione durante le corse all’aperto per misurare distanza, ritmo e percorso."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN använder din plats under löppass utomhus för att mäta distans, tempo och rutt."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN bruger din lokalitet under løbeture udendørs til at måle distance, tempo og rute."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN 会在户外跑步时使用你的位置来测量距离、配速和路线。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN आउटडोर रन के दौरान दूरी, पेस और रूट मापने के लिए आपकी लोकेशन का उपयोग करता है।"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

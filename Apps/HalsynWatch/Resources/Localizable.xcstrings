@@ -531,6 +531,59 @@
         }
       }
     },
+    "Abriendo el reloj…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening watch…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrindo o relógio…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouverture de la montre…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apertura dell’orologio…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppnar klockan…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbner uret…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在打开手表…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी खुल रही है…"
+          }
+        }
+      }
+    },
     "Acceso no concedido": {
       "extractionState": "manual",
       "localizations": {
@@ -2117,6 +2170,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आउटडोर रन"
+          }
+        }
+      }
+    },
+    "Carrera descartada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run discarded"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrida descartada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Course supprimée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corsa eliminata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppasset slängdes"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbetur kasseret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已放弃跑步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन हटा दिया गया"
           }
         }
       }
@@ -4029,6 +4135,59 @@
         }
       }
     },
+    "Descartar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Släng"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kassér"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放弃"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हटाएँ"
+          }
+        }
+      }
+    },
     "Design system": {
       "extractionState": "manual",
       "localizations": {
@@ -4665,59 +4824,6 @@
         }
       }
     },
-    "El motor de entrenamiento (sesión de HealthKit, GPS, ritmo, pausa y guardado) se implementa en la Fase 4 y debe validarse en un Apple Watch físico. En esta fase no se registra ningún entrenamiento.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The workout engine (HealthKit session, GPS, pace, pause and saving) is implemented in Phase 4 and must be validated on a physical Apple Watch. No workouts are recorded in this phase."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O motor de treino (sessão do HealthKit, GPS, ritmo, pausa e salvamento) será implementado na Fase 4 e precisa ser validado em um Apple Watch físico. Nesta fase, nenhum treino é registrado."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le moteur d’entraînement (session HealthKit, GPS, allure, pause et enregistrement) sera mis en place lors de la Phase 4 et devra être validé sur une Apple Watch physique. À ce stade, aucun entraînement n’est enregistré."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il motore di allenamento (sessione HealthKit, GPS, ritmo, pausa e salvataggio) verrà implementato nella Fase 4 e dovrà essere convalidato su un Apple Watch fisico. In questa fase non viene registrato alcun allenamento."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Träningsmotorn (HealthKit-session, GPS, tempo, paus och sparande) införs i Fas 4 och måste valideras på en fysisk Apple Watch. I den här fasen registreras inga träningspass."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Træningsmotoren (HealthKit-session, GPS, tempo, pause og lagring) implementeres i Fase 4 og skal valideres på et fysisk Apple Watch. I denne fase registreres der ingen træning."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "训练引擎（HealthKit 会话、GPS、配速、暂停和保存）将在第 4 阶段实现，并需在实体 Apple Watch 上验证。本阶段不会记录任何训练。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "वर्कआउट इंजन (HealthKit सेशन, GPS, पेस, पॉज़ और सेव) चरण 4 में लागू होगा और इसे असली Apple Watch पर जांचना ज़रूरी है। इस चरण में कोई वर्कआउट रिकॉर्ड नहीं होता।"
-          }
-        }
-      }
-    },
     "El motor de recuperación (RecoveryEngine) llega en la Fase 6.": {
       "extractionState": "manual",
       "localizations": {
@@ -4767,59 +4873,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "रिकवरी इंजन (RecoveryEngine) चरण 6 में आएगा।"
-          }
-        }
-      }
-    },
-    "El registro de entrenamientos llega en la Fase 4.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workout recording arrives in Phase 4."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O registro de treinos chega na Fase 4."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L’enregistrement des entraînements arrive lors de la Phase 4."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La registrazione degli allenamenti arriva nella Fase 4."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registrering av träningspass kommer i Fas 4."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registrering af træning kommer i Fase 4."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "训练记录将在第 4 阶段推出。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "वर्कआउट रिकॉर्डिंग चरण 4 में आएगी।"
           }
         }
       }
@@ -4926,6 +4979,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "शुरू करें"
+          }
+        }
+      }
+    },
+    "En pausa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paused"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em pausa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En pause"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In pausa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På pause"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已暂停"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रुका हुआ"
           }
         }
       }
@@ -6997,6 +7103,112 @@
         }
       }
     },
+    "Guardada en Apple Health": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved to Apple Health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva no Apple Health"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrée dans Apple Health"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvata in Apple Health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sparat i Apple Health"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemt i Apple Health"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已存入 Apple Health"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health में सेव हुआ"
+          }
+        }
+      }
+    },
+    "Guardar en Apple Health": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save to Apple Health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar no Apple Health"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer dans Apple Health"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva in Apple Health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spara i Apple Health"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gem i Apple Health"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存入 Apple Health"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health में सेव करें"
+          }
+        }
+      }
+    },
     "HRV dentro o por encima de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -7205,6 +7417,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इस डिवाइस पर HealthKit"
+          }
+        }
+      }
+    },
+    "Hecho": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हो गया"
           }
         }
       }
@@ -8004,6 +8269,59 @@
         }
       }
     },
+    "Iniciar carrera al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start outdoor run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar corrida ao ar livre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer une course en extérieur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia corsa all’aperto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta löpning utomhus"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start løbetur udendørs"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始户外跑步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आउटडोर रन शुरू करें"
+          }
+        }
+      }
+    },
     "Intervalos": {
       "extractionState": "manual",
       "localizations": {
@@ -8053,6 +8371,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इंटरवल"
+          }
+        }
+      }
+    },
+    "Intervalos y competición llegan en la Fase 5 (vista previa).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals and race arrive in Phase 5 (preview)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalos e competição chegam na Fase 5 (prévia)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fractionné et la compétition arrivent lors de la Phase 5 (aperçu)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalli e gara arrivano nella Fase 5 (anteprima)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller och tävling kommer i Fas 5 (förhandsvisning)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller og konkurrence kommer i Fase 5 (forhåndsvisning)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间歇跑和比赛将在第 5 阶段推出（预览）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इंटरवल और रेस चरण 5 में आएँगे (प्रीव्यू)।"
           }
         }
       }
@@ -8159,6 +8530,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "SPRING पर जाएं"
+          }
+        }
+      }
+    },
+    "La carrera se registra en el reloj, incluso si dejas el iPhone en casa. Puedes iniciarla desde aquí o tocando SPRING en el reloj.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The run is recorded on your watch, even if you leave your iPhone at home. You can start it here or by tapping SPRING on your watch."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A corrida é registrada no relógio, mesmo se você deixar o iPhone em casa. Você pode iniciá-la aqui ou tocando em SPRING no relógio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La course est enregistrée sur la montre, même si tu laisses ton iPhone à la maison. Tu peux la démarrer ici ou en touchant SPRING sur la montre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La corsa viene registrata sull’orologio, anche se lasci l’iPhone a casa. Puoi avviarla da qui o toccando SPRING sull’orologio."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppasset registreras på klockan, även om du lämnar iPhone hemma. Du kan starta det här eller genom att trycka på SPRING på klockan."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbeturen registreres på uret, også selvom du lader din iPhone blive hjemme. Du kan starte den herfra eller ved at trykke på SPRING på uret."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步由手表记录，即使你把 iPhone 留在家里也没问题。你可以在这里开始，也可以在手表上轻点 SPRING。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन घड़ी पर रिकॉर्ड होता है, भले ही आप iPhone घर पर छोड़ दें। आप इसे यहाँ से या घड़ी पर SPRING टैप करके शुरू कर सकते हैं।"
           }
         }
       }
@@ -8318,59 +8742,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "स्कोर पांच आयामों को अस्थायी भार के साथ जोड़ता है। नींद की तुलना 7–9 h की सिफ़ारिश से; आराम की हृदय गति और HRV की तुलना पिछले 4 हफ़्तों के आपके अपने औसत से; पिछले 7 पूरे दिनों के कदम और व्यायाम के मिनट; और हाल के ट्रेनिंग लोड की तुलना आपके सामान्य लोड से। अपने औसत से बेहतर होने पर अतिरिक्त अंक नहीं मिलते, और आराम करने से अंक नहीं कटते।"
-          }
-        }
-      }
-    },
-    "Las carreras se inician en el Apple Watch": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Runs are started on Apple Watch"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "As corridas são iniciadas no Apple Watch"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les courses se lancent sur l’Apple Watch"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le corse si avviano su Apple Watch"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Löppass startas på Apple Watch"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Løbeture startes på Apple Watch"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "跑步需在 Apple Watch 上开始"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "रन Apple Watch पर शुरू किए जाते हैं"
           }
         }
       }
@@ -9382,6 +9753,59 @@
         }
       }
     },
+    "Mira tu Apple Watch: la carrera está empezando.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check your Apple Watch: your run is starting."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olhe seu Apple Watch: a corrida está começando."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regarde ton Apple Watch : la course démarre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda il tuo Apple Watch: la corsa sta iniziando."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Titta på din Apple Watch: löppasset startar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se på dit Apple Watch: løbeturen starter."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请查看你的 Apple Watch：跑步即将开始。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपना Apple Watch देखें: रन शुरू हो रहा है।"
+          }
+        }
+      }
+    },
     "Modo demo": {
       "extractionState": "manual",
       "localizations": {
@@ -9961,6 +10385,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "डेटा पढ़ा नहीं जा सका"
+          }
+        }
+      }
+    },
+    "No se pudo abrir HÅLSYN en el reloj. Comprueba que está instalada y que el reloj está desbloqueado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't open HÅLSYN on your watch. Make sure it's installed and your watch is unlocked."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível abrir o HÅLSYN no relógio. Verifique se ele está instalado e se o relógio está desbloqueado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’ouvrir HÅLSYN sur la montre. Vérifie que l’app est installée et que la montre est déverrouillée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile aprire HÅLSYN sull’orologio. Verifica che sia installata e che l’orologio sia sbloccato."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att öppna HÅLSYN på klockan. Kontrollera att appen är installerad och att klockan är upplåst."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN kunne ikke åbnes på uret. Tjek, at appen er installeret, og at uret er låst op."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在手表上打开 HÅLSYN。请确认已安装该 App，且手表已解锁。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर HÅLSYN नहीं खुल सका। जाँचें कि ऐप इंस्टॉल है और घड़ी अनलॉक है।"
+          }
+        }
+      }
+    },
+    "No se pudo completar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't complete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível concluir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de finaliser"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile completare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att slutföra"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunne ikke fuldføres"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法完成"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरा नहीं हो सका"
           }
         }
       }
@@ -10548,6 +11078,59 @@
         }
       }
     },
+    "Pausa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paus"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂停"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोकें"
+          }
+        }
+      }
+    },
     "Perfil": {
       "extractionState": "manual",
       "localizations": {
@@ -11131,6 +11714,59 @@
         }
       }
     },
+    "Preparando…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préparation…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparazione…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förbereder…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbereder…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在准备…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तैयारी हो रही है…"
+          }
+        }
+      }
+    },
     "Primera lectura": {
       "extractionState": "manual",
       "localizations": {
@@ -11710,6 +12346,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लैप पेस"
+          }
+        }
+      }
+    },
+    "Reanudar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retomar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reprendre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riprendi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsätt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genoptag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर शुरू"
           }
         }
       }
@@ -12615,6 +13304,59 @@
         }
       }
     },
+    "Seguir corriendo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep running"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar correndo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer à courir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua a correre"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsätt springa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løb videre"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续跑步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दौड़ते रहें"
+          }
+        }
+      }
+    },
     "Semanal": {
       "extractionState": "manual",
       "localizations": {
@@ -13251,6 +13993,59 @@
         }
       }
     },
+    "Sin vueltas todavía": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No laps yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma volta ainda"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun tour pour l’instant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessun giro"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga varv än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen omgange endnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚无分段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी कोई लैप नहीं"
+          }
+        }
+      }
+    },
     "Sistema": {
       "extractionState": "manual",
       "localizations": {
@@ -13830,6 +14625,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रुझान, तुलना और लंबे समय का बदलाव।"
+          }
+        }
+      }
+    },
+    "Terminar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termina"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsluta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afslut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "结束"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "खत्म"
           }
         }
       }
@@ -15742,6 +16590,112 @@
         }
       }
     },
+    "Vuelta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giro"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omgang"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लैप"
+          }
+        }
+      }
+    },
+    "Vueltas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laps"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giri"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omgange"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लैप"
+          }
+        }
+      }
+    },
     "ZONA": {
       "extractionState": "manual",
       "localizations": {
@@ -16162,6 +17116,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आप क्या हासिल करना चाहेंगे?"
+          }
+        }
+      }
+    },
+    "¿Terminar la carrera?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End run?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encerrar a corrida?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminer la course ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminare la corsa?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsluta löppasset?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afslut løbeturen?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "结束跑步？"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन खत्म करें?"
           }
         }
       }
