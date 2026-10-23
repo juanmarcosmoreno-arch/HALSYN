@@ -179,6 +179,7 @@ public struct HalsynScoreRing: View {
     }
 
     private var progress: Double { Double(score ?? 0) / 100 }
+    private var isLow: Bool { (score ?? 100) < 34 }
 
     public var body: some View {
         ZStack {
@@ -190,13 +191,14 @@ public struct HalsynScoreRing: View {
             Circle()
                 .inset(by: lineWidth / 2)
                 .trim(from: 0, to: animatedProgress)
-                .stroke(HalsynGradients.ring, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                // Puntuación baja: anillo cálido (naranja → coral) en lugar del turquesa.
+                .stroke(isLow ? AnyShapeStyle(HalsynGradients.ember) : AnyShapeStyle(HalsynGradients.ring), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             GeometryReader { proxy in
                 let radius = (min(proxy.size.width, proxy.size.height) - lineWidth) / 2
                 let angle = Angle.degrees(animatedProgress * 360 - 90)
                 Circle()
-                    .fill(Color(HalsynPalette.mint))
+                    .fill(isLow ? Color(HalsynPalette.emberDark) : Color(HalsynPalette.mint))
                     .overlay(Circle().strokeBorder(Color.halsynSurface, lineWidth: 2))
                     .frame(width: lineWidth * 1.1, height: lineWidth * 1.1)
                     .position(

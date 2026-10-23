@@ -11,16 +11,39 @@ struct WorkoutSessionView: View {
     @Environment(WorkoutManager.self) private var workout
 
     var body: some View {
-        if workout.outcome != nil || workout.phase == .ended {
-            WorkoutSummaryView()
-        } else if workout.phase == .preparing {
-            VStack(spacing: 8) {
-                HalsynSymbol().frame(height: 44)
-                ProgressView()
-                Text("Preparando…").font(.footnote)
+        NavigationStack {
+            if workout.outcome != nil || workout.phase == .ended {
+                WorkoutSummaryView()
+                    // "Hecho" en lugar de la cruz del sistema.
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Hecho") { workout.dismissSummary() }
+                        }
+                    }
+            } else if workout.phase == .preparing {
+                VStack(spacing: 8) {
+                    HalsynSymbol().frame(height: 44)
+                    ProgressView()
+                    Text("Preparando…").font(.footnote)
+                }
+                .toolbar(.hidden, for: .navigationBar)
+            } else {
+                // Durante la carrera no hay cruz: se termina desde los controles.
+                WorkoutPagesView()
+                    .toolbar(.hidden, for: .navigationBar)
             }
+        }
+        .interactiveDismissDisabled(workout.isActive)
+    }
+}
+
+/// Doble toque (Apple Watch Series 9, Ultra 2 o posterior, watchOS 11) activa el botón.
+private struct PrimaryActionShortcut: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(watchOS 11.0, *) {
+            content.handGestureShortcut(.primaryAction)
         } else {
-            WorkoutPagesView()
+            content
         }
     }
 }
@@ -95,6 +118,62 @@ private struct PausedLabel: View {
     }
 }
 
+/// Botón pequeño de pausa en las métricas. Con doble toque también pausa.
+private struct PauseButton: View {
+    @Environment(WorkoutManager.self) private var workout
+
+    var body: some View {
+        if workout.phase == .running {
+            Button {
+                workout.togglePause()
+            } label: {
+                Image(systemName: "pause.fill")
+                    .font(.footnote.weight(.bold))
+                    .frame(width: 30, height: 30)
+                    .background(Circle().fill(Color(HalsynPalette.cautionDark).opacity(0.25)))
+                    .foregroundStyle(Color(HalsynPalette.cautionDark))
+            }
+            .buttonStyle(.plain)
+            .modifier(PrimaryActionShortcut())
+            .accessibilityLabel(Text("Pausa"))
+        }
+    }
+}
+
+/// En pausa: reanudar (también con doble toque) o terminar.
+private struct PausedPanel: View {
+    @Environment(WorkoutManager.self) private var workout
+    @State private var confirmingEnd = false
+
+    var body: some View {
+        VStack(spacing: 8) {
+            PausedLabel()
+            Button {
+                workout.togglePause()
+            } label: {
+                Label("Reanudar", systemImage: "play.fill")
+                    .frame(maxWidth: .infinity)
+            }
+            .tint(Color(HalsynPalette.darkAccent))
+            .modifier(PrimaryActionShortcut())
+            Button(role: .destructive) {
+                confirmingEnd = true
+            } label: {
+                Label("Terminar", systemImage: "stop.fill")
+                    .frame(maxWidth: .infinity)
+            }
+            .tint(Color(HalsynPalette.alertDark))
+        }
+        .padding(10)
+        .background(RoundedRectangle(cornerRadius: 18).fill(Color.black.opacity(0.88)))
+        .confirmationDialog("¿Terminar la carrera?", isPresented: $confirmingEnd) {
+            Button("Guardar en Apple Health") { workout.end(save: true) }
+            Button("Descartar", role: .destructive) { workout.end(save: false) }
+            Button("Seguir corriendo", role: .cancel) {}
+        }
+    }
+}
+
 /// Métricas en vivo con un perfil de pantalla configurado en el iPhone.
 private struct WorkoutMetricsView: View {
     let profile: WorkoutScreenProfile
@@ -104,17 +183,25 @@ private struct WorkoutMetricsView: View {
     var body: some View {
         TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
             let snapshot = workout.snapshot(at: context.date)
-            VStack(alignment: .leading, spacing: 2) {
-                if workout.phase == .paused {
-                    PausedLabel()
-                } else if let zone = snapshot.heartRateZone {
-                    HalsynZoneGauge(zone: zone)
+            VStack(alignment: .center, spacing: 2) {
+                HStack {
+                    if let zone = snapshot.heartRateZone, workout.phase != .paused {
+                        HalsynZoneGauge(zone: zone)
+                    } else {
+                        Spacer()
+                    }
+                    PauseButton()
                 }
                 HalsynWorkoutScreen(profile: profile) { snapshot.value(for: $0, unit: unitSystem) }
             }
             .padding(.horizontal, 4)
             .overlay(alignment: .top) {
                 BannerOverlay(banner: workout.banner, now: context.date)
+            }
+            .overlay {
+                if workout.phase == .paused {
+                    PausedPanel()
+                }
             }
         }
         .background(Color.black.ignoresSafeArea())
@@ -325,50 +412,106 @@ private struct WorkoutLapsView: View {
     }
 }
 
-/// Resumen al terminar.
+/// Resumen al terminar: distancia grande, tiempo y ritmo, mapa, ritmo dibujado y zonas.
 private struct WorkoutSummaryView: View {
     @Environment(WorkoutManager.self) private var workout
+
+    /// Ruta reducida para el mapa del resumen.
+    private var route: [CLLocationCoordinate2D] {
+        let all = workout.routeCoordinates
+        guard all.count > 300 else { return all }
+        let step = Int((Double(all.count) / 300).rounded(.up))
+        var reduced = stride(from: 0, to: all.count, by: step).map { all[$0] }
+        if let last = all.last { reduced.append(last) }
+        return reduced
+    }
 
     var body: some View {
         let snapshot = workout.snapshot(at: .now)
         ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                switch workout.outcome {
-                case .saved:
-                    Label("Guardada en Apple Health", systemImage: "checkmark.circle.fill")
-                        .foregroundStyle(Color(HalsynPalette.darkAccent))
-                case .discarded:
-                    Label("Carrera descartada", systemImage: "trash")
-                        .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
-                case .failed:
-                    Label("No se pudo completar", systemImage: "exclamationmark.triangle.fill")
-                        .foregroundStyle(Color(HalsynPalette.cautionDark))
-                    if let message = workout.errorMessage {
-                        Text(verbatim: message).font(.caption2)
-                    }
-                case nil:
-                    ProgressView()
-                }
+            VStack(spacing: 10) {
+                outcome
                 if let name = snapshot.intervalPlanName {
                     Text(verbatim: name)
                         .font(.headline)
                         .foregroundStyle(Color(HalsynPalette.darkAccent))
                 }
-                HalsynWatchMetric(title: "Distancia", systemImage: "point.topleft.down.to.point.bottomright.curvepath", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol)
-                HalsynWatchMetric(title: "Tiempo", systemImage: "stopwatch", value: HalsynFormat.duration(snapshot.elapsed), unit: "")
-                HalsynWatchMetric(title: "Ritmo medio", systemImage: "speedometer", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
-                HalsynWatchMetric(title: "FC media", systemImage: "heart", value: snapshot.averageHeartRate.map { HalsynFormat.integer($0) }, unit: "lpm")
-                HalsynWatchMetric(title: "FC máx. registrada", systemImage: "heart.fill", value: snapshot.maxHeartRate.map { HalsynFormat.integer($0) }, unit: "lpm")
+                HalsynWorkoutField(label: "DISTANCIA", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol, size: .large, alignment: .center)
+                HStack {
+                    HalsynWorkoutField(label: "TID", value: HalsynFormat.duration(snapshot.elapsed), unit: "", size: .small, alignment: .center)
+                    HalsynWorkoutField(label: "RITMO", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol, size: .small, alignment: .center)
+                }
+                if route.count > 1 {
+                    Map(initialPosition: .automatic, interactionModes: []) {
+                        MapPolyline(coordinates: route)
+                            .stroke(Color(HalsynPalette.darkAccent), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                        if let first = route.first {
+                            Annotation("", coordinate: first) { Circle().fill(Color(HalsynPalette.positiveDark)).frame(width: 8, height: 8) }
+                        }
+                        if let last = route.last {
+                            Annotation("", coordinate: last) { Circle().fill(Color(HalsynPalette.alertDark)).frame(width: 8, height: 8) }
+                        }
+                    }
+                    .frame(height: 110)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .allowsHitTesting(false)
+                    .accessibilityLabel(Text("Mapa de la ruta"))
+                }
+                if snapshot.paceSamples.count > 3 {
+                    HalsynLiveRunChart(
+                        paceSamples: snapshot.paceSamples,
+                        heartRateSamples: snapshot.heartRateSamples,
+                        averagePace: snapshot.averagePace,
+                        currentPace: nil,
+                        heartRate: nil,
+                        paceTarget: nil,
+                        unit: unitSystem
+                    )
+                    .frame(height: 130)
+                }
+                HStack {
+                    HalsynWorkoutField(label: "PULS", value: snapshot.averageHeartRate.map { HalsynFormat.integer($0) }, unit: "lpm", size: .small, emphasis: Color(HalsynPalette.alertDark), alignment: .center)
+                    HalsynWorkoutField(label: "MÁX.", value: snapshot.maxHeartRate.map { HalsynFormat.integer($0) }, unit: "lpm", size: .small, emphasis: Color(HalsynPalette.alertDark), alignment: .center)
+                }
                 if !snapshot.laps.isEmpty {
                     HalsynWatchMetric(title: "Vueltas", systemImage: "flag", value: "\(snapshot.laps.count)", unit: "")
                 }
                 if snapshot.zoneSeconds.reduce(0, +) > 0 {
                     ZoneBarsView(seconds: snapshot.zoneSeconds)
                 }
-                Button("Hecho") { workout.dismissSummary() }
-                    .tint(Color(HalsynPalette.darkAccent))
-                    .padding(.top, 4)
+                Button {
+                    workout.dismissSummary()
+                } label: {
+                    Text("Hecho").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color(HalsynPalette.darkAccent))
+                .padding(.top, 4)
             }
+            .padding(.horizontal, 4)
+        }
+    }
+
+    @ViewBuilder
+    private var outcome: some View {
+        switch workout.outcome {
+        case .saved:
+            Label("Guardada en Apple Health", systemImage: "checkmark.circle.fill")
+                .font(.footnote)
+                .foregroundStyle(Color(HalsynPalette.darkAccent))
+        case .discarded:
+            Label("Carrera descartada", systemImage: "trash")
+                .font(.footnote)
+                .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+        case .failed:
+            Label("No se pudo completar", systemImage: "exclamationmark.triangle.fill")
+                .font(.footnote)
+                .foregroundStyle(Color(HalsynPalette.cautionDark))
+            if let message = workout.errorMessage {
+                Text(verbatim: message).font(.caption2)
+            }
+        case nil:
+            ProgressView()
         }
     }
 }

@@ -67,6 +67,12 @@ public enum HalsynPalette {
     public static let cautionDark = HalsynRGBColor(hex: 0xF2C14E)
     public static let alertLight = HalsynRGBColor(hex: 0xB3261E)
     public static let alertDark = HalsynRGBColor(hex: 0xFF8A80)
+
+    // Acento cálido para lo extremo (fuera de tu rango, récords, máxima intensidad).
+    // Contrapunto al turquesa: se usa poco para que destaque.
+    public static let emberLight = HalsynRGBColor(hex: 0xE8590C)
+    public static let emberDark = HalsynRGBColor(hex: 0xFF8A4C)
+    public static let coral = HalsynRGBColor(hex: 0xFF5A4E)
 }
 
 /// Token semántico con su variante clara y oscura.
@@ -98,6 +104,8 @@ public enum HalsynColorTokens {
     public static let positive = SemanticColor("positive", light: HalsynPalette.positiveLight, dark: HalsynPalette.positiveDark)
     public static let caution = SemanticColor("caution", light: HalsynPalette.cautionLight, dark: HalsynPalette.cautionDark)
     public static let alert = SemanticColor("alert", light: HalsynPalette.alertLight, dark: HalsynPalette.alertDark)
+    /// Acento cálido para marcas (no texto): valores fuera de lo habitual, récords, extremos.
+    public static let highlight = SemanticColor("highlight", light: HalsynPalette.emberLight, dark: HalsynPalette.emberDark)
 
     // Gráficos (validados con el validador de paletas de dataviz; ver DESIGN_SYSTEM.md).
     /// Línea y barras principales: ≥ 3:1 sobre la superficie en ambos modos.

@@ -173,7 +173,8 @@ struct RecordsCard: View {
                 ForEach(records) { record in
                     HStack(alignment: .firstTextBaseline) {
                         Image(systemName: icon(record.kind))
-                            .foregroundStyle(.halsynAccentText)
+                            // Récords: acento cálido.
+                            .foregroundStyle(.halsynHighlight)
                             .frame(width: 24)
                             .accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 2) {

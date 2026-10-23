@@ -19,15 +19,15 @@ enum RunColoring: String, CaseIterable, Identifiable {
     }
 }
 
-/// Escala de color secuencial en 5 pasos (lento/bajo → rápido/alto), legible
+/// Escala de color en 5 pasos, de turquesa (lento/bajo) a rojo (rápido/alto), legible
 /// sobre mapas claros y oscuros. Siempre va con leyenda.
 enum RunColorScale {
     static let steps: [Color] = [
-        Color(HalsynRGBColor(hex: 0xF2C14E)),
-        Color(HalsynRGBColor(hex: 0xB5CC6A)),
-        Color(HalsynRGBColor(hex: 0x6CC48A)),
         Color(HalsynRGBColor(hex: 0x1FB99A)),
-        Color(HalsynRGBColor(hex: 0x0D8F7A)),
+        Color(HalsynRGBColor(hex: 0x9ACD5A)),
+        Color(HalsynRGBColor(hex: 0xF2C14E)),
+        Color(HalsynRGBColor(hex: 0xFF8A4C)),
+        Color(HalsynRGBColor(hex: 0xE8452C)),
     ]
 
     /// Paso de color de cada valor según sus percentiles 10–90 (los extremos no dominan la escala).

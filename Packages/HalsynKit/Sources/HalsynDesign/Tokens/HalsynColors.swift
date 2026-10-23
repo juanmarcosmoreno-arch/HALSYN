@@ -51,6 +51,7 @@ extension ShapeStyle where Self == Color {
     public static var halsynCaution: Color { Color(HalsynColorTokens.caution) }
     public static var halsynAlert: Color { Color(HalsynColorTokens.alert) }
     public static var halsynChart: Color { Color(HalsynColorTokens.chartPrimary) }
+    public static var halsynHighlight: Color { Color(HalsynColorTokens.highlight) }
 }
 
 public enum HalsynGradients {
@@ -64,6 +65,14 @@ public enum HalsynGradients {
     /// Gradiente angular para anillos de puntuación.
     public static let ring = AngularGradient(
         colors: [Color(HalsynPalette.turquoiseInk), Color(HalsynPalette.turquoise), Color(HalsynPalette.mint), Color(HalsynPalette.turquoise)],
+        center: .center,
+        startAngle: .degrees(-90),
+        endAngle: .degrees(270)
+    )
+
+    /// Acento cálido para lo extremo (puntuación baja, máxima intensidad).
+    public static let ember = AngularGradient(
+        colors: [Color(HalsynPalette.coral), Color(HalsynPalette.emberDark), Color(HalsynPalette.cautionDark), Color(HalsynPalette.emberDark)],
         center: .center,
         startAngle: .degrees(-90),
         endAngle: .degrees(270)

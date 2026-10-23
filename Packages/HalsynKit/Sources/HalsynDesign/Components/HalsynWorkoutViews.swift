@@ -52,10 +52,10 @@ public enum HalsynWorkoutFieldSize: Sendable {
 
     var valueFont: Font {
         switch self {
-        case .hero: .system(size: 64, weight: .semibold, design: .rounded).monospacedDigit()
-        case .large: .system(size: 44, weight: .semibold, design: .rounded).monospacedDigit()
-        case .medium: .system(size: 32, weight: .semibold, design: .rounded).monospacedDigit()
-        case .small: .system(size: 24, weight: .semibold, design: .rounded).monospacedDigit()
+        case .hero: .system(size: 80, weight: .semibold, design: .rounded).monospacedDigit()
+        case .large: .system(size: 56, weight: .semibold, design: .rounded).monospacedDigit()
+        case .medium: .system(size: 42, weight: .semibold, design: .rounded).monospacedDigit()
+        case .small: .system(size: 30, weight: .semibold, design: .rounded).monospacedDigit()
         }
     }
 }
@@ -68,17 +68,19 @@ public struct HalsynWorkoutField: View {
     private let unit: String
     private let size: HalsynWorkoutFieldSize
     private let emphasis: Color
+    private let alignment: HorizontalAlignment
 
-    public init(label: String, value: String?, unit: String, size: HalsynWorkoutFieldSize = .medium, emphasis: Color = Color(HalsynPalette.darkAccent)) {
+    public init(label: String, value: String?, unit: String, size: HalsynWorkoutFieldSize = .medium, emphasis: Color = Color(HalsynPalette.darkAccent), alignment: HorizontalAlignment = .leading) {
         self.label = label
         self.value = value
         self.unit = unit
         self.size = size
         self.emphasis = emphasis
+        self.alignment = alignment
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: alignment, spacing: -2) {
             Text(LocalizedStringKey(label))
                 .font(.caption2.weight(.semibold))
                 .tracking(1)
@@ -96,7 +98,7 @@ public struct HalsynWorkoutField: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: Alignment(horizontal: alignment, vertical: .center))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(LocalizedStringKey(label)))
         .accessibilityValue(halsynAccessibilityValue(value, unit: unit))
@@ -130,20 +132,22 @@ public struct HalsynWorkoutScreen: View {
 
     public var body: some View {
         let fields = Array(profile.fields.prefix(profile.layout.fieldCount))
-        VStack(alignment: .leading, spacing: 4) {
+        // Centrado y repartido en toda la altura: se lee de un vistazo corriendo.
+        VStack(alignment: .center, spacing: 0) {
             if profile.layout == .six {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 4) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .center, spacing: 6) {
                     ForEach(fields) { field in
                         fieldView(field, size: .small)
                     }
                 }
             } else {
                 ForEach(Array(fields.enumerated()), id: \.element) { index, field in
+                    if index > 0 { Spacer(minLength: 2) }
                     fieldView(field, size: size(forIndex: index, count: fields.count))
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 
     private func size(forIndex index: Int, count: Int) -> HalsynWorkoutFieldSize {
@@ -161,7 +165,8 @@ public struct HalsynWorkoutScreen: View {
             value: item.value,
             unit: item.unit,
             size: size,
-            emphasis: field == .heartRate || field == .heartRateZone ? Color(HalsynPalette.alertDark) : Color(HalsynPalette.darkAccent)
+            emphasis: field == .heartRate || field == .heartRateZone ? Color(HalsynPalette.alertDark) : Color(HalsynPalette.darkAccent),
+            alignment: .center
         )
     }
 }

@@ -325,7 +325,8 @@ public struct HalsynTrendChart: View {
                 .foregroundStyle(Color.halsynSurface)
             PointMark(x: .value("Día", item.day, unit: .day), y: .value(title, item.value))
                 .symbolSize(item.day == selectedValue?.day ? 70 : 36)
-                .foregroundStyle(Color.halsynChart)
+                // Fuera de tu rango habitual: acento cálido para que salte a la vista.
+                .foregroundStyle(isOutsideUsual(item.value) ? Color.halsynHighlight : Color.halsynChart)
         }
     }
 

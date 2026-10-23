@@ -110,7 +110,7 @@ struct TodayGuidanceCard: View {
         switch guidance {
         case .push: .halsynPositive
         case .steady: .halsynAccentText
-        case .easy, .rest: .halsynCaution
+        case .easy, .rest: .halsynHighlight
         case .unknown: .halsynSecondaryText
         }
     }

@@ -21,7 +21,10 @@ struct HalsynWatchApp: App {
                 // Durante una carrera (o al iniciarla desde el iPhone) se muestra la sesión.
                 .fullScreenCover(isPresented: Binding(
                     get: { workout.phase != .idle || workout.outcome != nil },
-                    set: { _ in }
+                    // Si el sistema cierra la hoja con el resumen a la vista, se descarta el resumen.
+                    set: { presented in
+                        if !presented && !workout.isActive { workout.dismissSummary() }
+                    }
                 )) {
                     WorkoutSessionView()
                         .environment(workout)
