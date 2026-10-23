@@ -47,6 +47,17 @@ final class ChartSnapshotTests: XCTestCase {
                 .background(Color.black)
         )))
         views.append(("12-reloj-zona", AnyView(HalsynZoneGauge(zone: 3).frame(width: 180).padding(12).background(Color.black))))
+        // Análisis de una carrera demo.
+        if let workout = await provider.recentWorkouts(limit: 1).first {
+            let detail = await provider.workoutDetail(for: workout)
+            if let insights = RunAnalyzer.analyze(route: detail.route, heartRate: detail.heartRate) {
+                views.append(("14-carrera-analisis", AnyView(RunAnalysisCard(insights: insights, unitSystem: .metric))))
+                views.append(("15-carrera-perfil", AnyView(RunProfileChart(insights: insights, unitSystem: .metric))))
+            }
+            if let comparison = RunAnalyzer.compare(workout, with: await provider.recentWorkouts(limit: 60)) {
+                views.append(("16-carrera-comparacion", AnyView(SimilarRunsCard(comparison: comparison, unitSystem: .metric))))
+            }
+        }
         // Referencias por edad con las tablas reales (FRIEND 2015 y NHANES).
         if let vo2 = ReferencePercentileEngine.position(of: 46, metric: .vo2Max, age: 35, sex: .male),
            let resting = ReferencePercentileEngine.position(of: 49, metric: .restingHeartRate, age: 45, sex: .female) {

@@ -15,6 +15,8 @@ public enum WorkoutActivity: String, Codable, CaseIterable, Sendable {
         }
     }
 
+    public var isRun: Bool { self == .outdoorRun || self == .indoorRun }
+
     public var systemImage: String {
         switch self {
         case .outdoorRun, .indoorRun: "figure.run"

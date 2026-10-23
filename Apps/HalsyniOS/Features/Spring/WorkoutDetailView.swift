@@ -11,6 +11,8 @@ struct WorkoutDetailView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var detail: WorkoutDetailData?
+    @State private var insights: RunInsights?
+    @State private var comparison: SimilarRunComparison?
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -47,8 +49,18 @@ struct WorkoutDetailView: View {
                 HalsynMetricTile(title: "Energía activa", systemImage: "flame", value: workout.activeEnergyKilocalories.map { String(Int($0)) }, unit: "kcal")
             }
 
+            if let comparison {
+                SimilarRunsCard(comparison: comparison, unitSystem: unitSystem)
+            }
+
             if let detail {
-                routeSection(detail)
+                if let insights, insights.segments.count > 1 {
+                    RunColoredMap(insights: insights, isDemo: detail.origin.isDemo)
+                    RunAnalysisCard(insights: insights, unitSystem: unitSystem)
+                    RunProfileChart(insights: insights, unitSystem: unitSystem)
+                } else {
+                    routeSection(detail)
+                }
                 splitsSection(detail)
                 heartRateSection(detail)
             } else {
@@ -60,7 +72,10 @@ struct WorkoutDetailView: View {
         .navigationTitle(Text(LocalizedStringKey(workout.activity.title)))
         .navigationBarTitleDisplayMode(.inline)
         .task(id: workout.id) {
-            detail = await model.provider.workoutDetail(for: workout)
+            let loaded = await model.provider.workoutDetail(for: workout)
+            detail = loaded
+            insights = RunAnalyzer.analyze(route: loaded.route, heartRate: loaded.heartRate)
+            comparison = RunAnalyzer.compare(workout, with: await model.provider.recentWorkouts(limit: 60))
         }
     }
 
