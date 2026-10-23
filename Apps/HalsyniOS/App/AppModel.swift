@@ -18,6 +18,8 @@ enum AppTab: Hashable {
 @Observable
 final class AppModel {
     var selectedTab: AppTab = .halsa
+    /// Se activa al abrir la notificación del resumen nocturno.
+    var isShowingDailySummary = false
     private(set) var provider: any HealthDataProviding
     private(set) var authorizationState: HealthAuthorizationState = .notRequired
     /// Las vistas lo incluyen en `.task(id:)`: al cambiar, recargan sus datos.
@@ -134,4 +136,8 @@ enum AppPreferences {
     static let dataModeKey = "halsyn.dataMode"
     static let onboardingCompletedKey = "halsyn.onboardingCompleted"
     static let focusAreasKey = "halsyn.focusAreas"
+    static let nightlySummaryEnabledKey = "halsyn.nightlySummary.enabled"
+    /// Minutos desde medianoche (por defecto, 21:30).
+    static let nightlySummaryTimeKey = "halsyn.nightlySummary.minutes"
+    static let defaultNightlySummaryMinutes = 21 * 60 + 30
 }

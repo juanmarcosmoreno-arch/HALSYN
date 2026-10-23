@@ -103,20 +103,24 @@ public struct MetricSeries: Hashable, Sendable {
     }
 }
 
-/// Puntuación diaria (0–100). En la Fase 1 solo existe en modo demo; el motor
-/// real (`HealthScoreEngine`) llega en la Fase 3.
-public struct DailyScore: Hashable, Sendable {
+/// Puntuación diaria (0–100) de bienestar. No es una valoración clínica.
+public struct DailyScore: Hashable, Identifiable, Sendable {
     public let day: Date
     public let value: Int
-    /// Variación respecto a la semana anterior, en puntos.
+    /// Variación respecto a la media de los 7 días anteriores, en puntos.
     public let weeklyChange: Int?
     public let origin: DataOrigin
+    /// Desglose del motor (dimensiones, cobertura, factores). `nil` si no procede.
+    public let breakdown: HealthScoreBreakdown?
 
-    public init(day: Date, value: Int, weeklyChange: Int?, origin: DataOrigin) {
+    public var id: Date { day }
+
+    public init(day: Date, value: Int, weeklyChange: Int?, origin: DataOrigin, breakdown: HealthScoreBreakdown? = nil) {
         self.day = day
         self.value = min(max(value, 0), 100)
         self.weeklyChange = weeklyChange
         self.origin = origin
+        self.breakdown = breakdown
     }
 
     /// Descripción cualitativa no clínica.

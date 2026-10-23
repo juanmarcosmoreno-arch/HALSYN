@@ -25,7 +25,7 @@ IGNORE = {
     "FART", "RÖRELSE", "Easy Run", "Intervals", "Race", "EASY RUN", "Apple Health", "DEMO", "—", "--", "·",
     "%d:%02d", "%d:%02d:%02d", "#%02X%02X%02X", "ml/kg·min", "CFBundleShortVersionString", "CFBundleVersion",
     "MARCA", "TOKENS", "COMPONENTES", "WATCH", "VACÍO · CARGA", "PULS · SÖMN · STEG", "HRV", "SpO₂", "VO₂ máx.",
-    "easy-run", "intervals", "race", "Apple Health · %@",
+    "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "HealthScoreEngine %@",
     "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
 }
 STRING = re.compile(r'"((?:[^"\\\n]|\\.)*)"')

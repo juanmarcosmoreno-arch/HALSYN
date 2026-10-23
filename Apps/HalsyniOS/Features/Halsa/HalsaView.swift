@@ -10,6 +10,7 @@ struct HalsaSnapshot: Sendable {
     var stepsTrend: [DailyValue] = []
     var firstGoal: Goal?
     var lastWorkout: WorkoutSummary?
+    var summary: [SummaryStatement] = []
 
     static let dashboardMetrics: [MetricKind] = [.sleepDuration, .restingHeartRate, .heartRateVariability, .steps, .activeEnergy, .exerciseTime]
 
@@ -23,6 +24,7 @@ struct HalsaSnapshot: Sendable {
         snapshot.stepsTrend = await provider.dailySeries(.steps, days: 7, endingOn: today).values
         snapshot.firstGoal = await provider.goals().first
         snapshot.lastWorkout = await provider.recentWorkouts(limit: 1).first
+        snapshot.summary = await provider.dailySummary(on: today, calendar: .current)
         return snapshot
     }
 }
@@ -30,6 +32,8 @@ struct HalsaSnapshot: Sendable {
 enum HalsaDestination: Hashable {
     case vila
     case mal
+    case history
+    case score(DailyScore)
     case metric(MetricKind)
 }
 
@@ -46,6 +50,7 @@ struct HalsaView: View {
                 header
                 if let snapshot {
                     scoreCard(snapshot)
+                    summaryCard(snapshot)
                     if !model.isDemo && snapshot.metrics.contains(where: { $0.value == nil }) {
                         HealthAccessHint()
                     }
@@ -64,11 +69,16 @@ struct HalsaView: View {
                 switch destination {
                 case .vila: VilaView()
                 case .mal: MalView()
+                case .history: HistoryView()
+                case .score(let score): ScoreDetailView(score: score)
                 case .metric(let kind): MetricDetailView(kind: kind)
                 }
             }
             .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)") {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem)
+            }
+            .sheet(isPresented: Binding(get: { model.isShowingDailySummary }, set: { model.isShowingDailySummary = $0 })) {
+                DailySummaryView()
             }
             .refreshable {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem)
@@ -111,23 +121,58 @@ struct HalsaView: View {
                 HStack {
                     Text(verbatim: HalsynModule.halsa.brandName).halsynEyebrowStyle()
                     Spacer()
-                    Text("Tu cuerpo hoy").font(.halsynCaption).foregroundStyle(.halsynSecondaryText)
+                    NavigationLink(value: HalsaDestination.history) {
+                        Label("Historial", systemImage: "calendar")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynAccentText)
+                    }
                 }
-                HalsynScoreRing(score: snapshot.score?.value, caption: snapshot.score?.band.title)
-                    .frame(maxWidth: 220)
-                if let change = snapshot.score?.weeklyChange {
-                    HalsynStatusIndicator(change >= 0 ? .positive : .neutral, text: String(localized: "\(change.formatted(.number.sign(strategy: .always()))) frente a tu media semanal"))
-                }
-                if snapshot.score == nil {
-                    Text("La puntuación diaria se calculará con tus datos reales cuando esté listo su motor (Fase 3). Mientras tanto, consulta tus indicadores.")
+                if let score = snapshot.score {
+                    NavigationLink(value: HalsaDestination.score(score)) {
+                        HalsynScoreRing(score: score.value, caption: score.band.title)
+                            .frame(maxWidth: 220)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityHint(Text("Muestra el desglose de la puntuación"))
+                    if let change = score.weeklyChange {
+                        HalsynStatusIndicator(change >= 0 ? .positive : .neutral, text: String(localized: "\(change.formatted(.number.sign(strategy: .always()))) frente a tu media semanal"))
+                    }
+                    if let factors = score.breakdown?.factors.prefix(3), !factors.isEmpty {
+                        VStack(alignment: .leading, spacing: 6) {
+                            ForEach(Array(factors.enumerated()), id: \.offset) { _, factor in
+                                ScoreFactorRow(factor: factor)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    NavigationLink(value: HalsaDestination.score(score)) {
+                        Text("Ver desglose")
+                            .font(.halsynCaption.weight(.semibold))
+                            .foregroundStyle(.halsynAccentText)
+                    }
+                    DataOriginFootnote(origin: score.origin, extra: "Estimación de bienestar provisional, no clínica.")
+                } else {
+                    HalsynScoreRing(score: nil, caption: nil)
+                        .frame(maxWidth: 220)
+                    Text("Aún no hay datos suficientes para la puntuación de hoy. Se necesita al menos el 60 % de las dimensiones (sueño, corazón, movimiento, ejercicio y equilibrio).")
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                         .multilineTextAlignment(.center)
-                } else {
-                    DataOriginFootnote(origin: snapshot.score?.origin, extra: "Puntuación provisional de ejemplo. El motor real (HealthScoreEngine) llega en la Fase 3.")
                 }
             }
             .frame(maxWidth: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    private func summaryCard(_ snapshot: HalsaSnapshot) -> some View {
+        if !snapshot.summary.isEmpty {
+            HalsynCard {
+                VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                    HalsynSectionHeader(Calendar.current.component(.hour, from: .now) >= 18 ? "Resumen del día" : "Tu día hasta ahora")
+                    DailySummaryList(statements: snapshot.summary)
+                }
+            }
         }
     }
 

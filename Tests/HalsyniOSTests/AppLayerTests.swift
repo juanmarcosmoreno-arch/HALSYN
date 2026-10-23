@@ -17,6 +17,7 @@ private struct StubLiveProvider: HealthDataProviding {
     }
     func recentWorkouts(limit: Int) async -> [WorkoutSummary] { [] }
     func dailyScore(on day: Date) async -> DailyScore? { nil }
+    func dailyScores(endingOn end: Date, days: Int) async -> [DailyScore] { [] }
     func recoveryScore(on day: Date) async -> DailyScore? { nil }
     func goals() async -> [Goal] { [] }
     func changes() -> AsyncStream<Void> { AsyncStream { $0.finish() } }
@@ -85,12 +86,30 @@ final class AppLayerTests: XCTestCase {
         XCTAssertEqual(snapshot.score?.origin, .demo)
         XCTAssertEqual(snapshot.stepsTrend.count, 7)
         XCTAssertTrue(snapshot.metrics.allSatisfy { $0.origin == .demo })
+        XCTAssertNotNil(snapshot.score?.breakdown, "la puntuación demo sale de HealthScoreEngine")
+        XCTAssertFalse(snapshot.summary.isEmpty)
+    }
+
+    func testScoreTextsCoverEveryFactorKind() {
+        let factors: [ScoreFactor] = [
+            ScoreFactor(kind: .sleepDuration(hours: 6.5), dimension: .sleep, impact: .neutral),
+            ScoreFactor(kind: .restingHeartRate(deltaFromBaseline: 6), dimension: .cardiovascular, impact: .negative),
+            ScoreFactor(kind: .heartRateVariability(relativeDeltaFromBaseline: -0.2), dimension: .cardiovascular, impact: .negative),
+            ScoreFactor(kind: .averageSteps(perDay: 8500), dimension: .movement, impact: .positive),
+            ScoreFactor(kind: .weeklyExercise(minutes: 180), dimension: .exercise, impact: .positive),
+            ScoreFactor(kind: .trainingLoadRatio(1.6), dimension: .balance, impact: .negative),
+        ]
+        for factor in factors {
+            _ = ScoreTexts.factor(factor)
+        }
+        XCTAssertEqual(ScoreTexts.hoursAndMinutes(7.25).contains("15"), true)
     }
 
     func testLiveSnapshotWithoutDataShowsNoValues() async {
         let snapshot = await HalsaSnapshot.load(from: StubLiveProvider(), unitSystem: .metric)
         XCTAssertNil(snapshot.score)
         XCTAssertTrue(snapshot.metrics.allSatisfy { $0.value == nil && $0.status != nil })
+        XCTAssertTrue(snapshot.summary.isEmpty, "sin datos no se inventa un resumen")
     }
 
     func testEveryModuleHasAScreenEntryPoint() {

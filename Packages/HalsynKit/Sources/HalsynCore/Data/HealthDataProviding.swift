@@ -46,8 +46,11 @@ public protocol HealthDataProviding: Sendable {
     /// Serie diaria de los últimos `days` días, terminando en `endingOn` (incluido).
     func dailySeries(_ kind: MetricKind, days: Int, endingOn: Date) async -> MetricSeries
     func recentWorkouts(limit: Int) async -> [WorkoutSummary]
-    /// Puntuación diaria si existe. En Fase 1 solo la ofrece el modo demo.
+    /// Puntuación diaria (`HealthScoreEngine`) si hay datos suficientes.
     func dailyScore(on day: Date) async -> DailyScore?
+    /// Puntuaciones de los últimos `days` días que terminan en `endingOn`.
+    /// Solo incluye los días con puntuación.
+    func dailyScores(endingOn end: Date, days: Int) async -> [DailyScore]
     /// Recuperación estimada (0–100). El motor real llega en la Fase 6.
     func recoveryScore(on day: Date) async -> DailyScore?
     func goals() async -> [Goal]

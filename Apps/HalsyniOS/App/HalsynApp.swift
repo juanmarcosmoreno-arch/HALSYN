@@ -1,6 +1,7 @@
 import HalsynCore
 import HalsynDesign
 import SwiftUI
+import UserNotifications
 
 @main
 struct HalsynApp: App {
@@ -8,6 +9,10 @@ struct HalsynApp: App {
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = false
     @Environment(\.scenePhase) private var scenePhase
+
+    init() {
+        UNUserNotificationCenter.current().delegate = NotificationRouter.shared
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -24,6 +29,10 @@ struct HalsynApp: App {
                     .tint(Color.halsynAccent)
                 }
                 .task {
+                    NotificationRouter.shared.onOpenDailySummary = { [model] in
+                        model.selectedTab = .halsa
+                        model.isShowingDailySummary = true
+                    }
                     await model.start()
                 }
         }

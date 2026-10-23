@@ -120,8 +120,19 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return (try? await client.runningWorkouts(limit: limit)) ?? []
     }
 
-    /// HealthScoreEngine llega en la Fase 3: sin motor no hay puntuación.
-    public func dailyScore(on day: Date) async -> DailyScore? { nil }
+    /// Puntuación de `HealthScoreEngine` sobre los datos de Apple Health.
+    /// `nil` si no hay cobertura suficiente: nunca se inventa.
+    public func dailyScore(on day: Date) async -> DailyScore? {
+        let start = calendar.startOfDay(for: day)
+        guard client.isHealthDataAvailable, start <= calendar.startOfDay(for: now()) else { return nil }
+        return await dailyScores(endingOn: start, days: 1).first { calendar.isDate($0.day, inSameDayAs: start) }
+    }
+
+    public func dailyScores(endingOn end: Date, days: Int) async -> [DailyScore] {
+        guard client.isHealthDataAvailable else { return [] }
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        return await computeDailyScores(endingOn: last, days: days, calendar: calendar, origin: .derived(engine: "HealthScoreEngine"))
+    }
 
     /// RecoveryEngine llega en la Fase 6.
     public func recoveryScore(on day: Date) async -> DailyScore? { nil }

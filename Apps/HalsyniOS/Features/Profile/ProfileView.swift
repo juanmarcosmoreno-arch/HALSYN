@@ -78,6 +78,8 @@ struct ProfileView: View {
                     }
                 }
 
+                NightlySummarySection()
+
                 Section("Preferencias") {
                     Picker("Apariencia", selection: $appearance) {
                         ForEach(AppearancePreference.allCases) { option in
@@ -171,6 +173,52 @@ private struct LanguageRow: View {
         }
         .foregroundStyle(.halsynPrimaryText)
         .accessibilityHint(Text("Abre los ajustes de la app para cambiar el idioma"))
+    }
+}
+
+/// Ajustes del resumen nocturno: activar y elegir la hora.
+private struct NightlySummarySection: View {
+    @AppStorage(AppPreferences.nightlySummaryEnabledKey) private var enabled = false
+    @AppStorage(AppPreferences.nightlySummaryTimeKey) private var minutes = AppPreferences.defaultNightlySummaryMinutes
+    @State private var notificationsDenied = false
+
+    private var time: Binding<Date> {
+        Binding {
+            Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: .now) ?? .now
+        } set: { date in
+            let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+            minutes = (components.hour ?? 21) * 60 + (components.minute ?? 30)
+        }
+    }
+
+    var body: some View {
+        Section {
+            Toggle("Resumen al final del día", isOn: $enabled)
+            if enabled {
+                DatePicker("Hora", selection: time, displayedComponents: .hourAndMinute)
+            }
+            if notificationsDenied {
+                HalsynStatusIndicator(.caution, text: "Las notificaciones están desactivadas para HÅLSYN en Ajustes.")
+            }
+        } header: {
+            Text("Resumen nocturno")
+        } footer: {
+            Text("Un aviso diario te invita a ver tu resumen. La notificación no incluye datos de salud.")
+        }
+        .onChange(of: enabled) { _, _ in Task { await apply() } }
+        .onChange(of: minutes) { _, _ in Task { await apply() } }
+    }
+
+    private func apply() async {
+        guard enabled else {
+            NightlySummaryNotifications.cancel()
+            return
+        }
+        let scheduled = await NightlySummaryNotifications.schedule(minutesAfterMidnight: minutes)
+        notificationsDenied = !scheduled
+        if !scheduled {
+            enabled = false
+        }
     }
 }
 

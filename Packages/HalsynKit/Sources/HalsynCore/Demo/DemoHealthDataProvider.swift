@@ -49,13 +49,17 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         return workouts
     }
 
+    /// Puntuación calculada por el mismo `HealthScoreEngine` que en modo real,
+    /// a partir de las series demo. Sigue llevando el origen `.demo`.
     public func dailyScore(on day: Date) async -> DailyScore? {
         let start = calendar.startOfDay(for: day)
         guard start <= calendar.startOfDay(for: now()) else { return nil }
-        let today = demoScoreValue(on: start)
-        let previousWeek = (1...7).compactMap { calendar.date(byAdding: .day, value: -$0, to: start) }.map(demoScoreValue(on:))
-        let average = Double(previousWeek.reduce(0, +)) / Double(previousWeek.count)
-        return DailyScore(day: start, value: today, weeklyChange: Int((Double(today) - average).rounded()), origin: .demo)
+        return await dailyScores(endingOn: start, days: 1).first { calendar.isDate($0.day, inSameDayAs: start) }
+    }
+
+    public func dailyScores(endingOn end: Date, days: Int) async -> [DailyScore] {
+        let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))
+        return await computeDailyScores(endingOn: last, days: days, calendar: calendar, origin: .demo)
     }
 
     /// Los datos demo no cambian: el flujo termina inmediatamente.
@@ -116,11 +120,6 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         case .vo2Max: return 47.8 + 0.6 * slowTrend + 0.2 * noise
         case .oxygenSaturation: return 0.97 + 0.01 * noise
         }
-    }
-
-    private func demoScoreValue(on day: Date) -> Int {
-        var rng = generator(for: day, salt: 0x5C0E)
-        return Int((76 + 8 * sin(Double(dayNumber(day)) / 5) + 6 * Double.random(in: -1...1, using: &rng)).rounded())
     }
 
     private func makeRun(on day: Date, using rng: inout SeededRandomNumberGenerator) -> WorkoutSummary {

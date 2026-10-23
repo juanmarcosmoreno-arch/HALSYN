@@ -46,6 +46,7 @@ struct InsiktView: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var period: InsiktPeriod = .month
     @State private var trends: [InsiktTrend]?
+    @State private var scores: [DailyScore] = []
 
     static let metrics: [MetricKind] = [.restingHeartRate, .heartRateVariability, .vo2Max, .sleepDuration, .steps, .walkingRunningDistance]
 
@@ -63,6 +64,9 @@ struct InsiktView: View {
                 .pickerStyle(.segmented)
 
                 if let trends {
+                    if !scores.isEmpty {
+                        scoreCard
+                    }
                     ForEach(trends) { trend in
                         trendCard(trend)
                     }
@@ -94,6 +98,7 @@ struct InsiktView: View {
             .toolbar(.hidden, for: .navigationBar)
             .task(id: "\(period.rawValue)|\(model.reloadKey)") {
                 trends = await load(period: period)
+                scores = await model.provider.dailyScores(endingOn: .now, days: period.rawValue)
             }
         }
     }
@@ -108,6 +113,21 @@ struct InsiktView: View {
             result.append(InsiktTrend(kind: kind, current: current, previousAverage: previous.average))
         }
         return result
+    }
+
+    private var scoreCard: some View {
+        let average = Double(scores.map(\.value).reduce(0, +)) / Double(max(scores.count, 1))
+        return HalsynCard {
+            VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                Label("Puntuación diaria", systemImage: "sparkles")
+                    .font(.halsynHeadline)
+                    .foregroundStyle(.halsynPrimaryText)
+                HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100)
+                    .frame(height: 130)
+                HalsynMetric(title: "Media del periodo", value: HalsynFormat.integer(average), unit: "")
+                DataOriginFootnote(origin: scores.first?.origin)
+            }
+        }
     }
 
     private func trendCard(_ trend: InsiktTrend) -> some View {
