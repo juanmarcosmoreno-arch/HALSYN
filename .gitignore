@@ -1,0 +1,15 @@
+# Xcode
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.xcscmblueprint
+build/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/HalsynKit/.build/
+Package.resolved
+
+# macOS
+.DS_Store
