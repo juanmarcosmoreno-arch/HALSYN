@@ -130,8 +130,8 @@ struct RecoveryEngineTests {
     @Test func atBaselineIsAroundSeventyFive() {
         let estimate = engine.evaluate(day: day, history: history(), origin: .demo)
         // HRV y FC reposo en la media (75), sueño 100, carga habitual 100.
-        let expected: Double = 75 * 0.35 + 75 * 0.25 + 100 * 0.25 + 100 * 0.15
-        #expect(estimate.value == Int(expected.rounded()))
+        // 75 × 0,35 + 75 × 0,25 + 100 × 0,25 + 100 × 0,15 = 85
+        #expect(estimate.value == 85)
         #expect(estimate.confidence == .high)
         #expect(estimate.coverage == 1)
     }

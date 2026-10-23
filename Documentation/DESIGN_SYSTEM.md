@@ -62,6 +62,43 @@ SF Pro del sistema basada en estilos de texto (Dynamic Type): `.halsynLargeTitle
 | `HalsynWorkoutField` / `HalsynWorkoutScreen` | Campo y pantalla de entrenamiento (1, 2, 3, 4 o 6 campos) según `WorkoutScreenProfile` |
 | `HalsynBackdrop` | Formas orgánicas decorativas (ocultas a VoiceOver) |
 
+## Gráficas
+
+Las gráficas son un rasgo diferencial de HÅLSYN. Reglas (aplicadas en `HalsynTrendChart`, `HalsynHypnogram`, `HalsynSleepComposition` y `HalsynSleepScheduleChart`):
+
+| Regla | Cómo se aplica |
+|---|---|
+| Lectura en cabecera | El valor (el último o el que tocas) va arriba, grande, con fecha y comparación. Nunca un globo que tape los datos. |
+| Tu rango habitual | Banda suave (media ± 1 desviación de tu periodo anterior). Los días fuera de la banda llevan punto. La comparación es contigo, no con una norma. |
+| Huecos honestos | Si falta un día la línea se corta; nunca se une con una recta inventada. Puntos aislados se dibujan como punto. |
+| Curva monótona | `interpolationMethod(.monotone)`: suaviza sin crear picos o valles que no existen (Catmull-Rom sí los crea). |
+| Marcas finas | Línea de 2 pt, barras ≤ 24 pt con 4 pt de radio, lavado de área ≤ 16 % de opacidad, puntos con anillo de 2 pt del color de la superficie. |
+| Ejes discretos | Rejilla de 0,5 pt sólida (nunca discontinua) en `hairline`; textos en tokens de texto, nunca en el color de la serie. |
+| Objetivo | Línea sólida fina con su leyenda; las barras que no lo alcanzan se atenúan (énfasis, no colores de alarma). |
+| Exploración | Deslizar el dedo selecciona el día con respuesta háptica (`sensoryFeedback(.selection)`). |
+| Accesibilidad | `AXChartDescriptor` para VoiceOver y Audiogramas; leyenda siempre que hay más de un elemento. |
+
+### Colores de gráficas (validados)
+
+| Token | Claro | Oscuro | Uso |
+|---|---|---|---|
+| `chartPrimary` | `#14917A` (3,9:1 sobre blanco) | `#1ED1A6` (7,0:1 sobre `#103330`) | Línea y barras |
+| `sleepAwake` | `#5BBFAA` | `#0F7A6A` | Despierto |
+| `sleepREM` | `#1E9C83` | `#1ED1A6` | REM |
+| `sleepCore` | `#12705F` | `#7FE6CF` | Esencial |
+| `sleepDeep` | `#0B4440` | `#C8F5EA` | Profundo |
+
+Las fases del sueño son **ordinales** (de despierto a profundo): una sola tonalidad con luminosidad monótona, "más profundo = más intenso" en ambos modos. Validadas con el validador de paletas (luminosidad monótona, saltos visibles entre pasos, extremo claro ≥ 2:1 sobre la superficie, un solo tono). Despierto queda por debajo de 3:1 en claro: por eso las fases llevan siempre leyenda con nombre y duración.
+
+## Animación de apertura
+
+Videos de marca en claro (`intro-light.mp4`) y oscuro (`intro-dark.mp4`), 720p, recortados a 9,2 s con fundido de audio. Originales en `Resources/Brand/`.
+
+- Primera apertura: completa (0–9 s). Después: breve (2,6–6,8 s), completa o desactivada (Perfil › Preferencias).
+- Se salta con un toque; con *Reducir movimiento* no se reproduce.
+- Audio en categoría ambiental: respeta el modo silencio y no corta la música.
+- El fondo de arranque (`LaunchBackground`) coincide con el primer fotograma (claro `#F6F7F4`, oscuro negro) y los bordes del video se funden con el fondo.
+
 ## Reglas
 
 - Sin glassmorphism que perjudique la lectura; en running, contraste por encima de la decoración.
