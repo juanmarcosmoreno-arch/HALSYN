@@ -42,6 +42,7 @@
  "Acabaste más lento": "Apps/HalsyniOS/Features/Spring/RunAnalysisViews.swift",
  "Acabaste más rápido": "Apps/HalsyniOS/Features/Spring/RunAnalysisViews.swift",
  "Acceso no concedido": "Apps/HalsyniOS/Features/Profile/DesignSystemGalleryView.swift",
+ "Actualizado a las %@": "Apps/WidgetsShared/HalsynWidgetViews.swift",
  "Afinamiento": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/TrainingPlan.swift",
  "Ahora HÅLSYN muestra datos sintéticos de demostración. Conecta Apple Health para ver tus datos reales; solo se piden permisos de lectura.": "Apps/HalsyniOS/Features/Profile/ProfileView.swift",
  "Ajustada: tu recuperación de hoy es baja, así que cambiamos la sesión dura por una suave.": "Apps/HalsyniOS/Features/Spring/TrainingPlanViews.swift",

@@ -79,7 +79,8 @@ struct WidgetFootnote: View {
         } else if values.snapshot?.isDemo == true {
             Text("Datos demo")
         } else if let updated = values.snapshot?.updatedAt {
-            Text(updated, style: .relative)
+            // Hora fija de la última actualización (no un contador que corre).
+            Text("Actualizado a las \(updated.formatted(date: .omitted, time: .shortened))")
         }
     }
 }
