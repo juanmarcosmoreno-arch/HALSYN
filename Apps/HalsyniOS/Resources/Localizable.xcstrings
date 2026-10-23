@@ -1,6 +1,59 @@
 {
   "sourceLanguage": "es",
   "strings": {
+    "%@ frente a %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vs. %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vs. %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vs %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vs %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mot %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mod %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 对比 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ बनाम %@"
+          }
+        }
+      }
+    },
     "%@ frente a tu media semanal": {
       "extractionState": "manual",
       "localizations": {
@@ -262,6 +315,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 7 दिनों में %@ min व्यायाम (संदर्भ: 150)"
+          }
+        }
+      }
+    },
+    "%@ o más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ or more"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ou mais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ou plus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ o più"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ eller mer"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ eller mere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 或以上"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या ज़्यादा"
           }
         }
       }
@@ -1163,6 +1269,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "रन सेटिंग्ज़"
+          }
+        }
+      }
+    },
+    "Al día siguiente de %@ de ejercicio o más, tu FC en reposo fue de %@ de media; tras días más tranquilos, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The day after %@ or more of exercise, your resting HR averaged %@; after quieter days, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No dia seguinte a %@ ou mais de exercício, sua FC em repouso foi de %@ em média; após dias mais tranquilos, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le lendemain de %@ d’exercice ou plus, ta FC au repos était de %@ en moyenne ; après des journées plus calmes, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il giorno dopo %@ o più di esercizio, la tua FC a riposo è stata in media di %@; dopo giorni più tranquilli, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagen efter %@ träning eller mer var din vilopuls i snitt %@; efter lugnare dagar %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagen efter %@ motion eller mere var din hvilepuls i gennemsnit %@; efter roligere dage %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锻炼 %@ 或以上后的第二天，你的静息心率平均为 %@；较轻松的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा व्यायाम के अगले दिन आपकी आराम की हृदय गति औसतन %@ रही; हल्के दिनों के बाद %@।"
+          }
+        }
+      }
+    },
+    "Al día siguiente de %@ de ejercicio o más, tu HRV fue de %@ de media; tras días más tranquilos, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The day after %@ or more of exercise, your HRV averaged %@; after quieter days, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No dia seguinte a %@ ou mais de exercício, sua HRV foi de %@ em média; após dias mais tranquilos, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le lendemain de %@ d’exercice ou plus, ta HRV était de %@ en moyenne ; après des journées plus calmes, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il giorno dopo %@ o più di esercizio, la tua HRV è stata in media di %@; dopo giorni più tranquilli, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagen efter %@ träning eller mer var din HRV i snitt %@; efter lugnare dagar %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagen efter %@ motion eller mere var din HRV i gennemsnit %@; efter roligere dage %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锻炼 %@ 或以上后的第二天，你的 HRV 平均为 %@；较轻松的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा व्यायाम के अगले दिन आपकी HRV औसतन %@ रही; हल्के दिनों के बाद %@।"
           }
         }
       }
@@ -3234,6 +3446,59 @@
         }
       }
     },
+    "Cambio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variação"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variazione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förändring"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ændring"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "变化"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बदलाव"
+          }
+        }
+      }
+    },
     "Cambio frente al periodo anterior": {
       "extractionState": "manual",
       "localizations": {
@@ -3336,6 +3601,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "8,000 कदम चलें"
+          }
+        }
+      }
+    },
+    "Caminas más los %@ y menos los %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You walk the most on %@ and the least on %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O dia em que você mais caminha é %@, e o que menos caminha, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu marches le plus le %@ et le moins le %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il giorno in cui cammini di più è %@; quello in cui cammini di meno, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den veckodag du går mest är %@ och den du går minst är %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den ugedag, du går mest, er %@, og den, du går mindst, er %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你在%@走得最多，在%@走得最少。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप %@ को सबसे ज़्यादा और %@ को सबसे कम चलते हैं।"
           }
         }
       }
@@ -3976,6 +4294,59 @@
         }
       }
     },
+    "Carrera más larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrida mais longa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Course la plus longue"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corsa più lunga"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längsta löppass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Længste løbetur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最长跑步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे लंबा रन"
+          }
+        }
+      }
+    },
     "Carreras": {
       "extractionState": "manual",
       "localizations": {
@@ -4184,6 +4555,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रंग"
+          }
+        }
+      }
+    },
+    "Comparación con tu grupo de edad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparison with your age group"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparação com sua faixa etária"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparaison avec ta tranche d’âge"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confronto con la tua fascia d’età"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämförelse med din åldersgrupp"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammenligning med din aldersgruppe"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与同龄人群的比较"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके आयु वर्ग से तुलना"
           }
         }
       }
@@ -5032,6 +5456,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "जारी रखें"
+          }
+        }
+      }
+    },
+    "Conviene vigilarlo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worth keeping an eye on"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vale a pena acompanhar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À garder à l’œil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da tenere d’occhio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Värt att hålla koll på"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Værd at holde øje med"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "值得留意"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस पर नज़र रखना अच्छा रहेगा"
           }
         }
       }
@@ -7580,6 +8057,59 @@
         }
       }
     },
+    "En buena dirección": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moving the right way"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No caminho certo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans la bonne direction"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella giusta direzione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åt rätt håll"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I den rigtige retning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "朝好的方向发展"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सही दिशा में"
+          }
+        }
+      }
+    },
     "En cama": {
       "extractionState": "manual",
       "localizations": {
@@ -9753,6 +10283,59 @@
         }
       }
     },
+    "FC en reposo más baja (media de 7 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lowest resting HR (7-day average)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC em repouso mais baixa (média de 7 dias)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC au repos la plus basse (moyenne sur 7 jours)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC a riposo più bassa (media di 7 giorni)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägsta vilopuls (7-dagarssnitt)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laveste hvilepuls (7-dages gennemsnit)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最低静息心率（7 天平均）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे कम आराम की हृदय गति (7 दिन का औसत)"
+          }
+        }
+      }
+    },
     "FC media": {
       "extractionState": "manual",
       "localizations": {
@@ -11184,6 +11767,59 @@
         }
       }
     },
+    "Haces más ejercicio los %@ y menos los %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You exercise the most on %@ and the least on %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O dia em que você mais se exercita é %@, e o que menos se exercita, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu fais le plus d’exercice le %@ et le moins le %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il giorno in cui fai più esercizio è %@; quello in cui ne fai meno, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den veckodag du tränar mest är %@ och den du tränar minst är %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den ugedag, du dyrker mest motion, er %@, og den, du dyrker mindst, er %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你在%@锻炼最多，在%@锻炼最少。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप %@ को सबसे ज़्यादा और %@ को सबसे कम व्यायाम करते हैं।"
+          }
+        }
+      }
+    },
     "Hasta": {
       "extractionState": "manual",
       "localizations": {
@@ -12028,6 +12664,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN सेहत से जुड़े अनुमान देता है। यह कोई मेडिकल डिवाइस नहीं है और न ही किसी पेशेवर आकलन का विकल्प है।"
+          }
+        }
+      }
+    },
+    "INSIKT solo muestra una observación cuando hay datos suficientes y la diferencia es clara. Mientras tanto, no inventa conclusiones.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT only shows an observation when there's enough data and the difference is clear. Until then, it doesn't make up conclusions."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O INSIKT só mostra uma observação quando há dados suficientes e a diferença é clara. Enquanto isso, ele não inventa conclusões."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT n’affiche une observation que lorsqu’il y a assez de données et que la différence est nette. En attendant, il n’invente pas de conclusions."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT mostra un’osservazione solo quando ci sono dati sufficienti e la differenza è chiara. Nel frattempo, non inventa conclusioni."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT visar bara en iakttagelse när det finns tillräckligt med data och skillnaden är tydlig. Till dess drar den inga påhittade slutsatser."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT viser kun en iagttagelse, når der er nok data, og forskellen er tydelig. Indtil da finder den ikke på konklusioner."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在数据充足且差异明确时，INSIKT 才会显示观察结果。在此之前，它不会凭空得出结论。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INSIKT कोई अवलोकन तभी दिखाता है जब पर्याप्त डेटा हो और अंतर साफ़ हो। तब तक यह अपनी ओर से कोई निष्कर्ष नहीं गढ़ता।"
           }
         }
       }
@@ -12880,6 +13569,112 @@
         }
       }
     },
+    "La noche después de %@ de ejercicio o más dormiste %@ de media; tras días más tranquilos, %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The night after %@ or more of exercise, you slept %@ on average; after quieter days, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na noite após %@ ou mais de exercício, você dormiu %@ em média; após dias mais tranquilos, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La nuit après %@ d’exercice ou plus, tu as dormi %@ en moyenne ; après des journées plus calmes, %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La notte dopo %@ o più di esercizio hai dormito in media %@; dopo giorni più tranquilli, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natten efter %@ träning eller mer sov du i snitt %@; efter lugnare dagar %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natten efter %@ motion eller mere sov du i gennemsnit %@; efter roligere dage %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "锻炼 %@ 或以上的当晚，你平均睡了 %@；较轻松的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा व्यायाम के बाद की रात आप औसतन %@ सोए; हल्के दिनों के बाद %@।"
+          }
+        }
+      }
+    },
+    "La noche después de caminar %@ pasos o más dormiste %@ de media; tras días con menos pasos, %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The night after walking %@ steps or more, you slept %@ on average; after days with fewer steps, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na noite após caminhar %@ passos ou mais, você dormiu %@ em média; após dias com menos passos, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La nuit après avoir fait %@ pas ou plus, tu as dormi %@ en moyenne ; après des journées avec moins de pas, %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La notte dopo aver camminato %@ passi o più hai dormito in media %@; dopo giorni con meno passi, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natten efter att du gått %@ steg eller fler sov du i snitt %@; efter dagar med färre steg %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natten efter at du har gået %@ skridt eller flere, sov du i gennemsnit %@; efter dage med færre skridt %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "走了 %@ 步或以上的当晚，你平均睡了 %@；步数较少的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा कदम चलने के बाद की रात आप औसतन %@ सोए; कम कदमों वाले दिनों के बाद %@।"
+          }
+        }
+      }
+    },
     "La puntuación aparece cuando hay datos de al menos el 60 % de las dimensiones. Sigue llevando tu Apple Watch.": {
       "extractionState": "manual",
       "localizations": {
@@ -13516,6 +14311,59 @@
         }
       }
     },
+    "Lo que cambió": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What changed"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que mudou"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce qui a changé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa è cambiato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad som har ändrats"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvad der har ændret sig"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有哪些变化"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या बदला"
+          }
+        }
+      }
+    },
     "Local-first: tus datos se procesan en el dispositivo.": {
       "extractionState": "manual",
       "localizations": {
@@ -13993,6 +14841,112 @@
         }
       }
     },
+    "Media anterior": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média anterior"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne précédente"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media precedente"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidigare snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidligere gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前平均"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछला औसत"
+          }
+        }
+      }
+    },
+    "Media anterior %@, media reciente %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous average %@, recent average %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média anterior %@, média recente %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne précédente %@, moyenne récente %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media precedente %@, media recente %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidigare snitt %@, senaste snitt %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidligere gennemsnit %@, seneste gennemsnit %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前平均 %@，近期平均 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछला औसत %@, हाल का औसत %@"
+          }
+        }
+      }
+    },
     "Media de %@ pasos al día en los últimos 7 días": {
       "extractionState": "manual",
       "localizations": {
@@ -14042,6 +14996,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 7 दिनों में औसतन %@ कदम प्रतिदिन"
+          }
+        }
+      }
+    },
+    "Media de las últimas 12 semanas por día de la semana.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average over the last 12 weeks by day of the week."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média das últimas 12 semanas por dia da semana."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne des 12 dernières semaines par jour de la semaine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media delle ultime 12 settimane per giorno della settimana."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt för de senaste 12 veckorna per veckodag."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnit for de seneste 12 uger pr. ugedag."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 12 周按星期几计算的平均值。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 12 हफ़्तों का औसत, हफ़्ते के हर दिन के हिसाब से।"
+          }
+        }
+      }
+    },
+    "Media de las últimas 4 semanas frente a las 4 anteriores. Diferencia clara, no explicable por la variación habitual de un día a otro.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average of the last 4 weeks vs. the 4 before. A clear difference, not explained by the usual day-to-day variation."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média das últimas 4 semanas em relação às 4 anteriores. Diferença clara, que não se explica pela variação habitual de um dia para o outro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne des 4 dernières semaines par rapport aux 4 précédentes. Une différence nette, que la variation habituelle d’un jour à l’autre n’explique pas."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media delle ultime 4 settimane rispetto alle 4 precedenti. Una differenza chiara, non spiegabile con la normale variazione da un giorno all’altro."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt för de senaste 4 veckorna jämfört med de 4 före. En tydlig skillnad som inte kan förklaras av den vanliga variationen från dag till dag."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnit for de seneste 4 uger i forhold til de 4 foregående. En tydelig forskel, som ikke kan forklares med den normale variation fra dag til dag."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 4 周的平均值对比之前 4 周。差异明确，无法用日常的正常波动来解释。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 4 हफ़्तों का औसत, उससे पहले के 4 हफ़्तों की तुलना में। साफ़ अंतर, जिसे रोज़ के सामान्य उतार-चढ़ाव से नहीं समझाया जा सकता।"
           }
         }
       }
@@ -14099,6 +15159,59 @@
         }
       }
     },
+    "Media reciente": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média recente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne récente"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media recente"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seneste gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "近期平均"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हाल का औसत"
+          }
+        }
+      }
+    },
     "Media y variación de los horarios. Horarios estables suelen ayudar a dormir mejor.": {
       "extractionState": "manual",
       "localizations": {
@@ -14148,6 +15261,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "समय का औसत और उतार-चढ़ाव। नियमित समय अक्सर बेहतर नींद में मदद करता है।"
+          }
+        }
+      }
+    },
+    "Menos de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less than %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos de %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moins de %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meno di %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "少于 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ से कम"
           }
         }
       }
@@ -14841,6 +16007,59 @@
         }
       }
     },
+    "Más análisis cuando haya datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More analyses when there's data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais análises quando houver dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus d’analyses quand il y aura des données"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altre analisi quando ci saranno dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fler analyser när det finns data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flere analyser, når der er data"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有数据后将提供更多分析"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेटा होने पर और विश्लेषण"
+          }
+        }
+      }
+    },
     "Más lento que": {
       "extractionState": "manual",
       "localizations": {
@@ -14943,6 +16162,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लक्ष्य से धीमा"
+          }
+        }
+      }
+    },
+    "Más pasos en un día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most steps in a day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais passos em um dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus grand nombre de pas en une journée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più passi in un giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flest steg på en dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flest skridt på en dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "单日最多步数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक दिन में सबसे ज़्यादा कदम"
           }
         }
       }
@@ -15371,6 +16643,59 @@
         }
       }
     },
+    "Nada destacable por ahora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing notable for now"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada a destacar por enquanto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien de notable pour l’instant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente di rilevante per ora"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget anmärkningsvärt just nu"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intet bemærkelsesværdigt lige nu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无值得注意的变化"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी कुछ ख़ास नहीं"
+          }
+        }
+      }
+    },
     "Necesita más días de historial": {
       "extractionState": "manual",
       "localizations": {
@@ -15526,6 +16851,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इस डिवाइस पर उपलब्ध नहीं"
+          }
+        }
+      }
+    },
+    "No hay cambios ni patrones claros en tus datos. Es normal: INSIKT solo habla cuando la diferencia es real.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There are no clear changes or patterns in your data. That's normal: INSIKT only speaks up when the difference is real."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não há mudanças nem padrões claros nos seus dados. É normal: o INSIKT só se manifesta quando a diferença é real."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il n’y a ni changement ni tendance nette dans tes données. C’est normal : INSIKT ne s’exprime que lorsque la différence est réelle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono cambiamenti né andamenti chiari nei tuoi dati. È normale: INSIKT si esprime solo quando la differenza è reale."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns inga tydliga förändringar eller mönster i dina data. Det är helt normalt: INSIKT säger bara något när skillnaden är verklig."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der er ingen tydelige ændringer eller mønstre i dine data. Det er helt normalt: INSIKT siger kun noget, når forskellen er reel."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数据中暂无明确的变化或规律。这很正常：只有差异真实存在时，INSIKT 才会提示。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके डेटा में कोई साफ़ बदलाव या पैटर्न नहीं है। यह सामान्य है: INSIKT तभी कुछ कहता है जब अंतर असली हो।"
           }
         }
       }
@@ -16484,6 +17862,59 @@
         }
       }
     },
+    "Observado en %lld días. Es una asociación en tus datos, no prueba que una cosa cause la otra.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed over %lld days. This is an association in your data; it doesn't prove that one thing causes the other."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observado em %lld dias. É uma associação nos seus dados, não prova que uma coisa cause a outra."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observé sur %lld jours. C’est une association dans tes données, pas la preuve que l’un cause l’autre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osservato in %lld giorni. È un’associazione nei tuoi dati, non dimostra che una cosa causi l’altra."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observerat under %lld dagar. Det är ett samband i dina data, inte ett bevis för att det ena orsakar det andra."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observeret over %lld dage. Det er en sammenhæng i dine data, ikke et bevis for, at det ene forårsager det andet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于 %lld 天的观察。这只是你数据中的关联，并不能证明其中一方导致了另一方。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिनों में देखा गया। यह आपके डेटा में एक संबंध है, इससे यह साबित नहीं होता कि एक चीज़ दूसरी की वजह है।"
+          }
+        }
+      }
+    },
     "Oscuro": {
       "extractionState": "manual",
       "localizations": {
@@ -17014,55 +18445,161 @@
         }
       }
     },
-    "Patrones, correlaciones y comparación con tu grupo de edad": {
+    "Patrones de ejemplo generados para la demostración.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Patterns, correlations and comparison with your age group"
+            "value": "Sample patterns generated for the demo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Padrões, correlações e comparação com sua faixa etária"
+            "value": "Padrões de exemplo gerados para a demonstração."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tendances, corrélations et comparaison avec ta tranche d’âge"
+            "value": "Tendances d’exemple générées pour la démonstration."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Andamenti, correlazioni e confronto con la tua fascia d’età"
+            "value": "Andamenti di esempio generati per la dimostrazione."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mönster, samband och jämförelse med din åldersgrupp"
+            "value": "Exempelmönster skapade för demonstrationen."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mønstre, sammenhænge og sammenligning med din aldersgruppe"
+            "value": "Eksempelmønstre genereret til demonstrationen."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "规律、关联以及与同龄人群的比较"
+            "value": "为演示生成的示例规律。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पैटर्न, सहसंबंध और आपके आयु वर्ग से तुलना"
+            "value": "डेमो के लिए बनाए गए उदाहरण पैटर्न।"
+          }
+        }
+      }
+    },
+    "Patrones en tus datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patterns in your data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padrões nos seus dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendances dans tes données"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andamenti nei tuoi dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mönster i dina data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mønstre i dine data"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你数据中的规律"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके डेटा में पैटर्न"
+          }
+        }
+      }
+    },
+    "Patrones entre métricas: días con datos emparejados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patterns between metrics: days with paired data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padrões entre métricas: dias com dados pareados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendances entre indicateurs : jours avec des données appariées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andamenti tra metriche: giorni con dati abbinati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mönster mellan mätvärden: dagar med parade data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mønstre mellem målinger: dage med parrede data"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "指标间规律：有配对数据的天数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेट्रिक्स के बीच पैटर्न: जोड़ीदार डेटा वाले दिन"
           }
         }
       }
@@ -19664,6 +21201,59 @@
         }
       }
     },
+    "Ritmo medio más rápido (carreras de 3 km o más)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest average pace (runs of 3 km or more)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo médio mais rápido (corridas de 3 km ou mais)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure moyenne la plus rapide (courses de 3 km ou plus)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo medio più veloce (corse di 3 km o più)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste snittempo (löppass på 3 km eller mer)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigste gennemsnitstempo (løbeture på 3 km eller mere)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最快平均配速（3 km 或以上的跑步）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे तेज़ औसत पेस (3 km या उससे लंबे रन)"
+          }
+        }
+      }
+    },
     "Ritmo objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -20402,6 +21992,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपके मौजूदा ज़ोन के आधार पर (%@–%@ bpm)।"
+          }
+        }
+      }
+    },
+    "Semana tipo de %@: semanas con datos de cada día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typical week for %@: weeks with data for each day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana típica (%@): semanas com dados de cada dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semaine type (%@) : semaines avec des données pour chaque jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settimana tipo (%@): settimane con dati per ogni giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typisk vecka (%@): veckor med data för varje dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typisk uge (%@): uger med data for hver dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 典型一周：每天都有数据的周数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ का सामान्य हफ़्ता: हर दिन के डेटा वाले हफ़्ते"
           }
         }
       }
@@ -22208,6 +23851,59 @@
         }
       }
     },
+    "Tendencia de %@: días con datos en cada periodo de 4 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ trend: days with data in each 4-week period"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendência (%@): dias com dados em cada período de 4 semanas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Évolution (%@) : jours avec des données sur chaque période de 4 semaines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendenza (%@): giorni con dati in ogni periodo di 4 settimane"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trend (%@): dagar med data i varje 4-veckorsperiod"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendens (%@): dage med data i hver 4-ugersperiode"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 趋势：每个 4 周期间内有数据的天数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ का रुझान: हर 4 हफ़्ते की अवधि में डेटा वाले दिन"
+          }
+        }
+      }
+    },
     "Tendencias": {
       "extractionState": "manual",
       "localizations": {
@@ -22257,6 +23953,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रुझान"
+          }
+        }
+      }
+    },
+    "Tendencias por periodo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trends by period"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendências por período"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Évolution par période"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendenze per periodo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trender per period"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tendenser pr. periode"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分期趋势"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अवधि के अनुसार रुझान"
           }
         }
       }
@@ -23003,6 +24752,112 @@
         }
       }
     },
+    "Tras dormir %@ o más, tu FC en reposo fue de %@ de media; tras dormir menos, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After sleeping %@ or more, your resting HR averaged %@; after less sleep, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de dormir %@ ou mais, sua FC em repouso foi de %@ em média; depois de dormir menos, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Après avoir dormi %@ ou plus, ta FC au repos était de %@ en moyenne ; après moins de sommeil, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo aver dormito %@ o più, la tua FC a riposo è stata in media di %@; dopo aver dormito meno, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter att du sovit %@ eller mer var din vilopuls i snitt %@; efter mindre sömn %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter at du har sovet %@ eller mere, var din hvilepuls i gennemsnit %@; efter mindre søvn %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠 %@ 或以上后，你的静息心率平均为 %@；睡得较少时为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा सोने के बाद आपकी आराम की हृदय गति औसतन %@ रही; कम सोने के बाद %@।"
+          }
+        }
+      }
+    },
+    "Tras dormir %@ o más, tu HRV fue de %@ de media; tras dormir menos, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After sleeping %@ or more, your HRV averaged %@; after less sleep, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de dormir %@ ou mais, sua HRV foi de %@ em média; depois de dormir menos, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Après avoir dormi %@ ou plus, ta HRV était de %@ en moyenne ; après moins de sommeil, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo aver dormito %@ o più, la tua HRV è stata in media di %@; dopo aver dormito meno, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter att du sovit %@ eller mer var din HRV i snitt %@; efter mindre sömn %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter at du har sovet %@ eller mere, var din HRV i gennemsnit %@; efter mindre søvn %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠 %@ 或以上后，你的 HRV 平均为 %@；睡得较少时为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा सोने के बाद आपकी HRV औसतन %@ रही; कम सोने के बाद %@।"
+          }
+        }
+      }
+    },
     "Tu actividad de hoy ha estado dentro de tu promedio.": {
       "extractionState": "manual",
       "localizations": {
@@ -23533,6 +25388,112 @@
         }
       }
     },
+    "Tu semana tipo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your typical week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua semana típica"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta semaine type"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua settimana tipo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din typiska vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din typiske uge"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的典型一周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका सामान्य हफ़्ता"
+          }
+        }
+      }
+    },
+    "Tu sueño es más largo en la noche que termina el %@ y más corto en la que termina el %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You sleep longest on the night ending %@ morning and shortest on the night ending %@ morning."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você dorme mais na noite que termina na manhã de %@ e menos na que termina na manhã de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu dors le plus longtemps la nuit qui se termine le %@ matin et le moins longtemps celle qui se termine le %@ matin."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormi più a lungo la notte che finisce %@ mattina e meno a lungo quella che finisce %@ mattina."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sover längst natten mot %@ och kortast natten mot %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sover længst natten til %@ og kortest natten til %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你在%@早晨前的那一晚睡得最久，在%@早晨前的那一晚睡得最短。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ की सुबह खत्म होने वाली रात आपकी नींद सबसे लंबी होती है, और %@ की सुबह खत्म होने वाली रात सबसे छोटी।"
+          }
+        }
+      }
+    },
     "Tus datos son tuyos": {
       "extractionState": "manual",
       "localizations": {
@@ -23741,6 +25702,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपकी रातें · 14 दिन"
+          }
+        }
+      }
+    },
+    "Tus récords": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your records"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus recordes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes records"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi record"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina rekord"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine rekorder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的个人纪录"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके रिकॉर्ड"
           }
         }
       }
@@ -24112,6 +26126,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमानित VO₂ max"
+          }
+        }
+      }
+    },
+    "VO₂ máx. más alto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest VO₂ max"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ máx. mais alto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max. la plus élevée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max più alto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högsta VO₂ max"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højeste VO₂ max"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最高 VO₂ max"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे ज़्यादा VO₂ max"
+          }
+        }
+      }
+    },
+    "Valor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Value"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valeur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valore"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Värde"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Værdi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数值"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मान"
           }
         }
       }
