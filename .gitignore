@@ -13,3 +13,6 @@ Package.resolved
 
 # macOS
 .DS_Store
+
+# Firma local (equipo y bundle ID de cada desarrollador)
+Config/Local.xcconfig

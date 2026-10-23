@@ -122,6 +122,7 @@
 		8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSnapshotTests.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
+		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
 		BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsStore.swift; sourceTree = "<group>"; };
 		C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightlySummaryNotifications.swift; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				21625E247F132A15AE08F51A /* Apps */,
+				992067FF41CB5C9F065E0EF0 /* Config */,
 				12D6384977D4CB83FC19E6CB /* Packages */,
 				E74601E5CEFB104C68D34A11 /* Tests */,
 				8D82DB26FA8B8C59B4C2172D /* Products */,
@@ -328,6 +330,14 @@
 				5718F54E426C64C6E2183DE8 /* RootTabView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		992067FF41CB5C9F065E0EF0 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		9CF89FE06CDEFEC894CD7CDF /* Features */ = {
@@ -653,6 +663,7 @@
 		};
 		B2A5FCE1A191ACA4390ADBE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -689,7 +700,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -701,7 +711,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HALSYN_BUNDLE_ID = com.halsyn.app;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;
@@ -803,6 +812,7 @@
 		};
 		FD9ECA812734A5491AC19F29 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -839,7 +849,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -857,7 +866,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HALSYN_BUNDLE_ID = com.halsyn.app;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;

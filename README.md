@@ -60,11 +60,12 @@ Esquema **Halsyn** → elige un simulador de iPhone → ⌘R. En el onboarding e
 
 ### 3. Tu iPhone y tu Apple Watch
 
-1. Xcode › Settings › Accounts: añade tu Apple ID.
-2. Proyecto **Halsyn** › Build Settings › *User-Defined*: cambia `HALSYN_BUNDLE_ID` por uno propio (p. ej. `com.tunombre.halsyn`). El del reloj y los tests se ajustan solos.
-3. Targets **Halsyn** y **HalsynWatch** › Signing & Capabilities › elige tu **Team**.
+1. Xcode › Settings › Accounts: añade tu Apple ID y copia tu **Team ID** (10 caracteres).
+2. Copia `Config/Local.xcconfig.example` como `Config/Local.xcconfig` y pon tu `DEVELOPMENT_TEAM` y un `HALSYN_BUNDLE_ID` propio (p. ej. `com.tunombre.halsyn`). Ese archivo no se sube a git: `git pull` no lo borra y los **tres** targets (iPhone, reloj y tests) quedan firmados con el mismo equipo. No hace falta elegir el Team a mano en Signing & Capabilities.
+3. Cierra y vuelve a abrir el proyecto (Xcode lee el `.xcconfig` al abrir).
 4. Conecta el iPhone por cable, actívale el **Modo desarrollador** (Ajustes › Privacidad y seguridad) y pulsa ⌘R. La app del reloj se instala con la del iPhone si el Apple Watch está emparejado.
 5. Si iOS dice que el desarrollador no es de confianza: Ajustes › General › VPN y gestión de dispositivos › confía en tu cuenta.
+6. Si el reloj dice que **no se puede verificar la integridad**: el Apple Watch no está en tu perfil de desarrollo. Xcode solo lo añade si lo ve en Window › Devices and Simulators (debajo del iPhone). Borra la app del iPhone y del reloj, comprueba que `xcrun devicectl list devices` muestra el Apple Watch y vuelve a pulsar ⌘R.
 
 Con un Apple ID gratuito la app caduca a los 7 días y puede haber limitaciones con capacidades como HealthKit; con el Apple Developer Program (de pago) no hay caducidad y se puede distribuir por TestFlight.
 

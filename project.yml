@@ -10,16 +10,16 @@ options:
     iOS: "17.0"
     watchOS: "10.0"
 
+configFiles:
+  Debug: Config/Halsyn.xcconfig
+  Release: Config/Halsyn.xcconfig
+
 settings:
   base:
     SWIFT_VERSION: "5.0"
     MARKETING_VERSION: "0.1.0"
     CURRENT_PROJECT_VERSION: "1"
-    # Para probar en tu iPhone: pon aquí tu Team ID (o elígelo en Signing & Capabilities)
-    # y cambia HALSYN_BUNDLE_ID por un identificador propio (p. ej. com.tunombre.halsyn).
-    # Los bundle IDs del reloj y de los tests se derivan de él automáticamente.
-    DEVELOPMENT_TEAM: ""
-    HALSYN_BUNDLE_ID: com.halsyn.app
+    # Equipo de firma y bundle ID: en Config/Local.xcconfig (ver Config/Halsyn.xcconfig).
     CODE_SIGN_STYLE: Automatic
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
     SWIFT_EMIT_LOC_STRINGS: YES

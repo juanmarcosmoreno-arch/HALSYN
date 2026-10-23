@@ -1,0 +1,6 @@
+// Copia este archivo como Config/Local.xcconfig y pon tus datos.
+// Team ID: Xcode › Settings › Accounts › tu cuenta › (10 caracteres, p. ej. AB12CD34EF),
+// o el que aparece en Build Settings › Development Team de un proyecto que ya te funcione.
+
+DEVELOPMENT_TEAM = AB12CD34EF
+HALSYN_BUNDLE_ID = com.tunombre.halsyn

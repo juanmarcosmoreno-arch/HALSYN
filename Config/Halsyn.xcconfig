@@ -1,0 +1,10 @@
+// Ajustes compartidos de HÅLSYN (iPhone, Apple Watch y tests).
+//
+// Tu equipo de firma y tu identificador NO van aquí: van en Config/Local.xcconfig
+// (copia Config/Local.xcconfig.example). Ese archivo está en .gitignore, así que
+// `git pull` nunca lo borra y los tres targets quedan firmados con el mismo equipo.
+
+HALSYN_BUNDLE_ID = com.halsyn.app
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"
