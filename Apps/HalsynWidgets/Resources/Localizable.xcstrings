@@ -743,6 +743,59 @@
         }
       }
     },
+    "%lld años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld years"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld anos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld anni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld år"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld år"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 岁"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld वर्ष"
+          }
+        }
+      }
+    },
     "%lld h %lld min": {
       "extractionState": "manual",
       "localizations": {
@@ -1163,6 +1216,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "7 दिन"
+          }
+        }
+      }
+    },
+    "7.783 pruebas en 8 laboratorios de EE. UU. (2014–2015), adultos de 20 a 79 años sin enfermedad cardiovascular ni EPOC conocidas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7,783 tests at 8 US labs (2014–2015), adults aged 20 to 79 with no known cardiovascular disease or COPD."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7.783 testes em 8 laboratórios dos EUA (2014–2015), adultos de 20 a 79 anos sem doença cardiovascular nem DPOC conhecidas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 783 tests dans 8 laboratoires aux États-Unis (2014–2015), adultes de 20 à 79 ans sans maladie cardiovasculaire ni BPCO connues."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7.783 test in 8 laboratori negli USA (2014–2015), adulti tra 20 e 79 anni senza malattie cardiovascolari né BPCO note."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 783 tester på 8 laboratorier i USA (2014–2015), vuxna 20–79 år utan känd hjärt-kärlsjukdom eller KOL."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7.783 test på 8 laboratorier i USA (2014–2015), voksne på 20 til 79 år uden kendt hjerte-kar-sygdom eller KOL."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在美国 8 个实验室完成的 7,783 次测试（2014–2015），受试者为 20 至 79 岁、无已知心血管疾病或慢阻肺的成年人。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अमेरिका की 8 लैब में 7,783 टेस्ट (2014–2015), 20 से 79 वर्ष के ऐसे वयस्क जिन्हें कोई ज्ञात हृदय रोग या COPD नहीं था।"
           }
         }
       }
@@ -2651,6 +2757,112 @@
         }
       }
     },
+    "Añadir edad y sexo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add age and sex"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar idade e sexo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter l’âge et le sexe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi età e sesso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till ålder och kön"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj alder og køn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加年龄和性别"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र और लिंग जोड़ें"
+          }
+        }
+      }
+    },
+    "Añadir fecha de nacimiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add date of birth"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar data de nascimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter la date de naissance"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi data di nascita"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till födelsedatum"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj fødselsdato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加出生日期"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जन्मतिथि जोड़ें"
+          }
+        }
+      }
+    },
     "Añadir objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -2969,6 +3181,59 @@
         }
       }
     },
+    "Aún no hay un valor reciente de este indicador para comparar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There's no recent value for this metric to compare yet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há um valor recente deste indicador para comparar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il n’y a pas encore de valeur récente de cet indicateur à comparer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non c’è ancora un valore recente di questo indicatore da confrontare."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns inget aktuellt värde för det här måttet att jämföra än."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der er endnu ingen nylig værdi for denne måling at sammenligne."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该指标暂无可供比较的近期数值。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुलना के लिए इस संकेतक का अभी कोई हालिया मान नहीं है।"
+          }
+        }
+      }
+    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -3018,6 +3283,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आधार"
+          }
+        }
+      }
+    },
+    "Borrar edad y sexo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear age and sex"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar idade e sexo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer l’âge et le sexe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancella età e sesso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rensa ålder och kön"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ryd alder og køn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除年龄和性别"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र और लिंग हटाएं"
           }
         }
       }
@@ -5513,55 +5831,55 @@
         }
       }
     },
-    "Comparación con tu grupo de edad": {
+    "Comparación con tablas científicas publicadas, con su fuente y limitaciones en el detalle de cada indicador.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comparison with your age group"
+            "value": "Comparison with published scientific tables, with the source and limitations in each metric's details."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comparação com sua faixa etária"
+            "value": "Comparação com tabelas científicas publicadas, com a fonte e as limitações no detalhe de cada indicador."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comparaison avec ta tranche d’âge"
+            "value": "Comparaison avec des tableaux scientifiques publiés ; la source et les limites figurent dans le détail de chaque indicateur."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Confronto con la tua fascia d’età"
+            "value": "Confronto con tabelle scientifiche pubblicate, con fonte e limiti nel dettaglio di ogni indicatore."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jämförelse med din åldersgrupp"
+            "value": "Jämförelse med publicerade vetenskapliga tabeller, med källa och begränsningar i detaljvyn för varje mått."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sammenligning med din aldersgruppe"
+            "value": "Sammenligning med offentliggjorte videnskabelige tabeller med kilde og begrænsninger i detaljerne for hver måling."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "与同龄人群的比较"
+            "value": "与已发表的科学参考表进行比较，各指标详情中注明了来源和局限性。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपके आयु वर्ग से तुलना"
+            "value": "प्रकाशित वैज्ञानिक तालिकाओं से तुलना; हर संकेतक के विवरण में उसका स्रोत और सीमाएं दी गई हैं।"
           }
         }
       }
@@ -6993,6 +7311,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "डेटा"
+          }
+        }
+      }
+    },
+    "Datos de EE. UU. de 1999–2008.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "US data from 1999–2008."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dados dos EUA de 1999–2008."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Données américaines de 1999–2008."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dati USA del 1999–2008."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data från USA, 1999–2008."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data fra USA, 1999–2008."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1999–2008 年的美国数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1999–2008 का अमेरिकी डेटा।"
           }
         }
       }
@@ -8852,6 +9223,112 @@
         }
       }
     },
+    "Edad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Âge"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Età"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ålder"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年龄"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र"
+          }
+        }
+      }
+    },
+    "Edad y sexo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age and sex"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idade e sexo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Âge et sexe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Età e sesso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ålder och kön"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alder og køn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年龄和性别"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र और लिंग"
+          }
+        }
+      }
+    },
     "Edita planes, pantallas, zonas y alertas en el iPhone: SPRING › Ajustes de carrera.": {
       "extractionState": "manual",
       "localizations": {
@@ -9007,6 +9484,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "व्यायाम"
+          }
+        }
+      }
+    },
+    "El VO₂ máx. del Apple Watch es una estimación submáxima; la tabla se obtuvo con pruebas de laboratorio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch VO₂ max is a submaximal estimate; the table comes from lab tests."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O VO₂ máx. do Apple Watch é uma estimativa submáxima; a tabela foi obtida com testes de laboratório."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La VO₂ max. de l’Apple Watch est une estimation sous-maximale ; le tableau provient de tests en laboratoire."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il VO₂ max di Apple Watch è una stima submassimale; la tabella è stata ottenuta con test di laboratorio."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max från Apple Watch är en submaximal uppskattning; tabellen bygger på laboratorietester."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max fra Apple Watch er et submaksimalt estimat; tabellen er baseret på laboratorietest."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch 的 VO₂ max 是次最大强度估算值；该表格数据来自实验室测试。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch का VO₂ max एक सबमैक्सिमल अनुमान है; तालिका लैब टेस्ट से बनाई गई थी।"
           }
         }
       }
@@ -9749,6 +10279,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़्री रन में। इंटरवल में हर रेप का लक्ष्य पेस लागू होता है।"
+          }
+        }
+      }
+    },
+    "En la muestra de %@, unas %lld de cada 100 personas tienen un valor más bajo que el tuyo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the sample of %@, about %lld in 100 people have a lower value than yours."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na amostra de %@, cerca de %lld em cada 100 pessoas têm um valor mais baixo que o seu."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l’échantillon de %@, environ %lld personnes sur 100 ont une valeur inférieure à la tienne."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nel campione di %@, circa %lld persone su 100 hanno un valore più basso del tuo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I urvalet av %@ har ungefär %lld av 100 personer ett lägre värde än ditt."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I stikprøven af %@ har omkring %lld ud af 100 personer en lavere værdi end din."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在%@的样本中，每 100 人里约有 %lld 人的数值低于你。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ के सैंपल में, हर 100 में से लगभग %lld लोगों का मान आपसे कम है।"
           }
         }
       }
@@ -12456,6 +13039,59 @@
         }
       }
     },
+    "Fecha de nacimiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date of birth"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data de nascimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date de naissance"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data di nascita"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Födelsedatum"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fødselsdato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "出生日期"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जन्मतिथि"
+          }
+        }
+      }
+    },
     "Fechas y números siguen la configuración regional de tu iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -12664,6 +13300,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "श्वसन दर"
+          }
+        }
+      }
+    },
+    "Fuente": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Källa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "来源"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्रोत"
           }
         }
       }
@@ -15159,6 +15848,59 @@
         }
       }
     },
+    "La FC en reposo del Apple Watch se calcula de otra forma (lecturas ópticas en reposo a lo largo del día).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch resting HR is calculated differently (optical readings at rest throughout the day)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A FC em repouso do Apple Watch é calculada de outra forma (leituras ópticas em repouso ao longo do dia)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La FC au repos de l’Apple Watch est calculée autrement (mesures optiques au repos tout au long de la journée)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La FC a riposo di Apple Watch si calcola in un altro modo (letture ottiche a riposo durante la giornata)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilopulsen från Apple Watch beräknas på ett annat sätt (optiska mätningar i vila under dagen)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepulsen fra Apple Watch beregnes på en anden måde (optiske målinger i hvile i løbet af dagen)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch 的静息心率计算方式不同（全天静息状态下的光学读数）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch की आराम की हृदय गति अलग तरीके से निकाली जाती है (दिन भर आराम के दौरान ऑप्टिकल रीडिंग से)।"
+          }
+        }
+      }
+    },
     "La carrera se registra en el reloj, incluso si dejas el iPhone en casa. Puedes iniciarla desde aquí o tocando SPRING en el reloj.": {
       "extractionState": "manual",
       "localizations": {
@@ -15208,59 +15950,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "रन घड़ी पर रिकॉर्ड होता है, भले ही आप iPhone घर पर छोड़ दें। आप इसे यहाँ से या घड़ी पर SPRING टैप करके शुरू कर सकते हैं।"
-          }
-        }
-      }
-    },
-    "La comparación con personas de tu edad llegará en la Fase 8, solo con referencias científicas verificadas.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comparison with people your age will arrive in Phase 8, using only verified scientific references."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A comparação com pessoas da sua idade chegará na Fase 8, apenas com referências científicas verificadas."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La comparaison avec les personnes de ton âge arrivera lors de la Phase 8, uniquement avec des références scientifiques vérifiées."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il confronto con le persone della tua età arriverà nella Fase 8, solo con riferimenti scientifici verificati."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jämförelse med personer i din ålder kommer i Fas 8, enbart med verifierade vetenskapliga referenser."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sammenligning med personer på din alder kommer i Fase 8, kun med verificerede videnskabelige referencer."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "与同龄人的比较将在第 8 阶段推出，且仅基于经过验证的科学参考。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपकी उम्र के लोगों से तुलना चरण 8 में आएगी, और यह केवल सत्यापित वैज्ञानिक संदर्भों पर आधारित होगी।"
           }
         }
       }
@@ -15583,6 +16272,59 @@
         }
       }
     },
+    "La tabla publicada no cubre tu edad (%lld años), así que no te comparamos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The published table doesn't cover your age (%lld), so we don't compare you."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tabela publicada não cobre a sua idade (%lld anos), então não fazemos a comparação."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le tableau publié ne couvre pas ton âge (%lld ans), donc on ne te compare pas."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tabella pubblicata non copre la tua età (%lld anni), quindi non ti confrontiamo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den publicerade tabellen täcker inte din ålder (%lld år), så vi jämför dig inte."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den offentliggjorte tabel dækker ikke din alder (%lld år), så vi sammenligner dig ikke."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已发表的参考表未覆盖你的年龄（%lld 岁），因此不进行比较。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रकाशित तालिका में आपकी उम्र (%lld वर्ष) शामिल नहीं है, इसलिए हम तुलना नहीं करते।"
+          }
+        }
+      }
+    },
     "Las comparaciones con tu propio historial mejoran a medida que HÅLSYN acumula días de datos. Es normal que al principio falten algunos indicadores.": {
       "extractionState": "manual",
       "localizations": {
@@ -15791,6 +16533,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपका डेटा पढ़ा जा रहा है…"
+          }
+        }
+      }
+    },
+    "Limitaciones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limitations"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limitações"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limites"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limiti"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begränsningar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begrænsninger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "局限性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीमाएं"
+          }
+        }
+      }
+    },
+    "Listo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हो गया"
           }
         }
       }
@@ -17173,6 +18021,112 @@
         }
       }
     },
+    "Mediana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Median"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mediana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Médiane"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mediana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Median"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Median"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中位数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मीडियन"
+          }
+        }
+      }
+    },
+    "Mediana del grupo: %@ %@. Tu último valor: %@ %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Group median: %@ %@. Your latest value: %@ %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mediana do grupo: %@ %@. Seu último valor: %@ %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Médiane du groupe : %@ %@. Ta dernière valeur : %@ %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mediana del gruppo: %@ %@. Il tuo ultimo valore: %@ %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppens median: %@ %@. Ditt senaste värde: %@ %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppens median: %@ %@. Din seneste værdi: %@ %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "组中位数：%@ %@。你的最新数值：%@ %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समूह का मीडियन: %@ %@। आपका ताज़ा मान: %@ %@।"
+          }
+        }
+      }
+    },
     "Menos de %@": {
       "extractionState": "manual",
       "localizations": {
@@ -17597,6 +18551,59 @@
         }
       }
     },
+    "Mitad central del grupo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Middle half of the group"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metade central do grupo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moitié centrale du groupe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metà centrale del gruppo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppens mittersta hälft"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppens midterste halvdel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "组内中间一半"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समूह का बीच वाला आधा हिस्सा"
+          }
+        }
+      }
+    },
     "Modelo de 5 zonas: empiezan al 50, 60, 70, 80 y 90 por ciento. Es una convención de entrenamiento, no una indicación médica. Si tienes una condición cardíaca, consulta a un profesional.": {
       "extractionState": "manual",
       "localizations": {
@@ -17862,6 +18869,59 @@
         }
       }
     },
+    "Muestra de conveniencia de EE. UU.; poblaciones nórdicas suelen tener valores más altos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "US convenience sample; Nordic populations tend to have higher values."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amostra de conveniência dos EUA; populações nórdicas costumam ter valores mais altos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échantillon de convenance américain ; les populations nordiques ont souvent des valeurs plus élevées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campione di convenienza USA; le popolazioni nordiche tendono ad avere valori più alti."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekvämlighetsurval från USA; nordiska befolkningar har ofta högre värden."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekvemmelighedsstikprøve fra USA; nordiske befolkninger har ofte højere værdier."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "美国的便利样本；北欧人群的数值通常更高。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अमेरिका का सुविधा-आधारित सैंपल; नॉर्डिक आबादी में मान अक्सर ज़्यादा होते हैं।"
+          }
+        }
+      }
+    },
     "Muestra el desglose de la puntuación": {
       "extractionState": "manual",
       "localizations": {
@@ -17911,6 +18971,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "स्कोर का ब्रेकडाउन दिखाता है"
+          }
+        }
+      }
+    },
+    "Muestra representativa de EE. UU. (NHANES 1999–2008), 14.200 adultos; excluye embarazo, infección probable, pulso irregular, tiroides alterada y fármacos que cambian la frecuencia cardíaca (p. ej., betabloqueantes).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Representative US sample (NHANES 1999–2008), 14,200 adults; excludes pregnancy, likely infection, irregular pulse, abnormal thyroid and medications that change heart rate (e.g., beta-blockers)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amostra representativa dos EUA (NHANES 1999–2008), 14.200 adultos; exclui gravidez, infecção provável, pulso irregular, tireoide alterada e medicamentos que alteram a frequência cardíaca (p. ex., betabloqueadores)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échantillon représentatif des États-Unis (NHANES 1999–2008), 14 200 adultes ; exclut la grossesse, une infection probable, un pouls irrégulier, une thyroïde perturbée et les médicaments qui modifient la fréquence cardiaque (p. ex. bêtabloquants)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campione rappresentativo USA (NHANES 1999–2008), 14.200 adulti; esclude gravidanza, probabile infezione, polso irregolare, tiroide alterata e farmaci che modificano la frequenza cardiaca (ad es. betabloccanti)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Representativt urval från USA (NHANES 1999–2008), 14 200 vuxna; exkluderar graviditet, trolig infektion, oregelbunden puls, avvikande sköldkörtel och läkemedel som påverkar pulsen (t.ex. betablockerare)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repræsentativ stikprøve fra USA (NHANES 1999–2008), 14.200 voksne; udelukker graviditet, sandsynlig infektion, uregelmæssig puls, ændret skjoldbruskkirtel og medicin, der påvirker pulsen (f.eks. betablokkere)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "美国代表性样本（NHANES 1999–2008），14,200 名成年人；排除了怀孕、可能感染、脉搏不规则、甲状腺异常以及服用影响心率药物（如 β 受体阻滞剂）的人。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अमेरिका का प्रतिनिधि सैंपल (NHANES 1999–2008), 14,200 वयस्क; इसमें गर्भावस्था, संभावित संक्रमण, अनियमित नब्ज़, थायरॉइड में गड़बड़ी और हृदय गति बदलने वाली दवाओं (जैसे बीटा-ब्लॉकर) वाले लोग शामिल नहीं हैं।"
           }
         }
       }
@@ -20406,6 +21519,59 @@
         }
       }
     },
+    "P%@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "P%@"
+          }
+        }
+      }
+    },
     "Pantalla %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -20667,6 +21833,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी की स्क्रीन"
+          }
+        }
+      }
+    },
+    "Para compararte con tu grupo hacen falta tu edad y tu sexo. Se guardan solo en este iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To compare you with your group, we need your age and sex. They're stored only on this iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para comparar você com o seu grupo, precisamos da sua idade e do seu sexo. Eles ficam salvos apenas neste iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour te comparer à ton groupe, il faut ton âge et ton sexe. Ils sont enregistrés uniquement sur cet iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per confrontarti con il tuo gruppo servono la tua età e il tuo sesso. Vengono salvati solo su questo iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att jämföra dig med din grupp behövs din ålder och ditt kön. De sparas bara på den här iPhonen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For at sammenligne dig med din gruppe skal vi bruge din alder og dit køn. De gemmes kun på denne iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要将你与同组人群比较，需要你的年龄和性别。这些信息仅保存在这台 iPhone 上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके समूह से तुलना के लिए आपकी उम्र और लिंग चाहिए। ये केवल इसी iPhone पर सेव रहते हैं।"
+          }
+        }
+      }
+    },
+    "Para la HRV no mostramos percentiles por edad: las tablas publicadas usan registros de 5 minutos o de 24 horas, en condiciones controladas, y no son comparables con las lecturas sueltas del Apple Watch. Aquí la comparación útil es contigo mismo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We don't show age percentiles for HRV: published tables use 5-minute or 24-hour recordings under controlled conditions, which aren't comparable with the occasional Apple Watch readings. Here, the useful comparison is with yourself."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para a HRV não mostramos percentis por idade: as tabelas publicadas usam registros de 5 minutos ou de 24 horas, em condições controladas, e não são comparáveis às leituras avulsas do Apple Watch. Aqui, a comparação útil é com você mesmo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour la HRV, on n’affiche pas de percentiles par âge : les tableaux publiés reposent sur des enregistrements de 5 minutes ou de 24 heures, en conditions contrôlées, et ne sont pas comparables aux mesures ponctuelles de l’Apple Watch. Ici, la comparaison utile, c’est avec toi-même."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per la HRV non mostriamo percentili per età: le tabelle pubblicate usano registrazioni di 5 minuti o di 24 ore, in condizioni controllate, e non sono confrontabili con le letture sporadiche di Apple Watch. Qui il confronto utile è con te stesso."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För HRV visar vi inga ålderspercentiler: publicerade tabeller bygger på 5-minuters- eller 24-timmarsregistreringar under kontrollerade förhållanden och går inte att jämföra med enstaka mätningar från Apple Watch. Här är den användbara jämförelsen den med dig själv."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For HRV viser vi ikke percentiler efter alder: offentliggjorte tabeller bruger optagelser på 5 minutter eller 24 timer under kontrollerede forhold og kan ikke sammenlignes med enkeltstående målinger fra Apple Watch. Her er den nyttige sammenligning den med dig selv."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV 不显示按年龄划分的百分位：已发表的参考表使用受控条件下的 5 分钟或 24 小时记录，无法与 Apple Watch 的零散读数相比。对 HRV 来说，有意义的比较是和你自己比。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV के लिए हम उम्र के हिसाब से पर्सेंटाइल नहीं दिखाते: प्रकाशित तालिकाएं नियंत्रित परिस्थितियों में 5 मिनट या 24 घंटे की रिकॉर्डिंग पर आधारित हैं और Apple Watch की इक्का-दुक्का रीडिंग से तुलना योग्य नहीं हैं। यहां काम की तुलना खुद अपने आप से है।"
           }
         }
       }
@@ -21095,6 +22367,59 @@
         }
       }
     },
+    "Percentil %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentile %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentil %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentile %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentile %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentil %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percentil %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 百分位"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld पर्सेंटाइल"
+          }
+        }
+      }
+    },
     "Perfil": {
       "extractionState": "manual",
       "localizations": {
@@ -21144,6 +22469,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "प्रोफ़ाइल"
+          }
+        }
+      }
+    },
+    "Perfil de ejemplo (hombre de 35 años). Añade el tuyo en Perfil.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample profile (35-year-old man). Add yours in Profile."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perfil de exemplo (homem de 35 anos). Adicione o seu em Perfil."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil d’exemple (homme de 35 ans). Ajoute le tien dans Profil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profilo di esempio (uomo di 35 anni). Aggiungi il tuo in Profilo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exempelprofil (man, 35 år). Lägg till din egen under Profil."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksempelprofil (mand på 35 år). Tilføj din egen under Profil."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "示例资料（35 岁男性）。可在“个人资料”中添加你自己的资料。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उदाहरण प्रोफ़ाइल (35 वर्ष का पुरुष)। अपनी प्रोफ़ाइल प्रोफ़ाइल में जोड़ें।"
           }
         }
       }
@@ -22155,6 +23533,59 @@
         }
       }
     },
+    "Prueba de esfuerzo máxima en cinta con análisis de gases (V̇O₂máx medido).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximal treadmill exercise test with gas analysis (measured V̇O₂max)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teste de esforço máximo em esteira com análise de gases (V̇O₂máx medido)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test d’effort maximal sur tapis roulant avec analyse des gaz (V̇O₂max mesurée)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test da sforzo massimale su tapis roulant con analisi dei gas (V̇O₂max misurato)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximalt arbetsprov på löpband med gasanalys (uppmätt V̇O₂max)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maksimal arbejdstest på løbebånd med gasanalyse (målt V̇O₂max)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步机最大强度运动测试，配合气体分析（实测 V̇O₂max）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गैस विश्लेषण के साथ ट्रेडमिल पर अधिकतम एक्सरसाइज़ टेस्ट (मापा गया V̇O₂max)।"
+          }
+        }
+      }
+    },
     "Pulsa Vuelta para continuar": {
       "extractionState": "manual",
       "localizations": {
@@ -22204,6 +23635,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "जारी रखने के लिए लैप दबाएँ"
+          }
+        }
+      }
+    },
+    "Pulso radial contado a mano 30 s (×2), sentado tras unos 4 minutos de reposo; una sola medición por persona.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radial pulse counted by hand for 30 s (×2), seated after about 4 minutes of rest; a single measurement per person."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso radial contado manualmente por 30 s (×2), sentado após cerca de 4 minutos de repouso; uma única medição por pessoa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouls radial compté à la main pendant 30 s (×2), en position assise après environ 4 minutes de repos ; une seule mesure par personne."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polso radiale contato a mano per 30 s (×2), da seduti dopo circa 4 minuti di riposo; una sola misurazione per persona."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radialispuls räknad för hand i 30 s (×2), sittande efter cirka 4 minuters vila; en enda mätning per person."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radialispuls talt manuelt i 30 s (×2), siddende efter ca. 4 minutters hvile; én enkelt måling pr. person."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "坐姿静息约 4 分钟后，手动计数桡动脉脉搏 30 秒（×2）；每人仅测量一次。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "करीब 4 मिनट आराम के बाद बैठी स्थिति में कलाई की नब्ज़ हाथ से 30 सेकंड (×2) गिनी गई; हर व्यक्ति का केवल एक माप।"
           }
         }
       }
@@ -23211,6 +24695,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमानित रिकवरी"
+          }
+        }
+      }
+    },
+    "Referencias por edad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age references"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referências por idade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Références par âge"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riferimenti per età"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åldersreferenser"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aldersreferencer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年龄参考"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र के हिसाब से संदर्भ"
           }
         }
       }
@@ -24434,6 +25971,59 @@
         }
       }
     },
+    "Salud no ha compartido tu fecha de nacimiento ni tu sexo. Puedes escribirlos aquí.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health hasn't shared your date of birth or sex. You can enter them here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Saúde não compartilhou sua data de nascimento nem seu sexo. Você pode informá-los aqui."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé n’a pas partagé ta date de naissance ni ton sexe. Tu peux les saisir ici."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salute non ha condiviso la tua data di nascita né il tuo sesso. Puoi inserirli qui."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsa har inte delat ditt födelsedatum eller kön. Du kan ange dem här."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sundhed har ikke delt din fødselsdato eller dit køn. Du kan angive dem her."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“健康”未共享你的出生日期和性别。你可以在这里填写。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्वास्थ्य ने आपकी जन्मतिथि या लिंग शेयर नहीं किया है। आप इन्हें यहां लिख सकते हैं।"
+          }
+        }
+      }
+    },
     "Saturación de oxígeno": {
       "extractionState": "manual",
       "localizations": {
@@ -24911,6 +26501,59 @@
         }
       }
     },
+    "Sexo (tablas de referencia)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex (reference tables)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexo (tabelas de referência)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sexe (tableaux de référence)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesso (tabelle di riferimento)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kön (referenstabeller)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Køn (referencetabeller)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "性别（参考表）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लिंग (संदर्भ तालिकाएं)"
+          }
+        }
+      }
+    },
     "Si eliges un campo que ya está en otra posición, se intercambian. Sin dato en vivo se muestra «--»: cadencia (pendiente de verificar en dispositivo), potencia si tu reloj no la mide, zona sin FC máxima configurada, objetivo e intervalo fuera de un plan.": {
       "extractionState": "manual",
       "localizations": {
@@ -25066,6 +26709,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "चाहें तो, स्पष्ट रूप से चिह्नित डेमो डेटा के साथ ऐप देखें और बाद में प्रोफ़ाइल से Apple Health कनेक्ट करें।"
+          }
+        }
+      }
+    },
+    "Si tomas fármacos que cambian la frecuencia cardíaca, esta comparación no se aplica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you take medications that change your heart rate, this comparison doesn't apply."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você toma medicamentos que alteram a frequência cardíaca, esta comparação não se aplica."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu prends des médicaments qui modifient la fréquence cardiaque, cette comparaison ne s’applique pas."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se assumi farmaci che modificano la frequenza cardiaca, questo confronto non si applica."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du tar läkemedel som påverkar pulsen gäller inte den här jämförelsen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvis du tager medicin, der påvirker pulsen, gælder denne sammenligning ikke."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你在服用影响心率的药物，此比较不适用。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर आप हृदय गति बदलने वाली दवाएं लेते हैं, तो यह तुलना लागू नहीं होती।"
           }
         }
       }
@@ -25494,6 +27190,59 @@
         }
       }
     },
+    "Sin datos para 80 años o más.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data for ages 80 and over."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dados para 80 anos ou mais."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de données pour 80 ans et plus."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato per 80 anni e oltre."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data för 80 år och äldre."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data for 80 år og derover."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无 80 岁及以上的数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "80 वर्ष या उससे ज़्यादा उम्र का डेटा नहीं है।"
+          }
+        }
+      }
+    },
     "Sin datos suficientes": {
       "extractionState": "manual",
       "localizations": {
@@ -25702,6 +27451,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "मेट्रिक्स AI सेवाओं को नहीं भेजे जाते।"
+          }
+        }
+      }
+    },
+    "Sin indicar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not set"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não informado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non indiqué"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non indicato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte angivet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke angivet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未设置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नहीं बताया गया"
           }
         }
       }
@@ -26126,6 +27928,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सिर्फ़ प्राथमिकताएँ भेजी जाती हैं, स्वास्थ्य डेटा कभी नहीं।"
+          }
+        }
+      }
+    },
+    "Solo se usan para compararte con tablas científicas publicadas (VO₂ máx. y FC en reposo), que se dividen por edad y sexo biológico. Se guardan solo en este iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They're only used to compare you with published scientific tables (VO₂ max and resting HR), which are split by age and biological sex. They're stored only on this iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "São usados apenas para comparar você com tabelas científicas publicadas (VO₂ máx. e FC em repouso), que são divididas por idade e sexo biológico. Ficam salvos apenas neste iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ils servent uniquement à te comparer à des tableaux scientifiques publiés (VO₂ max. et FC au repos), répartis par âge et sexe biologique. Ils sont enregistrés uniquement sur cet iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si usano solo per confrontarti con tabelle scientifiche pubblicate (VO₂ max e FC a riposo), suddivise per età e sesso biologico. Vengono salvati solo su questo iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De används bara för att jämföra dig med publicerade vetenskapliga tabeller (VO₂ max och vilopuls), som är uppdelade efter ålder och biologiskt kön. De sparas bara på den här iPhonen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De bruges kun til at sammenligne dig med offentliggjorte videnskabelige tabeller (VO₂ max og hvilepuls), som er opdelt efter alder og biologisk køn. De gemmes kun på denne iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅用于将你与按年龄和生理性别划分的已发表科学参考表（VO₂ max 和静息心率）进行比较。这些信息仅保存在这台 iPhone 上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इनका इस्तेमाल केवल आपकी तुलना प्रकाशित वैज्ञानिक तालिकाओं (VO₂ max और आराम की हृदय गति) से करने के लिए होता है, जो उम्र और जैविक लिंग के हिसाब से बंटी हैं। ये केवल इसी iPhone पर सेव रहते हैं।"
           }
         }
       }
@@ -26709,6 +28564,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लैप समय"
+          }
+        }
+      }
+    },
+    "Tabla de 2015; la actualización de 2022 da valores algo más bajos (te situaría un poco más arriba).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2015 table; the 2022 update gives slightly lower values (it would place you a little higher)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabela de 2015; a atualização de 2022 traz valores um pouco mais baixos (colocaria você um pouco mais acima)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tableau de 2015 ; la mise à jour de 2022 donne des valeurs un peu plus basses (elle te placerait un peu plus haut)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabella del 2015; l’aggiornamento del 2022 riporta valori un po’ più bassi (ti collocherebbe un po’ più in alto)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabell från 2015; uppdateringen från 2022 ger något lägre värden (den skulle placera dig lite högre)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabel fra 2015; opdateringen fra 2022 giver lidt lavere værdier (den ville placere dig lidt højere)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2015 年的参考表；2022 年的更新版数值略低（你的位置会稍高一些）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2015 की तालिका; 2022 के अपडेट में मान थोड़े कम हैं (उसमें आपकी स्थिति थोड़ी ऊपर होती)।"
           }
         }
       }
@@ -28356,6 +30264,59 @@
         }
       }
     },
+    "Tu grupo de edad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your age group"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu grupo de idade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton groupe d’âge"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo gruppo di età"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din åldersgrupp"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din aldersgruppe"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的年龄组"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका आयु वर्ग"
+          }
+        }
+      }
+    },
     "Tu media del periodo": {
       "extractionState": "manual",
       "localizations": {
@@ -28727,6 +30688,271 @@
         }
       }
     },
+    "Tu valor es más alto que el percentil %@ de %@: por encima de lo que cubre la tabla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your value is higher than percentile %@ for %@: above what the table covers."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu valor é mais alto que o percentil %@ de %@: acima do que a tabela cobre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta valeur est supérieure au percentile %@ des %@ : au-delà de ce que couvre le tableau."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo valore è più alto del percentile %@ di %@: oltre ciò che copre la tabella."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt värde är högre än percentil %@ för %@ – över det som tabellen täcker."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din værdi er højere end percentil %@ for %@ – over det, tabellen dækker."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数值高于第 %@ 百分位（%@）：超出了参考表的覆盖范围。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका मान %@ पर्सेंटाइल (%@) से ज़्यादा है: यह तालिका के दायरे से ऊपर है।"
+          }
+        }
+      }
+    },
+    "Tu valor es más bajo que el percentil %@ de %@: por debajo de lo que cubre la tabla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your value is lower than percentile %@ for %@: below what the table covers."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu valor é mais baixo que o percentil %@ de %@: abaixo do que a tabela cobre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta valeur est inférieure au percentile %@ des %@ : en deçà de ce que couvre le tableau."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo valore è più basso del percentile %@ di %@: sotto ciò che copre la tabella."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt värde är lägre än percentil %@ för %@ – under det som tabellen täcker."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din værdi er lavere end percentil %@ for %@ – under det, tabellen dækker."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数值低于第 %@ 百分位（%@）：低于参考表的覆盖范围。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका मान %@ पर्सेंटाइल (%@) से कम है: यह तालिका के दायरे से नीचे है।"
+          }
+        }
+      }
+    },
+    "Tu valor, %@, está cerca del percentil %@ de tu grupo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your value, %@, is near percentile %@ for your group."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu valor, %@, está perto do percentil %@ do seu grupo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta valeur, %@, est proche du percentile %@ de ton groupe."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo valore, %@, è vicino al percentile %@ del tuo gruppo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt värde, %@, ligger nära percentil %@ för din grupp."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din værdi, %@, ligger tæt på percentil %@ for din gruppe."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数值 %@ 接近你所在组的第 %@ 百分位。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका मान, %@, आपके समूह के %@ पर्सेंटाइल के करीब है।"
+          }
+        }
+      }
+    },
+    "Tu valor, %@, está por debajo del percentil %@ de la tabla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your value, %@, is below percentile %@ in the table."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu valor, %@, está abaixo do percentil %@ da tabela."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta valeur, %@, est inférieure au percentile %@ du tableau."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo valore, %@, è sotto il percentile %@ della tabella."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt värde, %@, ligger under percentil %@ i tabellen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din værdi, %@, ligger under percentil %@ i tabellen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数值 %@ 低于参考表中的第 %@ 百分位。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका मान, %@, तालिका के %@ पर्सेंटाइल से नीचे है।"
+          }
+        }
+      }
+    },
+    "Tu valor, %@, está por encima del percentil %@ de la tabla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your value, %@, is above percentile %@ in the table."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu valor, %@, está acima do percentil %@ da tabela."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta valeur, %@, est supérieure au percentile %@ du tableau."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo valore, %@, è sopra il percentile %@ della tabella."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt värde, %@, ligger över percentil %@ i tabellen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din værdi, %@, ligger over percentil %@ i tabellen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数值 %@ 高于参考表中的第 %@ 百分位。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका मान, %@, तालिका के %@ पर्सेंटाइल से ऊपर है।"
+          }
+        }
+      }
+    },
     "Tus datos son tuyos": {
       "extractionState": "manual",
       "localizations": {
@@ -29045,6 +31271,112 @@
         }
       }
     },
+    "Tú": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dig"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप"
+          }
+        }
+      }
+    },
+    "Un VO₂ máx. más alto indica más capacidad aeróbica. Es una de las medidas de forma física más estudiadas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A higher VO₂ max indicates greater aerobic capacity. It's one of the most studied measures of fitness."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um VO₂ máx. mais alto indica maior capacidade aeróbica. É uma das medidas de condicionamento físico mais estudadas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une VO₂ max. plus élevée indique une meilleure capacité aérobie. C’est l’une des mesures de la forme physique les plus étudiées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un VO₂ max più alto indica una maggiore capacità aerobica. È una delle misure della forma fisica più studiate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ett högre VO₂ max tyder på större aerob kapacitet. Det är ett av de mest studerade måtten på kondition."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En højere VO₂ max tyder på større aerob kapacitet. Det er et af de mest undersøgte mål for kondition."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max 越高，表示有氧能力越强。它是研究最多的体能指标之一。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादा VO₂ max बेहतर एरोबिक क्षमता दिखाता है। यह फ़िटनेस के सबसे ज़्यादा अध्ययन किए गए मापों में से एक है।"
+          }
+        }
+      }
+    },
     "Un aviso diario te invita a ver tu resumen. La notificación no incluye datos de salud.": {
       "extractionState": "manual",
       "localizations": {
@@ -29094,6 +31426,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रोज़ एक रिमाइंडर आपको अपना सारांश देखने के लिए बुलाता है। नोटिफ़िकेशन में कोई स्वास्थ्य डेटा नहीं होता।"
+          }
+        }
+      }
+    },
+    "Una FC en reposo más baja suele asociarse a mejor forma aeróbica, aunque también influyen la genética, el estrés, el sueño y la medicación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A lower resting HR is often associated with better aerobic fitness, although genetics, stress, sleep and medication also play a role."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma FC em repouso mais baixa costuma estar associada a melhor condicionamento aeróbico, embora genética, estresse, sono e medicação também influenciem."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une FC au repos plus basse est souvent associée à une meilleure forme aérobie, même si la génétique, le stress, le sommeil et les médicaments jouent aussi."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una FC a riposo più bassa è spesso associata a una migliore forma aerobica, anche se influiscono pure genetica, stress, sonno e farmaci."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En lägre vilopuls brukar förknippas med bättre aerob kondition, men även gener, stress, sömn och läkemedel spelar in."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En lavere hvilepuls forbindes ofte med bedre aerob kondition, men gener, stress, søvn og medicin spiller også ind."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较低的静息心率通常与更好的有氧体能相关，但遗传、压力、睡眠和药物也会产生影响。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम की कम हृदय गति को अक्सर बेहतर एरोबिक फ़िटनेस से जोड़ा जाता है, हालांकि जेनेटिक्स, तनाव, नींद और दवाओं का भी असर होता है।"
           }
         }
       }
@@ -29306,6 +31691,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Health वाली इस्तेमाल करें: %lld bpm"
+          }
+        }
+      }
+    },
+    "Usar los datos de Salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Health data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar os dados do Saúde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser les données de Santé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa i dati di Salute"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd data från Hälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug data fra Sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用“健康”数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्वास्थ्य का डेटा इस्तेमाल करें"
           }
         }
       }
@@ -31006,6 +33444,112 @@
         }
       }
     },
+    "hombres de %lld a %lld años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "men aged %lld to %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "homens de %lld a %lld anos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hommes de %lld à %lld ans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uomini tra %lld e %lld anni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "män %lld till %lld år"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mænd på %lld til %lld år"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 至 %lld 岁男性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld से %lld वर्ष के पुरुष"
+          }
+        }
+      }
+    },
+    "hombres de %lld años o más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "men aged %lld and over"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "homens de %lld anos ou mais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hommes de %lld ans et plus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uomini di %lld anni e oltre"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "män %lld år och äldre"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mænd på %lld år og derover"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 岁及以上男性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld वर्ष या उससे ज़्यादा उम्र के पुरुष"
+          }
+        }
+      }
+    },
     "iOS te mostrará la lista de datos. Puedes activar solo los que quieras: HÅLSYN funcionará con lo que compartas.": {
       "extractionState": "manual",
       "localizations": {
@@ -31108,6 +33652,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "bpm"
+          }
+        }
+      }
+    },
+    "mujeres de %lld a %lld años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "women aged %lld to %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mulheres de %lld a %lld anos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "femmes de %lld à %lld ans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "donne tra %lld e %lld anni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kvinnor %lld till %lld år"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kvinder på %lld til %lld år"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 至 %lld 岁女性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld से %lld वर्ष की महिलाएं"
+          }
+        }
+      }
+    },
+    "mujeres de %lld años o más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "women aged %lld and over"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mulheres de %lld anos ou mais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "femmes de %lld ans et plus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "donne di %lld anni e oltre"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kvinnor %lld år och äldre"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kvinder på %lld år og derover"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 岁及以上女性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld वर्ष या उससे ज़्यादा उम्र की महिलाएं"
           }
         }
       }
