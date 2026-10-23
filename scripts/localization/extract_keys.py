@@ -74,6 +74,6 @@ for base in SOURCES:
                 if natural(re.sub(r"%(lld|@)", "", key).strip(" /·()")):
                     keys.setdefault(key, str(path.relative_to(ROOT)))
 # Textos de permisos de Info.plist (se traducen en InfoPlist.xcstrings).
-for match in re.finditer(r"NSHealth\w+UsageDescription: (.+)", (ROOT / "project.yml").read_text()):
+for match in re.finditer(r"NS(?:Health\w+|LocationWhenInUse)UsageDescription: (.+)", (ROOT / "project.yml").read_text()):
     keys.setdefault(match.group(1).strip(), "project.yml (Info.plist)")
 json.dump(keys, sys.stdout, ensure_ascii=False, indent=1, sort_keys=True)

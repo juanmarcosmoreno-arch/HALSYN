@@ -2,38 +2,45 @@ import HalsynCore
 import HalsynDesign
 import SwiftUI
 
-/// SPRING en el reloj. Fase 1: selección de tipo de carrera y vista previa de
-/// la pantalla de entrenamiento con valores de ejemplo. La sesión real
-/// (HKWorkoutSession + HKLiveWorkoutBuilder + GPS) se implementa en la Fase 4.
+/// SPRING en el reloj: iniciar una carrera con un toque.
 struct WatchSpringView: View {
+    @Environment(WorkoutManager.self) private var workout
+
     var body: some View {
         List {
-            NavigationLink {
-                WatchWorkoutPreview(profile: .easyRun)
+            Button {
+                Task { await workout.start(indoor: false) }
             } label: {
-                Label("Carrera libre", systemImage: "figure.run")
+                Label("Carrera al aire libre", systemImage: "figure.run")
             }
-            NavigationLink {
-                WatchWorkoutPreview(profile: .intervals)
+            .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(HalsynPalette.darkPrimary)))
+
+            Button {
+                Task { await workout.start(indoor: true) }
             } label: {
-                Label("Intervalos", systemImage: "repeat")
+                Label("Carrera en cinta", systemImage: "figure.run.treadmill")
             }
-            NavigationLink {
-                WatchWorkoutPreview(profile: .race)
-            } label: {
-                Label("Competición", systemImage: "flag.checkered")
+
+            Section {
+                NavigationLink {
+                    WatchWorkoutPreview(profile: .intervals)
+                } label: {
+                    Label("Intervalos", systemImage: "repeat")
+                }
+                NavigationLink {
+                    WatchWorkoutPreview(profile: .race)
+                } label: {
+                    Label("Competición", systemImage: "flag.checkered")
+                }
+            } footer: {
+                Text("Intervalos y competición llegan en la Fase 5 (vista previa).")
             }
-            Text("El registro de entrenamientos llega en la Fase 4.")
-                .font(.footnote)
-                .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
-                .listRowBackground(Color.clear)
         }
         .navigationTitle(Text(verbatim: HalsynModule.spring.brandName))
     }
 }
 
-/// Vista previa de la pantalla de entrenamiento. No inicia ninguna sesión ni
-/// guarda nada en Apple Health.
+/// Vista previa de una pantalla de entrenamiento. No inicia ninguna sesión.
 struct WatchWorkoutPreview: View {
     let profile: WorkoutScreenProfile
     private let sample = DemoWorkoutSample()
@@ -56,4 +63,5 @@ struct WatchWorkoutPreview: View {
 
 #Preview {
     NavigationStack { WatchSpringView() }
+        .environment(WorkoutManager.shared)
 }

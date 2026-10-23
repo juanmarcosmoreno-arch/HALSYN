@@ -36,8 +36,14 @@
 	<string>HÅLSYN lee tus datos de Apple Health para mostrar tu estado, tu recuperación y tus entrenamientos en el reloj.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HÅLSYN guarda en Apple Health las carreras que registras en el reloj.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>HÅLSYN usa tu ubicación durante las carreras al aire libre para medir distancia, ritmo y ruta.</string>
 	<key>WKApplication</key>
 	<true/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>$(HALSYN_BUNDLE_ID)</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>

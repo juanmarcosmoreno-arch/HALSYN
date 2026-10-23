@@ -59,8 +59,11 @@ for target, folder in [("Halsyn", "HalsyniOS"), ("HalsynWatch", "HalsynWatch")]:
     write(resources / "Localizable.xcstrings", {k: entry(k) for k in ui_keys})
     section = project.split(f"\n  {target}:\n", 1)[1].split("\n  Halsyn", 1)[0]
     info = {}
-    for plist_key in ("NSHealthShareUsageDescription", "NSHealthUpdateUsageDescription"):
-        value = re.search(rf"{plist_key}: (.+)", section).group(1).strip()
+    for plist_key in ("NSHealthShareUsageDescription", "NSHealthUpdateUsageDescription", "NSLocationWhenInUseUsageDescription"):
+        match = re.search(rf"{plist_key}: (.+)", section)
+        if not match:
+            continue
+        value = match.group(1).strip()
         assert value in info_values, value
         info[plist_key] = entry(value, source_value=value)
         info[plist_key]["extractionState"] = "extracted_with_value"

@@ -102,6 +102,10 @@ targets:
         WKRunsIndependentlyOfCompanionApp: true
         NSHealthShareUsageDescription: HÅLSYN lee tus datos de Apple Health para mostrar tu estado, tu recuperación y tus entrenamientos en el reloj.
         NSHealthUpdateUsageDescription: HÅLSYN guarda en Apple Health las carreras que registras en el reloj.
+        NSLocationWhenInUseUsageDescription: HÅLSYN usa tu ubicación durante las carreras al aire libre para medir distancia, ritmo y ruta.
+        # Mantiene la sesión de entrenamiento activa con la pantalla apagada.
+        WKBackgroundModes:
+          - workout-processing
     settings:
       base:
         PRODUCT_NAME: HalsynWatch

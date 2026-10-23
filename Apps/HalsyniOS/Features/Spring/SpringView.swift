@@ -1,9 +1,10 @@
 import HalsynCore
 import HalsynDesign
+import HealthKit
 import SwiftUI
 
 /// SPRING — running. Fase 1: historial (demo), resumen semanal y vista previa
-/// de las pantallas del reloj. El motor de entrenamiento llega en la Fase 4 y
+/// de las pantallas del reloj. Las carreras se registran en el Apple Watch (Fase 4);
 /// el editor de pantallas en la Fase 5.
 struct SpringView: View {
     @Environment(AppModel.self) private var model
@@ -157,27 +158,68 @@ enum RunType: String, CaseIterable, Identifiable {
     }
 }
 
+/// Inicia una carrera en el Apple Watch desde el iPhone (`startWatchApp`):
+/// watchOS abre HÅLSYN en el reloj con la sesión preparada.
 private struct StartRunInfoSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var status: Status = .idle
+
+    enum Status: Equatable {
+        case idle, starting, started, failed
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-            HStack {
-                HalsynSymbol().frame(height: 40)
-                Spacer()
-                PhaseTag(phase: 4)
-            }
-            Text("Las carreras se inician en el Apple Watch")
+            HalsynSymbol().frame(height: 40)
+            Text("Correr con Apple Watch")
                 .font(.halsynTitle)
                 .foregroundStyle(.halsynPrimaryText)
-            Text("El motor de entrenamiento (sesión de HealthKit, GPS, ritmo, pausa y guardado) se implementa en la Fase 4 y debe validarse en un Apple Watch físico. En esta fase no se registra ningún entrenamiento.")
+            Text("La carrera se registra en el reloj, incluso si dejas el iPhone en casa. Puedes iniciarla desde aquí o tocando SPRING en el reloj.")
                 .font(.halsynBody)
                 .foregroundStyle(.halsynSecondaryText)
+            switch status {
+            case .started:
+                HalsynStatusIndicator(.positive, text: "Mira tu Apple Watch: la carrera está empezando.")
+            case .failed:
+                HalsynStatusIndicator(.caution, text: "No se pudo abrir HÅLSYN en el reloj. Comprueba que está instalada y que el reloj está desbloqueado.")
+            default:
+                EmptyView()
+            }
             Spacer()
-            HalsynPrimaryButton("Entendido") { dismiss() }
+            if status == .started {
+                HalsynPrimaryButton("Entendido") { dismiss() }
+            } else {
+                HalsynPrimaryButton(status == .starting ? "Abriendo el reloj…" : "Iniciar carrera al aire libre", systemImage: "applewatch") {
+                    Task { await start() }
+                }
+                .disabled(status == .starting)
+            }
         }
         .padding(HalsynSpacing.l)
         .halsynScreenBackground()
+    }
+
+    private func start() async {
+        status = .starting
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .running
+        configuration.locationType = .outdoor
+        do {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                HKHealthStore().startWatchApp(with: configuration) { success, error in
+                    if let error {
+                        continuation.resume(throwing: error)
+                    } else if success {
+                        continuation.resume()
+                    } else {
+                        continuation.resume(throwing: CancellationError())
+                    }
+                }
+            }
+            status = .started
+        } catch {
+            status = .failed
+        }
     }
 }
 
