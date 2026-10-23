@@ -20,6 +20,8 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
     case leanBodyMass
     /// Temperatura de muñeca durante el sueño (Apple Watch Series 8 o posterior).
     case wristTemperature
+    /// Minutos con luz natural (Apple Watch, watchOS 10 o posterior).
+    case timeInDaylight
 
     public var id: String { rawValue }
 
@@ -40,6 +42,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyFatPercentage: "Grasa corporal"
         case .leanBodyMass: "Masa magra"
         case .wristTemperature: "Temperatura de muñeca"
+        case .timeInDaylight: "Luz del día"
         }
     }
 
@@ -60,6 +63,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyFatPercentage: "Grasa"
         case .leanBodyMass: "Masa magra"
         case .wristTemperature: "Temp."
+        case .timeInDaylight: "Luz"
         }
     }
 
@@ -73,6 +77,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .vo2Max: .form
         case .bodyMass, .bodyFatPercentage, .leanBodyMass: .kropp
         case .exerciseTime: .tid
+        case .timeInDaylight: .ljus
         default: nil
         }
     }
@@ -92,13 +97,14 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyMass, .leanBodyMass: .kilograms
         case .bodyFatPercentage: .percent
         case .wristTemperature: .celsius
+        case .timeInDaylight: .minutes
         }
     }
 
     /// Cómo se agrega la métrica en un día.
     public var dailyAggregation: DailyAggregation {
         switch self {
-        case .steps, .walkingRunningDistance, .activeEnergy, .exerciseTime, .sleepDuration: .sum
+        case .steps, .walkingRunningDistance, .activeEnergy, .exerciseTime, .sleepDuration, .timeInDaylight: .sum
         case .heartRate, .heartRateVariability, .respiratoryRate, .oxygenSaturation, .wristTemperature: .average
         case .restingHeartRate, .vo2Max, .bodyMass, .bodyFatPercentage, .leanBodyMass: .latest
         }
@@ -131,6 +137,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyFatPercentage: "percent"
         case .leanBodyMass: "figure.strengthtraining.traditional"
         case .wristTemperature: "thermometer.medium"
+        case .timeInDaylight: "sun.max"
         }
     }
 }

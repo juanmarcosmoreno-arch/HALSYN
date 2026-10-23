@@ -20512,6 +20512,59 @@
         }
       }
     },
+    "La noche después de %@ de luz natural o más dormiste %@ de media; tras días con menos luz, %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On nights after %@ or more of daylight you slept %@ on average; after days with less light, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites depois de %@ ou mais de luz natural você dormiu %@ em média; após dias com menos luz, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nuits après %@ ou plus de lumière naturelle, tu as dormi %@ en moyenne ; après les jours avec moins de lumière, %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le notti dopo %@ o più di luce naturale hai dormito %@ in media; dopo giorni con meno luce, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nätter efter %@ eller mer dagsljus sov du i snitt %@; efter dagar med mindre ljus, %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nætter efter %@ eller mere dagslys sov du i gennemsnit %@; efter dage med mindre lys, %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在自然光达到 %@ 或以上的日子之后，你平均睡了 %@；光照较少的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ या उससे ज़्यादा प्राकृतिक रोशनी वाले दिनों के बाद की रातों में आप औसतन %@ सोए; कम रोशनी वाले दिनों के बाद %@।"
+          }
+        }
+      }
+    },
     "La noche después de caminar %@ pasos o más dormiste %@ de media; tras días con menos pasos, %@.": {
       "extractionState": "manual",
       "localizations": {
@@ -21833,6 +21886,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "प्लान घड़ी पर SPRING › इंटरवल में दिखते हैं। हर रेप और हर रिकवरी की शुरुआत में घड़ी वाइब्रेट करती है।"
+          }
+        }
+      }
+    },
+    "Luz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daylight"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lumière"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luce"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ljus"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lys"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日照"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोशनी"
+          }
+        }
+      }
+    },
+    "Luz del día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time in daylight"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo à luz do dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps à la lumière du jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo alla luce del giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i dagsljus"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i dagslys"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日照时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिन की रोशनी में समय"
           }
         }
       }
@@ -23370,6 +23529,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "व्यायाम मिनट"
+          }
+        }
+      }
+    },
+    "Minutos que el Apple Watch detecta luz natural (watchOS 10 o posterior). Pasar tiempo al aire libre, sobre todo por la mañana, se asocia a dormir mejor y a un reloj interno más estable.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes your Apple Watch detects natural light (watchOS 10 or later). Time outdoors, especially in the morning, is associated with better sleep and a steadier body clock."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutos em que o Apple Watch detecta luz natural (watchOS 10 ou posterior). Passar tempo ao ar livre, sobretudo de manhã, está associado a dormir melhor e a um relógio biológico mais estável."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes pendant lesquelles l’Apple Watch détecte de la lumière naturelle (watchOS 10 ou ultérieur). Passer du temps dehors, surtout le matin, est associé à un meilleur sommeil et à une horloge interne plus stable."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuti in cui l’Apple Watch rileva luce naturale (watchOS 10 o successivo). Stare all’aperto, soprattutto al mattino, è associato a un sonno migliore e a un orologio biologico più stabile."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuter då Apple Watch registrerar dagsljus (watchOS 10 eller senare). Tid utomhus, särskilt på morgonen, hänger ihop med bättre sömn och en stabilare inre klocka."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutter hvor Apple Watch registrerer dagslys (watchOS 10 eller nyere). Tid udendørs, især om morgenen, hænger sammen med bedre søvn og et mere stabilt indre ur."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch 检测到自然光的分钟数（watchOS 10 或更高版本）。多在户外待着，尤其是早上，与更好的睡眠和更稳定的生物钟相关。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वे मिनट जब Apple Watch प्राकृतिक रोशनी पहचानती है (watchOS 10 या बाद का)। बाहर समय बिताना, खासकर सुबह, बेहतर नींद और अधिक स्थिर शरीर-घड़ी से जुड़ा है।"
           }
         }
       }

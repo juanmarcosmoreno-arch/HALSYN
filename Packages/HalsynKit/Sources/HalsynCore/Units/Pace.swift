@@ -134,7 +134,7 @@ public enum HalsynFormat {
     /// Valor de una métrica sin unidad, con la precisión adecuada.
     public static func metricValue(_ value: Double, kind: MetricKind, unit: UnitSystem = .metric, locale: Locale = .current) -> String {
         switch kind {
-        case .steps, .heartRate, .restingHeartRate, .heartRateVariability, .activeEnergy, .exerciseTime:
+        case .steps, .heartRate, .restingHeartRate, .heartRateVariability, .activeEnergy, .exerciseTime, .timeInDaylight:
             return integer(value, locale: locale)
         case .walkingRunningDistance:
             return distance(meters: value, unit: unit, locale: locale)

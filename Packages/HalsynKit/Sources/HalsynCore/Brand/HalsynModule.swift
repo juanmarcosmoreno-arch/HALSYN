@@ -67,6 +67,7 @@ public enum HalsynLexicon: String, CaseIterable, Sendable {
     case fart = "FART"
     case rorelse = "RÖRELSE"
     case kropp = "KROPP"
+    case ljus = "LJUS"
 
     public var meaning: String {
         switch self {
@@ -80,6 +81,7 @@ public enum HalsynLexicon: String, CaseIterable, Sendable {
         case .fart: "Velocidad"
         case .rorelse: "Movimiento"
         case .kropp: "Cuerpo"
+        case .ljus: "Luz"
         }
     }
 }

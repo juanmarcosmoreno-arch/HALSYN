@@ -16,7 +16,7 @@ struct HalsaSnapshot: Sendable {
     var sleepHours: Double?
     var summary: [SummaryStatement] = []
 
-    static let dashboardMetrics: [MetricKind] = [.sleepDuration, .restingHeartRate, .heartRateVariability, .steps, .activeEnergy, .exerciseTime]
+    static let dashboardMetrics: [MetricKind] = [.sleepDuration, .restingHeartRate, .heartRateVariability, .steps, .activeEnergy, .exerciseTime, .timeInDaylight, .vo2Max]
 
     static func load(from provider: any HealthDataProviding, unitSystem: UnitSystem, goals: [GoalDefinition] = [], today: Date = .now) async -> HalsaSnapshot {
         var snapshot = HalsaSnapshot()

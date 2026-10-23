@@ -25,6 +25,7 @@ public enum HealthKitTypeCatalog {
         case .bodyFatPercentage: return HKQuantityType(.bodyFatPercentage)
         case .leanBodyMass: return HKQuantityType(.leanBodyMass)
         case .wristTemperature: return HKQuantityType(.appleSleepingWristTemperature)
+        case .timeInDaylight: return HKQuantityType(.timeInDaylight)
         }
     }
 
@@ -43,6 +44,7 @@ public enum HealthKitTypeCatalog {
         case .bodyMass, .leanBodyMass: return HKUnit.gramUnit(with: .kilo)
         case .bodyFatPercentage: return HKUnit.percent()
         case .wristTemperature: return HKUnit.degreeCelsius()
+        case .timeInDaylight: return HKUnit.minute()
         }
     }
 

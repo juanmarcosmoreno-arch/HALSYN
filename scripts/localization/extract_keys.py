@@ -28,7 +28,7 @@ IGNORE = {
     "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "RecoveryEngine", "RecoveryEngine %@", "InsightEngine", "± %@ min", "%@ → %@", "intro-dark", "intro-light", "profile-photo.jpg", "HalsynMark", ".watchkitapp", ".watchkitapp.widgets", ".widgets", "H", "HalsynRun", "HalsynStatus", "group.%@", "group.", "halsyn://halsa", "halsyn://spring", "Apple Watch", "HealthScoreEngine %@", "RecoveryEngine %@", "± %@ min", "%@ → %@",
     "plan-%@", "screen-%@", "6x400", "5x1k", "8x1min", "6 × 400 m", "5 × 1 km", "8 × 1 min", "<Z1",
     "friend-2015-treadmill", "nhanes-1999-2008-pulse", "P%@", "mL/kg/min", "Kaminsky LA, Arena R, Myers J. Reference Standards for Cardiorespiratory Fitness Measured With Cardiopulmonary Exercise Testing: Data From the Fitness Registry and the Importance of Exercise National Database. Mayo Clin Proc. 2015;90(11):1515–1523.", "Ostchega Y, Porter KS, Hughes J, Dillon CF, Nwankwo T. Resting pulse rate reference data for children, adolescents, and adults: United States, 1999–2008. National Health Statistics Reports no. 41. NCHS; 2011.",
-    "KROPP", "halsyn-plan-today", "kg", "lb", "°C", "°F", "5 km", "10 km", "−", "+",
+    "KROPP", "LJUS", "halsyn-plan-today", "kg", "lb", "°C", "°F", "5 km", "10 km", "−", "+",
     "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
 }
 STRING = re.compile(r'"((?:[^"\\\n]|\\.)*)"')

@@ -155,6 +155,8 @@ enum MetricExplanation {
             "Estimación de la balanza por bioimpedancia. Varía con la hidratación y la hora; compárala siempre en las mismas condiciones (por ejemplo, al levantarte)."
         case .leanBodyMass:
             "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia."
+        case .timeInDaylight:
+            "Minutos que el Apple Watch detecta luz natural (watchOS 10 o posterior). Pasar tiempo al aire libre, sobre todo por la mañana, se asocia a dormir mejor y a un reloj interno más estable."
         case .wristTemperature:
             "Temperatura de la piel de la muñeca mientras duermes (Apple Watch Series 8 o posterior). No es la temperatura corporal: lo útil es cuánto se aparta de tu rango habitual."
         }

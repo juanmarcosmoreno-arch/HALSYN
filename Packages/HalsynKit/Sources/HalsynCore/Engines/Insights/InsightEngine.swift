@@ -69,6 +69,8 @@ public struct RelationshipCandidate: Hashable, Identifiable, Sendable {
         RelationshipCandidate(predictor: .exerciseTime, outcome: .sleepDuration, lag: 1),
         // Pasos del día D → sueño de la noche siguiente.
         RelationshipCandidate(predictor: .steps, outcome: .sleepDuration, lag: 1),
+        // Luz natural del día D → sueño de esa noche (se guarda en D+1).
+        RelationshipCandidate(predictor: .timeInDaylight, outcome: .sleepDuration, lag: 1),
     ]
 }
 
@@ -161,7 +163,7 @@ public struct InsightEngine: Sendable {
 
     public static let trendMetrics: [MetricKind] = [.restingHeartRate, .heartRateVariability, .vo2Max, .sleepDuration, .steps, .exerciseTime]
     public static let weekdayMetrics: [MetricKind] = [.steps, .exerciseTime, .sleepDuration]
-    public static let inputs: [MetricKind] = [.restingHeartRate, .heartRateVariability, .vo2Max, .sleepDuration, .steps, .exerciseTime]
+    public static let inputs: [MetricKind] = [.restingHeartRate, .heartRateVariability, .vo2Max, .sleepDuration, .steps, .exerciseTime, .timeInDaylight]
 
     public let configuration: Configuration
 
@@ -172,7 +174,7 @@ public struct InsightEngine: Sendable {
     public static func favorableDirection(_ metric: MetricKind) -> FavorableDirection {
         switch metric {
         case .restingHeartRate: .lower
-        case .heartRateVariability, .vo2Max, .steps, .exerciseTime, .walkingRunningDistance, .activeEnergy: .higher
+        case .heartRateVariability, .vo2Max, .steps, .exerciseTime, .walkingRunningDistance, .activeEnergy, .timeInDaylight: .higher
         case .sleepDuration: .within(7...9)
         default: .neutral
         }

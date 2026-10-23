@@ -12,7 +12,7 @@ enum InsightFormat {
         case .restingHeartRate, .heartRate: "\(HalsynFormat.integer(value)) \(beatsPerMinute)"
         case .heartRateVariability: "\(HalsynFormat.integer(value)) ms"
         case .vo2Max: HalsynFormat.decimal(value, fractionDigits: 1)
-        case .exerciseTime: "\(HalsynFormat.integer(value)) min"
+        case .exerciseTime, .timeInDaylight: "\(HalsynFormat.integer(value)) min"
         case .steps: HalsynFormat.integer(value)
         default: HalsynFormat.decimal(value, fractionDigits: 1)
         }
@@ -119,6 +119,8 @@ struct RelationshipInsightCard: View {
             "Al día siguiente de \(threshold) de ejercicio o más, tu FC en reposo fue de \(high) de media; tras días más tranquilos, de \(low)."
         case (.exerciseTime, .sleepDuration):
             "La noche después de \(threshold) de ejercicio o más dormiste \(high) de media; tras días más tranquilos, \(low)."
+        case (.timeInDaylight, .sleepDuration):
+            "La noche después de \(threshold) de luz natural o más dormiste \(high) de media; tras días con menos luz, \(low)."
         case (.steps, .sleepDuration):
             "La noche después de caminar \(threshold) pasos o más dormiste \(high) de media; tras días con menos pasos, \(low)."
         default:

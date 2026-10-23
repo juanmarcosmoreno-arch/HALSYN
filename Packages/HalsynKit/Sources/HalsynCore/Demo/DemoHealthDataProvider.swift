@@ -205,7 +205,8 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         case .activeEnergy: return 540 + 160 * noise
         case .exerciseTime: return max(0, 36 + 22 * noise).rounded()
         // La noche del viernes (diario demo: alcohol) se duerme algo peor.
-        case .sleepDuration: return 7.4 + 0.7 * noise - (isSaturday(day) ? 0.4 : 0)
+        // y tras un día con mucha luz natural se duerme algo más.
+        case .sleepDuration: return 7.4 + 0.7 * noise - (isSaturday(day) ? 0.4 : 0) + 0.006 * (value(.timeInDaylight, on: previousDay(day)) - 48)
         // Relaciones plausibles para la demo: dormir más se asocia a más HRV y menos
         // FC en reposo; un día de mucho ejercicio, a menos HRV al día siguiente.
         case .restingHeartRate: return (54 + 2 * slowTrend + 2 * noise - 1.5 * (value(.sleepDuration, on: day) - 7.4)).rounded()
@@ -220,6 +221,8 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         // Peso con una oscilación lenta (±0,8 kg en unos meses) y ruido diario realista.
         case .bodyMass: return ((74.5 + 0.8 * sin(Double(dayNumber(day)) / 45) + 0.3 * noise) * 10).rounded() / 10
         case .bodyFatPercentage: return ((0.182 + 0.006 * sin(Double(dayNumber(day)) / 45) + 0.004 * noise) * 1000).rounded() / 1000
+        // Más luz el fin de semana; algo más de sueño tras días con mucha luz (patrón demo).
+        case .timeInDaylight: return max(0, 48 + 30 * noise + (isWeekend(day) ? 25 : 0)).rounded()
         case .wristTemperature: return ((36.1 + 0.12 * noise) * 100).rounded() / 100
         case .leanBodyMass: return ((value(.bodyMass, on: day) * (1 - value(.bodyFatPercentage, on: day))) * 10).rounded() / 10
         }
