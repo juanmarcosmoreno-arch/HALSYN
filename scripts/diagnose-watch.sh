@@ -3,7 +3,8 @@
 #
 # Uso (desde la carpeta HALSYN, después de ⌘R en Xcode con tu iPhone):
 #   bash scripts/diagnose-watch.sh
-#   bash scripts/diagnose-watch.sh "/ruta/a/Stoka.app"   # opcional: compara con una app que sí se instala
+#   bash scripts/diagnose-watch.sh Stoka   # opcional: compara con otra app tuya que sí se instala
+#                                          # (nombre del proyecto o ruta completa a su .app)
 #
 # Solo lee información (no instala ni cambia nada) y la imprime para copiarla.
 
@@ -62,6 +63,19 @@ fi
 
 if [ $# -ge 1 ]; then
     REF="$1"
+    if [ ! -d "$REF" ]; then
+        # Nombre: busca su compilación más reciente para dispositivo (y también en archivos de Xcode).
+        REF=$( (find ~/Library/Developer/Xcode/DerivedData -maxdepth 6 -type d -path "*-iphoneos/*.app" -iname "*$1*" 2>/dev/null;
+                find ~/Library/Developer/Xcode/Archives -maxdepth 6 -type d -path "*Products/Applications/*.app" -iname "*$1*" 2>/dev/null) \
+              | grep -v "/Watch/" | xargs -I{} stat -f "%m {}" {} 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+        if [ -z "$REF" ]; then
+            section "Referencia"
+            echo "No encontré ninguna compilación de '$1' para dispositivo en DerivedData ni en Archives."
+            echo "¿La instalaste desde TestFlight? Entonces el reloj la recibió por TestFlight, no por Xcode."
+        fi
+    fi
+fi
+if [ $# -ge 1 ] && [ -n "${REF:-}" ]; then
     describe_app "$REF" "Referencia (app que sí funciona)"
     if [ -d "$REF/Watch" ]; then
         for watchApp in "$REF"/Watch/*.app; do
