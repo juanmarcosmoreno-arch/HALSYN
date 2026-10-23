@@ -94,6 +94,15 @@ struct RunColoredMap: View {
         }
     }
 
+    /// Color del tramo: por zona si se pasan zonas; si no, por la escala relativa.
+    private static func color(_ segment: RunSegment, buckets: [Int?], zones: [HeartRateZone]) -> Color {
+        if !zones.isEmpty {
+            guard let bpm = segment.heartRate else { return Color.halsynSecondaryText }
+            return HalsynZoneColors.color(zones.last { bpm >= $0.lowerBound }?.index ?? 0)
+        }
+        return buckets[segment.index].map { RunColorScale.steps[$0] } ?? Color.halsynSecondaryText
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: HalsynSpacing.s) {
             HStack {
@@ -108,10 +117,13 @@ struct RunColoredMap: View {
                 }
             }
             let buckets = colors
+            // Con zonas configuradas, el pulso usa los colores de zona (los mismos del reloj).
+            let zones = RunSettingsStore.shared.settings.zones.zones
+            let byZone = coloring == .heartRate && !zones.isEmpty
             Map(initialPosition: .automatic, interactionModes: [.pan, .zoom]) {
                 ForEach(insights.segments) { segment in
                     MapPolyline(coordinates: WorkoutAnalysis.simplified(segment.points).map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) })
-                        .stroke(buckets[segment.index].map { RunColorScale.steps[$0] } ?? Color.halsynSecondaryText, style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
+                        .stroke(Self.color(segment, buckets: buckets, zones: byZone ? zones : []), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
                 }
                 if let first = insights.segments.first?.points.first {
                     Annotation("Salida", coordinate: CLLocationCoordinate2D(latitude: first.latitude, longitude: first.longitude)) {
@@ -132,18 +144,25 @@ struct RunColoredMap: View {
             .clipShape(RoundedRectangle(cornerRadius: HalsynRadius.card, style: .continuous))
             .accessibilityLabel(Text(coloring == .pace ? "Mapa de la ruta coloreado por ritmo" : "Mapa de la ruta coloreado por pulso"))
 
-            HStack(spacing: 6) {
-                Text(coloring == .pace ? "Más lento" : "Pulso más bajo")
-                HStack(spacing: 2) {
-                    ForEach(RunColorScale.steps.indices, id: \.self) { index in
-                        RoundedRectangle(cornerRadius: 2).fill(RunColorScale.steps[index]).frame(width: 18, height: 8)
-                    }
+            if byZone {
+                HStack(spacing: 4) {
+                    ForEach(1...5, id: \.self) { HalsynZoneBadge(zone: $0) }
                 }
-                Text(coloring == .pace ? "Más rápido" : "Pulso más alto")
+                .accessibilityElement(children: .combine)
+            } else {
+                HStack(spacing: 6) {
+                    Text(coloring == .pace ? "Más lento" : "Pulso más bajo")
+                    HStack(spacing: 2) {
+                        ForEach(RunColorScale.steps.indices, id: \.self) { index in
+                            RoundedRectangle(cornerRadius: 2).fill(RunColorScale.steps[index]).frame(width: 18, height: 8)
+                        }
+                    }
+                    Text(coloring == .pace ? "Más rápido" : "Pulso más alto")
+                }
+                .font(.caption2)
+                .foregroundStyle(.halsynSecondaryText)
+                .accessibilityElement(children: .combine)
             }
-            .font(.caption2)
-            .foregroundStyle(.halsynSecondaryText)
-            .accessibilityElement(children: .combine)
 
             if isDemo {
                 Text("Ruta de ejemplo (modo demo).")

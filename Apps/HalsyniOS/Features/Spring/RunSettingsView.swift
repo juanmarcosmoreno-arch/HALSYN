@@ -343,9 +343,7 @@ struct ZoneSettingsView: View {
                                 .monospacedDigit()
                         } label: {
                             HStack(spacing: HalsynSpacing.s) {
-                                Text(verbatim: "Z\(zone.index)")
-                                    .font(.halsynHeadline.monospacedDigit())
-                                    .foregroundStyle(.halsynAlert)
+                                HalsynZoneBadge(zone: zone.index)
                                 Text(LocalizedStringKey(zone.name))
                             }
                         }

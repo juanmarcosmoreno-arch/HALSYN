@@ -158,6 +158,17 @@ public struct HalsynWorkoutScreen: View {
         }
     }
 
+    /// Etiqueta del campo: la ZONA con el color de la zona actual ("Z3" → amarillo).
+    private func emphasis(_ field: WorkoutFieldKind, value: String?) -> Color {
+        switch field {
+        case .heartRateZone:
+            let zone = value.flatMap { $0.last?.wholeNumberValue } ?? 0
+            return value?.hasPrefix("<") == true ? HalsynZoneColors.color(0) : HalsynZoneColors.color(zone)
+        case .heartRate: return Color(HalsynPalette.alertDark)
+        default: return Color(HalsynPalette.darkAccent)
+        }
+    }
+
     private func fieldView(_ field: WorkoutFieldKind, size: HalsynWorkoutFieldSize) -> some View {
         let item = valueFor(field)
         return HalsynWorkoutField(
@@ -165,7 +176,7 @@ public struct HalsynWorkoutScreen: View {
             value: item.value,
             unit: item.unit,
             size: size,
-            emphasis: field == .heartRate || field == .heartRateZone ? Color(HalsynPalette.alertDark) : Color(HalsynPalette.darkAccent),
+            emphasis: emphasis(field, value: item.value),
             alignment: .center
         )
     }

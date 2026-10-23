@@ -575,10 +575,13 @@ private struct ZoneBarsView: View {
                 .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
             ForEach(1..<min(seconds.count, 6), id: \.self) { zone in
                 HStack(spacing: 4) {
-                    Text(verbatim: "Z\(zone)").font(.caption2.monospacedDigit()).frame(width: 22, alignment: .leading)
+                    Text(verbatim: "Z\(zone)")
+                        .font(.caption2.monospacedDigit().weight(.bold))
+                        .foregroundStyle(HalsynZoneColors.color(zone))
+                        .frame(width: 22, alignment: .leading)
                     GeometryReader { proxy in
                         Capsule()
-                            .fill(Color(HalsynPalette.alertDark).opacity(0.35 + 0.13 * Double(zone)))
+                            .fill(HalsynZoneColors.color(zone))
                             .frame(width: max(2, proxy.size.width * seconds[zone] / total))
                     }
                     .frame(height: 6)

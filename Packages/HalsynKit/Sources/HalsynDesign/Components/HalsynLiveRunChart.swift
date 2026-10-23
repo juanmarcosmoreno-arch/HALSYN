@@ -23,15 +23,7 @@ public struct HalsynLiveRunChart: View {
     @State private var metric: Metric
 
     /// Color de cada zona (Z1 azul → Z5 rojo), igual en el reloj y en el iPhone.
-    public static func zoneColor(_ index: Int) -> Color {
-        switch index {
-        case 1: Color(HalsynRGBColor(hex: 0x5FA8D3))
-        case 2: Color(HalsynRGBColor(hex: 0x1FB99A))
-        case 3: Color(HalsynRGBColor(hex: 0xF2C14E))
-        case 4: Color(HalsynRGBColor(hex: 0xFF8A4C))
-        default: Color(HalsynRGBColor(hex: 0xFF5A4E))
-        }
-    }
+    public static func zoneColor(_ index: Int) -> Color { HalsynZoneColors.color(index) }
 
     public init(
         paceSamples: [LiveSample],
@@ -218,7 +210,7 @@ public struct HalsynLiveRunChart: View {
 #endif
 
 #if canImport(SwiftUI)
-/// Indicador de zona cardíaca: cinco segmentos de intensidad creciente; el
+/// Indicador de zona cardíaca: cinco segmentos con el color de cada zona; el
 /// actual, lleno y más alto. Se lee de un vistazo con el brazo en movimiento.
 public struct HalsynZoneGauge: View {
     private let zone: Int
@@ -232,7 +224,7 @@ public struct HalsynZoneGauge: View {
         HStack(alignment: .bottom, spacing: 3) {
             ForEach(1...5, id: \.self) { index in
                 Capsule()
-                    .fill(Color(HalsynPalette.alertDark).opacity(index == zone ? 1 : 0.18 + 0.08 * Double(index)))
+                    .fill(HalsynZoneColors.color(index).opacity(index == zone ? 1 : 0.3))
                     .frame(height: index == zone ? 7 : 4)
             }
         }

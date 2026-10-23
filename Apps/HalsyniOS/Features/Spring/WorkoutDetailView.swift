@@ -176,12 +176,26 @@ struct WorkoutDetailView: View {
             HalsynCard {
                 VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                     HalsynSectionHeader("Frecuencia cardíaca", eyebrow: HalsynLexicon.puls.rawValue)
-                    Chart(detail.heartRate, id: \.date) { point in
-                        LineMark(x: .value("Hora", point.date), y: .value("lpm", point.bpm))
-                            .interpolationMethod(.monotone)
-                            .foregroundStyle(Color.halsynAlert)
+                    let bpms = detail.heartRate.map(\.bpm)
+                    let low = (bpms.min() ?? 60) - 5
+                    let high = (bpms.max() ?? 180) + 5
+                    Chart {
+                        // Zonas de fondo con los mismos colores que en el reloj.
+                        ForEach(zones.zones) { zone in
+                            let from = max(zone.lowerBound, low)
+                            let to = min(zone.upperBound, high)
+                            if to > from {
+                                RectangleMark(yStart: .value("Desde", from), yEnd: .value("Hasta", to))
+                                    .foregroundStyle(HalsynZoneColors.color(zone.index).opacity(0.18))
+                            }
+                        }
+                        ForEach(detail.heartRate, id: \.date) { point in
+                            LineMark(x: .value("Hora", point.date), y: .value("lpm", point.bpm))
+                                .interpolationMethod(.monotone)
+                                .foregroundStyle(zones.zones.isEmpty ? Color.halsynAlert : Color.halsynPrimaryText)
+                        }
                     }
-                    .chartYScale(domain: .automatic(includesZero: false))
+                    .chartYScale(domain: low...high)
                     .frame(height: 140)
                     .accessibilityLabel(Text("Gráfico de frecuencia cardíaca"))
 
@@ -212,14 +226,13 @@ struct ZoneDistributionView: View {
             ForEach(zones.reversed()) { zone in
                 let time = seconds.indices.contains(zone.index) ? seconds[zone.index] : 0
                 HStack(spacing: HalsynSpacing.s) {
-                    Text(verbatim: "Z\(zone.index)")
-                        .font(.halsynCaption.monospacedDigit().weight(.semibold))
-                        .frame(width: 26, alignment: .leading)
+                    HalsynZoneBadge(zone: zone.index)
+                        .frame(width: 38, alignment: .leading)
                     GeometryReader { proxy in
                         ZStack(alignment: .leading) {
                             Capsule().fill(Color.halsynHairline)
                             Capsule()
-                                .fill(Color.halsynAlert.opacity(0.3 + 0.14 * Double(zone.index)))
+                                .fill(HalsynZoneColors.color(zone.index))
                                 .frame(width: max(4, proxy.size.width * time / total))
                         }
                     }
