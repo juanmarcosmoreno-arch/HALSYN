@@ -6,7 +6,7 @@
 | 1 | Fundaciones: proyecto, targets iOS/watchOS, design system, navegación, pantallas, modo demo, 9 idiomas | ✅ compila y pasa tests en CI (macOS) |
 | 2 | HealthKit real: permisos, pasos, FC, FC reposo, HRV, sueño, entrenamientos, ausencia de datos, onboarding | ✅ compila y pasa tests en CI · ⏳ prueba en dispositivo |
 | 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones, resumen nocturno | ✅ compila y pasa tests en CI |
-| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ código y tests · ⏳ CI y prueba en reloj |
+| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |

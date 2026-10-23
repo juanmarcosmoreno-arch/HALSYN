@@ -7,6 +7,7 @@
 | `Packages/HalsynKit/Tests/HalsynCoreTests` | Swift Testing | `swift test` (Linux/macOS) y ⌘U en Xcode | Marca, contraste WCAG de tokens, ritmo y formatos, disponibilidad de datos, `MetricDisplay`, proveedor demo (determinismo, rangos, etiquetado), perfiles de pantalla, generador determinista |
 | `Packages/HalsynKit/Tests/HalsynCoreTests/LiveHealthDataProviderTests.swift` | Swift Testing | igual | Proveedor real con `MockHealthStoreClient`: permisos, estados de error, sueño (fases, solapes, ventana), último valor y su fecha, series sin ceros, sin puntuaciones inventadas |
 | `Packages/HalsynKit/Tests/HalsynCoreTests/HealthScoreEngineTests.swift` | Swift Testing | igual | Curvas del motor, día parcial y descanso sin penalización, tope de pasos, carga, cobertura mínima, renormalización, pesos configurables, puntuación demo/real, resumen del día |
+| `Packages/HalsynKit/Tests/HalsynCoreTests/RunningEngineTests.swift` | Swift Testing | igual | GPS (recta, ruido, parado, curvas, saltos, pérdida de señal, desnivel), ritmo (estable, cambio, ruido, parada), máquina de estados, tiempo activo, vueltas, sesión completa con pausa, prioridad de la distancia de HealthKit, FC, campos sin dato |
 | `Tests/HalsyniOSTests` | XCTest | ⌘U en el esquema Halsyn | `AppModel` (conexión, persistencia de la fuente, vuelta a demo, fallo de conexión), `HalsaSnapshot` demo y real sin datos, INSIKT |
 
 ## Fixtures
@@ -32,10 +33,12 @@ Fase 2, GitHub Actions (commit `de15b65`, `macos-15` + Linux): **todos los jobs 
 
 Fase 3, GitHub Actions (commit `20d3b54`): **todos los jobs en verde** — 70 tests del núcleo (22 nuevos de `HealthScoreEngine`, cálculo desde proveedores y resumen del día), apps de iPhone y Apple Watch, `HalsyniOSTests` (incluidos textos de factores y resumen) y catálogos de 9 idiomas (308 cadenas).
 
+Fase 4, GitHub Actions (commit `0e66974`): job de iOS + watchOS **en verde** — compilación de `WorkoutManager` (HKWorkoutSession, HKLiveWorkoutBuilder, HKWorkoutRouteBuilder, Core Location), pantallas de carrera del reloj, inicio desde el iPhone y 91 tests del núcleo (21 nuevos con trazas GPS sintéticas). Los tests encontraron un fallo real del filtro GPS (parado con ruido sumaba 378 m), corregido antes del commit. Pendiente: carrera real con Apple Watch.
+
 ## Pendiente por fase
 
 - Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).
-- Fase 4: máquina de estados de sesión, `PaceEstimator` con trazas GPS sintéticas (ruido, pérdida de señal, pausas), distancia acumulada.
+- Fase 4 (pendiente): carrera real en dispositivo (precisión, batería, muñeca bajada, sin iPhone, recuperación).
 - Fase 5: zonas cardíacas, vueltas, intervalos.
 - Fases 5, 6, 8: `TrainingLoadEngine`, `RecoveryEngine`, `ReferencePercentileEngine`.
 - UI tests de navegación y snapshots de modo claro/oscuro.
