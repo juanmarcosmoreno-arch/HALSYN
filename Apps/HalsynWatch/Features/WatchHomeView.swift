@@ -37,7 +37,7 @@ struct WatchHomeView: View {
                                     .accessibilityLabel(Text("Datos de demostración"))
                             }
                         }
-                        HalsynScoreRing(score: score?.value, caption: score?.band.title, lineWidth: 9)
+                        HalsynScoreRing(score: score?.value, lineWidth: 9)
                             .frame(maxWidth: 120)
                     }
                     .listRowBackground(Color.clear)
@@ -172,7 +172,7 @@ struct WatchRecoveryView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                HalsynScoreRing(score: recovery?.value, caption: "Recuperación", lineWidth: 9)
+                HalsynScoreRing(score: recovery?.value, lineWidth: 9)
                     .frame(maxWidth: 130)
                 ForEach(metrics, id: \.kind) { metric in
                     HalsynWatchMetric(title: metric.kind.shortTitle, systemImage: metric.kind.systemImage, value: metric.value, unit: metric.unit)
