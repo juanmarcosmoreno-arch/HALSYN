@@ -41,22 +41,38 @@ HALSYN/
 └── Documentation/
 ```
 
-## Abrir en Xcode
+## Probar la app
 
-Requisitos: macOS con **Xcode 16 o posterior** (SDK iOS 17+ / watchOS 10+).
+Necesitas un **Mac con Xcode 16 o posterior** (gratis en la Mac App Store).
 
-1. `open Halsyn.xcodeproj`
-2. Target **Halsyn** → *Signing & Capabilities* → elige tu **Team** (repite en **HalsynWatch**). Los bundle IDs son `com.halsyn.app` y `com.halsyn.app.watchkitapp`; cámbialos si ya existen en tu cuenta.
-3. Esquema **Halsyn** → un simulador de iPhone → ⌘R. En el simulador puedes añadir datos en la app Salud y conectarlos desde el onboarding o Perfil. El esquema **HalsynWatch** lanza el reloj en un simulador de Apple Watch.
-4. Tests: ⌘U en el esquema **Halsyn** (ejecuta `HalsyniOSTests` y `HalsynCoreTests`).
-
-Si modificas `project.yml`: `brew install xcodegen && xcodegen generate`.
-
-Tests del núcleo sin Xcode (macOS o Linux con Swift 5.9+):
+### 1. Descargar y abrir
 
 ```sh
-cd Packages/HalsynKit && swift test
+git clone https://github.com/juanmarcosmoreno-arch/HALSYN.git
+cd HALSYN
+git checkout claude/halsyn-phase-1
+open Halsyn.xcodeproj
 ```
+
+### 2. Simulador (sin firmar nada)
+
+Esquema **Halsyn** → elige un simulador de iPhone → ⌘R. En el onboarding elige **Explorar con datos demo**, o añade datos en la app **Salud** del simulador y pulsa **Conectar Apple Health**. El esquema **HalsynWatch** abre el reloj en un simulador de Apple Watch.
+
+### 3. Tu iPhone y tu Apple Watch
+
+1. Xcode › Settings › Accounts: añade tu Apple ID.
+2. Proyecto **Halsyn** › Build Settings › *User-Defined*: cambia `HALSYN_BUNDLE_ID` por uno propio (p. ej. `com.tunombre.halsyn`). El del reloj y los tests se ajustan solos.
+3. Targets **Halsyn** y **HalsynWatch** › Signing & Capabilities › elige tu **Team**.
+4. Conecta el iPhone por cable, actívale el **Modo desarrollador** (Ajustes › Privacidad y seguridad) y pulsa ⌘R. La app del reloj se instala con la del iPhone si el Apple Watch está emparejado.
+5. Si iOS dice que el desarrollador no es de confianza: Ajustes › General › VPN y gestión de dispositivos › confía en tu cuenta.
+
+Con un Apple ID gratuito la app caduca a los 7 días y puede haber limitaciones con capacidades como HealthKit; con el Apple Developer Program (de pago) no hay caducidad y se puede distribuir por TestFlight.
+
+### Tests
+
+⌘U en el esquema **Halsyn**, o sin Xcode: `cd Packages/HalsynKit && swift test`.
+
+Si modificas `project.yml`: `brew install xcodegen && xcodegen generate`.
 
 ## Documentación
 

@@ -578,7 +578,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).tests";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Halsyn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Halsyn";
@@ -635,6 +635,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HALSYN_BUNDLE_ID = com.halsyn.app;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;
@@ -659,7 +660,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).tests";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Halsyn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Halsyn";
@@ -673,7 +674,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWatch/Resources/HalsynWatch.entitlements;
 				INFOPLIST_FILE = Apps/HalsynWatch/Resources/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = HalsynWatch;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -688,7 +689,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWatch/Resources/HalsynWatch.entitlements;
 				INFOPLIST_FILE = Apps/HalsynWatch/Resources/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).watchkitapp";
 				PRODUCT_NAME = HalsynWatch;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -708,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID)";
 				PRODUCT_NAME = Halsyn;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -727,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.halsyn.app;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID)";
 				PRODUCT_NAME = Halsyn;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -790,6 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HALSYN_BUNDLE_ID = com.halsyn.app;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.1.0;
