@@ -796,6 +796,59 @@
         }
       }
     },
+    "%@: %@ %@ (habitual %@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (usual %@)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (habitual %@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ : %@ %@ (habituel %@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (abituale %@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (vanligt %@)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (normalt %@)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@：%@ %@（常规 %@）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ %@ (सामान्य %@)"
+          }
+        }
+      }
+    },
     "%@–%@ lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -902,6 +955,112 @@
         }
       }
     },
+    "%lld días registrados. Para comparar cada cosa hacen falta al menos 5 días con y 5 sin.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days logged. To compare each item, you need at least 5 days with it and 5 without."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias registrados. Para comparar cada item, são necessários pelo menos 5 dias com e 5 sem."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld jours enregistrés. Pour comparer chaque élément, il faut au moins 5 jours avec et 5 sans."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld giorni registrati. Per confrontare ogni voce servono almeno 5 giorni con e 5 senza."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dagar registrerade. För att jämföra varje sak behövs minst 5 dagar med och 5 utan."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dage registreret. For at sammenligne hver ting skal der være mindst 5 dage med og 5 uden."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已记录 %lld 天。每一项都需要至少 5 天有、5 天没有才能比较。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिन दर्ज किए गए। हर चीज़ की तुलना के लिए कम से कम 5 दिन उसके साथ और 5 दिन उसके बिना चाहिए।"
+          }
+        }
+      }
+    },
+    "%lld días seguidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days in a row"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dias seguidos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld jours d’affilée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld giorni di fila"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dagar i rad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dage i træk"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续 %lld 天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लगातार %lld दिन"
+          }
+        }
+      }
+    },
     "%lld h %lld min": {
       "extractionState": "manual",
       "localizations": {
@@ -1004,6 +1163,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld इंटरवल प्लान"
+          }
+        }
+      }
+    },
+    "%lld/%lld con · %lld/%lld sin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld with · %lld/%lld without"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld com · %lld/%lld sem"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld avec · %lld/%lld sans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld con · %lld/%lld senza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld med · %lld/%lld utan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld med · %lld/%lld uden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有 %lld/%lld · 无 %lld/%lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld के साथ · %lld/%lld के बिना"
           }
         }
       }
@@ -2174,6 +2386,59 @@
         }
       }
     },
+    "Alcohol": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcohol"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Álcool"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcool"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcol"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alkohol"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alkohol"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮酒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शराब"
+          }
+        }
+      }
+    },
     "Alerta de ritmo": {
       "extractionState": "manual",
       "localizations": {
@@ -2488,6 +2753,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पेस और ज़ोन अलर्ट चालू"
+          }
+        }
+      }
+    },
+    "Altura": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altezza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längd"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身高"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लंबाई"
           }
         }
       }
@@ -3075,6 +3393,165 @@
         }
       }
     },
+    "Aviso por la mañana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morning reminder"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aviso pela manhã"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rappel du matin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avviso al mattino"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgonpåminnelse"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenpåmindelse"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "早间提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुबह का रिमाइंडर"
+          }
+        }
+      }
+    },
+    "Añade tu altura en Perfil": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add your height in Profile"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione sua altura em Perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoute ta taille dans Profil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi la tua altezza in Profilo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till din längd under Profil"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj din højde under Profil"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在“个人资料”中添加你的身高"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी लंबाई प्रोफ़ाइल में जोड़ें"
+          }
+        }
+      }
+    },
+    "Añadir altura": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add height"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar altura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter la taille"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi altezza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till längd"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj højde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加身高"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लंबाई जोड़ें"
+          }
+        }
+      }
+    },
     "Añadir edad y sexo": {
       "extractionState": "manual",
       "localizations": {
@@ -3340,6 +3817,59 @@
         }
       }
     },
+    "Aún no hay datos de recuperación de hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recovery data for today yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há dados de recuperação de hoje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore de données de récupération pour aujourd’hui"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono ancora dati di recupero di oggi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga återhämtningsdata för i dag än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen restitutionsdata for i dag endnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天还没有恢复数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज का रिकवरी डेटा अभी नहीं है"
+          }
+        }
+      }
+    },
     "Aún no hay datos suficientes para la puntuación de hoy. Se necesita al menos el 60 % de las dimensiones (sueño, corazón, movimiento, ejercicio y equilibrio).": {
       "extractionState": "manual",
       "localizations": {
@@ -3389,6 +3919,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज के स्कोर के लिए अभी पर्याप्त डेटा नहीं है। कम से कम 60% आयामों (नींद, हृदय, गतिविधि, व्यायाम और संतुलन) का डेटा चाहिए।"
+          }
+        }
+      }
+    },
+    "Aún no hay peso en Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No weight in Apple Health yet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há peso no Apple Health."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun poids dans Apple Health pour l’instant."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessun peso in Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen vikt i Apple Health än."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen vægt i Apple Health endnu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health 中暂无体重数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health में अभी कोई वज़न नहीं है।"
           }
         }
       }
@@ -3605,55 +4188,55 @@
         }
       }
     },
-    "Borrar edad y sexo": {
+    "Borrar edad, sexo y altura": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear age and sex"
+            "value": "Clear age, sex and height"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apagar idade e sexo"
+            "value": "Apagar idade, sexo e altura"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effacer l’âge et le sexe"
+            "value": "Effacer l’âge, le sexe et la taille"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cancella età e sesso"
+            "value": "Cancella età, sesso e altezza"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rensa ålder och kön"
+            "value": "Rensa ålder, kön och längd"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ryd alder og køn"
+            "value": "Ryd alder, køn og højde"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "清除年龄和性别"
+            "value": "清除年龄、性别和身高"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "उम्र और लिंग हटाएं"
+            "value": "उम्र, लिंग और लंबाई हटाएं"
           }
         }
       }
@@ -3760,6 +4343,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "छोटा"
+          }
+        }
+      }
+    },
+    "Buen día para un entreno exigente": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A good day for a hard workout"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bom dia para um treino exigente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bonne journée pour un entraînement exigeant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buona giornata per un allenamento impegnativo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En bra dag för ett tufft pass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En god dag til en hård træning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适合高强度训练的一天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कड़े वर्कआउट के लिए अच्छा दिन"
           }
         }
       }
@@ -4767,6 +5403,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कैडेंस"
+          }
+        }
+      }
+    },
+    "Cafeína por la tarde": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Late caffeine"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cafeína à tarde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caféine l’après-midi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caffeina nel pomeriggio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koffein på eftermiddagen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koffein om eftermiddagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下午摄入咖啡因"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दोपहर बाद कैफ़ीन"
           }
         }
       }
@@ -6096,6 +6785,59 @@
         }
       }
     },
+    "Cena tarde o pesada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Late or heavy dinner"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jantar tarde ou pesado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dîner tardif ou copieux"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cena tardiva o pesante"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen eller tung middag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen eller tung aftensmad"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚餐过晚或过饱"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "देर से या भारी डिनर"
+          }
+        }
+      }
+    },
     "Cerrar": {
       "extractionState": "manual",
       "localizations": {
@@ -6467,6 +7209,59 @@
         }
       }
     },
+    "Comparado en %lld días con y %lld sin. Es una asociación en tus datos, no prueba que una cosa cause la otra.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared over %lld days with and %lld without. It's an association in your data, not proof that one causes the other."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparado em %lld dias com e %lld sem. É uma associação nos seus dados, não prova que uma coisa cause a outra."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparé sur %lld jours avec et %lld sans. C’est une association dans tes données, pas la preuve que l’un cause l’autre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confrontato su %lld giorni con e %lld senza. È un’associazione nei tuoi dati, non prova che una cosa causi l’altra."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört över %lld dagar med och %lld utan. Det är ett samband i dina data, inte ett bevis för att det ena orsakar det andra."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammenlignet over %lld dage med og %lld uden. Det er en sammenhæng i dine data, ikke et bevis for, at det ene forårsager det andet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于 %lld 天有、%lld 天无进行比较。这只是你数据中的关联，并不能证明两者之间存在因果关系。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिन साथ और %lld दिन बिना के आधार पर तुलना की गई। यह आपके डेटा में एक संबंध है, इसका सबूत नहीं कि एक चीज़ दूसरी की वजह है।"
+          }
+        }
+      }
+    },
     "Completa": {
       "extractionState": "manual",
       "localizations": {
@@ -6516,6 +7311,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "पूरा"
+          }
+        }
+      }
+    },
+    "Con": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साथ"
+          }
+        }
+      }
+    },
+    "Con 3 carreras de 3 km o más en los últimos 90 días, HÅLSYN estima tus tiempos para 5 km, 10 km, media maratón y maratón.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With 3 runs of 3 km or more in the last 90 days, HÅLSYN estimates your times for the 5K, 10K, half marathon and marathon."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com 3 corridas de 3 km ou mais nos últimos 90 dias, o HÅLSYN estima seus tempos para 5 km, 10 km, meia maratona e maratona."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec 3 courses de 3 km ou plus au cours des 90 derniers jours, HÅLSYN estime tes temps sur 5 km, 10 km, semi-marathon et marathon."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con 3 corse di almeno 3 km negli ultimi 90 giorni, HÅLSYN stima i tuoi tempi su 5 km, 10 km, mezza maratona e maratona."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med 3 löppass på minst 3 km under de senaste 90 dagarna uppskattar HÅLSYN dina tider på 5 km, 10 km, halvmaraton och maraton."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med 3 løbeture på mindst 3 km inden for de seneste 90 dage estimerer HÅLSYN dine tider på 5 km, 10 km, halvmaraton og maraton."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 90 天内有 3 次 3 公里或以上的跑步后，HÅLSYN 会估算你的 5 公里、10 公里、半程马拉松和全程马拉松成绩。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 90 दिनों में 3 km या उससे ज़्यादा के 3 रन होने पर HÅLSYN 5 km, 10 km, हाफ़ मैराथन और मैराथन के लिए आपके समय का अनुमान लगाता है।"
           }
         }
       }
@@ -6675,6 +7576,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लक्ष्य पेस सेट होने पर, रेप के दौरान आप तेज़ या धीमे चल रहे हों तो घड़ी बताती है।"
+          }
+        }
+      }
+    },
+    "Con tu forma actual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At your current fitness"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com a sua forma atual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec ta forme actuelle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con la tua forma attuale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med din nuvarande form"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med din nuværende form"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按你目前的状态"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी मौजूदा फ़िटनेस के हिसाब से"
           }
         }
       }
@@ -7629,6 +8583,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "बेहतर दौड़ना"
+          }
+        }
+      }
+    },
+    "Cuerpo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corpo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corps"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corpo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kropp"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krop"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身体"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शरीर"
           }
         }
       }
@@ -8746,6 +9753,59 @@
         }
       }
     },
+    "Descanso, sueño y agua. Si mañana las señales vuelven a tu rango, retoma poco a poco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest, sleep and water. If your signals are back in your range tomorrow, ease back in gradually."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso, sono e água. Se amanhã os sinais voltarem à sua faixa, retome aos poucos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repos, sommeil et eau. Si demain les signaux reviennent dans ta plage, reprends progressivement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riposo, sonno e acqua. Se domani i segnali tornano nel tuo intervallo, riprendi poco a poco."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vila, sömn och vatten. Om signalerna är tillbaka i ditt intervall i morgon kan du gradvis komma igång igen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvile, søvn og vand. Hvis signalerne er tilbage på dit normale niveau i morgen, så kom gradvist i gang igen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休息、睡眠和补水。如果明天各项信号回到你的范围内，再循序渐进地恢复训练。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम, नींद और पानी। अगर कल संकेत आपकी सीमा में लौट आएं, तो धीरे-धीरे फिर से शुरू करें।"
+          }
+        }
+      }
+    },
     "Descartar": {
       "extractionState": "manual",
       "localizations": {
@@ -8848,6 +9908,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "से"
+          }
+        }
+      }
+    },
+    "Desfavorable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unfavorable"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desfavorável"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Défavorable"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sfavorevole"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogynnsamt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ugunstigt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不利"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रतिकूल"
           }
         }
       }
@@ -9219,6 +10332,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "दैनिक"
+          }
+        }
+      }
+    },
+    "Diario de ejemplo (modo demo).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample journal (demo mode)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diário de exemplo (modo demo)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journal d’exemple (mode démo)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diario di esempio (modalità demo)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exempeldagbok (demoläge)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksempeldagbog (demotilstand)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "示例日志（演示模式）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उदाहरण जर्नल (डेमो मोड)।"
+          }
+        }
+      }
+    },
+    "Diario de hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's journal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diário de hoje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journal du jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diario di oggi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens dagbok"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens dagbog"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日日志"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज का जर्नल"
           }
         }
       }
@@ -10018,6 +11237,59 @@
         }
       }
     },
+    "Día estresante": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stressful day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia estressante"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journée stressante"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giornata stressante"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stressig dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stressende dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "压力大的一天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तनाव भरा दिन"
+          }
+        }
+      }
+    },
     "Día para cuidarte": {
       "extractionState": "manual",
       "localizations": {
@@ -10067,6 +11339,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अपना ख़याल रखने का दिन"
+          }
+        }
+      }
+    },
+    "Día para un entreno moderado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A day for a moderate workout"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia para um treino moderado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journée pour un entraînement modéré"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giornata per un allenamento moderato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En dag för ett måttligt pass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En dag til en moderat træning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适合中等强度训练的一天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मध्यम वर्कआउट का दिन"
+          }
+        }
+      }
+    },
+    "Días anteriores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous days"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias anteriores"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jours précédents"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorni precedenti"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidigare dagar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidligere dage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前几天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले दिन"
           }
         }
       }
@@ -10173,6 +11551,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "उम्र और लिंग"
+          }
+        }
+      }
+    },
+    "Edad y sexo biológico solo se usan para compararte con tablas científicas publicadas (VO₂ máx. y FC en reposo); la altura, para el IMC. Se guardan solo en este iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age and biological sex are only used to compare you with published scientific tables (VO₂ max and resting HR); height, for BMI. They're stored only on this iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idade e sexo biológico são usados apenas para comparar você com tabelas científicas publicadas (VO₂ máx. e FC em repouso); a altura, para o IMC. Ficam salvos apenas neste iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’âge et le sexe biologique servent uniquement à te comparer à des tableaux scientifiques publiés (VO₂ max. et FC au repos) ; la taille, à calculer l’IMC. Ils sont enregistrés uniquement sur cet iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Età e sesso biologico vengono usati solo per confrontarti con tabelle scientifiche pubblicate (VO₂ max e FC a riposo); l’altezza, per l’IMC. Vengono salvati solo su questo iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ålder och biologiskt kön används bara för att jämföra dig med publicerade vetenskapliga tabeller (VO₂ max och vilopuls); längden för BMI. De sparas bara på den här iPhonen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alder og biologisk køn bruges kun til at sammenligne dig med offentliggjorte videnskabelige tabeller (VO₂ max og hvilepuls); højden til BMI. De gemmes kun på denne iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "年龄和生理性别仅用于将你与已发表的科学参考表（VO₂ max 和静息心率）进行比较；身高仅用于计算 BMI。这些信息只保存在这台 iPhone 上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उम्र और जैविक लिंग का इस्तेमाल केवल आपकी तुलना प्रकाशित वैज्ञानिक तालिकाओं (VO₂ max और आराम की हृदय गति) से करने के लिए होता है; लंबाई का, बीएमआई के लिए। ये केवल इसी iPhone पर सेव रहते हैं।"
           }
         }
       }
@@ -10491,6 +11922,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "चलना शुरू करते ही ग्राफ़ दिखेगा"
+          }
+        }
+      }
+    },
+    "El peso varía 1–2 kg de un día a otro por agua y comida; la tendencia de semanas es lo que cuenta. La grasa de las balanzas es una estimación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight varies 1–2 kg from day to day due to water and food; the trend over weeks is what counts. Body fat from scales is an estimate."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O peso varia 1–2 kg de um dia para o outro por causa da água e da comida; o que conta é a tendência ao longo das semanas. A gordura medida pelas balanças é uma estimativa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le poids varie de 1 à 2 kg d’un jour à l’autre à cause de l’eau et de l’alimentation ; c’est la tendance sur plusieurs semaines qui compte. La masse grasse des balances est une estimation."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il peso varia di 1–2 kg da un giorno all’altro per acqua e cibo; ciò che conta è la tendenza nelle settimane. Il grasso misurato dalle bilance è una stima."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikten varierar 1–2 kg från dag till dag på grund av vätska och mat; det är trenden över veckor som räknas. Fettvärdet från vågar är en uppskattning."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vægten svinger 1–2 kg fra dag til dag på grund af væske og mad; det er tendensen over uger, der tæller. Fedtprocenten fra vægte er et estimat."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体重会因水分和饮食每天波动 1–2 kg；重要的是几周内的趋势。体脂秤测得的体脂只是估算值。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी और खाने की वजह से वज़न रोज़ 1–2 kg ऊपर-नीचे होता है; मायने हफ़्तों का रुझान रखता है। स्केल से मिला बॉडी फ़ैट एक अनुमान है।"
           }
         }
       }
@@ -11078,6 +12562,59 @@
         }
       }
     },
+    "Empieza el diario en HÄLSA. Hacen falta al menos 5 días con y 5 sin cada cosa para comparar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start the journal in HÄLSA. You need at least 5 days with and 5 without each item to compare."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comece o diário em HÄLSA. São necessários pelo menos 5 dias com e 5 sem cada item para comparar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commence le journal dans HÄLSA. Il faut au moins 5 jours avec et 5 sans chaque élément pour comparer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia il diario in HÄLSA. Servono almeno 5 giorni con e 5 senza ogni voce per fare un confronto."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Börja med dagboken i HÄLSA. Det behövs minst 5 dagar med och 5 utan varje sak för att jämföra."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start dagbogen i HÄLSA. Der skal være mindst 5 dage med og 5 uden hver ting for at sammenligne."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 HÄLSA 中开始记录日志。每一项都需要至少 5 天有、5 天没有才能比较。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÄLSA में जर्नल शुरू करें। तुलना के लिए हर चीज़ के साथ कम से कम 5 दिन और उसके बिना 5 दिन चाहिए।"
+          }
+        }
+      }
+    },
     "En buena dirección": {
       "extractionState": "manual",
       "localizations": {
@@ -11657,6 +13194,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आराम की अवस्था की ऊर्जा के अलावा, चलने-फिरने में आपके द्वारा खर्च की गई अनुमानित ऊर्जा।"
+          }
+        }
+      }
+    },
+    "Enfermo o con síntomas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sick or symptomatic"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doente ou com sintomas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malade ou symptômes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malato o con sintomi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sjuk eller symtom"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syg eller symptomer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生病或有症状"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीमार या लक्षण"
           }
         }
       }
@@ -12880,6 +14470,59 @@
         }
       }
     },
+    "Estimación de la balanza por bioimpedancia. Varía con la hidratación y la hora; compárala siempre en las mismas condiciones (por ejemplo, al levantarte).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scale estimate based on bioimpedance. It varies with hydration and time of day; always compare it under the same conditions (for example, when you get up)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimativa da balança por bioimpedância. Varia com a hidratação e o horário; compare sempre nas mesmas condições (por exemplo, ao acordar)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimation de la balance par bio-impédance. Elle varie selon l’hydratation et l’heure ; compare-la toujours dans les mêmes conditions (par exemple, au lever)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stima della bilancia tramite bioimpedenza. Varia con l’idratazione e l’ora; confrontala sempre nelle stesse condizioni (ad esempio, al risveglio)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vågens uppskattning via bioimpedans. Den varierar med vätskebalans och tid på dygnet; jämför alltid under samma förhållanden (till exempel när du har stigit upp)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vægtens estimat via bioimpedans. Det varierer med væskebalance og tidspunkt; sammenlign altid under de samme forhold (for eksempel når du står op)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体脂秤通过生物电阻抗估算。数值会随身体水分和测量时间变化；请始终在相同条件下比较（例如起床后）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्केल का बायोइम्पीडेंस से लगाया गया अनुमान। यह शरीर में पानी की मात्रा और समय के साथ बदलता है; हमेशा एक जैसी स्थिति में तुलना करें (जैसे सुबह उठने पर)।"
+          }
+        }
+      }
+    },
     "Estimación orientativa del equilibrio entre esfuerzo y descanso. No indica si estás médicamente recuperado.": {
       "extractionState": "manual",
       "localizations": {
@@ -13993,6 +15636,59 @@
         }
       }
     },
+    "Favorable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorable"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorável"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorable"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorevole"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gynnsamt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gunstigt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有利"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुकूल"
+          }
+        }
+      }
+    },
     "Fecha de nacimiento": {
       "extractionState": "manual",
       "localizations": {
@@ -14470,6 +16166,59 @@
         }
       }
     },
+    "Fórmula de Riegel con tus 3 mejores carreras recientes (de %lld). Supone que entrenas para esa distancia y vas a tope; si casi nunca corres fuerte, los tiempos reales pueden ser mejores. El rango refleja el error de la fórmula.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riegel formula using your 3 best recent runs (out of %lld). It assumes you train for that distance and go all out; if you rarely run hard, your real times may be better. The range reflects the formula's error."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fórmula de Riegel com suas 3 melhores corridas recentes (de %lld). Supõe que você treina para essa distância e corre no máximo; se você quase nunca corre forte, os tempos reais podem ser melhores. A faixa reflete o erro da fórmula."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formule de Riegel avec tes 3 meilleures courses récentes (sur %lld). Elle suppose que tu t’entraînes pour cette distance et que tu cours à fond ; si tu cours rarement vite, tes temps réels peuvent être meilleurs. La plage reflète l’erreur de la formule."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formula di Riegel con le tue 3 migliori corse recenti (su %lld). Presuppone che ti alleni per quella distanza e corra al massimo; se non corri quasi mai forte, i tempi reali possono essere migliori. L’intervallo riflette l’errore della formula."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riegels formel med dina 3 bästa löppass på sistone (av %lld). Den förutsätter att du tränar för distansen och tar ut dig helt; om du sällan springer hårt kan dina verkliga tider bli bättre. Intervallet speglar formelns felmarginal."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riegels formel med dine 3 bedste løbeture for nylig (ud af %lld). Den forudsætter, at du træner til distancen og giver alt; hvis du sjældent løber hårdt, kan dine reelle tider være bedre. Intervallet afspejler formlens usikkerhed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "采用 Riegel 公式，基于你近期最好的 3 次跑步（共 %lld 次）。它假设你针对该距离训练并全力以赴；如果你很少高强度跑，实际成绩可能更好。范围反映了公式的误差。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riegel फ़ॉर्मूला, आपके हाल के 3 सबसे अच्छे रन के आधार पर (%lld में से)। यह मानता है कि आप उस दूरी के लिए ट्रेनिंग करते हैं और पूरी ताक़त से दौड़ते हैं; अगर आप शायद ही कभी तेज़ दौड़ते हैं, तो असली समय बेहतर हो सकते हैं। सीमा फ़ॉर्मूले की त्रुटि दिखाती है।"
+          }
+        }
+      }
+    },
     "Galería del design system": {
       "extractionState": "manual",
       "localizations": {
@@ -14572,6 +16321,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमतियां प्रबंधित करें"
+          }
+        }
+      }
+    },
+    "Grasa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fat"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gordura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Graisse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grasso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fett"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fedt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体脂"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ैट"
+          }
+        }
+      }
+    },
+    "Grasa corporal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body fat"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gordura corporal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masse grasse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grasso corporeo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kroppsfett"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kropsfedt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体脂率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बॉडी फ़ैट"
           }
         }
       }
@@ -15901,6 +17756,59 @@
         }
       }
     },
+    "Hoy, prioriza descansar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today, make rest your priority"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje, priorize descansar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd’hui, privilégie le repos"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi, dai priorità al riposo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag: prioritera vila"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag: prioritér hvile"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天优先休息"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज आराम को प्राथमिकता दें"
+          }
+        }
+      }
+    },
     "HÅLSYN lee de Apple Health lo que miden tu iPhone y tu Apple Watch para mostrarte cómo está tu cuerpo y cómo evoluciona.": {
       "extractionState": "manual",
       "localizations": {
@@ -16056,6 +17964,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN सेहत से जुड़े अनुमान देता है। यह कोई मेडिकल डिवाइस नहीं है और न ही किसी पेशेवर आकलन का विकल्प है।"
+          }
+        }
+      }
+    },
+    "IMC": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीएमआई"
           }
         }
       }
@@ -17010,6 +18971,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़ोटो और नाम सिर्फ़ इस iPhone पर सेव होते हैं।"
+          }
+        }
+      }
+    },
+    "La mañana después de «%@» tu FC en reposo fue de %@ de media; sin, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The morning after “%@”, your resting HR averaged %@; without it, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na manhã seguinte a «%@», sua FC em repouso foi de %@ em média; sem, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le matin après «%@», ta FC au repos était de %@ en moyenne ; sans, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mattina dopo «%@» la tua FC a riposo è stata in media di %@; senza, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgonen efter «%@» var din vilopuls i snitt %@; utan %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenen efter «%@» var din hvilepuls i gennemsnit %@; uden %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”后的第二天早上，你的静息心率平均为 %@；没有时为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» के बाद की सुबह आपकी आराम की हृदय गति औसतन %@ रही; उसके बिना %@।"
+          }
+        }
+      }
+    },
+    "La mañana después de «%@» tu HRV fue de %@ de media; sin, de %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The morning after “%@”, your HRV averaged %@; without it, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na manhã seguinte a «%@», sua HRV foi de %@ em média; sem, de %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le matin après «%@», ta HRV était de %@ en moyenne ; sans, de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La mattina dopo «%@» la tua HRV è stata in media di %@; senza, di %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgonen efter «%@» var din HRV i snitt %@; utan %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morgenen efter «%@» var din HRV i gennemsnit %@; uden %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”后的第二天早上，你的 HRV 平均为 %@；没有时为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» के बाद की सुबह आपकी HRV औसतन %@ रही; उसके बिना %@।"
           }
         }
       }
@@ -18604,6 +20671,165 @@
         }
       }
     },
+    "Maratón": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marathon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maratona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marathon"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maratona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maraton"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maraton"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全程马拉松"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैराथन"
+          }
+        }
+      }
+    },
+    "Marca lo que hubo hoy. Con unas semanas, INSIKT te muestra cómo influye en tu sueño, tu HRV y tu pulso en reposo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap what happened today. After a few weeks, INSIKT shows you how it affects your sleep, HRV and resting HR."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marque o que aconteceu hoje. Em algumas semanas, o INSIKT mostra como isso influencia seu sono, sua HRV e sua FC em repouso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coche ce qui s’est passé aujourd’hui. Au bout de quelques semaines, INSIKT te montre comment cela influe sur ton sommeil, ta HRV et ta FC au repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segna cosa è successo oggi. Dopo qualche settimana, INSIKT ti mostra come influisce sul tuo sonno, sulla tua HRV e sulla tua FC a riposo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markera det som hände i dag. Efter några veckor visar INSIKT hur det påverkar din sömn, din HRV och din vilopuls."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markér det, der skete i dag. Efter nogle uger viser INSIKT dig, hvordan det påvirker din søvn, din HRV og din hvilepuls."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标记今天发生的事。几周后，INSIKT 会向你展示它们如何影响你的睡眠、HRV 和静息心率。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज जो हुआ उसे चिह्नित करें। कुछ हफ़्तों बाद INSIKT आपको दिखाएगा कि इसका आपकी नींद, HRV और आराम की हृदय गति पर क्या असर पड़ता है।"
+          }
+        }
+      }
+    },
+    "Masa magra": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lean mass"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massa magra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masse maigre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massa magra"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fettfri massa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fedtfri masse"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "去脂体重"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लीन मास"
+          }
+        }
+      }
+    },
     "Media": {
       "extractionState": "manual",
       "localizations": {
@@ -19028,6 +21254,59 @@
         }
       }
     },
+    "Media maratón": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Half marathon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meia maratona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semi-marathon"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mezza maratona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halvmaraton"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halvmaraton"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "半程马拉松"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हाफ़ मैराथन"
+          }
+        }
+      }
+    },
     "Media reciente": {
       "extractionState": "manual",
       "localizations": {
@@ -19236,6 +21515,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "समूह का मीडियन: %@ %@। आपका ताज़ा मान: %@ %@।"
+          }
+        }
+      }
+    },
+    "Meditación o respiración": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation or breathwork"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditação ou respiração"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Méditation ou respiration"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditazione o respirazione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation eller andning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditation eller vejrtrækning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "冥想或呼吸练习"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ध्यान या श्वास अभ्यास"
+          }
+        }
+      }
+    },
+    "Mejor algo suave hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Better to keep it easy today"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melhor algo leve hoje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mieux vaut y aller doucement aujourd’hui"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meglio qualcosa di leggero oggi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bättre med något lätt i dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hellere noget let i dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天最好轻松一点"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कुछ हल्का करना बेहतर है"
           }
         }
       }
@@ -21148,6 +23533,59 @@
         }
       }
     },
+    "Nada de esto hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None of these today"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada disso hoje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien de tout ça aujourd’hui"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente di tutto questo oggi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget av detta i dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intet af dette i dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天都没有"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज इनमें से कुछ नहीं"
+          }
+        }
+      }
+    },
     "Nada destacable por ahora": {
       "extractionState": "manual",
       "localizations": {
@@ -22261,6 +24699,59 @@
         }
       }
     },
+    "OMS adultos: 18,5–24,9. No distingue músculo de grasa.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WHO adults: 18.5–24.9. It doesn't distinguish muscle from fat."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OMS adultos: 18,5–24,9. Não distingue músculo de gordura."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OMS adultes : 18,5–24,9. Ne distingue pas le muscle de la graisse."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OMS adulti: 18,5–24,9. Non distingue il muscolo dal grasso."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WHO, vuxna: 18,5–24,9. Skiljer inte mellan muskler och fett."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WHO, voksne: 18,5–24,9. Skelner ikke mellem muskler og fedt."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "世卫组织成人标准：18.5–24.9。无法区分肌肉和脂肪。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WHO वयस्क: 18.5–24.9। यह मांसपेशी और फ़ैट में फ़र्क नहीं करता।"
+          }
+        }
+      }
+    },
     "Objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -23162,6 +25653,59 @@
         }
       }
     },
+    "Pantallas en la cama": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screens in bed"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telas na cama"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écrans au lit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermi a letto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skärmar i sängen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skærme i sengen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在床上看屏幕"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिस्तर पर स्क्रीन"
+          }
+        }
+      }
+    },
     "Para compararte con tu grupo hacen falta tu edad y tu sexo. Se guardan solo en este iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -23904,6 +26448,59 @@
         }
       }
     },
+    "Peso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poids"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vægt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体重"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वज़न"
+          }
+        }
+      }
+    },
     "Peso: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -24059,6 +26656,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "चरण %lld के लिए नियोजित"
+          }
+        }
+      }
+    },
+    "Poco fiable: tus carreras son mucho más cortas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less reliable: your runs are much shorter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouco confiável: suas corridas são muito mais curtas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peu fiable : tes courses sont beaucoup plus courtes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poco affidabile: le tue corse sono molto più brevi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre tillförlitlig: dina löppass är mycket kortare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre pålidelig: dine løbeture er meget kortere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可信度低：你的跑步距离短得多"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कम भरोसेमंद: आपके रन इससे काफ़ी छोटे हैं"
           }
         }
       }
@@ -24593,6 +27243,59 @@
         }
       }
     },
+    "Preparación del día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily readiness"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparação do dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme du jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prontezza del giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens beredskap"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens parathed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日准备度"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज की तैयारी"
+          }
+        }
+      }
+    },
     "Preparando…": {
       "extractionState": "manual",
       "localizations": {
@@ -24960,6 +27663,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "गैस विश्लेषण के साथ ट्रेडमिल पर अधिकतम एक्सरसाइज़ टेस्ट (मापा गया V̇O₂max)।"
+          }
+        }
+      }
+    },
+    "Puedes entrenar con normalidad; deja lo más intenso para otro día si notas cansancio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can train as usual; save the hardest efforts for another day if you feel tired."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você pode treinar normalmente; deixe o mais intenso para outro dia se sentir cansaço."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu peux t’entraîner normalement ; garde le plus intense pour un autre jour si tu te sens fatigué."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi allenarti normalmente; lascia la parte più intensa a un altro giorno se ti senti stanco."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kan träna som vanligt; spara det hårdaste till en annan dag om du känner dig trött."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kan træne som normalt; gem det hårdeste til en anden dag, hvis du føler dig træt."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你可以正常训练；如果感到疲劳，把高强度内容留到其他日子。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप सामान्य रूप से ट्रेनिंग कर सकते हैं; अगर थकान महसूस हो, तो सबसे कड़ी ट्रेनिंग किसी और दिन के लिए रखें।"
           }
         }
       }
@@ -25649,6 +28405,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़ोटो हटाएँ"
+          }
+        }
+      }
+    },
+    "Quitar registro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove entry"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remover registro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l’entrée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi registrazione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort registrering"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fjern registrering"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除记录"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिकॉर्ड हटाएं"
           }
         }
       }
@@ -26448,55 +29257,108 @@
         }
       }
     },
-    "Referencias por edad": {
+    "Registrado": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Age references"
+            "value": "Logged"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Referências por idade"
+            "value": "Registrado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Références par âge"
+            "value": "Enregistré"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Riferimenti per età"
+            "value": "Registrato"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åldersreferenser"
+            "value": "Registrerad"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aldersreferencer"
+            "value": "Registreret"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "年龄参考"
+            "value": "已记录"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "उम्र के हिसाब से संदर्भ"
+            "value": "दर्ज किया गया"
+          }
+        }
+      }
+    },
+    "Registrar sin nada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log with none"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar sem nada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer sans rien"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra senza niente"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrera utan något"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrér uden noget"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "记录为无"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिना कुछ चुने दर्ज करें"
           }
         }
       }
@@ -27985,55 +30847,55 @@
         }
       }
     },
-    "Salud no ha compartido tu fecha de nacimiento ni tu sexo. Puedes escribirlos aquí.": {
+    "Salud no ha compartido tu fecha de nacimiento, tu sexo ni tu altura. Puedes escribirlos aquí.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Health hasn't shared your date of birth or sex. You can enter them here."
+            "value": "Health hasn't shared your date of birth, sex or height. You can enter them here."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Saúde não compartilhou sua data de nascimento nem seu sexo. Você pode informá-los aqui."
+            "value": "O Saúde não compartilhou sua data de nascimento, seu sexo nem sua altura. Você pode informá-los aqui."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Santé n’a pas partagé ta date de naissance ni ton sexe. Tu peux les saisir ici."
+            "value": "Santé n’a pas partagé ta date de naissance, ton sexe ni ta taille. Tu peux les saisir ici."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salute non ha condiviso la tua data di nascita né il tuo sesso. Puoi inserirli qui."
+            "value": "Salute non ha condiviso la tua data di nascita, il tuo sesso né la tua altezza. Puoi inserirli qui."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hälsa har inte delat ditt födelsedatum eller kön. Du kan ange dem här."
+            "value": "Hälsa har inte delat ditt födelsedatum, ditt kön eller din längd. Du kan ange dem här."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sundhed har ikke delt din fødselsdato eller dit køn. Du kan angive dem her."
+            "value": "Sundhed har ikke delt din fødselsdato, dit køn eller din højde. Du kan angive dem her."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "“健康”未共享你的出生日期和性别。你可以在这里填写。"
+            "value": "“健康”未共享你的出生日期、性别和身高。你可以在这里填写。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्वास्थ्य ने आपकी जन्मतिथि या लिंग शेयर नहीं किया है। आप इन्हें यहां लिख सकते हैं।"
+            "value": "स्वास्थ्य ने आपकी जन्मतिथि, लिंग या लंबाई शेयर नहीं की है। आप इन्हें यहां लिख सकते हैं।"
           }
         }
       }
@@ -28087,6 +30949,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "ऑक्सीजन सैचुरेशन"
+          }
+        }
+      }
+    },
+    "Sauna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauna"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauna"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauna"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauna"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bastu"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauna"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "桑拿"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सॉना"
+          }
+        }
+      }
+    },
+    "Se calcula con tu sueño, tu HRV y tu FC en reposo de esta noche.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's calculated from last night's sleep, HRV and resting HR."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "É calculada com seu sono, sua HRV e sua FC em repouso desta noite."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elle est calculée à partir de ton sommeil, de ta HRV et de ta FC au repos de cette nuit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si calcola con il tuo sonno, la tua HRV e la tua FC a riposo di stanotte."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den beräknas utifrån nattens sömn, HRV och vilopuls."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den beregnes ud fra nattens søvn, HRV og hvilepuls."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你昨晚的睡眠、HRV 和静息心率计算。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इसकी गणना कल रात की आपकी नींद, HRV और आराम की हृदय गति से की जाती है।"
           }
         }
       }
@@ -28574,7 +31542,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "If you pick a field that's already in another position, they swap. Without live data, «--» is shown: cadence (pending on-device verification), power if your watch doesn't measure it, zone without a max HR set, and target and interval outside a plan."
+            "value": "If you pick a field that's already in another position, they swap. Without live data, “--” is shown: cadence (pending on-device verification), power if your watch doesn't measure it, zone without a max HR set, and target and interval outside a plan."
           }
         },
         "pt-BR": {
@@ -28776,6 +31744,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अगर आप हृदय गति बदलने वाली दवाएं लेते हैं, तो यह तुलना लागू नहीं होती।"
+          }
+        }
+      }
+    },
+    "Siesta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soneca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieste"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pisolino"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tupplur"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "午睡"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झपकी"
+          }
+        }
+      }
+    },
+    "Sin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिना"
           }
         }
       }
@@ -29363,6 +32437,59 @@
         }
       }
     },
+    "Sin diferencia clara por ahora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No clear difference yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem diferença clara por enquanto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de différence nette pour l’instant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna differenza chiara per ora"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen tydlig skillnad än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen tydelig forskel endnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无明显差异"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी कोई साफ़ अंतर नहीं"
+          }
+        }
+      }
+    },
     "Sin días marcados, todos los días. El aviso solo nombra el objetivo, nunca tus datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -29840,6 +32967,59 @@
         }
       }
     },
+    "Solo cuentan para el análisis los días registrados, aunque no marques nada: así HÅLSYN sabe que ese día no hubo ninguna de estas cosas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only logged days count toward the analysis, even if you don't tap anything: that way HÅLSYN knows none of these happened that day."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Só contam para a análise os dias registrados, mesmo que você não marque nada: assim o HÅLSYN sabe que naquele dia não houve nenhuma dessas coisas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seuls les jours enregistrés comptent pour l’analyse, même si tu ne coches rien : ainsi, HÅLSYN sait que ce jour-là, il n’y a eu aucune de ces choses."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per l’analisi contano solo i giorni registrati, anche se non segni niente: così HÅLSYN sa che quel giorno non c’è stata nessuna di queste cose."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bara registrerade dagar räknas i analysen, även om du inte markerar något: då vet HÅLSYN att inget av detta hände den dagen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kun registrerede dage tæller med i analysen, også selvom du ikke markerer noget: så ved HÅLSYN, at intet af dette skete den dag."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有已记录的日子才会计入分析，即使你什么都没标记：这样 HÅLSYN 就知道那天这些情况都没有发生。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विश्लेषण में केवल दर्ज किए गए दिन गिने जाते हैं, भले ही आप कुछ भी चिह्नित न करें: इससे HÅLSYN को पता चलता है कि उस दिन इनमें से कुछ भी नहीं हुआ।"
+          }
+        }
+      }
+    },
     "Solo lectura: en esta versión HÅLSYN no escribe nada en Apple Health. Podrás elegir qué tipos compartir en la hoja de permisos de iOS.": {
       "extractionState": "manual",
       "localizations": {
@@ -29942,59 +33122,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "सिर्फ़ प्राथमिकताएँ भेजी जाती हैं, स्वास्थ्य डेटा कभी नहीं।"
-          }
-        }
-      }
-    },
-    "Solo se usan para compararte con tablas científicas publicadas (VO₂ máx. y FC en reposo), que se dividen por edad y sexo biológico. Se guardan solo en este iPhone.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "They're only used to compare you with published scientific tables (VO₂ max and resting HR), which are split by age and biological sex. They're stored only on this iPhone."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "São usados apenas para comparar você com tabelas científicas publicadas (VO₂ máx. e FC em repouso), que são divididas por idade e sexo biológico. Ficam salvos apenas neste iPhone."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ils servent uniquement à te comparer à des tableaux scientifiques publiés (VO₂ max. et FC au repos), répartis par âge et sexe biologique. Ils sont enregistrés uniquement sur cet iPhone."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si usano solo per confrontarti con tabelle scientifiche pubblicate (VO₂ max e FC a riposo), suddivise per età e sesso biologico. Vengono salvati solo su questo iPhone."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De används bara för att jämföra dig med publicerade vetenskapliga tabeller (VO₂ max och vilopuls), som är uppdelade efter ålder och biologiskt kön. De sparas bara på den här iPhonen."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De bruges kun til at sammenligne dig med offentliggjorte videnskabelige tabeller (VO₂ max og hvilepuls), som er opdelt efter alder og biologisk køn. De gemmes kun på denne iPhone."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "仅用于将你与按年龄和生理性别划分的已发表科学参考表（VO₂ max 和静息心率）进行比较。这些信息仅保存在这台 iPhone 上。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "इनका इस्तेमाल केवल आपकी तुलना प्रकाशित वैज्ञानिक तालिकाओं (VO₂ max और आराम की हृदय गति) से करने के लिए होता है, जो उम्र और जैविक लिंग के हिसाब से बंटी हैं। ये केवल इसी iPhone पर सेव रहते हैं।"
           }
         }
       }
@@ -30635,6 +33762,59 @@
         }
       }
     },
+    "Te avisa para mirar qué tipo de entreno encaja hoy según tu recuperación. La notificación no incluye datos de salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminds you to check which kind of workout fits today based on your recovery. The notification doesn't include any health data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisa você para ver que tipo de treino combina com hoje de acordo com sua recuperação. A notificação não inclui dados de saúde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te rappelle de regarder quel type d’entraînement convient aujourd’hui selon ta récupération. La notification ne contient aucune donnée de santé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ti avvisa di controllare quale tipo di allenamento è adatto oggi in base al tuo recupero. La notifica non include dati sulla salute."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påminner dig om att se vilken typ av pass som passar i dag utifrån din återhämtning. Notisen innehåller inga hälsodata."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minder dig om at se, hvilken type træning der passer i dag ud fra din restitution. Notifikationen indeholder ingen sundhedsdata."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提醒你根据恢复情况查看今天适合哪种训练。通知中不包含健康数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपको याद दिलाता है कि अपनी रिकवरी के हिसाब से देखें कि आज किस तरह का वर्कआउट सही रहेगा। नोटिफ़िकेशन में कोई स्वास्थ्य डेटा नहीं होता।"
+          }
+        }
+      }
+    },
     "Te despertaste": {
       "extractionState": "manual",
       "localizations": {
@@ -30790,6 +33970,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ बाकी: लगभग %@ प्रतिदिन"
+          }
+        }
+      }
+    },
+    "Temp.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temp."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "腕温"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तापमान"
+          }
+        }
+      }
+    },
+    "Temperatura de la piel de la muñeca mientras duermes (Apple Watch Series 8 o posterior). No es la temperatura corporal: lo útil es cuánto se aparta de tu rango habitual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skin temperature on your wrist while you sleep (Apple Watch Series 8 or later). It isn't your body temperature: what matters is how far it moves from your usual range."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatura da pele do pulso enquanto você dorme (Apple Watch Series 8 ou posterior). Não é a temperatura corporal: o útil é quanto ela se afasta da sua faixa habitual."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Température de la peau du poignet pendant ton sommeil (Apple Watch Series 8 ou ultérieure). Ce n’est pas la température corporelle : ce qui compte, c’est l’écart par rapport à ta plage habituelle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatura della pelle del polso mentre dormi (Apple Watch Series 8 o successivi). Non è la temperatura corporea: ciò che conta è quanto si discosta dal tuo intervallo abituale."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hudtemperaturen vid handleden medan du sover (Apple Watch Series 8 eller senare). Det är inte kroppstemperaturen: det intressanta är hur mycket den avviker från ditt vanliga intervall."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hudtemperaturen ved håndleddet, mens du sover (Apple Watch Series 8 eller nyere). Det er ikke kropstemperaturen: det interessante er, hvor meget den afviger fra dit normale niveau."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你睡眠时手腕皮肤的温度（Apple Watch Series 8 或更新机型）。这不是体温：有参考价值的是它偏离你常规范围的程度。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोते समय आपकी कलाई की त्वचा का तापमान (Apple Watch Series 8 या उसके बाद के मॉडल)। यह शरीर का तापमान नहीं है: काम की बात यह है कि यह आपकी सामान्य सीमा से कितना हटता है।"
+          }
+        }
+      }
+    },
+    "Temperatura de muñeca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrist temperature"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatura do pulso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Température du poignet"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatura del polso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handledstemperatur"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Håndledstemperatur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手腕温度"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कलाई का तापमान"
           }
         }
       }
@@ -31748,6 +35087,59 @@
         }
       }
     },
+    "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything that isn't fat: muscle, bone, organs and water. The scale calculates it from bioimpedance."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tudo o que não é gordura: músculos, ossos, órgãos e água. A balança calcula a partir da bioimpedância."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout ce qui n’est pas de la graisse : muscles, os, organes et eau. La balance la calcule à partir de la bio-impédance."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto ciò che non è grasso: muscoli, ossa, organi e acqua. La calcola la bilancia a partire dalla bioimpedenza."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allt som inte är fett: muskler, skelett, organ och vatten. Vågen beräknar den utifrån bioimpedans."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alt, hvad der ikke er fedt: muskler, knogler, organer og vand. Vægten beregner den ud fra bioimpedans."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "除脂肪以外的一切：肌肉、骨骼、器官和水分。由体脂秤根据生物电阻抗计算得出。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ैट के अलावा सब कुछ: मांसपेशियां, हड्डियां, अंग और पानी। स्केल इसे बायोइम्पीडेंस से निकालता है।"
+          }
+        }
+      }
+    },
     "Tramo": {
       "extractionState": "manual",
       "localizations": {
@@ -31907,6 +35299,59 @@
         }
       }
     },
+    "Tras los días con «%@» dormiste %@ de media; tras los días sin, %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After days with “%@”, you slept %@ on average; after days without, %@."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Após os dias com «%@», você dormiu %@ em média; após os dias sem, %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Après les jours avec «%@», tu as dormi %@ en moyenne ; après les jours sans, %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo i giorni con «%@» hai dormito in media %@; dopo i giorni senza, %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter dagar med «%@» sov du i snitt %@; efter dagar utan %@."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter dage med «%@» sov du i gennemsnit %@; efter dage uden %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有“%@”的日子之后，你平均睡了 %@；没有的日子之后为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» वाले दिनों के बाद आप औसतन %@ सोए; उसके बिना वाले दिनों के बाद %@।"
+          }
+        }
+      }
+    },
     "Tu actividad de hoy ha estado dentro de tu promedio.": {
       "extractionState": "manual",
       "localizations": {
@@ -32062,6 +35507,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज आपकी गतिविधि आपके औसत से ज़्यादा रही।"
+          }
+        }
+      }
+    },
+    "Tu cuerpo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your body"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu corpo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton corps"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo corpo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din kropp"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din krop"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的身体"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका शरीर"
           }
         }
       }
@@ -32437,6 +35935,59 @@
         }
       }
     },
+    "Tu preparación de hoy está lista.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's readiness check is ready."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua preparação de hoje está pronta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta forme du jour est prête."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua prontezza di oggi è pronta."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din beredskap för i dag är klar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din parathed for i dag er klar."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你今天的准备度已更新。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी आज की तैयारी तैयार है।"
+          }
+        }
+      }
+    },
     "Tu puntuación del día y tu recuperación.": {
       "extractionState": "manual",
       "localizations": {
@@ -32539,6 +36090,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपकी सामान्य सीमा"
+          }
+        }
+      }
+    },
+    "Tu recuperación es buena y no hay señales fuera de lo normal. Escucha a tu cuerpo igualmente.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your recovery is good and there are no unusual signals. Still, listen to your body."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua recuperação está boa e não há sinais fora do normal. Mesmo assim, ouça seu corpo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta récupération est bonne et aucun signal ne sort de l’ordinaire. Écoute quand même ton corps."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo recupero è buono e non ci sono segnali fuori dalla norma. Ascolta comunque il tuo corpo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din återhämtning är god och inga signaler avviker från det normala. Lyssna ändå på kroppen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din restitution er god, og der er ingen usædvanlige signaler. Lyt alligevel til din krop."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的恢复情况良好，没有异常信号。不过仍要倾听身体的感受。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी रिकवरी अच्छी है और कोई असामान्य संकेत नहीं हैं। फिर भी अपने शरीर की सुनें।"
           }
         }
       }
@@ -33126,6 +36730,59 @@
         }
       }
     },
+    "Tus hábitos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your habits"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus hábitos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes habitudes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le tue abitudini"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina vanor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine vaner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的习惯"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी आदतें"
+          }
+        }
+      }
+    },
     "Tus noches · 14 días": {
       "extractionState": "manual",
       "localizations": {
@@ -33440,6 +37097,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रोज़ एक रिमाइंडर आपको अपना सारांश देखने के लिए बुलाता है। नोटिफ़िकेशन में कोई स्वास्थ्य डेटा नहीं होता।"
+          }
+        }
+      }
+    },
+    "Un rodaje suave, caminar o movilidad te ayudarán más que un entreno duro.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An easy run, a walk or mobility work will help you more than a hard workout."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma corrida leve, uma caminhada ou mobilidade vão ajudar você mais do que um treino pesado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un footing léger, de la marche ou de la mobilité t’aideront plus qu’un entraînement difficile."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una corsa leggera, una camminata o esercizi di mobilità ti aiuteranno più di un allenamento duro."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ett lugnt löppass, en promenad eller rörlighetsträning hjälper dig mer än ett hårt pass."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En rolig løbetur, en gåtur eller mobilitetstræning hjælper dig mere end en hård træning."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻松跑、步行或灵活性练习会比高强度训练对你更有帮助。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हल्की दौड़, टहलना या मोबिलिटी एक्सरसाइज़ आपके लिए कड़े वर्कआउट से ज़्यादा फ़ायदेमंद होंगे।"
           }
         }
       }
@@ -34186,6 +37896,59 @@
         }
       }
     },
+    "Varias señales se apartan a la vez de tu rango habitual. Suele pasar con cansancio acumulado, alcohol, estrés, calor o al empezar un resfriado. No es un diagnóstico: si te encuentras mal, consulta a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Several signals are outside your usual range at the same time. This often happens with built-up fatigue, alcohol, stress, heat or when a cold is starting. This isn't a diagnosis: if you feel unwell, see a professional."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vários sinais se afastam ao mesmo tempo da sua faixa habitual. Isso costuma acontecer com cansaço acumulado, álcool, estresse, calor ou no início de um resfriado. Não é um diagnóstico: se você se sentir mal, consulte um profissional."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plusieurs signaux s’écartent en même temps de ta plage habituelle. Cela arrive souvent avec une fatigue accumulée, l’alcool, le stress, la chaleur ou au début d’un rhume. Ce n’est pas un diagnostic : si tu ne te sens pas bien, consulte un professionnel."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diversi segnali si discostano contemporaneamente dal tuo intervallo abituale. Succede spesso con stanchezza accumulata, alcol, stress, caldo o all’inizio di un raffreddore. Non è una diagnosi: se non ti senti bene, consulta un professionista."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flera signaler avviker samtidigt från ditt vanliga intervall. Det händer ofta vid ackumulerad trötthet, alkohol, stress, värme eller när en förkylning är på väg. Det är ingen diagnos: om du mår dåligt, kontakta vårdpersonal."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flere signaler afviger på samme tid fra dit normale niveau. Det sker ofte ved ophobet træthed, alkohol, stress, varme eller når en forkølelse er på vej. Det er ikke en diagnose: Hvis du har det skidt, så kontakt en fagperson."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多项信号同时偏离你的常规范围。这通常与累积疲劳、饮酒、压力、炎热或感冒初期有关。这不是诊断：如果你感到不适，请咨询专业人士。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कई संकेत एक साथ आपकी सामान्य सीमा से हट रहे हैं। ऐसा अक्सर जमा हुई थकान, शराब, तनाव, गर्मी या ज़ुकाम की शुरुआत में होता है। यह कोई निदान नहीं है: अगर आपकी तबीयत ठीक न लगे, तो किसी पेशेवर से सलाह लें।"
+          }
+        }
+      }
+    },
     "Vas al día": {
       "extractionState": "manual",
       "localizations": {
@@ -34553,6 +38316,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "संस्करण"
+          }
+        }
+      }
+    },
+    "Viaje": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Travel"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viagem"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voyage"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viaggio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rejse"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旅行"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यात्रा"
           }
         }
       }
@@ -35458,6 +39274,59 @@
         }
       }
     },
+    "frente a hace un mes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vs. a month ago"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "em relação a um mês atrás"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "par rapport à il y a un mois"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rispetto a un mese fa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "jämfört med för en månad sedan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "i forhold til for en måned siden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较一个月前"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक महीने पहले की तुलना में"
+          }
+        }
+      }
+    },
     "hasta Vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -36047,7 +39916,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "«Time asleep» is the part of the time between falling asleep and waking up that you spent asleep."
+            "value": "“Time asleep” is the part of the time between falling asleep and waking up that you spent asleep."
           }
         },
         "pt-BR": {
@@ -36359,6 +40228,59 @@
         }
       }
     },
+    "¿Tienes una balanza Xiaomi? En la app Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal. Otras balanzas inteligentes tienen una opción parecida.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Have a Xiaomi scale? In the Zepp Life (or Mi Fit) app: Profile › Add accounts › Apple Health, and turn on weight and body fat. Other smart scales have a similar option."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem uma balança Xiaomi? No app Zepp Life (ou Mi Fit): Perfil › Adicionar contas › Apple Health, e ative peso e gordura corporal. Outras balanças inteligentes têm uma opção parecida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as une balance Xiaomi ? Dans l’app Zepp Life (ou Mi Fit) : Profil › Ajouter des comptes › Apple Health, puis active le poids et la masse grasse. D’autres balances connectées proposent une option similaire."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai una bilancia Xiaomi? Nell’app Zepp Life (o Mi Fit): Profilo › Aggiungi account › Apple Health, e attiva peso e grasso corporeo. Altre bilance smart hanno un’opzione simile."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har du en Xiaomi-våg? I appen Zepp Life (eller Mi Fit): Profil › Lägg till konton › Apple Health, och aktivera vikt och kroppsfett. Andra smarta vågar har ett liknande alternativ."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har du en Xiaomi-vægt? I appen Zepp Life (eller Mi Fit): Profil › Tilføj konti › Apple Health, og slå vægt og kropsfedt til. Andre smarte vægte har en lignende mulighed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有小米体脂秤？在 Zepp Life（或 Mi Fit）App 中前往“个人资料 › 添加账号 › Apple Health”，并开启体重和体脂率。其他智能秤也有类似选项。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपके पास Xiaomi स्केल है? Zepp Life (या Mi Fit) ऐप में: प्रोफ़ाइल › अकाउंट जोड़ें › Apple Health, और वज़न व बॉडी फ़ैट चालू करें। दूसरे स्मार्ट स्केल में भी ऐसा ही विकल्प होता है।"
+          }
+        }
+      }
+    },
     "Última carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -36461,6 +40383,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 4 हफ़्ते"
+          }
+        }
+      }
+    },
+    "Último peso registrado en Apple Health, por ejemplo desde una balanza conectada. El peso cambia 1–2 kg de un día a otro por agua y comida: mira la tendencia de semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest weight recorded in Apple Health, for example from a connected scale. Weight changes 1–2 kg from day to day due to water and food: look at the trend over weeks."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último peso registrado no Apple Health, por exemplo por uma balança conectada. O peso muda 1–2 kg de um dia para o outro por causa da água e da comida: observe a tendência ao longo das semanas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernier poids enregistré dans Apple Health, par exemple depuis une balance connectée. Le poids change de 1 à 2 kg d’un jour à l’autre à cause de l’eau et de l’alimentation : regarde la tendance sur plusieurs semaines."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultimo peso registrato in Apple Health, ad esempio da una bilancia connessa. Il peso cambia di 1–2 kg da un giorno all’altro per acqua e cibo: guarda la tendenza nelle settimane."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste vikt registrerad i Apple Health, till exempel från en ansluten våg. Vikten ändras 1–2 kg från dag till dag på grund av vätska och mat: titta på trenden över veckor."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seneste vægt registreret i Apple Health, for eksempel fra en tilsluttet vægt. Vægten ændrer sig 1–2 kg fra dag til dag på grund af væske og mad: se på tendensen over uger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health 中最近记录的体重，例如来自连接的体重秤。体重会因水分和饮食每天变化 1–2 kg：请关注几周内的趋势。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health में दर्ज आखिरी वज़न, जैसे किसी कनेक्टेड स्केल से। पानी और खाने की वजह से वज़न रोज़ 1–2 kg बदलता है: हफ़्तों का रुझान देखें।"
           }
         }
       }
