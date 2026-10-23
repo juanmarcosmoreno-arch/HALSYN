@@ -94,14 +94,22 @@ struct HalsynStatusWidgetView: View {
 
     var body: some View {
         content
-            .containerBackground(for: .widget) {
-                if family == .systemSmall || family == .systemMedium {
-                    Color.halsynSurface
-                } else {
-                    Color.clear
-                }
-            }
+            .containerBackground(for: .widget) { background }
             .widgetURL(URL(string: "halsyn://halsa"))
+    }
+
+    /// Fondo propio solo en los widgets del iPhone; en pantalla bloqueada y reloj, el del sistema.
+    @ViewBuilder
+    private var background: some View {
+        #if os(iOS)
+        if family == .systemSmall || family == .systemMedium {
+            Color.halsynSurface
+        } else {
+            Color.clear
+        }
+        #else
+        Color.clear
+        #endif
     }
 
     @ViewBuilder
