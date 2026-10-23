@@ -30,6 +30,8 @@ final class WorkoutManager: NSObject {
 
     private(set) var tracker = RunSessionTracker()
     private(set) var isIndoor = false
+    /// Caminata en lugar de carrera (mismas pantallas y guardado).
+    private(set) var isWalking = false
     /// Plan de intervalos de la carrera actual (`nil` = libre).
     private(set) var plan: IntervalPlan?
     /// Pantallas de métricas de esta carrera (fijadas al empezar).
@@ -90,9 +92,9 @@ final class WorkoutManager: NSObject {
 
     // MARK: Ciclo de vida
 
-    func start(indoor: Bool, plan: IntervalPlan? = nil) async {
+    func start(indoor: Bool, walking: Bool = false, plan: IntervalPlan? = nil) async {
         let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
+        configuration.activityType = walking ? .walking : .running
         configuration.locationType = indoor ? .indoor : .outdoor
         await start(configuration: configuration, plan: plan)
     }
@@ -102,6 +104,7 @@ final class WorkoutManager: NSObject {
         guard !isActive else { return }
         reset(plan: plan)
         isIndoor = configuration.locationType == .indoor
+        isWalking = configuration.activityType == .walking
         tracker.handle(.start, at: .now)
         do {
             try await requestAuthorization()
@@ -141,6 +144,7 @@ final class WorkoutManager: NSObject {
             self.session = session
             self.builder = builder
             isIndoor = session.workoutConfiguration.locationType == .indoor
+            isWalking = session.workoutConfiguration.activityType == .walking
             tracker.handle(.start, at: session.startDate ?? .now)
             tracker.handle(.began, at: session.startDate ?? .now)
             if session.state == .paused {

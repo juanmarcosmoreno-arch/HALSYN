@@ -127,7 +127,11 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
 
     public func runningWorkouts(limit: Int) async throws -> [WorkoutSummary] {
         let descriptor = HKSampleQueryDescriptor(
-            predicates: [HKSamplePredicate.workout(HKQuery.predicateForWorkouts(with: .running))],
+            // Carreras y caminatas.
+            predicates: [HKSamplePredicate.workout(NSCompoundPredicate(orPredicateWithSubpredicates: [
+                HKQuery.predicateForWorkouts(with: .running),
+                HKQuery.predicateForWorkouts(with: .walking),
+            ]))],
             sortDescriptors: [SortDescriptor(\HKWorkout.endDate, order: .reverse)],
             limit: limit
         )
@@ -298,7 +302,7 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         let isIndoor = (workout.metadata?[HKMetadataKeyIndoorWorkout] as? Bool) ?? false
         return WorkoutSummary(
             id: workout.uuid,
-            activity: isIndoor ? .indoorRun : .outdoorRun,
+            activity: workout.workoutActivityType == .walking ? .walk : (isIndoor ? .indoorRun : .outdoorRun),
             start: workout.startDate,
             duration: workout.duration,
             distanceMeters: workout.statistics(for: HKQuantityType(.distanceWalkingRunning))?.sumQuantity()?.doubleValue(for: HKUnit.meter()),

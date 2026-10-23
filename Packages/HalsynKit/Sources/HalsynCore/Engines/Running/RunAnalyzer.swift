@@ -194,10 +194,12 @@ public enum RunAnalyzer {
 
     /// Compara con carreras de distancia parecida (±25 %). Hacen falta al menos 3.
     public static func compare(_ run: WorkoutSummary, with history: [WorkoutSummary], tolerance: Double = 0.25, minimumCount: Int = 3) -> SimilarRunComparison? {
-        guard run.activity.isRun, let distance = run.distanceMeters, distance > 0,
+        // Carreras con carreras y caminatas con caminatas.
+        guard run.activity.isRun || run.activity == .walk, let distance = run.distanceMeters, distance > 0,
               let pace = run.averagePace else { return nil }
         let similar = history.filter { other in
-            guard other.id != run.id, other.start != run.start, other.activity.isRun, let otherDistance = other.distanceMeters else { return false }
+            guard other.id != run.id, other.start != run.start, other.activity.isRun == run.activity.isRun,
+                  other.activity == .walk || other.activity.isRun, let otherDistance = other.distanceMeters else { return false }
             return abs(otherDistance - distance) / distance <= tolerance && other.averagePace != nil
         }
         guard similar.count >= minimumCount else { return nil }

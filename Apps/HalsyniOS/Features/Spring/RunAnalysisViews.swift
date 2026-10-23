@@ -46,12 +46,43 @@ enum RunColorScale {
     }
 }
 
+// MARK: - Estilo de mapa
+
+/// Mapa estándar o satélite (con nombres de calles). Se recuerda la elección.
+enum RouteMapStyle {
+    static let key = "halsyn.map.satellite"
+
+    static func style(satellite: Bool) -> MapStyle {
+        satellite ? .hybrid(elevation: .realistic) : .standard(elevation: .realistic)
+    }
+}
+
+/// Botón flotante para cambiar entre mapa y satélite.
+struct MapStyleToggle: View {
+    @Binding var satellite: Bool
+
+    var body: some View {
+        Button {
+            withAnimation { satellite.toggle() }
+        } label: {
+            Image(systemName: satellite ? "map" : "globe.europe.africa.fill")
+                .font(.body.weight(.semibold))
+                .frame(width: 36, height: 36)
+                .background(.regularMaterial, in: Circle())
+        }
+        .buttonStyle(.plain)
+        .padding(8)
+        .accessibilityLabel(Text(satellite ? "Ver mapa" : "Ver satélite"))
+    }
+}
+
 // MARK: - Mapa coloreado
 
 struct RunColoredMap: View {
     let insights: RunInsights
     let isDemo: Bool
     @State private var coloring: RunColoring = .pace
+    @AppStorage(RouteMapStyle.key) private var satellite = false
 
     private var hasHeartRate: Bool { insights.segments.contains { $0.heartRate != nil } }
 
@@ -95,6 +126,8 @@ struct RunColoredMap: View {
                     }
                 }
             }
+            .mapStyle(RouteMapStyle.style(satellite: satellite))
+            .overlay(alignment: .topTrailing) { MapStyleToggle(satellite: $satellite) }
             .frame(height: 260)
             .clipShape(RoundedRectangle(cornerRadius: HalsynRadius.card, style: .continuous))
             .accessibilityLabel(Text(coloring == .pace ? "Mapa de la ruta coloreado por ritmo" : "Mapa de la ruta coloreado por pulso"))

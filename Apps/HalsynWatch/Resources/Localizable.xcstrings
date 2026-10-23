@@ -6467,6 +6467,59 @@
         }
       }
     },
+    "Caminata al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outdoor walk"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caminhada ao ar livre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marche en extérieur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camminata all’aperto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Promenad utomhus"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gåtur udendørs"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "户外步行"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आउटडोर वॉक"
+          }
+        }
+      }
+    },
     "Campo %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -6887,6 +6940,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लोड हो रहा है…"
+          }
+        }
+      }
+    },
+    "Carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løb"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दौड़"
           }
         }
       }
@@ -19452,6 +19558,59 @@
         }
       }
     },
+    "Iniciar caminata": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start walk"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar caminhada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer une marche"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia camminata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta promenad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start gåtur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始步行"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉक शुरू करें"
+          }
+        }
+      }
+    },
     "Iniciar carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -23162,55 +23321,55 @@
         }
       }
     },
-    "Mira tu Apple Watch: la carrera está empezando.": {
+    "Mira tu Apple Watch: el entrenamiento está empezando.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Check your Apple Watch: your run is starting."
+            "value": "Check your Apple Watch: your workout is starting."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Olhe seu Apple Watch: a corrida está começando."
+            "value": "Olhe seu Apple Watch: o treino está começando."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Regarde ton Apple Watch : la course démarre."
+            "value": "Regarde ton Apple Watch : la séance commence."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Guarda il tuo Apple Watch: la corsa sta iniziando."
+            "value": "Guarda il tuo Apple Watch: l’allenamento sta iniziando."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Titta på din Apple Watch: löppasset startar."
+            "value": "Titta på din Apple Watch: passet börjar."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se på dit Apple Watch: løbeturen starter."
+            "value": "Kig på dit Apple Watch: træningen starter."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请查看你的 Apple Watch：跑步即将开始。"
+            "value": "看看你的 Apple Watch：训练即将开始。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपना Apple Watch देखें: रन शुरू हो रहा है।"
+            "value": "अपनी Apple Watch देखें: वर्कआउट शुरू हो रहा है।"
           }
         }
       }
@@ -32808,55 +32967,55 @@
         }
       }
     },
-    "Seguir corriendo": {
+    "Seguir": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Keep running"
+            "value": "Keep going"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Continuar correndo"
+            "value": "Continuar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Continuer à courir"
+            "value": "Continuer"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Continua a correre"
+            "value": "Continua"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fortsätt springa"
+            "value": "Fortsätt"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Løb videre"
+            "value": "Fortsæt"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "继续跑步"
+            "value": "继续"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "दौड़ते रहें"
+            "value": "जारी रखें"
           }
         }
       }
@@ -40281,6 +40440,112 @@
         }
       }
     },
+    "Ver mapa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show map"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver mapa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir la carte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra mappa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa karta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vis kort"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示地图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मानचित्र देखें"
+          }
+        }
+      }
+    },
+    "Ver satélite": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show satellite"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver satélite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir le satellite"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra satellite"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa satellit"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vis satellit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示卫星图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सैटेलाइट देखें"
+          }
+        }
+      }
+    },
     "Ver todas las semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -42348,55 +42613,55 @@
         }
       }
     },
-    "¿Terminar la carrera?": {
+    "¿Terminar el entrenamiento?": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "End run?"
+            "value": "End workout?"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encerrar a corrida?"
+            "value": "Encerrar o treino?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Terminer la course ?"
+            "value": "Terminer la séance ?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Terminare la corsa?"
+            "value": "Terminare l’allenamento?"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avsluta löppasset?"
+            "value": "Avsluta passet?"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Afslut løbeturen?"
+            "value": "Afslut træningen?"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "结束跑步？"
+            "value": "结束训练？"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रन खत्म करें?"
+            "value": "वर्कआउट खत्म करें?"
           }
         }
       }

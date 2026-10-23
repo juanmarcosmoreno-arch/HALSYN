@@ -166,10 +166,10 @@ private struct PausedPanel: View {
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 18).fill(Color.black.opacity(0.88)))
-        .confirmationDialog("¿Terminar la carrera?", isPresented: $confirmingEnd) {
+        .confirmationDialog("¿Terminar el entrenamiento?", isPresented: $confirmingEnd) {
             Button("Guardar en Apple Health") { workout.end(save: true) }
             Button("Descartar", role: .destructive) { workout.end(save: false) }
-            Button("Seguir corriendo", role: .cancel) {}
+            Button("Seguir", role: .cancel) {}
         }
     }
 }
@@ -361,14 +361,14 @@ private struct WorkoutControlsView: View {
                 }
                 .disabled(workout.phase != .running)
             }
-            controlButton("Terminar", systemImage: "xmark", tint: Color(HalsynPalette.alertDark)) {
+            controlButton("Terminar", systemImage: "stop.fill", tint: Color(HalsynPalette.alertDark)) {
                 confirmingEnd = true
             }
         }
-        .confirmationDialog("¿Terminar la carrera?", isPresented: $confirmingEnd) {
+        .confirmationDialog("¿Terminar el entrenamiento?", isPresented: $confirmingEnd) {
             Button("Guardar en Apple Health") { workout.end(save: true) }
             Button("Descartar", role: .destructive) { workout.end(save: false) }
-            Button("Seguir corriendo", role: .cancel) {}
+            Button("Seguir", role: .cancel) {}
         }
     }
 
@@ -431,6 +431,9 @@ private struct WorkoutSummaryView: View {
         ScrollView {
             VStack(spacing: 10) {
                 outcome
+                Label(workout.isWalking ? LocalizedStringKey("Caminata") : LocalizedStringKey("Carrera"), systemImage: workout.isWalking ? "figure.walk" : "figure.run")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                 if let name = snapshot.intervalPlanName {
                     Text(verbatim: name)
                         .font(.headline)

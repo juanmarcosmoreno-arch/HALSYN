@@ -120,7 +120,7 @@ struct SpringView: View {
 
     private func weeklySummary(_ workouts: [WorkoutSummary]) -> some View {
         let weekStart = Calendar.current.dateInterval(of: .weekOfYear, for: .now)?.start ?? .now
-        let thisWeek = workouts.filter { $0.start >= weekStart }
+        let thisWeek = workouts.filter { $0.start >= weekStart && $0.activity.isRun }
         let distance = thisWeek.compactMap(\.distanceMeters).reduce(0, +)
         let duration = thisWeek.map(\.duration).reduce(0, +)
         return HalsynCard {
@@ -177,7 +177,7 @@ private struct StartRunInfoSheet: View {
                 .foregroundStyle(.halsynSecondaryText)
             switch status {
             case .started:
-                HalsynStatusIndicator(.positive, text: "Mira tu Apple Watch: la carrera está empezando.")
+                HalsynStatusIndicator(.positive, text: "Mira tu Apple Watch: el entrenamiento está empezando.")
             case .failed:
                 HalsynStatusIndicator(.caution, text: "No se pudo abrir HÅLSYN en el reloj. Comprueba que está instalada y que el reloj está desbloqueado.")
             default:
@@ -188,8 +188,17 @@ private struct StartRunInfoSheet: View {
                 HalsynPrimaryButton("Entendido") { dismiss() }
             } else {
                 HalsynPrimaryButton(status == .starting ? "Abriendo el reloj…" : "Iniciar carrera al aire libre", systemImage: "applewatch") {
-                    Task { await start() }
+                    Task { await start(walking: false) }
                 }
+                .disabled(status == .starting)
+                Button {
+                    Task { await start(walking: true) }
+                } label: {
+                    Label("Iniciar caminata", systemImage: "figure.walk")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(.halsynAccent)
                 .disabled(status == .starting)
             }
         }
@@ -197,10 +206,10 @@ private struct StartRunInfoSheet: View {
         .halsynScreenBackground()
     }
 
-    private func start() async {
+    private func start(walking: Bool) async {
         status = .starting
         let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
+        configuration.activityType = walking ? .walking : .running
         configuration.locationType = .outdoor
         do {
             try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in

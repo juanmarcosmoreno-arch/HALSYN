@@ -13,6 +13,7 @@ struct WorkoutDetailView: View {
     @State private var detail: WorkoutDetailData?
     @State private var insights: RunInsights?
     @State private var comparison: SimilarRunComparison?
+    @AppStorage(RouteMapStyle.key) private var satellite = false
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -103,6 +104,8 @@ struct WorkoutDetailView: View {
                         }
                     }
                 }
+                .mapStyle(RouteMapStyle.style(satellite: satellite))
+                .overlay(alignment: .topTrailing) { MapStyleToggle(satellite: $satellite) }
                 .frame(height: 240)
                 .clipShape(RoundedRectangle(cornerRadius: HalsynRadius.card, style: .continuous))
                 .accessibilityLabel(Text("Mapa de la ruta"))

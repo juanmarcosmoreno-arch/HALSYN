@@ -23,6 +23,12 @@ struct WatchSpringView: View {
                 Label("Carrera en cinta", systemImage: "figure.run.treadmill")
             }
 
+            Button {
+                Task { await workout.start(indoor: false, walking: true) }
+            } label: {
+                Label("Caminata al aire libre", systemImage: "figure.walk")
+            }
+
             Section {
                 ForEach(settings.intervalPlans) { plan in
                     Button {
