@@ -196,22 +196,23 @@ public struct HalsynSleepScheduleChart: View {
                 ForEach(nights) { night in
                     BarMark(
                         x: .value("Noche", night.day, unit: .day),
-                        yStart: .value("Se durmió", minutes(night.sleepStart, night: night)),
-                        yEnd: .value("Despertó", minutes(night.sleepEnd, night: night)),
+                        // En negativo: la noche se lee de arriba (dormirse) a abajo (despertar).
+                        yStart: .value("Se durmió", -minutes(night.sleepStart, night: night)),
+                        yEnd: .value("Despertó", -minutes(night.sleepEnd, night: night)),
                         width: .ratio(0.5)
                     )
                     .cornerRadius(4)
                     .foregroundStyle(Color.halsynChart.opacity(opacity(night)))
                 }
             }
-            .chartYScale(domain: domain.upperBound...domain.lowerBound)
+            .chartYScale(domain: -domain.upperBound ... -domain.lowerBound)
             .chartYAxis {
                 AxisMarks(position: .trailing, values: .stride(by: 120)) { value in
                     AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
                         .foregroundStyle(Color.halsynHairline)
                     AxisValueLabel {
-                        if let minutes = value.as(Double.self) {
-                            let time = SleepRegularity.clockTime(minutesFromNoon: minutes)
+                        if let negative = value.as(Double.self) {
+                            let time = SleepRegularity.clockTime(minutesFromNoon: -negative)
                             Text(verbatim: String(format: "%02d:%02d", time.hour, time.minute))
                                 .font(.caption2.monospacedDigit())
                                 .foregroundStyle(Color.halsynSecondaryText)
