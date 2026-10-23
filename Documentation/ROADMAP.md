@@ -5,8 +5,8 @@
 | 0 | Inspección del entorno | ✅ |
 | 1 | Fundaciones: proyecto, targets iOS/watchOS, design system, navegación, pantallas, modo demo, 9 idiomas | ✅ compila y pasa tests en CI (macOS) |
 | 2 | HealthKit real: permisos, pasos, FC, FC reposo, HRV, sueño, entrenamientos, ausencia de datos, onboarding | ✅ compila y pasa tests en CI · ⏳ prueba en dispositivo |
-| 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones | ⏳ siguiente |
-| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | prioridad muy alta |
+| 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones, resumen nocturno | ✅ código y tests · ⏳ CI |
+| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ⏳ siguiente · prioridad muy alta |
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
@@ -39,4 +39,17 @@
 ## Pendientes conocidos de la Fase 2
 
 - Probar con datos reales en iPhone y Apple Watch físicos (CI solo compila y prueba con mocks).
-- Puntuación y recuperación en modo Apple Health aparecen como "—" hasta las Fases 3 y 6.
+- La recuperación en modo Apple Health aparece como "—" hasta la Fase 6.
+
+## Fase 3 — entregado
+
+- `HealthScoreEngine` 0.1-provisional: 5 dimensiones, pesos configurables, comparación con la media personal, cobertura mínima, confianza y factores explicables ([HEALTH_SCORE](HEALTH_SCORE.md)).
+- Misma puntuación en demo y con Apple Health; nunca se inventa si falta cobertura.
+- HÄLSA: puntuación con factores principales, desglose, historial (calendario de 5 semanas + tendencia) y resumen del día.
+- Resumen nocturno con notificación opcional sin datos de salud en el aviso.
+- INSIKT: tendencia de la puntuación diaria.
+
+## Pendientes conocidos de la Fase 3
+
+- Pesos y umbrales sin calibrar con datos reales; revisar tras uso en dispositivo.
+- Sin caché: el historial recalcula a partir de HealthKit en cada carga (rápido con 5 series; se revisará con SwiftData si hace falta).

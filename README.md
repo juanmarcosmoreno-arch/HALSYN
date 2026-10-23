@@ -4,7 +4,7 @@
 
 Plataforma nativa de salud, bienestar y rendimiento para **iPhone** y **Apple Watch**, construida con Swift, SwiftUI y HealthKit.
 
-> Estado: **Fase 2 — HealthKit real**. La app lee Apple Health (solo lectura, con onboarding y permisos explicados) en iPhone y Apple Watch, o funciona en **modo demo** con datos sintéticos identificados. Puntuaciones (Fase 3) y registro de entrenamientos (Fase 4) aún no existen. Ver [ROADMAP](Documentation/ROADMAP.md).
+> Estado: **Fase 3 — HÄLSA**. Lee Apple Health (solo lectura) en iPhone y Apple Watch o funciona en **modo demo** identificado, y calcula una puntuación diaria de bienestar transparente ([HEALTH_SCORE](Documentation/HEALTH_SCORE.md)) con historial y resumen nocturno. El registro de entrenamientos llega en la Fase 4. Ver [ROADMAP](Documentation/ROADMAP.md).
 
 ## Módulos
 
@@ -62,7 +62,7 @@ cd Packages/HalsynKit && swift test
 
 - [ARCHITECTURE](Documentation/ARCHITECTURE.md) · [DESIGN_SYSTEM](Documentation/DESIGN_SYSTEM.md) · [HEALTHKIT_INTEGRATION](Documentation/HEALTHKIT_INTEGRATION.md)
 - [RUNNING_ENGINE](Documentation/RUNNING_ENGINE.md) · [SCIENTIFIC_REFERENCES](Documentation/SCIENTIFIC_REFERENCES.md) · [PRIVACY](Documentation/PRIVACY.md)
-- [TESTING](Documentation/TESTING.md) · [ROADMAP](Documentation/ROADMAP.md) · [LOCALIZATION](Documentation/LOCALIZATION.md)
+- [TESTING](Documentation/TESTING.md) · [ROADMAP](Documentation/ROADMAP.md) · [LOCALIZATION](Documentation/LOCALIZATION.md) · [HEALTH_SCORE](Documentation/HEALTH_SCORE.md)
 
 ## Aviso
 

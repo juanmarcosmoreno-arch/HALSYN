@@ -10,6 +10,21 @@
 
 No hay ningún dataset incorporado. Los valores del modo demo son sintéticos, plausibles para un adulto activo, y **no** constituyen referencias.
 
+## Referencias usadas como umbrales en HealthScoreEngine (Fase 3)
+
+Orientan los umbrales; **no validan** la puntuación de HÅLSYN en conjunto.
+
+| Uso | Referencia | Qué se toma |
+|---|---|---|
+| Sueño 7–9 h (adultos) | Watson NF, et al. *Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society.* Sleep. 2015;38(6):843–844. | ≥ 7 h por noche de forma regular en adultos; el rango 7–9 h se usa como referencia de máxima puntuación. |
+| 150 min/semana de actividad | Bull FC, et al. *World Health Organization 2020 guidelines on physical activity and sedentary behaviour.* Br J Sports Med. 2020;54(24):1451–1462. | 150–300 min/semana de actividad moderada (o equivalente) en adultos. Se usan los "minutos de ejercicio" de Apple como aproximación. |
+| 8.000 pasos/día | Paluch AE, et al. *Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts.* Lancet Public Health. 2022;7(3):e219–e228. | El beneficio se estabiliza aproximadamente entre 6.000–8.000 pasos (≥ 60 años) y 8.000–10.000 (< 60 años); 8.000 se usa como referencia única provisional. |
+| Carga aguda:crónica | Gabbett TJ. *The training—injury prevention paradox: should athletes be training smarter and harder?* Br J Sports Med. 2016;50(5):273–280. | Concepto de comparar carga reciente con habitual; zona 0,8–1,3. |
+| Críticas al cociente | Impellizzeri FM, et al. *Acute:Chronic Workload Ratio: Conceptual Issues and Fundamental Pitfalls.* Int J Sports Physiol Perform. 2020;15(6):907–913. | Motivo del peso bajo (15 %) y de no tratarlo como predictor de lesiones. |
+| HRV y FC en reposo frente a la media personal | Práctica habitual de comparar con la línea basal individual en lugar de valores poblacionales, dada la gran variabilidad entre personas. | Comparación con la media de 28 días; sin percentiles poblacionales (Fase 8). |
+
+Pendiente: revisar cada cita con su texto completo antes de la publicación y registrar DOI/PMID.
+
 ## Fuentes a investigar (Fase 8)
 
 - NHANES (CDC) — encuestas poblacionales de EE. UU.
