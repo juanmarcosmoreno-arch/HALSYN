@@ -4,7 +4,7 @@
 
 Plataforma nativa de salud, bienestar y rendimiento para **iPhone** y **Apple Watch**, construida con Swift, SwiftUI y HealthKit.
 
-> Estado: **Fase 1 — Fundaciones**. La app funciona en **modo demo** con datos sintéticos claramente identificados. Todavía no lee Apple Health (Fase 2) ni registra entrenamientos (Fase 4). Ver [ROADMAP](Documentation/ROADMAP.md).
+> Estado: **Fase 2 — HealthKit real**. La app lee Apple Health (solo lectura, con onboarding y permisos explicados) en iPhone y Apple Watch, o funciona en **modo demo** con datos sintéticos identificados. Puntuaciones (Fase 3) y registro de entrenamientos (Fase 4) aún no existen. Ver [ROADMAP](Documentation/ROADMAP.md).
 
 ## Módulos
 
@@ -47,7 +47,7 @@ Requisitos: macOS con **Xcode 16 o posterior** (SDK iOS 17+ / watchOS 10+).
 
 1. `open Halsyn.xcodeproj`
 2. Target **Halsyn** → *Signing & Capabilities* → elige tu **Team** (repite en **HalsynWatch**). Los bundle IDs son `com.halsyn.app` y `com.halsyn.app.watchkitapp`; cámbialos si ya existen en tu cuenta.
-3. Esquema **Halsyn** → un simulador de iPhone → ⌘R. El esquema **HalsynWatch** lanza el reloj en un simulador de Apple Watch.
+3. Esquema **Halsyn** → un simulador de iPhone → ⌘R. En el simulador puedes añadir datos en la app Salud y conectarlos desde el onboarding o Perfil. El esquema **HalsynWatch** lanza el reloj en un simulador de Apple Watch.
 4. Tests: ⌘U en el esquema **Halsyn** (ejecuta `HalsyniOSTests` y `HalsynCoreTests`).
 
 Si modificas `project.yml`: `brew install xcodegen && xcodegen generate`.

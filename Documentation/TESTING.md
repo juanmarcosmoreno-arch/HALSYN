@@ -5,7 +5,8 @@
 | Suite | Framework | Dónde | Cubre |
 |---|---|---|---|
 | `Packages/HalsynKit/Tests/HalsynCoreTests` | Swift Testing | `swift test` (Linux/macOS) y ⌘U en Xcode | Marca, contraste WCAG de tokens, ritmo y formatos, disponibilidad de datos, `MetricDisplay`, proveedor demo (determinismo, rangos, etiquetado), perfiles de pantalla, generador determinista |
-| `Tests/HalsyniOSTests` | XCTest | ⌘U en el esquema Halsyn | `AppModel`, carga de `HalsaSnapshot`, cambio relativo de INSIKT |
+| `Packages/HalsynKit/Tests/HalsynCoreTests/LiveHealthDataProviderTests.swift` | Swift Testing | igual | Proveedor real con `MockHealthStoreClient`: permisos, estados de error, sueño (fases, solapes, ventana), último valor y su fecha, series sin ceros, sin puntuaciones inventadas |
+| `Tests/HalsyniOSTests` | XCTest | ⌘U en el esquema Halsyn | `AppModel` (conexión, persistencia de la fuente, vuelta a demo, fallo de conexión), `HalsaSnapshot` demo y real sin datos, INSIKT |
 
 ## Fixtures
 
@@ -28,7 +29,7 @@ Los dos primeros runs fallaron por errores de compilación reales (colisión de 
 
 ## Pendiente por fase
 
-- Fase 2: mocks de `HKHealthStore` y tests de mapeo de consultas, permisos y duplicados.
+- Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).
 - Fase 4: máquina de estados de sesión, `PaceEstimator` con trazas GPS sintéticas (ruido, pérdida de señal, pausas), distancia acumulada.
 - Fase 5: zonas cardíacas, vueltas, intervalos.
 - Fases 3, 6, 8: `HealthScoreEngine`, `RecoveryEngine`, `ReferencePercentileEngine`, `TrainingLoadEngine`.
