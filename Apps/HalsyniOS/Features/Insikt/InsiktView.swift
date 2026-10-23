@@ -63,6 +63,8 @@ struct InsiktView: View {
                     HalsynLoadingState()
                 }
 
+                HabitInsightsSection()
+
                 HalsynSectionHeader("Tendencias por periodo", eyebrow: HalsynLexicon.tid.rawValue)
                     .padding(.top, HalsynSpacing.s)
                 Picker("Periodo", selection: $period) {

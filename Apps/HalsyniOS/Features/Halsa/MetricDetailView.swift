@@ -103,7 +103,7 @@ struct MetricDetailView: View {
         switch kind {
         case .walkingRunningDistance: HalsynFormat.decimal(value, fractionDigits: 2)
         case .sleepDuration: sleepText(value * 3600)
-        case .respiratoryRate, .vo2Max: HalsynFormat.decimal(value, fractionDigits: 1)
+        case .respiratoryRate, .vo2Max, .bodyMass, .leanBodyMass, .bodyFatPercentage: HalsynFormat.decimal(value, fractionDigits: 1)
         default: HalsynFormat.integer(value)
         }
     }
@@ -113,7 +113,8 @@ struct MetricDetailView: View {
         series.values.map { item -> DailyValue in
             switch kind {
             case .walkingRunningDistance: DailyValue(day: item.day, value: item.value / unitSystem.metersPerDistanceUnit)
-            case .oxygenSaturation: DailyValue(day: item.day, value: item.value * 100)
+            case .oxygenSaturation, .bodyFatPercentage: DailyValue(day: item.day, value: item.value * 100)
+            case .bodyMass, .leanBodyMass: DailyValue(day: item.day, value: item.value / unitSystem.kilogramsPerMassUnit)
             default: item
             }
         }
@@ -146,6 +147,12 @@ enum MetricExplanation {
             "Minutos con intensidad equivalente a una caminata enérgica o superior, según Apple."
         case .sleepDuration:
             "Tiempo dormido registrado por el Apple Watch u otras fuentes de Apple Health."
+        case .bodyMass:
+            "Último peso registrado en Apple Health, por ejemplo desde una balanza conectada. El peso cambia 1–2 kg de un día a otro por agua y comida: mira la tendencia de semanas."
+        case .bodyFatPercentage:
+            "Estimación de la balanza por bioimpedancia. Varía con la hidratación y la hora; compárala siempre en las mismas condiciones (por ejemplo, al levantarte)."
+        case .leanBodyMass:
+            "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia."
         }
     }
 }

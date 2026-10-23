@@ -173,6 +173,14 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
             default: result.sex = nil
             }
         }
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.height))],
+            sortDescriptors: [SortDescriptor(\HKQuantitySample.startDate, order: .reverse)],
+            limit: 1
+        )
+        if let sample = try? await descriptor.result(for: store).first {
+            result.heightMeters = sample.quantity.doubleValue(for: .meter())
+        }
         return result
     }
 

@@ -58,6 +58,11 @@ final class ChartSnapshotTests: XCTestCase {
                 views.append(("16-carrera-comparacion", AnyView(SimilarRunsCard(comparison: comparison, unitSystem: .metric))))
             }
         }
+        // Diario de hábitos de ejemplo.
+        let habits = await provider.habitReport(journal: DemoHabitJournal.make(endingOn: today, calendar: .current), endingOn: today, calendar: .current)
+        if let impact = habits.impacts.first {
+            views.append(("17-habito", AnyView(HabitImpactCard(impact: impact))))
+        }
         // Referencias por edad con las tablas reales (FRIEND 2015 y NHANES).
         if let vo2 = ReferencePercentileEngine.position(of: 46, metric: .vo2Max, age: 35, sex: .male),
            let resting = ReferencePercentileEngine.position(of: 49, metric: .restingHeartRate, age: 45, sex: .female) {

@@ -24,6 +24,7 @@
 		373B7B82FA296698A6F9D4E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
 		3770D0C2A4656F9AF8F2B291 /* MetricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */; };
 		3920201759A830FA101DEBD7 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2859713A3E93283DA60D4424 /* HalsynHealthKit */; };
+		3A402181B1A49020E1995FB6 /* HabitJournalViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200B7BAFC27B646B278C5486 /* HabitJournalViews.swift */; };
 		3CB2510393E8749F44DED6AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F023AC32DE8274A6A4DDB6 /* Assets.xcassets */; };
 		3D077DAC3E9C2DC7998C5AA9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */; };
 		409FA53999DCE71CC27C5CCA /* NightlySummaryNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */; };
@@ -51,6 +52,7 @@
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
+		9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C047BDEBFD597D75D57B03 /* BodyCard.swift */; };
 		A4432666AFBF0D862F26A96B /* MalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE07533E91D0B4E58019475 /* MalView.swift */; };
 		A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */; };
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
@@ -158,6 +160,7 @@
 		1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetailView.swift; sourceTree = "<group>"; };
 		1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
+		200B7BAFC27B646B278C5486 /* HabitJournalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitJournalViews.swift; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		290129784398211208980B11 /* HalsynWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWidgets.entitlements; sourceTree = "<group>"; };
 		2D806D8D04F0B24C3BDB9530 /* HalsynWatchWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatchWidgets.entitlements; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 		7A8ACB727E30A37717E1A516 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7B7E2B3491782961A00596E7 /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
 		7CCDDA395B13EEDF085E1836 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		81C047BDEBFD597D75D57B03 /* BodyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCard.swift; sourceTree = "<group>"; };
 		88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Halsyn.entitlements; sourceTree = "<group>"; };
 		8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSnapshotTests.swift; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 		94A3A811412D07B584AA8576 /* Insikt */ = {
 			isa = PBXGroup;
 			children = (
+				200B7BAFC27B646B278C5486 /* HabitJournalViews.swift */,
 				C684F62352CB5E8552F5DF92 /* InsightCards.swift */,
 				3F17B6D6A0876C711FE13FDE /* InsiktView.swift */,
 			);
@@ -553,6 +558,7 @@
 		F7B6FB1470846B1A72CC84D2 /* Halsa */ = {
 			isa = PBXGroup;
 			children = (
+				81C047BDEBFD597D75D57B03 /* BodyCard.swift */,
 				572F68D555D13942BB8FD46E /* DailySummaryView.swift */,
 				0210D91C67294E38A972B396 /* HalsaView.swift */,
 				7CCDDA395B13EEDF085E1836 /* HistoryView.swift */,
@@ -850,10 +856,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
+				9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
 				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
 				CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */,
+				3A402181B1A49020E1995FB6 /* HabitJournalViews.swift in Sources */,
 				E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */,
 				04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */,
 				5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */,
@@ -1006,7 +1014,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1191,7 +1199,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

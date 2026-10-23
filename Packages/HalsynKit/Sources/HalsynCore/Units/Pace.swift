@@ -29,6 +29,21 @@ public enum UnitSystem: String, CaseIterable, Codable, Identifiable, Sendable {
     }
 
     public var paceUnitSymbol: String { "/\(distanceUnitSymbol)" }
+
+    public var massUnitSymbol: String {
+        switch self {
+        case .metric: "kg"
+        case .imperial: "lb"
+        }
+    }
+
+    /// Kilogramos por unidad de peso mostrada.
+    public var kilogramsPerMassUnit: Double {
+        switch self {
+        case .metric: 1
+        case .imperial: 0.45359237
+        }
+    }
 }
 
 /// Ritmo de carrera, almacenado como segundos por kilómetro.
@@ -127,12 +142,20 @@ public enum HalsynFormat {
             return decimal(value, fractionDigits: 1, locale: locale)
         case .oxygenSaturation:
             return integer(value * 100, locale: locale)
+        case .bodyMass, .leanBodyMass:
+            return decimal(value / unit.kilogramsPerMassUnit, fractionDigits: 1, locale: locale)
+        case .bodyFatPercentage:
+            return decimal(value * 100, fractionDigits: 1, locale: locale)
         }
     }
 
     /// Unidad mostrada para una métrica según el sistema elegido. Es una clave
     /// localizable ("lpm" se muestra "bpm" en inglés, etc.).
     public static func unitSymbol(for kind: MetricKind, unit: UnitSystem = .metric) -> String {
-        kind == .walkingRunningDistance ? unit.distanceUnitSymbol : kind.unit.symbol
+        switch kind {
+        case .walkingRunningDistance: unit.distanceUnitSymbol
+        case .bodyMass, .leanBodyMass: unit.massUnitSymbol
+        default: kind.unit.symbol
+        }
     }
 }

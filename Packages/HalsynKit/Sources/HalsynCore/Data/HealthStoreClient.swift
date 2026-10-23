@@ -54,10 +54,13 @@ public protocol HealthStoreClient: Sendable {
 public struct UserCharacteristics: Hashable, Sendable {
     public var birthDate: Date?
     public var sex: ReferenceSex?
+    /// Última altura registrada en Salud, en metros.
+    public var heightMeters: Double?
 
-    public init(birthDate: Date? = nil, sex: ReferenceSex? = nil) {
+    public init(birthDate: Date? = nil, sex: ReferenceSex? = nil, heightMeters: Double? = nil) {
         self.birthDate = birthDate
         self.sex = sex
+        self.heightMeters = heightMeters
     }
 }
 

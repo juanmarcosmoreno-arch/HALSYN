@@ -12,12 +12,17 @@ final class ReferenceProfileStore {
 
     static let birthDateKey = "halsyn.profile.birthDate"
     static let sexKey = "halsyn.profile.sex"
+    static let heightKey = "halsyn.profile.heightCm"
 
     var birthDate: Date? {
         didSet { defaults.set(birthDate?.timeIntervalSinceReferenceDate, forKey: Self.birthDateKey) }
     }
     var sex: ReferenceSex? {
         didSet { defaults.set(sex?.rawValue, forKey: Self.sexKey) }
+    }
+    /// Altura en centímetros (para el IMC).
+    var heightCentimeters: Double? {
+        didSet { defaults.set(heightCentimeters, forKey: Self.heightKey) }
     }
 
     @ObservationIgnored private let defaults: UserDefaults
@@ -26,6 +31,7 @@ final class ReferenceProfileStore {
         self.defaults = defaults
         birthDate = (defaults.object(forKey: Self.birthDateKey) as? Double).map(Date.init(timeIntervalSinceReferenceDate:))
         sex = defaults.string(forKey: Self.sexKey).flatMap(ReferenceSex.init(rawValue:))
+        heightCentimeters = defaults.object(forKey: Self.heightKey) as? Double
     }
 
     var age: Int? {
@@ -39,7 +45,8 @@ final class ReferenceProfileStore {
         let characteristics = await provider.userCharacteristics()
         if let date = characteristics.birthDate { birthDate = date }
         if let value = characteristics.sex { sex = value }
-        return characteristics.birthDate != nil || characteristics.sex != nil
+        if let meters = characteristics.heightMeters { heightCentimeters = (meters * 1000).rounded() / 10 }
+        return characteristics.birthDate != nil || characteristics.sex != nil || characteristics.heightMeters != nil
     }
 }
 
@@ -316,6 +323,7 @@ struct ReferenceProfileSection: View {
                     LabeledContent("Edad", value: String(localized: "\(age) años"))
                 }
             }
+            HeightRow()
             Picker("Sexo (tablas de referencia)", selection: sex) {
                 Text("Sin indicar").tag(ReferenceSex?.none)
                 ForEach(ReferenceSex.allCases) { option in
@@ -334,20 +342,60 @@ struct ReferenceProfileSection: View {
                 }
                 .disabled(importing)
             }
-            if store.birthDate != nil || store.sex != nil {
-                Button("Borrar edad y sexo", role: .destructive) {
+            if store.birthDate != nil || store.sex != nil || store.heightCentimeters != nil {
+                Button("Borrar edad, sexo y altura", role: .destructive) {
                     store.birthDate = nil
                     store.sex = nil
+                    store.heightCentimeters = nil
                 }
             }
         } header: {
-            Text("Referencias por edad")
+            Text("Tu cuerpo")
         } footer: {
             if importFailed {
-                Text("Salud no ha compartido tu fecha de nacimiento ni tu sexo. Puedes escribirlos aquí.")
+                Text("Salud no ha compartido tu fecha de nacimiento, tu sexo ni tu altura. Puedes escribirlos aquí.")
             } else {
-                Text("Solo se usan para compararte con tablas científicas publicadas (VO₂ máx. y FC en reposo), que se dividen por edad y sexo biológico. Se guardan solo en este iPhone.")
+                Text("Edad y sexo biológico solo se usan para compararte con tablas científicas publicadas (VO₂ máx. y FC en reposo); la altura, para el IMC. Se guardan solo en este iPhone.")
             }
         }
+    }
+}
+
+/// Altura en cm (o pulgadas con unidades imperiales).
+private struct HeightRow: View {
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    private var store: ReferenceProfileStore { .shared }
+
+    private var isImperial: Bool { unitSystem == .imperial }
+
+    private var value: Binding<Double> {
+        Binding {
+            let centimeters = store.heightCentimeters ?? 170
+            return isImperial ? (centimeters / 2.54).rounded() : centimeters.rounded()
+        } set: { newValue in
+            store.heightCentimeters = isImperial ? (newValue * 2.54 * 10).rounded() / 10 : newValue
+        }
+    }
+
+    var body: some View {
+        if store.heightCentimeters == nil {
+            Button {
+                store.heightCentimeters = 170
+            } label: {
+                Label("Añadir altura", systemImage: "ruler")
+            }
+        } else {
+            Stepper(value: value, in: isImperial ? 39...98 : 100...250, step: 1) {
+                LabeledContent("Altura") {
+                    Text(verbatim: isImperial ? feetAndInches : "\(Int(value.wrappedValue)) cm")
+                        .monospacedDigit()
+                }
+            }
+        }
+    }
+
+    private var feetAndInches: String {
+        let inches = Int(value.wrappedValue)
+        return String(inches / 12) + " ft " + String(inches % 12) + " in"
     }
 }

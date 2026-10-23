@@ -21,6 +21,9 @@ public enum HealthKitTypeCatalog {
         case .activeEnergy: return HKQuantityType(.activeEnergyBurned)
         case .exerciseTime: return HKQuantityType(.appleExerciseTime)
         case .sleepDuration: return HKCategoryType(.sleepAnalysis)
+        case .bodyMass: return HKQuantityType(.bodyMass)
+        case .bodyFatPercentage: return HKQuantityType(.bodyFatPercentage)
+        case .leanBodyMass: return HKQuantityType(.leanBodyMass)
         }
     }
 
@@ -36,6 +39,8 @@ public enum HealthKitTypeCatalog {
         case .activeEnergy: return HKUnit.kilocalorie()
         case .exerciseTime: return HKUnit.minute()
         case .sleepDuration: return nil
+        case .bodyMass, .leanBodyMass: return HKUnit.gramUnit(with: .kilo)
+        case .bodyFatPercentage: return HKUnit.percent()
         }
     }
 
@@ -49,6 +54,8 @@ public enum HealthKitTypeCatalog {
         // Edad y sexo para las referencias por edad (Fase 8).
         types.insert(HKCharacteristicType(.dateOfBirth))
         types.insert(HKCharacteristicType(.biologicalSex))
+        // Altura para el IMC.
+        types.insert(HKQuantityType(.height))
         return types
     }
 

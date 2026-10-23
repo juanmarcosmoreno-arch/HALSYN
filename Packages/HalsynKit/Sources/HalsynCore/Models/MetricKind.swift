@@ -14,6 +14,10 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
     case activeEnergy
     case exerciseTime
     case sleepDuration
+    // Cuerpo (balanzas que escriben en Salud, p. ej. Xiaomi vía Zepp Life).
+    case bodyMass
+    case bodyFatPercentage
+    case leanBodyMass
 
     public var id: String { rawValue }
 
@@ -30,6 +34,9 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .activeEnergy: "Energía activa"
         case .exerciseTime: "Tiempo de ejercicio"
         case .sleepDuration: "Sueño"
+        case .bodyMass: "Peso"
+        case .bodyFatPercentage: "Grasa corporal"
+        case .leanBodyMass: "Masa magra"
         }
     }
 
@@ -46,6 +53,9 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .activeEnergy: "Energía"
         case .exerciseTime: "Ejercicio"
         case .sleepDuration: "Sueño"
+        case .bodyMass: "Peso"
+        case .bodyFatPercentage: "Grasa"
+        case .leanBodyMass: "Masa magra"
         }
     }
 
@@ -57,6 +67,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .steps: .steg
         case .walkingRunningDistance: .rorelse
         case .vo2Max: .form
+        case .bodyMass, .bodyFatPercentage, .leanBodyMass: .kropp
         case .exerciseTime: .tid
         default: nil
         }
@@ -74,6 +85,8 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .activeEnergy: .kilocalories
         case .exerciseTime: .minutes
         case .sleepDuration: .hours
+        case .bodyMass, .leanBodyMass: .kilograms
+        case .bodyFatPercentage: .percent
         }
     }
 
@@ -82,7 +95,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         switch self {
         case .steps, .walkingRunningDistance, .activeEnergy, .exerciseTime, .sleepDuration: .sum
         case .heartRate, .heartRateVariability, .respiratoryRate, .oxygenSaturation: .average
-        case .restingHeartRate, .vo2Max: .latest
+        case .restingHeartRate, .vo2Max, .bodyMass, .bodyFatPercentage, .leanBodyMass: .latest
         }
     }
 
@@ -91,6 +104,8 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
     public var latestLookbackDays: Int {
         switch self {
         case .vo2Max: 120
+        // La gente no se pesa a diario.
+        case .bodyMass, .bodyFatPercentage, .leanBodyMass: 60
         default: 1
         }
     }
@@ -107,6 +122,9 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .activeEnergy: "flame"
         case .exerciseTime: "stopwatch"
         case .sleepDuration: "moon"
+        case .bodyMass: "scalemass"
+        case .bodyFatPercentage: "percent"
+        case .leanBodyMass: "figure.strengthtraining.traditional"
         }
     }
 }
@@ -128,6 +146,7 @@ public enum MetricUnit: String, Codable, Sendable {
     case kilocalories
     case minutes
     case hours
+    case kilograms
 
     public var symbol: String {
         switch self {
@@ -141,6 +160,7 @@ public enum MetricUnit: String, Codable, Sendable {
         case .kilocalories: "kcal"
         case .minutes: "min"
         case .hours: "h"
+        case .kilograms: "kg"
         }
     }
 }

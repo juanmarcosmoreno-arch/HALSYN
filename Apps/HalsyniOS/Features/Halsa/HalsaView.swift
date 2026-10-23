@@ -68,7 +68,9 @@ struct HalsaView: View {
                         HealthAccessHint()
                     }
                     metricsGrid(snapshot)
+                    BodyCard()
                     recoveryCard(snapshot)
+                    JournalQuickCard()
                     trendCard(snapshot)
                     springCard(snapshot)
                     goalCard(snapshot)

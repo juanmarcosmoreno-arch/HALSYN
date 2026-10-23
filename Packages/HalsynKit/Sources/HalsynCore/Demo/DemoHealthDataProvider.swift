@@ -204,18 +204,23 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         case .walkingRunningDistance: return 6400 + 2200 * noise
         case .activeEnergy: return 540 + 160 * noise
         case .exerciseTime: return max(0, 36 + 22 * noise).rounded()
-        case .sleepDuration: return 7.4 + 0.7 * noise
+        // La noche del viernes (diario demo: alcohol) se duerme algo peor.
+        case .sleepDuration: return 7.4 + 0.7 * noise - (isSaturday(day) ? 0.4 : 0)
         // Relaciones plausibles para la demo: dormir más se asocia a más HRV y menos
         // FC en reposo; un día de mucho ejercicio, a menos HRV al día siguiente.
         case .restingHeartRate: return (54 + 2 * slowTrend + 2 * noise - 1.5 * (value(.sleepDuration, on: day) - 7.4)).rounded()
         case .heartRateVariability:
             let sleepEffect = 9 * (value(.sleepDuration, on: day) - 7.4)
             let loadEffect = -0.08 * (value(.exerciseTime, on: previousDay(day)) - 36)
-            return (62 + 6 * slowTrend + 6 * noise + sleepEffect + loadEffect).rounded()
+            return max(41, 62 + 6 * slowTrend + 6 * noise + sleepEffect + loadEffect - (isSaturday(day) ? 7 : 0)).rounded()
         case .heartRate: return (68 + 6 * noise).rounded()
         case .respiratoryRate: return 14.6 + 0.6 * noise
         case .vo2Max: return 47.8 + 0.6 * slowTrend + 0.2 * noise
         case .oxygenSaturation: return 0.97 + 0.01 * noise
+        // Peso con una oscilación lenta (±0,8 kg en unos meses) y ruido diario realista.
+        case .bodyMass: return ((74.5 + 0.8 * sin(Double(dayNumber(day)) / 45) + 0.3 * noise) * 10).rounded() / 10
+        case .bodyFatPercentage: return ((0.182 + 0.006 * sin(Double(dayNumber(day)) / 45) + 0.004 * noise) * 1000).rounded() / 1000
+        case .leanBodyMass: return ((value(.bodyMass, on: day) * (1 - value(.bodyFatPercentage, on: day))) * 10).rounded() / 10
         }
     }
 
@@ -274,6 +279,10 @@ public struct DemoHealthDataProvider: HealthDataProviding {
     private func isWeekend(_ day: Date) -> Bool {
         let weekday = calendar.component(.weekday, from: day)
         return weekday == 1 || weekday == 7
+    }
+
+    private func isSaturday(_ day: Date) -> Bool {
+        calendar.component(.weekday, from: day) == 7
     }
 
     private func previousDay(_ day: Date) -> Date {

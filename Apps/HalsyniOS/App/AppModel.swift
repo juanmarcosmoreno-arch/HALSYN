@@ -56,6 +56,12 @@ final class AppModel {
     /// Se llama al arrancar: lee el estado de permisos y empieza a escuchar cambios.
     func start() async {
         authorizationState = await provider.authorizationState()
+        // Una versión nueva puede leer tipos nuevos (peso, altura…): se piden al arrancar.
+        if !isDemo && authorizationState == .notDetermined {
+            try? await provider.requestAuthorization()
+            authorizationState = await provider.authorizationState()
+            refresh()
+        }
         observeChanges()
     }
 
