@@ -21,10 +21,16 @@ struct WorkoutSessionView: View {
                         }
                     }
             } else if workout.phase == .preparing {
-                VStack(spacing: 8) {
-                    HalsynSymbol().frame(height: 44)
-                    ProgressView()
-                    Text("Preparando…").font(.footnote)
+                Group {
+                    if let countdown = workout.countdown {
+                        CountdownView(value: countdown)
+                    } else {
+                        VStack(spacing: 8) {
+                            HalsynSymbol().frame(height: 44)
+                            ProgressView()
+                            Text("Preparando…").font(.footnote)
+                        }
+                    }
                 }
                 .toolbar(.hidden, for: .navigationBar)
             } else {
@@ -34,6 +40,42 @@ struct WorkoutSessionView: View {
             }
         }
         .interactiveDismissDisabled(workout.isActive)
+    }
+}
+
+/// 3, 2, 1 en grande, con un anillo que se cierra en cada segundo.
+private struct CountdownView: View {
+    let value: Int
+    @State private var progress: Double = 0
+
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            Circle()
+                .stroke(Color(HalsynPalette.darkAccent).opacity(0.2), lineWidth: 8)
+                .padding(14)
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(Color(HalsynPalette.darkAccent), style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .padding(14)
+            Text(verbatim: "\(value)")
+                .font(.system(size: 96, weight: .bold, design: .rounded).monospacedDigit())
+                .foregroundStyle(Color.white)
+                .contentTransition(.numericText(countsDown: true))
+                .id(value)
+                .transition(.scale(scale: 1.4).combined(with: .opacity))
+        }
+        .animation(.spring(response: 0.35, dampingFraction: 0.7), value: value)
+        .onAppear { fill() }
+        .onChange(of: value) { _, _ in fill() }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "\(value)"))
+    }
+
+    private func fill() {
+        progress = 0
+        withAnimation(.linear(duration: 0.95)) { progress = 1 }
     }
 }
 

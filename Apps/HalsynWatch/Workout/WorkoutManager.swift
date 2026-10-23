@@ -40,6 +40,8 @@ final class WorkoutManager: NSObject {
     private(set) var routeCoordinates: [CLLocationCoordinate2D] = []
     /// Último aviso (vuelta, paso de intervalo, alerta) para mostrarlo unos segundos.
     private(set) var banner: Banner?
+    /// Cuenta atrás antes de empezar (3, 2, 1); `nil` fuera de ella.
+    private(set) var countdown: Int?
 
     struct Banner: Equatable {
         let id = UUID()
@@ -121,6 +123,15 @@ final class WorkoutManager: NSObject {
                 locationManager.requestWhenInUseAuthorization()
                 locationManager.startUpdatingLocation()
             }
+
+            // Cuenta atrás 3-2-1: mientras, los sensores (pulso y GPS) se preparan.
+            session.prepare()
+            for value in stride(from: 3, through: 1, by: -1) {
+                countdown = value
+                WKInterfaceDevice.current().play(.click)
+                try await Task.sleep(for: .seconds(1))
+            }
+            countdown = nil
 
             let start = Date()
             session.startActivity(with: start)
@@ -205,6 +216,7 @@ final class WorkoutManager: NSObject {
         routeCoordinates = []
         lastRoutePoint = nil
         banner = nil
+        countdown = nil
         ticker?.cancel()
         ticker = nil
         outcome = nil
