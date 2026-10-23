@@ -107,6 +107,112 @@
         }
       }
     },
+    "%@ lpm por debajo de tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm below your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm abaixo da sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm en dessous de ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm sotto la tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min under ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min under dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你的平均值低 %@ 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत से %@ bpm कम"
+          }
+        }
+      }
+    },
+    "%@ lpm por encima de tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm above your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm acima da sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm au-dessus de ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm sopra la tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min över ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min over dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你的平均值高 %@ 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत से %@ bpm ज़्यादा"
+          }
+        }
+      }
+    },
     "%@ min de ejercicio en los últimos 7 días (referencia: 150)": {
       "extractionState": "manual",
       "localizations": {
@@ -156,6 +262,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 7 दिनों में %@ min व्यायाम (संदर्भ: 150)"
+          }
+        }
+      }
+    },
+    "%@ por debajo de tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ below your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ abaixo da sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ en dessous de ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sotto la tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ under ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ under dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你的平均值低 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत से %@ कम"
+          }
+        }
+      }
+    },
+    "%@ por encima de tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ above your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ acima da sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ au-dessus de ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sopra la tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ över ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ over dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你的平均值高 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत से %@ ज़्यादा"
+          }
+        }
+      }
+    },
+    "%@ veces tu esfuerzo habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ times your usual effort"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ vezes o seu esforço habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ fois ton effort habituel"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ volte il tuo sforzo abituale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ gånger din vanliga belastning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ gange din normale belastning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是你常规负荷的 %@ 倍"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी सामान्य मेहनत का %@ गुना"
           }
         }
       }
@@ -1273,6 +1538,112 @@
         }
       }
     },
+    "Animación de apertura": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening animation"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animação de abertura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animation d’ouverture"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animazione di apertura"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startanimering"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbningsanimation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开屏动画"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरुआती एनिमेशन"
+          }
+        }
+      }
+    },
+    "Anoche": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last night"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontem à noite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette nuit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stanotte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I natt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I nat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "昨晚"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कल रात"
+          }
+        }
+      }
+    },
     "Anoche dormiste %@, dentro de lo recomendado.": {
       "extractionState": "manual",
       "localizations": {
@@ -1905,6 +2276,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "मुख्य बटन"
+          }
+        }
+      }
+    },
+    "Breve": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Curta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Courte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breve"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kort"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kort"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "简短"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छोटा"
           }
         }
       }
@@ -3764,6 +4188,59 @@
         }
       }
     },
+    "Completa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complète"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fullständig"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完整"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरा"
+          }
+        }
+      }
+    },
     "Con ritmo objetivo, el reloj avisa si vas más rápido o más lento durante la serie.": {
       "extractionState": "manual",
       "localizations": {
@@ -4237,6 +4714,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कम विश्वसनीयता"
+          }
+        }
+      }
+    },
+    "Confianza baja: faltan datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low confidence: missing data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confiança baixa: faltam dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confiance faible : données manquantes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affidabilità bassa: mancano dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Låg tillförlitlighet: data saknas"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lav pålidelighed: data mangler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可信度低：数据不足"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कम विश्वसनीयता: डेटा कम है"
           }
         }
       }
@@ -5778,6 +6308,59 @@
         }
       }
     },
+    "Desliza para ver cada fase": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swipe to see each stage"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deslize para ver cada fase"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Balaie pour voir chaque phase"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scorri per vedere ogni fase"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svep för att se varje stadium"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stryg for at se hvert stadie"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "滑动查看各个阶段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर चरण देखने के लिए स्वाइप करें"
+          }
+        }
+      }
+    },
     "Desnivel acumulado": {
       "extractionState": "manual",
       "localizations": {
@@ -5827,6 +6410,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "कुल चढ़ाई"
+          }
+        }
+      }
+    },
+    "Despertó": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woke up"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acordou"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réveil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risveglio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaknade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vågnede"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "醒来"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जागे"
+          }
+        }
+      }
+    },
+    "Despierto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Awake"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acordado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Éveillé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaken"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vågen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जागे हुए"
           }
         }
       }
@@ -6198,6 +6887,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "चलकर या दौड़कर तय की गई दूरी।"
+          }
+        }
+      }
+    },
+    "Dormido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asleep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dormindo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endormi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Addormentato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sover"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sover"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡着"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोए हुए"
           }
         }
       }
@@ -6679,59 +7421,6 @@
         }
       }
     },
-    "El motor de recuperación (RecoveryEngine) llega en la Fase 6.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The recovery engine (RecoveryEngine) arrives in Phase 6."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O motor de recuperação (RecoveryEngine) chega na Fase 6."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le moteur de récupération (RecoveryEngine) arrive lors de la Phase 6."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il motore di recupero (RecoveryEngine) arriva nella Fase 6."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Återhämtningsmotorn (RecoveryEngine) kommer i Fas 6."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Restitutionsmotoren (RecoveryEngine) kommer i Fase 6."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "恢复引擎（RecoveryEngine）将在第 6 阶段推出。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "रिकवरी इंजन (RecoveryEngine) चरण 6 में आएगा।"
-          }
-        }
-      }
-    },
     "El reloj vibra tras 10 s fuera de rango y repite cada minuto mientras sigas fuera. También avisa cuando vuelves al rango.": {
       "extractionState": "manual",
       "localizations": {
@@ -6891,6 +7580,59 @@
         }
       }
     },
+    "En cama": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In Bed"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na Cama"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au lit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A letto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I sängen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I seng"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卧床"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बिस्तर में"
+          }
+        }
+      }
+    },
     "En carreras libres. En intervalos manda el ritmo objetivo de cada serie.": {
       "extractionState": "manual",
       "localizations": {
@@ -6993,6 +7735,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "रुका हुआ"
+          }
+        }
+      }
+    },
+    "En tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I nivå med ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与你的平均值持平"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत पर"
+          }
+        }
+      }
+    },
+    "En tu rango habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Within your usual range"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na sua faixa habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans ta plage habituelle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nel tuo intervallo abituale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inom ditt vanliga intervall"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inden for dit normale niveau"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "处于你的常规范围内"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी सामान्य सीमा के भीतर"
           }
         }
       }
@@ -7686,6 +8534,218 @@
         }
       }
     },
+    "Esencial": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essencial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Essentiel"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Principale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kärnsömn"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kerne"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "核心"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोर"
+          }
+        }
+      }
+    },
+    "Esfuerzo de los últimos 3 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effort over the last 3 days"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esforço dos últimos 3 dias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effort des 3 derniers jours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sforzo degli ultimi 3 giorni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning de senaste 3 dagarna"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning de seneste 3 dage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 3 天的负荷"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 3 दिनों की मेहनत"
+          }
+        }
+      }
+    },
+    "Esfuerzo similar o menor que lo habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effort similar to or lower than usual"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esforço semelhante ou menor que o habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effort similaire ou inférieur à l’habitude"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sforzo simile o inferiore al solito"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning som vanligt eller lägre"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning som normalt eller lavere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "负荷与常规相当或更低"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेहनत सामान्य जितनी या उससे कम"
+          }
+        }
+      }
+    },
+    "Esta fuente no registra fases del sueño.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This source doesn't record sleep stages."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta fonte não registra fases do sono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette source n’enregistre pas les phases du sommeil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa fonte non registra le fasi del sonno."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här källan registrerar inte sömnstadier."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denne kilde registrerer ikke søvnstadier."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此来源不记录睡眠阶段。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह स्रोत नींद के चरण दर्ज नहीं करता।"
+          }
+        }
+      }
+    },
     "Esta semana": {
       "extractionState": "manual",
       "localizations": {
@@ -7735,6 +8795,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "इस सप्ताह"
+          }
+        }
+      }
+    },
+    "Esta semana alcanzaste tu objetivo todas las noches registradas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week you reached your goal every recorded night."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana você alcançou sua meta em todas as noites registradas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette semaine, tu as atteint ton objectif toutes les nuits enregistrées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa settimana hai raggiunto il tuo obiettivo in tutte le notti registrate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I veckan nådde du ditt mål alla registrerade nätter."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I denne uge nåede du dit mål alle registrerede nætter."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周你在所有有记录的夜晚都达到了目标。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस हफ़्ते आपने दर्ज की गई हर रात अपना लक्ष्य पूरा किया।"
+          }
+        }
+      }
+    },
+    "Esta semana te faltaron %@ respecto a tu objetivo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week you were %@ short of your goal."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana faltaram %@ para a sua meta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette semaine, il t’a manqué %@ par rapport à ton objectif."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa settimana ti sono mancati %@ rispetto al tuo obiettivo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I veckan saknades %@ till ditt mål."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I denne uge manglede du %@ i forhold til dit mål."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周你距离目标还差 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस हफ़्ते आप अपने लक्ष्य से %@ पीछे रहे।"
           }
         }
       }
@@ -8534,55 +9700,55 @@
         }
       }
     },
-    "FC en reposo · 7 días": {
+    "FC en reposo frente a tu media": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Resting HR · 7 days"
+            "value": "Resting HR vs. your average"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "FC em repouso · 7 dias"
+            "value": "FC em repouso em relação à sua média"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "FC au repos · 7 jours"
+            "value": "FC au repos par rapport à ta moyenne"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "FC a riposo · 7 giorni"
+            "value": "FC a riposo rispetto alla tua media"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vilopuls · 7 dagar"
+            "value": "Vilopuls jämfört med ditt snitt"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hvilepuls · 7 dage"
+            "value": "Hvilepuls i forhold til dit gennemsnit"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "静息心率 · 7天"
+            "value": "静息心率与你的平均值对比"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आराम की हृदय गति · 7 दिन"
+            "value": "आपके औसत की तुलना में आराम की हृदय गति"
           }
         }
       }
@@ -8958,6 +10124,112 @@
         }
       }
     },
+    "Faltan días para conocer tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More days needed to know your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam dias para conhecer sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut plus de jours pour connaître ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono più giorni per conoscere la tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fler dagar behövs för att känna till ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der mangler dage for at kende dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还需要更多天的数据才能得出你的平均值"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका औसत जानने के लिए और दिन चाहिए"
+          }
+        }
+      }
+    },
+    "Fase": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stadium"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stadie"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "阶段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चरण"
+          }
+        }
+      }
+    },
     "Fase %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -9011,59 +10283,6 @@
         }
       }
     },
-    "Fases del sueño, regularidad y relación actividad-descanso": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleep stages, regularity and activity–rest balance"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fases do sono, regularidade e relação atividade-descanso"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Phases du sommeil, régularité et relation activité-repos"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fasi del sonno, regolarità e rapporto attività-riposo"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sömnstadier, regelbundenhet och förhållandet mellan aktivitet och vila"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Søvnstadier, regelmæssighed og forholdet mellem aktivitet og hvile"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "睡眠阶段、规律性及活动与休息的关系"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "नींद के चरण, नियमितता और गतिविधि-आराम का संबंध"
-          }
-        }
-      }
-    },
     "Fechas y números siguen la configuración regional de tu iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -9113,6 +10332,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "तारीखें और संख्याएं आपके iPhone की क्षेत्रीय सेटिंग्स के अनुसार दिखती हैं।"
+          }
+        }
+      }
+    },
+    "Fin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fim"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slut"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "结束"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंत"
           }
         }
       }
@@ -9647,6 +10919,59 @@
         }
       }
     },
+    "HRV frente a tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV vs. your average"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV em relação à sua média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV par rapport à ta moyenne"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV rispetto alla tua media"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV jämfört med ditt snitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV i forhold til dit gennemsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV 与你的平均值对比"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके औसत की तुलना में HRV"
+          }
+        }
+      }
+    },
     "HRV un %@ por debajo de tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -9700,55 +11025,161 @@
         }
       }
     },
-    "HRV · 7 días": {
+    "Habitual máx.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 days"
+            "value": "Usual max."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 dias"
+            "value": "Habitual máx."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 jours"
+            "value": "Habituel max."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 giorni"
+            "value": "Abituale max"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 dagar"
+            "value": "Vanligt max"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 dage"
+            "value": "Normalt maks."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7天"
+            "value": "常规最高"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "HRV · 7 दिन"
+            "value": "सामान्य अधिकतम"
+          }
+        }
+      }
+    },
+    "Habitual mín.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usual min."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habitual mín."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habituel min."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abituale min"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanligt min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normalt min."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常规最低"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सामान्य न्यूनतम"
+          }
+        }
+      }
+    },
+    "Hacen falta tu HRV o tu FC en reposo y unos días de historial para estimarla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It needs your HRV or resting HR and a few days of history to estimate it."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "É preciso ter sua HRV ou sua FC em repouso e alguns dias de histórico para estimá-la."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta HRV ou ta FC au repos et quelques jours d’historique sont nécessaires pour l’estimer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono la tua HRV o la tua FC a riposo e qualche giorno di storico per stimarla."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din HRV eller vilopuls och några dagars historik behövs för att uppskatta den."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din HRV eller hvilepuls og nogle dages historik er nødvendige for at estimere den."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要你的 HRV 或静息心率以及几天的历史数据才能估算。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इसका अनुमान लगाने के लिए आपकी HRV या आराम की हृदय गति और कुछ दिनों का इतिहास चाहिए।"
           }
         }
       }
@@ -9965,6 +11396,59 @@
         }
       }
     },
+    "Hipnograma de la noche": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Night hypnogram"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hipnograma da noite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hypnogramme de la nuit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ipnogramma della notte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nattens hypnogram"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nattens hypnogram"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜间睡眠图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रात का हिप्नोग्राम"
+          }
+        }
+      }
+    },
     "Historial": {
       "extractionState": "manual",
       "localizations": {
@@ -10067,6 +11551,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "समय"
+          }
+        }
+      }
+    },
+    "Horario de sueño por noche": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep schedule by night"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horário de sono por noite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horaires de sommeil par nuit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orari del sonno per notte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömntider per natt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvntider pr. nat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每晚的睡眠时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर रात का नींद का समय"
           }
         }
       }
@@ -10813,6 +12350,59 @@
         }
       }
     },
+    "Inicio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Início"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Début"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरुआत"
+          }
+        }
+      }
+    },
     "Instala HÅLSYN en el Apple Watch para recibir estos ajustes.": {
       "extractionState": "manual",
       "localizations": {
@@ -11396,6 +12986,59 @@
         }
       }
     },
+    "La recomendación general para adultos es de 7 a 9 horas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The general recommendation for adults is 7 to 9 hours."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A recomendação geral para adultos é de 7 a 9 horas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La recommandation générale pour les adultes est de 7 à 9 heures."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La raccomandazione generale per gli adulti è di 7–9 ore."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den allmänna rekommendationen för vuxna är 7 till 9 timmar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den generelle anbefaling for voksne er 7 til 9 timer."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对成年人的一般建议是 7 到 9 小时。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वयस्कों के लिए सामान्य सिफ़ारिश 7 से 9 घंटे है।"
+          }
+        }
+      }
+    },
     "Las comparaciones con tu propio historial mejoran a medida que HÅLSYN acumula días de datos. Es normal que al principio falten algunos indicadores.": {
       "extractionState": "manual",
       "localizations": {
@@ -11657,6 +13300,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़िनिश"
+          }
+        }
+      }
+    },
+    "Lleva el Apple Watch al dormir (o usa otra app que guarde el sueño en Salud) para ver tus noches aquí.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wear your Apple Watch to sleep (or use another app that saves sleep to Health) to see your nights here."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use o Apple Watch para dormir (ou outro app que salve o sono no Saúde) para ver suas noites aqui."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porte ton Apple Watch pour dormir (ou utilise une autre app qui enregistre le sommeil dans Santé) pour voir tes nuits ici."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indossa Apple Watch mentre dormi (o usa un’altra app che salvi il sonno in Salute) per vedere qui le tue notti."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bär Apple Watch när du sover (eller använd en annan app som sparar sömn i Hälsa) för att se dina nätter här."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bær dit Apple Watch, når du sover (eller brug en anden app, der gemmer søvn i Sundhed), for at se dine nætter her."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡觉时佩戴 Apple Watch（或使用其他会将睡眠存入“健康”的 App），即可在这里查看你的夜晚。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी रातें यहां देखने के लिए सोते समय Apple Watch पहनें (या कोई और ऐप इस्तेमाल करें जो नींद को स्वास्थ्य में सेव करता हो)।"
           }
         }
       }
@@ -12244,6 +13940,59 @@
         }
       }
     },
+    "Media %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnit %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "औसत %@"
+          }
+        }
+      }
+    },
     "Media de %@ pasos al día en los últimos 7 días": {
       "extractionState": "manual",
       "localizations": {
@@ -12350,55 +14099,55 @@
         }
       }
     },
-    "Media semanal": {
+    "Media y variación de los horarios. Horarios estables suelen ayudar a dormir mejor.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly average"
+            "value": "Average and variation of your times. Steady times usually help you sleep better."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Média semanal"
+            "value": "Média e variação dos horários. Horários estáveis costumam ajudar a dormir melhor."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Moyenne hebdomadaire"
+            "value": "Moyenne et variation des horaires. Des horaires réguliers aident souvent à mieux dormir."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Media settimanale"
+            "value": "Media e variazione degli orari. Orari regolari di solito aiutano a dormire meglio."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Veckosnitt"
+            "value": "Snitt och variation för tiderna. Jämna tider brukar hjälpa dig att sova bättre."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ugentligt gennemsnit"
+            "value": "Gennemsnit og variation af tidspunkterne. Faste tidspunkter hjælper ofte til bedre søvn."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每周平均"
+            "value": "作息时间的平均值和波动。作息稳定通常有助于睡得更好。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "साप्ताहिक औसत"
+            "value": "समय का औसत और उतार-चढ़ाव। नियमित समय अक्सर बेहतर नींद में मदद करता है।"
           }
         }
       }
@@ -13035,6 +14784,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "बहुत हल्का"
+          }
+        }
+      }
+    },
+    "Más alta que tu rango habitual suele acompañar a un buen descanso; más baja, a cansancio, estrés o enfermedad. Compárala solo contigo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Higher than your usual range tends to go with good rest; lower, with tiredness, stress or illness. Compare it only with yourself."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais alta que sua faixa habitual costuma acompanhar um bom descanso; mais baixa, cansaço, estresse ou doença. Compare-a só com você mesmo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus élevée que ta plage habituelle, elle accompagne souvent un bon repos ; plus basse, la fatigue, le stress ou la maladie. Compare-la uniquement à toi-même."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più alta del tuo intervallo abituale di solito accompagna un buon riposo; più bassa, stanchezza, stress o malattia. Confrontala solo con te stesso."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högre än ditt vanliga intervall brukar höra ihop med god vila; lägre med trötthet, stress eller sjukdom. Jämför den bara med dig själv."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højere end dit normale niveau følger ofte med god hvile; lavere med træthed, stress eller sygdom. Sammenlign den kun med dig selv."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高于你的常规范围通常意味着休息良好；低于则可能伴随疲劳、压力或生病。只和你自己比较。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी सामान्य सीमा से ज़्यादा होना अक्सर अच्छे आराम के साथ होता है; कम होना थकान, तनाव या बीमारी के साथ। इसकी तुलना सिर्फ़ खुद से करें।"
           }
         }
       }
@@ -14152,6 +15954,59 @@
         }
       }
     },
+    "Noche": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Night"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜晚"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रात"
+          }
+        }
+      }
+    },
     "Nombre": {
       "extractionState": "manual",
       "localizations": {
@@ -14307,6 +16162,218 @@
           "stringUnit": {
             "state": "translated",
             "value": "लक्ष्य"
+          }
+        }
+      }
+    },
+    "Objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य"
+          }
+        }
+      }
+    },
+    "Objetivo cumplido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal met"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta cumprida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif atteint"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo raggiunto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målet nått"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål nået"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已达成目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य पूरा"
+          }
+        }
+      }
+    },
+    "Objetivo de sueño": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep goal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta de sono"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif de sommeil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo di sonno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömnmål"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnmål"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद का लक्ष्य"
+          }
+        }
+      }
+    },
+    "Objetivo: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif : %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål: %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标：%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य: %@"
           }
         }
       }
@@ -15371,6 +17438,112 @@
         }
       }
     },
+    "Por debajo de lo habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Below your usual"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abaixo do habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En dessous de l’habitude"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sotto il solito"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under det vanliga"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under det normale"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低于常规"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सामान्य से कम"
+          }
+        }
+      }
+    },
+    "Por debajo del objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Below goal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abaixo da meta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En dessous de l’objectif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sotto l’obiettivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under målet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under målet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "低于目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य से कम"
+          }
+        }
+      }
+    },
     "Por encima de la zona": {
       "extractionState": "manual",
       "localizations": {
@@ -15420,6 +17593,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "ज़ोन से ऊपर"
+          }
+        }
+      }
+    },
+    "Por encima de lo habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Above your usual"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acima do habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au-dessus de l’habitude"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sopra il solito"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Över det vanliga"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over det normale"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高于常规"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सामान्य से ज़्यादा"
           }
         }
       }
@@ -15848,6 +18074,59 @@
         }
       }
     },
+    "Profundo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profundo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profond"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profondo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Djupsömn"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dyb"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深度"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गहरी"
+          }
+        }
+      }
+    },
     "Protegido mientras el dispositivo está bloqueado": {
       "extractionState": "manual",
       "localizations": {
@@ -16268,6 +18547,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रिकवरी"
+          }
+        }
+      }
+    },
+    "REM": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paradoxal"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速动眼"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REM"
           }
         }
       }
@@ -17862,6 +20194,59 @@
         }
       }
     },
+    "Se durmió": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fell asleep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adormeceu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endormissement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Addormentamento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somnade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faldt i søvn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सो गए"
+          }
+        }
+      }
+    },
     "Se enviarán al Apple Watch cuando esté disponible.": {
       "extractionState": "manual",
       "localizations": {
@@ -18498,6 +20883,59 @@
         }
       }
     },
+    "Sin dato este día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data this day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dado neste dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de donnée ce jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato per questo giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data den här dagen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data denne dag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这一天没有数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस दिन का डेटा नहीं"
+          }
+        }
+      }
+    },
     "Sin datos": {
       "extractionState": "manual",
       "localizations": {
@@ -18975,6 +21413,59 @@
         }
       }
     },
+    "Sin sueño registrado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sleep recorded"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum sono registrado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun sommeil enregistré"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun sonno registrato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen sömn registrerad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen søvn registreret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有睡眠记录"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई नींद दर्ज नहीं"
+          }
+        }
+      }
+    },
     "Sin vueltas todavía": {
       "extractionState": "manual",
       "localizations": {
@@ -19346,55 +21837,55 @@
         }
       }
     },
-    "Sueño · 7 días": {
+    "Sueño de anoche": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep · 7 days"
+            "value": "Last night's sleep"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sono · 7 dias"
+            "value": "Sono de ontem à noite"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sommeil · 7 jours"
+            "value": "Sommeil de cette nuit"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sonno · 7 giorni"
+            "value": "Sonno di stanotte"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sömn · 7 dagar"
+            "value": "Nattens sömn"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Søvn · 7 dage"
+            "value": "Søvn i nat"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠 · 7天"
+            "value": "昨晚的睡眠"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "नींद · 7 दिन"
+            "value": "कल रात की नींद"
           }
         }
       }
@@ -19607,6 +22098,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "लैप समय"
+          }
+        }
+      }
+    },
+    "Te despertaste": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You woke up"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você acordou"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu t’es réveillé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ti sei svegliato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du vaknade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du vågnede"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你醒来"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप जागे"
+          }
+        }
+      }
+    },
+    "Te dormiste": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You fell asleep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você adormeceu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu t’es endormi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ti sei addormentato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du somnade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du faldt i søvn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你入睡"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप सोए"
           }
         }
       }
@@ -19982,6 +22579,59 @@
         }
       }
     },
+    "Tiempo dormido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time asleep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo dormindo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps endormi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di sonno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sovtid"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvntid"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠时间占比"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने का समय"
+          }
+        }
+      }
+    },
     "Tiempo dormido registrado por el Apple Watch u otras fuentes de Apple Health.": {
       "extractionState": "manual",
       "localizations": {
@@ -20141,6 +22791,112 @@
         }
       }
     },
+    "Toca para saltar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to skip"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque para pular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche pour passer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca per saltare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck för att hoppa över"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryk for at springe over"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点跳过"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छोड़ने के लिए टैप करें"
+          }
+        }
+      }
+    },
+    "Toca una noche para ver su horario": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a night to see its times"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque em uma noite para ver o horário"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touche une nuit pour voir ses horaires"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca una notte per vederne gli orari"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck på en natt för att se tiderna"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryk på en nat for at se tidspunkterne"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点某一晚查看作息时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समय देखने के लिए किसी रात पर टैप करें"
+          }
+        }
+      }
+    },
     "Todavía no hay datos suficientes de hoy para un resumen.": {
       "extractionState": "manual",
       "localizations": {
@@ -20190,6 +22946,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सारांश के लिए आज का पर्याप्त डेटा अभी नहीं है।"
+          }
+        }
+      }
+    },
+    "Tramo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segment"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segment"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tratto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsnitt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afsnit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "时段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हिस्सा"
           }
         }
       }
@@ -20618,6 +23427,59 @@
         }
       }
     },
+    "Tu rango habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your usual range"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua faixa habitual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta plage habituelle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo intervallo abituale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt vanliga intervall"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dit normale niveau"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的常规范围"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी सामान्य सीमा"
+          }
+        }
+      }
+    },
     "Tu resumen del día está listo.": {
       "extractionState": "manual",
       "localizations": {
@@ -20830,6 +23692,59 @@
         }
       }
     },
+    "Tus noches · 14 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your nights · 14 days"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas noites · 14 dias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes nuits · 14 jours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le tue notti · 14 giorni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina nätter · 14 dagar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine nætter · 14 dage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的夜晚 · 14 天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी रातें · 14 दिन"
+          }
+        }
+      }
+    },
     "Tus zonas": {
       "extractionState": "manual",
       "localizations": {
@@ -20932,6 +23847,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रोज़ एक रिमाइंडर आपको अपना सारांश देखने के लिए बुलाता है। नोटिफ़िकेशन में कोई स्वास्थ्य डेटा नहीं होता।"
+          }
+        }
+      }
+    },
+    "Una FC en reposo por encima de tu rango habitual durante varios días puede indicar que necesitas más descanso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A resting HR above your usual range for several days may mean you need more rest."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma FC em repouso acima da sua faixa habitual por vários dias pode indicar que você precisa descansar mais."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une FC au repos au-dessus de ta plage habituelle pendant plusieurs jours peut indiquer que tu as besoin de plus de repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una FC a riposo sopra il tuo intervallo abituale per diversi giorni può indicare che hai bisogno di più riposo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En vilopuls över ditt vanliga intervall under flera dagar kan tyda på att du behöver mer vila."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En hvilepuls over dit normale niveau i flere dage kan betyde, at du har brug for mere hvile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果静息心率连续几天高于你的常规范围，可能说明你需要更多休息。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर कई दिनों तक आराम की हृदय गति आपकी सामान्य सीमा से ज़्यादा रहे, तो हो सकता है कि आपको और आराम की ज़रूरत है।"
           }
         }
       }
@@ -21144,6 +24112,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमानित VO₂ max"
+          }
+        }
+      }
+    },
+    "Valor de ayer: aún no hay medición de hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yesterday's value: no measurement today yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valor de ontem: ainda não há medição de hoje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valeur d’hier : pas encore de mesure aujourd’hui"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valore di ieri: ancora nessuna misurazione oggi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gårdagens värde: ingen mätning i dag än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gårsdagens værdi: ingen måling i dag endnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "昨天的数值：今天还没有测量"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कल का मान: आज का माप अभी नहीं है"
           }
         }
       }
@@ -22791,6 +25812,112 @@
         }
       }
     },
+    "«Tiempo dormido» es la parte del periodo entre dormirte y despertarte que pasaste dormido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Time asleep» is the part of the time between falling asleep and waking up that you spent asleep."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Tempo dormindo» é a parte do período entre adormecer e acordar que você passou dormindo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Temps endormi» correspond à la part de la période entre l’endormissement et le réveil que tu as passée à dormir."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Tempo di sonno» è la parte del periodo tra quando ti addormenti e quando ti svegli che hai trascorso dormendo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Sovtid» är den del av tiden mellan att du somnade och vaknade som du faktiskt sov."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Søvntid» er den del af perioden mellem at falde i søvn og vågne, som du faktisk sov."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“睡眠时间占比”是指从入睡到醒来这段时间中你实际睡着的部分。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«सोने का समय» सोने और जागने के बीच की अवधि का वह हिस्सा है जो आपने सोते हुए बिताया।"
+          }
+        }
+      }
+    },
+    "± %@ min": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ 分钟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "± %@ min"
+          }
+        }
+      }
+    },
     "¿Faltan datos? Comprueba en Ajustes › Salud › Acceso a datos y dispositivos › HÅLSYN qué datos compartes, y que llevas el Apple Watch.": {
       "extractionState": "manual",
       "localizations": {
@@ -22999,6 +26126,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछला रन"
+          }
+        }
+      }
+    },
+    "Últimas 4 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 4 weeks"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Últimas 4 semanas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 dernières semaines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultime 4 settimane"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 4 veckorna"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seneste 4 uger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 4 周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 4 हफ़्ते"
           }
         }
       }
