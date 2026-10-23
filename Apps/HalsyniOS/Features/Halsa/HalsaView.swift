@@ -227,8 +227,8 @@ struct HalsaView: View {
                 HalsynSectionHeader("Tendencias", eyebrow: HalsynLexicon.steg.rawValue, actionTitle: "Ver INSIKT") {
                     model.selectedTab = .insikt
                 }
-                HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar)
-                    .frame(height: 140)
+                HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar, target: HealthScoreConfiguration().stepsReference, unit: "pasos")
+                    .frame(height: 210)
             }
         }
     }

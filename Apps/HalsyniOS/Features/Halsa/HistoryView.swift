@@ -27,8 +27,8 @@ struct HistoryView: View {
                     HalsynCard {
                         VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                             HalsynSectionHeader("Evolución", eyebrow: HalsynModule.insikt.brandName)
-                            HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100)
-                                .frame(height: 150)
+                            HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100, usualRange: usualRange(scores.map { Double($0.value) }))
+                                .frame(height: 230)
                         }
                     }
                     HalsynCard {

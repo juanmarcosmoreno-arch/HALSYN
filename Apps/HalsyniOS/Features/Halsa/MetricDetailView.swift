@@ -46,10 +46,24 @@ struct MetricDetailView: View {
                 HalsynCard {
                     VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                         HalsynSectionHeader("Últimos 30 días")
-                        HalsynTrendChart(values: displayValues(series), title: kind.shortTitle, style: kind.dailyAggregation == .sum ? .bar : .line)
-                            .frame(height: 180)
-                        if let average = series.average {
-                            HalsynMetric(title: "Tu media del periodo", value: HalsynFormat.metricValue(average, kind: kind, unit: unitSystem), unit: HalsynFormat.unitSymbol(for: kind, unit: unitSystem))
+                        let all = displayValues(series)
+                        let cutoff = Calendar.current.date(byAdding: .day, value: -29, to: Calendar.current.startOfDay(for: .now)) ?? .now
+                        let shown = all.filter { $0.day >= cutoff }
+                        let isSum = kind.dailyAggregation == .sum
+                        HalsynTrendChart(
+                            values: shown,
+                            title: kind.shortTitle,
+                            style: isSum ? .bar : .line,
+                            // Indicadores fisiológicos: tu rango habitual de los 30 días anteriores.
+                            usualRange: isSum ? nil : usualRange(all.filter { $0.day < cutoff }.map(\.value)),
+                            target: kind == .steps ? HealthScoreConfiguration().stepsReference : nil,
+                            unit: kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: kind, unit: unitSystem),
+                            format: { formatted($0) }
+                        )
+                        .frame(height: 230)
+                        if !shown.isEmpty {
+                            let average = shown.map(\.value).reduce(0, +) / Double(shown.count)
+                            HalsynMetric(title: "Tu media del periodo", value: formatted(average), unit: kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: kind, unit: unitSystem))
                         }
                         DataOriginFootnote(origin: series.origin)
                     }
@@ -73,12 +87,22 @@ struct MetricDetailView: View {
         .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)") {
             let today = Date.now
             current = MetricDisplay(await model.provider.latest(kind, on: today), kind: kind, unitSystem: unitSystem)
-            series = await model.provider.dailySeries(kind, days: 30, endingOn: today)
+            series = await model.provider.dailySeries(kind, days: 60, endingOn: today)
         }
     }
 
     private func isToday(_ date: Date?) -> Bool {
         date.map { Calendar.current.isDateInToday($0) } ?? true
+    }
+
+    /// Valor ya convertido a la unidad mostrada.
+    private func formatted(_ value: Double) -> String {
+        switch kind {
+        case .walkingRunningDistance: HalsynFormat.decimal(value, fractionDigits: 2)
+        case .sleepDuration: sleepText(value * 3600)
+        case .respiratoryRate, .vo2Max: HalsynFormat.decimal(value, fractionDigits: 1)
+        default: HalsynFormat.integer(value)
+        }
     }
 
     /// Convierte valores a la unidad mostrada (distancia en km/mi, SpO₂ en %).

@@ -122,8 +122,8 @@ struct InsiktView: View {
                 Label("Puntuación diaria", systemImage: "sparkles")
                     .font(.halsynHeadline)
                     .foregroundStyle(.halsynPrimaryText)
-                HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100)
-                    .frame(height: 130)
+                HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100, usualRange: usualRange(scores.map { Double($0.value) }))
+                    .frame(height: 210)
                 HalsynMetric(title: "Media del periodo", value: HalsynFormat.integer(average), unit: "")
                 DataOriginFootnote(origin: scores.first?.origin)
             }
@@ -146,8 +146,8 @@ struct InsiktView: View {
                             .accessibilityValue(Text(change, format: .percent.precision(.fractionLength(0)).sign(strategy: .always())))
                     }
                 }
-                HalsynTrendChart(values: displayValues(trend), title: trend.kind.shortTitle, style: trend.kind.dailyAggregation == .sum && period == .week ? .bar : .line)
-                    .frame(height: 130)
+                HalsynTrendChart(values: displayValues(trend), title: trend.kind.shortTitle, style: trend.kind.dailyAggregation == .sum && period == .week ? .bar : .line, unit: trend.kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: trend.kind, unit: unitSystem), format: { trend.kind == .sleepDuration ? sleepText($0 * 3600) : (trend.kind == .walkingRunningDistance ? HalsynFormat.decimal($0, fractionDigits: 2) : HalsynFormat.integer($0)) })
+                    .frame(height: 210)
                 if let average = trend.current.average {
                     HalsynMetric(title: "Media del periodo", value: HalsynFormat.metricValue(average, kind: trend.kind, unit: unitSystem), unit: HalsynFormat.unitSymbol(for: trend.kind, unit: unitSystem))
                 }

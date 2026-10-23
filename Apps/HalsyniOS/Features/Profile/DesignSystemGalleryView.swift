@@ -71,7 +71,7 @@ struct DesignSystemGalleryView: View {
                         HalsynStatusIndicator(.alert, text: "Error de sincronización")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    HalsynTrendChart(values: Self.sampleTrend, title: "FC reposo").frame(height: 120)
+                    HalsynTrendChart(values: Self.sampleTrend, title: "FC reposo", usualRange: 52...58, unit: "lpm").frame(height: 200)
                     HalsynPrimaryButton("Botón principal", systemImage: "figure.run") {}
                     HalsynDemoBadge()
                 }
