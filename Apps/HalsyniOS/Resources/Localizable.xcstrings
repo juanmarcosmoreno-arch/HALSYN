@@ -531,55 +531,55 @@
         }
       }
     },
-    "Ahora mismo HÅLSYN muestra datos sintéticos de demostración. La lectura real de Apple Health, con permisos granulares, se implementa en la Fase 2.": {
+    "Ahora HÅLSYN muestra datos sintéticos de demostración. Conecta Apple Health para ver tus datos reales; solo se piden permisos de lectura.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Right now HÅLSYN shows synthetic demo data. Reading real Apple Health data, with granular permissions, is implemented in Phase 2."
+            "value": "HÅLSYN is currently showing synthetic demo data. Connect Apple Health to see your real data; only read permissions are requested."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "No momento, o HÅLSYN mostra dados sintéticos de demonstração. A leitura real do Apple Health, com permissões granulares, será implementada na Fase 2."
+            "value": "No momento, o HÅLSYN mostra dados sintéticos de demonstração. Conecte o Apple Health para ver seus dados reais; apenas permissões de leitura são solicitadas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pour l’instant, HÅLSYN affiche des données de démonstration synthétiques. La lecture réelle d’Apple Health, avec des autorisations détaillées, sera mise en place lors de la Phase 2."
+            "value": "Pour l’instant, HÅLSYN affiche des données de démonstration synthétiques. Connecte Apple Health pour voir tes vraies données ; seules des autorisations de lecture sont demandées."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Al momento HÅLSYN mostra dati dimostrativi sintetici. La lettura reale di Apple Health, con autorizzazioni dettagliate, verrà implementata nella Fase 2."
+            "value": "Al momento HÅLSYN mostra dati dimostrativi sintetici. Collega Apple Health per vedere i tuoi dati reali; vengono richieste solo autorizzazioni di lettura."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Just nu visar HÅLSYN syntetiska demodata. Den riktiga läsningen från Apple Health, med detaljerade behörigheter, införs i Fas 2."
+            "value": "Just nu visar HÅLSYN syntetiska demodata. Anslut Apple Health för att se dina riktiga data – endast läsbehörighet begärs."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lige nu viser HÅLSYN syntetiske demodata. Den rigtige læsning fra Apple Health, med detaljerede tilladelser, implementeres i Fase 2."
+            "value": "Lige nu viser HÅLSYN syntetiske demodata. Forbind Apple Health for at se dine rigtige data – der bedes kun om læseadgang."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN 目前显示的是合成演示数据。在第 2 阶段中，将实现通过精细权限读取真实的 Apple Health 数据。"
+            "value": "HÅLSYN 目前显示的是合成演示数据。连接 Apple Health 即可查看你的真实数据；仅请求读取权限。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अभी HÅLSYN सिंथेटिक डेमो डेटा दिखा रहा है। विस्तृत अनुमतियों के साथ Apple Health का असली डेटा पढ़ने की सुविधा चरण 2 में जोड़ी जाएगी।"
+            "value": "अभी HÅLSYN सिंथेटिक डेमो डेटा दिखा रहा है। अपना असली डेटा देखने के लिए Apple Health कनेक्ट करें; केवल पढ़ने की अनुमति मांगी जाती है।"
           }
         }
       }
@@ -739,6 +739,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "दिखावट"
+          }
+        }
+      }
+    },
+    "Apple Health no está disponible en este dispositivo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health isn't available on this device."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Apple Health não está disponível neste dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health n’est pas disponible sur cet appareil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health non è disponibile su questo dispositivo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health är inte tillgängligt på den här enheten."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health er ikke tilgængelig på denne enhed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备不支持 Apple Health。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस डिवाइस पर Apple Health उपलब्ध नहीं है।"
+          }
+        }
+      }
+    },
+    "Atrás": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indietro"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillbaka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilbage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "返回"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वापस"
           }
         }
       }
@@ -2015,6 +2121,112 @@
         }
       }
     },
+    "Conecta tus datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecte seus dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecte tes données"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collega i tuoi dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anslut dina data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbind dine data"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接你的数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपना डेटा कनेक्ट करें"
+          }
+        }
+      }
+    },
+    "Conectando…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecting…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ansluter…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbinder…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在连接…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्ट हो रहा है…"
+          }
+        }
+      }
+    },
     "Conectar Apple Health": {
       "extractionState": "manual",
       "localizations": {
@@ -2064,6 +2276,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Health कनेक्ट करें"
+          }
+        }
+      }
+    },
+    "Conoce tu cuerpo. Entiende tu salud. Mejora tu vida.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Know your body. Understand your health. Improve your life."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conheça seu corpo. Entenda sua saúde. Melhore sua vida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connais ton corps. Comprends ta santé. Améliore ta vie."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conosci il tuo corpo. Comprendi la tua salute. Migliora la tua vita."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Känn din kropp. Förstå din hälsa. Förbättra ditt liv."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kend din krop. Forstå din sundhed. Forbedr dit liv."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "了解你的身体。读懂你的健康。改善你的生活。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने शरीर को जानें। अपनी सेहत को समझें। अपना जीवन बेहतर बनाएं।"
+          }
+        }
+      }
+    },
+    "Continuar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continua"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsätt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsæt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जारी रखें"
           }
         }
       }
@@ -2170,6 +2488,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Watch के साथ दौड़ें"
+          }
+        }
+      }
+    },
+    "Correr mejor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run better"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr melhor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mieux courir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correre meglio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Springa bättre"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbe bedre"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑得更好"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बेहतर दौड़ना"
           }
         }
       }
@@ -2753,6 +3124,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "डेवलपमेंट"
+          }
+        }
+      }
+    },
+    "Descansar mejor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest better"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descansar melhor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mieux récupérer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riposare meglio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vila bättre"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvile bedre"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休息得更好"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बेहतर आराम"
           }
         }
       }
@@ -3552,6 +3976,112 @@
         }
       }
     },
+    "Elige uno o varios. Puedes cambiarlo después.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose one or more. You can change this later."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha uma ou mais. Você pode mudar isso depois."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis-en un ou plusieurs. Tu pourras changer plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegline uno o più. Puoi cambiare in seguito."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Välj ett eller flera. Du kan ändra det senare."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vælg en eller flere. Du kan ændre det senere."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可选择一项或多项，之后可随时更改。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक या अधिक चुनें। आप इसे बाद में बदल सकते हैं।"
+          }
+        }
+      }
+    },
+    "Empezar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kom igång"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kom i gang"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरू करें"
+          }
+        }
+      }
+    },
     "Energía": {
       "extractionState": "manual",
       "localizations": {
@@ -3711,6 +4241,59 @@
         }
       }
     },
+    "Entender mi salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understand my health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entender minha saúde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprendre ma santé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capire la mia salute"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förstå min hälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forstå min sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "了解我的健康"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी सेहत समझना"
+          }
+        }
+      }
+    },
     "Entendido": {
       "extractionState": "manual",
       "localizations": {
@@ -3813,6 +4396,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "वर्कआउट"
+          }
+        }
+      }
+    },
+    "Entrenamientos de carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running workouts"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treinos de corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînements de course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allenamenti di corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbetræning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步训练"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रनिंग वर्कआउट"
           }
         }
       }
@@ -4294,6 +4930,59 @@
         }
       }
     },
+    "Explorar con datos demo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore with demo data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorar com dados demo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorer avec des données démo"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esplora con dati demo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utforska med demodata"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Udforsk med demodata"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用演示数据探索"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेमो डेटा के साथ देखें"
+          }
+        }
+      }
+    },
     "FC": {
       "extractionState": "manual",
       "localizations": {
@@ -4718,6 +5407,59 @@
         }
       }
     },
+    "Fechas y números siguen la configuración regional de tu iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dates and numbers follow your iPhone's region settings."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datas e números seguem os ajustes de região do seu iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les dates et les nombres suivent les réglages régionaux de ton iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date e numeri seguono le impostazioni internazionali del tuo iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datum och siffror följer din iPhones regionala inställningar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datoer og tal følger din iPhones områdeindstillinger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日期和数字遵循你 iPhone 的地区设置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तारीखें और संख्याएं आपके iPhone की क्षेत्रीय सेटिंग्स के अनुसार दिखती हैं।"
+          }
+        }
+      }
+    },
     "Frecuencia cardíaca": {
       "extractionState": "manual",
       "localizations": {
@@ -4983,6 +5725,59 @@
         }
       }
     },
+    "Gestionar permisos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage permissions"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerenciar permissões"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer les autorisations"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci autorizzazioni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hantera behörigheter"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrer tilladelser"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理权限"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुमतियां प्रबंधित करें"
+          }
+        }
+      }
+    },
     "HRV · 7 días": {
       "extractionState": "manual",
       "localizations": {
@@ -5191,6 +5986,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज"
+          }
+        }
+      }
+    },
+    "HÅLSYN lee de Apple Health lo que miden tu iPhone y tu Apple Watch para mostrarte cómo está tu cuerpo y cómo evoluciona.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN reads what your iPhone and Apple Watch measure from Apple Health to show you how your body is doing and how it's changing."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O HÅLSYN lê do Apple Health o que seu iPhone e seu Apple Watch medem para mostrar como está seu corpo e como ele evolui."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN lit dans Apple Health ce que mesurent ton iPhone et ton Apple Watch pour te montrer comment va ton corps et comment il évolue."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN legge da Apple Health ciò che misurano il tuo iPhone e il tuo Apple Watch per mostrarti come sta il tuo corpo e come si evolve."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN läser det som din iPhone och din Apple Watch mäter från Apple Health för att visa hur din kropp mår och hur den utvecklas."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN læser det, din iPhone og dit Apple Watch måler, fra Apple Health for at vise dig, hvordan din krop har det, og hvordan den udvikler sig."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN 从 Apple Health 读取你的 iPhone 和 Apple Watch 测量的数据，向你展示身体的状态及其变化。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका शरीर कैसा है और कैसे बदल रहा है, यह दिखाने के लिए HÅLSYN Apple Health से वह डेटा पढ़ता है जो आपका iPhone और Apple Watch मापते हैं।"
           }
         }
       }
@@ -5619,6 +6467,59 @@
         }
       }
     },
+    "Ir a HÄLSA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to HÄLSA"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir para HÄLSA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aller à HÄLSA"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai a HÄLSA"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå till HÄLSA"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå til HÄLSA"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前往 HÄLSA"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÄLSA पर जाएं"
+          }
+        }
+      }
+    },
     "Ir a SPRING": {
       "extractionState": "manual",
       "localizations": {
@@ -5725,55 +6626,55 @@
         }
       }
     },
-    "La puntuación necesita más datos. Se calculará cuando haya suficiente historial.": {
+    "La puntuación diaria se calculará con tus datos reales cuando esté listo su motor (Fase 3). Mientras tanto, consulta tus indicadores.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The score needs more data. It will be calculated once there's enough history."
+            "value": "Your daily score will be calculated from your real data once its engine is ready (Phase 3). In the meantime, check your indicators."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "A pontuação precisa de mais dados. Ela será calculada quando houver histórico suficiente."
+            "value": "A pontuação diária será calculada com seus dados reais quando o motor dela estiver pronto (Fase 3). Enquanto isso, confira seus indicadores."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le score a besoin de plus de données. Il sera calculé quand l’historique sera suffisant."
+            "value": "Le score quotidien sera calculé à partir de tes vraies données quand son moteur sera prêt (Phase 3). En attendant, consulte tes indicateurs."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il punteggio ha bisogno di più dati. Verrà calcolato quando ci sarà uno storico sufficiente."
+            "value": "Il punteggio giornaliero verrà calcolato con i tuoi dati reali quando il suo motore sarà pronto (Fase 3). Nel frattempo, consulta i tuoi indicatori."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Poängen behöver mer data. Den beräknas när det finns tillräckligt med historik."
+            "value": "Den dagliga poängen beräknas med dina riktiga data när motorn är klar (Fas 3). Under tiden kan du se dina indikatorer."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scoren kræver flere data. Den beregnes, når der er tilstrækkelig historik."
+            "value": "Den daglige score beregnes med dine rigtige data, når motoren er klar (Fase 3). Indtil da kan du se dine indikatorer."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "评分需要更多数据。待历史记录充足后即可计算。"
+            "value": "引擎就绪后（第 3 阶段），每日评分将基于你的真实数据计算。在此之前，你可以查看各项指标。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्कोर के लिए और डेटा चाहिए। पर्याप्त इतिहास होने पर इसकी गणना की जाएगी।"
+            "value": "इंजन तैयार होने पर (चरण 3) दैनिक स्कोर की गणना आपके असली डेटा से की जाएगी। तब तक, अपने संकेतक देखें।"
           }
         }
       }
@@ -5831,6 +6732,59 @@
         }
       }
     },
+    "Las comparaciones con tu propio historial mejoran a medida que HÅLSYN acumula días de datos. Es normal que al principio falten algunos indicadores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparisons with your own history improve as HÅLSYN builds up days of data. It's normal for some indicators to be missing at first."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As comparações com seu próprio histórico melhoram à medida que o HÅLSYN acumula dias de dados. É normal que alguns indicadores estejam ausentes no início."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les comparaisons avec ton propre historique s’améliorent à mesure que HÅLSYN accumule des jours de données. Il est normal que certains indicateurs manquent au début."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I confronti con il tuo storico migliorano man mano che HÅLSYN accumula giorni di dati. All’inizio è normale che manchino alcuni indicatori."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämförelserna med din egen historik blir bättre i takt med att HÅLSYN samlar in fler dagar med data. Det är normalt att vissa indikatorer saknas i början."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammenligningerne med din egen historik bliver bedre, efterhånden som HÅLSYN samler flere dages data. Det er normalt, at nogle indikatorer mangler i starten."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "随着 HÅLSYN 积累的数据天数增加，与你自身历史的比较会越来越准确。起初缺少部分指标属正常现象。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जैसे-जैसे HÅLSYN ज़्यादा दिनों का डेटा जमा करता है, आपके अपने इतिहास से तुलना बेहतर होती जाती है। शुरुआत में कुछ संकेतकों का न दिखना सामान्य है।"
+          }
+        }
+      }
+    },
     "Latidos por minuto medidos por el sensor óptico del Apple Watch a lo largo del día.": {
       "extractionState": "manual",
       "localizations": {
@@ -5880,6 +6834,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Watch के ऑप्टिकल सेंसर द्वारा दिनभर मापी गई प्रति मिनट धड़कनें।"
+          }
+        }
+      }
+    },
+    "Leyendo tus datos…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading your data…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lendo seus dados…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture de tes données…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettura dei tuoi dati…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läser dina data…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læser dine data…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在读取你的数据…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका डेटा पढ़ा जा रहा है…"
           }
         }
       }
@@ -6092,6 +7099,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "लोगो"
+          }
+        }
+      }
+    },
+    "Los nombres de los módulos son palabras suecas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The module names are Swedish words."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os nomes dos módulos são palavras suecas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les noms des modules sont des mots suédois."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I nomi dei moduli sono parole svedesi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modulernas namn är svenska ord."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modulernes navne er svenske ord."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各模块名称均为瑞典语单词。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मॉड्यूल के नाम स्वीडिश शब्द हैं।"
+          }
+        }
+      }
+    },
+    "Los permisos de cada tipo de dato se cambian en Ajustes › Salud › Acceso a datos y dispositivos › HÅLSYN. iOS no informa a las apps de qué datos se han denegado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permissions for each data type are changed in Settings › Health › Data Access & Devices › HÅLSYN. iOS doesn't tell apps which data has been denied."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As permissões de cada tipo de dado são alteradas em Ajustes › Saúde › Acesso a Dados e Dispositivos › HÅLSYN. O iOS não informa aos apps quais dados foram negados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les autorisations de chaque type de donnée se modifient dans Réglages › Santé › Accès aux données et appareils › HÅLSYN. iOS n’indique pas aux apps quelles données ont été refusées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le autorizzazioni per ogni tipo di dato si modificano in Impostazioni › Salute › Accesso ai dati e dispositivi › HÅLSYN. iOS non comunica alle app quali dati sono stati negati."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behörigheter för varje datatyp ändrar du i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN. iOS talar inte om för appar vilka data som har nekats."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilladelser for hver datatype ændrer du under Indstillinger › Sundhed › Dataadgang og enheder › HÅLSYN. iOS fortæller ikke apps, hvilke data der er afvist."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各数据类型的权限可在“设置 › 健康 › 数据访问与设备 › HÅLSYN”中更改。iOS 不会告知 App 哪些数据被拒绝访问。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर डेटा प्रकार की अनुमतियां सेटिंग्ज़ › स्वास्थ्य › डेटा एक्सेस और डिवाइस › HÅLSYN में बदली जाती हैं। iOS ऐप्स को यह नहीं बताता कि कौन-सा डेटा अस्वीकार किया गया है।"
           }
         }
       }
@@ -6467,6 +7580,59 @@
         }
       }
     },
+    "Moverme más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move more"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me movimentar mais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bouger plus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muovermi di più"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Röra mig mer"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevæge mig mere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "多动一动"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादा सक्रिय रहना"
+          }
+        }
+      }
+    },
     "Movimiento": {
       "extractionState": "manual",
       "localizations": {
@@ -6785,6 +7951,165 @@
         }
       }
     },
+    "No se pudieron leer los datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't read the data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível ler os dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire les données"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile leggere i dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att läsa data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dataene kunne ikke læses"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेटा पढ़ा नहीं जा सका"
+          }
+        }
+      }
+    },
+    "No se pudo conectar con Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't connect to Apple Health."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível conectar ao Apple Health."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de se connecter à Apple Health."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile collegarsi ad Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att ansluta till Apple Health."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der kunne ikke oprettes forbindelse til Apple Health."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接 Apple Health。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health से कनेक्ट नहीं हो सका।"
+          }
+        }
+      }
+    },
+    "No se pudo conectar con Apple Health. Puedes intentarlo de nuevo o continuar con datos demo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't connect to Apple Health. You can try again or continue with demo data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível conectar ao Apple Health. Você pode tentar novamente ou continuar com dados demo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de se connecter à Apple Health. Tu peux réessayer ou continuer avec des données démo."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile collegarsi ad Apple Health. Puoi riprovare o continuare con dati demo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att ansluta till Apple Health. Du kan försöka igen eller fortsätta med demodata."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der kunne ikke oprettes forbindelse til Apple Health. Du kan prøve igen eller fortsætte med demodata."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接 Apple Health。你可以重试，或继续使用演示数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health से कनेक्ट नहीं हो सका। आप फिर से कोशिश कर सकते हैं या डेमो डेटा के साथ जारी रख सकते हैं।"
+          }
+        }
+      }
+    },
     "Objetivos": {
       "extractionState": "manual",
       "localizations": {
@@ -7046,6 +8371,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी की स्क्रीन"
+          }
+        }
+      }
+    },
+    "Paso %lld de %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step %lld of %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etapa %lld de %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Étape %lld sur %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passo %lld di %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steg %lld av %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trin %lld af %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %1$lld 步，共 %2$lld 步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$lld में से चरण %1$lld"
           }
         }
       }
@@ -7739,6 +9117,59 @@
         }
       }
     },
+    "Primera lectura": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First reading"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primeira leitura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première lecture"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima lettura"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Första avläsningen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Første aflæsning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次读取"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहली रीडिंग"
+          }
+        }
+      }
+    },
     "Privacidad": {
       "extractionState": "manual",
       "localizations": {
@@ -7788,6 +9219,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "गोपनीयता"
+          }
+        }
+      }
+    },
+    "Protegido mientras el dispositivo está bloqueado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protected while the device is locked"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protegido enquanto o dispositivo está bloqueado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protégé tant que l’appareil est verrouillé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protetto mentre il dispositivo è bloccato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skyddat medan enheten är låst"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beskyttet, mens enheden er låst"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设备锁定时受保护"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डिवाइस लॉक होने पर सुरक्षित"
           }
         }
       }
@@ -8905,6 +10389,59 @@
         }
       }
     },
+    "Si prefieres, explora la app con datos de demostración claramente identificados y conecta Apple Health más tarde desde Perfil.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you prefer, explore the app with clearly labeled demo data and connect Apple Health later from Profile."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se preferir, explore o app com dados de demonstração claramente identificados e conecte o Apple Health mais tarde em Perfil."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu préfères, explore l’app avec des données de démonstration clairement identifiées et connecte Apple Health plus tard depuis Profil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se preferisci, esplora l’app con dati dimostrativi chiaramente identificati e collega Apple Health più tardi da Profilo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du vill kan du utforska appen med tydligt märkta demodata och ansluta Apple Health senare från Profil."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvis du foretrækker det, kan du udforske appen med tydeligt markerede demodata og forbinde Apple Health senere fra Profil."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你愿意，也可以先用明确标注的演示数据探索 App，之后再从“个人资料”连接 Apple Health。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चाहें तो, स्पष्ट रूप से चिह्नित डेमो डेटा के साथ ऐप देखें और बाद में प्रोफ़ाइल से Apple Health कनेक्ट करें।"
+          }
+        }
+      }
+    },
     "Sin carreras todavía": {
       "extractionState": "manual",
       "localizations": {
@@ -9007,6 +10544,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कोई डेटा नहीं"
+          }
+        }
+      }
+    },
+    "Sin datos aún": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data yet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda sem dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore de données"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancora nessun dato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data endnu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी कोई डेटा नहीं"
           }
         }
       }
@@ -9378,6 +10968,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सिस्टम"
+          }
+        }
+      }
+    },
+    "Solo lectura: en esta versión HÅLSYN no escribe nada en Apple Health. Podrás elegir qué tipos compartir en la hoja de permisos de iOS.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read-only: in this version, HÅLSYN doesn't write anything to Apple Health. You'll be able to choose which types to share in the iOS permissions sheet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somente leitura: nesta versão, o HÅLSYN não grava nada no Apple Health. Você poderá escolher quais tipos compartilhar na tela de permissões do iOS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture seule : dans cette version, HÅLSYN n’écrit rien dans Apple Health. Tu pourras choisir les types à partager dans la fenêtre d’autorisations d’iOS."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo lettura: in questa versione HÅLSYN non scrive nulla in Apple Health. Potrai scegliere quali tipi condividere nella schermata delle autorizzazioni di iOS."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endast läsning: i den här versionen skriver HÅLSYN ingenting till Apple Health. Du kan välja vilka typer du delar i iOS-behörighetsrutan."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kun læsning: i denne version skriver HÅLSYN intet til Apple Health. Du kan vælge, hvilke typer du deler, i iOS' tilladelsesark."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅读取：此版本的 HÅLSYN 不会向 Apple Health 写入任何内容。你可以在 iOS 权限页面中选择要共享的数据类型。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "केवल पढ़ना: इस वर्शन में HÅLSYN, Apple Health में कुछ भी नहीं लिखता। आप iOS की अनुमति शीट में चुन सकेंगे कि कौन-से प्रकार शेयर करने हैं।"
           }
         }
       }
@@ -10389,6 +12032,112 @@
         }
       }
     },
+    "Tus datos son tuyos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data is yours"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus dados são seus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes données t’appartiennent"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi dati sono tuoi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina data är dina"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine data er dine"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数据属于你"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका डेटा आपका है"
+          }
+        }
+      }
+    },
+    "Tus datos, en contexto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data, in context"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus dados, em contexto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes données, en contexte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi dati, in contesto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina data i sitt sammanhang"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine data i kontekst"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数据，置于情境之中"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका डेटा, संदर्भ में"
+          }
+        }
+      }
+    },
     "Tus entrenamientos aparecerán aquí.": {
       "extractionState": "manual",
       "localizations": {
@@ -10491,6 +12240,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इकाइयां"
+          }
+        }
+      }
+    },
+    "Usar datos demo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use demo data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar dados demo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser les données démo"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa dati demo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd demodata"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug demodata"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用演示数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेमो डेटा इस्तेमाल करें"
           }
         }
       }
@@ -10756,6 +12558,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "INSIKT देखें"
+          }
+        }
+      }
+    },
+    "Ver la introducción de nuevo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View the introduction again"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver a introdução novamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revoir l’introduction"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rivedi l’introduzione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa introduktionen igen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se introduktionen igen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再次查看介绍"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "परिचय फिर से देखें"
           }
         }
       }
@@ -11131,6 +12986,59 @@
         }
       }
     },
+    "iOS te mostrará la lista de datos. Puedes activar solo los que quieras: HÅLSYN funcionará con lo que compartas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS will show you the list of data. You can turn on only the ones you want: HÅLSYN will work with whatever you share."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS mostrará a lista de dados. Você pode ativar apenas os que quiser: o HÅLSYN funcionará com o que você compartilhar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS va t’afficher la liste des données. Tu peux activer uniquement celles que tu veux : HÅLSYN fonctionnera avec ce que tu partages."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS ti mostrerà l’elenco dei dati. Puoi attivare solo quelli che vuoi: HÅLSYN funzionerà con ciò che condividi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS visar en lista över data. Du kan aktivera bara de du vill – HÅLSYN fungerar med det du delar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS viser dig en liste over data. Du kan slå kun dem til, du vil – HÅLSYN fungerer med det, du deler."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 会显示数据列表。你可以只开启想共享的项目：HÅLSYN 会使用你共享的数据运行。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS आपको डेटा की सूची दिखाएगा। आप सिर्फ़ वही चालू कर सकते हैं जो आप चाहें: HÅLSYN आपके शेयर किए गए डेटा के साथ काम करेगा।"
+          }
+        }
+      }
+    },
     "lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -11290,6 +13198,112 @@
         }
       }
     },
+    "¿Faltan datos? Comprueba en Ajustes › Salud › Acceso a datos y dispositivos › HÅLSYN qué datos compartes, y que llevas el Apple Watch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing data? Check which data you share in Settings › Health › Data Access & Devices › HÅLSYN, and make sure you're wearing your Apple Watch."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam dados? Confira em Ajustes › Saúde › Acesso a Dados e Dispositivos › HÅLSYN quais dados você compartilha e se está usando o Apple Watch."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des données manquent ? Vérifie dans Réglages › Santé › Accès aux données et appareils › HÅLSYN quelles données tu partages, et que tu portes bien ton Apple Watch."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancano dei dati? Controlla in Impostazioni › Salute › Accesso ai dati e dispositivi › HÅLSYN quali dati condividi e assicurati di indossare l’Apple Watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saknas data? Kontrollera i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN vilka data du delar, och att du bär din Apple Watch."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mangler der data? Tjek under Indstillinger › Sundhed › Dataadgang og enheder › HÅLSYN, hvilke data du deler, og at du har dit Apple Watch på."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少数据？请在“设置 › 健康 › 数据访问与设备 › HÅLSYN”中检查你共享了哪些数据，并确认你佩戴着 Apple Watch。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेटा नहीं दिख रहा? सेटिंग्ज़ › स्वास्थ्य › डेटा एक्सेस और डिवाइस › HÅLSYN में देखें कि आप कौन-सा डेटा शेयर कर रहे हैं, और यह भी कि आपने Apple Watch पहनी है।"
+          }
+        }
+      }
+    },
+    "¿Qué te gustaría conseguir?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What would you like to achieve?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que você gostaria de alcançar?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qu’aimerais-tu accomplir ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa ti piacerebbe ottenere?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad vill du uppnå?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvad vil du gerne opnå?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你希望达成什么目标？"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप क्या हासिल करना चाहेंगे?"
+          }
+        }
+      }
+    },
     "Última carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -11339,6 +13353,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछला रन"
+          }
+        }
+      }
+    },
+    "Último registro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest reading"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último registro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernier relevé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultima rilevazione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste mätning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seneste måling"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近记录"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आख़िरी रिकॉर्ड"
           }
         }
       }

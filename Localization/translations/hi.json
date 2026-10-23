@@ -161,7 +161,7 @@
  "Oscuro": "डार्क",
  "Pantallas de entrenamiento": "वर्कआउट स्क्रीन",
  "Pantallas del reloj": "घड़ी की स्क्रीन",
- "Paso %lld de %lld": "चरण %1$lld / %2$lld",
+ "Paso %lld de %lld": "%2$lld में से चरण %1$lld",
  "Pasos": "कदम",
  "Pasos registrados por el iPhone y el Apple Watch, sin duplicados.": "iPhone और Apple Watch द्वारा दर्ज कदम, बिना दोहराव के।",
  "Patrones, correlaciones y comparación con tu grupo de edad": "पैटर्न, सहसंबंध और आपके आयु वर्ग से तुलना",
