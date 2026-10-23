@@ -6,7 +6,7 @@
 | 1 | Fundaciones: proyecto, targets iOS/watchOS, design system, navegación, pantallas, modo demo, 9 idiomas | ✅ compila y pasa tests en CI (macOS) |
 | 2 | HealthKit real: permisos, pasos, FC, FC reposo, HRV, sueño, entrenamientos, ausencia de datos, onboarding | ✅ compila y pasa tests en CI · ⏳ prueba en dispositivo |
 | 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones, resumen nocturno | ✅ compila y pasa tests en CI |
-| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ⏳ siguiente · prioridad muy alta |
+| 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ código y tests · ⏳ CI y prueba en reloj |
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
@@ -53,3 +53,16 @@
 
 - Pesos y umbrales sin calibrar con datos reales; revisar tras uso en dispositivo.
 - Sin caché: el historial recalcula a partir de HealthKit en cada carga (rápido con 5 series; se revisará con SwiftData si hace falta).
+
+## Fase 4 — entregado
+
+- Carreras reales en el Apple Watch (exterior con GPS y cinta), sin depender del iPhone; inicio también desde el iPhone.
+- Pausa, reanudar, vueltas automáticas (1 km) y manuales, terminar con confirmación (guardar o descartar), recuperación tras cierre.
+- Distancia de HealthKit con respaldo GPS filtrado; ritmo actual suavizado (20 s), medio y de vuelta; FC en vivo, media y máxima.
+- Ruta guardada en Apple Health con los puntos fiables.
+- Motor puro (`RunSessionTracker`) con 21 tests sobre trazas GPS sintéticas ([RUNNING_ENGINE](RUNNING_ENGINE.md)).
+
+## Pendientes conocidos de la Fase 4
+
+- **Probar en un Apple Watch real corriendo**: precisión de distancia y ritmo, batería, comportamiento con la muñeca bajada y sin iPhone.
+- Las pantallas configurables, zonas, alertas, intervalos y mapas llegan en la Fase 5.
