@@ -11,6 +11,7 @@ struct SpringView: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var workouts: [WorkoutSummary]?
     @State private var predictions: [RacePrediction] = []
+    @State private var allWorkouts: [WorkoutSummary] = []
     @State private var showsStartInfo = false
     private var runSettings: RunSettings { RunSettingsStore.shared.settings }
 
@@ -23,6 +24,7 @@ struct SpringView: View {
                 settingsCard
                 if let workouts {
                     weeklySummary(workouts)
+                    TrainingPlanCard(workouts: allWorkouts)
                     RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
                     history(workouts)
                 } else {
@@ -35,6 +37,7 @@ struct SpringView: View {
             }
             .task(id: model.reloadKey) {
                 let recent = await model.provider.recentWorkouts(limit: 60)
+                allWorkouts = recent
                 workouts = Array(recent.prefix(20))
                 predictions = RacePredictor.predictions(from: recent, endingOn: .now, calendar: .current)
             }

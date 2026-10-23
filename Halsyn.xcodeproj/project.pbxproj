@@ -60,6 +60,7 @@
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
 		A767F3B4D0ABF1D71E85AC51 /* HalsynWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
+		B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C309410DCB678925A4740B86 /* TrainingPlanViews.swift */; };
 		BEFAD8DFC84DD6944CD0CBE7 /* InsightCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684F62352CB5E8552F5DF92 /* InsightCards.swift */; };
 		C01B3188E9A822BE46B6A995 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
 		C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */; };
@@ -208,6 +209,7 @@
 		BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsStore.swift; sourceTree = "<group>"; };
 		C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightlySummaryNotifications.swift; sourceTree = "<group>"; };
 		C287A71EB2C50957EA5FACDE /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		C309410DCB678925A4740B86 /* TrainingPlanViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanViews.swift; sourceTree = "<group>"; };
 		C684F62352CB5E8552F5DF92 /* InsightCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCards.swift; sourceTree = "<group>"; };
 		C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemGalleryView.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
 				6683A16BF5216CF3290D7F7A /* SpringView.swift */,
+				C309410DCB678925A4740B86 /* TrainingPlanViews.swift */,
 				8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */,
 			);
 			path = Spring;
@@ -891,6 +894,7 @@
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
 				223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */,
 				190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */,
+				B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */,
 				9567A32313BE792ACA298B1F /* VilaView.swift in Sources */,
 				E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */,
 				CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */,
@@ -1022,7 +1026,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1207,7 +1211,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
