@@ -184,8 +184,53 @@ public struct RunSnapshot: Hashable, Sendable {
     public var paceTarget: PaceRange?
     /// Potencia de carrera en vatios, solo si el reloj la entrega en vivo.
     public var power: Double?
+    /// Ritmo actual (s/km) cada 5 s de tiempo activo, para el gráfico en vivo.
+    public var paceSamples: [LiveSample] = []
+    /// FC cada 5 s de tiempo activo.
+    public var heartRateSamples: [LiveSample] = []
 
     public init() {}
+}
+
+/// Muestra de una serie en vivo (tiempo activo en segundos, valor).
+public struct LiveSample: Hashable, Sendable {
+    public let elapsed: TimeInterval
+    public let value: Double
+
+    public init(elapsed: TimeInterval, value: Double) {
+        self.elapsed = elapsed
+        self.value = value
+    }
+}
+
+extension Array where Element == LiveSample {
+    /// Media móvil centrada de `window` muestras (suaviza sin desplazar en el tiempo).
+    /// No mezcla tramos separados por un hueco mayor que `maxGap` segundos.
+    public func smoothed(window: Int = 3, maxGap: TimeInterval = 15) -> [LiveSample] {
+        guard window > 1, count > 2 else { return self }
+        let half = window / 2
+        return indices.map { index in
+            var sum = 0.0, n = 0.0
+            for j in Swift.max(0, index - half)...Swift.min(count - 1, index + half) {
+                guard abs(self[j].elapsed - self[index].elapsed) <= maxGap * Double(half) else { continue }
+                sum += self[j].value
+                n += 1
+            }
+            return LiveSample(elapsed: self[index].elapsed, value: sum / n)
+        }
+    }
+
+    /// Reduce a como mucho `maxPoints` promediando bloques (para dibujar carreras largas).
+    public func downsampled(maxPoints: Int) -> [LiveSample] {
+        guard maxPoints > 0, count > maxPoints else { return self }
+        let size = Int((Double(count) / Double(maxPoints)).rounded(.up))
+        return stride(from: 0, to: count, by: size).map { start in
+            let block = self[start..<Swift.min(start + size, count)]
+            let value = block.map(\.value).reduce(0, +) / Double(block.count)
+            let elapsed = block.map(\.elapsed).reduce(0, +) / Double(block.count)
+            return LiveSample(elapsed: elapsed, value: value)
+        }
+    }
 }
 
 /// Avisos para el corredor (hápticos en el reloj).
@@ -221,6 +266,10 @@ public struct RunSessionTracker: Sendable {
     private var freeRunPaceTarget: PaceRange?
     private var intervalsCompleted = false
     private var lastTick: Date?
+    private var paceSamples: [LiveSample] = []
+    private var heartRateSamples: [LiveSample] = []
+    /// Intervalo de muestreo de las series en vivo.
+    public static let liveSampleInterval: TimeInterval = 5
 
     public init(autoLapDistance: Double? = 1000, gpsConfiguration: GPSDistanceAccumulator.Configuration = .init()) {
         self.init(settings: RunSettings(autoLapDistance: autoLapDistance), gpsConfiguration: gpsConfiguration)
@@ -319,6 +368,7 @@ public struct RunSessionTracker: Sendable {
         guard stateMachine.phase == .running else { return }
         if let last = lastTick, date.timeIntervalSince(last) < 0.5 { return }
         lastTick = date
+        recordLiveSamples(at: date)
         advanceIntervals(at: date)
         let alertsNow = alerts.evaluate(
             pace: pace.currentPace(at: date),
@@ -327,6 +377,20 @@ public struct RunSessionTracker: Sendable {
             at: date
         )
         pendingCues += alertsNow.map(RunCue.alert)
+    }
+
+    /// Guarda ritmo y FC cada `liveSampleInterval` segundos de tiempo activo.
+    /// Un hueco sin ritmo (parado) no se rellena: el gráfico muestra el corte.
+    private mutating func recordLiveSamples(at date: Date) {
+        let elapsed = timer.elapsed(at: date)
+        let last = max(paceSamples.last?.elapsed ?? -.infinity, heartRateSamples.last?.elapsed ?? -.infinity)
+        guard elapsed - last >= Self.liveSampleInterval else { return }
+        if let current = pace.currentPace(at: date) {
+            paceSamples.append(LiveSample(elapsed: elapsed, value: current.secondsPerKilometer))
+        }
+        if let lastHeartRate {
+            heartRateSamples.append(LiveSample(elapsed: elapsed, value: lastHeartRate))
+        }
     }
 
     /// Objetivo de ritmo vigente: el de la serie en intervalos, el de la alerta en carrera libre.
@@ -419,6 +483,8 @@ public struct RunSessionTracker: Sendable {
         snapshot.intervalsCompleted = intervalsCompleted
         snapshot.paceTarget = currentPaceTarget
         snapshot.power = power
+        snapshot.paceSamples = paceSamples
+        snapshot.heartRateSamples = heartRateSamples
         return snapshot
     }
 }

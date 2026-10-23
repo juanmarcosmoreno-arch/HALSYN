@@ -28,7 +28,7 @@ struct WorkoutSessionView: View {
 
 private struct WorkoutPagesView: View {
     enum Page: Hashable {
-        case controls, interval, screen(Int), map, laps
+        case controls, interval, screen(Int), chart, map, laps
     }
 
     @Environment(WorkoutManager.self) private var workout
@@ -43,6 +43,7 @@ private struct WorkoutPagesView: View {
             ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
                 WorkoutMetricsView(profile: profile).tag(Page.screen(index))
             }
+            WorkoutChartView().tag(Page.chart)
             if !workout.isIndoor {
                 WorkoutMapView().tag(Page.map)
             }
@@ -105,9 +106,36 @@ private struct WorkoutMetricsView: View {
             VStack(alignment: .leading, spacing: 2) {
                 if workout.phase == .paused {
                     PausedLabel()
+                } else if let zone = snapshot.heartRateZone {
+                    HalsynZoneGauge(zone: zone)
                 }
                 HalsynWorkoutScreen(profile: profile) { snapshot.value(for: $0, unit: unitSystem) }
             }
+            .padding(.horizontal, 4)
+            .overlay(alignment: .top) {
+                BannerOverlay(banner: workout.banner, now: context.date)
+            }
+        }
+        .background(Color.black.ignoresSafeArea())
+    }
+}
+
+/// Ritmo (o FC, tocando) dibujándose a medida que corres.
+private struct WorkoutChartView: View {
+    @Environment(WorkoutManager.self) private var workout
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let snapshot = workout.snapshot(at: context.date)
+            HalsynLiveRunChart(
+                paceSamples: snapshot.paceSamples,
+                heartRateSamples: snapshot.heartRateSamples,
+                averagePace: snapshot.averagePace,
+                currentPace: snapshot.currentPace,
+                heartRate: snapshot.heartRate,
+                paceTarget: snapshot.paceTarget,
+                unit: unitSystem
+            )
             .padding(.horizontal, 4)
             .overlay(alignment: .top) {
                 BannerOverlay(banner: workout.banner, now: context.date)

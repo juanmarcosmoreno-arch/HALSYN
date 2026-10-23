@@ -37,6 +37,16 @@ final class ChartSnapshotTests: XCTestCase {
             ("05-pasos", AnyView(HalsynCard { HalsynTrendChart(values: steps.values, title: "Pasos", style: .bar, target: 8000, unit: "pasos").frame(height: 210) })),
             ("06-puntuacion", AnyView(HalsynCard { HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100, usualRange: usualRange(scores.map { Double($0.value) })).frame(height: 230) })),
         ]
+        // Gráfico en vivo del reloj con una carrera sintética (fondo negro, tamaño de Apple Watch).
+        let pace = (0..<300).map { LiveSample(elapsed: Double($0) * 5, value: 300 + 18 * sin(Double($0) / 14) + Double($0 % 7)) }
+        let pulse = (0..<300).map { LiveSample(elapsed: Double($0) * 5, value: 140 + 12 * sin(Double($0) / 20)) }
+        views.append(("11-reloj-ritmo", AnyView(
+            HalsynLiveRunChart(paceSamples: pace, heartRateSamples: pulse, averagePace: Pace(secondsPerKilometer: 302), currentPace: Pace(secondsPerKilometer: 291), heartRate: 148, paceTarget: PaceRange(fastest: 290, slowest: 310))
+                .frame(width: 198, height: 220)
+                .padding(8)
+                .background(Color.black)
+        )))
+        views.append(("12-reloj-zona", AnyView(HalsynZoneGauge(zone: 3).frame(width: 180).padding(12).background(Color.black))))
         if let trend = report.trends.first {
             views.append(("07-cambio", AnyView(TrendInsightCard(insight: trend))))
         }

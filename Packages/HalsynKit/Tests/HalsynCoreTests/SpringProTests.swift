@@ -422,3 +422,47 @@ struct IntervalFormatterTests {
         #expect(IntervalPlanFormatter.summary(single, locale: locale) == "1 × 20 min")
     }
 }
+
+@Suite("SPRING · gráfico en vivo")
+struct LiveChartTests {
+    @Test func samplesEveryFiveSecondsWhileRunning() {
+        var tracker = RunSessionTracker()
+        tracker.handle(.start, at: t0)
+        tracker.handle(.began, at: t0)
+        for second in 1...60 {
+            let date = t0.addingTimeInterval(Double(second))
+            tracker.updateDistance(total: Double(second) * 3.5, at: date)
+            tracker.addHeartRate(150, at: date)
+            tracker.tick(at: date)
+        }
+        let snapshot = tracker.snapshot(at: t0.addingTimeInterval(60))
+        // Desde que hay ritmo (≥ 2 lecturas) cada 5 s.
+        #expect(snapshot.paceSamples.count >= 10 && snapshot.paceSamples.count <= 12)
+        #expect(zip(snapshot.paceSamples, snapshot.paceSamples.dropFirst()).allSatisfy { $1.elapsed - $0.elapsed >= 5 })
+        #expect(abs((snapshot.paceSamples.last?.value ?? 0) - 1000 / 3.5) < 5)
+        #expect(snapshot.heartRateSamples.allSatisfy { $0.value == 150 })
+    }
+
+    @Test func noSamplesWhilePaused() {
+        var tracker = RunSessionTracker()
+        tracker.handle(.start, at: t0)
+        tracker.handle(.began, at: t0)
+        tracker.handle(.pause, at: t0.addingTimeInterval(1))
+        for second in 2...60 {
+            tracker.addHeartRate(120, at: t0.addingTimeInterval(Double(second)))
+            tracker.tick(at: t0.addingTimeInterval(Double(second)))
+        }
+        #expect(tracker.snapshot(at: t0.addingTimeInterval(60)).heartRateSamples.isEmpty)
+    }
+
+    @Test func smoothingAndDownsampling() {
+        let samples = (0..<100).map { LiveSample(elapsed: Double($0) * 5, value: $0 % 2 == 0 ? 300 : 310) }
+        let smooth = samples.smoothed(window: 3)
+        #expect(smooth.count == 100)
+        #expect(smooth.dropFirst().dropLast().allSatisfy { abs($0.value - 305) < 3.4 })
+        let reduced = samples.downsampled(maxPoints: 20)
+        #expect(reduced.count == 20)
+        #expect(reduced.allSatisfy { abs($0.value - 305) <= 1 })
+        #expect([LiveSample]().downsampled(maxPoints: 5).isEmpty)
+    }
+}
