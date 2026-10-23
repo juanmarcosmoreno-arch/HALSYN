@@ -10,8 +10,8 @@
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | ✅ compila y pasa tests en CI · ⏳ prueba con datos reales |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | ✅ compila y pasa tests en CI · ⏳ revisión con datos reales |
-| 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | |
-| 9 | MÅL: creación de objetivos, planificación, recordatorios | |
+| 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | ✅ tests del núcleo · ⏳ CI de la app · ⏳ revisión de licencia (FRIEND) |
+| 9 | MÅL: creación de objetivos, planificación, recordatorios | ✅ tests del núcleo · ⏳ prueba en dispositivo |
 | 10 | Preparación comercial: privacidad, accesibilidad, rendimiento, batería, revisión nativa de traducciones, App Store, TestFlight | |
 
 ## Fase 1 — entregado
@@ -111,3 +111,23 @@
 
 - Recomendaciones accionables sobre las observaciones.
 - Revisión nativa de las frases con días de la semana en pt-BR, it, sv y da.
+
+## Fase 8 — entregado
+
+- `ReferenceLibrary` con dos tablas verificadas ([SCIENTIFIC_REFERENCES](SCIENTIFIC_REFERENCES.md)): VO₂ máx. (FRIEND 2015) y FC en reposo (NHANES 1999–2008). La HRV no se compara (no hay tabla comparable).
+- `ReferencePercentileEngine`: interpolación lineal entre percentiles publicados, sin extrapolar fuera de la tabla.
+- Perfil: fecha de nacimiento y sexo (a mano o desde Salud), solo en el dispositivo.
+- Tarjeta "Tu grupo de edad" en el detalle de VO₂ máx. y FC en reposo y en INSIKT: percentil aproximado, barra con la mitad central del grupo, mediana y tu valor; fuente, población, método y limitaciones siempre visibles.
+
+## Pendientes conocidos de la Fase 8
+
+- Revisión legal del uso de la tabla FRIEND 2015 en una app comercial; valorar la tabla de 2022 (CC BY-NC-ND).
+- Fuentes nórdicas/europeas por edad si se verifican.
+
+## Fase 9 — entregado
+
+- MÅL: siete tipos de objetivo (pasos, ejercicio, distancia, distancia corriendo, carreras, sueño medio, energía activa), por día, semana o mes; ritmo (adelantado, en camino, por detrás), historial y racha.
+- Progresión opcional de distancia semanal corriendo (+10 % por semana hasta el objetivo final).
+- Recordatorios locales que solo dicen el objetivo, nunca datos de salud.
+- Widgets de iPhone y complicaciones del reloj (HÄLSA, VILA y objetivo; acceso rápido a SPRING) con datos compartidos por App Group.
+- Reloj: gráfico de ritmo y pulso en vivo durante la carrera, indicador de zona y mapa sin gestos (no bloquea pasar de página ni parar).

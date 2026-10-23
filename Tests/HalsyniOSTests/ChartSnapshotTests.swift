@@ -47,6 +47,16 @@ final class ChartSnapshotTests: XCTestCase {
                 .background(Color.black)
         )))
         views.append(("12-reloj-zona", AnyView(HalsynZoneGauge(zone: 3).frame(width: 180).padding(12).background(Color.black))))
+        // Referencias por edad con las tablas reales (FRIEND 2015 y NHANES).
+        if let vo2 = ReferencePercentileEngine.position(of: 46, metric: .vo2Max, age: 35, sex: .male),
+           let resting = ReferencePercentileEngine.position(of: 49, metric: .restingHeartRate, age: 45, sex: .female) {
+            views.append(("13-referencia", AnyView(HalsynCard {
+                VStack(alignment: .leading, spacing: 24) {
+                    HalsynReferenceStrip(position: vo2, unit: "mL/kg/min", format: { HalsynFormat.decimal($0, fractionDigits: 1) })
+                    HalsynReferenceStrip(position: resting, unit: "lpm", format: { HalsynFormat.integer($0) })
+                }
+            })))
+        }
         if let trend = report.trends.first {
             views.append(("07-cambio", AnyView(TrendInsightCard(insight: trend))))
         }

@@ -76,10 +76,13 @@ struct MetricDetailView: View {
                     Text(LocalizedStringKey(MetricExplanation.text(for: kind)))
                         .font(.halsynBody)
                         .foregroundStyle(.halsynPrimaryText)
-                    Text("La comparación con personas de tu edad llegará en la Fase 8, solo con referencias científicas verificadas.")
-                        .font(.halsynCaption)
-                        .foregroundStyle(.halsynSecondaryText)
                 }
+            }
+
+            if kind.hasAgeReference {
+                ReferenceComparisonCard(kind: kind)
+            } else if kind == .heartRateVariability {
+                NoAgeReferenceNote()
             }
         }
         .navigationTitle(Text(LocalizedStringKey(kind.title)))

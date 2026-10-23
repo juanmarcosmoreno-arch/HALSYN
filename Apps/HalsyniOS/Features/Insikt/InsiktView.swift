@@ -91,15 +91,19 @@ struct InsiktView: View {
                         moduleLink(.mal)
                     }
                     .buttonStyle(.plain)
-                    HalsynCard {
-                        HStack {
-                            Text("Comparación con tu grupo de edad")
-                                .font(.halsynCaption)
-                                .foregroundStyle(.halsynSecondaryText)
-                            Spacer()
-                            PhaseTag(phase: 8)
+                    HalsynSectionHeader("Tu grupo de edad", eyebrow: HalsynLexicon.form.rawValue)
+                        .padding(.top, HalsynSpacing.s)
+                    ForEach([MetricKind.vo2Max, .restingHeartRate], id: \.self) { kind in
+                        NavigationLink {
+                            MetricDetailView(kind: kind)
+                        } label: {
+                            ReferenceComparisonCard(kind: kind, compact: true)
                         }
+                        .buttonStyle(.plain)
                     }
+                    Text("Comparación con tablas científicas publicadas, con su fuente y limitaciones en el detalle de cada indicador.")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
                 } else {
                     HalsynLoadingState()
                 }

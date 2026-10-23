@@ -21,10 +21,10 @@ public struct ReferenceRow: Hashable, Codable, Sendable {
     public let ageRange: ClosedRange<Int>
     /// Tamaño de muestra del grupo, si la fuente lo da.
     public let sampleSize: Int?
-    /// Percentil (p. ej. 10, 25, 50) → valor de la métrica.
-    public let percentiles: [Int: Double]
+    /// Percentil (p. ej. 2,5, 10, 50) → valor de la métrica.
+    public let percentiles: [Double: Double]
 
-    public init(sex: ReferenceSex, ageRange: ClosedRange<Int>, sampleSize: Int?, percentiles: [Int: Double]) {
+    public init(sex: ReferenceSex, ageRange: ClosedRange<Int>, sampleSize: Int?, percentiles: [Double: Double]) {
         self.sex = sex
         self.ageRange = ageRange
         self.sampleSize = sampleSize
@@ -69,9 +69,9 @@ public struct ReferenceDataset: Hashable, Sendable, Identifiable {
 public struct ReferencePosition: Hashable, Sendable {
     public enum Bound: Hashable, Sendable {
         /// Por debajo del percentil más bajo publicado.
-        case below(Int)
+        case below(Double)
         /// Por encima del percentil más alto publicado.
-        case above(Int)
+        case above(Double)
         /// Interpolado entre dos percentiles publicados.
         case within(Double)
     }
@@ -109,10 +109,10 @@ public enum ReferencePercentileEngine {
         for (lower, upper) in zip(points, points.dropFirst()) where value >= lower.value && value <= upper.value {
             let span = upper.value - lower.value
             let fraction = span > 0 ? (value - lower.value) / span : 0
-            let percentile = Double(lower.key) + fraction * Double(upper.key - lower.key)
+            let percentile = lower.key + fraction * (upper.key - lower.key)
             return ReferencePosition(value: value, bound: .within(percentile), row: row, dataset: dataset)
         }
-        return ReferencePosition(value: value, bound: .within(Double(last.key)), row: row, dataset: dataset)
+        return ReferencePosition(value: value, bound: .within(last.key), row: row, dataset: dataset)
     }
 
     /// Edad cumplida en `date`.

@@ -6,9 +6,9 @@
 - Se distinguen valores medidos directamente (laboratorio) de estimaciones del Apple Watch; no se comparan entre sí sin advertirlo.
 - Las puntuaciones de HÅLSYN son estimaciones de bienestar, no medidas clínicamente validadas.
 
-## Estado (Fase 1)
+## Estado (Fase 8)
 
-No hay ningún dataset incorporado. Los valores del modo demo son sintéticos, plausibles para un adulto activo, y **no** constituyen referencias.
+Dos tablas incorporadas, copiadas de la fuente y verificadas fila a fila (`ReferenceLibrary.swift`, generado; no editar a mano). Los valores del modo demo siguen siendo sintéticos.
 
 ## Referencias usadas como umbrales en HealthScoreEngine (Fase 3)
 
@@ -25,14 +25,43 @@ Orientan los umbrales; **no validan** la puntuación de HÅLSYN en conjunto.
 
 Pendiente: revisar cada cita con su texto completo antes de la publicación y registrar DOI/PMID.
 
-## Fuentes a investigar (Fase 8)
+## Referencias por edad (Fase 8)
 
-- NHANES (CDC) — encuestas poblacionales de EE. UU.
-- FRIEND Registry — capacidad cardiorrespiratoria medida en prueba de esfuerzo.
-- Literatura indexada en PubMed sobre FC en reposo y HRV por edad y sexo.
-- Recomendaciones oficiales de actividad física y sueño (OMS y sociedades científicas).
+### VO₂ máx. — FRIEND 2015 (`friend-2015-treadmill`)
 
-Cada candidata se revisará por: población, método de medición, compatibilidad con la estimación del Apple Watch y licencia de uso.
+| Campo | Valor |
+|---|---|
+| Fuente | Kaminsky LA, Arena R, Myers J. *Reference Standards for Cardiorespiratory Fitness Measured With Cardiopulmonary Exercise Testing: Data From the Fitness Registry and the Importance of Exercise National Database.* Mayo Clin Proc. 2015;90(11):1515–1523. DOI 10.1016/j.mayocp.2015.07.026 |
+| Tabla | Tabla 3 (cinta), percentiles 5, 10, 25, 50, 75, 90 y 95 |
+| Población | 7.783 pruebas, 8 laboratorios de EE. UU. (2014–2015), 20–79 años, sin enfermedad cardiovascular ni EPOC conocidas |
+| Método | Prueba de esfuerzo máxima en cinta con análisis de gases |
+| Grupos | Por sexo y décadas de 20–29 a 70–79 (12 filas, con su n) |
+| Compatible con Apple Watch | Con advertencia: el reloj da una estimación submáxima |
+| Limitaciones mostradas | Estimación frente a laboratorio; muestra de conveniencia de EE. UU.; la actualización de 2022 da valores 1,5–4,6 mL·kg⁻¹·min⁻¹ más bajos (su tabla no se pudo verificar); sin datos para 80+ |
+| Licencia | Copia de autor en PMC (uso legítimo, *fair use*); copyright Elsevier/Mayo. **Revisar con asesoría antes de publicar en la App Store (Fase 10).** La versión de 2022 es CC BY-NC-ND. |
+
+### FC en reposo — NHANES 1999–2008 (`nhanes-1999-2008-pulse`)
+
+| Campo | Valor |
+|---|---|
+| Fuente | Ostchega Y, Porter KS, Hughes J, Dillon CF, Nwankwo T. *Resting pulse rate reference data for children, adolescents, and adults: United States, 1999–2008.* National Health Statistics Reports n.º 41. NCHS; 2011. https://www.cdc.gov/nchs/data/nhsr/nhsr041.pdf |
+| Tabla | Tablas 2 y 3 (adultos), percentiles 1–99; en 80+ faltan algunos extremos y se omiten |
+| Población | Muestra representativa de EE. UU., 14.200 adultos; excluye embarazo, infección probable, pulso irregular, tiroides alterada y fármacos que cambian la FC |
+| Método | Pulso radial contado a mano 30 s (×2), sentado tras ~4 min de reposo |
+| Grupos | Por sexo: 20–39, 40–59, 60–79 y 80+ (16–19 años no se incluyen) |
+| Compatible con Apple Watch | Con advertencia: el reloj calcula la FC en reposo de otra forma |
+| Licencia | Dominio público (se cita la fuente) |
+
+### HRV — sin referencia
+
+No se muestran percentiles de HRV: el SDNN del Apple Watch sale de lecturas ópticas cortas (~1 min) a horas y posturas arbitrarias, y las normas publicadas usan ECG de 5 min en decúbito (o 24 h) y dan media ± DE. No son comparables.
+
+### Cómo se calcula la posición (`ReferencePercentileEngine`)
+
+- Se elige la fila del sexo y del grupo de edad del usuario; sin edad, sin sexo o fuera de la cobertura → no se compara.
+- Entre dos percentiles publicados se interpola linealmente; fuera de la tabla se dice "por debajo del P5"/"por encima del P95", sin extrapolar.
+- La frase es neutra: "unas N de cada 100 personas tienen un valor más bajo"; la dirección (más alto es mejor en VO₂, más bajo en FC) se explica aparte, sin juicio clínico.
+- Edad y sexo los escribe el usuario o se copian de Salud; se guardan solo en el iPhone. En demo sin perfil se usa un perfil de ejemplo (hombre de 35) etiquetado.
 
 ## Plantilla de dataset
 

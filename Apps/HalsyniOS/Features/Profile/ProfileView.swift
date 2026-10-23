@@ -30,6 +30,8 @@ struct ProfileView: View {
 
                 ProfileIdentitySection()
 
+                ReferenceProfileSection()
+
                 Section {
                     LabeledContent("Fuente activa") {
                         HStack(spacing: 6) {
