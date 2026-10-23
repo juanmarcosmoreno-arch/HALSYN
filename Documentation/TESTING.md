@@ -40,6 +40,8 @@ Fase 5, GitHub Actions (commit `029535f`): **todos los jobs en verde** — 133 t
 
 Fase 6, GitHub Actions (commit `7e2e7b7`): **todos los jobs en verde** — 151 tests del núcleo (sueño por noche, regularidad, hipnograma, `RecoveryEngine`), apps de iPhone y Apple Watch, `HalsyniOSTests` y catálogos de 9 idiomas. `ChartSnapshotTests` renderiza 7 gráficas en claro y oscuro (14 capturas, artefacto `capturas-graficas`); en su primera ejecución detectó un rango invertido en el gráfico de horarios que habría cerrado la app.
 
+Fase 7, GitHub Actions (commit `291f76f`): **todos los jobs en verde** — 169 tests del núcleo (18 nuevos: estadística contra valores de tablas y `InsightEngine`), apps de iPhone y Apple Watch, `HalsyniOSTests` con capturas de las tarjetas de INSIKT y catálogos de 9 idiomas.
+
 ## Pendiente por fase
 
 - Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).

@@ -9,7 +9,7 @@
 | 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
 | 6 | VILA: sueño, RecoveryEngine, tendencias | ✅ compila y pasa tests en CI · ⏳ prueba con datos reales |
-| 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
+| 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | ✅ compila y pasa tests en CI · ⏳ revisión con datos reales |
 | 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | |
 | 9 | MÅL: creación de objetivos, planificación, recordatorios | |
 | 10 | Preparación comercial: privacidad, accesibilidad, rendimiento, batería, revisión nativa de traducciones, App Store, TestFlight | |
@@ -99,3 +99,15 @@
 
 - Calibrar `RecoveryEngine` con datos reales; revisar nombres de fases del sueño con hablantes nativos.
 - Las capturas de CI se adjuntan como artefacto; no se comparan píxeles.
+
+## Fase 7 — entregado
+
+- `InsightEngine` 0.1 ([INSIGHTS](INSIGHTS.md)): qué cambió (4 semanas frente a las 4 anteriores, t de Welch), patrones entre métricas (lista cerrada de 6 pares plausibles, Spearman), semana tipo (ANOVA) y récords. Corrección por comparaciones múltiples (Benjamini–Hochberg), tamaño de efecto mínimo y requisitos de datos visibles.
+- `Stats` propio verificado con valores de tablas estadísticas.
+- INSIKT rediseñado con gráficas de antes/después, comparación de grupos y semana tipo; lenguaje de observación, nunca de causa.
+- Firma: equipo y bundle ID en `Config/Halsyn.xcconfig` para que `git pull` no deje el reloj sin firmar.
+
+## Pendientes conocidos de la Fase 7
+
+- Recomendaciones accionables sobre las observaciones.
+- Revisión nativa de las frases con días de la semana en pt-BR, it, sv y da.
