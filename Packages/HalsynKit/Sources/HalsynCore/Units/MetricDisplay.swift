@@ -11,16 +11,12 @@ public struct MetricDisplay: Hashable, Sendable {
     public let status: String?
     public let origin: DataOrigin?
 
-    public init(_ availability: MetricAvailability, kind: MetricKind, unitSystem: UnitSystem = .metric) {
+    public init(_ availability: MetricAvailability, kind: MetricKind, unitSystem: UnitSystem = .metric, locale: Locale = .current) {
         self.kind = kind
         unit = HalsynFormat.unitSymbol(for: kind, unit: unitSystem)
         switch availability {
         case .available(let reading):
-            if kind == .sleepDuration {
-                value = String(format: "%.1f", reading.value)
-            } else {
-                value = HalsynFormat.metricValue(reading.value, kind: kind, unit: unitSystem)
-            }
+            value = HalsynFormat.metricValue(reading.value, kind: kind, unit: unitSystem, locale: locale)
             status = nil
             origin = reading.origin
         case .noData, .notAuthorized, .unsupported:

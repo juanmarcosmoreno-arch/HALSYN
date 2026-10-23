@@ -39,7 +39,7 @@ struct DataOriginFootnote: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
                     if let origin {
-                        Text(LocalizedStringKey(origin.label))
+                        originText(origin)
                     }
                     if let extra {
                         Text(extra)
@@ -49,6 +49,21 @@ struct DataOriginFootnote: View {
             .font(.caption2)
             .foregroundStyle(.halsynSecondaryText)
         }
+    }
+}
+
+/// Texto localizado del origen (no se usa `DataOrigin.label`, que interpola
+/// valores y no puede traducirse como clave).
+private func originText(_ origin: DataOrigin) -> Text {
+    switch origin {
+    case .demo:
+        Text("Datos demo")
+    case .healthKit(let source?):
+        Text("Apple Health · \(source)")
+    case .healthKit(nil):
+        Text(verbatim: "Apple Health")
+    case .derived(let engine):
+        Text("Calculado por \(engine)")
     }
 }
 

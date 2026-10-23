@@ -5,6 +5,18 @@ on:
   pull_request:
 
 jobs:
+  localization:
+    name: Catálogos de idiomas sincronizados
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Las claves del código coinciden con Localization/source-keys.json
+        run: python3 scripts/localization/extract_keys.py | diff - Localization/source-keys.json
+      - name: Traducciones completas y catálogos regenerados
+        run: |
+          python3 scripts/localization/build_catalogs.py
+          git diff --exit-code -- Apps/*/Resources/*.xcstrings
+
   core-linux:
     name: HalsynKit (Linux · swift test)
     runs-on: ubuntu-24.04

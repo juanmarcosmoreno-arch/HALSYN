@@ -12,6 +12,8 @@ private let fixedNow: Date = {
     return Calendar.halsynGregorian.date(from: components)!
 }()
 
+private let english = Locale(identifier: "en_US")
+
 private func makeDemo(seed: UInt64 = 7) -> DemoHealthDataProvider {
     DemoHealthDataProvider(seed: seed, now: { fixedNow })
 }
@@ -92,6 +94,14 @@ struct PaceTests {
         #expect(Pace(secondsPerKilometer: 240) < Pace(secondsPerKilometer: 300))
     }
 
+    @Test func numbersFollowTheRegion() {
+        #expect(HalsynFormat.distance(meters: 5210, locale: Locale(identifier: "es_ES")) == "5,21")
+        #expect(HalsynFormat.decimal(7.8, fractionDigits: 1, locale: Locale(identifier: "da_DK")) == "7,8")
+        #expect(HalsynFormat.integer(8600, locale: english) == "8,600")
+        #expect(HalsynFormat.integer(8600, locale: Locale(identifier: "hi_IN")) == "8,600")
+        #expect(HalsynFormat.metricValue(0.97, kind: .oxygenSaturation, locale: english) == "97")
+    }
+
     @Test func durationFormatting() {
         #expect(HalsynFormat.duration(59) == "0:59")
         #expect(HalsynFormat.duration(24 * 60 + 36) == "24:36")
@@ -100,9 +110,9 @@ struct PaceTests {
     }
 
     @Test func distanceAndSleepFormatting() {
-        #expect(HalsynFormat.distance(meters: 5210) == "5.21")
-        #expect(HalsynFormat.distance(meters: 1609.344, unit: .imperial) == "1.00")
-        #expect(HalsynFormat.hoursAndMinutes(7.8) == "7 h 48 min")
+        #expect(HalsynFormat.distance(meters: 5210, locale: english) == "5.21")
+        #expect(HalsynFormat.distance(meters: 1609.344, unit: .imperial, locale: english) == "1.00")
+        #expect(HalsynFormat.hoursAndMinutes(7.8) == (7, 48))
         #expect(HalsynFormat.unitSymbol(for: .walkingRunningDistance, unit: .imperial) == "mi")
         #expect(HalsynFormat.unitSymbol(for: .heartRateVariability) == "ms")
     }
@@ -147,11 +157,11 @@ struct MetricDisplayTests {
 
     @Test func availableValuesAreFormatted() {
         let reading = MetricReading(kind: .walkingRunningDistance, value: 5210, date: fixedNow, origin: .demo)
-        let display = MetricDisplay(.available(reading), kind: .walkingRunningDistance)
+        let display = MetricDisplay(.available(reading), kind: .walkingRunningDistance, locale: english)
         #expect(display.value == "5.21")
         #expect(display.unit == "km")
         #expect(display.origin == .demo)
-        let sleep = MetricDisplay(.available(MetricReading(kind: .sleepDuration, value: 7.8, date: fixedNow, origin: .demo)), kind: .sleepDuration)
+        let sleep = MetricDisplay(.available(MetricReading(kind: .sleepDuration, value: 7.8, date: fixedNow, origin: .demo)), kind: .sleepDuration, locale: english)
         #expect(sleep.value == "7.8")
         #expect(sleep.unit == "h")
     }
@@ -253,10 +263,10 @@ struct WorkoutScreenProfileTests {
     @Test func demoSampleFillsEveryField() {
         let sample = DemoWorkoutSample()
         for field in WorkoutFieldKind.allCases {
-            #expect(sample.value(for: field).value != nil, "\(field) sin valor demo")
+            #expect(sample.value(for: field, locale: english).value != nil, "\(field) sin valor demo")
         }
         #expect(sample.value(for: .elapsedTime).value == "24:36")
-        #expect(sample.value(for: .distance).value == "5.21")
+        #expect(sample.value(for: .distance, locale: english).value == "5.21")
     }
 
     @Test func profilesRoundTripThroughJSON() throws {

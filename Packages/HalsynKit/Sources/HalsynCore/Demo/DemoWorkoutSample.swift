@@ -30,10 +30,10 @@ public struct DemoWorkoutSample: Sendable {
 
     public var averagePace: Pace? { Pace(distanceMeters: distanceMeters, duration: elapsed) }
 
-    public func value(for field: WorkoutFieldKind, unit: UnitSystem = .metric) -> WorkoutFieldValue {
+    public func value(for field: WorkoutFieldKind, unit: UnitSystem = .metric, locale: Locale = .current) -> WorkoutFieldValue {
         switch field {
         case .elapsedTime: WorkoutFieldValue(value: HalsynFormat.duration(elapsed), unit: "")
-        case .distance: WorkoutFieldValue(value: HalsynFormat.distance(meters: distanceMeters, unit: unit), unit: unit.distanceUnitSymbol)
+        case .distance: WorkoutFieldValue(value: HalsynFormat.distance(meters: distanceMeters, unit: unit, locale: locale), unit: unit.distanceUnitSymbol)
         case .currentPace: WorkoutFieldValue(value: currentPace.formatted(in: unit), unit: unit.paceUnitSymbol)
         case .averagePace: WorkoutFieldValue(value: averagePace?.formatted(in: unit), unit: unit.paceUnitSymbol)
         case .heartRate: WorkoutFieldValue(value: String(Int(heartRate)), unit: "lpm")

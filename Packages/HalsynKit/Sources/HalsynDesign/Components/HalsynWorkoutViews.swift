@@ -27,7 +27,7 @@ public struct HalsynWatchMetric: View {
                     Text(verbatim: value ?? "—")
                         .font(.title3.weight(.semibold).monospacedDigit())
                     if value != nil {
-                        Text(verbatim: unit).font(.caption2).foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                        Text(LocalizedStringKey(unit)).font(.caption2).foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                     }
                 }
                 Text(LocalizedStringKey(title))
@@ -39,7 +39,7 @@ public struct HalsynWatchMetric: View {
         .foregroundStyle(Color(HalsynPalette.textLight))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(LocalizedStringKey(title)))
-        .accessibilityValue(Text(verbatim: value.map { "\($0) \(unit)" } ?? "Sin datos"))
+        .accessibilityValue(halsynAccessibilityValue(value, unit: unit))
     }
 }
 
@@ -79,7 +79,7 @@ public struct HalsynWorkoutField: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(verbatim: label)
+            Text(LocalizedStringKey(label))
                 .font(.caption2.weight(.semibold))
                 .tracking(1)
                 .foregroundStyle(emphasis)
@@ -90,7 +90,7 @@ public struct HalsynWorkoutField: View {
                     .lineLimit(1)
                     .foregroundStyle(Color.white)
                 if !unit.isEmpty {
-                    Text(verbatim: unit)
+                    Text(LocalizedStringKey(unit))
                         .font(.caption.weight(.medium))
                         .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                 }
@@ -98,8 +98,8 @@ public struct HalsynWorkoutField: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: label))
-        .accessibilityValue(Text(verbatim: value.map { "\($0) \(unit)" } ?? "Sin datos"))
+        .accessibilityLabel(Text(LocalizedStringKey(label)))
+        .accessibilityValue(halsynAccessibilityValue(value, unit: unit))
     }
 }
 

@@ -24,7 +24,7 @@ public struct HalsynMetric: View {
                     .font(.halsynMetricValue)
                     .foregroundStyle(.halsynPrimaryText)
                 if value != nil, !unit.isEmpty {
-                    Text(verbatim: unit)
+                    Text(LocalizedStringKey(unit))
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                 }
@@ -36,8 +36,15 @@ public struct HalsynMetric: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(LocalizedStringKey(title)))
-        .accessibilityValue(Text(verbatim: value.map { "\($0) \(unit)" } ?? "Sin datos"))
+        .accessibilityValue(halsynAccessibilityValue(value, unit: unit))
     }
+}
+
+/// Valor de accesibilidad "valor unidad" con la unidad localizada ("lpm" → "bpm").
+func halsynAccessibilityValue(_ value: String?, unit: String) -> Text {
+    guard let value else { return Text("Sin datos") }
+    guard !unit.isEmpty else { return Text(verbatim: value) }
+    return Text("\(value) \(Text(LocalizedStringKey(unit)))")
 }
 
 /// Tesela de métrica para cuadrículas del dashboard.
@@ -213,7 +220,7 @@ public struct HalsynScoreRing: View {
         .onChange(of: score) { _, _ in update(animated: !reduceMotion) }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Puntuación"))
-        .accessibilityValue(Text(verbatim: score.map { "\($0) / 100" } ?? "Sin datos suficientes"))
+        .accessibilityValue(score.map { Text(verbatim: "\($0) / 100") } ?? Text("Sin datos suficientes"))
     }
 
     private func update(animated: Bool) {

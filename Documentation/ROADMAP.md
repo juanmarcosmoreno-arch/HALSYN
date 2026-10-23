@@ -12,7 +12,7 @@
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
 | 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | |
 | 9 | MÅL: creación de objetivos, planificación, recordatorios | |
-| 10 | Preparación comercial: privacidad, accesibilidad, rendimiento, batería, localización en/sv, App Store, TestFlight | |
+| 10 | Preparación comercial: privacidad, accesibilidad, rendimiento, batería, revisión nativa de traducciones, App Store, TestFlight | |
 
 ## Fase 1 — entregado
 
@@ -21,9 +21,10 @@
 - Design system con tokens claro/oscuro verificados (WCAG AA), 13 componentes requeridos + logotipo, símbolo, distintivo demo.
 - Pantallas: HÄLSA, SPRING (+ detalle de carrera), VILA, INSIKT, MÅL, Perfil (+ vocabulario y galería), detalle de métrica. Reloj: inicio, Mi estado, SPRING (vista previa de pantallas), Recuperación, Resumen diario.
 - Iconos y splash generados desde un SVG maestro.
+- 9 idiomas (es, en, pt-BR, fr, it, sv, da, zh-Hans, hi) con String Catalogs generados y formatos regionales.
 
 ## Pendientes conocidos de la Fase 1
 
 - El símbolo Å-persona es una aproximación vectorial: falta el vector definitivo del diseñador.
-- Strings preparadas para String Catalog, pero sin traducciones en/sv.
+- Traducciones (8 idiomas) generadas con IA: requieren revisión nativa antes de publicar.
 - No hay onboarding (llega con los permisos en Fase 2).

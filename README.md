@@ -16,6 +16,10 @@ Plataforma nativa de salud, bienestar y rendimiento para **iPhone** y **Apple Wa
 | **INSIKT** | Comprensión | Tendencias y análisis longitudinal |
 | **MÅL** | Objetivo | Metas de salud y entrenamiento |
 
+## Idiomas
+
+Español, inglés, portugués (Brasil), francés, italiano, sueco, danés, chino simplificado e hindi. El usuario puede cambiar el idioma solo para HÅLSYN en **Ajustes › HÅLSYN › Idioma**. Ver [LOCALIZATION](Documentation/LOCALIZATION.md).
+
 ## Estructura
 
 ```
@@ -32,7 +36,8 @@ HALSYN/
 │   └── Tests/HalsynCoreTests   # Tests (Swift Testing)
 ├── Tests/HalsyniOSTests        # Tests de la capa de app (XCTest)
 ├── Resources/Brand/            # SVG maestro, referencia aprobada, exportaciones
-├── scripts/                    # Generación reproducible de iconos
+├── Localization/               # Claves en español y traducciones (fuente de los .xcstrings)
+├── scripts/                    # Iconos y catálogos de idiomas (generación reproducible)
 └── Documentation/
 ```
 
@@ -57,7 +62,7 @@ cd Packages/HalsynKit && swift test
 
 - [ARCHITECTURE](Documentation/ARCHITECTURE.md) · [DESIGN_SYSTEM](Documentation/DESIGN_SYSTEM.md) · [HEALTHKIT_INTEGRATION](Documentation/HEALTHKIT_INTEGRATION.md)
 - [RUNNING_ENGINE](Documentation/RUNNING_ENGINE.md) · [SCIENTIFIC_REFERENCES](Documentation/SCIENTIFIC_REFERENCES.md) · [PRIVACY](Documentation/PRIVACY.md)
-- [TESTING](Documentation/TESTING.md) · [ROADMAP](Documentation/ROADMAP.md)
+- [TESTING](Documentation/TESTING.md) · [ROADMAP](Documentation/ROADMAP.md) · [LOCALIZATION](Documentation/LOCALIZATION.md)
 
 ## Aviso
 

@@ -80,6 +80,9 @@ public struct Pace: Hashable, Comparable, Sendable {
     }
 }
 
+/// Formatos de presentación. Los números respetan la configuración regional
+/// (`5,21` en español, `5.21` en inglés, `8 600` en francés); ritmo y duración
+/// usan `m:ss` / `h:mm:ss`, que es universal.
 public enum HalsynFormat {
     /// Duración como "h:mm:ss" o "m:ss".
     public static func duration(_ interval: TimeInterval) -> String {
@@ -91,32 +94,44 @@ public enum HalsynFormat {
         return String(format: "%d:%02d", minutes, seconds)
     }
 
-    /// Distancia en la unidad elegida, con dos decimales.
-    public static func distance(meters: Double, unit: UnitSystem = .metric) -> String {
-        String(format: "%.2f", meters / unit.metersPerDistanceUnit)
+    /// Número con decimales fijos según la configuración regional.
+    public static func decimal(_ value: Double, fractionDigits: Int, locale: Locale = .current) -> String {
+        value.formatted(.number.precision(.fractionLength(fractionDigits)).locale(locale))
     }
 
-    /// Horas decimales a "7 h 48 min".
-    public static func hoursAndMinutes(_ hours: Double) -> String {
+    /// Entero con separador de miles según la configuración regional.
+    public static func integer(_ value: Double, locale: Locale = .current) -> String {
+        Int(value.rounded()).formatted(.number.locale(locale))
+    }
+
+    /// Distancia en la unidad elegida, con dos decimales.
+    public static func distance(meters: Double, unit: UnitSystem = .metric, locale: Locale = .current) -> String {
+        decimal(meters / unit.metersPerDistanceUnit, fractionDigits: 2, locale: locale)
+    }
+
+    /// Horas decimales a (horas, minutos) para componer "7 h 48 min" con una
+    /// cadena localizada en la interfaz.
+    public static func hoursAndMinutes(_ hours: Double) -> (hours: Int, minutes: Int) {
         let totalMinutes = max(0, Int((hours * 60).rounded()))
-        return "\(totalMinutes / 60) h \(totalMinutes % 60) min"
+        return (totalMinutes / 60, totalMinutes % 60)
     }
 
     /// Valor de una métrica sin unidad, con la precisión adecuada.
-    public static func metricValue(_ value: Double, kind: MetricKind, unit: UnitSystem = .metric) -> String {
+    public static func metricValue(_ value: Double, kind: MetricKind, unit: UnitSystem = .metric, locale: Locale = .current) -> String {
         switch kind {
         case .steps, .heartRate, .restingHeartRate, .heartRateVariability, .activeEnergy, .exerciseTime:
-            return String(Int(value.rounded()))
+            return integer(value, locale: locale)
         case .walkingRunningDistance:
-            return distance(meters: value, unit: unit)
+            return distance(meters: value, unit: unit, locale: locale)
         case .sleepDuration, .vo2Max, .respiratoryRate:
-            return String(format: "%.1f", value)
+            return decimal(value, fractionDigits: 1, locale: locale)
         case .oxygenSaturation:
-            return String(Int((value * 100).rounded()))
+            return integer(value * 100, locale: locale)
         }
     }
 
-    /// Unidad mostrada para una métrica según el sistema elegido.
+    /// Unidad mostrada para una métrica según el sistema elegido. Es una clave
+    /// localizable ("lpm" se muestra "bpm" en inglés, etc.).
     public static func unitSymbol(for kind: MetricKind, unit: UnitSystem = .metric) -> String {
         kind == .walkingRunningDistance ? unit.distanceUnitSymbol : kind.unit.symbol
     }

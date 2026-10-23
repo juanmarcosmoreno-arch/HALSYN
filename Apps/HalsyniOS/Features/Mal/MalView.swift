@@ -63,7 +63,7 @@ struct MalView: View {
                     .foregroundStyle(.halsynPrimaryText)
                 HalsynProgressBar(progress: goal.progress)
                 HStack {
-                    Text(verbatim: "\(formatted(goal.current, goal.metric)) / \(formatted(goal.target, goal.metric)) \(unit(goal.metric))")
+                    Text("\(formatted(goal.current, goal.metric)) / \(formatted(goal.target, goal.metric)) \(Text(LocalizedStringKey(unit(goal.metric))))")
                     Spacer()
                     Text(goal.progress, format: .percent.precision(.fractionLength(0)))
                 }
@@ -77,11 +77,11 @@ struct MalView: View {
     private func formatted(_ value: Double, _ metric: MetricKind) -> String {
         switch metric {
         case .walkingRunningDistance:
-            String(format: "%.1f", value / unitSystem.metersPerDistanceUnit)
+            HalsynFormat.decimal(value / unitSystem.metersPerDistanceUnit, fractionDigits: 1)
         case .sleepDuration:
-            String(format: "%.1f", value)
+            HalsynFormat.decimal(value, fractionDigits: 1)
         default:
-            String(Int(value.rounded()))
+            HalsynFormat.integer(value)
         }
     }
 

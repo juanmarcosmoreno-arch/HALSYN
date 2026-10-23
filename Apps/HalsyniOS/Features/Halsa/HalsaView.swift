@@ -113,7 +113,7 @@ struct HalsaView: View {
                 HalsynScoreRing(score: snapshot.score?.value, caption: snapshot.score?.band.title)
                     .frame(maxWidth: 220)
                 if let change = snapshot.score?.weeklyChange {
-                    HalsynStatusIndicator(change >= 0 ? .positive : .neutral, text: "\(change >= 0 ? "+" : "")\(change) frente a tu media semanal")
+                    HalsynStatusIndicator(change >= 0 ? .positive : .neutral, text: String(localized: "\(change.formatted(.number.sign(strategy: .always()))) frente a tu media semanal"))
                 }
                 if snapshot.score == nil {
                     Text("La puntuación necesita más datos. Se calculará cuando haya suficiente historial.")

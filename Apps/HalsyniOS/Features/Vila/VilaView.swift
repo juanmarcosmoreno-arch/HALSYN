@@ -34,17 +34,18 @@ struct VilaView: View {
 
                 if let sleep {
                     seriesCard(title: "Sueño · 7 días", eyebrow: HalsynLexicon.somn.rawValue, series: sleep, style: .bar) { average in
-                        HalsynMetric(title: "Media semanal", value: HalsynFormat.hoursAndMinutes(average), unit: "")
+                        let time = HalsynFormat.hoursAndMinutes(average)
+                        HalsynMetric(title: "Media semanal", value: String(localized: "\(time.hours) h \(time.minutes) min"), unit: "")
                     }
                 }
                 if let hrv {
                     seriesCard(title: "HRV · 7 días", eyebrow: HalsynLexicon.puls.rawValue, series: hrv, style: .line) { average in
-                        HalsynMetric(title: "Media semanal", value: String(Int(average.rounded())), unit: "ms")
+                        HalsynMetric(title: "Media semanal", value: HalsynFormat.integer(average), unit: "ms")
                     }
                 }
                 if let restingHeartRate {
                     seriesCard(title: "FC en reposo · 7 días", eyebrow: HalsynLexicon.puls.rawValue, series: restingHeartRate, style: .line) { average in
-                        HalsynMetric(title: "Media semanal", value: String(Int(average.rounded())), unit: "lpm")
+                        HalsynMetric(title: "Media semanal", value: HalsynFormat.integer(average), unit: "lpm")
                     }
                 }
 

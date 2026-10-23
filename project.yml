@@ -50,7 +50,7 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDevelopmentRegion: es
-        CFBundleLocalizations: [es, en, sv]
+        CFBundleLocalizations: [es, en, pt-BR, fr, it, sv, da, zh-Hans, hi]
         LSRequiresIPhoneOS: true
         UILaunchScreen:
           UIColorName: LaunchBackground
@@ -92,6 +92,7 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDevelopmentRegion: es
+        CFBundleLocalizations: [es, en, pt-BR, fr, it, sv, da, zh-Hans, hi]
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.halsyn.app
         # La app de reloj debe funcionar sin el iPhone (requisito de SPRING).

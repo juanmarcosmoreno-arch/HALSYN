@@ -54,6 +54,7 @@ struct ProfileView: View {
                             Text(option.title).tag(option)
                         }
                     }
+                    LanguageRow()
                     Picker("Unidades", selection: $unitSystem) {
                         ForEach(UnitSystem.allCases) { system in
                             Text(LocalizedStringKey(system.title)).tag(system)
@@ -69,8 +70,12 @@ struct ProfileView: View {
                                 .frame(width: 24)
                                 .accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(verbatim: "\(module.brandName) · \(module.meaning)")
-                                    .font(.halsynHeadline)
+                                HStack(spacing: 6) {
+                                    Text(verbatim: module.brandName)
+                                    Text(verbatim: "·")
+                                    Text(LocalizedStringKey(module.meaning))
+                                }
+                                .font(.halsynHeadline)
                                 Text(LocalizedStringKey(module.summary))
                                     .font(.halsynCaption)
                                     .foregroundStyle(.halsynSecondaryText)
@@ -104,6 +109,35 @@ struct ProfileView: View {
             .halsynScreenBackground()
             .navigationTitle("Perfil")
         }
+    }
+}
+
+/// Idioma de la app. iOS gestiona el idioma por app en Ajustes › HÅLSYN ›
+/// Idioma; esta fila muestra el actual y abre esa pantalla.
+private struct LanguageRow: View {
+    @Environment(\.openURL) private var openURL
+
+    private var currentLanguage: String {
+        let code = Bundle.main.preferredLocalizations.first ?? "es"
+        return Locale.current.localizedString(forIdentifier: code)?.localizedCapitalized ?? code
+    }
+
+    var body: some View {
+        Button {
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                openURL(url)
+            }
+        } label: {
+            LabeledContent("Idioma") {
+                HStack(spacing: 4) {
+                    Text(verbatim: currentLanguage)
+                    Image(systemName: "arrow.up.forward.app")
+                        .accessibilityHidden(true)
+                }
+            }
+        }
+        .foregroundStyle(.halsynPrimaryText)
+        .accessibilityHint(Text("Abre los ajustes de la app para cambiar el idioma"))
     }
 }
 
