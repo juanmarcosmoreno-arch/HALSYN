@@ -16,7 +16,7 @@
 
 ## Resultados verificados
 
-Fase 1, ejecutado en Linux (Swift 6.3.1, x86_64): **`swift test` → 32 tests en 8 suites, todos superados** (incluye formato numérico por región).
+Fase 1, ejecutado en Linux (Swift 6.3.1, x86_64): **`swift test` → 32 tests en 8 suites, todos superados** (incluye formato numérico por región). Fase 2: 48 tests en 10 suites.
 
 GitHub Actions (commit `fa77845`, runner `macos-15`): **todos los jobs en verde**:
 
@@ -26,6 +26,8 @@ GitHub Actions (commit `fa77845`, runner `macos-15`): **todos los jobs en verde*
 - Catálogos de idiomas sincronizados con el código.
 
 Los dos primeros runs fallaron por errores de compilación reales (colisión de `RGBColor` con un tipo de macOS e inferencia genérica en Swift Charts), corregidos en ese commit. Nada se ha probado aún en dispositivos físicos.
+
+Fase 2, GitHub Actions (commit `de15b65`, `macos-15` + Linux): **todos los jobs en verde** — 48 tests del núcleo (incluidos 16 del proveedor real con cliente simulado), compilación de `HKHealthStoreClient`, apps de iPhone y Apple Watch, `HalsyniOSTests` en simulador y catálogos de 9 idiomas sincronizados. CI detectó un fallo real solo visible en macOS (empate de fuentes de sueño dependiente del orden de un diccionario), corregido con desempate determinista.
 
 ## Pendiente por fase
 
