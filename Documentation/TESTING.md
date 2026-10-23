@@ -38,6 +38,8 @@ Fase 4, GitHub Actions (commit `0e66974`): job de iOS + watchOS **en verde** —
 
 Fase 5, GitHub Actions (commit `029535f`): **todos los jobs en verde** — 133 tests del núcleo (42 nuevos: zonas, alertas, intervalos, ajustes, parciales), apps de iPhone y Apple Watch (WatchConnectivity, MapKit, editor de ajustes, página de intervalos), `HalsyniOSTests` y catálogos de 9 idiomas (436 cadenas). Pendiente: probar en el reloj real.
 
+Fase 6, GitHub Actions (commit `7e2e7b7`): **todos los jobs en verde** — 153 tests del núcleo (sueño por noche, regularidad, hipnograma, `RecoveryEngine`), apps de iPhone y Apple Watch, `HalsyniOSTests` y catálogos de 9 idiomas. `ChartSnapshotTests` renderiza 7 gráficas en claro y oscuro (14 capturas, artefacto `capturas-graficas`); en su primera ejecución detectó un rango invertido en el gráfico de horarios que habría cerrado la app.
+
 ## Pendiente por fase
 
 - Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).

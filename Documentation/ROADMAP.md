@@ -8,7 +8,7 @@
 | 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones, resumen nocturno | ✅ compila y pasa tests en CI |
 | 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
 | 5 | SPRING pro: editor de pantallas, zonas, alertas hápticas, vueltas, intervalos, mapas | ✅ compila y pasa tests en CI · ⏳ prueba corriendo con el reloj |
-| 6 | VILA: sueño, RecoveryEngine, tendencias | |
+| 6 | VILA: sueño, RecoveryEngine, tendencias | ✅ compila y pasa tests en CI · ⏳ prueba con datos reales |
 | 7 | INSIKT: análisis longitudinal, patrones con requisitos mínimos de datos | |
 | 8 | Referencias por edad: datasets verificados, ReferencePercentileEngine | |
 | 9 | MÅL: creación de objetivos, planificación, recordatorios | |
@@ -86,3 +86,16 @@
 - Tras un cierre inesperado de la app, la carrera recuperada sigue como libre (el plan de intervalos no se conserva).
 - Los parciales se calculan desde la ruta GPS: pueden diferir ligeramente de la distancia total de Apple Health.
 - Los permisos piden ahora también leer la ruta de los entrenamientos: quien ya conectó Apple Health debe aceptarlo (Perfil › Gestionar permisos o al volver a conectar).
+
+## Fase 6 — entregado
+
+- `RecoveryEngine` 0.1-provisional: HRV y FC en reposo frente a tu media de 28 días, sueño de anoche y esfuerzo de los últimos 3 días; explica cada componente y la confianza ([RECOVERY](RECOVERY.md)). Mismo motor en demo y Apple Health; también en el reloj.
+- Sueño por noche: fases (solo de la fuente dominante), hipnograma, tiempo dormido, horarios, regularidad y objetivo de sueño personal.
+- VILA completa: recuperación con desglose y tendencia, anoche, horarios de 14 noches, sueño frente al objetivo, HRV y FC en reposo frente a tu rango habitual.
+- Gráficas rediseñadas en toda la app ([DESIGN_SYSTEM](DESIGN_SYSTEM.md#gráficas)) y capturas automáticas en CI (claro y oscuro) que ya detectaron un fallo real.
+- Animación de apertura en claro y oscuro (completa, breve o desactivada).
+
+## Pendientes conocidos de la Fase 6
+
+- Calibrar `RecoveryEngine` con datos reales; revisar nombres de fases del sueño con hablantes nativos.
+- Las capturas de CI se adjuntan como artefacto; no se comparan píxeles.
