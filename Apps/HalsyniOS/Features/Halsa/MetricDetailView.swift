@@ -23,10 +23,19 @@ struct MetricDetailView: View {
                         if model.isDemo { HalsynDemoBadge() }
                     }
                     if let current {
-                        HalsynMetric(title: "Hoy", value: current.value, unit: current.unit)
+                        HalsynMetric(title: isToday(current.date) ? "Hoy" : "Último registro", value: current.value, unit: current.unit)
+                        if let date = current.date, !isToday(date) {
+                            Text(date, format: .dateTime.day().month(.wide).year())
+                                .font(.halsynCaption)
+                                .foregroundStyle(.halsynSecondaryText)
+                        }
                         if let status = current.status {
                             HalsynStatusIndicator(.neutral, text: status)
+                            if !model.isDemo {
+                                HealthAccessHint()
+                            }
                         }
+                        DataOriginFootnote(origin: current.origin)
                     } else {
                         HalsynLoadingState()
                     }
@@ -61,11 +70,15 @@ struct MetricDetailView: View {
         }
         .navigationTitle(Text(LocalizedStringKey(kind.title)))
         .navigationBarTitleDisplayMode(.inline)
-        .task(id: unitSystem) {
+        .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)") {
             let today = Date.now
             current = MetricDisplay(await model.provider.latest(kind, on: today), kind: kind, unitSystem: unitSystem)
             series = await model.provider.dailySeries(kind, days: 30, endingOn: today)
         }
+    }
+
+    private func isToday(_ date: Date?) -> Bool {
+        date.map { Calendar.current.isDateInToday($0) } ?? true
     }
 
     /// Convierte valores a la unidad mostrada (distancia en km/mi, SpO₂ en %).

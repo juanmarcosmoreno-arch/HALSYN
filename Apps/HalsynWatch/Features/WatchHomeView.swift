@@ -12,9 +12,12 @@ enum WatchDestination: Hashable {
 /// Pantalla inicial: estado del día y accesos rápidos. Iniciar una carrera debe
 /// requerir el mínimo de toques.
 struct WatchHomeView: View {
-    let provider: any HealthDataProviding
+    @Environment(WatchModel.self) private var model
     @State private var score: DailyScore?
     @State private var recovery: DailyScore?
+    @State private var isConnecting = false
+
+    private var provider: any HealthDataProviding { model.provider }
 
     var body: some View {
         NavigationStack {
@@ -51,6 +54,19 @@ struct WatchHomeView: View {
                     RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(HalsynPalette.darkPrimary))
                 )
 
+                if model.isDemo {
+                    Button {
+                        Task {
+                            isConnecting = true
+                            await model.connectAppleHealth()
+                            isConnecting = false
+                        }
+                    } label: {
+                        Label(isConnecting ? LocalizedStringKey("Conectando…") : LocalizedStringKey("Conectar Apple Health"), systemImage: "heart.text.square")
+                    }
+                    .disabled(isConnecting)
+                }
+
                 NavigationLink(value: WatchDestination.status) {
                     Label("Mi estado", systemImage: "heart.text.square")
                 }
@@ -74,14 +90,14 @@ struct WatchHomeView: View {
             .navigationTitle(Text(verbatim: HalsynBrand.name))
             .navigationDestination(for: WatchDestination.self) { destination in
                 switch destination {
-                case .status: WatchStatusView(provider: provider)
+                case .status: WatchStatusView(provider: provider, reloadKey: model.reloadKey)
                 case .spring: WatchSpringView()
-                case .recovery: WatchRecoveryView(provider: provider)
-                case .summary: WatchDailySummaryView(provider: provider)
+                case .recovery: WatchRecoveryView(provider: provider, reloadKey: model.reloadKey)
+                case .summary: WatchDailySummaryView(provider: provider, reloadKey: model.reloadKey)
                 }
             }
             .containerBackground(HalsynGradients.deep, for: .navigation)
-            .task {
+            .task(id: model.reloadKey) {
                 score = await provider.dailyScore(on: .now)
                 recovery = await provider.recoveryScore(on: .now)
             }
@@ -92,6 +108,7 @@ struct WatchHomeView: View {
 /// Mi estado: indicadores fisiológicos de hoy.
 struct WatchStatusView: View {
     let provider: any HealthDataProviding
+    let reloadKey: String
     @State private var metrics: [MetricDisplay] = []
 
     var body: some View {
@@ -104,7 +121,7 @@ struct WatchStatusView: View {
             }
         }
         .navigationTitle(Text(verbatim: HalsynModule.halsa.brandName))
-        .task {
+        .task(id: reloadKey) {
             var result: [MetricDisplay] = []
             for kind in [MetricKind.restingHeartRate, .heartRateVariability, .sleepDuration, .vo2Max] {
                 result.append(MetricDisplay(await provider.latest(kind, on: .now), kind: kind))
@@ -117,6 +134,7 @@ struct WatchStatusView: View {
 /// Recuperación estimada y sus componentes.
 struct WatchRecoveryView: View {
     let provider: any HealthDataProviding
+    let reloadKey: String
     @State private var recovery: DailyScore?
     @State private var metrics: [MetricDisplay] = []
 
@@ -135,7 +153,7 @@ struct WatchRecoveryView: View {
             }
         }
         .navigationTitle(Text(verbatim: HalsynModule.vila.brandName))
-        .task {
+        .task(id: reloadKey) {
             recovery = await provider.recoveryScore(on: .now)
             var result: [MetricDisplay] = []
             for kind in [MetricKind.sleepDuration, .heartRateVariability, .restingHeartRate] {
@@ -149,6 +167,7 @@ struct WatchRecoveryView: View {
 /// Resumen de actividad del día.
 struct WatchDailySummaryView: View {
     let provider: any HealthDataProviding
+    let reloadKey: String
     @State private var metrics: [MetricDisplay] = []
 
     var body: some View {
@@ -158,7 +177,7 @@ struct WatchDailySummaryView: View {
             }
         }
         .navigationTitle("Hoy")
-        .task {
+        .task(id: reloadKey) {
             var result: [MetricDisplay] = []
             for kind in [MetricKind.steps, .walkingRunningDistance, .activeEnergy, .exerciseTime] {
                 result.append(MetricDisplay(await provider.latest(kind, on: .now), kind: kind))
@@ -169,5 +188,6 @@ struct WatchDailySummaryView: View {
 }
 
 #Preview {
-    WatchHomeView(provider: DemoHealthDataProvider())
+    WatchHomeView()
+        .environment(WatchModel())
 }

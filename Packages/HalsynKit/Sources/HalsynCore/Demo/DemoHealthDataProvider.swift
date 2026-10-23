@@ -58,6 +58,11 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         return DailyScore(day: start, value: today, weeklyChange: Int((Double(today) - average).rounded()), origin: .demo)
     }
 
+    /// Los datos demo no cambian: el flujo termina inmediatamente.
+    public func changes() -> AsyncStream<Void> {
+        AsyncStream { $0.finish() }
+    }
+
     public func recoveryScore(on day: Date) async -> DailyScore? {
         let start = calendar.startOfDay(for: day)
         guard start <= calendar.startOfDay(for: now()) else { return nil }

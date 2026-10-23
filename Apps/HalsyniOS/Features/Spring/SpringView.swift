@@ -29,7 +29,7 @@ struct SpringView: View {
             .navigationDestination(for: WorkoutSummary.self) { workout in
                 WorkoutDetailView(workout: workout)
             }
-            .task {
+            .task(id: model.reloadKey) {
                 workouts = await model.provider.recentWorkouts(limit: 20)
             }
             .sheet(isPresented: $showsStartInfo) {

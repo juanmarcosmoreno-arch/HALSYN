@@ -92,7 +92,7 @@ struct InsiktView: View {
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
-            .task(id: period) {
+            .task(id: "\(period.rawValue)|\(model.reloadKey)") {
                 trends = await load(period: period)
             }
         }

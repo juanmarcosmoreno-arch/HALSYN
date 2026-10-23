@@ -2,12 +2,17 @@ import HalsynCore
 import HalsynDesign
 import HalsynHealthKit
 import SwiftUI
+import UIKit
 
 /// Perfil: fuente de datos, permisos, preferencias, módulos y privacidad.
 struct ProfileView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = true
+    @Environment(\.openURL) private var openURL
+    @State private var isConnecting = false
+    @State private var connectionFailed = false
 
     var body: some View {
         NavigationStack {
@@ -35,17 +40,42 @@ struct ProfileView: View {
                             text: HealthKitAvailability.isHealthDataAvailable ? "Disponible" : "No disponible"
                         )
                     }
-                    HStack {
-                        Label("Conectar Apple Health", systemImage: "heart.text.square")
-                            .foregroundStyle(.halsynSecondaryText)
-                        Spacer()
-                        PhaseTag(phase: 2)
+                    if model.isDemo {
+                        Button {
+                            Task {
+                                isConnecting = true
+                                connectionFailed = !(await model.connectAppleHealth())
+                                isConnecting = false
+                            }
+                        } label: {
+                            Label(isConnecting ? LocalizedStringKey("Conectando…") : LocalizedStringKey("Conectar Apple Health"), systemImage: "heart.text.square")
+                        }
+                        .disabled(isConnecting || !HealthKitAvailability.isHealthDataAvailable)
+                    } else {
+                        Button {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                openURL(url)
+                            }
+                        } label: {
+                            Label("Gestionar permisos", systemImage: "lock.shield")
+                        }
+                        Button {
+                            Task { await model.useDemoData() }
+                        } label: {
+                            Label("Usar datos demo", systemImage: "testtube.2")
+                        }
                     }
-                    .accessibilityElement(children: .combine)
+                    if connectionFailed {
+                        HalsynStatusIndicator(.caution, text: "No se pudo conectar con Apple Health.")
+                    }
                 } header: {
                     Text("Datos")
                 } footer: {
-                    Text("Ahora mismo HÅLSYN muestra datos sintéticos de demostración. La lectura real de Apple Health, con permisos granulares, se implementa en la Fase 2.")
+                    if model.isDemo {
+                        Text("Ahora HÅLSYN muestra datos sintéticos de demostración. Conecta Apple Health para ver tus datos reales; solo se piden permisos de lectura.")
+                    } else {
+                        Text("Los permisos de cada tipo de dato se cambian en Ajustes › Salud › Acceso a datos y dispositivos › HÅLSYN. iOS no informa a las apps de qué datos se han denegado.")
+                    }
                 }
 
                 Section("Preferencias") {
@@ -99,6 +129,9 @@ struct ProfileView: View {
                 }
 
                 Section("Desarrollo") {
+                    Button("Ver la introducción de nuevo") {
+                        onboardingCompleted = false
+                    }
                     NavigationLink("Galería del design system") {
                         DesignSystemGalleryView()
                     }

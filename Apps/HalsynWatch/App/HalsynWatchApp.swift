@@ -4,14 +4,20 @@ import SwiftUI
 
 @main
 struct HalsynWatchApp: App {
-    /// Fase 1: datos demo. En la Fase 2 el reloj leerá HealthKit directamente,
-    /// sin depender del iPhone.
-    private let provider: any HealthDataProviding = DemoHealthDataProvider()
+    @State private var model = WatchModel()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
-            WatchHomeView(provider: provider)
+            WatchHomeView()
+                .environment(model)
                 .tint(Color(HalsynPalette.darkAccent))
+                .task { model.start() }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                model.refresh()
+            }
         }
     }
 }

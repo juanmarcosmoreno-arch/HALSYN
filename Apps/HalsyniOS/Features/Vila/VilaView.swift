@@ -62,7 +62,7 @@ struct VilaView: View {
         }
         .navigationTitle(Text(verbatim: HalsynModule.vila.brandName))
         .navigationBarTitleDisplayMode(.inline)
-        .task {
+        .task(id: model.reloadKey) {
             let today = Date.now
             recovery = await model.provider.recoveryScore(on: today)
             sleep = await model.provider.dailySeries(.sleepDuration, days: 7, endingOn: today)

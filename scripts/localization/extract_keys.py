@@ -17,7 +17,7 @@ SOURCES = [
     ROOT / "Packages/HalsynKit/Sources/HalsynCore",
 ]
 # Interpolaciones que son enteros (SwiftUI usa %lld para Int).
-INT_INTERPOLATIONS = {"phase", "time.hours", "time.minutes"}
+INT_INTERPOLATIONS = {"phase", "time.hours", "time.minutes", "step.rawValue + 1", "Step.allCases.count"}
 # Literales que no son texto de interfaz o no deben traducirse.
 IGNORE = {
     "HÅLSYN", "Halsyn", "HEALTH IN MOTION", "Know your body. Understand your health. Improve your life.",

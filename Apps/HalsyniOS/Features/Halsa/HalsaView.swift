@@ -46,6 +46,9 @@ struct HalsaView: View {
                 header
                 if let snapshot {
                     scoreCard(snapshot)
+                    if !model.isDemo && snapshot.metrics.contains(where: { $0.value == nil }) {
+                        HealthAccessHint()
+                    }
                     metricsGrid(snapshot)
                     recoveryCard(snapshot)
                     trendCard(snapshot)
@@ -64,7 +67,7 @@ struct HalsaView: View {
                 case .metric(let kind): MetricDetailView(kind: kind)
                 }
             }
-            .task(id: unitSystem) {
+            .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)") {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem)
             }
             .refreshable {
@@ -116,12 +119,13 @@ struct HalsaView: View {
                     HalsynStatusIndicator(change >= 0 ? .positive : .neutral, text: String(localized: "\(change.formatted(.number.sign(strategy: .always()))) frente a tu media semanal"))
                 }
                 if snapshot.score == nil {
-                    Text("La puntuación necesita más datos. Se calculará cuando haya suficiente historial.")
+                    Text("La puntuación diaria se calculará con tus datos reales cuando esté listo su motor (Fase 3). Mientras tanto, consulta tus indicadores.")
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                         .multilineTextAlignment(.center)
+                } else {
+                    DataOriginFootnote(origin: snapshot.score?.origin, extra: "Puntuación provisional de ejemplo. El motor real (HealthScoreEngine) llega en la Fase 3.")
                 }
-                DataOriginFootnote(origin: snapshot.score?.origin, extra: "Puntuación provisional de ejemplo. El motor real (HealthScoreEngine) llega en la Fase 3.")
             }
             .frame(maxWidth: .infinity)
         }

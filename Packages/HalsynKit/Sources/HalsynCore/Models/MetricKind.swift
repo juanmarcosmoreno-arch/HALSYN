@@ -86,6 +86,15 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         }
     }
 
+    /// Días hacia atrás en los que se busca el último valor de las métricas
+    /// `.latest`. El VO₂ máx. se estima con poca frecuencia; la FC en reposo, a diario.
+    public var latestLookbackDays: Int {
+        switch self {
+        case .vo2Max: 120
+        default: 1
+        }
+    }
+
     public var systemImage: String {
         switch self {
         case .heartRate, .restingHeartRate: "heart"

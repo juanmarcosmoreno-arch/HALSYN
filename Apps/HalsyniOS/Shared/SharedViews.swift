@@ -67,6 +67,25 @@ private func originText(_ origin: DataOrigin) -> Text {
     }
 }
 
+/// Ayuda cuando faltan datos reales. HealthKit no revela si el usuario denegó
+/// la lectura de un tipo, así que se sugiere revisar los permisos sin afirmarlo.
+struct HealthAccessHint: View {
+    var body: some View {
+        HStack(alignment: .top, spacing: HalsynSpacing.s) {
+            Image(systemName: "questionmark.circle")
+                .foregroundStyle(.halsynAccentText)
+                .accessibilityHidden(true)
+            Text("¿Faltan datos? Comprueba en Ajustes › Salud › Acceso a datos y dispositivos › HÅLSYN qué datos compartes, y que llevas el Apple Watch.")
+                .font(.halsynCaption)
+                .foregroundStyle(.halsynSecondaryText)
+        }
+        .padding(HalsynSpacing.s)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(RoundedRectangle(cornerRadius: HalsynRadius.small, style: .continuous).fill(Color.halsynAccentSoft.opacity(0.25)))
+        .accessibilityElement(children: .combine)
+    }
+}
+
 /// Etiqueta "Fase N" para funciones planificadas que aún no existen.
 struct PhaseTag: View {
     let phase: Int

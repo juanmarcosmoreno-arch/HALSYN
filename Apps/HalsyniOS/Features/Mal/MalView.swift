@@ -42,7 +42,7 @@ struct MalView: View {
         }
         .navigationTitle(Text(verbatim: HalsynModule.mal.brandName))
         .navigationBarTitleDisplayMode(.inline)
-        .task {
+        .task(id: model.reloadKey) {
             goals = await model.provider.goals()
         }
     }

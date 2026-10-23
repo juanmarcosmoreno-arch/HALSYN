@@ -51,6 +51,10 @@ public enum MetricAvailability: Hashable, Sendable {
     case notAuthorized
     /// El dispositivo o el SDK no ofrecen esta métrica.
     case unsupported
+    /// Los datos existen pero están protegidos mientras el dispositivo está bloqueado.
+    case temporarilyUnavailable
+    /// La lectura falló (error del almacén); se puede reintentar.
+    case readFailed
 
     public var reading: MetricReading? {
         if case .available(let reading) = self { return reading }
@@ -63,6 +67,8 @@ public enum MetricAvailability: Hashable, Sendable {
         case .noData: "Sin datos en este periodo"
         case .notAuthorized: "Acceso no concedido"
         case .unsupported: "No disponible en este dispositivo"
+        case .temporarilyUnavailable: "Protegido mientras el dispositivo está bloqueado"
+        case .readFailed: "No se pudieron leer los datos"
         }
     }
 }

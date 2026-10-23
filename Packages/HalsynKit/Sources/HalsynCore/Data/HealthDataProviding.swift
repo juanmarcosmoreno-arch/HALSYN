@@ -51,4 +51,6 @@ public protocol HealthDataProviding: Sendable {
     /// Recuperación estimada (0–100). El motor real llega en la Fase 6.
     func recoveryScore(on day: Date) async -> DailyScore?
     func goals() async -> [Goal]
+    /// Emite cuando cambian los datos de origen (para refrescar la interfaz).
+    func changes() -> AsyncStream<Void>
 }

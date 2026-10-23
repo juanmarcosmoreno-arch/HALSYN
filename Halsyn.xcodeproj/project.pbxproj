@@ -19,6 +19,7 @@
 		3770D0C2A4656F9AF8F2B291 /* MetricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */; };
 		3920201759A830FA101DEBD7 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2859713A3E93283DA60D4424 /* HalsynHealthKit */; };
 		3D077DAC3E9C2DC7998C5AA9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */; };
+		45AE95AA2BC6195879C93A39 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */; };
 		4CA610B235E91DE973008222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A6208785D9C37B5AAD2808 /* Assets.xcassets */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
 		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
@@ -38,6 +39,7 @@
 		E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210D91C67294E38A972B396 /* HalsaView.swift */; };
 		E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */; };
 		EBB4D2A84AA9C4C642EEEBFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */; };
+		ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
+		0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HalsyniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +103,7 @@
 		DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynWatchApp.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
+		F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSpringView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +172,7 @@
 				F7B6FB1470846B1A72CC84D2 /* Halsa */,
 				94A3A811412D07B584AA8576 /* Insikt */,
 				39D830EA03192C0871F9DE23 /* Mal */,
+				761B01B81D5A084B4DBC5B7C /* Onboarding */,
 				FC8F36869DD3B191732D4D4D /* Profile */,
 				2AE58940C381D97F1B0FB11D /* Spring */,
 				FACF7FE4DE16A3FB0BC823CF /* Vila */,
@@ -220,6 +225,14 @@
 				BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */,
 			);
 			path = HalsyniOSTests;
+			sourceTree = "<group>";
+		};
+		761B01B81D5A084B4DBC5B7C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		82C2A9F30B12D8489E52D06F /* Resources */ = {
@@ -292,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */,
+				F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -484,6 +498,7 @@
 			files = (
 				A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */,
 				2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */,
+				45AE95AA2BC6195879C93A39 /* WatchModel.swift in Sources */,
 				E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +514,7 @@
 				62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */,
 				A4432666AFBF0D862F26A96B /* MalView.swift in Sources */,
 				3770D0C2A4656F9AF8F2B291 /* MetricDetailView.swift in Sources */,
+				ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */,
 				0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */,
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
