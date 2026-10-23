@@ -61,7 +61,7 @@ Esquema **Halsyn** → elige un simulador de iPhone → ⌘R. En el onboarding e
 ### 3. Tu iPhone y tu Apple Watch
 
 1. Xcode › Settings › Accounts: añade tu Apple ID y copia tu **Team ID** (10 caracteres).
-2. Copia `Config/Local.xcconfig.example` como `Config/Local.xcconfig` y pon tu `DEVELOPMENT_TEAM` y un `HALSYN_BUNDLE_ID` propio (p. ej. `com.tunombre.halsyn`). Ese archivo no se sube a git: `git pull` no lo borra y los **tres** targets (iPhone, reloj y tests) quedan firmados con el mismo equipo. No hace falta elegir el Team a mano en Signing & Capabilities.
+2. El equipo y el bundle ID del proyecto están en `Config/Halsyn.xcconfig` y los usan los **tres** targets (iPhone, reloj y tests). Si eres otro desarrollador, copia `Config/Local.xcconfig.example` como `Config/Local.xcconfig` con tu `DEVELOPMENT_TEAM` y un `HALSYN_BUNDLE_ID` propio: ese archivo no se sube a git y tiene prioridad. No hace falta elegir el Team a mano en Signing & Capabilities.
 3. Cierra y vuelve a abrir el proyecto (Xcode lee el `.xcconfig` al abrir).
 4. Conecta el iPhone por cable, actívale el **Modo desarrollador** (Ajustes › Privacidad y seguridad) y pulsa ⌘R. La app del reloj se instala con la del iPhone si el Apple Watch está emparejado.
 5. Si iOS dice que el desarrollador no es de confianza: Ajustes › General › VPN y gestión de dispositivos › confía en tu cuenta.
