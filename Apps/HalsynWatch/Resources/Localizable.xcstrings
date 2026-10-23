@@ -54,6 +54,59 @@
         }
       }
     },
+    "%@ continuos a %@, con calentamiento y vuelta a la calma": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ continuous at %@, with warm-up and cooldown"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ contínuos a %@, com aquecimento e desaquecimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ en continu à %@, avec échauffement et retour au calme"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ continui a %@, con riscaldamento e defaticamento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ i jämnt tempo på %@, med uppvärmning och nedjogg"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ i ét stræk i %@, med opvarmning og nedvarmning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "持续跑 %@，配速 %@，含热身和放松跑"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ लगातार %@ पर, वार्म-अप और कूलडाउन के साथ"
+          }
+        }
+      }
+    },
     "%@ de ejercicio": {
       "extractionState": "manual",
       "localizations": {
@@ -1167,6 +1220,59 @@
         }
       }
     },
+    "%lld × %@ m a %@, con 2 min de trote entre series": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m at %@, with 2 min jog between reps"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m a %@, com 2 min de trote entre as séries"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m à %@, avec 2 min de trot entre les efforts"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m a %@, con 2 min di corsa lenta tra le ripetute"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m på %@, med 2 min jogg mellan dragen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m i %@, med 2 min jog mellem intervallerne"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ 米，配速 %@，每段间歇之间慢跑 2 分钟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld × %@ m %@ पर, हर रेप के बीच 2 मिनट की जॉगिंग के साथ"
+          }
+        }
+      }
+    },
     "%lld/%lld con · %lld/%lld sin": {
       "extractionState": "manual",
       "localizations": {
@@ -2276,6 +2382,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अभी HÅLSYN सिंथेटिक डेमो डेटा दिखा रहा है। अपना असली डेटा देखने के लिए Apple Health कनेक्ट करें; केवल पढ़ने की अनुमति मांगी जाती है।"
+          }
+        }
+      }
+    },
+    "Ajustada: tu recuperación de hoy es baja, así que cambiamos la sesión dura por una suave.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjusted: your recovery is low today, so we swapped the hard session for an easy one."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustada: sua recuperação hoje está baixa, então trocamos a sessão pesada por uma leve."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustée : ta récupération est faible aujourd’hui, alors on a remplacé la séance difficile par une séance facile."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modificata: oggi il tuo recupero è basso, quindi abbiamo sostituito la sessione dura con una leggera."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justerat: din återhämtning är låg i dag, så vi bytte ut det hårda passet mot ett lugnt."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justeret: din restitution er lav i dag, så vi har byttet den hårde træning ud med en rolig."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已调整：你今天的恢复状况较差，因此我们把高强度训练换成了轻松训练。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बदला गया: आज आपकी रिकवरी कम है, इसलिए हमने कड़े सेशन की जगह हल्का सेशन रखा है।"
+          }
+        }
+      }
+    },
+    "Ajustada: varias señales están fuera de tu rango. Hoy toca descansar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjusted: several signals are outside your range. Today is a rest day."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustada: vários sinais estão fora da sua faixa. Hoje é dia de descansar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustée : plusieurs signaux sont hors de ta plage. Aujourd’hui, c’est repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modificata: diversi segnali sono fuori dal tuo intervallo. Oggi si riposa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justerat: flera signaler ligger utanför ditt intervall. I dag är det vila."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justeret: flere signaler ligger uden for dit interval. I dag er det hvile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已调整：多项指标超出了你的正常范围。今天休息。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बदला गया: कई संकेत आपकी सामान्य सीमा से बाहर हैं। आज आराम का दिन है।"
           }
         }
       }
@@ -4294,6 +4506,59 @@
         }
       }
     },
+    "Borrar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हटाएं"
+          }
+        }
+      }
+    },
     "Borrar edad, sexo y altura": {
       "extractionState": "manual",
       "localizations": {
@@ -4343,6 +4608,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "उम्र, लिंग और लंबाई हटाएं"
+          }
+        }
+      }
+    },
+    "Borrar plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete plan"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar plano"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le plan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina piano"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort plan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet plan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान हटाएं"
           }
         }
       }
@@ -8693,6 +9011,112 @@
         }
       }
     },
+    "Crear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skapa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बनाएं"
+          }
+        }
+      }
+    },
+    "Crear plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create plan"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Criar plano"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer le plan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea piano"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skapa plan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opret plan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान बनाएं"
+          }
+        }
+      }
+    },
     "Cuerpo": {
       "extractionState": "manual",
       "localizations": {
@@ -9855,6 +10279,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आराम"
+          }
+        }
+      }
+    },
+    "Descanso o paseo suave": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest or easy walk"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso ou caminhada leve"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repos ou marche tranquille"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riposo o camminata leggera"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vila eller lugn promenad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvile eller rolig gåtur"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休息或轻松散步"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम या हल्की सैर"
           }
         }
       }
@@ -11343,6 +11820,59 @@
         }
       }
     },
+    "Día de la tirada larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long run day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia do longão"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jour de la sortie longue"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorno del lungo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dag för långpasset"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dag for langturen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "长距离跑日"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लंबी दौड़ का दिन"
+          }
+        }
+      }
+    },
     "Día estresante": {
       "extractionState": "manual",
       "localizations": {
@@ -11551,6 +12081,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले दिन"
+          }
+        }
+      }
+    },
+    "Días de carrera por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running days per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias de corrida por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jours de course par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorni di corsa a settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpdagar per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbedage om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周跑步天数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर हफ़्ते दौड़ने के दिन"
           }
         }
       }
@@ -12297,6 +12880,59 @@
         }
       }
     },
+    "Elige una carrera y una fecha: HÅLSYN arma tus semanas a partir de tus carreras recientes y adapta la sesión de cada día a tu recuperación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick a race and a date: HÅLSYN builds your weeks from your recent runs and adapts each day's session to your recovery."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolha uma prova e uma data: o HÅLSYN monta suas semanas com base nas suas corridas recentes e adapta a sessão de cada dia à sua recuperação."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis une course et une date : HÅLSYN construit tes semaines à partir de tes sorties récentes et adapte la séance de chaque jour à ta récupération."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli una gara e una data: HÅLSYN costruisce le tue settimane a partire dalle tue corse recenti e adatta la sessione di ogni giorno al tuo recupero."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Välj ett lopp och ett datum: HÅLSYN bygger upp dina veckor utifrån dina senaste löprundor och anpassar varje dags pass efter din återhämtning."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vælg et løb og en dato: HÅLSYN opbygger dine uger ud fra dine seneste løbeture og tilpasser hver dags træning til din restitution."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择一场比赛和日期：HÅLSYN 会根据你最近的跑步安排每周训练，并根据你的恢复状况调整每天的训练。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक रेस और तारीख चुनें: HÅLSYN आपकी हाल की दौड़ों के आधार पर आपके हफ़्ते तैयार करता है और हर दिन के सेशन को आपकी रिकवरी के अनुसार ढालता है।"
+          }
+        }
+      }
+    },
     "Elige uno de los sugeridos o crea el tuyo. El progreso se calcula con tus datos de Apple Health.": {
       "extractionState": "manual",
       "localizations": {
@@ -12876,6 +13512,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़्री रन में। इंटरवल में हर रेप का लक्ष्य पेस लागू होता है।"
+          }
+        }
+      }
+    },
+    "En el reloj: SPRING › Intervalos › la sesión de hoy.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On your watch: SPRING › Intervals › today's session."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No relógio: SPRING › Intervalos › a sessão de hoje."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur la montre : SPRING › Fractionné › la séance du jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sull’orologio: SPRING › Intervalli › la sessione di oggi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På klockan: SPRING › Intervaller › dagens pass."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På uret: SPRING › Intervaller › dagens træning."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在手表上：SPRING › 间歇跑 › 今天的训练。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर: SPRING › इंटरवल › आज का सेशन।"
           }
         }
       }
@@ -13618,6 +14307,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "उन्नत मेट्रिक्स के साथ रनिंग वर्कआउट।"
+          }
+        }
+      }
+    },
+    "Enviada al reloj": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sent to watch"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviada ao relógio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyée à la montre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inviata all’orologio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skickat till klockan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sendt til uret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已发送到手表"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर भेजा गया"
+          }
+        }
+      }
+    },
+    "Enviar al reloj": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send to watch"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar ao relógio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyer à la montre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia all’orologio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skicka till klockan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send til uret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发送到手表"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर भेजें"
           }
         }
       }
@@ -15583,6 +16378,59 @@
         }
       }
     },
+    "Faltan %lld días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld days to go"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %lld dias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus que %lld jours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancano %lld giorni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dagar kvar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dage tilbage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还剩 %lld 天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld दिन बाकी"
+          }
+        }
+      }
+    },
     "Faltan días para conocer tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -15791,6 +16639,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुकूल"
+          }
+        }
+      }
+    },
+    "Fecha de la carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race date"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data da prova"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date de la course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data della gara"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loppdatum"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbsdato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比赛日期"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेस की तारीख"
           }
         }
       }
@@ -17014,6 +17915,59 @@
         }
       }
     },
+    "Hacen falta 3 carreras de 3 km o más en los últimos 90 días para calcular tus ritmos. Sal a correr con el reloj y vuelve a intentarlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need 3 runs of 3 km or more in the last 90 days to calculate your paces. Go for a run with your watch and try again."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "São necessárias 3 corridas de 3 km ou mais nos últimos 90 dias para calcular seus ritmos. Saia para correr com o relógio e tente de novo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut 3 sorties de 3 km ou plus sur les 90 derniers jours pour calculer tes allures. Va courir avec ta montre et réessaie."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono 3 corse di almeno 3 km negli ultimi 90 giorni per calcolare i tuoi ritmi. Esci a correre con l’orologio e riprova."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs 3 löprundor på 3 km eller mer under de senaste 90 dagarna för att beräkna dina tempon. Ut och spring med klockan och försök igen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der skal bruges 3 løbeture på 3 km eller mere inden for de seneste 90 dage for at beregne dine tempoer. Løb en tur med uret, og prøv igen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要过去 90 天内有 3 次 3 公里或以上的跑步才能计算你的配速。戴上手表去跑一次，然后再试一次。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी पेस निकालने के लिए पिछले 90 दिनों में 3 किमी या उससे ज़्यादा की 3 दौड़ें चाहिए। घड़ी के साथ दौड़ने जाएं और फिर से कोशिश करें।"
+          }
+        }
+      }
+    },
     "Hacen falta tu HRV o tu FC en reposo y unos días de historial para estimarla.": {
       "extractionState": "manual",
       "localizations": {
@@ -17809,6 +18763,59 @@
         }
       }
     },
+    "Hoy no hay sesión: descanso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No session today: rest."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje não há sessão: descanso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de séance aujourd’hui : repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi nessuna sessione: riposo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget pass i dag: vila."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen træning i dag: hvile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天没有训练：休息。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज कोई सेशन नहीं: आराम।"
+          }
+        }
+      }
+    },
     "Hoy tu equilibrio general ha sido moderado.": {
       "extractionState": "manual",
       "localizations": {
@@ -17911,6 +18918,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज आराम को प्राथमिकता दें"
+          }
+        }
+      }
+    },
+    "Hoy: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aujourd’hui : %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag: %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天：%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज: %@"
           }
         }
       }
@@ -24699,6 +25759,59 @@
         }
       }
     },
+    "Nuevo plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New plan"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo plano"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouveau plan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo piano"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ny plan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ny plan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नया प्लान"
+          }
+        }
+      }
+    },
     "Nuevo plan de intervalos": {
       "extractionState": "manual",
       "localizations": {
@@ -26024,6 +27137,59 @@
         }
       }
     },
+    "Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Los ritmos salen de tus carreras recientes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We start from your volume over the last 4 weeks and increase it by no more than 8 percent per week, with an easier week every fourth week. Paces come from your recent runs."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partimos do seu volume das últimas 4 semanas e aumentamos no máximo 8 por cento por semana, com uma semana mais leve a cada quatro. Os ritmos vêm das suas corridas recentes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On part de ton volume des 4 dernières semaines et on l’augmente de 8 pour cent maximum par semaine, avec une semaine plus légère toutes les quatre. Les allures viennent de tes sorties récentes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partiamo dal tuo volume delle ultime 4 settimane e lo aumentiamo al massimo dell’8 per cento a settimana, con una settimana più leggera ogni quattro. I ritmi derivano dalle tue corse recenti."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vi utgår från din volym de senaste 4 veckorna och ökar med högst 8 procent per vecka, med en lättare vecka var fjärde vecka. Tempona kommer från dina senaste löprundor."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vi tager udgangspunkt i din mængde de seneste 4 uger og øger med højst 8 procent om ugen, med en lettere uge hver fjerde uge. Tempoerne kommer fra dine seneste løbeture."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我们以你过去 4 周的跑量为起点，每周增幅不超过百分之八，每四周安排一周较轻松的训练。配速根据你最近的跑步计算。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हम पिछले 4 हफ़्तों की आपकी दौड़ की मात्रा से शुरू करते हैं और इसे हर हफ़्ते अधिकतम 8 प्रतिशत बढ़ाते हैं, हर चौथा हफ़्ता हल्का रखते हुए। पेस आपकी हाल की दौड़ों से निकाली जाती है।"
+          }
+        }
+      }
+    },
     "Paso %lld de %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -26395,6 +27561,59 @@
         }
       }
     },
+    "Pautas habituales de entrenamiento, no una prescripción. Si tienes dolor o una lesión, para y consulta a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Common training guidelines, not a prescription. If you have pain or an injury, stop and see a professional."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orientações comuns de treino, não uma prescrição. Se você sentir dor ou tiver uma lesão, pare e consulte um profissional."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des repères d’entraînement courants, pas une prescription. Si tu as mal ou une blessure, arrête et consulte un professionnel."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indicazioni di allenamento comuni, non una prescrizione. Se hai dolore o un infortunio, fermati e consulta un professionista."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanliga träningsriktlinjer, inte en ordination. Om du har ont eller en skada, sluta och kontakta en professionell."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almindelige træningsretningslinjer, ikke en ordination. Hvis du har smerter eller en skade, så stop og søg professionel hjælp."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这些是常见的训练建议，而非处方。如果你感到疼痛或受伤，请停止训练并咨询专业人士。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ये ट्रेनिंग के सामान्य दिशानिर्देश हैं, कोई प्रिस्क्रिप्शन नहीं। अगर आपको दर्द या चोट है, तो रुकें और किसी विशेषज्ञ से सलाह लें।"
+          }
+        }
+      }
+    },
     "Percentil %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -26709,6 +27928,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "वेटेज: %@"
+          }
+        }
+      }
+    },
+    "Plan de entrenamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training plan"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plano de treino"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan d’entraînement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piano di allenamento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsplan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Træningsplan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "训练计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ट्रेनिंग प्लान"
           }
         }
       }
@@ -30529,6 +31801,59 @@
         }
       }
     },
+    "Ritmo objetivo de carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target race pace"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo alvo de prova"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure cible de course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo obiettivo di gara"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måltempo för loppet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måltempo for løbet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标比赛配速"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य रेस पेस"
+          }
+        }
+      }
+    },
     "Ritmo promedio": {
       "extractionState": "manual",
       "localizations": {
@@ -31585,6 +32910,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपके मौजूदा ज़ोन के आधार पर (%@–%@ bpm)।"
+          }
+        }
+      }
+    },
+    "Semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uge"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ता"
+          }
+        }
+      }
+    },
+    "Semana %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semaine %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settimana %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vecka %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uge %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ता %lld"
+          }
+        }
+      }
+    },
+    "Semana %lld de %lld · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week %lld of %lld · %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana %lld de %lld · %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semaine %lld sur %lld · %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settimana %lld di %lld · %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vecka %lld av %lld · %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uge %lld af %lld · %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 周，共 %lld 周 · %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ता %lld / %lld · %@"
           }
         }
       }
@@ -37260,6 +38744,59 @@
         }
       }
     },
+    "Tus ritmos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your paces"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus ritmos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes allures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi ritmi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina tempon"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine tempoer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的配速"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी पेस"
+          }
+        }
+      }
+    },
     "Tus récords": {
       "extractionState": "manual",
       "localizations": {
@@ -37415,6 +38952,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आप"
+          }
+        }
+      }
+    },
+    "Umbral": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Threshold"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limiar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seuil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soglia"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tröskel"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tærskel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "乳酸阈"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "थ्रेशोल्ड"
           }
         }
       }
@@ -38691,6 +40281,59 @@
         }
       }
     },
+    "Ver todas las semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See all weeks"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver todas as semanas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir toutes les semaines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vedi tutte le settimane"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa alla veckor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se alle uger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看所有周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सभी हफ़्ते देखें"
+          }
+        }
+      }
+    },
     "Versión": {
       "extractionState": "manual",
       "localizations": {
@@ -39058,6 +40701,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "स्वीडिश शब्दावली"
+          }
+        }
+      }
+    },
+    "Volumen por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly volume"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume settimanale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volym per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mængde pr. uge"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周跑量"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर हफ़्ते की मात्रा"
           }
         }
       }
@@ -40436,6 +42132,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "± %@ min"
+          }
+        }
+      }
+    },
+    "¿Borrar el plan?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete the plan?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar o plano?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le plan ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare il piano?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort planen?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet planen?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除该计划？"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान हटाएं?"
           }
         }
       }
