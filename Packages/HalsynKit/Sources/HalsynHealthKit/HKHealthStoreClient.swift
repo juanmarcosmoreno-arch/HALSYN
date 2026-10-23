@@ -161,6 +161,21 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
     }
 
+    public func characteristics() async -> UserCharacteristics {
+        var result = UserCharacteristics()
+        if let components = try? store.dateOfBirthComponents() {
+            result.birthDate = Calendar(identifier: .gregorian).date(from: components)
+        }
+        if let sex = try? store.biologicalSex().biologicalSex {
+            switch sex {
+            case .female: result.sex = .female
+            case .male: result.sex = .male
+            default: result.sex = nil
+            }
+        }
+        return result
+    }
+
     public func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint] {
         let beatsPerMinute = HKUnit.count().unitDivided(by: HKUnit.minute())
         let descriptor = HKSampleQueryDescriptor(

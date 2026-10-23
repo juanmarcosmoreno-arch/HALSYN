@@ -57,6 +57,8 @@ public protocol HealthDataProviding: Sendable {
     func recoveryScore(on day: Date) async -> DailyScore?
     /// Recuperación con desglose de los `days` días que terminan en `end`.
     func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate]
+    /// Fecha de nacimiento y sexo de Salud (vacío en demo o sin permiso).
+    func userCharacteristics() async -> UserCharacteristics
     /// Noches con sueño registrado de los `days` días que terminan en `end`.
     func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight]
     func goals() async -> [Goal]
@@ -72,4 +74,6 @@ extension HealthDataProviding {
     public func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate] { [] }
 
     public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] { [] }
+
+    public func userCharacteristics() async -> UserCharacteristics { UserCharacteristics() }
 }

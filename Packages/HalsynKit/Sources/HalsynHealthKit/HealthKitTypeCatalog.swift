@@ -46,6 +46,9 @@ public enum HealthKitTypeCatalog {
         types.insert(HKObjectType.workoutType())
         // Ruta de las carreras (mapa y parciales en el detalle, Fase 5).
         types.insert(HKSeriesType.workoutRoute())
+        // Edad y sexo para las referencias por edad (Fase 8).
+        types.insert(HKCharacteristicType(.dateOfBirth))
+        types.insert(HKCharacteristicType(.biologicalSex))
         return types
     }
 

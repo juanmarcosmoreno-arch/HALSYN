@@ -153,6 +153,11 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return await computeRecovery(endingOn: last, days: days, calendar: calendar, origin: .derived(engine: "RecoveryEngine"))
     }
 
+    public func userCharacteristics() async -> UserCharacteristics {
+        guard client.isHealthDataAvailable else { return UserCharacteristics() }
+        return await client.characteristics()
+    }
+
     public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] {
         guard client.isHealthDataAvailable, days > 0 else { return [] }
         let last = min(calendar.startOfDay(for: end), calendar.startOfDay(for: now()))

@@ -40,6 +40,9 @@ public protocol HealthStoreClient: Sendable {
     /// Puntos de la ruta de un entrenamiento (vacío en cinta o sin GPS).
     func workoutRoute(workoutID: UUID) async throws -> [LocationSample]
 
+    /// Fecha de nacimiento y sexo biológico de la app Salud (si el usuario los cargó y dio permiso).
+    func characteristics() async -> UserCharacteristics
+
     /// Lecturas de FC en el intervalo, en orden cronológico.
     func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint]
 
@@ -47,7 +50,19 @@ public protocol HealthStoreClient: Sendable {
     func changes() -> AsyncStream<Void>
 }
 
+/// Datos personales para las referencias por edad. `nil` = no disponible.
+public struct UserCharacteristics: Hashable, Sendable {
+    public var birthDate: Date?
+    public var sex: ReferenceSex?
+
+    public init(birthDate: Date? = nil, sex: ReferenceSex? = nil) {
+        self.birthDate = birthDate
+        self.sex = sex
+    }
+}
+
 extension HealthStoreClient {
+    public func characteristics() async -> UserCharacteristics { UserCharacteristics() }
     public func workoutRoute(workoutID: UUID) async throws -> [LocationSample] { [] }
     public func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint] { [] }
 }
