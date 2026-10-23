@@ -96,7 +96,17 @@ struct SleepAggregatorTests {
             SleepSample(start: date(23, 0), end: date(23, 7), stage: .asleepUnspecified, sourceName: "Otra app"),
         ]
         #expect(SleepAggregator.asleepDuration(samples, in: window) == 8 * 3600)
+        // Empate a 7 h: gana la primera por orden alfabético, siempre la misma.
         #expect(SleepAggregator.dominantSource(samples, in: window) == "Apple Watch")
+    }
+
+    @Test func dominantSourceIsTheLongest() {
+        let window = SleepAggregator.nightWindow(endingOn: date(23), calendar: calendar)
+        let samples = [
+            SleepSample(start: date(23, 1), end: date(23, 5), stage: .asleepCore, sourceName: "Apple Watch"),
+            SleepSample(start: date(22, 23), end: date(23, 7), stage: .asleepCore, sourceName: "Zeta"),
+        ]
+        #expect(SleepAggregator.dominantSource(samples, in: window) == "Zeta")
     }
 
     @Test func samplesAreClippedToTheWindow() {

@@ -63,7 +63,8 @@ public enum SleepAggregator {
             guard let name = sample.sourceName, let clipped = clip(sample, to: window) else { continue }
             totals[name, default: 0] += clipped.duration
         }
-        return totals.max { $0.value < $1.value }?.key
+        // Desempate determinista por nombre (el orden de un diccionario no lo es).
+        return totals.max { ($0.value, $1.key) < ($1.value, $0.key) }?.key
     }
 
     static func mergedAsleepIntervals(_ samples: [SleepSample], in window: DateInterval) -> [DateInterval] {
