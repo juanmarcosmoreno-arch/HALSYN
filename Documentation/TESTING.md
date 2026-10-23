@@ -36,6 +36,8 @@ Fase 3, GitHub Actions (commit `20d3b54`): **todos los jobs en verde** — 70 te
 
 Fase 4, GitHub Actions (commit `0e66974`): job de iOS + watchOS **en verde** — compilación de `WorkoutManager` (HKWorkoutSession, HKLiveWorkoutBuilder, HKWorkoutRouteBuilder, Core Location), pantallas de carrera del reloj, inicio desde el iPhone y 91 tests del núcleo (21 nuevos con trazas GPS sintéticas). Los tests encontraron un fallo real del filtro GPS (parado con ruido sumaba 378 m), corregido antes del commit. Pendiente: carrera real con Apple Watch.
 
+Fase 5, GitHub Actions (commit `029535f`): **todos los jobs en verde** — 133 tests del núcleo (42 nuevos: zonas, alertas, intervalos, ajustes, parciales), apps de iPhone y Apple Watch (WatchConnectivity, MapKit, editor de ajustes, página de intervalos), `HalsyniOSTests` y catálogos de 9 idiomas (436 cadenas). Pendiente: probar en el reloj real.
+
 ## Pendiente por fase
 
 - Fase 2 (pendiente): prueba manual en dispositivo; el mapeo de `HKHealthStoreClient` no tiene tests automáticos porque requiere HealthKit con datos y permisos (se cubre la lógica con el mock).
