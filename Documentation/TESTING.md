@@ -15,7 +15,7 @@
 
 ## Resultados verificados
 
-Fase 1, ejecutado en Linux (Swift 6.3.1, x86_64): **`swift test` → 31 tests en 8 suites, todos superados.**
+Fase 1, ejecutado en Linux (Swift 6.3.1, x86_64): **`swift test` → 32 tests en 8 suites, todos superados** (incluye formato numérico por región).
 
 Lo que **no** se ha podido ejecutar en el entorno de desarrollo (Linux, sin Xcode):
 

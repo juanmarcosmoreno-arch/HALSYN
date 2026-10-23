@@ -1,0 +1,124 @@
+{
+  "sourceLanguage": "es",
+  "strings": {
+    "NSHealthShareUsageDescription": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN lee tus datos de Apple Health (frecuencia cardíaca, HRV, sueño, actividad y entrenamientos) para mostrarte tu estado y tus tendencias. Los datos se procesan en tu dispositivo."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN reads your Apple Health data (heart rate, HRV, sleep, activity and workouts) to show you your status and trends. Your data is processed on your device."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O HÅLSYN lê seus dados do Apple Health (frequência cardíaca, HRV, sono, atividade e treinos) para mostrar seu estado e suas tendências. Os dados são processados no seu dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN lit tes données Apple Health (fréquence cardiaque, HRV, sommeil, activité et entraînements) pour te montrer ton état et tes tendances. Les données sont traitées sur ton appareil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN legge i tuoi dati di Apple Health (frequenza cardiaca, HRV, sonno, attività e allenamenti) per mostrarti il tuo stato e le tue tendenze. I dati vengono elaborati sul tuo dispositivo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN läser dina data från Apple Health (puls, HRV, sömn, aktivitet och träningspass) för att visa ditt tillstånd och dina trender. Data behandlas på din enhet."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN læser dine data fra Apple Health (puls, HRV, søvn, aktivitet og træning) for at vise din tilstand og dine tendenser. Data behandles på din enhed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN 会读取你的 Apple Health 数据（心率、HRV、睡眠、活动和训练），以向你展示你的状态和趋势。数据在你的设备上处理。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी स्थिति और रुझान दिखाने के लिए HÅLSYN आपका Apple Health डेटा (हृदय गति, HRV, नींद, गतिविधि और वर्कआउट) पढ़ता है। डेटा आपके डिवाइस पर ही प्रोसेस होता है।"
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN guarda en Apple Health los entrenamientos que registras con la app."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN saves the workouts you record with the app to Apple Health."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O HÅLSYN salva no Apple Health os treinos que você registra com o app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN enregistre dans Apple Health les entraînements que tu enregistres avec l’app."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN salva in Apple Health gli allenamenti che registri con l’app."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN sparar träningspassen som du registrerar med appen i Apple Health."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN gemmer den træning, du registrerer med appen, i Apple Health."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN 会将你通过 App 记录的训练保存到 Apple Health。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप ऐप से जो वर्कआउट रिकॉर्ड करते हैं, HÅLSYN उन्हें Apple Health में सेव करता है।"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

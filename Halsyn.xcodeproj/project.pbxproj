@@ -21,6 +21,7 @@
 		3D077DAC3E9C2DC7998C5AA9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */; };
 		4CA610B235E91DE973008222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A6208785D9C37B5AAD2808 /* Assets.xcassets */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
+		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		A4432666AFBF0D862F26A96B /* MalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE07533E91D0B4E58019475 /* MalView.swift */; };
@@ -36,6 +37,7 @@
 		D68DAD84ACC8B780DC02CC15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212FD4C77719A56D78D06081 /* Assets.xcassets */; };
 		E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210D91C67294E38A972B396 /* HalsaView.swift */; };
 		E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */; };
+		EBB4D2A84AA9C4C642EEEBFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		3F17B6D6A0876C711FE13FDE /* InsiktView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsiktView.swift; sourceTree = "<group>"; };
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		64A6208785D9C37B5AAD2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6683A16BF5216CF3290D7F7A /* SpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringView.swift; sourceTree = "<group>"; };
 		69D02F9B2FC365CA043BC585 /* HalsynApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynApp.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
 		C287A71EB2C50957EA5FACDE /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemGalleryView.swift; sourceTree = "<group>"; };
 		DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynWatchApp.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			children = (
 				212FD4C77719A56D78D06081 /* Assets.xcassets */,
 				5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */,
+				5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */,
 				1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -222,6 +227,7 @@
 			children = (
 				64A6208785D9C37B5AAD2808 /* Assets.xcassets */,
 				88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */,
+				C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */,
 				6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -422,7 +428,15 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				da,
+				en,
 				es,
+				fr,
+				hi,
+				it,
+				"pt-BR",
+				sv,
+				"zh-Hans",
 			);
 			mainGroup = 11DE5893061FFA3049D38CFD;
 			minimizedProjectReferenceProxies = 1;
@@ -446,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CA610B235E91DE973008222 /* Assets.xcassets in Resources */,
+				77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */,
 				973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D68DAD84ACC8B780DC02CC15 /* Assets.xcassets in Resources */,
+				EBB4D2A84AA9C4C642EEEBFC /* InfoPlist.xcstrings in Resources */,
 				3D077DAC3E9C2DC7998C5AA9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

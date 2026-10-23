@@ -12,6 +12,18 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>es</string>
+		<string>en</string>
+		<string>pt-BR</string>
+		<string>fr</string>
+		<string>it</string>
+		<string>sv</string>
+		<string>da</string>
+		<string>zh-Hans</string>
+		<string>hi</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
