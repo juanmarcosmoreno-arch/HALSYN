@@ -2,6 +2,9 @@ import Foundation
 import HalsynCore
 import Observation
 import WatchConnectivity
+#if os(watchOS)
+import WidgetKit
+#endif
 
 /// Ajustes de SPRING compartidos entre iPhone y Apple Watch.
 ///
@@ -19,6 +22,13 @@ final class RunSettingsStore: NSObject {
     private(set) var settings: RunSettings
     /// Estado del enlace con el otro dispositivo (para mostrarlo en Ajustes).
     private(set) var link: LinkState = .unknown
+    /// Puntuación y recuperación calculadas en el iPhone (que tiene todo el
+    /// historial de Salud). El reloj las muestra en lugar de calcular las suyas
+    /// con menos datos, para que ambos digan lo mismo.
+    private(set) var phoneSnapshot: WidgetSnapshot?
+
+    static let snapshotContextKey = "dailySnapshot"
+    private static let snapshotStorageKey = "halsyn.phoneSnapshot"
 
     enum LinkState: Equatable {
         case unknown
@@ -34,6 +44,7 @@ final class RunSettingsStore: NSObject {
     init(defaults: UserDefaults = .standard, connect: Bool = true) {
         self.defaults = defaults
         settings = RunSettings.load(from: defaults)
+        phoneSnapshot = WidgetSnapshotStore.load(from: defaults, key: Self.snapshotStorageKey)
         session = connect && WCSession.isSupported() ? WCSession.default : nil
         super.init()
         if let session {
@@ -55,15 +66,40 @@ final class RunSettingsStore: NSObject {
         send()
     }
 
+    /// iPhone: comparte con el reloj la puntuación y la recuperación de hoy.
+    func shareDaily(_ snapshot: WidgetSnapshot) {
+        guard snapshot != phoneSnapshot else { return }
+        phoneSnapshot = snapshot
+        WidgetSnapshotStore.save(snapshot, to: defaults, key: Self.snapshotStorageKey)
+        send()
+    }
+
     private func send() {
         guard let session, session.activationState == .activated, let data = try? settings.encoded() else { return }
         #if os(iOS)
         guard session.isPaired, session.isWatchAppInstalled else { return }
         #endif
-        try? session.updateApplicationContext([RunSettings.contextKey: data])
+        // El contexto se reemplaza entero: viajan siempre los ajustes y el último resumen.
+        var context: [String: Any] = [RunSettings.contextKey: data]
+        if let snapshot = phoneSnapshot, let encoded = WidgetSnapshotStore.encode(snapshot) {
+            context[Self.snapshotContextKey] = encoded
+        }
+        try? session.updateApplicationContext(context)
     }
 
     private func receive(_ context: [String: Any]) {
+        if let data = context[Self.snapshotContextKey] as? Data, let snapshot = WidgetSnapshotStore.decode(data),
+           snapshot.updatedAt > (phoneSnapshot?.updatedAt ?? .distantPast) {
+            phoneSnapshot = snapshot
+            WidgetSnapshotStore.save(snapshot, to: defaults, key: Self.snapshotStorageKey)
+            #if os(watchOS)
+            // Las complicaciones del reloj muestran lo mismo que el iPhone.
+            if let shared = WidgetSnapshotStore.sharedDefaults() {
+                WidgetSnapshotStore.save(snapshot, to: shared)
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+            #endif
+        }
         guard let data = context[RunSettings.contextKey] as? Data,
               let incoming = try? RunSettings.decoded(from: data),
               incoming.modifiedAt > settings.modifiedAt else { return }
@@ -107,8 +143,8 @@ final class RunSettingsStore: NSObject {
         #endif
     }
 
-    fileprivate func received(_ data: Data) {
-        receive([RunSettings.contextKey: data])
+    fileprivate func received(_ context: [String: Data]) {
+        receive(context)
     }
 }
 
@@ -118,8 +154,8 @@ extension RunSettingsStore: WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        guard let data = applicationContext[RunSettings.contextKey] as? Data else { return }
-        Task { @MainActor in self.received(data) }
+        let context = applicationContext.compactMapValues { $0 as? Data }
+        Task { @MainActor in self.received(context) }
     }
 
     #if os(iOS)

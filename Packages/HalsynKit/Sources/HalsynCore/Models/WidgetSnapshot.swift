@@ -70,19 +70,26 @@ public enum WidgetSnapshotStore {
         return "group.\(base)"
     }
 
-    public static func save(_ snapshot: WidgetSnapshot, to defaults: UserDefaults) {
+    public static func encode(_ snapshot: WidgetSnapshot) -> Data? {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .secondsSince1970
-        if let data = try? encoder.encode(snapshot) {
+        return try? encoder.encode(snapshot)
+    }
+
+    public static func decode(_ data: Data) -> WidgetSnapshot? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        return try? decoder.decode(WidgetSnapshot.self, from: data)
+    }
+
+    public static func save(_ snapshot: WidgetSnapshot, to defaults: UserDefaults, key: String = Self.key) {
+        if let data = encode(snapshot) {
             defaults.set(data, forKey: key)
         }
     }
 
-    public static func load(from defaults: UserDefaults) -> WidgetSnapshot? {
-        guard let data = defaults.data(forKey: key) else { return nil }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        return try? decoder.decode(WidgetSnapshot.self, from: data)
+    public static func load(from defaults: UserDefaults, key: String = Self.key) -> WidgetSnapshot? {
+        defaults.data(forKey: key).flatMap(decode)
     }
 
     /// `UserDefaults` del grupo para el bundle actual, o `nil` si no está configurado.

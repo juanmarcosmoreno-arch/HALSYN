@@ -105,12 +105,15 @@ public struct PlanGoal: Codable, Hashable, Sendable {
     public var runsPerWeek: Int
     /// Día de la tirada larga (1 = domingo … 7 = sábado).
     public var longRunWeekday: Int
+    /// Días de gimnasio (1 = domingo … 7 = sábado). Opcional para planes guardados antes.
+    public var gymWeekdays: Set<Int>?
 
-    public init(distance: RaceDistance, raceDate: Date, runsPerWeek: Int, longRunWeekday: Int = 1) {
+    public init(distance: RaceDistance, raceDate: Date, runsPerWeek: Int, longRunWeekday: Int = 1, gymWeekdays: Set<Int> = []) {
         self.distance = distance
         self.raceDate = raceDate
         self.runsPerWeek = min(max(runsPerWeek, 3), 5)
         self.longRunWeekday = longRunWeekday
+        self.gymWeekdays = gymWeekdays
     }
 }
 
@@ -242,8 +245,35 @@ public enum TrainingPlanGenerator {
         case 4: [1, 3, 4]
         default: [0, 1, 3, 4]
         }
-        let others = pattern.filter { $0 != longOffset }.prefix(goal.runsPerWeek - 1)
+        // Las sesiones de calidad van primero en días lejos del gimnasio (ni ese
+        // día ni el siguiente): la fuerza también cansa las piernas.
+        let gym = goal.gymWeekdays ?? []
+        func weekday(_ offset: Int) -> Int { (offset + 1) % 7 + 1 }
+        func nearGym(_ offset: Int) -> Bool { gym.contains(weekday(offset)) || gym.contains(weekday(offset + 6)) }
         let qualityCount = phase == .base || phase == .recovery || phase == .race ? 1 : (goal.runsPerWeek >= 4 ? 2 : 1)
+        let runDays = goal.runsPerWeek - 1
+        let defaultDays = Array(pattern.filter { $0 != longOffset }.prefix(runDays))
+        let dayBeforeLong = (longOffset + 6) % 7
+        // Días buenos para calidad: lejos del gimnasio, no la víspera de la tirada larga
+        // y no seguidos entre sí.
+        var qualityDays: [Int] = []
+        for offset in [1, 3, 4, 0, 2, 5, 6] where offset != longOffset && offset != dayBeforeLong && !nearGym(offset) {
+            guard qualityDays.count < qualityCount, qualityDays.allSatisfy({ abs($0 - offset) > 1 }) else { continue }
+            qualityDays.append(offset)
+        }
+        let others: [Int]
+        if qualityDays.isEmpty {
+            others = defaultDays
+        } else {
+            // El resto, suaves: primero los días habituales, luego cualquiera libre.
+            var easyDays = defaultDays.filter { !qualityDays.contains($0) }
+            for offset in [1, 3, 4, 0, 2, 5, 6] where easyDays.count < runDays - qualityDays.count
+                && offset != longOffset && !qualityDays.contains(offset) && !easyDays.contains(offset) {
+                easyDays.append(offset)
+            }
+            others = qualityDays + easyDays.prefix(runDays - qualityDays.count)
+        }
+        let qualitySlots = qualityDays.isEmpty ? qualityCount : qualityDays.count
 
         func day(_ offset: Int) -> Date { calendar.date(byAdding: .day, value: offset, to: start) ?? start }
         func round(_ meters: Double) -> Double { (meters / 500).rounded() * 500 }
@@ -254,10 +284,10 @@ public enum TrainingPlanGenerator {
         let quality: [SessionKind] = phase == .base ? [.tempo] : [.intervals, .tempo]
         for (position, offset) in others.enumerated() {
             let date = day(offset)
-            if date >= raceDay { break }
+            if date >= raceDay { continue }
             let share = remaining / Double(others.count - position)
             remaining -= share
-            if position < qualityCount, let kind = quality.dropFirst(position).first ?? quality.first {
+            if position < qualitySlots, let kind = quality.dropFirst(position).first ?? quality.first {
                 result.append(qualitySession(kind, date: date, distance: round(share), paces: paces, phase: phase))
             } else {
                 result.append(PlannedSession(date: date, kind: phase == .recovery ? .recovery : .easy, distance: max(round(share), 3000), pace: paces.easy))

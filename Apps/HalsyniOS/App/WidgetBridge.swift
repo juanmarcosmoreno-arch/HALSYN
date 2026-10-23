@@ -4,6 +4,7 @@ import WidgetKit
 
 /// Deja el resumen del día para los widgets y les pide que se redibujen.
 enum WidgetBridge {
+    @MainActor
     static func publish(_ snapshot: HalsaSnapshot, isDemo: Bool, now: Date = .now) {
         guard let defaults = WidgetSnapshotStore.sharedDefaults() else { return }
         let goal = snapshot.goal.map { item in
@@ -25,5 +26,7 @@ enum WidgetBridge {
         )
         WidgetSnapshotStore.save(widget, to: defaults)
         WidgetCenter.shared.reloadAllTimelines()
+        // El reloj muestra esta misma puntuación (tiene menos historial para calcularla).
+        RunSettingsStore.shared.shareDaily(widget)
     }
 }

@@ -86,3 +86,20 @@ struct TrainingPlanTests {
         #expect(plan.weeks.filter { $0.phase == .taper }.count == 3)
     }
 }
+
+@Suite("SPRING · plan con gimnasio")
+struct TrainingPlanGymTests {
+    @Test func qualityAvoidsGymDays() throws {
+        // Gimnasio martes (3) y miércoles (4): la calidad va primero al viernes.
+        let race = calendar.date(byAdding: .day, value: 7 * 10, to: today)!
+        let goal = PlanGoal(distance: .tenK, raceDate: race, runsPerWeek: 3, gymWeekdays: [3, 4])
+        let plan = try #require(TrainingPlanGenerator.make(goal: goal, tenKTime: 3000, weeklyDistance: 25_000, today: today, calendar: calendar))
+        for week in plan.weeks where week.phase != .race {
+            for session in week.sessions where session.kind.isHard {
+                let weekday = calendar.component(.weekday, from: session.date)
+                #expect(![3, 4, 5].contains(weekday), "calidad en \(weekday)")
+            }
+        }
+        #expect(plan.goal.gymWeekdays == [3, 4])
+    }
+}

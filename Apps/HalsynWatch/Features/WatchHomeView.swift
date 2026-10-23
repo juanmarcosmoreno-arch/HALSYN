@@ -20,6 +20,7 @@ struct WatchHomeView: View {
     @State private var path: [WatchDestination] = []
 
     private var provider: any HealthDataProviding { model.provider }
+    private var phoneSnapshot: WidgetSnapshot? { RunSettingsStore.shared.phoneSnapshot }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -99,10 +100,17 @@ struct WatchHomeView: View {
                 }
             }
             .containerBackground(HalsynGradients.deep, for: .navigation)
-            .task(id: model.reloadKey) {
-                score = await provider.dailyScore(on: .now)
-                recovery = await provider.recoveryScore(on: .now)
-                publishForComplications()
+            .task(id: "\(model.reloadKey)|\(phoneSnapshot?.updatedAt.timeIntervalSince1970 ?? 0)") {
+                // Si el iPhone ya calculó la puntuación de hoy, se usa esa: tiene todo el
+                // historial. El cálculo propio queda para cuando no hay iPhone cerca.
+                if let phone = phoneSnapshot, phone.isFromToday(.now, calendar: .current), phone.isDemo == model.isDemo {
+                    score = phone.score.map { DailyScore(day: .now, value: $0, weeklyChange: nil, origin: .derived(engine: "iPhone")) }
+                    recovery = phone.recovery.map { DailyScore(day: .now, value: $0, weeklyChange: nil, origin: .derived(engine: "iPhone")) }
+                } else {
+                    score = await provider.dailyScore(on: .now)
+                    recovery = await provider.recoveryScore(on: .now)
+                    publishForComplications()
+                }
             }
             // Complicación "Correr": halsyn://spring abre SPRING directamente.
             .onOpenURL { url in
@@ -177,7 +185,12 @@ struct WatchRecoveryView: View {
         }
         .navigationTitle(Text(verbatim: HalsynModule.vila.brandName))
         .task(id: reloadKey) {
-            recovery = await provider.recoveryScore(on: .now)
+            if let phone = RunSettingsStore.shared.phoneSnapshot, phone.isFromToday(.now, calendar: .current),
+               phone.isDemo == (provider.mode == .demo), let value = phone.recovery {
+                recovery = DailyScore(day: .now, value: value, weeklyChange: nil, origin: .derived(engine: "iPhone"))
+            } else {
+                recovery = await provider.recoveryScore(on: .now)
+            }
             var result: [MetricDisplay] = []
             for kind in [MetricKind.sleepDuration, .heartRateVariability, .restingHeartRate] {
                 result.append(MetricDisplay(await provider.latest(kind, on: .now), kind: kind))

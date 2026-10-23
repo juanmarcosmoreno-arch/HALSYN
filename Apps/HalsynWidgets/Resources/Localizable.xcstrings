@@ -12615,6 +12615,59 @@
         }
       }
     },
+    "Días de gimnasio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gym days"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dias de academia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jours de salle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giorni di palestra"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymdagar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitnessdage"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健身日"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जिम के दिन"
+          }
+        }
+      }
+    },
     "Edad": {
       "extractionState": "manual",
       "localizations": {
@@ -17915,6 +17968,59 @@
         }
       }
     },
+    "Gimnasio o fuerza": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gym or strength"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Academia ou força"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salle ou renforcement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palestra o forza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gym eller styrka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness eller styrke"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健身或力量训练"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जिम या स्ट्रेंथ"
+          }
+        }
+      }
+    },
     "Grasa": {
       "extractionState": "manual",
       "localizations": {
@@ -19342,6 +19448,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज आपका कुल मिलाकर संतुलन बेहतरीन रहा।"
+          }
+        }
+      }
+    },
+    "Hoy no hay carrera: día de gimnasio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No run today: gym day."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoje não tem corrida: dia de academia."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de course aujourd’hui : jour de salle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggi niente corsa: giorno di palestra."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen löpning i dag: gymdag."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intet løb i dag: fitnessdag."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天不跑步：健身日。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज दौड़ नहीं: जिम का दिन।"
           }
         }
       }
@@ -21515,6 +21674,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सेटिंग्ज़ में HÅLSYN के लिए नोटिफ़िकेशन बंद हैं।"
+          }
+        }
+      }
+    },
+    "Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals and threshold runs are scheduled away from the gym — not the same day or the day after, since strength work tires your legs too."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Séries e limiar ficam longe da academia: nem no mesmo dia nem no seguinte, porque as pernas também cansam com a força."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les fractionnés et le seuil sont placés loin de la salle : ni le même jour ni le lendemain, car le renforcement fatigue aussi les jambes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripetute e soglia vengono messe lontano dalla palestra: né lo stesso giorno né il successivo, perché anche la forza stanca le gambe."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller och tröskelpass läggs långt från gymmet: inte samma dag eller dagen efter, eftersom styrketräning också tröttar benen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller og tærskelløb lægges væk fra fitness: ikke samme dag eller dagen efter, for styrketræning trætter også benene."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间歇和乳酸阈训练会避开健身日：既不在同一天，也不在第二天，因为力量训练同样会让腿疲劳。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इंटरवल और थ्रेशोल्ड जिम से दूर रखे जाते हैं: न उसी दिन, न अगले दिन, क्योंकि स्ट्रेंथ से भी पैर थकते हैं।"
           }
         }
       }

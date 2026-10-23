@@ -12,6 +12,7 @@ public enum HabitTag: String, Codable, CaseIterable, Identifiable, Sendable {
     case nap
     case meditation
     case sauna
+    case gym
 
     public var id: String { rawValue }
 
@@ -27,6 +28,7 @@ public enum HabitTag: String, Codable, CaseIterable, Identifiable, Sendable {
         case .nap: "Siesta"
         case .meditation: "Meditación o respiración"
         case .sauna: "Sauna"
+        case .gym: "Gimnasio o fuerza"
         }
     }
 
@@ -42,6 +44,7 @@ public enum HabitTag: String, Codable, CaseIterable, Identifiable, Sendable {
         case .nap: "powersleep"
         case .meditation: "wind"
         case .sauna: "flame"
+        case .gym: "dumbbell"
         }
     }
 }

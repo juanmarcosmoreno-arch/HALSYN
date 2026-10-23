@@ -129,6 +129,10 @@ struct TrainingPlanCard: View {
         if let planned = plan.session(on: .now, calendar: calendar) {
             let adapted = PlanAdaptation.adapt(planned, guidance: guidance, paces: plan.paces)
             todaySession(adapted.session, original: planned, change: adapted.change)
+        } else if plan.goal.gymWeekdays?.contains(calendar.component(.weekday, from: .now)) == true {
+            Label("Hoy no hay carrera: día de gimnasio.", systemImage: "dumbbell")
+                .font(.halsynBody)
+                .foregroundStyle(.halsynSecondaryText)
         } else {
             Label("Hoy no hay sesión: descanso.", systemImage: "bed.double")
                 .font(.halsynBody)
@@ -193,6 +197,7 @@ struct PlanSetupView: View {
     @State private var raceDate = Calendar.current.date(byAdding: .weekOfYear, value: 10, to: .now) ?? .now
     @State private var runsPerWeek = 4
     @State private var longRunWeekday = 1
+    @State private var gymWeekdays: Set<Int> = []
     @State private var failed = false
 
     private var minimumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.minimumWeeks, to: .now) ?? .now }
@@ -214,6 +219,17 @@ struct PlanSetupView: View {
                             Text(Calendar.current.weekdaySymbols[weekday - 1].capitalized).tag(weekday)
                         }
                     }
+                }
+
+                Section {
+                    GymWeekdayPicker(selection: $gymWeekdays)
+                } header: {
+                    Text("Días de gimnasio")
+                } footer: {
+                    Text("Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.")
+                }
+
+                Section {
                 } footer: {
                     if failed {
                         Text("Hacen falta 3 carreras de 3 km o más en los últimos 90 días para calcular tus ritmos. Sal a correr con el reloj y vuelve a intentarlo.")
@@ -230,7 +246,7 @@ struct PlanSetupView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Crear") {
-                        let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday)
+                        let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays)
                         if let plan = TrainingPlanGenerator.make(goal: goal, runs: workouts, today: .now, calendar: .current) {
                             TrainingPlanStore.shared.save(plan)
                             dismiss()
@@ -308,6 +324,15 @@ struct TrainingPlanView: View {
                     Text(verbatim: SessionText.distance(week.distance, unit: unitSystem))
                         .font(.halsynCaption.monospacedDigit())
                 }
+                if let gym = store.plan?.goal.gymWeekdays, !gym.isEmpty {
+                    Label {
+                        Text(verbatim: GymWeekdayPicker.names(gym))
+                    } icon: {
+                        Image(systemName: "dumbbell")
+                    }
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                }
                 ForEach(week.sessions) { session in
                     HStack(alignment: .top, spacing: HalsynSpacing.s) {
                         Text(session.date, format: .dateTime.weekday(.abbreviated))
@@ -369,6 +394,38 @@ private struct WeeklyVolumeChart: View {
                 Text(verbatim: unitSystem.distanceUnitSymbol)
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
+            }
+        }
+    }
+}
+
+/// Días de la semana como fichas (lunes primero).
+struct GymWeekdayPicker: View {
+    @Binding var selection: Set<Int>
+
+    /// 2 = lunes … 7 = sábado, 1 = domingo.
+    static let order = [2, 3, 4, 5, 6, 7, 1]
+
+    static func names(_ days: Set<Int>) -> String {
+        order.filter(days.contains).map { Calendar.current.shortWeekdaySymbols[$0 - 1].capitalized }.formatted(.list(type: .and))
+    }
+
+    var body: some View {
+        HStack(spacing: 6) {
+            ForEach(Self.order, id: \.self) { weekday in
+                let isOn = selection.contains(weekday)
+                Button {
+                    if isOn { selection.remove(weekday) } else { selection.insert(weekday) }
+                } label: {
+                    Text(verbatim: String(Calendar.current.veryShortWeekdaySymbols[weekday - 1]))
+                        .font(.halsynCaption.weight(.semibold))
+                        .frame(maxWidth: .infinity, minHeight: 36)
+                        .foregroundStyle(isOn ? Color.halsynSurface : Color.halsynPrimaryText)
+                        .background(Circle().fill(isOn ? Color.halsynAccentText : Color.halsynHairline.opacity(0.6)))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text(verbatim: Calendar.current.weekdaySymbols[weekday - 1]))
+                .accessibilityAddTraits(isOn ? .isSelected : [])
             }
         }
     }
