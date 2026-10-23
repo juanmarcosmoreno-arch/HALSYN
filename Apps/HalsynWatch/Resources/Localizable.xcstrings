@@ -54,6 +54,59 @@
         }
       }
     },
+    "%@ lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm"
+          }
+        }
+      }
+    },
     "%@ min de ejercicio en los últimos 7 días (referencia: 150)": {
       "extractionState": "manual",
       "localizations": {
@@ -107,6 +160,59 @@
         }
       }
     },
+    "%@–%@ lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ bpm"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ bpm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ bpm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ slag/min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ slag/min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ bpm"
+          }
+        }
+      }
+    },
     "%lld h %lld min": {
       "extractionState": "manual",
       "localizations": {
@@ -156,6 +262,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld h %lld min"
+          }
+        }
+      }
+    },
+    "%lld planes de intervalos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld interval plans"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld planos de intervalos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld plans de fractionné"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld piani di intervalli"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld intervallplaner"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld intervalplaner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 个间歇跑计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld इंटरवल प्लान"
           }
         }
       }
@@ -690,6 +849,377 @@
         }
       }
     },
+    "Ajustes de carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run settings"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes de corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages de course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpinställningar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbeindstillinger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步设置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन सेटिंग्ज़"
+          }
+        }
+      }
+    },
+    "Alerta de ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace alert"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta de ritmo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerte d’allure"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avviso ritmo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempovarning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempoadvarsel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस अलर्ट"
+          }
+        }
+      }
+    },
+    "Alerta de ritmo activa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace alert on"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta de ritmo ativado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerte d’allure activée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avviso ritmo attivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempovarning på"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempoadvarsel slået til"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速提醒已开启"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस अलर्ट चालू"
+          }
+        }
+      }
+    },
+    "Alerta de zona activa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone alert on"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta de zona ativado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerte de zone activée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avviso zona attivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonvarning på"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoneadvarsel slået til"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "区间提醒已开启"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़ोन अलर्ट चालू"
+          }
+        }
+      }
+    },
+    "Alerta de zona cardíaca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate zone alert"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerta de zona cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerte de zone cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avviso zona cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszonsvarning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoneadvarsel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率区间提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति ज़ोन अलर्ट"
+          }
+        }
+      }
+    },
+    "Alertas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerts"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvisi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varningar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advarsler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलर्ट"
+          }
+        }
+      }
+    },
+    "Alertas de ritmo y zona activas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace and zone alerts on"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertas de ritmo e zona ativados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertes d’allure et de zone activées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvisi ritmo e zona attivi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo- och zonvarningar på"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo- og zoneadvarsler slået til"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速和区间提醒已开启"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस और ज़ोन अलर्ट चालू"
+          }
+        }
+      }
+    },
     "Anillo y métricas": {
       "extractionState": "manual",
       "localizations": {
@@ -1057,6 +1587,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "वापस"
+          }
+        }
+      }
+    },
+    "Añadir pantalla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add screen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar tela"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi schermata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till skärm"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj skærm"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加界面"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन जोड़ें"
+          }
+        }
+      }
+    },
+    "Aún no hay carreras con FC registrada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No runs with recorded HR yet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há corridas com FC registrada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune course avec FC enregistrée pour l’instant."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono ancora corse con FC registrata."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga löppass med registrerad puls än."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen løbeture med registreret puls endnu."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "还没有记录心率的跑步。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी तक दर्ज HR वाला कोई रन नहीं है।"
           }
         }
       }
@@ -1485,6 +2121,59 @@
         }
       }
     },
+    "Buscando GPS…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Searching for GPS…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando GPS…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche du GPS…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricerca GPS…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Söker GPS…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søger efter GPS…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在搜索 GPS…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS खोजा जा रहा है…"
+          }
+        }
+      }
+    },
     "CADENCIA": {
       "extractionState": "manual",
       "localizations": {
@@ -1534,6 +2223,271 @@
           "stringUnit": {
             "state": "translated",
             "value": "कैडेंस"
+          }
+        }
+      }
+    },
+    "CALENTAR": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WARM UP"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AQUECER"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ÉCHAUFFER"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RISCALDA"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VÄRM UPP"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OPVARM"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "热身"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वार्म-अप"
+          }
+        }
+      }
+    },
+    "CALMA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COOL DOWN"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DESAQUECER"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CALME"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DEFATICA"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NEDJOGG"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NEDVARM"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放松"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कूलडाउन"
+          }
+        }
+      }
+    },
+    "Cada %lld km": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld km"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %lld km"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les %lld km"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni %lld km"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var %lld:e km"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hver %lld. km"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %lld 公里"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर %lld km"
+          }
+        }
+      }
+    },
+    "Cada %lld m": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld m"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada %lld m"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les %lld m"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni %lld m"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var %lld:e m"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hver %lld. m"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 %lld 米"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर %lld m"
+          }
+        }
+      }
+    },
+    "Cada milla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every mile"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A cada milha"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque mile"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni miglio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje mile"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hver mile"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每英里"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर मील"
           }
         }
       }
@@ -1644,6 +2598,59 @@
         }
       }
     },
+    "Calculados a partir de la ruta GPS; pueden diferir ligeramente de la distancia total de Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculated from the GPS route; they may differ slightly from the total distance in Apple Health."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculados a partir do percurso GPS; podem diferir um pouco da distância total do Apple Health."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculés à partir du parcours GPS ; ils peuvent différer légèrement de la distance totale d’Apple Health."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcolati dal percorso GPS; possono differire leggermente dalla distanza totale di Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräknade utifrån GPS-rutten; de kan skilja sig något från den totala distansen i Apple Health."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beregnet ud fra GPS-ruten; de kan afvige lidt fra den samlede distance i Apple Health."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据 GPS 路线计算，可能与 Apple Health 中的总距离略有差异。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS रूट से गणना की गई; ये Apple Health की कुल दूरी से थोड़े अलग हो सकते हैं।"
+          }
+        }
+      }
+    },
     "Calendario": {
       "extractionState": "manual",
       "localizations": {
@@ -1746,6 +2753,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कैलेंडर, वैकल्पिक रिमाइंडर और 5K से मैराथन तक के प्लान।"
+          }
+        }
+      }
+    },
+    "Calentamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm-up"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aquecimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échauffement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riscaldamento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppvärmning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opvarmning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "热身"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वार्म-अप"
           }
         }
       }
@@ -1905,6 +2965,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "वॉक"
+          }
+        }
+      }
+    },
+    "Campo %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Field %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campo %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Champ %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campo %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fält %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Felt %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字段 %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ील्ड %lld"
+          }
+        }
+      }
+    },
+    "Campos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fields"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Champs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fält"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Felter"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ील्ड"
+          }
+        }
+      }
+    },
+    "Campos en pantalla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fields on screen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campos na tela"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Champs à l’écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Campi sullo schermo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fält på skärmen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Felter på skærmen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "界面字段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन पर फ़ील्ड"
           }
         }
       }
@@ -2545,55 +3764,55 @@
         }
       }
     },
-    "Competición": {
+    "Con ritmo objetivo, el reloj avisa si vas más rápido o más lento durante la serie.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Race"
+            "value": "With a target pace, the watch lets you know if you're going faster or slower during the rep."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Competição"
+            "value": "Com um ritmo alvo, o relógio avisa se você está mais rápido ou mais lento durante a série."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compétition"
+            "value": "Avec une allure cible, la montre te prévient si tu vas plus vite ou plus lentement pendant l’effort."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gara"
+            "value": "Con un ritmo obiettivo, l’orologio ti avvisa se vai più veloce o più lento durante la ripetuta."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tävling"
+            "value": "Med ett måltempo meddelar klockan om du springer snabbare eller långsammare under draget."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konkurrence"
+            "value": "Med et måltempo giver uret besked, hvis du løber hurtigere eller langsommere under intervallet."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "比赛"
+            "value": "设置目标配速后，手表会在间歇跑段中提醒你是否过快或过慢。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रेस"
+            "value": "लक्ष्य पेस सेट होने पर, रेप के दौरान आप तेज़ या धीमे चल रहे हों तो घड़ी बताती है।"
           }
         }
       }
@@ -3071,6 +4290,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "मध्यम विश्वसनीयता"
+          }
+        }
+      }
+    },
+    "Configura primero tus zonas cardíacas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up your heart rate zones first."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure suas zonas cardíacas primeiro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure d’abord tes zones cardiaques."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura prima le tue zone cardiache."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ställ in dina pulszoner först."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indstil dine pulszoner først."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先设置你的心率区间。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले अपने हृदय गति ज़ोन सेट करें।"
+          }
+        }
+      }
+    },
+    "Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up your zones in SPRING › Run settings to see time in each zone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure suas zonas em SPRING › Ajustes de corrida para ver o tempo em cada zona."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure tes zones dans SPRING › Réglages de course pour voir le temps passé dans chaque zone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura le tue zone in SPRING › Impostazioni corsa per vedere il tempo in ogni zona."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ställ in dina zoner i SPRING › Löpinställningar för att se tiden i varje zon."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indstil dine zoner under SPRING › Løbeindstillinger for at se tiden i hver zone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在“SPRING › 跑步设置”中设置区间，即可查看每个区间的时间。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर ज़ोन में बिताया समय देखने के लिए SPRING › रन सेटिंग्ज़ में अपने ज़ोन सेट करें।"
           }
         }
       }
@@ -3923,6 +5248,59 @@
         }
       }
     },
+    "Define tu FC máxima para ver las zonas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set your max HR to see your zones."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defina sua FC máxima para ver as zonas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Définis ta FC max. pour voir les zones."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta la tua FC max per vedere le zone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ange din maxpuls för att se zonerna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angiv din maks. puls for at se zonerne."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置最大心率以查看区间。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़ोन देखने के लिए अपनी अधिकतम हृदय गति सेट करें।"
+          }
+        }
+      }
+    },
     "Dentro de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -3972,6 +5350,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपकी सामान्य सीमा के भीतर"
+          }
+        }
+      }
+    },
+    "Desactivada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desativado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattivato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Av"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बंद"
+          }
+        }
+      }
+    },
+    "Desactivadas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desativados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattivati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Av"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बंद"
           }
         }
       }
@@ -4184,6 +5668,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "हटाएँ"
+          }
+        }
+      }
+    },
+    "Desde": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "से"
           }
         }
       }
@@ -4453,6 +5990,59 @@
         }
       }
     },
+    "Disponible al conectar Apple Health: en modo demo no se guardan valores de ejemplo como tuyos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available once you connect Apple Health: in demo mode, sample values aren't saved as yours."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponível ao conectar o Apple Health: no modo demo, valores de exemplo não são salvos como seus."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponible une fois Apple Health connecté : en mode démo, les valeurs d’exemple ne sont pas enregistrées comme les tiennes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibile collegando Apple Health: in modalità demo i valori di esempio non vengono salvati come tuoi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillgängligt när du ansluter Apple Health: i demoläge sparas inte exempelvärden som dina."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilgængelig, når du forbinder Apple Health: i demotilstand gemmes eksempelværdier ikke som dine."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接 Apple Health 后可用：演示模式下不会将示例数值保存为你的数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health कनेक्ट करने पर उपलब्ध: डेमो मोड में उदाहरण मान आपके डेटा के रूप में सेव नहीं होते।"
+          }
+        }
+      }
+    },
     "Distancia": {
       "extractionState": "manual",
       "localizations": {
@@ -4665,6 +6255,165 @@
         }
       }
     },
+    "Duración": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duração"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längd"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varighed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "时长"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अवधि"
+          }
+        }
+      }
+    },
+    "Durante la carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "During the run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante a corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendant la course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante la corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under passet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under løbeturen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步期间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन के दौरान"
+          }
+        }
+      }
+    },
+    "Durante la carrera se pasa de una a otra deslizando en horizontal. Hasta 4 pantallas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "During a run, swipe sideways to move between them. Up to 4 screens."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante a corrida, deslize para os lados para passar de uma para outra. Até 4 telas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendant la course, balaie horizontalement pour passer de l’un à l’autre. Jusqu’à 4 écrans."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante la corsa scorri in orizzontale per passare dall’una all’altra. Fino a 4 schermate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under passet sveper du i sidled för att byta mellan dem. Upp till 4 skärmar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under løbeturen skifter du mellem dem ved at stryge til siden. Op til 4 skærme."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑步时左右轻扫即可切换。最多 4 个界面。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन के दौरान एक से दूसरी पर जाने के लिए बगल में स्वाइप करें। अधिकतम 4 स्क्रीन।"
+          }
+        }
+      }
+    },
     "Día": {
       "extractionState": "manual",
       "localizations": {
@@ -4771,6 +6520,59 @@
         }
       }
     },
+    "Edita planes, pantallas, zonas y alertas en el iPhone: SPRING › Ajustes de carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit plans, screens, zones and alerts on your iPhone: SPRING › Run settings."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edite planos, telas, zonas e alertas no iPhone: SPRING › Ajustes de corrida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifie les plans, écrans, zones et alertes sur l’iPhone : SPRING › Réglages de course."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica piani, schermate, zone e avvisi sull’iPhone: SPRING › Impostazioni corsa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redigera planer, skärmar, zoner och varningar på iPhone: SPRING › Löpinställningar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediger planer, skærme, zoner og advarsler på iPhone: SPRING › Løbeindstillinger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上编辑计划、界面、区间和提醒：SPRING › 跑步设置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान, स्क्रीन, ज़ोन और अलर्ट iPhone पर बदलें: SPRING › रन सेटिंग्ज़।"
+          }
+        }
+      }
+    },
     "Ejercicio": {
       "extractionState": "manual",
       "localizations": {
@@ -4824,6 +6626,59 @@
         }
       }
     },
+    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The watch's Lap button marks manual laps at any time."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O botão Volta do relógio marca voltas manuais a qualquer momento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le bouton Tour de la montre marque des tours manuels à tout moment."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il pulsante Giro dell’orologio segna giri manuali in qualsiasi momento."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockans Varv-knapp markerar manuella varv när som helst."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Urets Omgang-knap markerer manuelle omgange når som helst."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "随时按手表上的“分段”按钮即可手动分段。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी का लैप बटन किसी भी समय मैन्युअल लैप मार्क करता है।"
+          }
+        }
+      }
+    },
     "El motor de recuperación (RecoveryEngine) llega en la Fase 6.": {
       "extractionState": "manual",
       "localizations": {
@@ -4873,6 +6728,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रिकवरी इंजन (RecoveryEngine) चरण 6 में आएगा।"
+          }
+        }
+      }
+    },
+    "El reloj vibra tras 10 s fuera de rango y repite cada minuto mientras sigas fuera. También avisa cuando vuelves al rango.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The watch vibrates after 10 s out of range and repeats every minute while you stay out. It also lets you know when you're back in range."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O relógio vibra após 10 s fora da faixa e repete a cada minuto enquanto você continuar fora. Também avisa quando você volta à faixa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La montre vibre après 10 s hors plage et répète chaque minute tant que tu restes en dehors. Elle te prévient aussi quand tu reviens dans la plage."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’orologio vibra dopo 10 s fuori intervallo e ripete ogni minuto finché resti fuori. Ti avvisa anche quando rientri nell’intervallo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockan vibrerar efter 10 s utanför intervallet och upprepar varje minut så länge du är utanför. Den meddelar också när du är tillbaka i intervallet."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uret vibrerer efter 10 s uden for intervallet og gentager hvert minut, så længe du er udenfor. Det giver også besked, når du er tilbage i intervallet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超出范围 10 秒后手表会振动，只要仍在范围外就每分钟重复一次。回到范围内时也会提醒你。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीमा से बाहर 10 s रहने पर घड़ी वाइब्रेट करती है और जब तक आप बाहर रहें, हर मिनट दोहराती है। सीमा में लौटने पर भी बताती है।"
           }
         }
       }
@@ -4983,6 +6891,59 @@
         }
       }
     },
+    "En carreras libres. En intervalos manda el ritmo objetivo de cada serie.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On free runs. In intervals, each rep's target pace takes priority."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em corridas livres. Nos intervalos, vale o ritmo alvo de cada série."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour les courses libres. En fractionné, c’est l’allure cible de chaque effort qui compte."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nelle corse libere. Negli intervalli vale il ritmo obiettivo di ogni ripetuta."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid fria pass. Vid intervaller gäller måltempot för varje drag."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På frie løbeture. Ved intervaller gælder måltempoet for hvert interval."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于自由跑。间歇跑时以每段的目标配速为准。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़्री रन में। इंटरवल में हर रेप का लक्ष्य पेस लागू होता है।"
+          }
+        }
+      }
+    },
     "En pausa": {
       "extractionState": "manual",
       "localizations": {
@@ -5032,6 +6993,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रुका हुआ"
+          }
+        }
+      }
+    },
+    "En tu zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In your zone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na sua zona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans ta zone"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella tua zona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I din zon"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I din zone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你的区间内"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके ज़ोन में"
           }
         }
       }
@@ -5831,6 +7845,59 @@
         }
       }
     },
+    "Este entrenamiento no tiene ruta GPS en Apple Health, o HÅLSYN no tiene permiso para leerla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This workout has no GPS route in Apple Health, or HÅLSYN doesn't have permission to read it."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este treino não tem percurso GPS no Apple Health, ou o HÅLSYN não tem permissão para lê-lo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet entraînement n’a pas de parcours GPS dans Apple Health, ou HÅLSYN n’a pas l’autorisation de le lire."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo allenamento non ha un percorso GPS in Apple Health, oppure HÅLSYN non ha l’autorizzazione a leggerlo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det här passet har ingen GPS-rutt i Apple Health, eller så har HÅLSYN inte behörighet att läsa den."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denne træning har ingen GPS-rute i Apple Health, eller også har HÅLSYN ikke tilladelse til at læse den."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此训练在 Apple Health 中没有 GPS 路线，或 HÅLSYN 没有读取权限。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस वर्कआउट का Apple Health में कोई GPS रूट नहीं है, या HÅLSYN को इसे पढ़ने की अनुमति नहीं है।"
+          }
+        }
+      }
+    },
     "Estimación de Apple de tu capacidad aeróbica máxima a partir de caminatas y carreras al aire libre. No es una prueba de laboratorio.": {
       "extractionState": "manual",
       "localizations": {
@@ -6361,6 +8428,59 @@
         }
       }
     },
+    "FC en reposo (lpm)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resting HR (bpm)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC em repouso (bpm)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC au repos (bpm)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC a riposo (bpm)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilopuls (slag/min)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvilepuls (slag/min)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "静息心率（次/分）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आराम की हृदय गति (bpm)"
+          }
+        }
+      }
+    },
     "FC en reposo dentro de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -6520,6 +8640,59 @@
         }
       }
     },
+    "FC máx. %lld lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max HR %lld bpm"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC máx. %lld bpm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max. %lld bpm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max %lld bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxpuls %lld slag/min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maks. puls %lld slag/min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大心率 %lld 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम HR %lld bpm"
+          }
+        }
+      }
+    },
     "FC máx. registrada": {
       "extractionState": "manual",
       "localizations": {
@@ -6573,6 +8746,112 @@
         }
       }
     },
+    "FC máxima": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max HR"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC máxima"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxpuls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maks. puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大心率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम हृदय गति"
+          }
+        }
+      }
+    },
+    "FC máxima (lpm)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max HR (bpm)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC máxima (bpm)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max. (bpm)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC max (bpm)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxpuls (slag/min)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maks. puls (slag/min)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最大心率（次/分）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम हृदय गति (bpm)"
+          }
+        }
+      }
+    },
     "FC reposo": {
       "extractionState": "manual",
       "localizations": {
@@ -6622,6 +8901,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आराम की HR"
+          }
+        }
+      }
+    },
+    "Falta una FC en reposo válida: se usa el porcentaje de la FC máxima.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No valid resting HR: using percentage of max HR instead."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta uma FC em repouso válida: é usada a porcentagem da FC máxima."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune FC au repos valide : le pourcentage de la FC max. est utilisé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manca una FC a riposo valida: viene usata la percentuale della FC max."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giltig vilopuls saknas: procent av maxpulsen används i stället."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der mangler en gyldig hvilepuls: procent af maks. puls bruges i stedet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少有效的静息心率：改用最大心率百分比。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मान्य आराम की हृदय गति नहीं है: अधिकतम हृदय गति का प्रतिशत इस्तेमाल हो रहा है।"
           }
         }
       }
@@ -7103,6 +9435,59 @@
         }
       }
     },
+    "Gráfico de frecuencia cardíaca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate chart"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gráfico de frequência cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Graphique de fréquence cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grafico della frequenza cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsdiagram"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsdiagram"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率图表"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति चार्ट"
+          }
+        }
+      }
+    },
     "Guardada en Apple Health": {
       "extractionState": "manual",
       "localizations": {
@@ -7364,6 +9749,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "HRV · 7 दिन"
+          }
+        }
+      }
+    },
+    "Hasta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Até"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Till"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Til"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "到"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तक"
+          }
+        }
+      }
+    },
+    "Hasta pulsar Vuelta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until you press Lap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Até tocar em Volta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jusqu’à un appui sur Tour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fino a premere Giro"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tills du trycker på Varv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indtil du trykker på Omgang"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直到按下“分段”"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लैप दबाने तक"
           }
         }
       }
@@ -8322,6 +10813,112 @@
         }
       }
     },
+    "Instala HÅLSYN en el Apple Watch para recibir estos ajustes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install HÅLSYN on your Apple Watch to receive these settings."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instale o HÅLSYN no Apple Watch para receber estes ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installe HÅLSYN sur ton Apple Watch pour recevoir ces réglages."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installa HÅLSYN sull’Apple Watch per ricevere queste impostazioni."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installera HÅLSYN på din Apple Watch för att ta emot de här inställningarna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer HÅLSYN på dit Apple Watch for at modtage disse indstillinger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Apple Watch 上安装 HÅLSYN 以接收这些设置。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ये सेटिंग्ज़ पाने के लिए Apple Watch पर HÅLSYN इंस्टॉल करें।"
+          }
+        }
+      }
+    },
+    "Intensa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intense"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hård"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hård"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高强度"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तीव्र"
+          }
+        }
+      }
+    },
     "Intervalos": {
       "extractionState": "manual",
       "localizations": {
@@ -8375,55 +10972,108 @@
         }
       }
     },
-    "Intervalos y competición llegan en la Fase 5 (vista previa).": {
+    "Intervalos completados": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intervals and race arrive in Phase 5 (preview)."
+            "value": "Intervals completed"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intervalos e competição chegam na Fase 5 (prévia)."
+            "value": "Intervalos concluídos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le fractionné et la compétition arrivent lors de la Phase 5 (aperçu)."
+            "value": "Fractions terminées"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intervalli e gara arrivano nella Fase 5 (anteprima)."
+            "value": "Intervalli completati"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intervaller och tävling kommer i Fas 5 (förhandsvisning)."
+            "value": "Avklarade intervaller"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intervaller og konkurrence kommer i Fase 5 (forhåndsvisning)."
+            "value": "Gennemførte intervaller"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "间歇跑和比赛将在第 5 阶段推出（预览）。"
+            "value": "已完成的间歇"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "इंटरवल और रेस चरण 5 में आएँगे (प्रीव्यू)।"
+            "value": "पूरे किए गए इंटरवल"
+          }
+        }
+      }
+    },
+    "Introducida por ti": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entered by you"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserida por você"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisie par toi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserita da te"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angiven av dig"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indtastet af dig"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手动输入"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके द्वारा दर्ज"
           }
         }
       }
@@ -8958,55 +11608,55 @@
         }
       }
     },
-    "Libre": {
+    "Llegada": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Free"
+            "value": "Finish"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Livre"
+            "value": "Chegada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Libre"
+            "value": "Arrivée"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Libera"
+            "value": "Arrivo"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fri"
+            "value": "Mål"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fri"
+            "value": "Mål"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自由"
+            "value": "终点"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़्री"
+            "value": "फ़िनिश"
           }
         }
       }
@@ -9276,6 +11926,59 @@
         }
       }
     },
+    "Los cambios se envían al Apple Watch automáticamente.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes are sent to your Apple Watch automatically."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As alterações são enviadas ao Apple Watch automaticamente."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les modifications sont envoyées automatiquement à l’Apple Watch."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le modifiche vengono inviate automaticamente all’Apple Watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändringar skickas automatiskt till din Apple Watch."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ændringer sendes automatisk til dit Apple Watch."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改会自动发送到 Apple Watch。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बदलाव अपने-आप Apple Watch पर भेजे जाते हैं।"
+          }
+        }
+      }
+    },
     "Los nombres de los módulos son palabras suecas.": {
       "extractionState": "manual",
       "localizations": {
@@ -9378,6 +12081,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "हर डेटा प्रकार की अनुमतियां सेटिंग्ज़ › स्वास्थ्य › डेटा एक्सेस और डिवाइस › HÅLSYN में बदली जाती हैं। iOS ऐप्स को यह नहीं बताता कि कौन-सा डेटा अस्वीकार किया गया है।"
+          }
+        }
+      }
+    },
+    "Los planes aparecen en SPRING › Intervalos en el reloj. El reloj vibra al empezar cada serie y cada recuperación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plans appear in SPRING › Intervals on the watch. The watch vibrates at the start of each rep and each recovery."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os planos aparecem em SPRING › Intervalos no relógio. O relógio vibra no início de cada série e de cada recuperação."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les plans apparaissent dans SPRING › Fractionné sur la montre. La montre vibre au début de chaque effort et de chaque récupération."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I piani compaiono in SPRING › Intervalli sull’orologio. L’orologio vibra all’inizio di ogni ripetuta e di ogni recupero."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planerna visas i SPRING › Intervaller på klockan. Klockan vibrerar i början av varje drag och varje återhämtning."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planerne vises under SPRING › Intervaller på uret. Uret vibrerer ved starten af hvert interval og hver restitution."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "计划会显示在手表的“SPRING › 间歇跑”中。每段间歇和每次恢复开始时，手表都会振动。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान घड़ी पर SPRING › इंटरवल में दिखते हैं। हर रेप और हर रिकवरी की शुरुआत में घड़ी वाइब्रेट करती है।"
+          }
+        }
+      }
+    },
+    "Mapa de la ruta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route map"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapa do percurso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carte du parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mappa del percorso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruttkarta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutekort"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "路线地图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूट मैप"
           }
         }
       }
@@ -9806,6 +12615,165 @@
         }
       }
     },
+    "Mis intervalos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My intervals"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meus intervalos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes fractionnés"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I miei intervalli"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mina intervaller"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mine intervaller"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我的间歇跑"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेरे इंटरवल"
+          }
+        }
+      }
+    },
+    "Modelo de 5 zonas: empiezan al 50, 60, 70, 80 y 90 por ciento. Es una convención de entrenamiento, no una indicación médica. Si tienes una condición cardíaca, consulta a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5-zone model: they start at 50, 60, 70, 80 and 90 percent. This is a training convention, not medical advice. If you have a heart condition, talk to a professional."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo de 5 zonas: começam em 50, 60, 70, 80 e 90 por cento. É uma convenção de treino, não uma orientação médica. Se você tem alguma condição cardíaca, consulte um profissional."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèle à 5 zones : elles commencent à 50, 60, 70, 80 et 90 pour cent. C’est une convention d’entraînement, pas un avis médical. Si tu as un problème cardiaque, consulte un professionnel."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modello a 5 zone: iniziano al 50, 60, 70, 80 e 90 per cento. È una convenzione di allenamento, non un’indicazione medica. Se hai un problema cardiaco, consulta un professionista."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modell med 5 zoner: de börjar vid 50, 60, 70, 80 och 90 procent. Det är en träningskonvention, inte ett medicinskt råd. Om du har en hjärtsjukdom, rådfråga en vårdgivare."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model med 5 zoner: de starter ved 50, 60, 70, 80 og 90 procent. Det er en træningskonvention, ikke en medicinsk anbefaling. Hvis du har en hjertesygdom, så tal med en fagperson."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 区间模型：分别从 50、60、70、80 和 90 百分比开始。这是一种训练惯例，并非医疗建议。如果你有心脏疾病，请咨询专业人士。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5-ज़ोन मॉडल: ये 50, 60, 70, 80 और 90 प्रतिशत से शुरू होते हैं। यह एक ट्रेनिंग परिपाटी है, कोई चिकित्सा सलाह नहीं। अगर आपको दिल से जुड़ी कोई समस्या है, तो किसी विशेषज्ञ से सलाह लें।"
+          }
+        }
+      }
+    },
+    "Moderada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modérée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måttlig"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中等"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मध्यम"
+          }
+        }
+      }
+    },
     "Modo demo": {
       "extractionState": "manual",
       "localizations": {
@@ -10014,6 +12982,483 @@
           "stringUnit": {
             "state": "translated",
             "value": "स्कोर का ब्रेकडाउन दिखाता है"
+          }
+        }
+      }
+    },
+    "Muy suave": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very easy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muito leve"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Très facile"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Molto leggera"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mycket lätt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meget let"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非常轻松"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बहुत हल्का"
+          }
+        }
+      }
+    },
+    "Más lento que": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slower than"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais lento que"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus lent que"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più lento di"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Långsammare än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsommere end"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "慢于"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इससे धीमा"
+          }
+        }
+      }
+    },
+    "Más lento que el objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slower than target"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais lento que o alvo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus lent que la cible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più lento dell’obiettivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Långsammare än målet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsommere end målet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "慢于目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य से धीमा"
+          }
+        }
+      }
+    },
+    "Más rápido que": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faster than"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais rápido que"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus rapide que"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più veloce di"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbare än"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigere end"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快于"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इससे तेज़"
+          }
+        }
+      }
+    },
+    "Más rápido que el objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faster than target"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais rápido que o alvo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus rapide que la cible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più veloce dell’obiettivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbare än målet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigere end målet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快于目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य से तेज़"
+          }
+        }
+      }
+    },
+    "Máxima": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máxima"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximale"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massima"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximal"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maksimal"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "极限"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम"
+          }
+        }
+      }
+    },
+    "Máxima registrada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest recorded"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máxima registrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max. enregistrée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massima registrata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högsta registrerade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højeste registrerede"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "记录的最高值"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दर्ज अधिकतम"
+          }
+        }
+      }
+    },
+    "Máxima registrada en tus carreras": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest recorded in your runs"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máxima registrada nas suas corridas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max. enregistrée lors de tes courses"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massima registrata nelle tue corse"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högsta registrerade under dina löppass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højeste registrerede på dine løbeture"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你跑步中记录的最高值"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके रन में दर्ज अधिकतम"
+          }
+        }
+      }
+    },
+    "Método": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Method"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Método"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Méthode"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metodo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metod"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metode"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "方法"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तरीका"
           }
         }
       }
@@ -10283,6 +13728,59 @@
         }
       }
     },
+    "No hay ningún Apple Watch emparejado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Apple Watch is paired."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum Apple Watch emparelhado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune Apple Watch n’est jumelée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun Apple Watch abbinato."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen Apple Watch är parkopplad."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der er intet Apple Watch parret."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有已配对的 Apple Watch。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई Apple Watch पेयर नहीं है।"
+          }
+        }
+      }
+    },
     "No medida": {
       "extractionState": "manual",
       "localizations": {
@@ -10332,6 +13830,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "मापा नहीं गया"
+          }
+        }
+      }
+    },
+    "No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo) o usa la más alta registrada en tus carreras.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max HR isn't estimated from age: enter it (for example, from a stress test) or use the highest recorded in your runs."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A FC máxima não é estimada pela idade: insira-a (por exemplo, de um teste de esforço) ou use a mais alta registrada nas suas corridas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La FC max. n’est pas estimée d’après l’âge : saisis-la (par exemple, issue d’un test d’effort) ou utilise la plus élevée enregistrée lors de tes courses."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La FC max non viene stimata in base all’età: inseriscila (ad esempio da un test da sforzo) o usa la più alta registrata nelle tue corse."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxpulsen uppskattas inte utifrån ålder: ange den (till exempel från ett arbetsprov) eller använd den högsta som registrerats under dina löppass."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maks. puls estimeres ikke ud fra alder: indtast den (for eksempel fra en arbejdstest) eller brug den højeste, der er registreret på dine løbeture."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不根据年龄估算最大心率：请手动输入（例如来自运动负荷测试），或使用你跑步中记录的最高值。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम हृदय गति उम्र से अनुमानित नहीं की जाती: इसे दर्ज करें (जैसे किसी स्ट्रेस टेस्ट से) या अपने रन में दर्ज सबसे ऊँची वैल्यू इस्तेमाल करें।"
           }
         }
       }
@@ -10601,6 +14152,165 @@
         }
       }
     },
+    "Nombre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namn"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navn"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नाम"
+          }
+        }
+      }
+    },
+    "Nuevo plan de intervalos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New interval plan"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo plano de intervalos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouveau plan de fractionné"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo piano di intervalli"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ny intervallplan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ny intervalplan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建间歇跑计划"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नया इंटरवल प्लान"
+          }
+        }
+      }
+    },
+    "OBJETIVO": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TARGET"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ALVO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CIBLE"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OBIETTIVO"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MÅL"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MÅL"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य"
+          }
+        }
+      }
+    },
     "Objetivos": {
       "extractionState": "manual",
       "localizations": {
@@ -10760,6 +14470,165 @@
         }
       }
     },
+    "Pantalla %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tela %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écran %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermata %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skärm %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skærm %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "界面 %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन %lld"
+          }
+        }
+      }
+    },
+    "Pantalla eliminada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen deleted"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tela apagada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écran supprimé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermata eliminata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skärm borttagen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skærm slettet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "界面已删除"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन हटाई गई"
+          }
+        }
+      }
+    },
+    "Pantallas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screens"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écrans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skärmar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skærme"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "界面"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्क्रीन"
+          }
+        }
+      }
+    },
     "Pantallas de entrenamiento": {
       "extractionState": "manual",
       "localizations": {
@@ -10862,6 +14731,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी की स्क्रीन"
+          }
+        }
+      }
+    },
+    "Parciales": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Splits"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parciais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps intermédiaires"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parziali"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delsträckor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mellemtider"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分段用时"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्प्लिट"
           }
         }
       }
@@ -11184,59 +15106,6 @@
         }
       }
     },
-    "Perfil Easy Run": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Easy Run profile"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Perfil Easy Run"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profil Easy Run"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profilo Easy Run"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profil Easy Run"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profil Easy Run"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Easy Run 配置"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Easy Run प्रोफ़ाइल"
-          }
-        }
-      }
-    },
     "Periodo": {
       "extractionState": "manual",
       "localizations": {
@@ -11343,6 +15212,59 @@
         }
       }
     },
+    "Plan eliminado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan deleted"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plano apagado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan supprimé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piano eliminato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan borttagen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan slettet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "计划已删除"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्लान हटाया गया"
+          }
+        }
+      }
+    },
     "Planificado para la fase %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -11396,55 +15318,108 @@
         }
       }
     },
-    "Por distancia": {
+    "Por debajo de la zona": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "By distance"
+            "value": "Below zone"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por distância"
+            "value": "Abaixo da zona"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Par distance"
+            "value": "Sous la zone"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per distanza"
+            "value": "Sotto la zona"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efter distans"
+            "value": "Under zonen"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efter distance"
+            "value": "Under zonen"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "按距离"
+            "value": "低于区间"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "दूरी के आधार पर"
+            "value": "ज़ोन से नीचे"
+          }
+        }
+      }
+    },
+    "Por encima de la zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Above zone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acima da zona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Au-dessus de la zone"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sopra la zona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Över zonen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over zonen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高于区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़ोन से ऊपर"
           }
         }
       }
@@ -11502,55 +15477,55 @@
         }
       }
     },
-    "Por tiempo": {
+    "Porcentaje de la FC máxima": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "By time"
+            "value": "Percentage of max HR"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Por tempo"
+            "value": "Porcentagem da FC máxima"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Par durée"
+            "value": "Pourcentage de la FC max."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Per tempo"
+            "value": "Percentuale della FC max"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efter tid"
+            "value": "Procent av maxpuls"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Efter tid"
+            "value": "Procent af maks. puls"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "按时间"
+            "value": "最大心率百分比"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "समय के आधार पर"
+            "value": "अधिकतम हृदय गति का प्रतिशत"
           }
         }
       }
@@ -11926,6 +15901,59 @@
         }
       }
     },
+    "Pulsa Vuelta para continuar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Press Lap to continue"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque em Volta para continuar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuie sur Tour pour continuer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Premi Giro per continuare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck på Varv för att fortsätta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryk på Omgang for at fortsætte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按“分段”继续"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जारी रखने के लिए लैप दबाएँ"
+          }
+        }
+      }
+    },
     "Puntuación": {
       "extractionState": "manual",
       "localizations": {
@@ -12032,6 +16060,59 @@
         }
       }
     },
+    "QUEDAN": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LEFT"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RESTAM"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RESTE"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RESTANO"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KVAR"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TILBAGE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剩余"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बाकी"
+          }
+        }
+      }
+    },
     "Qué ha influido": {
       "extractionState": "manual",
       "localizations": {
@@ -12134,6 +16215,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "यह क्या मापता है"
+          }
+        }
+      }
+    },
+    "RECUPERAR": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RECOVER"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RECUPERAR"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RÉCUP"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RECUPERO"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ÅTERHÄMTA"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RESTITUER"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिकवरी"
           }
         }
       }
@@ -12509,6 +16643,112 @@
         }
       }
     },
+    "Repeticiones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repeats"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repetições"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répétitions"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripetizioni"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upprepningar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gentagelser"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重复次数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दोहराव"
+          }
+        }
+      }
+    },
+    "Reserva cardíaca (Karvonen)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate reserve (Karvonen)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reserva cardíaca (Karvonen)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réserve cardiaque (Karvonen)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riserva cardiaca (Karvonen)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsreserv (Karvonen)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsreserve (Karvonen)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率储备（Karvonen）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हार्ट रेट रिज़र्व (Karvonen)"
+          }
+        }
+      }
+    },
     "Respiraciones por minuto estimadas durante el sueño.": {
       "extractionState": "manual",
       "localizations": {
@@ -12827,6 +17067,59 @@
         }
       }
     },
+    "Ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस"
+          }
+        }
+      }
+    },
     "Ritmo actual": {
       "extractionState": "manual",
       "localizations": {
@@ -12929,6 +17222,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "लैप पेस"
+          }
+        }
+      }
+    },
+    "Ritmo en rango": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace in range"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo na faixa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure dans la plage"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo nell’intervallo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo inom intervallet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo inden for intervallet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速在范围内"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस सीमा में"
           }
         }
       }
@@ -13092,6 +17438,59 @@
         }
       }
     },
+    "Ritmo y zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace and zone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo e zona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure et zone"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo e zona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo och zon"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo og zone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速和区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस और ज़ोन"
+          }
+        }
+      }
+    },
     "Running": {
       "extractionState": "manual",
       "localizations": {
@@ -13145,55 +17544,214 @@
         }
       }
     },
-    "Ruta, parciales, vueltas, zonas cardíacas y comparación histórica": {
+    "Ruta": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Route, splits, laps, heart rate zones and historical comparison"
+            "value": "Route"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rota, parciais, voltas, zonas cardíacas e comparação histórica"
+            "value": "Percurso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parcours, temps intermédiaires, tours, zones cardiaques et comparaison historique"
+            "value": "Parcours"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Percorso, parziali, giri, zone cardiache e confronto storico"
+            "value": "Percorso"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rutt, delsträckor, varv, pulszoner och historisk jämförelse"
+            "value": "Rutt"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rute, mellemtider, omgange, pulszoner og historisk sammenligning"
+            "value": "Rute"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "路线、分段、单圈、心率区间和历史比较"
+            "value": "路线"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रूट, स्प्लिट, लैप, हृदय गति ज़ोन और पिछले रिकॉर्ड से तुलना"
+            "value": "रूट"
+          }
+        }
+      }
+    },
+    "Ruta de ejemplo (modo demo).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample route (demo mode)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percurso de exemplo (modo demo)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours d’exemple (mode démo)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorso di esempio (modalità demo)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exempelrutt (demoläge)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksempelrute (demotilstand)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "示例路线（演示模式）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उदाहरण रूट (डेमो मोड)।"
+          }
+        }
+      }
+    },
+    "SERIE": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "REP"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SÉRIE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "EFFORT"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RIPETUTA"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DRAG"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "INTERVAL"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间歇"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेप"
+          }
+        }
+      }
+    },
+    "Salida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Départ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partenza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "起点"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्टार्ट"
           }
         }
       }
@@ -13304,6 +17862,59 @@
         }
       }
     },
+    "Se enviarán al Apple Watch cuando esté disponible.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They'll be sent to your Apple Watch when it's available."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serão enviados ao Apple Watch quando ele estiver disponível."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ils seront envoyés à l’Apple Watch dès qu’elle sera disponible."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verranno inviate all’Apple Watch quando sarà disponibile."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De skickas till din Apple Watch när den är tillgänglig."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De sendes til dit Apple Watch, når det er tilgængeligt."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将在 Apple Watch 可用时发送。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch उपलब्ध होने पर इन्हें भेजा जाएगा।"
+          }
+        }
+      }
+    },
     "Seguir corriendo": {
       "extractionState": "manual",
       "localizations": {
@@ -13357,6 +17968,59 @@
         }
       }
     },
+    "Según tus zonas actuales (%@–%@ lpm).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your current zones (%@–%@ bpm)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com base nas suas zonas atuais (%@–%@ bpm)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D’après tes zones actuelles (%@–%@ bpm)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In base alle tue zone attuali (%@–%@ bpm)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utifrån dina nuvarande zoner (%@–%@ slag/min)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ud fra dine nuværende zoner (%@–%@ slag/min)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于你当前的区间（%@–%@ 次/分）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके मौजूदा ज़ोन के आधार पर (%@–%@ bpm)।"
+          }
+        }
+      }
+    },
     "Semanal": {
       "extractionState": "manual",
       "localizations": {
@@ -13406,6 +18070,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "साप्ताहिक"
+          }
+        }
+      }
+    },
+    "Serie": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rep"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effort"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripetuta"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interval"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间歇段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेप"
+          }
+        }
+      }
+    },
+    "Series": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reps"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Séries"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efforts"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripetute"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间歇段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेप"
+          }
+        }
+      }
+    },
+    "Si eliges un campo que ya está en otra posición, se intercambian. Sin dato en vivo se muestra «--»: cadencia (pendiente de verificar en dispositivo), potencia si tu reloj no la mide, zona sin FC máxima configurada, objetivo e intervalo fuera de un plan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you pick a field that's already in another position, they swap. Without live data, «--» is shown: cadence (pending on-device verification), power if your watch doesn't measure it, zone without a max HR set, and target and interval outside a plan."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você escolher um campo que já está em outra posição, eles trocam de lugar. Sem dado ao vivo, aparece «--»: cadência (verificação no dispositivo pendente), potência se o seu relógio não a mede, zona sem FC máxima configurada, alvo e intervalo fora de um plano."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu choisis un champ déjà placé ailleurs, ils sont échangés. Sans donnée en direct, «--» s’affiche : cadence (vérification sur l’appareil en attente), puissance si ta montre ne la mesure pas, zone sans FC max. configurée, cible et fraction hors d’un plan."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se scegli un campo che si trova già in un’altra posizione, i due vengono scambiati. Senza dati in tempo reale viene mostrato «--»: cadenza (verifica sul dispositivo in sospeso), potenza se il tuo orologio non la misura, zona senza FC max configurata, obiettivo e intervallo fuori da un piano."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du väljer ett fält som redan finns på en annan plats byter de plats. Utan livedata visas «--»: kadens (väntar på verifiering på enheten), effekt om din klocka inte mäter den, zon utan inställd maxpuls samt mål och intervall utanför en plan."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvis du vælger et felt, der allerede er på en anden plads, bytter de plads. Uden livedata vises «--»: kadence (afventer bekræftelse på enheden), effekt hvis dit ur ikke måler den, zone uden indstillet maks. puls samt mål og interval uden for en plan."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果选择的字段已在其他位置，两者会互换。没有实时数据时显示«--»：步频（尚待在设备上验证）、手表不支持测量时的功率、未设置最大心率时的区间，以及计划之外的目标和间歇。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर आप कोई ऐसा फ़ील्ड चुनते हैं जो पहले से किसी दूसरी जगह है, तो दोनों की जगह बदल जाती है। लाइव डेटा न होने पर «--» दिखता है: कैडेंस (डिवाइस पर जाँच बाकी), पावर अगर आपकी घड़ी इसे नहीं मापती, अधिकतम हृदय गति सेट न होने पर ज़ोन, और प्लान के बाहर लक्ष्य व इंटरवल।"
           }
         }
       }
@@ -13516,6 +18339,59 @@
         }
       }
     },
+    "Sin alertas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No alerts"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem alertas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune alerte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun avviso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga varningar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen advarsler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无提醒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई अलर्ट नहीं"
+          }
+        }
+      }
+    },
     "Sin carreras todavía": {
       "extractionState": "manual",
       "localizations": {
@@ -13565,6 +18441,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अभी तक कोई रन नहीं"
+          }
+        }
+      }
+    },
+    "Sin configurar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not set up"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não configurado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non configuré"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non configurato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte inställt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikke indstillet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未设置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेट नहीं"
           }
         }
       }
@@ -13993,6 +18922,59 @@
         }
       }
     },
+    "Sin ruta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No route"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem percurso"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun percorso"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen rutt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen rute"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无路线"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई रूट नहीं"
+          }
+        }
+      }
+    },
     "Sin vueltas todavía": {
       "extractionState": "manual",
       "localizations": {
@@ -14148,6 +19130,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "केवल पढ़ना: इस वर्शन में HÅLSYN, Apple Health में कुछ भी नहीं लिखता। आप iOS की अनुमति शीट में चुन सकेंगे कि कौन-से प्रकार शेयर करने हैं।"
+          }
+        }
+      }
+    },
+    "Solo se envían preferencias, nunca datos de salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only preferences are sent, never health data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Só são enviadas preferências, nunca dados de saúde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seules les préférences sont envoyées, jamais les données de santé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vengono inviate solo le preferenze, mai i dati sulla salute."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bara inställningar skickas, aldrig hälsodata."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kun præferencer sendes, aldrig sundhedsdata."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅发送偏好设置，绝不发送健康数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिर्फ़ प्राथमिकताएँ भेजी जाती हैं, स्वास्थ्य डेटा कभी नहीं।"
+          }
+        }
+      }
+    },
+    "Suave": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Easy"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leve"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Facile"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leggera"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lätt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻松"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हल्का"
           }
         }
       }
@@ -14947,6 +20035,59 @@
         }
       }
     },
+    "Tiempo en zonas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time in zones"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo nas zonas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps dans les zones"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo nelle zone"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i zoner"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i zoner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各区间时间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़ोन में समय"
+          }
+        }
+      }
+    },
     "Tiempo, distancia, ritmo y frecuencia cardíaca en directo desde tu Apple Watch, incluso sin el iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -14996,112 +20137,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपकी Apple Watch पर समय, दूरी, पेस और हृदय गति लाइव, iPhone के बिना भी।"
-          }
-        }
-      }
-    },
-    "Tiempo, ritmo, frecuencia cardíaca y zona. El editor para elegir campos, orden y distribución llega en la Fase 5.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Time, pace, heart rate and zone. The editor for choosing fields, order and layout arrives in Phase 5."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo, ritmo, frequência cardíaca e zona. O editor para escolher campos, ordem e disposição chega na Fase 5."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durée, allure, fréquence cardiaque et zone. L’éditeur pour choisir les champs, l’ordre et la disposition arrive lors de la Phase 5."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo, ritmo, frequenza cardiaca e zona. L’editor per scegliere campi, ordine e disposizione arriva nella Fase 5."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tid, tempo, puls och zon. Redigeraren för att välja fält, ordning och layout kommer i Fas 5."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tid, tempo, puls og zone. Editoren til at vælge felter, rækkefølge og layout kommer i Fase 5."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "时间、配速、心率和区间。用于选择字段、顺序和布局的编辑器将在第 5 阶段推出。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "समय, पेस, हृदय गति और ज़ोन। फ़ील्ड, क्रम और लेआउट चुनने वाला एडिटर चरण 5 में आएगा।"
-          }
-        }
-      }
-    },
-    "Tipos de carrera previstos": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planned run types"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipos de corrida previstos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Types de course prévus"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipi di corsa previsti"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planerade typer av löppass"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planlagte løbetyper"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "计划中的跑步类型"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "नियोजित रन के प्रकार"
           }
         }
       }
@@ -15795,6 +20830,59 @@
         }
       }
     },
+    "Tus zonas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your zones"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suas zonas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tes zones"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le tue zone"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina zoner"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine zoner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके ज़ोन"
+          }
+        }
+      }
+    },
     "Un aviso diario te invita a ver tu resumen. La notificación no incluye datos de salud.": {
       "extractionState": "manual",
       "localizations": {
@@ -15950,6 +21038,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "डेमो डेटा इस्तेमाल करें"
+          }
+        }
+      }
+    },
+    "Usar la de Apple Health: %lld lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Apple Health's: %lld bpm"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar a do Apple Health: %lld bpm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser celle d’Apple Health : %lld bpm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa quella di Apple Health: %lld bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd den från Apple Health: %lld slag/min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug den fra Apple Health: %lld slag/min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Apple Health 的数据：%lld 次/分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health वाली इस्तेमाल करें: %lld bpm"
           }
         }
       }
@@ -16431,6 +21572,59 @@
         }
       }
     },
+    "Vista previa con valores de ejemplo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview with sample values."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prévia com valores de exemplo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aperçu avec des valeurs d’exemple."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anteprima con valori di esempio."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förhandsvisning med exempelvärden."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forhåndsvisning med eksempelværdier."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用示例数值的预览。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उदाहरण मानों के साथ प्रीव्यू।"
+          }
+        }
+      }
+    },
     "Vista previa del perfil %@ con valores de ejemplo": {
       "extractionState": "manual",
       "localizations": {
@@ -16643,6 +21837,165 @@
         }
       }
     },
+    "Vuelta %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lap %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volta %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tour %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giro %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varv %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omgang %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分段 %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लैप %lld"
+          }
+        }
+      }
+    },
+    "Vuelta a la calma": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cooldown"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desaquecimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour au calme"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defaticamento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nedjogg"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nedvarmning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放松跑"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कूलडाउन"
+          }
+        }
+      }
+    },
+    "Vuelta automática": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto lap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volta automática"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tour automatique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giro automatico"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatiskt varv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisk omgang"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动分段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऑटो लैप"
+          }
+        }
+      }
+    },
     "Vueltas": {
       "extractionState": "manual",
       "localizations": {
@@ -16696,6 +22049,59 @@
         }
       }
     },
+    "Vuelve a Ajustes de carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go back to Run settings."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volte a Ajustes de corrida."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reviens aux Réglages de course."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Torna a Impostazioni corsa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå tillbaka till Löpinställningar."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå tilbage til Løbeindstillinger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "返回“跑步设置”。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रन सेटिंग्ज़ पर वापस जाएँ।"
+          }
+        }
+      }
+    },
     "ZONA": {
       "extractionState": "manual",
       "localizations": {
@@ -16733,6 +22139,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "ZONE"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़ोन"
+          }
+        }
+      }
+    },
+    "Zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zona"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zon"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone"
           }
         },
         "zh-Hans": {
@@ -16798,6 +22257,218 @@
           "stringUnit": {
             "state": "translated",
             "value": "हृदय गति ज़ोन"
+          }
+        }
+      }
+    },
+    "Zonas cardíacas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate zones"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonas cardíacas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zones cardiaques"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone cardiache"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoner"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoner"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति ज़ोन"
+          }
+        }
+      }
+    },
+    "Zonas cardíacas sin configurar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate zones not set up"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonas cardíacas não configuradas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zones cardiaques non configurées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone cardiache non configurate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoner inte inställda"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoner ikke indstillet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率区间未设置"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति ज़ोन सेट नहीं"
+          }
+        }
+      }
+    },
+    "Zonas con FC máx. %lld lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zones with max HR %lld bpm"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zonas com FC máx. %lld bpm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zones avec FC max. %lld bpm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zone con FC max %lld bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoner med maxpuls %lld slag/min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoner med maks. puls %lld slag/min"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基于最大心率 %lld 次/分的区间"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अधिकतम HR %lld bpm वाले ज़ोन"
+          }
+        }
+      }
+    },
+    "hasta Vuelta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "until Lap"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "até Volta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "jusqu’à Tour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fino a Giro"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tills Varv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "til Omgang"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直到分段"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लैप तक"
           }
         }
       }
@@ -16908,6 +22579,59 @@
         }
       }
     },
+    "plan-%@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plan-%@"
+          }
+        }
+      }
+    },
     "ppm": {
       "extractionState": "manual",
       "localizations": {
@@ -17010,6 +22734,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सांस/मिनट"
+          }
+        }
+      }
+    },
+    "screen-%@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screen-%@"
           }
         }
       }
