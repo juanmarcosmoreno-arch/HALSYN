@@ -1,3 +1,4 @@
+import CoreLocation
 import HalsynCore
 import HalsynDesign
 import MapKit
@@ -221,14 +222,27 @@ private struct WorkoutMapView: View {
     @Environment(WorkoutManager.self) private var workout
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
 
+    /// Ruta reducida a como mucho 300 puntos: dibujar miles de puntos por segundo traba el reloj.
+    private var route: [CLLocationCoordinate2D] {
+        let all = workout.routeCoordinates
+        guard all.count > 300 else { return all }
+        let step = Int((Double(all.count) / 300).rounded(.up))
+        var reduced = stride(from: 0, to: all.count, by: step).map { all[$0] }
+        if let last = all.last { reduced.append(last) }
+        return reduced
+    }
+
     var body: some View {
-        Map(position: $position) {
-            if workout.routeCoordinates.count > 1 {
-                MapPolyline(coordinates: workout.routeCoordinates)
-                    .stroke(Color(HalsynPalette.darkAccent), lineWidth: 4)
+        // Sin gestos en el mapa: si el mapa se mueve con el dedo, no se puede
+        // deslizar a las otras páginas (controles para pausar o terminar).
+        Map(position: $position, interactionModes: []) {
+            if route.count > 1 {
+                MapPolyline(coordinates: route)
+                    .stroke(Color(HalsynPalette.darkAccent), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
             }
             UserAnnotation()
         }
+        .allowsHitTesting(false)
         .overlay(alignment: .bottom) {
             if workout.routeCoordinates.isEmpty {
                 Text("Buscando GPS…")
