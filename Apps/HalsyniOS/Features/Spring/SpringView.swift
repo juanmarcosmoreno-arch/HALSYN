@@ -25,6 +25,7 @@ struct SpringView: View {
                 if let workouts {
                     weeklySummary(workouts)
                     TrainingPlanCard(workouts: allWorkouts)
+                    ShoesCard(workouts: allWorkouts)
                     RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
                     history(workouts)
                 } else {

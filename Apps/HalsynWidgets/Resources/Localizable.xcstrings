@@ -3764,6 +3764,59 @@
         }
       }
     },
+    "Avisar a los": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alert at"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar aos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerter à"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvisa a"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påminn vid"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påmind ved"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提醒里程"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इतने पर याद दिलाएँ"
+          }
+        }
+      }
+    },
     "Aviso por la mañana": {
       "extractionState": "manual",
       "localizations": {
@@ -3866,6 +3919,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अपनी लंबाई प्रोफ़ाइल में जोड़ें"
+          }
+        }
+      }
+    },
+    "Añade tus zapatillas con una foto y HÅLSYN suma sus kilómetros.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add your shoes with a photo and HÅLSYN tracks their mileage."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicione seus tênis com uma foto e o HÅLSYN soma os quilômetros."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoute tes chaussures avec une photo et HÅLSYN compte leurs kilomètres."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi le tue scarpe con una foto e HÅLSYN ne conta i chilometri."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till dina skor med ett foto så räknar HÅLSYN kilometrarna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj dine sko med et foto, så tæller HÅLSYN kilometerne."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加跑鞋并配上照片，HÅLSYN 会累计它们的里程。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोटो के साथ अपने जूते जोड़ें, HÅLSYN उनके किलोमीटर गिनेगा।"
           }
         }
       }
@@ -4131,6 +4237,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "स्क्रीन जोड़ें"
+          }
+        }
+      }
+    },
+    "Añadir zapatillas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add shoes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar tênis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter des chaussures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi scarpe"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till skor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj sko"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加跑鞋"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जूते जोड़ें"
           }
         }
       }
@@ -4714,6 +4873,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "प्लान हटाएं"
+          }
+        }
+      }
+    },
+    "Borrar zapatillas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete shoes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar tênis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer les chaussures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina scarpe"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radera skor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet sko"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除跑鞋"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जूते हटाएँ"
           }
         }
       }
@@ -12774,6 +12986,59 @@
         }
       }
     },
+    "El iPhone recorta la zapatilla y quita el fondo. Funciona mejor con una foto de lado, bien iluminada y sobre un fondo liso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your iPhone cuts out the shoe and removes the background. It works best with a well-lit side photo on a plain background."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iPhone recorta o tênis e remove o fundo. Funciona melhor com uma foto de lado, bem iluminada e em fundo liso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’iPhone détoure la chaussure et supprime le fond. Ça marche mieux avec une photo de profil, bien éclairée, sur un fond uni."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’iPhone ritaglia la scarpa e rimuove lo sfondo. Funziona meglio con una foto di lato, ben illuminata e su sfondo uniforme."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone klipper ut skon och tar bort bakgrunden. Det fungerar bäst med ett väl upplyst foto från sidan mot en enfärgad bakgrund."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone klipper skoen ud og fjerner baggrunden. Det virker bedst med et godt belyst billede fra siden på en ensfarvet baggrund."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone 会抠出跑鞋并去除背景。侧面拍摄、光线充足、背景简洁时效果最好。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone जूते को काटकर बैकग्राउंड हटा देता है। साइड से ली गई, अच्छी रोशनी वाली और सादे बैकग्राउंड वाली फ़ोटो में यह सबसे अच्छा काम करता है।"
+          }
+        }
+      }
+    },
     "El peso varía 1–2 kg de un día a otro por agua y comida; la tendencia de semanas es lo que cuenta. La grasa de las balanzas es una estimación.": {
       "extractionState": "manual",
       "localizations": {
@@ -13989,6 +14254,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपके ज़ोन में"
+          }
+        }
+      }
+    },
+    "En uso desde": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In use since"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em uso desde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisées depuis"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In uso dal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Används sedan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I brug siden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始使用"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कब से इस्तेमाल में"
           }
         }
       }
@@ -20353,6 +20671,59 @@
         }
       }
     },
+    "La mayoría de las zapatillas de correr pierden amortiguación entre 500 y 800 km, según el peso, la pisada y el terreno.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most running shoes lose cushioning between 500 and 800 km (300–500 mi), depending on weight, stride and terrain."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A maioria dos tênis de corrida perde amortecimento entre 500 e 800 km, conforme o peso, a pisada e o terreno."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La plupart des chaussures de running perdent leur amorti entre 500 et 800 km, selon le poids, la foulée et le terrain."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La maggior parte delle scarpe da corsa perde ammortizzazione tra 500 e 800 km, a seconda del peso, dell’appoggio e del terreno."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De flesta löparskor tappar dämpning efter 500–800 km, beroende på vikt, löpsteg och underlag."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De fleste løbesko mister dæmpning efter 500–800 km afhængigt af vægt, løbestil og underlag."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大多数跑鞋在 500 到 800 公里之间会失去缓震，取决于体重、步态和路面。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादातर रनिंग जूते वज़न, चाल और रास्ते के हिसाब से 500 से 800 किमी के बीच अपना कुशनिंग खो देते हैं।"
+          }
+        }
+      }
+    },
     "La mañana después de «%@» tu FC en reposo fue de %@ de media; sin, de %@.": {
       "extractionState": "manual",
       "localizations": {
@@ -20826,6 +21197,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "प्रकाशित तालिका में आपकी उम्र (%lld वर्ष) शामिल नहीं है, इसलिए हम तुलना नहीं करते।"
+          }
+        }
+      }
+    },
+    "Las carreras se asignan solas a tus zapatillas predeterminadas desde la fecha en que las añades. Puedes cambiarlas en el detalle de cada carrera. Las caminatas no suman.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runs are assigned to your default shoes automatically from the day you add them. You can change them in each run's details. Walks don't count."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As corridas são atribuídas automaticamente ao seu tênis padrão a partir da data em que você o adiciona. Você pode mudar no detalhe de cada corrida. Caminhadas não contam."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les courses sont attribuées automatiquement à tes chaussures par défaut à partir du jour où tu les ajoutes. Tu peux les changer dans le détail de chaque course. Les marches ne comptent pas."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le corse vengono assegnate automaticamente alle scarpe predefinite dal giorno in cui le aggiungi. Puoi cambiarle nel dettaglio di ogni corsa. Le camminate non contano."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppass kopplas automatiskt till dina standardskor från dagen du lägger till dem. Du kan ändra det i varje pass detaljer. Promenader räknas inte."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Løbeture tildeles automatisk dine standardsko fra den dag, du tilføjer dem. Du kan ændre det i hver løbetur. Gåture tæller ikke med."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从添加之日起，跑步会自动记到默认跑鞋上。你可以在每次跑步的详情中更改。步行不计入。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जूते जोड़ने की तारीख से दौड़ें अपने आप डिफ़ॉल्ट जूतों में जुड़ती हैं। आप हर दौड़ के विवरण में इसे बदल सकते हैं। वॉक नहीं गिनी जातीं।"
           }
         }
       }
@@ -25335,6 +25759,59 @@
         }
       }
     },
+    "Ninguna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई नहीं"
+          }
+        }
+      }
+    },
     "No cumplido": {
       "extractionState": "manual",
       "localizations": {
@@ -26126,6 +26603,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "नाम"
+          }
+        }
+      }
+    },
+    "Nombre (p. ej. Pegasus 41)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name (e.g. Pegasus 41)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome (ex.: Pegasus 41)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom (ex. Pegasus 41)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome (es. Pegasus 41)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namn (t.ex. Pegasus 41)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navn (f.eks. Pegasus 41)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称（例如 Pegasus 41）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नाम (जैसे Pegasus 41)"
+          }
+        }
+      }
+    },
+    "Nuevas zapatillas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New shoes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novo tênis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvelles chaussures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuove scarpe"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nya skor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nye sko"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新跑鞋"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नए जूते"
           }
         }
       }
@@ -27614,6 +28197,59 @@
         }
       }
     },
+    "Pasaron el límite que elegiste: revisa la amortiguación y la suela.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They've passed the limit you set: check the cushioning and the sole."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passaram do limite que você escolheu: verifique o amortecimento e a sola."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elles ont dépassé la limite choisie : vérifie l’amorti et la semelle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanno superato il limite che hai scelto: controlla ammortizzazione e suola."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De har passerat gränsen du valde: kolla dämpning och sula."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De har passeret grænsen, du valgte: tjek dæmpning og sål."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已超过你设定的里程：检查缓震和鞋底。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ये आपकी तय सीमा पार कर चुके हैं: कुशनिंग और सोल जाँचें।"
+          }
+        }
+      }
+    },
     "Paso %lld de %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -29041,6 +29677,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रनिंग पावर"
+          }
+        }
+      }
+    },
+    "Predeterminadas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padrão"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par défaut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predefinite"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डिफ़ॉल्ट"
           }
         }
       }
@@ -31744,6 +32433,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "केवल आपके उपलब्ध डेटा पर आधारित सांकेतिक सारांश। यह कोई चिकित्सकीय आकलन नहीं है।"
+          }
+        }
+      }
+    },
+    "Retiradas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retired"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aposentados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritirate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensionerade"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensionerede"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已退役"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिटायर्ड"
+          }
+        }
+      }
+    },
+    "Retiradas (%lld)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retired (%lld)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aposentados (%lld)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirées (%lld)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritirate (%lld)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensionerade (%lld)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensionerede (%lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已退役（%lld）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिटायर्ड (%lld)"
           }
         }
       }
@@ -36094,6 +36889,59 @@
         }
       }
     },
+    "Te avisamos a los %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We'll remind you at %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisamos aos %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On te prévient à %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ti avvisiamo a %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vi påminner dig vid %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vi minder dig om det ved %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "达到 %@ 时提醒你"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ पर हम आपको याद दिलाएँगे"
+          }
+        }
+      }
+    },
     "Te despertaste": {
       "extractionState": "manual",
       "localizations": {
@@ -39751,6 +40599,59 @@
         }
       }
     },
+    "Usar como predeterminadas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use as default"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar como padrão"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser par défaut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa come predefinite"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd som standard"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug som standard"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设为默认"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डिफ़ॉल्ट के रूप में उपयोग करें"
+          }
+        }
+      }
+    },
     "Usar datos demo": {
       "extractionState": "manual",
       "localizations": {
@@ -41606,6 +42507,59 @@
         }
       }
     },
+    "Ya tenían": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Already had"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Já tinham"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déjà parcourus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Già percorsi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redan sprungna"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allerede løbet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已有里程"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले से"
+          }
+        }
+      }
+    },
     "ZONA": {
       "extractionState": "manual",
       "localizations": {
@@ -41655,6 +42609,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "ज़ोन"
+          }
+        }
+      }
+    },
+    "Zapatillas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shoes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tênis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaussures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scarpe"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sko"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跑鞋"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जूते"
           }
         }
       }
@@ -42715,6 +43722,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "प्लान हटाएं?"
+          }
+        }
+      }
+    },
+    "¿Borrar estas zapatillas?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete these shoes?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar este tênis?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer ces chaussures ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare queste scarpe?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radera de här skorna?"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet disse sko?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除这双跑鞋？"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ये जूते हटाएँ?"
           }
         }
       }
