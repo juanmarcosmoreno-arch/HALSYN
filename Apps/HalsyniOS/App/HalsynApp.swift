@@ -52,6 +52,15 @@ struct HalsynApp: App {
                     .preferredColorScheme(appearance.colorScheme)
                     .tint(Color.halsynAccent)
                 }
+                // Enlaces de los widgets: halsyn://halsa, halsyn://spring, halsyn://insikt…
+                .onOpenURL { url in
+                    switch url.host {
+                    case "spring": model.selectedTab = .spring
+                    case "insikt": model.selectedTab = .insikt
+                    case "profile": model.selectedTab = .profile
+                    default: model.selectedTab = .halsa
+                    }
+                }
                 .task {
                     NotificationRouter.shared.onOpenDailySummary = { [model] in
                         model.selectedTab = .halsa

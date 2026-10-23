@@ -128,3 +128,29 @@ struct GoalTests {
         #expect(!data.runs.isEmpty)
     }
 }
+
+@Suite("Widgets · resumen compartido")
+struct WidgetSnapshotTests {
+    @Test func groupIdentifierFromAnyTarget() {
+        #expect(WidgetSnapshotStore.groupIdentifier(bundleIdentifier: "com.juanmarcos.halsyn") == "group.com.juanmarcos.halsyn")
+        #expect(WidgetSnapshotStore.groupIdentifier(bundleIdentifier: "com.juanmarcos.halsyn.widgets") == "group.com.juanmarcos.halsyn")
+        #expect(WidgetSnapshotStore.groupIdentifier(bundleIdentifier: "com.juanmarcos.halsyn.watchkitapp") == "group.com.juanmarcos.halsyn")
+        #expect(WidgetSnapshotStore.groupIdentifier(bundleIdentifier: "com.juanmarcos.halsyn.watchkitapp.widgets") == "group.com.juanmarcos.halsyn")
+    }
+
+    @Test func roundTripAndClamping() throws {
+        let defaults = try #require(UserDefaults(suiteName: "widget-\(UUID().uuidString)"))
+        let snapshot = WidgetSnapshot(updatedAt: now, score: 140, recovery: -5, steps: 9000, goal: .init(title: "x", fraction: 1.4, isCompleted: true), isDemo: false)
+        #expect(snapshot.score == 100 && snapshot.recovery == 0 && snapshot.goal?.fraction == 1)
+        WidgetSnapshotStore.save(snapshot, to: defaults)
+        #expect(WidgetSnapshotStore.load(from: defaults) == snapshot)
+    }
+
+    @Test func staleness() {
+        let snapshot = WidgetSnapshot(updatedAt: now, isDemo: false)
+        #expect(!snapshot.isStale(at: now.addingTimeInterval(3600)))
+        #expect(snapshot.isStale(at: now.addingTimeInterval(7 * 3600)))
+        #expect(snapshot.isFromToday(now.addingTimeInterval(3600), calendar: calendar))
+        #expect(!snapshot.isFromToday(now.addingTimeInterval(13 * 3600), calendar: calendar))
+    }
+}

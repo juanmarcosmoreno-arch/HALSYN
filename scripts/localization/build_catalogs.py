@@ -68,3 +68,9 @@ for target, folder in [("Halsyn", "HalsyniOS"), ("HalsynWatch", "HalsynWatch")]:
         info[plist_key] = entry(value, source_value=value)
         info[plist_key]["extractionState"] = "extracted_with_value"
     write(resources / "InfoPlist.xcstrings", info)
+
+# Extensiones de widgets: mismas cadenas de interfaz (sin textos de permisos).
+for folder in ("HalsynWidgets", "HalsynWatchWidgets"):
+    resources = ROOT / f"Apps/{folder}/Resources"
+    resources.mkdir(parents=True, exist_ok=True)
+    write(resources / "Localizable.xcstrings", {k: entry(k) for k in ui_keys})

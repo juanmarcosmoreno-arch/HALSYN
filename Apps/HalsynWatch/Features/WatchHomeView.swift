@@ -1,6 +1,7 @@
 import HalsynCore
 import HalsynDesign
 import SwiftUI
+import WidgetKit
 
 enum WatchDestination: Hashable {
     case status
@@ -16,11 +17,12 @@ struct WatchHomeView: View {
     @State private var score: DailyScore?
     @State private var recovery: DailyScore?
     @State private var isConnecting = false
+    @State private var path: [WatchDestination] = []
 
     private var provider: any HealthDataProviding { model.provider }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
                     VStack(spacing: 6) {
@@ -100,8 +102,29 @@ struct WatchHomeView: View {
             .task(id: model.reloadKey) {
                 score = await provider.dailyScore(on: .now)
                 recovery = await provider.recoveryScore(on: .now)
+                publishForComplications()
+            }
+            // Complicación "Correr": halsyn://spring abre SPRING directamente.
+            .onOpenURL { url in
+                path = url.host == "spring" ? [.spring] : []
             }
         }
+    }
+}
+
+extension WatchHomeView {
+    /// Deja la puntuación y la recuperación para las complicaciones del reloj.
+    fileprivate func publishForComplications() {
+        guard let defaults = WidgetSnapshotStore.sharedDefaults() else { return }
+        let snapshot = WidgetSnapshot(
+            updatedAt: .now,
+            score: score?.value,
+            scoreBand: score.map { NSLocalizedString($0.band.title, comment: "") },
+            recovery: recovery?.value,
+            isDemo: model.isDemo
+        )
+        WidgetSnapshotStore.save(snapshot, to: defaults)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

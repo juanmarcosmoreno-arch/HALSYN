@@ -11,17 +11,22 @@
 		04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D02F9B2FC365CA043BC585 /* HalsynApp.swift */; };
 		097B08A01D304919CB7C3D8A /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */; };
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
+		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
 		1CD55B8B71C60F19D7BC6224 /* intro-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */; };
 		223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6683A16BF5216CF3290D7F7A /* SpringView.swift */; };
 		230640766D8EE53D010BF610 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F54E426C64C6E2183DE8 /* RootTabView.swift */; };
 		2752AD2B26F7C1E205E6F3B0 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = ABD986204A7438A2DF3C3486 /* HalsynHealthKit */; };
 		2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E2B3491782961A00596E7 /* WatchHomeView.swift */; };
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
+		3488A1EE0D11D22C6A42F245 /* HalsynWatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3530DF3A7BFC80590D57C81F /* HalsynWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77138D7BC2F85CADF76184DF /* HalsynWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		373B7B82FA296698A6F9D4E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
 		3770D0C2A4656F9AF8F2B291 /* MetricDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */; };
 		3920201759A830FA101DEBD7 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2859713A3E93283DA60D4424 /* HalsynHealthKit */; };
+		3CB2510393E8749F44DED6AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F023AC32DE8274A6A4DDB6 /* Assets.xcassets */; };
 		3D077DAC3E9C2DC7998C5AA9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */; };
 		409FA53999DCE71CC27C5CCA /* NightlySummaryNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */; };
+		40E4B7183A8CE7B50A945C9A /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2CAFCEF1F478A40715B6C66F /* HalsynCore */; };
 		45AE95AA2BC6195879C93A39 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */; };
 		48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */; };
 		49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */; };
@@ -34,15 +39,21 @@
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
 		75E9CC5B5C2C51BC1512D127 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */; };
 		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
+		777DC5A30C5784AC1D05BD31 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */; };
 		875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */; };
+		90FE68C347C0C39BFFD54795 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
+		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
 		A4432666AFBF0D862F26A96B /* MalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE07533E91D0B4E58019475 /* MalView.swift */; };
 		A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */; };
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
+		A767F3B4D0ABF1D71E85AC51 /* HalsynWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
 		BEFAD8DFC84DD6944CD0CBE7 /* InsightCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684F62352CB5E8552F5DF92 /* InsightCards.swift */; };
+		C01B3188E9A822BE46B6A995 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
 		C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */; };
 		C5A9FC3B37C0379DE1589776 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0857277597E36AAE3B0052AC /* HalsynCore */; };
 		C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287A71EB2C50957EA5FACDE /* SharedViews.swift */; };
@@ -57,10 +68,13 @@
 		D62F77788E6DC657EAA6F730 /* ScoreTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */; };
 		D68DAD84ACC8B780DC02CC15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212FD4C77719A56D78D06081 /* Assets.xcassets */; };
 		E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210D91C67294E38A972B396 /* HalsaView.swift */; };
+		E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */; };
 		E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */; };
 		EBB4D2A84AA9C4C642EEEBFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */; };
 		ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */; };
+		F3B38566EE6BD279CA219386 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = DA74733AD7520078DDAC71FF /* HalsynDesign */; };
 		F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F68D555D13942BB8FD46E /* DailySummaryView.swift */; };
+		FB0A0CE0FBD8B298F8C22C81 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +85,13 @@
 			remoteGlobalIDString = D6AB0E95A226A319ABA07702;
 			remoteInfo = HalsynWatch;
 		};
+		5D976E60A36816DD950F60F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A9F57C2A0BBD70B1CF46620 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15E1E2F580582AD58DE1E0F5;
+			remoteInfo = HalsynWidgets;
+		};
 		7458FD79F821CE6740A4996D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A9F57C2A0BBD70B1CF46620 /* Project object */;
@@ -78,9 +99,38 @@
 			remoteGlobalIDString = 47E0DAC42D2763EED72D2CD4;
 			remoteInfo = Halsyn;
 		};
+		B1A2D369B7ACE755DACED27F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A9F57C2A0BBD70B1CF46620 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F080B9B0EE4D554AF56ECE2;
+			remoteInfo = HalsynWatchWidgets;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2B96100AEEB5E833FE9C9FF5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A767F3B4D0ABF1D71E85AC51 /* HalsynWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3691FC5C51D726AEE8F92E2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3488A1EE0D11D22C6A42F245 /* HalsynWatchWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD397C5B5F36D77D5C0B3C30 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -105,6 +155,8 @@
 		14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetailView.swift; sourceTree = "<group>"; };
 		1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		290129784398211208980B11 /* HalsynWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWidgets.entitlements; sourceTree = "<group>"; };
+		2D806D8D04F0B24C3BDB9530 /* HalsynWatchWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatchWidgets.entitlements; sourceTree = "<group>"; };
 		30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HalsyniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		343D34F06545512784831879 /* Halsyn.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Halsyn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A50B12EAAB493A54F5A80BF /* VilaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VilaView.swift; sourceTree = "<group>"; };
@@ -121,9 +173,12 @@
 		6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTexts.swift; sourceTree = "<group>"; };
+		7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HalsynWatchWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditorView.swift; sourceTree = "<group>"; };
 		77138D7BC2F85CADF76184DF /* HalsynWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalsynWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDetailView.swift; sourceTree = "<group>"; };
+		79F023AC32DE8274A6A4DDB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A8ACB727E30A37717E1A516 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7B7E2B3491782961A00596E7 /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
 		7CCDDA395B13EEDF085E1836 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Halsyn.entitlements; sourceTree = "<group>"; };
@@ -131,6 +186,7 @@
 		8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSnapshotTests.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
+		99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
 		BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsStore.swift; sourceTree = "<group>"; };
@@ -139,6 +195,7 @@
 		C684F62352CB5E8552F5DF92 /* InsightCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCards.swift; sourceTree = "<group>"; };
 		C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemGalleryView.swift; sourceTree = "<group>"; };
+		D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynWidgetViews.swift; sourceTree = "<group>"; };
 		D250FF30FFD4688AE26DFDE4 /* intro-dark.mp4 */ = {isa = PBXFileReference; path = "intro-dark.mp4"; sourceTree = "<group>"; };
 		D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVideoView.swift; sourceTree = "<group>"; };
 		DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynWatchApp.swift; sourceTree = "<group>"; };
@@ -147,9 +204,33 @@
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
 		F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSpringView.swift; sourceTree = "<group>"; };
+		FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HalsynWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB7611553809C5B7115788D3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		172DA5346ACF61213BC24B5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40E4B7183A8CE7B50A945C9A /* HalsynCore in Frameworks */,
+				9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */,
+				FB0A0CE0FBD8B298F8C22C81 /* WidgetKit.framework in Frameworks */,
+				C01B3188E9A822BE46B6A995 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AE1809FD7918D5B3E1C6DF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */,
+				F3B38566EE6BD279CA219386 /* HalsynDesign in Frameworks */,
+				AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */,
+				373B7B82FA296698A6F9D4E6 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31FAB005981EBE198183F3E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +269,7 @@
 				992067FF41CB5C9F065E0EF0 /* Config */,
 				12D6384977D4CB83FC19E6CB /* Packages */,
 				E74601E5CEFB104C68D34A11 /* Tests */,
+				2D222A2D244D7D888B856FCB /* Frameworks */,
 				8D82DB26FA8B8C59B4C2172D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -205,7 +287,10 @@
 			children = (
 				3C627B8904DCBA4989FC692A /* HalsyniOS */,
 				A6C05CEC4B31827354BD71E8 /* HalsynWatch */,
+				F6A26EDDB1C3837D7CD3EBD3 /* HalsynWatchWidgets */,
+				44052EBE356BE6DDE89CE135 /* HalsynWidgets */,
 				CF0C825ECFA355DF5EFABAE3 /* Shared */,
+				77126F3F5697606E20C86BE9 /* WidgetsShared */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -232,6 +317,15 @@
 				8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */,
 			);
 			path = Spring;
+			sourceTree = "<group>";
+		};
+		2D222A2D244D7D888B856FCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB7611553809C5B7115788D3 /* SwiftUI.framework */,
+				7A8ACB727E30A37717E1A516 /* WidgetKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		38810816AA0B9D53EC400F12 /* Intro */ = {
@@ -262,6 +356,14 @@
 				D01C071F06BA57D6F6E74752 /* Shared */,
 			);
 			path = HalsyniOS;
+			sourceTree = "<group>";
+		};
+		44052EBE356BE6DDE89CE135 /* HalsynWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				C679F7ECC8F784CE5679F240 /* Resources */,
+			);
+			path = HalsynWidgets;
 			sourceTree = "<group>";
 		};
 		604F1E72EA09B2A22D68070E /* Workout */ = {
@@ -302,6 +404,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		77126F3F5697606E20C86BE9 /* WidgetsShared */ = {
+			isa = PBXGroup;
+			children = (
+				D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */,
+			);
+			path = WidgetsShared;
+			sourceTree = "<group>";
+		};
 		82C2A9F30B12D8489E52D06F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +431,8 @@
 				343D34F06545512784831879 /* Halsyn.app */,
 				30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */,
 				77138D7BC2F85CADF76184DF /* HalsynWatch.app */,
+				7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */,
+				FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -342,6 +454,7 @@
 				D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */,
 				C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */,
 				5718F54E426C64C6E2183DE8 /* RootTabView.swift */,
+				99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -372,6 +485,15 @@
 				604F1E72EA09B2A22D68070E /* Workout */,
 			);
 			path = HalsynWatch;
+			sourceTree = "<group>";
+		};
+		C679F7ECC8F784CE5679F240 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				79F023AC32DE8274A6A4DDB6 /* Assets.xcassets */,
+				290129784398211208980B11 /* HalsynWidgets.entitlements */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CF0C825ECFA355DF5EFABAE3 /* Shared */ = {
@@ -409,6 +531,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		F6A26EDDB1C3837D7CD3EBD3 /* HalsynWatchWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				FB33410C57914FC3FD90326F /* Resources */,
+			);
+			path = HalsynWatchWidgets;
+			sourceTree = "<group>";
+		};
 		F7B6FB1470846B1A72CC84D2 /* Halsa */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +560,14 @@
 			path = Vila;
 			sourceTree = "<group>";
 		};
+		FB33410C57914FC3FD90326F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D806D8D04F0B24C3BDB9530 /* HalsynWatchWidgets.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		FC8F36869DD3B191732D4D4D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +580,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15E1E2F580582AD58DE1E0F5 /* HalsynWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F64AAB7D9FF02BBFCE19DC1 /* Build configuration list for PBXNativeTarget "HalsynWidgets" */;
+			buildPhases = (
+				6384C5158AA3A5508C36A587 /* Sources */,
+				69D387EA560DB40FF1FD97DA /* Resources */,
+				172DA5346ACF61213BC24B5A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HalsynWidgets;
+			packageProductDependencies = (
+				2CAFCEF1F478A40715B6C66F /* HalsynCore */,
+				C8BD3FE07531D3895C95838A /* HalsynDesign */,
+			);
+			productName = HalsynWidgets;
+			productReference = FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		47E0DAC42D2763EED72D2CD4 /* Halsyn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5590862040E893594031F7F8 /* Build configuration list for PBXNativeTarget "Halsyn" */;
@@ -449,12 +608,14 @@
 				A91B5CB02272F5B93260967F /* Sources */,
 				6669DBE8A07E8447C88B6902 /* Resources */,
 				31FAB005981EBE198183F3E9 /* Frameworks */,
+				2B96100AEEB5E833FE9C9FF5 /* Embed Foundation Extensions */,
 				DD397C5B5F36D77D5C0B3C30 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				843C18654821F9AB77C983C1 /* PBXTargetDependency */,
+				33B43FC555A921BEA4F894EF /* PBXTargetDependency */,
 			);
 			name = Halsyn;
 			packageProductDependencies = (
@@ -465,6 +626,26 @@
 			productName = Halsyn;
 			productReference = 343D34F06545512784831879 /* Halsyn.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7F080B9B0EE4D554AF56ECE2 /* HalsynWatchWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18579C7CC6993DE1E6D176E9 /* Build configuration list for PBXNativeTarget "HalsynWatchWidgets" */;
+			buildPhases = (
+				47E3F6C3E2563B0DBC3BB985 /* Sources */,
+				1AE1809FD7918D5B3E1C6DF8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HalsynWatchWidgets;
+			packageProductDependencies = (
+				079211252545801103B3F265 /* HalsynCore */,
+				DA74733AD7520078DDAC71FF /* HalsynDesign */,
+			);
+			productName = HalsynWatchWidgets;
+			productReference = 7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		A729C043057885A664F49A77 /* HalsyniOSTests */ = {
 			isa = PBXNativeTarget;
@@ -493,10 +674,12 @@
 				68B01B5F772689D641741CB7 /* Sources */,
 				ED4CD965C2D6C94435DB3056 /* Resources */,
 				85BA2ACA1327C8B6F0BDC199 /* Frameworks */,
+				A3691FC5C51D726AEE8F92E2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CECC6E35455F50501B4BD519 /* PBXTargetDependency */,
 			);
 			name = HalsynWatch;
 			packageProductDependencies = (
@@ -517,7 +700,15 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					15E1E2F580582AD58DE1E0F5 = {
+						DevelopmentTeam = 62395T6WLG;
+						ProvisioningStyle = Automatic;
+					};
 					47E0DAC42D2763EED72D2CD4 = {
+						DevelopmentTeam = 62395T6WLG;
+						ProvisioningStyle = Automatic;
+					};
+					7F080B9B0EE4D554AF56ECE2 = {
 						DevelopmentTeam = 62395T6WLG;
 						ProvisioningStyle = Automatic;
 					};
@@ -558,6 +749,8 @@
 			targets = (
 				47E0DAC42D2763EED72D2CD4 /* Halsyn */,
 				D6AB0E95A226A319ABA07702 /* HalsynWatch */,
+				7F080B9B0EE4D554AF56ECE2 /* HalsynWatchWidgets */,
+				15E1E2F580582AD58DE1E0F5 /* HalsynWidgets */,
 				A729C043057885A664F49A77 /* HalsyniOSTests */,
 			);
 		};
@@ -577,6 +770,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69D387EA560DB40FF1FD97DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB2510393E8749F44DED6AB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED4CD965C2D6C94435DB3056 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,6 +792,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		47E3F6C3E2563B0DBC3BB985 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				777DC5A30C5784AC1D05BD31 /* HalsynWidgetViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6384C5158AA3A5508C36A587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90FE68C347C0C39BFFD54795 /* HalsynWidgetViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68B01B5F772689D641741CB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,6 +852,7 @@
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
 				223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */,
 				9567A32313BE792ACA298B1F /* VilaView.swift in Sources */,
+				E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */,
 				CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,14 +874,60 @@
 			target = 47E0DAC42D2763EED72D2CD4 /* Halsyn */;
 			targetProxy = 7458FD79F821CE6740A4996D /* PBXContainerItemProxy */;
 		};
+		33B43FC555A921BEA4F894EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15E1E2F580582AD58DE1E0F5 /* HalsynWidgets */;
+			targetProxy = 5D976E60A36816DD950F60F7 /* PBXContainerItemProxy */;
+		};
 		843C18654821F9AB77C983C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D6AB0E95A226A319ABA07702 /* HalsynWatch */;
 			targetProxy = 2AB3530B579518BCF3A563C2 /* PBXContainerItemProxy */;
 		};
+		CECC6E35455F50501B4BD519 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F080B9B0EE4D554AF56ECE2 /* HalsynWatchWidgets */;
+			targetProxy = B1A2D369B7ACE755DACED27F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2D3D2B597186932CD6746916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWidgets/Resources/HalsynWidgets.entitlements;
+				INFOPLIST_FILE = Apps/HalsynWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).widgets";
+				PRODUCT_NAME = HalsynWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2F7DE1333B32A581AF54DA67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWatchWidgets/Resources/HalsynWatchWidgets.entitlements;
+				INFOPLIST_FILE = Apps/HalsynWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).watchkitapp.widgets";
+				PRODUCT_NAME = HalsynWatchWidgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
 		938BDB8E5C0DDCA501345C0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -745,6 +1009,24 @@
 			};
 			name = Release;
 		};
+		C5DA489AF5484F7691B13B69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWatchWidgets/Resources/HalsynWatchWidgets.entitlements;
+				INFOPLIST_FILE = Apps/HalsynWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).watchkitapp.widgets";
+				PRODUCT_NAME = HalsynWatchWidgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
 		E06A7466756B338287290409 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -789,6 +1071,24 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		EA97AA102EF07CB9A15746B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Apps/HalsynWidgets/Resources/HalsynWidgets.entitlements;
+				INFOPLIST_FILE = Apps/HalsynWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HALSYN_BUNDLE_ID).widgets";
+				PRODUCT_NAME = HalsynWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -904,6 +1204,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		18579C7CC6993DE1E6D176E9 /* Build configuration list for PBXNativeTarget "HalsynWatchWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F7DE1333B32A581AF54DA67 /* Debug */,
+				C5DA489AF5484F7691B13B69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		18FE4C4C454DA6E05EE4D6B9 /* Build configuration list for PBXNativeTarget "HalsyniOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -918,6 +1227,15 @@
 			buildConfigurations = (
 				FD9ECA812734A5491AC19F29 /* Debug */,
 				B2A5FCE1A191ACA4390ADBE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3F64AAB7D9FF02BBFCE19DC1 /* Build configuration list for PBXNativeTarget "HalsynWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA97AA102EF07CB9A15746B0 /* Debug */,
+				2D3D2B597186932CD6746916 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -950,6 +1268,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		079211252545801103B3F265 /* HalsynCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HalsynCore;
+		};
 		0857277597E36AAE3B0052AC /* HalsynCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HalsynCore;
@@ -962,9 +1284,21 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = HalsynHealthKit;
 		};
+		2CAFCEF1F478A40715B6C66F /* HalsynCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HalsynCore;
+		};
 		ABD986204A7438A2DF3C3486 /* HalsynHealthKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HalsynHealthKit;
+		};
+		C8BD3FE07531D3895C95838A /* HalsynDesign */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HalsynDesign;
+		};
+		DA74733AD7520078DDAC71FF /* HalsynDesign */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HalsynDesign;
 		};
 		E9C32CF0013303F8BBAB96F9 /* HalsynDesign */ = {
 			isa = XCSwiftPackageProductDependency;

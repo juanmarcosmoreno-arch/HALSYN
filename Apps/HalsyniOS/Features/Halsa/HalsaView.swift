@@ -11,6 +11,9 @@ struct HalsaSnapshot: Sendable {
     /// Primer objetivo del usuario y su progreso.
     var goal: (definition: GoalDefinition, progress: GoalProgress)?
     var lastWorkout: WorkoutSummary?
+    /// Valores crudos de hoy para los widgets.
+    var stepsToday: Double?
+    var sleepHours: Double?
     var summary: [SummaryStatement] = []
 
     static let dashboardMetrics: [MetricKind] = [.sleepDuration, .restingHeartRate, .heartRateVariability, .steps, .activeEnergy, .exerciseTime]
@@ -20,7 +23,12 @@ struct HalsaSnapshot: Sendable {
         snapshot.score = await provider.dailyScore(on: today)
         snapshot.recovery = await provider.recoveryScore(on: today)
         for kind in dashboardMetrics {
-            snapshot.metrics.append(MetricDisplay(await provider.latest(kind, on: today), kind: kind, unitSystem: unitSystem))
+            let availability = await provider.latest(kind, on: today)
+            snapshot.metrics.append(MetricDisplay(availability, kind: kind, unitSystem: unitSystem))
+            if case let .available(reading) = availability, Calendar.current.isDateInToday(reading.date) || kind == .sleepDuration {
+                if kind == .steps { snapshot.stepsToday = reading.value }
+                if kind == .sleepDuration { snapshot.sleepHours = reading.value }
+            }
         }
         snapshot.stepsTrend = await provider.dailySeries(.steps, days: 7, endingOn: today).values
         if let first = goals.first {
@@ -81,12 +89,14 @@ struct HalsaView: View {
             }
             .task(id: "\(unitSystem.rawValue)|\(model.reloadKey)|\(GoalStore.shared.goals.hashValue)") {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem, goals: GoalStore.shared.goals)
+                if let snapshot { WidgetBridge.publish(snapshot, isDemo: model.isDemo) }
             }
             .sheet(isPresented: Binding(get: { model.isShowingDailySummary }, set: { model.isShowingDailySummary = $0 })) {
                 DailySummaryView()
             }
             .refreshable {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem, goals: GoalStore.shared.goals)
+                if let snapshot { WidgetBridge.publish(snapshot, isDemo: model.isDemo) }
             }
         }
     }
