@@ -38,15 +38,16 @@ struct InsiktTrend: Identifiable, Sendable {
     }
 }
 
-/// INSIKT — tendencias longitudinales. Fase 1: series por periodo y cambio
-/// frente al periodo anterior. Patrones, correlaciones y recomendaciones
-/// basadas en reglas llegan en la Fase 7.
+/// INSIKT — análisis longitudinal: qué cambió, patrones entre métricas, semana
+/// tipo y récords (`InsightEngine`, solo con datos suficientes), más las
+/// tendencias por periodo.
 struct InsiktView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var period: InsiktPeriod = .month
     @State private var trends: [InsiktTrend]?
     @State private var scores: [DailyScore] = []
+    @State private var report: InsightReport?
 
     static let metrics: [MetricKind] = [.restingHeartRate, .heartRateVariability, .vo2Max, .sleepDuration, .steps, .walkingRunningDistance]
 
@@ -56,6 +57,14 @@ struct InsiktView: View {
                 ModuleHeader(module: .insikt, isDemo: model.isDemo)
                     .padding(.top, HalsynSpacing.s)
 
+                if let report {
+                    insights(report)
+                } else {
+                    HalsynLoadingState()
+                }
+
+                HalsynSectionHeader("Tendencias por periodo", eyebrow: HalsynLexicon.tid.rawValue)
+                    .padding(.top, HalsynSpacing.s)
                 Picker("Periodo", selection: $period) {
                     ForEach(InsiktPeriod.allCases) { period in
                         Text(period.title).tag(period)
@@ -84,11 +93,11 @@ struct InsiktView: View {
                     .buttonStyle(.plain)
                     HalsynCard {
                         HStack {
-                            Text("Patrones, correlaciones y comparación con tu grupo de edad")
+                            Text("Comparación con tu grupo de edad")
                                 .font(.halsynCaption)
                                 .foregroundStyle(.halsynSecondaryText)
                             Spacer()
-                            PhaseTag(phase: 7)
+                            PhaseTag(phase: 8)
                         }
                     }
                 } else {
@@ -96,10 +105,43 @@ struct InsiktView: View {
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
+            .task(id: model.reloadKey) {
+                report = await model.provider.computeInsights(endingOn: .now, calendar: .current, origin: model.isDemo ? .demo : .derived(engine: "InsightEngine"))
+            }
             .task(id: "\(period.rawValue)|\(model.reloadKey)") {
                 trends = await load(period: period)
                 scores = await model.provider.dailyScores(endingOn: .now, days: period.rawValue)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func insights(_ report: InsightReport) -> some View {
+        if !report.trends.isEmpty {
+            HalsynSectionHeader("Lo que cambió", eyebrow: HalsynModule.insikt.brandName)
+            ForEach(report.trends) { TrendInsightCard(insight: $0) }
+        }
+        if !report.relationships.isEmpty {
+            HalsynSectionHeader("Patrones en tus datos", eyebrow: HalsynModule.insikt.brandName)
+            ForEach(report.relationships) { RelationshipInsightCard(insight: $0) }
+        }
+        if !report.weekdays.isEmpty {
+            HalsynSectionHeader("Tu semana tipo", eyebrow: HalsynLexicon.tid.rawValue)
+            ForEach(report.weekdays) { WeekdayInsightCard(insight: $0) }
+        }
+        if report.trends.isEmpty && report.relationships.isEmpty && report.weekdays.isEmpty {
+            HalsynCard {
+                HalsynEmptyState(systemImage: "sparkle.magnifyingglass", title: "Nada destacable por ahora", message: "No hay cambios ni patrones claros en tus datos. Es normal: INSIKT solo habla cuando la diferencia es real.")
+            }
+        }
+        if !report.records.isEmpty {
+            RecordsCard(records: report.records)
+        }
+        if !report.requirements.isEmpty {
+            InsightRequirementsCard(requirements: report.requirements)
+        }
+        if report.origin?.isDemo == true {
+            DataOriginFootnote(origin: .demo, extra: "Patrones de ejemplo generados para la demostración.")
         }
     }
 

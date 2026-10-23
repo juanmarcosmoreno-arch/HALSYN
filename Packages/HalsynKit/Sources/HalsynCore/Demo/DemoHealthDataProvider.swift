@@ -199,13 +199,19 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         let noise = Double.random(in: -1...1, using: &rng)
         let slowTrend = sin(Double(dayNumber(day)) / 9)
         switch kind {
-        case .steps: return (8600 + 2600 * noise).rounded()
+        // Los fines de semana se camina algo más (patrón semanal visible en INSIKT).
+        case .steps: return (8300 + 2200 * noise + (isWeekend(day) ? 1400 : 0)).rounded()
         case .walkingRunningDistance: return 6400 + 2200 * noise
         case .activeEnergy: return 540 + 160 * noise
         case .exerciseTime: return max(0, 36 + 22 * noise).rounded()
         case .sleepDuration: return 7.4 + 0.7 * noise
-        case .restingHeartRate: return (54 + 2 * slowTrend + 2 * noise).rounded()
-        case .heartRateVariability: return (62 + 6 * slowTrend + 9 * noise).rounded()
+        // Relaciones plausibles para la demo: dormir más se asocia a más HRV y menos
+        // FC en reposo; un día de mucho ejercicio, a menos HRV al día siguiente.
+        case .restingHeartRate: return (54 + 2 * slowTrend + 2 * noise - 1.5 * (value(.sleepDuration, on: day) - 7.4)).rounded()
+        case .heartRateVariability:
+            let sleepEffect = 9 * (value(.sleepDuration, on: day) - 7.4)
+            let loadEffect = -0.08 * (value(.exerciseTime, on: previousDay(day)) - 36)
+            return (62 + 6 * slowTrend + 6 * noise + sleepEffect + loadEffect).rounded()
         case .heartRate: return (68 + 6 * noise).rounded()
         case .respiratoryRate: return 14.6 + 0.6 * noise
         case .vo2Max: return 47.8 + 0.6 * slowTrend + 0.2 * noise
@@ -263,6 +269,15 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         let a = loop[upper - 1], b = loop[upper]
         let fraction = b.along > a.along ? (target - a.along) / (b.along - a.along) : 0
         return (a.north + (b.north - a.north) * fraction, a.east + (b.east - a.east) * fraction)
+    }
+
+    private func isWeekend(_ day: Date) -> Bool {
+        let weekday = calendar.component(.weekday, from: day)
+        return weekday == 1 || weekday == 7
+    }
+
+    private func previousDay(_ day: Date) -> Date {
+        calendar.date(byAdding: .day, value: -1, to: day) ?? day
     }
 
     private func dayNumber(_ day: Date) -> Int {

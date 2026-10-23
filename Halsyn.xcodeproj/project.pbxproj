@@ -39,6 +39,7 @@
 		A4432666AFBF0D862F26A96B /* MalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE07533E91D0B4E58019475 /* MalView.swift */; };
 		A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */; };
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
+		BEFAD8DFC84DD6944CD0CBE7 /* InsightCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684F62352CB5E8552F5DF92 /* InsightCards.swift */; };
 		C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */; };
 		C5A9FC3B37C0379DE1589776 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0857277597E36AAE3B0052AC /* HalsynCore */; };
 		C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287A71EB2C50957EA5FACDE /* SharedViews.swift */; };
@@ -125,6 +126,7 @@
 		BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsStore.swift; sourceTree = "<group>"; };
 		C0A26B078EA012EB5695E5D1 /* NightlySummaryNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightlySummaryNotifications.swift; sourceTree = "<group>"; };
 		C287A71EB2C50957EA5FACDE /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		C684F62352CB5E8552F5DF92 /* InsightCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCards.swift; sourceTree = "<group>"; };
 		C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemGalleryView.swift; sourceTree = "<group>"; };
 		D250FF30FFD4688AE26DFDE4 /* intro-dark.mp4 */ = {isa = PBXFileReference; path = "intro-dark.mp4"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		94A3A811412D07B584AA8576 /* Insikt */ = {
 			isa = PBXGroup;
 			children = (
+				C684F62352CB5E8552F5DF92 /* InsightCards.swift */,
 				3F17B6D6A0876C711FE13FDE /* InsiktView.swift */,
 			);
 			path = Insikt;
@@ -586,6 +589,7 @@
 				E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */,
 				04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */,
 				5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */,
+				BEFAD8DFC84DD6944CD0CBE7 /* InsightCards.swift in Sources */,
 				62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */,
 				875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */,
 				A4432666AFBF0D862F26A96B /* MalView.swift in Sources */,

@@ -24,6 +24,7 @@ final class ChartSnapshotTests: XCTestCase {
         let steps = await provider.dailySeries(.steps, days: 7, endingOn: today)
         let scores = await provider.dailyScores(endingOn: today, days: 30)
         let night = try XCTUnwrap(nights.last)
+        let report = await provider.computeInsights(endingOn: today, calendar: .current, origin: .demo)
 
         let views: [(String, AnyView)] = [
             ("01-recuperacion", AnyView(RecoveryCard(estimate: recovery.last, history: recovery))),
@@ -34,6 +35,10 @@ final class ChartSnapshotTests: XCTestCase {
             ("05-pasos", AnyView(HalsynCard { HalsynTrendChart(values: steps.values, title: "Pasos", style: .bar, target: 8000, unit: "pasos").frame(height: 210) })),
             ("06-puntuacion", AnyView(HalsynCard { HalsynTrendChart(values: scores.map { DailyValue(day: $0.day, value: Double($0.value)) }, title: "Puntuación", yDomain: 0...100, usualRange: usualRange(scores.map { Double($0.value) })).frame(height: 230) })),
         ]
+        + report.trends.prefix(1).map { ("07-cambio", AnyView(TrendInsightCard(insight: $0))) }
+        + report.relationships.prefix(2).enumerated().map { ("08-patron-\($0.offset)", AnyView(RelationshipInsightCard(insight: $0.element))) }
+        + report.weekdays.prefix(1).map { ("09-semana", AnyView(WeekdayInsightCard(insight: $0))) }
+        + (report.records.isEmpty ? [] : [("10-records", AnyView(RecordsCard(records: report.records)))])
         for (name, view) in views {
             for scheme in [ColorScheme.light, .dark] {
                 let content = view

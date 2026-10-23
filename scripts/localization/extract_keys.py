@@ -17,7 +17,7 @@ SOURCES = [
     ROOT / "Packages/HalsynKit/Sources/HalsynCore",
 ]
 # Interpolaciones que son enteros (SwiftUI usa %lld para Int).
-INT_INTERPOLATIONS = {"phase", "lap.index", "split.index", "index + 1", "count", "number", "slot + 1", "Int(max)", "Int(distance)", "Int(distance / 1000)", "Int(latestResting)", "runSettings.intervalPlans.count", "time.hours", "time.minutes", "step.rawValue + 1", "Step.allCases.count"}
+INT_INTERPOLATIONS = {"phase", "have", "need", "days", "lap.index", "split.index", "index + 1", "count", "number", "slot + 1", "Int(max)", "Int(distance)", "Int(distance / 1000)", "Int(latestResting)", "runSettings.intervalPlans.count", "time.hours", "time.minutes", "step.rawValue + 1", "Step.allCases.count"}
 # Literales que no son texto de interfaz o no deben traducirse.
 IGNORE = {
     "HÅLSYN", "Halsyn", "HEALTH IN MOTION", "Know your body. Understand your health. Improve your life.",
@@ -25,7 +25,7 @@ IGNORE = {
     "FART", "RÖRELSE", "Easy Run", "Intervals", "Race", "EASY RUN", "Apple Health", "DEMO", "—", "--", "·",
     "%d:%02d", "%d:%02d:%02d", "#%02X%02X%02X", "ml/kg·min", "CFBundleShortVersionString", "CFBundleVersion",
     "MARCA", "TOKENS", "COMPONENTES", "WATCH", "VACÍO · CARGA", "PULS · SÖMN · STEG", "HRV", "SpO₂", "VO₂ máx.",
-    "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "RecoveryEngine", "RecoveryEngine %@", "± %@ min", "%@ → %@", "intro-dark", "intro-light", "Apple Watch", "HealthScoreEngine %@", "RecoveryEngine %@", "± %@ min", "%@ → %@",
+    "easy-run", "intervals", "race", "Apple Health · %@", "0.1-provisional", "HealthScoreEngine", "RecoveryEngine", "RecoveryEngine %@", "InsightEngine", "± %@ min", "%@ → %@", "intro-dark", "intro-light", "Apple Watch", "HealthScoreEngine %@", "RecoveryEngine %@", "± %@ min", "%@ → %@",
     "plan-%@", "screen-%@", "6x400", "5x1k", "8x1min", "6 × 400 m", "5 × 1 km", "8 × 1 min", "<Z1",
     "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
 }
