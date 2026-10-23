@@ -27,7 +27,7 @@ struct HalsynWidgetProvider: TimelineProvider {
     }
 
     private func load() -> WidgetSnapshot? {
-        WidgetSnapshotStore.sharedDefaults().flatMap(WidgetSnapshotStore.load(from:))
+        WidgetSnapshotStore.sharedDefaults().flatMap { WidgetSnapshotStore.load(from: $0) }
     }
 }
 
