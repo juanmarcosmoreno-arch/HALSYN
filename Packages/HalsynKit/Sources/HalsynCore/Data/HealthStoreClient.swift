@@ -37,6 +37,17 @@ public protocol HealthStoreClient: Sendable {
     /// Entrenamientos de carrera más recientes, del más nuevo al más antiguo.
     func runningWorkouts(limit: Int) async throws -> [WorkoutSummary]
 
+    /// Puntos de la ruta de un entrenamiento (vacío en cinta o sin GPS).
+    func workoutRoute(workoutID: UUID) async throws -> [LocationSample]
+
+    /// Lecturas de FC en el intervalo, en orden cronológico.
+    func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint]
+
     /// Emite cada vez que cambian datos relevantes en el almacén.
     func changes() -> AsyncStream<Void>
+}
+
+extension HealthStoreClient {
+    public func workoutRoute(workoutID: UUID) async throws -> [LocationSample] { [] }
+    public func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint] { [] }
 }

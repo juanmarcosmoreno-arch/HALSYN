@@ -172,8 +172,28 @@ public struct RunSnapshot: Hashable, Sendable {
     public var lapDuration: TimeInterval = 0
     public var lapPace: Pace?
     public var laps: [Lap] = []
+    /// Zona cardíaca actual (0 = por debajo de Z1); `nil` sin FC o sin zonas configuradas.
+    public var heartRateZone: Int?
+    /// Segundos en cada zona (índice 0 = por debajo de Z1).
+    public var zoneSeconds: [TimeInterval] = Array(repeating: 0, count: 6)
+    /// Paso actual de los intervalos; `nil` en carrera libre o al terminar el plan.
+    public var interval: IntervalProgress?
+    public var intervalPlanName: String?
+    public var intervalsCompleted = false
+    /// Ritmo objetivo vigente (serie actual o alerta de ritmo de carrera libre).
+    public var paceTarget: PaceRange?
+    /// Potencia de carrera en vatios, solo si el reloj la entrega en vivo.
+    public var power: Double?
 
     public init() {}
+}
+
+/// Avisos para el corredor (hápticos en el reloj).
+public enum RunCue: Hashable, Sendable {
+    case autoLap(Lap)
+    case intervalStep(IntervalProgress)
+    case intervalsCompleted
+    case alert(RunAlert)
 }
 
 /// Combina distancia, ritmo, vueltas, tiempo activo y FC de una carrera.
@@ -192,10 +212,30 @@ public struct RunSessionTracker: Sendable {
     private var heartRates: (sum: Double, count: Int, max: Double) = (0, 0, 0)
     private var lastHeartRate: Double?
     private var activeEnergy: Double?
+    private var power: Double?
+    private let zones: HeartRateZoneConfiguration
+    private var zoneTime = ZoneTimeAccumulator()
+    private var currentZone: Int?
+    public private(set) var intervals: IntervalTracker?
+    private var alerts: RunAlertEngine
+    private var freeRunPaceTarget: PaceRange?
+    private var intervalsCompleted = false
+    private var lastTick: Date?
 
     public init(autoLapDistance: Double? = 1000, gpsConfiguration: GPSDistanceAccumulator.Configuration = .init()) {
+        self.init(settings: RunSettings(autoLapDistance: autoLapDistance), gpsConfiguration: gpsConfiguration)
+    }
+
+    /// - Parameters:
+    ///   - settings: vueltas automáticas, zonas y alertas.
+    ///   - plan: plan de intervalos; `nil` = carrera libre.
+    public init(settings: RunSettings, plan: IntervalPlan? = nil, gpsConfiguration: GPSDistanceAccumulator.Configuration = .init()) {
         gps = GPSDistanceAccumulator(configuration: gpsConfiguration)
-        lapTracker = LapTracker(autoLapDistance: autoLapDistance)
+        lapTracker = LapTracker(autoLapDistance: settings.autoLapDistance)
+        zones = settings.zones
+        alerts = RunAlertEngine(configuration: settings.alerts)
+        freeRunPaceTarget = settings.alerts.paceEnabled ? settings.alerts.paceRange : nil
+        intervals = plan.map(IntervalTracker.init(plan:))
     }
 
     public var phase: WorkoutPhase { stateMachine.phase }
@@ -216,6 +256,8 @@ public struct RunSessionTracker: Sendable {
             timer.pause(at: date)
             pace.reset()
             gps.breakSegment()
+            zoneTime.breakSegment(at: date)
+            alerts.reset()
         case .resume:
             timer.resume(at: date)
             pace.reset()
@@ -224,6 +266,7 @@ public struct RunSessionTracker: Sendable {
             break
         case .end:
             timer.pause(at: date)
+            zoneTime.breakSegment(at: date)
         default:
             break
         }
@@ -252,37 +295,102 @@ public struct RunSessionTracker: Sendable {
         }
     }
 
-    public mutating func addHeartRate(_ bpm: Double) {
+    /// Lectura de FC. Con `date`, cuenta también el tiempo en zonas (solo corriendo).
+    public mutating func addHeartRate(_ bpm: Double, at date: Date? = nil) {
         guard bpm > 0, bpm < 260 else { return }
         lastHeartRate = bpm
         heartRates.sum += bpm
         heartRates.count += 1
         heartRates.max = max(heartRates.max, bpm)
+        currentZone = zones.zone(for: bpm)
+        if let date, stateMachine.phase == .running {
+            zoneTime.add(zone: currentZone, at: date)
+        }
+    }
+
+    /// Potencia de carrera en vatios (si el reloj la mide).
+    public mutating func updatePower(_ watts: Double) {
+        guard watts > 0, watts < 2000 else { return }
+        power = watts
+    }
+
+    /// Se llama cada segundo: avanza los pasos por tiempo y evalúa las alertas.
+    public mutating func tick(at date: Date) {
+        guard stateMachine.phase == .running else { return }
+        if let last = lastTick, date.timeIntervalSince(last) < 0.5 { return }
+        lastTick = date
+        advanceIntervals(at: date)
+        let alertsNow = alerts.evaluate(
+            pace: pace.currentPace(at: date),
+            paceTarget: currentPaceTarget,
+            zone: lastHeartRate == nil ? nil : currentZone,
+            at: date
+        )
+        pendingCues += alertsNow.map(RunCue.alert)
+    }
+
+    /// Objetivo de ritmo vigente: el de la serie en intervalos, el de la alerta en carrera libre.
+    public var currentPaceTarget: PaceRange? {
+        if let intervals {
+            return intervals.currentStep?.paceTarget
+        }
+        return freeRunPaceTarget
     }
 
     public mutating func updateActiveEnergy(total: Double) {
         activeEnergy = total
     }
 
-    /// Vuelta manual.
+    /// Vuelta manual. En intervalos, si el paso actual es abierto, además pasa al siguiente.
     @discardableResult
     public mutating func markLap(at date: Date) -> Lap? {
         guard stateMachine.isActive else { return nil }
-        return lapTracker.markLap(distance: distance, elapsed: timer.elapsed(at: date))
+        let elapsed = timer.elapsed(at: date)
+        let total = distance
+        if intervals?.currentStep?.goal == .open, let next = intervals?.advance(distance: total, elapsed: elapsed) {
+            pendingCues.append(.intervalStep(next))
+        }
+        checkIntervalsCompleted()
+        return lapTracker.markLap(distance: total, elapsed: elapsed)
     }
 
     /// Vueltas automáticas completadas desde la última llamada.
     public private(set) var pendingAutoLaps: [Lap] = []
+    /// Avisos pendientes (vueltas, pasos de intervalos, alertas).
+    public private(set) var pendingCues: [RunCue] = []
 
     public mutating func consumeAutoLaps() -> [Lap] {
         defer { pendingAutoLaps = [] }
         return pendingAutoLaps
     }
 
+    public mutating func consumeCues() -> [RunCue] {
+        defer { pendingCues = []; pendingAutoLaps = [] }
+        return pendingCues
+    }
+
     private mutating func distanceDidChange(at date: Date) {
         let elapsed = timer.elapsed(at: date)
         pace.add(cumulativeDistance: distance, at: date)
-        pendingAutoLaps += lapTracker.update(distance: distance, elapsed: elapsed)
+        let laps = lapTracker.update(distance: distance, elapsed: elapsed)
+        pendingAutoLaps += laps
+        pendingCues += laps.map(RunCue.autoLap)
+        advanceIntervals(at: date)
+    }
+
+    private mutating func advanceIntervals(at date: Date) {
+        guard intervals != nil else { return }
+        let total = distance
+        let elapsed = timer.elapsed(at: date)
+        let started = intervals?.update(distance: total, elapsed: elapsed) ?? []
+        pendingCues += started.map(RunCue.intervalStep)
+        checkIntervalsCompleted()
+    }
+
+    private mutating func checkIntervalsCompleted() {
+        guard let intervals, intervals.isFinished, !intervalsCompleted else { return }
+        intervalsCompleted = true
+        pendingCues.append(.intervalsCompleted)
     }
 
     // MARK: Resultado
@@ -304,6 +412,13 @@ public struct RunSessionTracker: Sendable {
         snapshot.lapDuration = lap.duration
         snapshot.lapPace = Pace(distanceMeters: lap.distance, duration: lap.duration)
         snapshot.laps = lapTracker.laps
+        snapshot.heartRateZone = lastHeartRate == nil ? nil : currentZone
+        snapshot.zoneSeconds = zoneTime.seconds
+        snapshot.interval = intervals?.progress(elapsed: snapshot.elapsed, distance: distance)
+        snapshot.intervalPlanName = intervals?.plan.name
+        snapshot.intervalsCompleted = intervalsCompleted
+        snapshot.paceTarget = currentPaceTarget
+        snapshot.power = power
         return snapshot
     }
 }
@@ -311,9 +426,10 @@ public struct RunSessionTracker: Sendable {
 // MARK: - Campos de pantalla
 
 extension RunSnapshot {
-    /// Valor de un campo de la pantalla del reloj. Los campos que todavía no
-    /// tienen dato en vivo (zona, cadencia, potencia, objetivo, intervalo) se
-    /// muestran vacíos ("--"): no se inventan.
+    /// Valor de un campo de la pantalla del reloj. Los campos sin dato en vivo
+    /// (zona sin FC máxima configurada, cadencia, potencia si el reloj no la
+    /// mide, objetivo o intervalo en carrera libre) se muestran vacíos ("--"):
+    /// no se inventan.
     public func value(for field: WorkoutFieldKind, unit: UnitSystem = .metric, locale: Locale = .current) -> WorkoutFieldValue {
         switch field {
         case .elapsedTime: WorkoutFieldValue(value: HalsynFormat.duration(elapsed), unit: "")
@@ -324,7 +440,22 @@ extension RunSnapshot {
         case .lapTime: WorkoutFieldValue(value: HalsynFormat.duration(lapDuration), unit: "")
         case .lapPace: WorkoutFieldValue(value: lapPace?.formatted(in: unit), unit: unit.paceUnitSymbol)
         case .elevationGain: WorkoutFieldValue(value: elevationGain.map { HalsynFormat.integer($0, locale: locale) }, unit: "m")
-        case .heartRateZone, .cadence, .runningPower, .targetPace, .intervalTime: WorkoutFieldValue(value: nil, unit: "")
+        case .heartRateZone: WorkoutFieldValue(value: heartRateZone.map { $0 == 0 ? "<Z1" : "Z\($0)" }, unit: "")
+        case .targetPace: WorkoutFieldValue(value: paceTarget?.formatted(in: unit), unit: unit.paceUnitSymbol)
+        case .intervalTime: intervalValue(locale: locale)
+        case .runningPower: WorkoutFieldValue(value: power.map { HalsynFormat.integer($0, locale: locale) }, unit: "W")
+        // La cadencia en vivo no se muestra hasta verificar su disponibilidad en dispositivo.
+        case .cadence: WorkoutFieldValue(value: nil, unit: "")
+        }
+    }
+
+    /// Lo que falta del paso (tiempo o metros); en pasos abiertos, lo que lleva.
+    private func intervalValue(locale: Locale) -> WorkoutFieldValue {
+        guard let interval else { return WorkoutFieldValue(value: nil, unit: "") }
+        switch interval.step.goal {
+        case .time: return WorkoutFieldValue(value: HalsynFormat.duration(interval.remaining ?? 0), unit: "")
+        case .distance: return WorkoutFieldValue(value: HalsynFormat.integer(interval.remaining ?? 0, locale: locale), unit: "m")
+        case .open: return WorkoutFieldValue(value: HalsynFormat.duration(interval.elapsed), unit: "")
         }
     }
 }

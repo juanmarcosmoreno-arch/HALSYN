@@ -1,8 +1,10 @@
 import HalsynCore
 import HalsynDesign
+import MapKit
 import SwiftUI
 
-/// Pantalla de carrera: controles · métricas · vueltas (deslizando en horizontal).
+/// Pantalla de carrera, deslizando en horizontal:
+/// controles · intervalo (si hay plan) · pantallas de métricas configuradas · mapa (exterior) · vueltas.
 /// Al terminar muestra el resumen.
 struct WorkoutSessionView: View {
     @Environment(WorkoutManager.self) private var workout
@@ -22,48 +24,192 @@ struct WorkoutSessionView: View {
     }
 }
 
+@MainActor private var unitSystem: UnitSystem { RunSettingsStore.shared.settings.unitSystem }
+
 private struct WorkoutPagesView: View {
-    enum Page { case controls, metrics, laps }
+    enum Page: Hashable {
+        case controls, interval, screen(Int), map, laps
+    }
 
     @Environment(WorkoutManager.self) private var workout
-    @State private var page: Page = .metrics
+    @State private var page: Page = .screen(0)
 
     var body: some View {
         TabView(selection: $page) {
             WorkoutControlsView().tag(Page.controls)
-            WorkoutMetricsView().tag(Page.metrics)
+            if workout.plan != nil {
+                WorkoutIntervalView().tag(Page.interval)
+            }
+            ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
+                WorkoutMetricsView(profile: profile).tag(Page.screen(index))
+            }
+            if !workout.isIndoor {
+                WorkoutMapView().tag(Page.map)
+            }
             WorkoutLapsView().tag(Page.laps)
         }
         .tabViewStyle(.page)
+        .onAppear {
+            page = workout.plan != nil ? .interval : .screen(0)
+        }
         .onChange(of: workout.phase) { _, phase in
-            // Al pausar o reanudar se vuelve a las métricas.
+            // Al pausar o reanudar se vuelve a la pantalla principal.
             if phase == .running || phase == .paused {
-                withAnimation { page = .metrics }
+                withAnimation { page = workout.plan != nil ? .interval : .screen(0) }
             }
         }
     }
 }
 
-/// Métricas en vivo con el perfil de pantalla (Easy Run por ahora; el editor llega en la Fase 5).
+/// Aviso breve (vuelta, cambio de paso, alerta) sobre las métricas.
+private struct BannerOverlay: View {
+    let banner: WorkoutManager.Banner?
+    let now: Date
+
+    var body: some View {
+        if let banner, now.timeIntervalSince(banner.date) < 4 {
+            VStack(spacing: 0) {
+                Text(verbatim: banner.title)
+                    .font(.footnote.weight(.semibold))
+                if let detail = banner.detail {
+                    Text(verbatim: detail).font(.caption2.monospacedDigit())
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(Color(HalsynPalette.darkPrimary)))
+            .foregroundStyle(Color.white)
+            .transition(.opacity)
+            .accessibilityElement(children: .combine)
+        }
+    }
+}
+
+private struct PausedLabel: View {
+    var body: some View {
+        Label("En pausa", systemImage: "pause.fill")
+            .font(.caption2.weight(.semibold))
+            .foregroundStyle(Color(HalsynPalette.cautionDark))
+    }
+}
+
+/// Métricas en vivo con un perfil de pantalla configurado en el iPhone.
 private struct WorkoutMetricsView: View {
+    let profile: WorkoutScreenProfile
     @Environment(WorkoutManager.self) private var workout
     @Environment(\.isLuminanceReduced) private var isLuminanceReduced
-    @AppStorage("halsyn.watch.unitSystem") private var unitSystem: UnitSystem = .metric
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
             let snapshot = workout.snapshot(at: context.date)
             VStack(alignment: .leading, spacing: 2) {
                 if workout.phase == .paused {
-                    Label("En pausa", systemImage: "pause.fill")
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(Color(HalsynPalette.cautionDark))
+                    PausedLabel()
                 }
-                HalsynWorkoutScreen(profile: .easyRun) { snapshot.value(for: $0, unit: unitSystem) }
+                HalsynWorkoutScreen(profile: profile) { snapshot.value(for: $0, unit: unitSystem) }
             }
             .padding(.horizontal, 4)
+            .overlay(alignment: .top) {
+                BannerOverlay(banner: workout.banner, now: context.date)
+            }
         }
         .background(Color.black.ignoresSafeArea())
+    }
+}
+
+/// Paso actual de los intervalos: qué toca, cuánto falta y el ritmo objetivo.
+private struct WorkoutIntervalView: View {
+    @Environment(WorkoutManager.self) private var workout
+    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
+            let snapshot = workout.snapshot(at: context.date)
+            VStack(alignment: .leading, spacing: 4) {
+                if workout.phase == .paused {
+                    PausedLabel()
+                }
+                if let interval = snapshot.interval {
+                    header(interval)
+                    HalsynWorkoutField(label: interval.step.goal == .open ? "TID" : "QUEDAN", value: snapshot.value(for: .intervalTime, unit: unitSystem).value, unit: snapshot.value(for: .intervalTime, unit: unitSystem).unit, size: .large, emphasis: tint(interval.step.kind))
+                    if let fraction = interval.fraction {
+                        ProgressView(value: fraction)
+                            .tint(tint(interval.step.kind))
+                    } else {
+                        Text("Pulsa Vuelta para continuar")
+                            .font(.caption2)
+                            .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                    }
+                    HStack {
+                        HalsynWorkoutField(label: "RITMO", value: snapshot.currentPace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol, size: .small)
+                        if let target = snapshot.paceTarget {
+                            HalsynWorkoutField(label: "OBJETIVO", value: target.formatted(in: unitSystem), unit: "", size: .small)
+                        } else {
+                            HalsynWorkoutField(label: "PULS", value: snapshot.value(for: .heartRate).value, unit: "lpm", size: .small, emphasis: Color(HalsynPalette.alertDark))
+                        }
+                    }
+                } else {
+                    Label(snapshot.intervalsCompleted ? LocalizedStringKey("Intervalos completados") : LocalizedStringKey("Carrera libre"), systemImage: "checkmark.circle")
+                        .font(.headline)
+                        .foregroundStyle(Color(HalsynPalette.darkAccent))
+                    HalsynWorkoutScreen(profile: workout.screens.first ?? .easyRun) { snapshot.value(for: $0, unit: unitSystem) }
+                }
+            }
+            .padding(.horizontal, 4)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .overlay(alignment: .top) {
+                BannerOverlay(banner: workout.banner, now: context.date)
+            }
+        }
+        .background(Color.black.ignoresSafeArea())
+    }
+
+    private func header(_ interval: IntervalProgress) -> some View {
+        HStack {
+            Text(LocalizedStringKey(interval.step.kind.label))
+                .font(.caption.weight(.bold))
+                .tracking(1)
+                .foregroundStyle(tint(interval.step.kind))
+            Spacer()
+            if let repetition = interval.step.repetition {
+                Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(Color.white)
+            }
+        }
+    }
+
+    private func tint(_ kind: IntervalStepKind) -> Color {
+        switch kind {
+        case .work: Color(HalsynPalette.alertDark)
+        case .recovery: Color(HalsynPalette.darkAccent)
+        case .warmup, .cooldown: Color(HalsynPalette.cautionDark)
+        }
+    }
+}
+
+/// Mapa con la ruta recorrida (puntos fiables) y la posición actual.
+private struct WorkoutMapView: View {
+    @Environment(WorkoutManager.self) private var workout
+    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+
+    var body: some View {
+        Map(position: $position) {
+            if workout.routeCoordinates.count > 1 {
+                MapPolyline(coordinates: workout.routeCoordinates)
+                    .stroke(Color(HalsynPalette.darkAccent), lineWidth: 4)
+            }
+            UserAnnotation()
+        }
+        .overlay(alignment: .bottom) {
+            if workout.routeCoordinates.isEmpty {
+                Text("Buscando GPS…")
+                    .font(.caption2)
+                    .padding(4)
+                    .background(Capsule().fill(Color.black.opacity(0.7)))
+            }
+        }
+        .accessibilityLabel(Text("Mapa de la ruta"))
     }
 }
 
@@ -114,7 +260,6 @@ private struct WorkoutControlsView: View {
 
 private struct WorkoutLapsView: View {
     @Environment(WorkoutManager.self) private var workout
-    @AppStorage("halsyn.watch.unitSystem") private var unitSystem: UnitSystem = .metric
 
     var body: some View {
         let laps = workout.snapshot(at: .now).laps
@@ -141,7 +286,6 @@ private struct WorkoutLapsView: View {
 /// Resumen al terminar.
 private struct WorkoutSummaryView: View {
     @Environment(WorkoutManager.self) private var workout
-    @AppStorage("halsyn.watch.unitSystem") private var unitSystem: UnitSystem = .metric
 
     var body: some View {
         let snapshot = workout.snapshot(at: .now)
@@ -163,6 +307,11 @@ private struct WorkoutSummaryView: View {
                 case nil:
                     ProgressView()
                 }
+                if let name = snapshot.intervalPlanName {
+                    Text(verbatim: name)
+                        .font(.headline)
+                        .foregroundStyle(Color(HalsynPalette.darkAccent))
+                }
                 HalsynWatchMetric(title: "Distancia", systemImage: "point.topleft.down.to.point.bottomright.curvepath", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol)
                 HalsynWatchMetric(title: "Tiempo", systemImage: "stopwatch", value: HalsynFormat.duration(snapshot.elapsed), unit: "")
                 HalsynWatchMetric(title: "Ritmo medio", systemImage: "speedometer", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
@@ -171,9 +320,39 @@ private struct WorkoutSummaryView: View {
                 if !snapshot.laps.isEmpty {
                     HalsynWatchMetric(title: "Vueltas", systemImage: "flag", value: "\(snapshot.laps.count)", unit: "")
                 }
+                if snapshot.zoneSeconds.reduce(0, +) > 0 {
+                    ZoneBarsView(seconds: snapshot.zoneSeconds)
+                }
                 Button("Hecho") { workout.dismissSummary() }
                     .tint(Color(HalsynPalette.darkAccent))
                     .padding(.top, 4)
+            }
+        }
+    }
+}
+
+/// Tiempo en cada zona (Z1–Z5) como barras horizontales.
+private struct ZoneBarsView: View {
+    let seconds: [TimeInterval]
+
+    var body: some View {
+        let total = max(seconds.reduce(0, +), 1)
+        VStack(alignment: .leading, spacing: 3) {
+            Text("Tiempo en zonas")
+                .font(.caption2)
+                .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            ForEach(1..<min(seconds.count, 6), id: \.self) { zone in
+                HStack(spacing: 4) {
+                    Text(verbatim: "Z\(zone)").font(.caption2.monospacedDigit()).frame(width: 22, alignment: .leading)
+                    GeometryReader { proxy in
+                        Capsule()
+                            .fill(Color(HalsynPalette.alertDark).opacity(0.35 + 0.13 * Double(zone)))
+                            .frame(width: max(2, proxy.size.width * seconds[zone] / total))
+                    }
+                    .frame(height: 6)
+                    Text(verbatim: HalsynFormat.duration(seconds[zone])).font(.caption2.monospacedDigit())
+                }
+                .accessibilityElement(children: .combine)
             }
         }
     }

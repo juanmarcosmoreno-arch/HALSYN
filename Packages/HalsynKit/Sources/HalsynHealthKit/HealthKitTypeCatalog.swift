@@ -44,6 +44,8 @@ public enum HealthKitTypeCatalog {
     public static var coreReadTypes: Set<HKObjectType> {
         var types = Set(MetricKind.allCases.map(objectType(for:)))
         types.insert(HKObjectType.workoutType())
+        // Ruta de las carreras (mapa y parciales en el detalle, Fase 5).
+        types.insert(HKSeriesType.workoutRoute())
         return types
     }
 

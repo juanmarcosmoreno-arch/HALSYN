@@ -7,6 +7,8 @@ struct HalsynWatchApp: App {
     @WKApplicationDelegateAdaptor(WatchAppDelegate.self) private var appDelegate
     @State private var model = WatchModel()
     @State private var workout = WorkoutManager.shared
+    /// Recibe del iPhone pantallas, zonas, alertas e intervalos.
+    @State private var runSettings = RunSettingsStore.shared
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

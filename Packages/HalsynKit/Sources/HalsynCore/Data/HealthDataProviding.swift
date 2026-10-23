@@ -46,6 +46,8 @@ public protocol HealthDataProviding: Sendable {
     /// Serie diaria de los últimos `days` días, terminando en `endingOn` (incluido).
     func dailySeries(_ kind: MetricKind, days: Int, endingOn: Date) async -> MetricSeries
     func recentWorkouts(limit: Int) async -> [WorkoutSummary]
+    /// Ruta y FC de un entrenamiento (vacíos si no existen).
+    func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData
     /// Puntuación diaria (`HealthScoreEngine`) si hay datos suficientes.
     func dailyScore(on day: Date) async -> DailyScore?
     /// Puntuaciones de los últimos `days` días que terminan en `endingOn`.
@@ -56,4 +58,10 @@ public protocol HealthDataProviding: Sendable {
     func goals() async -> [Goal]
     /// Emite cuando cambian los datos de origen (para refrescar la interfaz).
     func changes() -> AsyncStream<Void>
+}
+
+extension HealthDataProviding {
+    public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
+        .empty(workout.origin)
+    }
 }

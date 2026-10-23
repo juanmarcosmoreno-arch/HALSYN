@@ -120,6 +120,14 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return (try? await client.runningWorkouts(limit: limit)) ?? []
     }
 
+    /// Ruta y FC del entrenamiento. Si una parte falla o no existe, queda vacía.
+    public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
+        guard client.isHealthDataAvailable else { return .empty(workout.origin) }
+        async let route = try? client.workoutRoute(workoutID: workout.id)
+        async let heartRate = try? client.heartRateSamples(in: DateInterval(start: workout.start, end: workout.end))
+        return WorkoutDetailData(route: await route ?? [], heartRate: await heartRate ?? [], origin: workout.origin)
+    }
+
     /// Puntuación de `HealthScoreEngine` sobre los datos de Apple Health.
     /// `nil` si no hay cobertura suficiente: nunca se inventa.
     public func dailyScore(on day: Date) async -> DailyScore? {

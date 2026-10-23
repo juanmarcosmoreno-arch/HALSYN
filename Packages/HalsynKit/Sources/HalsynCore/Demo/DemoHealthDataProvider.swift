@@ -49,6 +49,50 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         return workouts
     }
 
+    /// Ruta y FC sintéticas (deterministas) para ver el detalle en modo demo.
+    /// Recorrido de ejemplo en Djurgården (Estocolmo); siempre etiquetado como demo.
+    public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
+        guard let distance = workout.distanceMeters, distance > 0, workout.duration > 0 else { return .empty(.demo) }
+        var rng = generator(for: workout.start, salt: 0x2047E)
+        let center = (latitude: 59.3263, longitude: 18.1157)
+        let metersPerDegreeLatitude = 111_195.0
+        let metersPerDegreeLongitude = metersPerDegreeLatitude * cos(center.latitude * .pi / 180)
+        // Bucle irregular de ~2,4 km recorrido las veces necesarias, un punto por segundo.
+        // La posición se interpola por longitud de arco para que la distancia de la ruta
+        // coincida con la del entrenamiento.
+        let loop = Self.demoLoop(length: 2400)
+        let speed = distance / workout.duration
+        var route: [LocationSample] = []
+        var heartRate: [HeartRatePoint] = []
+        let average = workout.averageHeartRate ?? 145
+        let maximum = workout.maxHeartRate ?? average + 15
+        var second = 0.0
+        var covered = 0.0
+        var drift = 0.0
+        while second <= workout.duration {
+            // Variación lenta del ritmo (±6 %) para que los parciales no sean idénticos.
+            drift = max(-0.06, min(0.06, drift + Double.random(in: -0.004...0.004, using: &rng)))
+            covered += second > 0 ? speed * (1 + drift) : 0
+            let point = Self.position(on: loop, at: covered)
+            let date = workout.start.addingTimeInterval(second)
+            route.append(LocationSample(
+                latitude: center.latitude + point.north / metersPerDegreeLatitude,
+                longitude: center.longitude + point.east / metersPerDegreeLongitude,
+                altitude: 12 + 8 * sin(covered / 380),
+                horizontalAccuracy: 4,
+                verticalAccuracy: 3,
+                timestamp: date
+            ))
+            if Int(second) % 5 == 0 {
+                let warmup = min(second / 300, 1)
+                let bpm = min(maximum, (average - 25) + 25 * warmup + 6 * sin(second / 240) + Double.random(in: -2...2, using: &rng))
+                heartRate.append(HeartRatePoint(date: date, bpm: bpm.rounded()))
+            }
+            second += 1
+        }
+        return WorkoutDetailData(route: route, heartRate: heartRate, origin: .demo)
+    }
+
     /// Puntuación calculada por el mismo `HealthScoreEngine` que en modo real,
     /// a partir de las series demo. Sigue llevando el origen `.demo`.
     public func dailyScore(on day: Date) async -> DailyScore? {
@@ -139,6 +183,39 @@ public struct DemoHealthDataProvider: HealthDataProviding {
             averageCadence: Double.random(in: 162...178, using: &rng).rounded(),
             origin: .demo
         )
+    }
+
+    /// Polilínea cerrada (metros norte/este) con su longitud acumulada, escalada a `length`.
+    private static func demoLoop(length: Double) -> [(north: Double, east: Double, along: Double)] {
+        let raw: [(Double, Double)] = (0...360).map { degree in
+            let angle = Double(degree) * .pi / 180
+            let wobble = 1 + 0.18 * sin(angle * 3)
+            return (wobble * sin(angle), 1.6 * wobble * (1 - cos(angle)))
+        }
+        var perimeter = 0.0
+        for index in 1..<raw.count {
+            perimeter += hypot(raw[index].0 - raw[index - 1].0, raw[index].1 - raw[index - 1].1)
+        }
+        let scale = length / perimeter
+        var along = 0.0
+        var result: [(north: Double, east: Double, along: Double)] = []
+        for index in raw.indices {
+            if index > 0 {
+                along += hypot(raw[index].0 - raw[index - 1].0, raw[index].1 - raw[index - 1].1) * scale
+            }
+            result.append((raw[index].0 * scale, raw[index].1 * scale, along))
+        }
+        return result
+    }
+
+    private static func position(on loop: [(north: Double, east: Double, along: Double)], at distance: Double) -> (north: Double, east: Double) {
+        guard let total = loop.last?.along, total > 0 else { return (0, 0) }
+        let target = distance.truncatingRemainder(dividingBy: total)
+        let upper = loop.firstIndex { $0.along >= target } ?? loop.count - 1
+        guard upper > 0 else { return (loop[0].north, loop[0].east) }
+        let a = loop[upper - 1], b = loop[upper]
+        let fraction = b.along > a.along ? (target - a.along) / (b.along - a.along) : 0
+        return (a.north + (b.north - a.north) * fraction, a.east + (b.east - a.east) * fraction)
     }
 
     private func dayNumber(_ day: Date) -> Int {

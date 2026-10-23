@@ -8,6 +8,9 @@ struct HalsynApp: App {
     @State private var model = AppModel()
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = false
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    /// Ajustes de SPRING; al crearse activa WatchConnectivity para enviarlos al reloj.
+    @State private var runSettings = RunSettingsStore.shared
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -35,6 +38,10 @@ struct HalsynApp: App {
                     }
                     await model.start()
                 }
+        }
+        .onChange(of: unitSystem, initial: true) { _, unit in
+            // El reloj muestra las mismas unidades que el iPhone.
+            runSettings.update { $0.unitSystem = unit }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {

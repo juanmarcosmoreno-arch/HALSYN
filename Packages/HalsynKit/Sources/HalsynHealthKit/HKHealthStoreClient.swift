@@ -1,4 +1,5 @@
 #if canImport(HealthKit) && (os(iOS) || os(watchOS))
+import CoreLocation
 import Foundation
 import HalsynCore
 import HealthKit
@@ -139,6 +140,87 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
     }
 
+    public func workoutRoute(workoutID: UUID) async throws -> [LocationSample] {
+        do {
+            let workouts = try await HKSampleQueryDescriptor(
+                predicates: [HKSamplePredicate.workout(HKQuery.predicateForObject(with: workoutID))],
+                sortDescriptors: [],
+                limit: 1
+            ).result(for: store)
+            guard let workout = workouts.first else { return [] }
+            let routes = try await routes(of: workout)
+            var samples: [LocationSample] = []
+            for route in routes {
+                samples += try await locations(of: route).map(Self.sample)
+            }
+            return samples.sorted { $0.timestamp < $1.timestamp }
+        } catch let error as HKError where error.code == .errorNoData {
+            return []
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
+    public func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint] {
+        let beatsPerMinute = HKUnit.count().unitDivided(by: HKUnit.minute())
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.heartRate), predicate: Self.predicate(for: interval))],
+            sortDescriptors: [SortDescriptor(\HKQuantitySample.startDate)]
+        )
+        do {
+            return try await descriptor.result(for: store).map {
+                HeartRatePoint(date: $0.startDate, bpm: $0.quantity.doubleValue(for: beatsPerMinute))
+            }
+        } catch let error as HKError where error.code == .errorNoData {
+            return []
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
+    /// Rutas asociadas a un entrenamiento (normalmente una).
+    private func routes(of workout: HKWorkout) async throws -> [HKWorkoutRoute] {
+        let store = self.store
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(
+                sampleType: HKSeriesType.workoutRoute(),
+                predicate: HKQuery.predicateForObjects(from: workout),
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
+            ) { _, samples, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: (samples ?? []).compactMap { $0 as? HKWorkoutRoute })
+                }
+            }
+            store.execute(query)
+        }
+    }
+
+    /// `HKWorkoutRouteQuery` entrega la ruta en lotes hasta `done`.
+    private func locations(of route: HKWorkoutRoute) async throws -> [CLLocation] {
+        let store = self.store
+        let collector = RouteCollector()
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKWorkoutRouteQuery(route: route) { _, batch, done, error in
+                collector.handle(batch: batch, done: done, error: error, continuation: continuation)
+            }
+            store.execute(query)
+        }
+    }
+
+    private static func sample(_ location: CLLocation) -> LocationSample {
+        LocationSample(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            altitude: location.verticalAccuracy >= 0 ? location.altitude : nil,
+            horizontalAccuracy: location.horizontalAccuracy,
+            verticalAccuracy: location.verticalAccuracy >= 0 ? location.verticalAccuracy : nil,
+            timestamp: location.timestamp
+        )
+    }
+
     // MARK: Cambios
 
     /// Una `HKObserverQuery` por tipo; emite cuando llegan datos nuevos.
@@ -214,6 +296,30 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         case .errorDatabaseInaccessible: return .databaseLocked
         case .errorAuthorizationDenied, .errorAuthorizationNotDetermined: return .notAuthorized
         default: return .failed(error.localizedDescription)
+        }
+    }
+}
+
+/// Acumula los lotes de `HKWorkoutRouteQuery` (llegan en serie desde HealthKit)
+/// y reanuda la continuación una sola vez.
+private final class RouteCollector: @unchecked Sendable {
+    private let lock = NSLock()
+    private var locations: [CLLocation] = []
+    private var finished = false
+
+    func handle(batch: [CLLocation]?, done: Bool, error: Error?, continuation: CheckedContinuation<[CLLocation], Error>) {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !finished else { return }
+        if let error {
+            finished = true
+            continuation.resume(throwing: error)
+            return
+        }
+        locations += batch ?? []
+        if done {
+            finished = true
+            continuation.resume(returning: locations)
         }
     }
 }

@@ -3,14 +3,15 @@ import HalsynDesign
 import HealthKit
 import SwiftUI
 
-/// SPRING — running. Fase 1: historial (demo), resumen semanal y vista previa
-/// de las pantallas del reloj. Las carreras se registran en el Apple Watch (Fase 4);
-/// el editor de pantallas en la Fase 5.
+/// SPRING — running. Las carreras se registran en el Apple Watch (Fase 4);
+/// aquí se ven el historial y el resumen semanal, y se configuran pantallas,
+/// zonas, alertas e intervalos (Fase 5), que se envían al reloj.
 struct SpringView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var workouts: [WorkoutSummary]?
     @State private var showsStartInfo = false
+    private var runSettings: RunSettings { RunSettingsStore.shared.settings }
 
     var body: some View {
         NavigationStack {
@@ -18,9 +19,9 @@ struct SpringView: View {
                 ModuleHeader(module: .spring, isDemo: model.isDemo)
                     .padding(.top, HalsynSpacing.s)
                 startCard
+                settingsCard
                 if let workouts {
                     weeklySummary(workouts)
-                    watchScreensCard
                     history(workouts)
                 } else {
                     HalsynLoadingState()
@@ -52,21 +53,61 @@ struct SpringView: View {
                 HalsynPrimaryButton("Correr con Apple Watch", systemImage: "applewatch") {
                     showsStartInfo = true
                 }
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: HalsynSpacing.xs) {
-                        ForEach(RunType.allCases) { type in
-                            Label(type.title, systemImage: type.systemImage)
-                                .font(.halsynCaption)
-                                .padding(.horizontal, HalsynSpacing.s)
-                                .padding(.vertical, HalsynSpacing.xs)
-                                .foregroundStyle(.halsynAccentText)
-                                .background(Capsule().fill(Color.halsynAccentSoft.opacity(0.35)))
+            }
+        }
+    }
+
+    /// Pantallas configuradas y acceso a los ajustes de carrera.
+    private var settingsCard: some View {
+        NavigationLink {
+            RunSettingsView()
+        } label: {
+            HalsynCard {
+                VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                    HStack {
+                        HalsynSectionHeader("Ajustes de carrera", eyebrow: HalsynLexicon.form.rawValue)
+                        Image(systemName: "chevron.right")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(.halsynSecondaryText)
+                            .accessibilityHidden(true)
+                    }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: HalsynSpacing.s) {
+                            ForEach(runSettings.validScreens) { profile in
+                                WatchScreenPreview(profile: profile)
+                                    .frame(width: 96)
+                            }
                         }
                     }
+                    .allowsHitTesting(false)
+                    VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
+                        settingRow("heart", zonesText)
+                        settingRow("bell.badge", alertsText)
+                        settingRow("repeat", "\(runSettings.intervalPlans.count) planes de intervalos")
+                    }
                 }
-                .accessibilityElement(children: .contain)
-                .accessibilityLabel(Text("Tipos de carrera previstos"))
             }
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func settingRow(_ systemImage: String, _ text: LocalizedStringKey) -> some View {
+        Label(text, systemImage: systemImage)
+            .font(.halsynCaption)
+            .foregroundStyle(.halsynSecondaryText)
+    }
+
+    private var zonesText: LocalizedStringKey {
+        guard let max = runSettings.zones.zones.last?.upperBound else { return "Zonas cardíacas sin configurar" }
+        return "Zonas con FC máx. \(Int(max)) lpm"
+    }
+
+    private var alertsText: LocalizedStringKey {
+        switch (runSettings.alerts.paceEnabled, runSettings.alerts.zoneEnabled) {
+        case (true, true): "Alertas de ritmo y zona activas"
+        case (true, false): "Alerta de ritmo activa"
+        case (false, true): "Alerta de zona activa"
+        case (false, false): "Sin alertas"
         }
     }
 
@@ -90,29 +131,6 @@ struct SpringView: View {
         }
     }
 
-    private var watchScreensCard: some View {
-        HalsynCard {
-            VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                HStack {
-                    HalsynSectionHeader("Pantallas del reloj", eyebrow: "EASY RUN")
-                    PhaseTag(phase: 5)
-                }
-                HStack(alignment: .center, spacing: HalsynSpacing.l) {
-                    WatchScreenPreview(profile: .easyRun)
-                        .frame(width: 150)
-                    VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
-                        Text("Perfil Easy Run")
-                            .font(.halsynHeadline)
-                            .foregroundStyle(.halsynPrimaryText)
-                        Text("Tiempo, ritmo, frecuencia cardíaca y zona. El editor para elegir campos, orden y distribución llega en la Fase 5.")
-                            .font(.halsynCaption)
-                            .foregroundStyle(.halsynSecondaryText)
-                    }
-                }
-            }
-        }
-    }
-
     @ViewBuilder
     private func history(_ workouts: [WorkoutSummary]) -> some View {
         HalsynSectionHeader("Historial", eyebrow: HalsynLexicon.tid.rawValue)
@@ -127,33 +145,6 @@ struct SpringView: View {
                     .buttonStyle(.plain)
                 }
             }
-        }
-    }
-}
-
-/// Tipos de carrera de la primera versión del motor (Fase 4).
-enum RunType: String, CaseIterable, Identifiable {
-    case free, time, distance, pace, heartRateZone
-
-    var id: String { rawValue }
-
-    var title: LocalizedStringKey {
-        switch self {
-        case .free: "Libre"
-        case .time: "Por tiempo"
-        case .distance: "Por distancia"
-        case .pace: "Ritmo objetivo"
-        case .heartRateZone: "Zona cardíaca"
-        }
-    }
-
-    var systemImage: String {
-        switch self {
-        case .free: "figure.run"
-        case .time: "timer"
-        case .distance: "point.topleft.down.to.point.bottomright.curvepath"
-        case .pace: "speedometer"
-        case .heartRateZone: "heart"
         }
     }
 }

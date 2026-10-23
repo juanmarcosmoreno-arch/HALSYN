@@ -38,6 +38,7 @@ targets:
       - path: Apps/HalsyniOS
         excludes:
           - "Resources/Info.plist"
+      - path: Apps/Shared
     dependencies:
       - package: HalsynKit
         product: HalsynCore
@@ -81,6 +82,7 @@ targets:
       - path: Apps/HalsynWatch
         excludes:
           - "Resources/Info.plist"
+      - path: Apps/Shared
     dependencies:
       - package: HalsynKit
         product: HalsynCore

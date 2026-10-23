@@ -12,8 +12,9 @@ import WatchKit
 ///   el iPhone nunca escribe entrenamientos, así no hay duplicados).
 /// - Core Location + `HKWorkoutRouteBuilder`: ruta GPS en exteriores (solo los
 ///   puntos que el filtro considera fiables).
-/// - `RunSessionTracker` (HalsynCore): ritmo, vueltas y tiempo activo, probado
-///   con trazas sintéticas.
+/// - `RunSessionTracker` (HalsynCore): ritmo, vueltas, tiempo activo, zonas,
+///   intervalos y alertas, probado con trazas sintéticas. Usa los ajustes de
+///   SPRING que llegan del iPhone (`RunSettingsStore`).
 /// - Funciona sin el iPhone. Si watchOS relanza la app durante un entrenamiento,
 ///   `recover()` recupera la sesión activa.
 @MainActor
@@ -29,6 +30,21 @@ final class WorkoutManager: NSObject {
 
     private(set) var tracker = RunSessionTracker()
     private(set) var isIndoor = false
+    /// Plan de intervalos de la carrera actual (`nil` = libre).
+    private(set) var plan: IntervalPlan?
+    /// Pantallas de métricas de esta carrera (fijadas al empezar).
+    private(set) var screens: [WorkoutScreenProfile] = [.easyRun]
+    /// Puntos fiables de la ruta, reducidos para el mapa.
+    private(set) var routeCoordinates: [CLLocationCoordinate2D] = []
+    /// Último aviso (vuelta, paso de intervalo, alerta) para mostrarlo unos segundos.
+    private(set) var banner: Banner?
+
+    struct Banner: Equatable {
+        let id = UUID()
+        let title: String
+        let detail: String?
+        let date: Date
+    }
     private(set) var outcome: Outcome?
     private(set) var errorMessage: String?
     /// Resumen congelado al terminar (para la pantalla final).
@@ -43,6 +59,8 @@ final class WorkoutManager: NSObject {
     @ObservationIgnored private var routeBuilder: HKWorkoutRouteBuilder?
     @ObservationIgnored private let locationManager = CLLocationManager()
     @ObservationIgnored private var shouldSave = true
+    @ObservationIgnored private var ticker: Task<Void, Never>?
+    @ObservationIgnored private var lastRoutePoint: CLLocation?
 
     private override init() {
         super.init()
@@ -63,7 +81,7 @@ final class WorkoutManager: NSObject {
     }
 
     static var readTypes: Set<HKObjectType> {
-        [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning), HKObjectType.workoutType()]
+        [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning), HKQuantityType(.runningPower), HKObjectType.workoutType()]
     }
 
     private func requestAuthorization() async throws {
@@ -72,17 +90,17 @@ final class WorkoutManager: NSObject {
 
     // MARK: Ciclo de vida
 
-    func start(indoor: Bool) async {
+    func start(indoor: Bool, plan: IntervalPlan? = nil) async {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .running
         configuration.locationType = indoor ? .indoor : .outdoor
-        await start(configuration: configuration)
+        await start(configuration: configuration, plan: plan)
     }
 
     /// Inicia con una configuración (también la que envía el iPhone con `startWatchApp`).
-    func start(configuration: HKWorkoutConfiguration) async {
+    func start(configuration: HKWorkoutConfiguration, plan: IntervalPlan? = nil) async {
         guard !isActive else { return }
-        reset()
+        reset(plan: plan)
         isIndoor = configuration.locationType == .indoor
         tracker.handle(.start, at: .now)
         do {
@@ -104,6 +122,7 @@ final class WorkoutManager: NSObject {
             let start = Date()
             session.startActivity(with: start)
             try await builder.beginCollection(at: start)
+            startTicker()
         } catch {
             fail(error)
         }
@@ -114,7 +133,8 @@ final class WorkoutManager: NSObject {
         do {
             let recovered: HKWorkoutSession? = try await healthStore.recoverActiveWorkoutSession()
             guard let session = recovered else { return }
-            reset()
+            // El plan de intervalos no se conserva tras un cierre: la carrera sigue como libre.
+            reset(plan: nil)
             let builder = session.associatedWorkoutBuilder()
             session.delegate = self
             builder.delegate = self
@@ -132,6 +152,7 @@ final class WorkoutManager: NSObject {
                 routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
                 locationManager.startUpdatingLocation()
             }
+            startTicker()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -152,6 +173,7 @@ final class WorkoutManager: NSObject {
     func markLap() {
         guard tracker.markLap(at: .now) != nil else { return }
         WKInterfaceDevice.current().play(.click)
+        handleCues()
     }
 
     /// Termina la carrera. `save == false` la descarta sin escribir en Apple Health.
@@ -171,8 +193,16 @@ final class WorkoutManager: NSObject {
         reset()
     }
 
-    private func reset() {
-        tracker = RunSessionTracker()
+    private func reset(plan: IntervalPlan? = nil) {
+        let settings = RunSettingsStore.shared.settings
+        tracker = RunSessionTracker(settings: settings, plan: plan)
+        self.plan = plan
+        screens = settings.validScreens
+        routeCoordinates = []
+        lastRoutePoint = nil
+        banner = nil
+        ticker?.cancel()
+        ticker = nil
         outcome = nil
         errorMessage = nil
         finalSnapshot = nil
@@ -183,6 +213,7 @@ final class WorkoutManager: NSObject {
     }
 
     private func fail(_ error: Error) {
+        ticker?.cancel()
         locationManager.stopUpdatingLocation()
         tracker.handle(.fail, at: .now)
         errorMessage = error.localizedDescription
@@ -217,6 +248,7 @@ final class WorkoutManager: NSObject {
     }
 
     private func finish(at date: Date) async {
+        ticker?.cancel()
         locationManager.stopUpdatingLocation()
         guard let builder else { return }
         do {
@@ -241,19 +273,69 @@ final class WorkoutManager: NSObject {
         }
     }
 
-    fileprivate func collected(distance: Double?, heartRate: Double?, energy: Double?, at date: Date) {
+    /// Cada segundo: pasos de intervalos por tiempo y alertas.
+    private func startTicker() {
+        ticker?.cancel()
+        ticker = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                guard let self, !Task.isCancelled else { return }
+                self.tracker.tick(at: .now)
+                self.handleCues()
+            }
+        }
+    }
+
+    /// Hápticos y aviso en pantalla para cada evento de la carrera.
+    private func handleCues() {
+        let unit = RunSettingsStore.shared.settings.unitSystem
+        for cue in tracker.consumeCues() {
+            let haptic: WKHapticType
+            let title: String
+            var detail: String?
+            switch cue {
+            case let .autoLap(lap):
+                haptic = .notification
+                title = String(localized: "Vuelta \(lap.index)")
+                detail = lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
+            case let .intervalStep(progress):
+                switch progress.step.kind {
+                case .work: haptic = .start
+                case .recovery, .cooldown: haptic = .stop
+                case .warmup: haptic = .click
+                }
+                title = Bundle.main.localizedString(forKey: progress.step.kind.title, value: nil, table: nil)
+                detail = progress.step.repetition.map { "\($0)/\(plan?.repeats ?? $0)" }
+            case .intervalsCompleted:
+                haptic = .success
+                title = String(localized: "Intervalos completados")
+            case let .alert(alert):
+                switch alert {
+                case .paceTooFast, .heartRateAboveZone: haptic = .directionDown
+                case .paceTooSlow, .heartRateBelowZone: haptic = .directionUp
+                case .paceBackInRange, .heartRateBackInZone: haptic = .click
+                }
+                title = Bundle.main.localizedString(forKey: alert.title, value: nil, table: nil)
+            }
+            WKInterfaceDevice.current().play(haptic)
+            banner = Banner(title: title, detail: detail, date: .now)
+        }
+    }
+
+    fileprivate func collected(distance: Double?, heartRate: Double?, energy: Double?, power: Double?, at date: Date) {
         if let distance {
             tracker.updateDistance(total: distance, at: date)
         }
         if let heartRate {
-            tracker.addHeartRate(heartRate)
+            tracker.addHeartRate(heartRate, at: date)
         }
         if let energy {
             tracker.updateActiveEnergy(total: energy)
         }
-        if !tracker.consumeAutoLaps().isEmpty {
-            WKInterfaceDevice.current().play(.notification)
+        if let power {
+            tracker.updatePower(power)
         }
+        handleCues()
     }
 
     fileprivate func received(locations: [CLLocation]) {
@@ -271,8 +353,10 @@ final class WorkoutManager: NSObject {
                 reliable.append(location)
             }
         }
-        if !tracker.consumeAutoLaps().isEmpty {
-            WKInterfaceDevice.current().play(.notification)
+        handleCues()
+        for location in reliable where lastRoutePoint.map({ location.distance(from: $0) >= 10 }) ?? true {
+            routeCoordinates.append(location.coordinate)
+            lastRoutePoint = location
         }
         guard !reliable.isEmpty, let routeBuilder else { return }
         let points = reliable
@@ -306,6 +390,7 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
         var distance: Double?
         var heartRate: Double?
         var energy: Double?
+        var power: Double?
         for type in collectedTypes {
             guard let quantityType = type as? HKQuantityType, let statistics = workoutBuilder.statistics(for: quantityType) else { continue }
             switch quantityType {
@@ -315,14 +400,17 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
                 heartRate = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
             case HKQuantityType(.activeEnergyBurned):
                 energy = statistics.sumQuantity()?.doubleValue(for: .kilocalorie())
+            case HKQuantityType(.runningPower):
+                // Solo si el reloj la mide y la entrega en vivo; si no, el campo queda en "--".
+                power = statistics.mostRecentQuantity()?.doubleValue(for: .watt())
             default:
                 break
             }
         }
         let now = Date()
-        let values = (distance: distance, heartRate: heartRate, energy: energy)
+        let values = (distance: distance, heartRate: heartRate, energy: energy, power: power)
         Task { @MainActor in
-            self.collected(distance: values.distance, heartRate: values.heartRate, energy: values.energy, at: now)
+            self.collected(distance: values.distance, heartRate: values.heartRate, energy: values.energy, power: values.power, at: now)
         }
     }
 }

@@ -2,9 +2,11 @@ import HalsynCore
 import HalsynDesign
 import SwiftUI
 
-/// SPRING en el reloj: iniciar una carrera con un toque.
+/// SPRING en el reloj: iniciar una carrera con un toque. Los planes de
+/// intervalos, pantallas, zonas y alertas se editan en el iPhone y llegan solos.
 struct WatchSpringView: View {
     @Environment(WorkoutManager.self) private var workout
+    private var settings: RunSettings { RunSettingsStore.shared.settings }
 
     var body: some View {
         List {
@@ -22,18 +24,42 @@ struct WatchSpringView: View {
             }
 
             Section {
-                NavigationLink {
-                    WatchWorkoutPreview(profile: .intervals)
-                } label: {
-                    Label("Intervalos", systemImage: "repeat")
+                ForEach(settings.intervalPlans) { plan in
+                    Button {
+                        Task { await workout.start(indoor: false, plan: plan) }
+                    } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Label {
+                                Text(verbatim: plan.name)
+                            } icon: {
+                                Image(systemName: "repeat")
+                            }
+                            Text(verbatim: IntervalPlanFormatter.summary(plan, unit: settings.unitSystem))
+                                .font(.caption2)
+                                .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                        }
+                    }
                 }
-                NavigationLink {
-                    WatchWorkoutPreview(profile: .race)
-                } label: {
-                    Label("Competición", systemImage: "flag.checkered")
-                }
+            } header: {
+                Text("Intervalos")
             } footer: {
-                Text("Intervalos y competición llegan en la Fase 5 (vista previa).")
+                Text("Edita planes, pantallas, zonas y alertas en el iPhone: SPRING › Ajustes de carrera.")
+            }
+
+            Section {
+                ForEach(settings.validScreens) { profile in
+                    NavigationLink {
+                        WatchWorkoutPreview(profile: profile)
+                    } label: {
+                        Label {
+                            Text(verbatim: profile.name)
+                        } icon: {
+                            Image(systemName: "rectangle.grid.1x2")
+                        }
+                    }
+                }
+            } header: {
+                Text("Pantallas")
             }
         }
         .navigationTitle(Text(verbatim: HalsynModule.spring.brandName))
@@ -46,7 +72,7 @@ struct WatchWorkoutPreview: View {
     private let sample = DemoWorkoutSample()
 
     var body: some View {
-        HalsynWorkoutScreen(profile: profile) { sample.value(for: $0) }
+        HalsynWorkoutScreen(profile: profile) { sample.value(for: $0, unit: RunSettingsStore.shared.settings.unitSystem) }
             .padding(.horizontal, 4)
             .background(Color.black.ignoresSafeArea())
             .navigationTitle(Text(verbatim: profile.name))
