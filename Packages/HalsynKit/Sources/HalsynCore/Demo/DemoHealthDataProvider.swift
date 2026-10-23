@@ -220,6 +220,7 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         // Peso con una oscilación lenta (±0,8 kg en unos meses) y ruido diario realista.
         case .bodyMass: return ((74.5 + 0.8 * sin(Double(dayNumber(day)) / 45) + 0.3 * noise) * 10).rounded() / 10
         case .bodyFatPercentage: return ((0.182 + 0.006 * sin(Double(dayNumber(day)) / 45) + 0.004 * noise) * 1000).rounded() / 1000
+        case .wristTemperature: return ((36.1 + 0.12 * noise) * 100).rounded() / 100
         case .leanBodyMass: return ((value(.bodyMass, on: day) * (1 - value(.bodyFatPercentage, on: day))) * 10).rounded() / 10
         }
     }

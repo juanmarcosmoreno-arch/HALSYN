@@ -83,6 +83,7 @@ struct ProfileView: View {
                     }
                 }
 
+                MorningReadinessSection()
                 NightlySummarySection()
 
                 Section("Preferencias") {
@@ -258,4 +259,48 @@ extension Bundle {
 #Preview {
     ProfileView()
         .environment(AppModel())
+}
+
+/// Aviso por la mañana con la sugerencia del día.
+private struct MorningReadinessSection: View {
+    @AppStorage(AppPreferences.morningReadinessEnabledKey) private var enabled = false
+    @AppStorage(AppPreferences.morningReadinessTimeKey) private var minutes = AppPreferences.defaultMorningReadinessMinutes
+    @State private var notificationsDenied = false
+
+    private var time: Binding<Date> {
+        Binding {
+            Calendar.current.date(bySettingHour: minutes / 60, minute: minutes % 60, second: 0, of: .now) ?? .now
+        } set: { date in
+            let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+            minutes = (components.hour ?? 7) * 60 + (components.minute ?? 30)
+        }
+    }
+
+    var body: some View {
+        Section {
+            Toggle("Aviso por la mañana", isOn: $enabled)
+            if enabled {
+                DatePicker("Hora", selection: time, displayedComponents: .hourAndMinute)
+            }
+            if notificationsDenied {
+                HalsynStatusIndicator(.caution, text: "Las notificaciones están desactivadas para HÅLSYN en Ajustes.")
+            }
+        } header: {
+            Text("Preparación del día")
+        } footer: {
+            Text("Te avisa para mirar qué tipo de entreno encaja hoy según tu recuperación. La notificación no incluye datos de salud.")
+        }
+        .onChange(of: enabled) { _, _ in Task { await apply() } }
+        .onChange(of: minutes) { _, _ in Task { await apply() } }
+    }
+
+    private func apply() async {
+        guard enabled else {
+            MorningReadinessNotifications.cancel()
+            return
+        }
+        let scheduled = await MorningReadinessNotifications.schedule(minutesAfterMidnight: minutes)
+        notificationsDenied = !scheduled
+        if !scheduled { enabled = false }
+    }
 }

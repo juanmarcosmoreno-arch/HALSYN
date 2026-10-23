@@ -18,6 +18,8 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
     case bodyMass
     case bodyFatPercentage
     case leanBodyMass
+    /// Temperatura de muñeca durante el sueño (Apple Watch Series 8 o posterior).
+    case wristTemperature
 
     public var id: String { rawValue }
 
@@ -37,6 +39,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyMass: "Peso"
         case .bodyFatPercentage: "Grasa corporal"
         case .leanBodyMass: "Masa magra"
+        case .wristTemperature: "Temperatura de muñeca"
         }
     }
 
@@ -56,6 +59,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyMass: "Peso"
         case .bodyFatPercentage: "Grasa"
         case .leanBodyMass: "Masa magra"
+        case .wristTemperature: "Temp."
         }
     }
 
@@ -87,6 +91,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .sleepDuration: .hours
         case .bodyMass, .leanBodyMass: .kilograms
         case .bodyFatPercentage: .percent
+        case .wristTemperature: .celsius
         }
     }
 
@@ -94,7 +99,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
     public var dailyAggregation: DailyAggregation {
         switch self {
         case .steps, .walkingRunningDistance, .activeEnergy, .exerciseTime, .sleepDuration: .sum
-        case .heartRate, .heartRateVariability, .respiratoryRate, .oxygenSaturation: .average
+        case .heartRate, .heartRateVariability, .respiratoryRate, .oxygenSaturation, .wristTemperature: .average
         case .restingHeartRate, .vo2Max, .bodyMass, .bodyFatPercentage, .leanBodyMass: .latest
         }
     }
@@ -125,6 +130,7 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         case .bodyMass: "scalemass"
         case .bodyFatPercentage: "percent"
         case .leanBodyMass: "figure.strengthtraining.traditional"
+        case .wristTemperature: "thermometer.medium"
         }
     }
 }
@@ -147,6 +153,7 @@ public enum MetricUnit: String, Codable, Sendable {
     case minutes
     case hours
     case kilograms
+    case celsius
 
     public var symbol: String {
         switch self {
@@ -161,6 +168,7 @@ public enum MetricUnit: String, Codable, Sendable {
         case .minutes: "min"
         case .hours: "h"
         case .kilograms: "kg"
+        case .celsius: "°C"
         }
     }
 }

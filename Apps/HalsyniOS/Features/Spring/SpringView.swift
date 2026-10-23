@@ -10,6 +10,7 @@ struct SpringView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var workouts: [WorkoutSummary]?
+    @State private var predictions: [RacePrediction] = []
     @State private var showsStartInfo = false
     private var runSettings: RunSettings { RunSettingsStore.shared.settings }
 
@@ -22,6 +23,7 @@ struct SpringView: View {
                 settingsCard
                 if let workouts {
                     weeklySummary(workouts)
+                    RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
                     history(workouts)
                 } else {
                     HalsynLoadingState()
@@ -32,7 +34,9 @@ struct SpringView: View {
                 WorkoutDetailView(workout: workout)
             }
             .task(id: model.reloadKey) {
-                workouts = await model.provider.recentWorkouts(limit: 20)
+                let recent = await model.provider.recentWorkouts(limit: 60)
+                workouts = Array(recent.prefix(20))
+                predictions = RacePredictor.predictions(from: recent, endingOn: .now, calendar: .current)
             }
             .sheet(isPresented: $showsStartInfo) {
                 StartRunInfoSheet()

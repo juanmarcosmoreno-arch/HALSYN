@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3971E7F6E6318AF74A495 /* ProfileView.swift */; };
+		0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D2E538F9012576AB97BCA /* RacePredictionCard.swift */; };
 		04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D02F9B2FC365CA043BC585 /* HalsynApp.swift */; };
 		097B08A01D304919CB7C3D8A /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */; };
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
 		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
 		14E49DFE91A16EA2F031ECE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */; };
+		190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */; };
 		1CD55B8B71C60F19D7BC6224 /* intro-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */; };
 		223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6683A16BF5216CF3290D7F7A /* SpringView.swift */; };
 		230640766D8EE53D010BF610 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F54E426C64C6E2183DE8 /* RootTabView.swift */; };
@@ -177,6 +179,7 @@
 		6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		64A6208785D9C37B5AAD2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6683A16BF5216CF3290D7F7A /* SpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringView.swift; sourceTree = "<group>"; };
+		689D2E538F9012576AB97BCA /* RacePredictionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacePredictionCard.swift; sourceTree = "<group>"; };
 		69D02F9B2FC365CA043BC585 /* HalsynApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynApp.swift; sourceTree = "<group>"; };
 		6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
 		99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
+		9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGuidanceCard.swift; sourceTree = "<group>"; };
 		9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceComparison.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 		2AE58940C381D97F1B0FB11D /* Spring */ = {
 			isa = PBXGroup;
 			children = (
+				689D2E538F9012576AB97BCA /* RacePredictionCard.swift */,
 				B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
 				6683A16BF5216CF3290D7F7A /* SpringView.swift */,
@@ -565,6 +570,7 @@
 				79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */,
 				14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */,
 				71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */,
+				9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */,
 			);
 			path = Halsa;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 				ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */,
 				865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */,
 				0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */,
+				0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */,
 				52AEB8C0146C419F0A048B2A /* ReferenceComparison.swift in Sources */,
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
@@ -883,6 +890,7 @@
 				D62F77788E6DC657EAA6F730 /* ScoreTexts.swift in Sources */,
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
 				223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */,
+				190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */,
 				9567A32313BE792ACA298B1F /* VilaView.swift in Sources */,
 				E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */,
 				CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */,
@@ -1014,7 +1022,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1199,7 +1207,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

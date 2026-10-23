@@ -104,6 +104,7 @@ struct MetricDetailView: View {
         case .walkingRunningDistance: HalsynFormat.decimal(value, fractionDigits: 2)
         case .sleepDuration: sleepText(value * 3600)
         case .respiratoryRate, .vo2Max, .bodyMass, .leanBodyMass, .bodyFatPercentage: HalsynFormat.decimal(value, fractionDigits: 1)
+        case .wristTemperature: HalsynFormat.decimal(value, fractionDigits: 2)
         default: HalsynFormat.integer(value)
         }
     }
@@ -115,6 +116,7 @@ struct MetricDetailView: View {
             case .walkingRunningDistance: DailyValue(day: item.day, value: item.value / unitSystem.metersPerDistanceUnit)
             case .oxygenSaturation, .bodyFatPercentage: DailyValue(day: item.day, value: item.value * 100)
             case .bodyMass, .leanBodyMass: DailyValue(day: item.day, value: item.value / unitSystem.kilogramsPerMassUnit)
+            case .wristTemperature where unitSystem == .imperial: DailyValue(day: item.day, value: item.value * 9 / 5 + 32)
             default: item
             }
         }
@@ -153,6 +155,8 @@ enum MetricExplanation {
             "Estimación de la balanza por bioimpedancia. Varía con la hidratación y la hora; compárala siempre en las mismas condiciones (por ejemplo, al levantarte)."
         case .leanBodyMass:
             "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia."
+        case .wristTemperature:
+            "Temperatura de la piel de la muñeca mientras duermes (Apple Watch Series 8 o posterior). No es la temperatura corporal: lo útil es cuánto se aparta de tu rango habitual."
         }
     }
 }

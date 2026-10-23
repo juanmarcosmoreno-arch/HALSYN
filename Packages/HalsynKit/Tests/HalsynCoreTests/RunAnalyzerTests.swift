@@ -74,3 +74,31 @@ struct RunAnalyzerTests {
         #expect(RunAnalyzer.compare(current, with: [run(km: 10, minutes: 52, hr: nil, daysAgo: 2), run(km: 5, minutes: 25, hr: nil, daysAgo: 4)]) == nil)
     }
 }
+
+@Suite("SPRING · predicción de carrera")
+struct RacePredictorTests {
+    @Test func riegelFormula() {
+        // 5 km en 25:00 → 10 km ≈ 52:07.
+        let tenK = RacePredictor.riegel(time: 1500, from: 5000, to: 10000)
+        #expect(abs(tenK - 3127) < 2)
+    }
+
+    @Test func usesBestRecentEfforts() throws {
+        let calendar = Calendar(identifier: .gregorian)
+        let runs = [run(km: 5, minutes: 25, hr: nil, daysAgo: 3), run(km: 10, minutes: 55, hr: nil, daysAgo: 6), run(km: 8, minutes: 44, hr: nil, daysAgo: 9),
+                    run(km: 12, minutes: 70, hr: nil, daysAgo: 12), run(km: 2, minutes: 8, hr: nil, daysAgo: 2), run(km: 10, minutes: 40, hr: nil, daysAgo: 120)]
+        let predictions = RacePredictor.predictions(from: runs, endingOn: start, calendar: calendar)
+        #expect(predictions.count == 4)
+        let tenK = try #require(predictions.first { $0.distance == .tenK })
+        // La de 2 km (corta) y la de hace 120 días no cuentan: 4 carreras.
+        #expect(tenK.basedOn == 4)
+        #expect(tenK.fastest < tenK.time && tenK.time < tenK.slowest)
+        #expect(!tenK.isLongExtrapolation)
+        #expect(try #require(predictions.first { $0.distance == .marathon }).isLongExtrapolation)
+    }
+
+    @Test func needsThreeRuns() {
+        let runs = [run(km: 5, minutes: 25, hr: nil, daysAgo: 3), run(km: 10, minutes: 55, hr: nil, daysAgo: 6)]
+        #expect(RacePredictor.predictions(from: runs, endingOn: start, calendar: Calendar(identifier: .gregorian)).isEmpty)
+    }
+}

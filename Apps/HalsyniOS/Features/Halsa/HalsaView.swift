@@ -63,6 +63,7 @@ struct HalsaView: View {
                 header
                 if let snapshot {
                     scoreCard(snapshot)
+                    TodayGuidanceCard()
                     summaryCard(snapshot)
                     if !model.isDemo && snapshot.metrics.contains(where: { $0.value == nil }) {
                         HealthAccessHint()

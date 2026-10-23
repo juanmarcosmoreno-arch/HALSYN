@@ -58,6 +58,8 @@ final class ChartSnapshotTests: XCTestCase {
                 views.append(("16-carrera-comparacion", AnyView(SimilarRunsCard(comparison: comparison, unitSystem: .metric))))
             }
         }
+        let predictions = RacePredictor.predictions(from: await provider.recentWorkouts(limit: 60), endingOn: today, calendar: .current)
+        views.append(("18-prediccion", AnyView(RacePredictionCard(predictions: predictions, unitSystem: .metric))))
         // Diario de hábitos de ejemplo.
         let habits = await provider.habitReport(journal: DemoHabitJournal.make(endingOn: today, calendar: .current), endingOn: today, calendar: .current)
         if let impact = habits.impacts.first {

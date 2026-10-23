@@ -149,4 +149,7 @@ enum AppPreferences {
     /// Minutos desde medianoche (por defecto, 21:30).
     static let nightlySummaryTimeKey = "halsyn.nightlySummary.minutes"
     static let defaultNightlySummaryMinutes = 21 * 60 + 30
+    static let morningReadinessEnabledKey = "halsyn.morningReadiness.enabled"
+    static let morningReadinessTimeKey = "halsyn.morningReadiness.minutes"
+    static let defaultMorningReadinessMinutes = 7 * 60 + 30
 }

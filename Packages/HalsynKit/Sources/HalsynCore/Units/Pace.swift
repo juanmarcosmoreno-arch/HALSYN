@@ -146,6 +146,8 @@ public enum HalsynFormat {
             return decimal(value / unit.kilogramsPerMassUnit, fractionDigits: 1, locale: locale)
         case .bodyFatPercentage:
             return decimal(value * 100, fractionDigits: 1, locale: locale)
+        case .wristTemperature:
+            return decimal(unit == .imperial ? value * 9 / 5 + 32 : value, fractionDigits: 2, locale: locale)
         }
     }
 
@@ -155,6 +157,7 @@ public enum HalsynFormat {
         switch kind {
         case .walkingRunningDistance: unit.distanceUnitSymbol
         case .bodyMass, .leanBodyMass: unit.massUnitSymbol
+        case .wristTemperature: unit == .imperial ? "°F" : "°C"
         default: kind.unit.symbol
         }
     }
