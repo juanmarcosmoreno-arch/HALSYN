@@ -50,7 +50,7 @@ public enum UnitSystem: String, CaseIterable, Codable, Identifiable, Sendable {
 ///
 /// El cálculo de ritmo instantáneo y suavizado a partir de GPS llega en la
 /// Fase 4 (`RUNNING_ENGINE.md`); este tipo solo representa y formatea el valor.
-public struct Pace: Hashable, Comparable, Sendable {
+public struct Pace: Hashable, Comparable, Codable, Sendable {
     public let secondsPerKilometer: Double
 
     /// Distancia mínima para calcular un ritmo medio con sentido.
