@@ -27,6 +27,7 @@ final class ChartSnapshotTests: XCTestCase {
         let report = await provider.computeInsights(endingOn: today, calendar: .current, origin: .demo)
 
         var views: [(String, AnyView)] = [
+            ("00-marca", AnyView(HalsynCard { HStack(spacing: 24) { HalsynLogo(.vertical, height: 120); HalsynSymbol().frame(height: 60); HalsynLogo(.compact, height: 28) } })),
             ("00-anillos", AnyView(HalsynCard { HStack(spacing: 24) { HalsynScoreRing(score: 82, caption: "Bien").frame(width: 150); HalsynScoreRing(score: 37, lineWidth: 8).frame(width: 90) } })),
             ("01-recuperacion", AnyView(RecoveryCard(estimate: recovery.last, history: recovery))),
             ("02-anoche", AnyView(LastNightCard(night: night, targetHours: 8))),

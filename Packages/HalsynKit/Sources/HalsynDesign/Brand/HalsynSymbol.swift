@@ -1,6 +1,9 @@
 #if canImport(SwiftUI)
 import HalsynCore
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Geometría vectorial del símbolo Å-persona.
 ///
@@ -77,7 +80,51 @@ public struct HalsynSymbol: View {
         self.style = style
     }
 
+    /// Nombre del recurso del símbolo en el catálogo de la app (iPhone: variante
+    /// clara y oscura; reloj: oscura). Extraído en alta resolución de la
+    /// animación de apertura de la marca.
+    public static let assetName = "HalsynMark"
+    /// Proporción del símbolo del catálogo (ancho / alto).
+    public static let markAspectRatio: CGFloat = 300.0 / 366.0
+
     public var body: some View {
+        if Self.hasMarkAsset {
+            mark
+        } else {
+            legacy
+        }
+    }
+
+    private static var hasMarkAsset: Bool {
+        #if canImport(UIKit)
+        UIImage(named: assetName) != nil
+        #else
+        false
+        #endif
+    }
+
+    @ViewBuilder
+    private var mark: some View {
+        switch style {
+        case .color:
+            Image(Self.assetName)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFit()
+                .accessibilityLabel(Text(verbatim: HalsynBrand.name))
+        case .monochrome(let ink):
+            Image(Self.assetName)
+                .renderingMode(.template)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFit()
+                .foregroundStyle(ink)
+                .accessibilityLabel(Text(verbatim: HalsynBrand.name))
+        }
+    }
+
+    /// Dibujo vectorial anterior (solo si la app no incluye el recurso, p. ej. en previsualizaciones del paquete).
+    private var legacy: some View {
         Canvas { context, size in
             let box = HalsynSymbolGeometry.viewBox
             let scale = min(size.width / box.width, size.height / box.height)
