@@ -123,8 +123,11 @@ struct RunSettingsView: View {
             } label: {
                 Label("Vuelta automática", systemImage: "flag")
             }
+            Toggle(isOn: runSetting(\.isVoiceEnabled)) {
+                Label("Avisos de voz", systemImage: "speaker.wave.2")
+            }
         } footer: {
-            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento.")
+            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz, el reloj dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas, por los auriculares o por su altavoz.")
         }
     }
 

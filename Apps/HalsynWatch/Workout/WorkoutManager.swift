@@ -297,11 +297,18 @@ final class WorkoutManager: NSObject {
             let haptic: WKHapticType
             let title: String
             var detail: String?
+            var spoken: String?
             switch cue {
             case let .autoLap(lap):
                 haptic = .notification
                 title = String(localized: "Vuelta \(lap.index)")
                 detail = lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
+                // Con vuelta automática por unidad se dice "Kilómetro n"; si no, "Vuelta n".
+                if RunSettingsStore.shared.settings.autoLapDistance == unit.metersPerDistanceUnit {
+                    spoken = VoiceCoach.lap(number: lap.index, pace: lap.pace, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
+                } else {
+                    spoken = [title, lap.pace.map { String(localized: "Ritmo \(VoiceCoach.spoken($0, unit: unit))") }].compactMap { $0 }.joined(separator: ". ")
+                }
             case let .intervalStep(progress):
                 switch progress.step.kind {
                 case .work: haptic = .start
@@ -310,9 +317,16 @@ final class WorkoutManager: NSObject {
                 }
                 title = Bundle.main.localizedString(forKey: progress.step.kind.title, value: nil, table: nil)
                 detail = progress.step.repetition.map { "\($0)/\(plan?.repeats ?? $0)" }
+                if progress.step.kind == .work, let repetition = progress.step.repetition {
+                    let total = plan?.repeats ?? repetition
+                    spoken = String(localized: "Serie \(repetition) de \(total). ¡Vamos!")
+                } else {
+                    spoken = title
+                }
             case .intervalsCompleted:
                 haptic = .success
                 title = String(localized: "Intervalos completados")
+                spoken = title
             case let .alert(alert):
                 switch alert {
                 case .paceTooFast, .heartRateAboveZone: haptic = .directionDown
@@ -320,8 +334,10 @@ final class WorkoutManager: NSObject {
                 case .paceBackInRange, .heartRateBackInZone: haptic = .click
                 }
                 title = Bundle.main.localizedString(forKey: alert.title, value: nil, table: nil)
+                spoken = title
             }
             WKInterfaceDevice.current().play(haptic)
+            if let spoken { VoiceCoach.shared.say(spoken) }
             banner = Banner(title: title, detail: detail, date: .now)
         }
     }

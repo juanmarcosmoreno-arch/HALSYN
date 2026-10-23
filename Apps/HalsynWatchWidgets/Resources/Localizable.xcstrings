@@ -1167,6 +1167,59 @@
         }
       }
     },
+    "%lld minutos %lld segundos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutes %lld seconds"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutos %lld segundos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutes %lld secondes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minuti %lld secondi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minuter %lld sekunder"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minutter %lld sekunder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分 %lld 秒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld मिनट %lld सेकंड"
+          }
+        }
+      }
+    },
     "%lld planes de intervalos": {
       "extractionState": "manual",
       "localizations": {
@@ -3866,6 +3919,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सुबह का रिमाइंडर"
+          }
+        }
+      }
+    },
+    "Avisos de voz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice feedback"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisos de voz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annonces vocales"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvisi vocali"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Röstfeedback"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stemmefeedback"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "语音提示"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवाज़ में सूचनाएँ"
           }
         }
       }
@@ -12880,55 +12986,55 @@
         }
       }
     },
-    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento.": {
+    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz, el reloj dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas, por los auriculares o por su altavoz.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The watch's Lap button marks manual laps at any time."
+            "value": "The Lap button on the watch marks manual laps at any time. With voice feedback, the watch announces each lap with its pace and heart rate, each rep and recovery, and alerts, through your headphones or its speaker."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O botão Volta do relógio marca voltas manuais a qualquer momento."
+            "value": "O botão Volta do relógio marca voltas manuais a qualquer momento. Com os avisos de voz, o relógio fala cada volta com ritmo e frequência cardíaca, cada série e recuperação e os alertas, pelos fones ou pelo alto-falante."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le bouton Tour de la montre marque des tours manuels à tout moment."
+            "value": "Le bouton Tour de la montre marque des tours manuels à tout moment. Avec les annonces vocales, la montre annonce chaque tour avec l’allure et la fréquence cardiaque, chaque fraction et récupération, et les alertes, dans tes écouteurs ou par son haut-parleur."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il pulsante Giro dell’orologio segna giri manuali in qualsiasi momento."
+            "value": "Il pulsante Giro dell’orologio segna giri manuali in qualsiasi momento. Con gli avvisi vocali, l’orologio annuncia ogni giro con ritmo e frequenza cardiaca, ogni ripetuta e recupero e gli avvisi, negli auricolari o dall’altoparlante."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klockans Varv-knapp markerar manuella varv när som helst."
+            "value": "Varv-knappen på klockan markerar manuella varv när som helst. Med röstfeedback säger klockan varje varv med tempo och puls, varje intervall och vila samt larm, i hörlurarna eller i högtalaren."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Urets Omgang-knap markerer manuelle omgange når som helst."
+            "value": "Omgang-knappen på uret markerer manuelle omgange når som helst. Med stemmefeedback siger uret hver omgang med tempo og puls, hvert interval og pause samt advarsler, i høretelefonerne eller højttaleren."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "随时按手表上的“分段”按钮即可手动分段。"
+            "value": "手表上的“计圈”按钮随时可以手动计圈。开启语音提示后，手表会通过耳机或扬声器播报每圈的配速和心率、每组和恢复以及提醒。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "घड़ी का लैप बटन किसी भी समय मैन्युअल लैप मार्क करता है।"
+            "value": "घड़ी का लैप बटन कभी भी मैनुअल लैप दर्ज करता है। आवाज़ में सूचनाओं के साथ, घड़ी हेडफ़ोन या स्पीकर से हर लैप की गति और हृदय गति, हर रेप और रिकवरी, और अलर्ट बोलती है।"
           }
         }
       }
@@ -20512,6 +20618,59 @@
         }
       }
     },
+    "Kilómetro %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quilômetro %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilomètre %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chilometro %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 公里"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किलोमीटर %lld"
+          }
+        }
+      }
+    },
     "La FC en reposo del Apple Watch se calcula de otra forma (lecturas ópticas en reposo a lo largo del día).": {
       "extractionState": "manual",
       "localizations": {
@@ -23847,6 +24006,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "मेरी स्थिति"
+          }
+        }
+      }
+    },
+    "Milla %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mile %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milha %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mile %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miglio %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mile %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mil %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 英里"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मील %lld"
           }
         }
       }
@@ -30476,6 +30688,59 @@
         }
       }
     },
+    "Pulso %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate %lld"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulso %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pouls %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battito %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls %lld"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率 %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति %lld"
+          }
+        }
+      }
+    },
     "Pulso a lo largo de la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -32596,6 +32861,59 @@
         }
       }
     },
+    "Ritmo %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速 %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गति %@"
+          }
+        }
+      }
+    },
     "Ritmo a lo largo de la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -34500,6 +34818,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रेप"
+          }
+        }
+      }
+    },
+    "Serie %lld de %lld. ¡Vamos!": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rep %lld of %lld. Go!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Série %lld de %lld. Vamos!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fraction %lld sur %lld. C’est parti !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripetuta %lld di %lld. Vai!"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervall %lld av %lld. Kör!"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interval %lld af %lld. Kom så!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "第 %lld 组，共 %lld 组。加油！"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेप %lld / %lld। चलो!"
           }
         }
       }

@@ -18,6 +18,14 @@ public struct RunSettings: Hashable, Codable, Sendable {
     public var unitSystem: UnitSystem
     /// Fecha de la última edición: el reloj ignora copias más antiguas.
     public var modifiedAt: Date
+    /// Avisos de voz en el reloj. Opcional para leer ajustes guardados antes de existir.
+    public var voiceFeedback: Bool?
+
+    /// Avisos de voz activados (por defecto, sí).
+    public var isVoiceEnabled: Bool {
+        get { voiceFeedback ?? true }
+        set { voiceFeedback = newValue }
+    }
 
     public init(
         autoLapDistance: Double? = 1000,
