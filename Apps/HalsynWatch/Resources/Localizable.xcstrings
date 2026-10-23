@@ -531,6 +531,112 @@
         }
       }
     },
+    "%@ por %@ más lenta que tu mediana en esta distancia (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per %@ slower than your median for this distance (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ por %@ mais lento que sua mediana nesta distância (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ par %@ plus lente que ta médiane sur cette distance (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ al %@ più lenta della tua mediana su questa distanza (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per %@ långsammare än din median på den här distansen (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ pr. %@ langsommere end din median på denne distance (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你在此距离的中位数慢 %@/%@（中位数：%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ प्रति %@ धीमा, इस दूरी पर आपके मीडियन (%@) की तुलना में।"
+          }
+        }
+      }
+    },
+    "%@ por %@ más rápida que tu mediana en esta distancia (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per %@ faster than your median for this distance (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ por %@ mais rápido que sua mediana nesta distância (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ par %@ plus rapide que ta médiane sur cette distance (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ al %@ più veloce della tua mediana su questa distanza (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ per %@ snabbare än din median på den här distansen (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ pr. %@ hurtigere end din median på denne distance (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比你在此距离的中位数快 %@/%@（中位数：%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ प्रति %@ तेज़, इस दूरी पर आपके मीडियन (%@) की तुलना में।"
+          }
+        }
+      }
+    },
     "%@ por debajo de tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -955,6 +1061,59 @@
         }
       }
     },
+    "1.ª mitad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1st half"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1ª metade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1re moitié"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1ª metà"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1:a halvan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. halvdel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前半程"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहला आधा"
+          }
+        }
+      }
+    },
     "150 min de actividad": {
       "extractionState": "manual",
       "localizations": {
@@ -1110,6 +1269,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "180 दिन"
+          }
+        }
+      }
+    },
+    "2.ª mitad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2nd half"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2ª metade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2e moitié"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2ª metà"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2:a halvan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2. halvdel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后半程"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दूसरा आधा"
           }
         }
       }
@@ -1587,6 +1799,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी खुल रही है…"
+          }
+        }
+      }
+    },
+    "Acabaste más lento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You finished slower"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você terminou mais lento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as fini plus lentement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai finito più lento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du avslutade långsammare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sluttede langsommere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你后程变慢了"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंत में आप धीमे हो गए"
+          }
+        }
+      }
+    },
+    "Acabaste más rápido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You finished faster"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você terminou mais rápido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as fini plus vite"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai finito più veloce"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du avslutade snabbare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sluttede hurtigere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你后程提速了"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंत में आप तेज़ हो गए"
           }
         }
       }
@@ -4294,6 +4612,59 @@
         }
       }
     },
+    "Cada punto es un tramo de 200 m, sin pausas. Arriba, más rápido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each dot is a 200 m segment, excluding pauses. Higher is faster."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada ponto é um trecho de 200 m, sem pausas. Mais alto, mais rápido."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque point est un segment de 200 m, sans les pauses. Plus c’est haut, plus c’est rapide."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni punto è un tratto di 200 m, senza pause. Più in alto, più veloce."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje punkt är ett avsnitt på 200 m, utan pauser. Högre upp är snabbare."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvert punkt er et afsnit på 200 m uden pauser. Højere oppe er hurtigere."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每个点代表一段 200 m 的路段，不含暂停。越高越快。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर बिंदु 200 m का एक हिस्सा है, रुकावटों को छोड़कर। जितना ऊपर, उतना तेज़।"
+          }
+        }
+      }
+    },
     "Cada semana": {
       "extractionState": "manual",
       "localizations": {
@@ -4396,6 +4767,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कैडेंस"
+          }
+        }
+      }
+    },
+    "Calculado con la altitud del GPS; puede tener unos metros de error.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculated from GPS altitude; it may be off by a few meters."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculado com a altitude do GPS; pode ter alguns metros de erro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculé à partir de l’altitude GPS ; peut comporter quelques mètres d’erreur."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcolato con l’altitudine del GPS; può avere qualche metro di errore."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräknat utifrån GPS-höjden; kan avvika med några meter."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beregnet ud fra GPS-højden; kan afvige med nogle meter."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据 GPS 海拔计算，可能有几米误差。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS की ऊंचाई से गणना की गई; इसमें कुछ मीटर की गलती हो सकती है।"
           }
         }
       }
@@ -5778,6 +6202,59 @@
         }
       }
     },
+    "Color": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couleur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colore"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Färg"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farve"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "颜色"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रंग"
+          }
+        }
+      }
+    },
     "Colores": {
       "extractionState": "manual",
       "localizations": {
@@ -5827,6 +6304,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रंग"
+          }
+        }
+      }
+    },
+    "Compara cuánto avanzas por latido en la primera y la segunda mitad (sin los primeros %@ de calentamiento). Por debajo del 5 por ciento suele indicar que el ritmo era sostenible para tu base aeróbica; el calor, el cansancio, la falta de agua o un ritmo exigente la suben. Solo tiene sentido en carreras de ritmo continuo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compares how far you go per heartbeat in the first and second half (excluding the first %@ of warm-up). Below 5 percent usually means the pace was sustainable for your aerobic base; heat, fatigue, dehydration or a demanding pace push it up. It only makes sense for runs at a steady pace."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compara quanto você avança por batimento na primeira e na segunda metade (sem os primeiros %@ de aquecimento). Abaixo de 5 por cento, costuma indicar que o ritmo era sustentável para sua base aeróbica; calor, cansaço, falta de hidratação ou um ritmo exigente a aumentam. Só faz sentido em corridas de ritmo contínuo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compare la distance parcourue par battement entre la première et la seconde moitié (sans les %@ d’échauffement du début). Sous 5 pour cent, la dérive indique généralement que l’allure était soutenable pour ta base aérobie ; la chaleur, la fatigue, la déshydratation ou une allure exigeante l’augmentent. Elle n’a de sens que pour les courses à allure constante."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confronta quanto avanzi per battito nella prima e nella seconda metà (esclusi i primi %@ di riscaldamento). Sotto il 5 per cento di solito indica che il ritmo era sostenibile per la tua base aerobica; caldo, stanchezza, poca idratazione o un ritmo impegnativo la fanno salire. Ha senso solo nelle corse a ritmo costante."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämför hur långt du kommer per hjärtslag under första och andra halvan (utan de första %@ uppvärmning). Under 5 procent tyder oftast på att tempot var hållbart för din aeroba bas; värme, trötthet, vätskebrist eller ett krävande tempo höjer den. Det är bara meningsfullt för löppass i jämnt tempo."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammenligner, hvor langt du kommer pr. hjerteslag i første og anden halvdel (uden de første %@ opvarmning). Under 5 procent tyder som regel på, at tempoet var holdbart for din aerobe base; varme, træthed, væskemangel eller et krævende tempo øger den. Det giver kun mening for løbeture i jævnt tempo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比较前半程和后半程中每次心跳前进的距离（不计开头 %@ 的热身）。低于百分之五通常说明这个配速对你的有氧基础而言可以持续；高温、疲劳、缺水或配速过高都会使其升高。仅适用于匀速跑。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले और दूसरे आधे हिस्से में हर धड़कन पर आप कितना आगे बढ़ते हैं, इसकी तुलना करता है (शुरुआती %@ वार्म-अप को छोड़कर)। 5 प्रतिशत से कम होना आमतौर पर बताता है कि पेस आपके एरोबिक बेस के लिए टिकाऊ था; गर्मी, थकान, पानी की कमी या कठिन पेस इसे बढ़ा देते हैं। यह केवल एक जैसे लगातार पेस वाले रन में ही मायने रखता है।"
           }
         }
       }
@@ -5884,6 +6414,59 @@
         }
       }
     },
+    "Comparada con %lld carreras tuyas de distancia parecida (±25 por ciento). La eficiencia son los metros por latido: tiene en cuenta que ir más rápido cuesta más pulso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared with %lld of your runs of similar distance (±25 percent). Efficiency is meters per heartbeat: it accounts for the fact that going faster takes a higher heart rate."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparada com %lld corridas suas de distância parecida (±25 por cento). A eficiência são os metros por batimento: leva em conta que ir mais rápido exige uma frequência cardíaca mais alta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparée à %lld de tes courses de distance similaire (±25 pour cent). L’efficacité correspond aux mètres par battement : elle tient compte du fait qu’aller plus vite demande une fréquence cardiaque plus élevée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confrontata con %lld tue corse di distanza simile (±25 per cento). L’efficienza sono i metri per battito: tiene conto del fatto che andare più veloce richiede una frequenza cardiaca più alta."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med %lld av dina löppass med liknande distans (±25 procent). Effektiviteten är meter per hjärtslag: den tar hänsyn till att högre fart kräver högre puls."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammenlignet med %lld af dine løbeture med lignende distance (±25 procent). Effektiviteten er meter pr. hjerteslag: den tager højde for, at højere fart kræver højere puls."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与你 %lld 次距离相近（±百分之二十五）的跑步相比。效率指每次心跳前进的米数：它考虑到了跑得越快心率越高。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मिलती-जुलती दूरी (±25 प्रतिशत) वाले आपके %lld रन से तुलना। दक्षता का मतलब है प्रति धड़कन मीटर: इसमें यह ध्यान रखा जाता है कि तेज़ दौड़ने पर हृदय गति ज़्यादा होती है।"
+          }
+        }
+      }
+    },
     "Completa": {
       "extractionState": "manual",
       "localizations": {
@@ -5933,6 +6516,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पूरा"
+          }
+        }
+      }
+    },
+    "Con cambios de ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With pace changes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com mudanças de ritmo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec des changements d’allure"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con cambi di ritmo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med tempoväxlingar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med temposkift"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速有变化"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस में बदलाव के साथ"
           }
         }
       }
@@ -7103,6 +7739,112 @@
         }
       }
     },
+    "Cuánto avanzas con cada latido. Si sube con el tiempo a ritmos parecidos, estás más en forma.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How far you go with each heartbeat. If it rises over time at similar paces, you're getting fitter."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quanto você avança a cada batimento. Se aumentar com o tempo em ritmos parecidos, você está em melhor forma."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La distance parcourue à chaque battement. Si elle augmente avec le temps à des allures similaires, ta forme progresse."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quanto avanzi a ogni battito. Se aumenta nel tempo a ritmi simili, sei più in forma."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur långt du kommer med varje hjärtslag. Om det ökar över tid vid liknande tempo kommer du i bättre form."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvor langt du kommer med hvert hjerteslag. Hvis det stiger over tid ved lignende tempo, er du i bedre form."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次心跳能前进多远。如果在相近配速下随时间提高，说明你的状态在变好。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर धड़कन के साथ आप कितना आगे बढ़ते हैं। अगर मिलते-जुलते पेस पर यह समय के साथ बढ़ता है, तो आपकी फ़िटनेस बेहतर हो रही है।"
+          }
+        }
+      }
+    },
+    "Cómo fue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it went"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Como foi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment ça s’est passé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com’è andata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur det gick"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sådan gik det"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "表现如何"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कैसा रहा"
+          }
+        }
+      }
+    },
     "Cómo se calcula": {
       "extractionState": "manual",
       "localizations": {
@@ -7686,6 +8428,59 @@
         }
       }
     },
+    "Deriva cardíaca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardiac drift"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deriva cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dérive cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deriva cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsdrift"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsdrift"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率漂移"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्डियक ड्रिफ़्ट"
+          }
+        }
+      }
+    },
     "Desactivada": {
       "extractionState": "manual",
       "localizations": {
@@ -8212,6 +9007,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कुल चढ़ाई"
+          }
+        }
+      }
+    },
+    "Desnivel positivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elevation gain"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ganho de elevação"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dénivelé positif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dislivello positivo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stigning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stigning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "爬升"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चढ़ाई"
           }
         }
       }
@@ -9643,6 +10491,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "चलना शुरू करते ही ग्राफ़ दिखेगा"
+          }
+        }
+      }
+    },
+    "El pulso subió algo al final": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate rose a bit toward the end"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A frequência cardíaca subiu um pouco no final"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fréquence cardiaque a un peu augmenté à la fin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La frequenza cardiaca è salita un po’ alla fine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen steg något mot slutet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen steg lidt mod slutningen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后程心率略有上升"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंत में हृदय गति थोड़ी बढ़ी"
+          }
+        }
+      }
+    },
+    "El pulso subió bastante al final": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate rose quite a bit toward the end"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A frequência cardíaca subiu bastante no final"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fréquence cardiaque a nettement augmenté à la fin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La frequenza cardiaca è salita parecchio alla fine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen steg en hel del mot slutet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsen steg en del mod slutningen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "后程心率明显上升"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंत में हृदय गति काफ़ी बढ़ी"
           }
         }
       }
@@ -13300,6 +14254,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "श्वसन दर"
+          }
+        }
+      }
+    },
+    "Frente a tus carreras parecidas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared with your similar runs"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em relação às suas corridas parecidas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par rapport à tes courses similaires"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rispetto alle tue corse simili"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med dina liknande löppass"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I forhold til dine lignende løbeture"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与你相似的跑步相比"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके मिलते-जुलते रन की तुलना में"
           }
         }
       }
@@ -17491,6 +18498,112 @@
         }
       }
     },
+    "Mapa de la ruta coloreado por pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route map colored by heart rate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapa do percurso colorido por frequência cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carte du parcours colorée selon la fréquence cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mappa del percorso colorata per frequenza cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruttkarta färgad efter puls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutekort farvet efter puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按心率着色的路线地图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति के अनुसार रंगा गया रूट मैप"
+          }
+        }
+      }
+    },
+    "Mapa de la ruta coloreado por ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route map colored by pace"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapa do percurso colorido por ritmo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carte du parcours colorée selon l’allure"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mappa del percorso colorata per ritmo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruttkarta färgad efter tempo"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutekort farvet efter tempo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按配速着色的路线地图"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस के अनुसार रंगा गया रूट मैप"
+          }
+        }
+      }
+    },
     "Media": {
       "extractionState": "manual",
       "localizations": {
@@ -18282,6 +19395,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अंतिम लक्ष्य"
+          }
+        }
+      }
+    },
+    "Metros por latido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meters per heartbeat"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metros por batimento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mètres par battement"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metri per battito"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meter per hjärtslag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meter pr. hjerteslag"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次心跳米数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रति धड़कन मीटर"
           }
         }
       }
@@ -19081,6 +20247,59 @@
         }
       }
     },
+    "Muy regular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very consistent"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muito regular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Très régulier"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Molto regolare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mycket jämnt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meget jævnt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非常稳定"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बहुत एकसमान"
+          }
+        }
+      }
+    },
     "Muy suave": {
       "extractionState": "manual",
       "localizations": {
@@ -19240,6 +20459,59 @@
         }
       }
     },
+    "Más lento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slower"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais lento"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus lent"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più lento"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Långsammare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsommere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较慢"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "धीमा"
+          }
+        }
+      }
+    },
     "Más lento que": {
       "extractionState": "manual",
       "localizations": {
@@ -19395,6 +20667,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "एक दिन में सबसे ज़्यादा कदम"
+          }
+        }
+      }
+    },
+    "Más rápido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faster"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais rápido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus rapide"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più veloce"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较快"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तेज़"
           }
         }
       }
@@ -23374,6 +24699,59 @@
         }
       }
     },
+    "Primera y segunda mitad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First and second half"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primeira e segunda metade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première et seconde moitié"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima e seconda metà"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Första och andra halvan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Første og anden halvdel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前半程与后半程"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहला और दूसरा आधा"
+          }
+        }
+      }
+    },
     "Privacidad": {
       "extractionState": "manual",
       "localizations": {
@@ -23586,6 +24964,112 @@
         }
       }
     },
+    "Puesto por eficiencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rank by efficiency"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posição por eficiência"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Classement par efficacité"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posizione per efficienza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placering efter effektivitet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placering efter effektivitet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "效率排名"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दक्षता के आधार पर रैंक"
+          }
+        }
+      }
+    },
+    "Puesto por ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rank by pace"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posição por ritmo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Classement par allure"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posizione per ritmo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placering efter tempo"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placering efter tempo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速排名"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस के आधार पर रैंक"
+          }
+        }
+      }
+    },
     "Pulsa Vuelta para continuar": {
       "extractionState": "manual",
       "localizations": {
@@ -23635,6 +25119,271 @@
           "stringUnit": {
             "state": "translated",
             "value": "जारी रखने के लिए लैप दबाएँ"
+          }
+        }
+      }
+    },
+    "Pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequência cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fréquence cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequenza cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय गति"
+          }
+        }
+      }
+    },
+    "Pulso a lo largo de la carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate over the run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequência cardíaca ao longo da corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fréquence cardiaque au fil de la course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequenza cardiaca durante la corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls under löppasset"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls gennem løbeturen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全程心率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरे रन में हृदय गति"
+          }
+        }
+      }
+    },
+    "Pulso estable de principio a fin": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steady heart rate from start to finish"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequência cardíaca estável do início ao fim"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fréquence cardiaque stable du début à la fin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequenza cardiaca stabile dall’inizio alla fine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabil puls från början till slut"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabil puls fra start til slut"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率自始至终保持稳定"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरू से अंत तक स्थिर हृदय गति"
+          }
+        }
+      }
+    },
+    "Pulso más alto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Higher heart rate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC mais alta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC plus élevée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC più alta"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högre puls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Højere puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率较高"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादा हृदय गति"
+          }
+        }
+      }
+    },
+    "Pulso más bajo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower heart rate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC mais baixa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC plus basse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC più bassa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägre puls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lavere puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心率较低"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कम हृदय गति"
           }
         }
       }
@@ -24752,6 +26501,112 @@
         }
       }
     },
+    "Regular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistent"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régulier"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regolare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämnt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jævnt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稳定"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एकसमान"
+          }
+        }
+      }
+    },
+    "Regularidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistency"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regularidade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régularité"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regolarità"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämnhet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jævnhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稳定性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एकसमानता"
+          }
+        }
+      }
+    },
     "Repeticiones": {
       "extractionState": "manual",
       "localizations": {
@@ -25229,6 +27084,59 @@
         }
       }
     },
+    "Ritmo a lo largo de la carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace over the run"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo ao longo da corrida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure au fil de la course"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo durante la corsa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo under löppasset"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo gennem løbeturen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全程配速"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरे रन में पेस"
+          }
+        }
+      }
+    },
     "Ritmo actual": {
       "extractionState": "manual",
       "localizations": {
@@ -25384,6 +27292,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पेस सीमा में"
+          }
+        }
+      }
+    },
+    "Ritmo igual a tu mediana en esta distancia (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace matches your median for this distance (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo igual à sua mediana nesta distância (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure égale à ta médiane sur cette distance (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo uguale alla tua mediana su questa distanza (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo lika med din median på den här distansen (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo lig med din median på denne distance (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速与你在此距离的中位数相同（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस इस दूरी पर आपके मीडियन (%@) के बराबर।"
           }
         }
       }
@@ -25596,6 +27557,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "औसत पेस"
+          }
+        }
+      }
+    },
+    "Ritmo y pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace and heart rate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo e frequência cardíaca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allure et fréquence cardiaque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ritmo e frequenza cardiaca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo och puls"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo og puls"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配速和心率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पेस और हृदय गति"
           }
         }
       }
@@ -32062,6 +34076,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "हृदय गति परिवर्तनशीलता (HRV)"
+          }
+        }
+      }
+    },
+    "Variación del ritmo entre tramos de 200 m: %@ por ciento.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace variation between 200 m segments: %@ percent."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variação do ritmo entre trechos de 200 m: %@ por cento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variation de l’allure entre les segments de 200 m : %@ pour cent."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variazione del ritmo tra tratti di 200 m: %@ per cento."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempovariation mellan avsnitt på 200 m: %@ procent."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempovariation mellem afsnit på 200 m: %@ procent."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "200 m 路段之间的配速变化：百分之 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "200 m के हिस्सों के बीच पेस में बदलाव: %@ प्रतिशत।"
           }
         }
       }
