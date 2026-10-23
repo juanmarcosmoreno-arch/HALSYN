@@ -17,12 +17,14 @@
 
 Fase 1, ejecutado en Linux (Swift 6.3.1, x86_64): **`swift test` → 32 tests en 8 suites, todos superados** (incluye formato numérico por región).
 
-Lo que **no** se ha podido ejecutar en el entorno de desarrollo (Linux, sin Xcode):
+GitHub Actions (commit `fa77845`, runner `macos-15`): **todos los jobs en verde**:
 
-- Compilación de los targets iOS y watchOS, del design system SwiftUI y de `HalsynHealthKit`.
-- `HalsyniOSTests`.
+- `HalsynKit` en macOS: `swift build` + `swift test` (núcleo, design system y HealthKit).
+- App de Apple Watch compilada para el simulador de watchOS.
+- App de iPhone (con el reloj embebido) compilada y `HalsyniOSTests` + `HalsynCoreTests` ejecutados en un simulador de iPhone.
+- Catálogos de idiomas sincronizados con el código.
 
-Ambas cosas las ejecuta el job `apple` de `.github/workflows/ci.yml` en un runner macOS; consulta su resultado antes de dar por buena una fase.
+Los dos primeros runs fallaron por errores de compilación reales (colisión de `RGBColor` con un tipo de macOS e inferencia genérica en Swift Charts), corregidos en ese commit. Nada se ha probado aún en dispositivos físicos.
 
 ## Pendiente por fase
 

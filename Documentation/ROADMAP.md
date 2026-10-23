@@ -3,7 +3,7 @@
 | Fase | Contenido | Estado |
 |---|---|---|
 | 0 | Inspección del entorno | ✅ |
-| 1 | Fundaciones: proyecto, targets iOS/watchOS, design system, navegación, pantallas, modo demo | ✅ código · ⏳ verificación de compilación Apple en CI |
+| 1 | Fundaciones: proyecto, targets iOS/watchOS, design system, navegación, pantallas, modo demo, 9 idiomas | ✅ compila y pasa tests en CI (macOS) |
 | 2 | HealthKit real: permisos, pasos, FC, FC reposo, HRV, sueño, entrenamientos, ausencia de datos | ⏳ siguiente |
 | 3 | HÄLSA: HealthScoreEngine provisional, dashboard real, historial, explicaciones | |
 | 4 | SPRING core: sesión de entrenamiento, GPS, ritmo, distancia, FC en vivo, pausa, guardado | prioridad muy alta |
