@@ -44,6 +44,7 @@ struct SleepNightsView: View {
                     }
                 } else {
                     averagesCard(nights)
+                    SleepRegularityCard(nights: nights)
                     HalsynCard {
                         VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                             HalsynSectionHeader("Horarios · 30 días", eyebrow: HalsynLexicon.tid.rawValue)
@@ -253,5 +254,82 @@ struct NightDetailView: View {
         }
         .font(.halsynCaption)
         .accessibilityElement(children: .combine)
+    }
+}
+
+// MARK: - Regularidad
+
+/// Índice de regularidad del sueño (SRI) con su contexto en UK Biobank.
+struct SleepRegularityCard: View {
+    let nights: [SleepNight]
+
+    var body: some View {
+        let index = SleepRegularityIndex.compute(nights, calendar: .current)
+        HalsynCard {
+            VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                HalsynSectionHeader("Regularidad del sueño", eyebrow: HalsynLexicon.tid.rawValue)
+                if let index {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(verbatim: HalsynFormat.integer(index.value))
+                            .font(.system(size: 34, weight: .light, design: .rounded).monospacedDigit())
+                            .foregroundStyle(.halsynPrimaryText)
+                        Text(verbatim: "/ 100")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                        Spacer()
+                        Text(verdict(index.value))
+                            .font(.halsynCaption.weight(.semibold))
+                            .foregroundStyle(index.value < SleepRegularityIndex.studyInterquartileRange.lowerBound ? Color.halsynCaution : Color.halsynAccentText)
+                    }
+                    scale(index.value)
+                    let pairs = index.pairs
+                    Text("Probabilidad de estar dormido o despierto a la misma hora que el día anterior, de −100 a 100. Calculado con \(pairs) pares de noches seguidas.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else {
+                    Text("Hacen falta al menos 6 noches seguidas registradas.")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+                Text("En 60.977 adultos de UK Biobank, dormir con horarios regulares se asoció a un riesgo de mortalidad entre un 20 y un 48 por ciento menor que en el grupo más irregular, y predijo mejor que la duración del sueño. La mediana fue 81 y la mitad central estuvo entre 74 y 86.")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("Aquí solo cuenta el sueño nocturno (sin siestas) y el resultado varía según el método de cálculo: úsalo para ver tu evolución. Es una asociación observada, no un diagnóstico.")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+                ReferenceLinks(references: [ScienceReferences.sleepRegularityMortality, ScienceReferences.sleepRegularityIndex])
+            }
+        }
+    }
+
+    private func verdict(_ value: Double) -> LocalizedStringKey {
+        let range = SleepRegularityIndex.studyInterquartileRange
+        if value > range.upperBound { return "Más regular que la mayoría" }
+        if value >= range.lowerBound { return "En la mitad central" }
+        return "Menos regular que la mayoría"
+    }
+
+    /// Escala 0–100 con la franja central del estudio y tu valor.
+    private func scale(_ value: Double) -> some View {
+        let range = SleepRegularityIndex.studyInterquartileRange
+        return GeometryReader { proxy in
+            let width = proxy.size.width
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color.halsynHairline)
+                Capsule()
+                    .fill(Color.halsynChart.opacity(0.35))
+                    .frame(width: width * (range.upperBound - range.lowerBound) / 100)
+                    .offset(x: width * range.lowerBound / 100)
+                Circle()
+                    .fill(Color.halsynAccent)
+                    .frame(width: 12, height: 12)
+                    .offset(x: max(0, min(width - 12, width * max(0, value) / 100 - 6)))
+            }
+        }
+        .frame(height: 12)
+        .accessibilityHidden(true)
     }
 }

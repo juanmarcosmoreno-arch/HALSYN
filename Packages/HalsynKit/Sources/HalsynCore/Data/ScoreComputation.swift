@@ -10,11 +10,16 @@ extension HealthDataProviding {
     public func computeDailyScores(
         endingOn end: Date,
         days: Int,
-        engine: HealthScoreEngine = HealthScoreEngine(),
+        engine: HealthScoreEngine? = nil,
         calendar: Calendar,
         origin: DataOrigin
     ) async -> [DailyScore] {
         guard days > 0 else { return [] }
+        var resolvedEngine = engine
+        if resolvedEngine == nil {
+            resolvedEngine = HealthScoreEngine(configuration: .forAge(await profileAge(on: end, calendar: calendar)))
+        }
+        let engine = resolvedEngine ?? HealthScoreEngine()
         let lastDay = calendar.startOfDay(for: end)
         let evaluatedDays = days + 7
         let fetchDays = evaluatedDays + engine.historyDaysNeeded
@@ -43,5 +48,21 @@ extension HealthDataProviding {
                 : nil
             return DailyScore(day: day, value: value, weeklyChange: change, origin: origin, breakdown: result.breakdown)
         }
+    }
+
+    /// Edad para las referencias: la del perfil de la app o, si no, la de Salud.
+    public func profileAge(on day: Date, calendar: Calendar) async -> Int? {
+        var birthDate = ProfileDefaults.birthDate()
+        if birthDate == nil { birthDate = await userCharacteristics().birthDate }
+        return birthDate.flatMap { ReferencePercentileEngine.age(birthDate: $0, on: day, calendar: calendar) }
+    }
+}
+
+/// Datos del perfil que la app guarda en `UserDefaults` y usan los motores.
+public enum ProfileDefaults {
+    public static let birthDateKey = "halsyn.profile.birthDate"
+
+    public static func birthDate(_ defaults: UserDefaults = .standard) -> Date? {
+        (defaults.object(forKey: birthDateKey) as? Double).map(Date.init(timeIntervalSinceReferenceDate:))
     }
 }

@@ -213,6 +213,59 @@
         }
       }
     },
+    "%@ de media por noche en las últimas 2 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ average per night over the last 2 weeks."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ de média por noite nas últimas 2 semanas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ en moyenne par nuit sur les 2 dernières semaines."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ di media a notte nelle ultime 2 settimane."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ i snitt per natt de senaste 2 veckorna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ i gennemsnit pr. nat de seneste 2 uger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 2 周平均每晚 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 2 हफ़्तों में औसतन हर रात %@।"
+          }
+        }
+      }
+    },
     "%@ frente a %@": {
       "extractionState": "manual",
       "localizations": {
@@ -478,6 +531,59 @@
         }
       }
     },
+    "%@ min de ejercicio en los últimos 7 días (Apple Watch).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min of exercise in the last 7 days (Apple Watch)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min de exercício nos últimos 7 dias (Apple Watch)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min d’exercice sur les 7 derniers jours (Apple Watch)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min di esercizio negli ultimi 7 giorni (Apple Watch)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min träning de senaste 7 dagarna (Apple Watch)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ min motion de seneste 7 dage (Apple Watch)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 7 天锻炼 %@ 分钟（Apple Watch）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिनों में %@ min व्यायाम (Apple Watch)।"
+          }
+        }
+      }
+    },
     "%@ min de ejercicio en los últimos 7 días (referencia: 150)": {
       "extractionState": "manual",
       "localizations": {
@@ -527,6 +633,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 7 दिनों में %@ min व्यायाम (संदर्भ: 150)"
+          }
+        }
+      }
+    },
+    "%@ mmHg (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)।"
+          }
+        }
+      }
+    },
+    "%@ mmHg (%@). Con medicación: −20.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). With medication: −20."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). Com medicação: −20."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). Avec traitement : −20."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). Con farmaci: −20."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). Med medicin: −20."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@). Med medicin: −20."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg（%@）。服药：−20。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mmHg (%@)। दवा लेने पर: −20।"
           }
         }
       }
@@ -849,6 +1061,59 @@
         }
       }
     },
+    "%@. Humo de otros en casa: −20.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Secondhand smoke at home: −20."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Fumaça de terceiros em casa: −20."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Tabagisme passif à la maison : −20."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Fumo passivo in casa: −20."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Passiv rökning hemma: −20."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Passiv rygning i hjemmet: −20."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@。家中二手烟：−20。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@। घर में पैसिव स्मोकिंग: −20।"
+          }
+        }
+      }
+    },
     "%@: %@ %@ (habitual %@)": {
       "extractionState": "manual",
       "localizations": {
@@ -1004,6 +1269,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld वर्ष"
+          }
+        }
+      }
+    },
+    "%lld de 8 componentes con dato": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of 8 components with data"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de 8 componentes com dados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld composantes sur 8 renseignées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld componenti su 8 con dati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld av 8 komponenter har data"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld af 8 komponenter har data"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8 项指标中有 %lld 项有数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8 में से %lld घटकों का डेटा है"
+          }
+        }
+      }
+    },
+    "%lld de 8 componentes de Life's Essential 8 (American Heart Association)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of 8 Life's Essential 8 components (American Heart Association)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de 8 componentes do Life's Essential 8 (American Heart Association)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld composantes sur 8 de Life's Essential 8 (American Heart Association)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld componenti su 8 di Life's Essential 8 (American Heart Association)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld av 8 komponenter i Life's Essential 8 (American Heart Association)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld af 8 komponenter i Life's Essential 8 (American Heart Association)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 的 8 项指标中的 %lld 项（American Heart Association）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 के 8 में से %lld घटक (American Heart Association)"
           }
         }
       }
@@ -1485,6 +1856,59 @@
         }
       }
     },
+    "100 entre 7 y 9 h, la recomendación de la AASM y la SRS para adultos. Baja hasta 0 a las 4 h; dormir más de 9 h casi no resta (mínimo 70).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 between 7 and 9 h, the AASM and SRS recommendation for adults. It drops to 0 at 4 h; sleeping more than 9 h barely takes any points away (minimum 70)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 entre 7 e 9 h, a recomendação da AASM e da SRS para adultos. Cai até 0 com 4 h; dormir mais de 9 h quase não tira pontos (mínimo 70)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 entre 7 et 9 h, la recommandation de l’AASM et de la SRS pour les adultes. Descend jusqu’à 0 à 4 h ; dormir plus de 9 h ne retire presque rien (minimum 70)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 tra 7 e 9 h, la raccomandazione dell’AASM e della SRS per gli adulti. Scende fino a 0 a 4 h; dormire più di 9 h toglie pochissimo (minimo 70)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 mellan 7 och 9 h, AASM:s och SRS:s rekommendation för vuxna. Sjunker till 0 vid 4 h; att sova mer än 9 h drar nästan inte av något (minst 70)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 mellem 7 og 9 t, AASM’s og SRS’ anbefaling for voksne. Falder til 0 ved 4 t; at sove mere end 9 t trækker næsten intet fra (mindst 70)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 到 9 小时为 100 分，这是 AASM 和 SRS 对成年人的建议。到 4 小时降至 0 分；睡超过 9 小时几乎不扣分（最低 70 分）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 से 9 h के बीच 100, जो वयस्कों के लिए AASM और SRS की सिफ़ारिश है। 4 h पर यह घटकर 0 हो जाता है; 9 h से ज़्यादा सोने पर लगभग कोई अंक नहीं कटते (न्यूनतम 70)।"
+          }
+        }
+      }
+    },
     "150 min de actividad": {
       "extractionState": "manual",
       "localizations": {
@@ -1856,6 +2280,59 @@
         }
       }
     },
+    "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h o ≥10 h: 40 · 4–5 h: 20 · <4 h: 0": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h or ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h ou ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h : 100 · 9–10 h : 90 · 6–7 h : 70 · 5–6 h ou ≥10 h : 40 · 4–5 h : 20 · <4 h : 0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h o ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h eller ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 t: 100 · 9–10 t: 90 · 6–7 t: 70 · 5–6 t eller ≥10 t: 40 · 4–5 t: 20 · <4 t: 0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h：100 · 9–10 h：90 · 6–7 h：70 · 5–6 h 或 ≥10 h：40 · 4–5 h：20 · <4 h：0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h या ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        }
+      }
+    },
     "90 d": {
       "extractionState": "manual",
       "localizations": {
@@ -1905,6 +2382,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "90 दिन"
+          }
+        }
+      }
+    },
+    "<120/<80: 100 · 120–129/<80: 75 · 130–139 o 80–89: 50 · 140–159 o 90–99: 25 · ≥160 o ≥100: 0 · Con medicación: −20": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 or 80–89: 50 · 140–159 or 90–99: 25 · ≥160 or ≥100: 0 · With medication: −20"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 ou 80–89: 50 · 140–159 ou 90–99: 25 · ≥160 ou ≥100: 0 · Com medicação: −20"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80 : 100 · 120–129/<80 : 75 · 130–139 ou 80–89 : 50 · 140–159 ou 90–99 : 25 · ≥160 ou ≥100 : 0 · Avec traitement : −20"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 o 80–89: 50 · 140–159 o 90–99: 25 · ≥160 o ≥100: 0 · Con farmaci: −20"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 eller 80–89: 50 · 140–159 eller 90–99: 25 · ≥160 eller ≥100: 0 · Med medicin: −20"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 eller 80–89: 50 · 140–159 eller 90–99: 25 · ≥160 eller ≥100: 0 · Med medicin: −20"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80：100 · 120–129/<80：75 · 130–139 或 80–89：50 · 140–159 或 90–99：25 · ≥160 或 ≥100：0 · 服药：−20"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 या 80–89: 50 · 140–159 या 90–99: 25 · ≥160 या ≥100: 0 · दवा लेने पर: −20"
           }
         }
       }
@@ -2329,6 +2859,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमति नहीं दी गई"
+          }
+        }
+      }
+    },
+    "Actividad física": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Physical activity"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atividade física"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activité physique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attività fisica"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fysisk aktivitet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fysisk aktivitet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身体活动"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शारीरिक गतिविधि"
           }
         }
       }
@@ -3128,6 +3711,165 @@
         }
       }
     },
+    "Alguien fuma dentro de casa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Someone smokes inside your home"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alguém fuma dentro de casa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quelqu’un fume à l’intérieur de chez toi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qualcuno fuma in casa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Någon röker inomhus hemma"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nogen ryger indendørs derhjemme"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有人在家中室内吸烟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घर के अंदर कोई धूम्रपान करता है"
+          }
+        }
+      }
+    },
+    "Alimentación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diet"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimentação"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimentation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimentazione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kost"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kost"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮食"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आहार"
+          }
+        }
+      }
+    },
+    "Alta: 80–100 · Moderada: 50–79 · Baja: 0–49": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High: 80–100 · Moderate: 50–79 · Low: 0–49"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alta: 80–100 · Moderada: 50–79 · Baixa: 0–49"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Élevée : 80–100 · Modérée : 50–79 · Faible : 0–49"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alta: 80–100 · Moderata: 50–79 · Bassa: 0–49"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hög: 80–100 · Måttlig: 50–79 · Låg: 0–49"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Høj: 80–100 · Moderat: 50–79 · Lav: 0–49"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "高：80–100 · 中等：50–79 · 低：0–49"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उच्च: 80–100 · मध्यम: 50–79 · निम्न: 0–49"
+          }
+        }
+      }
+    },
     "Altura": {
       "extractionState": "manual",
       "localizations": {
@@ -3605,6 +4347,59 @@
         }
       }
     },
+    "Aquí solo cuenta el sueño nocturno (sin siestas) y el resultado varía según el método de cálculo: úsalo para ver tu evolución. Es una asociación observada, no un diagnóstico.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only nighttime sleep counts here (no naps), and the result varies with the calculation method: use it to track your progress. It's an observed association, not a diagnosis."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aqui só conta o sono noturno (sem cochilos) e o resultado varia conforme o método de cálculo: use-o para acompanhar sua evolução. É uma associação observada, não um diagnóstico."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seul le sommeil nocturne compte ici (sans les siestes) et le résultat varie selon la méthode de calcul : utilise-le pour suivre ton évolution. C’est une association observée, pas un diagnostic."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qui conta solo il sonno notturno (senza sonnellini) e il risultato varia in base al metodo di calcolo: usalo per seguire la tua evoluzione. È un’associazione osservata, non una diagnosi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Här räknas bara nattsömn (inga tupplurar), och resultatet varierar med beräkningsmetoden: använd det för att följa din utveckling. Det är ett observerat samband, inte en diagnos."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her tæller kun nattesøvn (ingen lure), og resultatet afhænger af beregningsmetoden: brug det til at følge din udvikling. Det er en observeret sammenhæng, ikke en diagnose."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这里只计算夜间睡眠（不含小睡），结果会因计算方法而异：用它来查看你的变化趋势。这是观察到的关联，并非诊断。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यहां केवल रात की नींद गिनी जाती है (झपकी नहीं), और नतीजा गणना के तरीके पर निर्भर करता है: इसे अपनी प्रगति देखने के लिए इस्तेमाल करें। यह एक देखा गया संबंध है, कोई निदान नहीं।"
+          }
+        }
+      }
+    },
     "Asimilación": {
       "extractionState": "manual",
       "localizations": {
@@ -4078,6 +4873,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़ोटो के साथ अपने जूते जोड़ें, HÅLSYN उनके किलोमीटर गिनेगा।"
+          }
+        }
+      }
+    },
+    "Añadir": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilføj"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जोड़ें"
           }
         }
       }
@@ -4771,6 +5619,59 @@
         }
       }
     },
+    "Aún no se calcula: la AHA usa un cuestionario validado de alimentación (MEPA) que todavía no está en la app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not calculated yet: the AHA uses a validated diet questionnaire (MEPA) that isn't in the app yet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não é calculado: a AHA usa um questionário validado de alimentação (MEPA) que ainda não está no app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore calculé : l’AHA utilise un questionnaire alimentaire validé (MEPA) qui n’est pas encore dans l’app."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ancora calcolato: l’AHA usa un questionario alimentare validato (MEPA) che non è ancora nell’app."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräknas inte än: AHA använder ett validerat kostformulär (MEPA) som inte finns i appen än."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beregnes ikke endnu: AHA bruger et valideret kostspørgeskema (MEPA), som endnu ikke er i appen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂不计算：AHA 使用经过验证的饮食问卷（MEPA），该问卷尚未加入 App。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी इसकी गणना नहीं होती: AHA एक प्रमाणित आहार प्रश्नावली (MEPA) इस्तेमाल करता है, जो अभी ऐप में नहीं है।"
+          }
+        }
+      }
+    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -4873,6 +5774,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "हटाएं"
+          }
+        }
+      }
+    },
+    "Borrar dato": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete entry"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar dado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer la donnée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina dato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort värde"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet værdi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除数据"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डेटा हटाएं"
           }
         }
       }
@@ -7103,6 +8057,112 @@
         }
       }
     },
+    "CardiovascularHealthEngine %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CardiovascularHealthEngine %@"
+          }
+        }
+      }
+    },
+    "Carga de la última semana frente a la de las últimas 4. 100 entre 0,8 y 1,3 veces lo habitual; resta si subes de golpe. Peso bajo porque este cociente es discutido como predictor de lesiones.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last week's load vs. that of the last 4. 100 between 0.8 and 1.3 times your usual; points drop if you ramp up suddenly. Low weight because this ratio is debated as an injury predictor."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carga da última semana em relação à das últimas 4. 100 entre 0,8 e 1,3 vez o habitual; tira pontos se você aumentar de repente. Peso baixo porque essa razão é questionada como preditora de lesões."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charge de la dernière semaine par rapport à celle des 4 dernières. 100 entre 0,8 et 1,3 fois l’habitude ; des points sont retirés si tu augmentes brusquement. Poids faible car ce ratio est discuté comme prédicteur de blessures."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carico dell’ultima settimana rispetto a quello delle ultime 4. 100 tra 0,8 e 1,3 volte il solito; toglie punti se aumenti di colpo. Peso basso perché questo rapporto è discusso come predittore di infortuni."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastningen den senaste veckan jämfört med de senaste 4. 100 mellan 0,8 och 1,3 gånger det vanliga; drar av om du ökar plötsligt. Låg vikt eftersom kvoten är omdiskuterad som prediktor för skador."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastningen den seneste uge sammenlignet med de seneste 4. 100 mellem 0,8 og 1,3 gange det normale; trækker fra, hvis du øger brat. Lav vægt, fordi denne ratio er omdiskuteret som forudsigelse af skader."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近一周的负荷对照过去 4 周的负荷。介于平时的 0.8 到 1.3 倍时为 100 分；骤然增加会扣分。权重较低，因为这一比值能否预测受伤尚有争议。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले हफ़्ते का लोड पिछले 4 हफ़्तों के मुकाबले। सामान्य के 0.8 से 1.3 गुना के बीच 100; अचानक बढ़ाने पर अंक कटते हैं। इसका भार कम है, क्योंकि चोट के अनुमान के लिए इस अनुपात पर बहस है।"
+          }
+        }
+      }
+    },
     "Carga reciente acorde a tu habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -7845,6 +8905,218 @@
         }
       }
     },
+    "Colesterol": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cholesterol"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterol"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cholestérol"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterolo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolesterol"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolesterol"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "胆固醇"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोलेस्ट्रॉल"
+          }
+        }
+      }
+    },
+    "Colesterol HDL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDL cholesterol"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterol HDL"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cholestérol HDL"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterolo HDL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDL-kolesterol"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDL-kolesterol"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDL 胆固醇"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HDL कोलेस्ट्रॉल"
+          }
+        }
+      }
+    },
+    "Colesterol no-HDL <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · Con medicación: −20": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL cholesterol <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · With medication: −20"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterol não HDL <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · Com medicação: −20"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cholestérol non-HDL <130 mg/dL : 100 · 130–159 : 60 · 160–189 : 40 · 190–219 : 20 · ≥220 : 0 · Avec traitement : −20"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterolo non-HDL <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · Con farmaci: −20"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL-kolesterol <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · Med medicin: −20"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL-kolesterol <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · Med medicin: −20"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非 HDL 胆固醇 <130 mg/dL：100 · 130–159：60 · 160–189：40 · 190–219：20 · ≥220：0 · 服药：−20"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नॉन-HDL कोलेस्ट्रॉल <130 mg/dL: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · दवा लेने पर: −20"
+          }
+        }
+      }
+    },
+    "Colesterol total": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total cholesterol"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterol total"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cholestérol total"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colesterolo totale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totalkolesterol"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total kolesterol"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "总胆固醇"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुल कोलेस्ट्रॉल"
+          }
+        }
+      }
+    },
     "Color": {
       "extractionState": "manual",
       "localizations": {
@@ -8216,6 +9488,59 @@
         }
       }
     },
+    "Completa tus datos para ver la puntuación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fill in your data to see the score."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complete seus dados para ver a pontuação."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complète tes données pour voir le score."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completa i tuoi dati per vedere il punteggio."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fyll i dina uppgifter för att se poängen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Udfyld dine data for at se scoren."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "补全你的数据即可查看评分。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्कोर देखने के लिए अपना डेटा पूरा करें।"
+          }
+        }
+      }
+    },
     "Con": {
       "extractionState": "manual",
       "localizations": {
@@ -8371,6 +9696,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "पेस में बदलाव के साथ"
+          }
+        }
+      }
+    },
+    "Con diabetes cuenta la HbA1c. Sin diabetes vale cualquiera de los dos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you have diabetes, HbA1c is what counts. Without diabetes, either one works."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com diabetes, conta a HbA1c. Sem diabetes, vale qualquer um dos dois."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cas de diabète, c’est l’HbA1c qui compte. Sans diabète, l’un ou l’autre convient."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con il diabete conta l’HbA1c. Senza diabete va bene uno qualsiasi dei due."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med diabetes räknas HbA1c. Utan diabetes går det bra med vilket som helst av dem."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med diabetes tæller HbA1c. Uden diabetes kan du bruge en hvilken som helst af dem."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有糖尿病时以 HbA1c 为准。没有糖尿病时两者任选其一即可。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायबिटीज़ होने पर HbA1c गिना जाता है। डायबिटीज़ न होने पर दोनों में से कोई भी चलेगा।"
+          }
+        }
+      }
+    },
+    "Con diabetes hace falta la HbA1c.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you have diabetes, HbA1c is required."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com diabetes, é preciso informar a HbA1c."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cas de diabète, l’HbA1c est nécessaire."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con il diabete serve l’HbA1c."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med diabetes behövs HbA1c."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med diabetes skal der bruges HbA1c."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有糖尿病时需要 HbA1c。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायबिटीज़ होने पर HbA1c ज़रूरी है।"
           }
         }
       }
@@ -9329,6 +10760,59 @@
         }
       }
     },
+    "Corazón": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coração"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cœur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuore"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjärta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjerte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心脏"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिल"
+          }
+        }
+      }
+    },
     "Correr 25 km": {
       "extractionState": "manual",
       "localizations": {
@@ -10014,6 +11498,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "दूरी"
+          }
+        }
+      }
+    },
+    "Dato de hace más de un año: conviene actualizarlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This value is more than a year old: consider updating it."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dado de mais de um ano atrás: é bom atualizá-lo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donnée de plus d’un an : pense à la mettre à jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dato di più di un anno fa: conviene aggiornarlo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Värdet är över ett år gammalt: uppdatera det gärna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Værdien er over et år gammel: det er en god idé at opdatere den."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据已超过一年：建议更新。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह डेटा एक साल से ज़्यादा पुराना है: इसे अपडेट करना अच्छा रहेगा।"
           }
         }
       }
@@ -11502,6 +13039,59 @@
         }
       }
     },
+    "Diastólica (mínima)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolic (lower)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastólica (mínima)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolique (min.)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolica (minima)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastoliskt (undertryck)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolisk (undertryk)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "舒张压（低压）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायस्टोलिक (निचला)"
+          }
+        }
+      }
+    },
     "Dimensiones": {
       "extractionState": "manual",
       "localizations": {
@@ -12986,6 +14576,59 @@
         }
       }
     },
+    "Editar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redigera"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "संपादित करें"
+          }
+        }
+      }
+    },
     "Editar objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -13194,6 +14837,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी का लैप बटन कभी भी मैनुअल लैप दर्ज करता है। आवाज़ में सूचनाओं के साथ, घड़ी हेडफ़ोन या स्पीकर से हर लैप की गति और हृदय गति, हर रेप और रिकवरी, और अलर्ट बोलती है।"
+          }
+        }
+      }
+    },
+    "El colesterol no-HDL es el total menos el HDL. Si tu análisis está en mmol/L, multiplica por 38,67.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL cholesterol is total minus HDL. If your lab results are in mmol/L, multiply by 38.67."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O colesterol não HDL é o total menos o HDL. Se seu exame estiver em mmol/L, multiplique por 38,67."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le cholestérol non-HDL correspond au total moins le HDL. Si ton bilan est en mmol/L, multiplie par 38,67."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il colesterolo non-HDL è il totale meno l’HDL. Se le tue analisi sono in mmol/L, moltiplica per 38,67."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL-kolesterol är totalkolesterol minus HDL. Om ditt provsvar är i mmol/L, multiplicera med 38,67."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL-kolesterol er total kolesterol minus HDL. Hvis dit prøvesvar er i mmol/L, så gang med 38,67."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非 HDL 胆固醇等于总胆固醇减去 HDL。如果你的化验单以 mmol/L 为单位，请乘以 38.67。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नॉन-HDL कोलेस्ट्रॉल, कुल कोलेस्ट्रॉल में से HDL घटाकर निकलता है। अगर आपकी जांच रिपोर्ट mmol/L में है, तो 38.67 से गुणा करें।"
           }
         }
       }
@@ -14046,6 +15742,112 @@
         }
       }
     },
+    "En 60.977 adultos de UK Biobank, dormir con horarios regulares se asoció a un riesgo de mortalidad entre un 20 y un 48 por ciento menor que en el grupo más irregular, y predijo mejor que la duración del sueño. La mediana fue 81 y la mitad central estuvo entre 74 y 86.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In 60,977 UK Biobank adults, sleeping on a regular schedule was associated with a 20 to 48 percent lower mortality risk than in the most irregular group, and it was a better predictor than sleep duration. The median was 81, and the middle half fell between 74 and 86."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em 60.977 adultos do UK Biobank, dormir com horários regulares foi associado a um risco de mortalidade entre 20 e 48 por cento menor que no grupo mais irregular, e previu melhor que a duração do sono. A mediana foi 81 e a metade central ficou entre 74 e 86."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chez 60 977 adultes de l’UK Biobank, dormir à horaires réguliers a été associé à un risque de mortalité inférieur de 20 à 48 pour cent par rapport au groupe le plus irrégulier, et s’est révélé un meilleur prédicteur que la durée du sommeil. La médiane était de 81 et la moitié centrale se situait entre 74 et 86."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In 60.977 adulti della UK Biobank, dormire con orari regolari è stato associato a un rischio di mortalità inferiore dal 20 al 48 per cento rispetto al gruppo più irregolare, e si è rivelato un predittore migliore della durata del sonno. La mediana era 81 e la metà centrale era compresa tra 74 e 86."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bland 60 977 vuxna i UK Biobank var regelbundna sovtider kopplade till en 20 till 48 procent lägre dödlighetsrisk jämfört med den mest oregelbundna gruppen, och de förutsade bättre än sömnlängden. Medianen var 81 och den mittersta hälften låg mellan 74 och 86."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blandt 60.977 voksne i UK Biobank var regelmæssige sovetider forbundet med en 20 til 48 procent lavere dødelighedsrisiko end i den mest uregelmæssige gruppe, og de forudsagde bedre end søvnens længde. Medianen var 81, og den midterste halvdel lå mellem 74 og 86."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 UK Biobank 的 60,977 名成年人中，作息规律的睡眠与更低的死亡风险相关，比最不规律的一组低百分之二十到四十八，而且比睡眠时长更具预测力。中位数为 81，中间一半人群介于 74 到 86 之间。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UK Biobank के 60,977 वयस्कों में, नियमित समय पर सोने का संबंध सबसे अनियमित समूह की तुलना में मृत्यु के 20 से 48 प्रतिशत कम जोखिम से पाया गया, और इसने नींद की अवधि से बेहतर अनुमान लगाया। माध्यिका 81 थी और बीच का आधा हिस्सा 74 से 86 के बीच था।"
+          }
+        }
+      }
+    },
+    "En HÅLSYN: la actividad usa los minutos de ejercicio del Apple Watch (la AHA cuenta doble los minutos vigorosos, así que la tuya puede estar algo infravalorada); el sueño, tu media de 2 semanas; el IMC, tu último peso y tu altura. La AHA admite dar 100 en IMC de 25 a 29,9 a personas con mucha masa muscular.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In HÅLSYN: activity uses Apple Watch exercise minutes (the AHA counts vigorous minutes double, so yours may be somewhat underestimated); sleep uses your 2-week average; BMI uses your latest weight and your height. The AHA allows a score of 100 for a BMI of 25 to 29.9 in people with a lot of muscle mass."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No HÅLSYN: a atividade usa os minutos de exercício do Apple Watch (a AHA conta em dobro os minutos vigorosos, então a sua pode estar um pouco subestimada); o sono, sua média de 2 semanas; o IMC, seu último peso e sua altura. A AHA admite dar 100 com IMC de 25 a 29,9 a pessoas com muita massa muscular."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans HÅLSYN : l’activité utilise les minutes d’exercice de l’Apple Watch (l’AHA compte double les minutes d’activité intense, la tienne peut donc être un peu sous-estimée) ; le sommeil, ta moyenne sur 2 semaines ; l’IMC, ton dernier poids et ta taille. L’AHA admet d’attribuer 100 pour un IMC de 25 à 29,9 aux personnes très musclées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In HÅLSYN: l’attività usa i minuti di esercizio dell’Apple Watch (l’AHA conta doppi i minuti vigorosi, quindi la tua potrebbe essere un po’ sottostimata); il sonno, la tua media di 2 settimane; l’IMC, il tuo ultimo peso e la tua altezza. L’AHA ammette di assegnare 100 con un IMC da 25 a 29,9 alle persone con molta massa muscolare."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I HÅLSYN: aktiviteten bygger på träningsminuter från Apple Watch (AHA räknar högintensiva minuter dubbelt, så din kan vara något underskattad); sömnen på ditt snitt för 2 veckor; BMI på din senaste vikt och din längd. AHA tillåter 100 för BMI 25 till 29,9 hos personer med mycket muskelmassa."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I HÅLSYN: aktiviteten bruger motionsminutter fra Apple Watch (AHA tæller hårde minutter dobbelt, så din kan være lidt undervurderet); søvnen dit gennemsnit for 2 uger; BMI din seneste vægt og din højde. AHA tillader at give 100 for BMI 25 til 29,9 til personer med meget muskelmasse."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 HÅLSYN 中：活动使用 Apple Watch 的锻炼分钟数（AHA 将高强度分钟数按双倍计算，因此你的得分可能略被低估）；睡眠使用你 2 周的平均值；BMI 使用你最近的体重和身高。对于肌肉量很大的人，AHA 允许在 BMI 为 25 到 29.9 时给 100 分。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN में: गतिविधि के लिए Apple Watch के व्यायाम मिनट इस्तेमाल होते हैं (AHA तेज़ गतिविधि वाले मिनटों को दोगुना गिनता है, इसलिए आपका स्कोर थोड़ा कम आंका जा सकता है); नींद के लिए आपका 2 हफ़्तों का औसत; बीएमआई के लिए आपका सबसे हालिया वज़न और आपकी लंबाई। AHA बहुत ज़्यादा मांसपेशियों वाले लोगों को 25 से 29.9 बीएमआई पर 100 देने की अनुमति देता है।"
+          }
+        }
+      }
+    },
     "En buena dirección": {
       "extractionState": "manual",
       "localizations": {
@@ -14254,6 +16056,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "घड़ी पर: SPRING › इंटरवल › आज का सेशन।"
+          }
+        }
+      }
+    },
+    "En la mitad central": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the middle half"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na metade central"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans la moitié centrale"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella metà centrale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I den mittersta hälften"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I den midterste halvdel"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "处于中间一半"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बीच के आधे हिस्से में"
           }
         }
       }
@@ -16749,6 +18604,59 @@
         }
       }
     },
+    "FC en reposo y HRV de hoy frente a tu media de las 4 semanas anteriores. Solo resta alejarte en la dirección desfavorable (FC más alta o HRV más baja) más de una desviación típica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's resting HR and HRV vs. your average over the previous 4 weeks. Points drop only if you move more than one standard deviation in the unfavorable direction (higher HR or lower HRV)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC em repouso e HRV de hoje em relação à sua média das 4 semanas anteriores. Só tira pontos se você se afastar mais de um desvio padrão na direção desfavorável (FC mais alta ou HRV mais baixa)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC au repos et HRV du jour par rapport à ta moyenne des 4 semaines précédentes. Des points ne sont retirés que si tu t’écartes de plus d’un écart type dans le sens défavorable (FC plus élevée ou HRV plus basse)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FC a riposo e HRV di oggi rispetto alla tua media delle 4 settimane precedenti. Toglie punti solo se ti allontani di più di una deviazione standard nella direzione sfavorevole (FC più alta o HRV più bassa)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens vilopuls och HRV jämfört med ditt snitt de 4 föregående veckorna. Det drar bara av om du avviker mer än en standardavvikelse åt det ogynnsamma hållet (högre puls eller lägre HRV)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens hvilepuls og HRV sammenlignet med dit gennemsnit de 4 foregående uger. Der trækkes kun fra, hvis du afviger mere end én standardafvigelse i den ugunstige retning (højere puls eller lavere HRV)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天的静息心率和 HRV 对照你之前 4 周的平均值。只有朝不利方向（心率更高或 HRV 更低）偏离超过一个标准差时才会扣分。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आज की आराम की हृदय गति और HRV, पिछले 4 हफ़्तों के आपके औसत के मुकाबले। अंक तभी कटते हैं जब आप प्रतिकूल दिशा में (ज़्यादा हृदय गति या कम HRV) एक मानक विचलन से ज़्यादा दूर जाते हैं।"
+          }
+        }
+      }
+    },
     "FC media": {
       "extractionState": "manual",
       "localizations": {
@@ -17173,6 +19081,59 @@
         }
       }
     },
+    "Faltan días con minutos de ejercicio en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some days are missing exercise minutes in Health."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam dias com minutos de exercício no Saúde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il manque des jours avec des minutes d’exercice dans Santé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mancano giorni con minuti di esercizio in Salute."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det saknas dagar med träningsminuter i Hälsa."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der mangler dage med motionsminutter i Sundhed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“健康”中缺少部分日期的锻炼分钟数。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्वास्थ्य में कुछ दिनों के व्यायाम मिनट नहीं हैं।"
+          }
+        }
+      }
+    },
     "Faltan días para conocer tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -17438,6 +19399,59 @@
         }
       }
     },
+    "Fecha": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datum"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日期"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तारीख"
+          }
+        }
+      }
+    },
     "Fecha de la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -17540,6 +19554,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "जन्मतिथि"
+          }
+        }
+      }
+    },
+    "Fecha del análisis": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test date"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data do exame"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date du bilan"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data delle analisi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provdatum"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prøvedato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "化验日期"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जांच की तारीख"
           }
         }
       }
@@ -18074,6 +20141,59 @@
         }
       }
     },
+    "Fumo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I smoke"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fumo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je fume"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fumo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag röker"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg ryger"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我吸烟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैं धूम्रपान करता/करती हूं"
+          }
+        }
+      }
+    },
     "Fórmula de Riegel con tus 3 mejores carreras recientes (de %lld). Supone que entrenas para esa distancia y vas a tope; si casi nunca corres fuerte, los tiempos reales pueden ser mejores. El rango refleja el error de la fórmula.": {
       "extractionState": "manual",
       "localizations": {
@@ -18282,6 +20402,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "जिम या स्ट्रेंथ"
+          }
+        }
+      }
+    },
+    "Glucosa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glucose"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicose"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glycémie"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicemia"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glukos"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glukose"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "血糖"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ग्लूकोज़"
+          }
+        }
+      }
+    },
+    "Glucosa en ayunas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting glucose"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicose em jejum"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glycémie à jeun"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicemia a digiuno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasteglukos"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasteglukose"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空腹血糖"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ास्टिंग ग्लूकोज़"
+          }
+        }
+      }
+    },
+    "Glucosa en ayunas %@ mg/dL (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting glucose %@ mg/dL (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicose em jejum %@ mg/dL (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glycémie à jeun %@ mg/dL (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glicemia a digiuno %@ mg/dL (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasteglukos %@ mg/dL (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasteglukose %@ mg/dL (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空腹血糖 %@ mg/dL（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ास्टिंग ग्लूकोज़ %@ mg/dL (%@)।"
           }
         }
       }
@@ -18869,6 +21148,59 @@
         }
       }
     },
+    "Hace falta tu peso en Salud y tu altura en Perfil.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need your weight in Health and your height in Profile."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "É preciso ter seu peso no Saúde e sua altura em Perfil."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut ton poids dans Santé et ta taille dans Profil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono il tuo peso in Salute e la tua altezza in Profilo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din vikt i Hälsa och din längd under Profil behövs."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din vægt i Sundhed og din højde under Profil skal være angivet."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要“健康”中的体重和“个人资料”中的身高。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्वास्थ्य में आपका वज़न और प्रोफ़ाइल में आपकी लंबाई चाहिए।"
+          }
+        }
+      }
+    },
     "Hacen falta 3 carreras de 3 km o más en los últimos 90 días para calcular tus ritmos. Sal a correr con el reloj y vuelve a intentarlo.": {
       "extractionState": "manual",
       "localizations": {
@@ -18918,6 +21250,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपकी पेस निकालने के लिए पिछले 90 दिनों में 3 किमी या उससे ज़्यादा की 3 दौड़ें चाहिए। घड़ी के साथ दौड़ने जाएं और फिर से कोशिश करें।"
+          }
+        }
+      }
+    },
+    "Hacen falta al menos 4 componentes. Escribe tus datos en los que dicen «Añadir».": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At least 4 components are needed. Enter your data in the ones that say “Add”."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "São necessários pelo menos 4 componentes. Insira seus dados nos que dizem «Adicionar»."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut au moins 4 composantes. Saisis tes données dans celles qui indiquent «Ajouter»."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono almeno 4 componenti. Inserisci i tuoi dati in quelli con «Aggiungi»."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minst 4 komponenter behövs. Fyll i dina uppgifter i dem där det står «Lägg till»."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der skal mindst være 4 komponenter. Indtast dine data i dem, hvor der står «Tilføj»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "至少需要 4 项指标。请在显示“添加”的项目中填写你的数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कम से कम 4 घटक चाहिए। जिन पर «जोड़ें» लिखा है, उनमें अपना डेटा डालें।"
+          }
+        }
+      }
+    },
+    "Hacen falta al menos 6 noches seguidas registradas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need at least 6 consecutive recorded nights."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "São necessárias pelo menos 6 noites seguidas registradas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut au moins 6 nuits consécutives enregistrées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono almeno 6 notti consecutive registrate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs minst 6 registrerade nätter i rad."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der skal være mindst 6 registrerede nætter i træk."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "至少需要连续 6 晚的记录。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कम से कम लगातार 6 रातों का रिकॉर्ड चाहिए।"
+          }
+        }
+      }
+    },
+    "Hacen falta al menos 7 noches registradas en las últimas 2 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You need at least 7 recorded nights in the last 2 weeks."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "São necessárias pelo menos 7 noites registradas nas últimas 2 semanas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il faut au moins 7 nuits enregistrées sur les 2 dernières semaines."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servono almeno 7 notti registrate nelle ultime 2 settimane."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs minst 7 registrerade nätter de senaste 2 veckorna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der skal være mindst 7 registrerede nætter de seneste 2 uger."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 2 周内至少需要 7 晚的记录。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 2 हफ़्तों में कम से कम 7 रातों का रिकॉर्ड चाहिए।"
           }
         }
       }
@@ -19130,6 +21621,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "लैप दबाने तक"
+          }
+        }
+      }
+    },
+    "HbA1c": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c"
+          }
+        }
+      }
+    },
+    "HbA1c %@ por ciento (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ percent (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ por cento (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ pour cent (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ per cento (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ procent (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ procent (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c 百分之 %@（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HbA1c %@ प्रतिशत (%@)।"
           }
         }
       }
@@ -20243,6 +22840,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "बीएमआई"
+          }
+        }
+      }
+    },
+    "IMC %@ con tu último peso y tu altura.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI %@ based on your latest weight and your height."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC %@ com seu último peso e sua altura."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC de %@ avec ton dernier poids et ta taille."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMC %@ con il tuo ultimo peso e la tua altezza."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI %@ utifrån din senaste vikt och din längd."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMI %@ ud fra din seneste vægt og din højde."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据你最近的体重和身高，BMI 为 %@。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके सबसे हालिया वज़न और लंबाई के आधार पर बीएमआई %@।"
           }
         }
       }
@@ -21678,55 +24328,55 @@
         }
       }
     },
-    "La puntuación combina cinco dimensiones con pesos provisionales. Sueño frente a la recomendación de 7–9 h; FC en reposo y HRV frente a tu propia media de las últimas 4 semanas; pasos y minutos de ejercicio de los 7 días completos anteriores; y la carga reciente frente a tu carga habitual. Estar mejor que tu media no suma puntos extra y descansar no resta.": {
+    "La puntuación combina cinco dimensiones con pesos provisionales. Estar mejor que tu media no suma puntos extra y descansar no resta.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The score combines five dimensions with provisional weights. Sleep vs. the 7–9 h recommendation; resting HR and HRV vs. your own average over the last 4 weeks; steps and exercise minutes from the previous 7 full days; and recent load vs. your usual load. Being better than your average doesn't add extra points, and resting doesn't take any away."
+            "value": "The score combines five dimensions with provisional weights. Being better than your average doesn't add extra points, and resting doesn't take any away."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "A pontuação combina cinco dimensões com pesos provisórios. Sono em relação à recomendação de 7–9 h; FC em repouso e HRV em relação à sua própria média das últimas 4 semanas; passos e minutos de exercício dos 7 dias completos anteriores; e a carga recente em relação à sua carga habitual. Estar melhor que a sua média não soma pontos extras, e descansar não tira pontos."
+            "value": "A pontuação combina cinco dimensões com pesos provisórios. Estar melhor que a sua média não soma pontos extras, e descansar não tira pontos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le score combine cinq dimensions avec des pondérations provisoires. Le sommeil par rapport à la recommandation de 7 à 9 h ; la FC au repos et la HRV par rapport à ta propre moyenne des 4 dernières semaines ; les pas et les minutes d’exercice des 7 jours complets précédents ; et la charge récente par rapport à ta charge habituelle. Faire mieux que ta moyenne n’ajoute pas de points supplémentaires, et te reposer n’en retire pas."
+            "value": "Le score combine cinq dimensions avec des pondérations provisoires. Faire mieux que ta moyenne n’ajoute pas de points supplémentaires, et te reposer n’en retire pas."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il punteggio combina cinque dimensioni con pesi provvisori. Il sonno rispetto alla raccomandazione di 7–9 h; la FC a riposo e l’HRV rispetto alla tua media delle ultime 4 settimane; passi e minuti di esercizio dei 7 giorni completi precedenti; e il carico recente rispetto al tuo carico abituale. Essere sopra la tua media non aggiunge punti extra e riposare non ne toglie."
+            "value": "Il punteggio combina cinque dimensioni con pesi provvisori. Essere sopra la tua media non aggiunge punti extra e riposare non ne toglie."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Poängen kombinerar fem dimensioner med preliminära viktningar. Sömn jämfört med rekommendationen på 7–9 h; vilopuls och HRV jämfört med ditt eget snitt de senaste 4 veckorna; steg och träningsminuter från de 7 senaste hela dagarna; och belastningen på sistone jämfört med din vanliga belastning. Att ligga bättre än ditt snitt ger inga extrapoäng, och vila drar inte av något."
+            "value": "Poängen kombinerar fem dimensioner med preliminära viktningar. Att ligga bättre än ditt snitt ger inga extrapoäng, och vila drar inte av något."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scoren kombinerer fem dimensioner med foreløbige vægtninger. Søvn i forhold til anbefalingen på 7–9 t; hvilepuls og HRV i forhold til dit eget gennemsnit for de seneste 4 uger; skridt og motionsminutter fra de 7 foregående hele dage; og den seneste belastning i forhold til din normale belastning. At ligge bedre end dit gennemsnit giver ikke ekstra point, og hvile trækker ikke fra."
+            "value": "Scoren kombinerer fem dimensioner med foreløbige vægtninger. At ligge bedre end dit gennemsnit giver ikke ekstra point, og hvile trækker ikke fra."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "评分综合了五个维度，各维度权重为临时设定。睡眠对照 7–9 小时的推荐值；静息心率和 HRV 对照你自己过去 4 周的平均值；步数和锻炼分钟数取之前完整的 7 天；近期训练负荷对照你的常规负荷。优于自身平均值不会额外加分，休息也不会扣分。"
+            "value": "评分综合了五个维度，各维度权重为临时设定。优于自身平均值不会额外加分，休息也不会扣分。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्कोर पांच आयामों को अस्थायी भार के साथ जोड़ता है। नींद की तुलना 7–9 h की सिफ़ारिश से; आराम की हृदय गति और HRV की तुलना पिछले 4 हफ़्तों के आपके अपने औसत से; पिछले 7 पूरे दिनों के कदम और व्यायाम के मिनट; और हाल के ट्रेनिंग लोड की तुलना आपके सामान्य लोड से। अपने औसत से बेहतर होने पर अतिरिक्त अंक नहीं मिलते, और आराम करने से अंक नहीं कटते।"
+            "value": "स्कोर पांच आयामों को अस्थायी भार के साथ जोड़ता है। अपने औसत से बेहतर होने पर अतिरिक्त अंक नहीं मिलते, और आराम करने से अंक नहीं कटते।"
           }
         }
       }
@@ -22151,6 +24801,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपका डेटा पढ़ा जा रहा है…"
+          }
+        }
+      }
+    },
+    "Life's Essential 8 es la medida de salud cardiovascular de la American Heart Association (2022). Cada uno de los ocho componentes vale de 0 a 100 según tablas publicadas, y la puntuación es su media simple. En estudios con cientos de miles de personas, una puntuación más alta se asocia a menos infartos, ictus y mortalidad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 is the American Heart Association's measure of cardiovascular health (2022). Each of the eight components scores from 0 to 100 according to published tables, and the score is their simple average. In studies of hundreds of thousands of people, a higher score is associated with fewer heart attacks and strokes and lower mortality."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Life's Essential 8 é a medida de saúde cardiovascular da American Heart Association (2022). Cada um dos oito componentes vale de 0 a 100 segundo tabelas publicadas, e a pontuação é a média simples deles. Em estudos com centenas de milhares de pessoas, uma pontuação mais alta está associada a menos infartos e AVCs e a menor mortalidade."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 est la mesure de la santé cardiovasculaire de l’American Heart Association (2022). Chacune des huit composantes vaut de 0 à 100 selon des tableaux publiés, et le score est leur moyenne simple. Dans des études portant sur des centaines de milliers de personnes, un score plus élevé est associé à moins d’infarctus et d’AVC et à une mortalité plus faible."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 è la misura della salute cardiovascolare dell’American Heart Association (2022). Ognuno degli otto componenti vale da 0 a 100 secondo tabelle pubblicate, e il punteggio è la loro media semplice. In studi su centinaia di migliaia di persone, un punteggio più alto è associato a meno infarti e ictus e a una mortalità più bassa."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 är American Heart Associations mått på hjärt-kärlhälsa (2022). Var och en av de åtta komponenterna ger 0 till 100 enligt publicerade tabeller, och poängen är deras enkla medelvärde. I studier med hundratusentals personer är högre poäng kopplad till färre hjärtinfarkter och stroke samt lägre dödlighet."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 er American Heart Associations mål for hjerte-kar-sundhed (2022). Hver af de otte komponenter giver 0 til 100 ifølge offentliggjorte tabeller, og scoren er deres simple gennemsnit. I studier med hundredtusindvis af personer er en højere score forbundet med færre blodpropper i hjertet og slagtilfælde samt lavere dødelighed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8 是 American Heart Association（2022）提出的心血管健康衡量标准。八项指标分别按已发表的评分表计 0 到 100 分，总评分为它们的简单平均值。在涉及数十万人的研究中，评分越高，心肌梗死、卒中和死亡的风险越低。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life's Essential 8, American Heart Association (2022) का हृदय स्वास्थ्य मापने का पैमाना है। आठों घटकों में से हर एक को प्रकाशित तालिकाओं के अनुसार 0 से 100 तक अंक मिलते हैं, और स्कोर इनका साधारण औसत है। लाखों लोगों पर हुए अध्ययनों में, ज़्यादा स्कोर का संबंध कम हार्ट अटैक, कम स्ट्रोक और कम मृत्यु दर से पाया गया है।"
           }
         }
       }
@@ -22628,6 +25331,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 7 दिनों में आपने %@ min व्यायाम किया है: आप 150 का संदर्भ पूरा कर रहे हैं।"
+          }
+        }
+      }
+    },
+    "Lo dejé hace 1 a 5 años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I quit 1 to 5 years ago"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parei há 1 a 5 anos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J’ai arrêté il y a 1 à 5 ans"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ho smesso tra 1 e 5 anni fa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag slutade för 1–5 år sedan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg stoppede for 1–5 år siden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 到 5 年前戒了"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 से 5 साल पहले छोड़ दिया"
+          }
+        }
+      }
+    },
+    "Lo dejé hace 5 años o más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I quit 5 or more years ago"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parei há 5 anos ou mais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J’ai arrêté il y a 5 ans ou plus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ho smesso 5 o più anni fa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag slutade för 5 år sedan eller mer"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg stoppede for 5 år siden eller mere"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 年或更早以前戒了"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 साल या उससे भी पहले छोड़ दिया"
+          }
+        }
+      }
+    },
+    "Lo dejé hace menos de 1 año": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I quit less than 1 year ago"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parei há menos de 1 ano"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J’ai arrêté il y a moins d’1 an"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ho smesso meno di 1 anno fa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag slutade för mindre än 1 år sedan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg stoppede for mindre end 1 år siden"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "戒了不到 1 年"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 साल से कम समय पहले छोड़ा"
           }
         }
       }
@@ -23957,6 +26819,165 @@
         }
       }
     },
+    "Media de pasos de los 7 días anteriores frente a %@ al día. Añade tu fecha de nacimiento en Perfil para usar la referencia de tu edad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average steps over the previous 7 days vs. %@ per day. Add your date of birth in Profile to use the reference for your age."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média de passos dos 7 dias anteriores em relação a %@ por dia. Adicione sua data de nascimento em Perfil para usar a referência da sua idade."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne de pas des 7 jours précédents par rapport à %@ par jour. Ajoute ta date de naissance dans Profil pour utiliser la référence de ton âge."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media dei passi dei 7 giorni precedenti rispetto a %@ al giorno. Aggiungi la tua data di nascita in Profilo per usare il riferimento per la tua età."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomsnittligt antal steg de 7 föregående dagarna jämfört med %@ per dag. Lägg till ditt födelsedatum under Profil för att använda referensen för din ålder."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnitligt antal skridt de 7 foregående dage sammenlignet med %@ om dagen. Tilføj din fødselsdato under Profil for at bruge referencen for din alder."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前 7 天的平均步数对照每天 %@ 步。在“个人资料”中添加出生日期，即可使用适合你年龄的参考值。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिनों के औसत कदम, रोज़ %@ कदम के मुकाबले। अपनी उम्र के हिसाब से संदर्भ इस्तेमाल करने के लिए प्रोफ़ाइल में अपनी जन्मतिथि जोड़ें।"
+          }
+        }
+      }
+    },
+    "Media de pasos de los 7 días anteriores frente a %@ al día: en mayores de 60 años el beneficio sobre la mortalidad se estabiliza entre 6.000 y 8.000 pasos (Paluch et al., 2022).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average steps over the previous 7 days vs. %@ per day: in people over 60, the mortality benefit levels off between 6,000 and 8,000 steps (Paluch et al., 2022)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média de passos dos 7 dias anteriores em relação a %@ por dia: em maiores de 60 anos, o benefício sobre a mortalidade se estabiliza entre 6.000 e 8.000 passos (Paluch et al., 2022)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne de pas des 7 jours précédents par rapport à %@ par jour : chez les plus de 60 ans, le bénéfice sur la mortalité se stabilise entre 6 000 et 8 000 pas (Paluch et al., 2022)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media dei passi dei 7 giorni precedenti rispetto a %@ al giorno: oltre i 60 anni il beneficio sulla mortalità si stabilizza tra 6.000 e 8.000 passi (Paluch et al., 2022)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomsnittligt antal steg de 7 föregående dagarna jämfört med %@ per dag: hos personer över 60 år planar nyttan för dödligheten ut mellan 6 000 och 8 000 steg (Paluch et al., 2022)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnitligt antal skridt de 7 foregående dage sammenlignet med %@ om dagen: hos personer over 60 år flader gevinsten for dødeligheden ud mellem 6.000 og 8.000 skridt (Paluch et al., 2022)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前 7 天的平均步数对照每天 %@ 步：对 60 岁以上人群，降低死亡率的益处在 6,000 到 8,000 步之间趋于平稳（Paluch et al., 2022）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिनों के औसत कदम, रोज़ %@ कदम के मुकाबले: 60 साल से ज़्यादा उम्र के लोगों में मृत्यु दर पर फ़ायदा 6,000 से 8,000 कदमों के बीच स्थिर हो जाता है (Paluch et al., 2022)।"
+          }
+        }
+      }
+    },
+    "Media de pasos de los 7 días anteriores frente a %@ al día: en menores de 60 años el beneficio sobre la mortalidad se estabiliza entre 8.000 y 10.000 pasos (Paluch et al., 2022).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average steps over the previous 7 days vs. %@ per day: in people under 60, the mortality benefit levels off between 8,000 and 10,000 steps (Paluch et al., 2022)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Média de passos dos 7 dias anteriores em relação a %@ por dia: em menores de 60 anos, o benefício sobre a mortalidade se estabiliza entre 8.000 e 10.000 passos (Paluch et al., 2022)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyenne de pas des 7 jours précédents par rapport à %@ par jour : chez les moins de 60 ans, le bénéfice sur la mortalité se stabilise entre 8 000 et 10 000 pas (Paluch et al., 2022)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Media dei passi dei 7 giorni precedenti rispetto a %@ al giorno: sotto i 60 anni il beneficio sulla mortalità si stabilizza tra 8.000 e 10.000 passi (Paluch et al., 2022)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomsnittligt antal steg de 7 föregående dagarna jämfört med %@ per dag: hos personer under 60 år planar nyttan för dödligheten ut mellan 8 000 och 10 000 steg (Paluch et al., 2022)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnitligt antal skridt de 7 foregående dage sammenlignet med %@ om dagen: hos personer under 60 år flader gevinsten for dødeligheden ud mellem 8.000 og 10.000 skridt (Paluch et al., 2022)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前 7 天的平均步数对照每天 %@ 步：对 60 岁以下人群，降低死亡率的益处在 8,000 到 10,000 步之间趋于平稳（Paluch et al., 2022）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिनों के औसत कदम, रोज़ %@ कदम के मुकाबले: 60 साल से कम उम्र के लोगों में मृत्यु दर पर फ़ायदा 8,000 से 10,000 कदमों के बीच स्थिर हो जाता है (Paluch et al., 2022)।"
+          }
+        }
+      }
+    },
     "Media del periodo": {
       "extractionState": "manual",
       "localizations": {
@@ -24434,6 +27455,59 @@
         }
       }
     },
+    "Menos regular que la mayoría": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less regular than most"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos regular que a maioria"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moins régulier que la plupart"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meno regolare della maggior parte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre regelbunden än de flesta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre regelmæssig end de fleste"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比大多数人更不规律"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादातर लोगों से कम नियमित"
+          }
+        }
+      }
+    },
     "Mensual": {
       "extractionState": "manual",
       "localizations": {
@@ -24801,6 +27875,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "व्यायाम मिनट"
+          }
+        }
+      }
+    },
+    "Minutos de ejercicio de los 7 días anteriores frente a 150 min por semana, el mínimo que recomienda la OMS para adultos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise minutes over the previous 7 days vs. 150 min per week, the minimum the WHO recommends for adults."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutos de exercício dos 7 dias anteriores em relação a 150 min por semana, o mínimo que a OMS recomenda para adultos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes d’exercice des 7 jours précédents par rapport à 150 min par semaine, le minimum recommandé par l’OMS pour les adultes."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuti di esercizio dei 7 giorni precedenti rispetto a 150 min a settimana, il minimo raccomandato dall’OMS per gli adulti."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsminuter de 7 föregående dagarna jämfört med 150 min per vecka, det minimum som WHO rekommenderar för vuxna."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motionsminutter de 7 foregående dage sammenlignet med 150 min om ugen, det minimum, som WHO anbefaler for voksne."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前 7 天的锻炼分钟数对照每周 150 分钟，这是世界卫生组织对成年人建议的最低量。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिनों के व्यायाम मिनट, हर हफ़्ते 150 min के मुकाबले, जो वयस्कों के लिए WHO की सुझाई न्यूनतम मात्रा है।"
           }
         }
       }
@@ -25971,6 +29098,59 @@
         }
       }
     },
+    "Más regular que la mayoría": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More regular than most"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais regular que a maioria"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus régulier que la plupart"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più regolare della maggior parte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mer regelbunden än de flesta"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mere regelmæssig end de fleste"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比大多数人更规律"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज़्यादातर लोगों से ज़्यादा नियमित"
+          }
+        }
+      }
+    },
     "Más rápido": {
       "extractionState": "manual",
       "localizations": {
@@ -26607,6 +29787,59 @@
         }
       }
     },
+    "Nicotina": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicotine"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicotina"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicotine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicotina"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nikotin"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nikotin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尼古丁"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निकोटीन"
+          }
+        }
+      }
+    },
     "Ninguna": {
       "extractionState": "manual",
       "localizations": {
@@ -26815,6 +30048,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इस डिवाइस पर उपलब्ध नहीं"
+          }
+        }
+      }
+    },
+    "No es un diagnóstico ni sustituye una valoración médica. Tus datos escritos se guardan solo en este iPhone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This isn't a diagnosis and doesn't replace a medical assessment. The data you enter is stored only on this iPhone."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não é um diagnóstico nem substitui uma avaliação médica. Os dados que você digita ficam salvos apenas neste iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce n’est pas un diagnostic et cela ne remplace pas un avis médical. Les données que tu saisis sont enregistrées uniquement sur cet iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è una diagnosi e non sostituisce una valutazione medica. I dati che inserisci vengono salvati solo su questo iPhone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det är ingen diagnos och ersätter inte en medicinsk bedömning. Uppgifterna du fyller i sparas bara på den här iPhonen."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det er ikke en diagnose og erstatter ikke en lægefaglig vurdering. De data, du indtaster, gemmes kun på denne iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这不是诊断，也不能替代医疗评估。你输入的数据只保存在这台 iPhone 上。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह कोई निदान नहीं है और डॉक्टर की जांच की जगह नहीं लेता। आपका डाला गया डेटा केवल इसी iPhone पर सेव रहता है।"
           }
         }
       }
@@ -27349,6 +30635,112 @@
         }
       }
     },
+    "No-HDL %@ mg/dL (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não HDL %@ mg/dL (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非 HDL %@ mg/dL（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नॉन-HDL %@ mg/dL (%@)।"
+          }
+        }
+      }
+    },
+    "No-HDL %@ mg/dL (%@). Con medicación: −20.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@). With medication: −20."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não HDL %@ mg/dL (%@). Com medicação: −20."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@). Avec traitement : −20."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@). Con farmaci: −20."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@). Med medicin: −20."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-HDL %@ mg/dL (%@). Med medicin: −20."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非 HDL %@ mg/dL（%@）。服药：−20。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नॉन-HDL %@ mg/dL (%@)। दवा लेने पर: −20।"
+          }
+        }
+      }
+    },
     "Noche": {
       "extractionState": "manual",
       "localizations": {
@@ -27822,6 +31214,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "नया इंटरवल प्लान"
+          }
+        }
+      }
+    },
+    "Nunca fumé": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I've never smoked"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca fumei"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je n’ai jamais fumé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ho mai fumato"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag har aldrig rökt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg har aldrig røget"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我从不吸烟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैंने कभी धूम्रपान नहीं किया"
+          }
+        }
+      }
+    },
+    "Nunca: 100 · Dejado hace ≥5 años: 75 · 1–5 años: 50 · <1 año o vapeo: 25 · Fuma: 0 · Humo en casa: −20": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never: 100 · Quit ≥5 years ago: 75 · 1–5 years: 50 · <1 year or vaping: 25 · Smokes: 0 · Smoke at home: −20"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca: 100 · Parou há ≥5 anos: 75 · 1–5 anos: 50 · <1 ano ou vape: 25 · Fuma: 0 · Fumaça em casa: −20"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jamais : 100 · Arrêt depuis ≥5 ans : 75 · 1–5 ans : 50 · <1 an ou vapotage : 25 · Fume : 0 · Fumée à la maison : −20"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mai: 100 · Smesso da ≥5 anni: 75 · 1–5 anni: 50 · <1 anno o svapo: 25 · Fuma: 0 · Fumo in casa: −20"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aldrig: 100 · Slutat för ≥5 år sedan: 75 · 1–5 år: 50 · <1 år eller vejpning: 25 · Röker: 0 · Rök i hemmet: −20"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aldrig: 100 · Stoppet for ≥5 år siden: 75 · 1–5 år: 50 · <1 år eller damp: 25 · Ryger: 0 · Røg i hjemmet: −20"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从不：100 · 已戒 ≥5 年：75 · 1–5 年：50 · <1 年或电子烟：25 · 吸烟：0 · 家中有烟：−20"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कभी नहीं: 100 · ≥5 साल पहले छोड़ा: 75 · 1–5 साल: 50 · <1 साल या वेपिंग: 25 · धूम्रपान करते हैं: 0 · घर में धुआं: −20"
           }
         }
       }
@@ -29893,6 +33391,59 @@
         }
       }
     },
+    "Peso (IMC)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight (BMI)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peso (IMC)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poids (IMC)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peso (IMC)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikt (BMI)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vægt (BMI)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "体重（BMI）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वज़न (बीएमआई)"
+          }
+        }
+      }
+    },
     "Peso: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -30847,6 +34398,59 @@
         }
       }
     },
+    "Presión arterial": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood pressure"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pressão arterial"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tension artérielle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pressione arteriosa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blodtryck"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blodtryk"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "血压"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्लड प्रेशर"
+          }
+        }
+      }
+    },
     "Primera lectura": {
       "extractionState": "manual",
       "localizations": {
@@ -31002,6 +34606,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "गोपनीयता"
+          }
+        }
+      }
+    },
+    "Probabilidad de estar dormido o despierto a la misma hora que el día anterior, de −100 a 100. Calculado con %lld pares de noches seguidas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Likelihood of being asleep or awake at the same time as the day before, from −100 to 100. Calculated from %lld pairs of consecutive nights."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probabilidade de estar dormindo ou acordado no mesmo horário que no dia anterior, de −100 a 100. Calculado com %lld pares de noites seguidas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probabilité d’être endormi ou éveillé à la même heure que la veille, de −100 à 100. Calculé à partir de %lld paires de nuits consécutives."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probabilità di essere addormentato o sveglio alla stessa ora del giorno prima, da −100 a 100. Calcolato su %lld coppie di notti consecutive."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sannolikheten att sova eller vara vaken vid samma tid som dagen innan, från −100 till 100. Beräknat på %lld par av nätter i följd."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sandsynligheden for at sove eller være vågen på samme tidspunkt som dagen før, fra −100 til 100. Beregnet ud fra %lld par af nætter i træk."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在与前一天相同的时刻同样处于睡眠或清醒状态的概率，范围为 −100 到 100。基于 %lld 对连续夜晚计算。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले दिन वाले समय पर ही सोए या जागे होने की संभावना, −100 से 100 तक। लगातार रातों के %lld जोड़ों से गणना की गई।"
           }
         }
       }
@@ -31748,6 +35405,59 @@
         }
       }
     },
+    "Puntos según el cuestionario MEPA (0–16 respuestas saludables).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points based on the MEPA questionnaire (0–16 healthy answers)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontos segundo o questionário MEPA (0–16 respostas saudáveis)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points selon le questionnaire MEPA (0–16 réponses saines)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punti secondo il questionario MEPA (0–16 risposte salutari)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poäng enligt MEPA-formuläret (0–16 hälsosamma svar)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Point ifølge MEPA-spørgeskemaet (0–16 sunde svar)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "根据 MEPA 问卷计分（0–16 个健康回答）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA प्रश्नावली के अनुसार अंक (0–16 सेहतमंद जवाब)।"
+          }
+        }
+      }
+    },
     "Puntuación": {
       "extractionState": "manual",
       "localizations": {
@@ -31850,6 +35560,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "दैनिक स्कोर"
+          }
+        }
+      }
+    },
+    "Puntuación parcial: es la media de los componentes con dato. La AHA la define con los ocho.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partial score: it's the average of the components with data. The AHA defines it using all eight."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontuação parcial: é a média dos componentes com dados. A AHA a define com os oito."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score partiel : c’est la moyenne des composantes renseignées. L’AHA le définit avec les huit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punteggio parziale: è la media dei componenti con dati. L’AHA lo definisce con tutti e otto."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delpoäng: det är medelvärdet av komponenterna med data. AHA definierar den med alla åtta."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delscore: det er gennemsnittet af komponenterne med data. AHA definerer den med alle otte."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分评分：为有数据的各项指标的平均值。AHA 的定义需要全部八项。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आंशिक स्कोर: यह डेटा वाले घटकों का औसत है। AHA इसे आठों घटकों के साथ परिभाषित करता है।"
           }
         }
       }
@@ -32009,6 +35772,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रिकॉर्ड हटाएं"
+          }
+        }
+      }
+    },
+    "Qué es y cómo se calcula": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What it is and how it's calculated"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que é e como é calculado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce que c’est et comment c’est calculé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cos’è e come si calcola"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad det är och hur det beräknas"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvad det er, og hvordan det beregnes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是什么以及如何计算"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह क्या है और कैसे निकाला जाता है"
           }
         }
       }
@@ -32808,6 +36624,59 @@
         }
       }
     },
+    "Referencias": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "References"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referências"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Références"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riferimenti"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenser"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referencer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "参考文献"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "संदर्भ"
+          }
+        }
+      }
+    },
     "Registrado": {
       "extractionState": "manual",
       "localizations": {
@@ -33016,6 +36885,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "एकसमानता"
+          }
+        }
+      }
+    },
+    "Regularidad del sueño": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep regularity"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regularidade do sono"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Régularité du sommeil"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regolarità del sonno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömnregelbundenhet"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvnregelmæssighed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "睡眠规律性"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नींद की नियमितता"
           }
         }
       }
@@ -34769,6 +38691,218 @@
         }
       }
     },
+    "Salud cardiovascular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardiovascular health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saúde cardiovascular"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé cardiovasculaire"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salute cardiovascolare"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjärt-kärlhälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjerte-kar-sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心血管健康"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हृदय स्वास्थ्य"
+          }
+        }
+      }
+    },
+    "Salud cardiovascular alta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High cardiovascular health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saúde cardiovascular alta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé cardiovasculaire élevée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salute cardiovascolare alta"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hög hjärt-kärlhälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Høj hjerte-kar-sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心血管健康：高"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उच्च हृदय स्वास्थ्य"
+          }
+        }
+      }
+    },
+    "Salud cardiovascular baja": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low cardiovascular health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saúde cardiovascular baixa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé cardiovasculaire faible"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salute cardiovascolare bassa"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Låg hjärt-kärlhälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lav hjerte-kar-sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心血管健康：低"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निम्न हृदय स्वास्थ्य"
+          }
+        }
+      }
+    },
+    "Salud cardiovascular moderada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate cardiovascular health"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saúde cardiovascular moderada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Santé cardiovasculaire modérée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salute cardiovascolare moderata"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måttlig hjärt-kärlhälsa"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderat hjerte-kar-sundhed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "心血管健康：中等"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मध्यम हृदय स्वास्थ्य"
+          }
+        }
+      }
+    },
     "Salud no ha compartido tu fecha de nacimiento, tu sexo ni tu altura. Puedes escribirlos aquí.": {
       "extractionState": "manual",
       "localizations": {
@@ -36253,6 +40387,218 @@
         }
       }
     },
+    "Sin dato.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune donnée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无数据。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई डेटा नहीं।"
+          }
+        }
+      }
+    },
+    "Sin dato. Mídela sentado tras 5 minutos de reposo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data. Measure it sitting down after 5 minutes of rest."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dados. Meça sentado, após 5 minutos de repouso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune donnée. Mesure-la assis après 5 minutes de repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato. Misurala da seduto dopo 5 minuti di riposo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data. Mät det sittande efter 5 minuters vila."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data. Mål det siddende efter 5 minutters hvile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无数据。请在静坐休息 5 分钟后测量。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई डेटा नहीं। 5 मिनट आराम करने के बाद बैठकर इसे मापें।"
+          }
+        }
+      }
+    },
+    "Sin dato. Sale de un análisis de sangre: colesterol total y HDL.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data. It comes from a blood test: total cholesterol and HDL."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dados. Vem de um exame de sangue: colesterol total e HDL."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune donnée. Elle provient d’une prise de sang : cholestérol total et HDL."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato. Si ottiene da un esame del sangue: colesterolo totale e HDL."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data. Värdet kommer från ett blodprov: totalkolesterol och HDL."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data. Værdien kommer fra en blodprøve: total kolesterol og HDL."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无数据。数据来自血液化验：总胆固醇和 HDL。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई डेटा नहीं। यह खून की जांच से मिलता है: कुल कोलेस्ट्रॉल और HDL।"
+          }
+        }
+      }
+    },
+    "Sin dato. Sale de un análisis: glucosa en ayunas o HbA1c.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data. It comes from a lab test: fasting glucose or HbA1c."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dados. Vem de um exame: glicose em jejum ou HbA1c."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune donnée. Elle provient d’un bilan sanguin : glycémie à jeun ou HbA1c."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato. Si ottiene da un esame: glicemia a digiuno o HbA1c."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data. Värdet kommer från ett prov: fasteglukos eller HbA1c."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data. Værdien kommer fra en prøve: fasteglukose eller HbA1c."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无数据。数据来自化验：空腹血糖或 HbA1c。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई डेटा नहीं। यह जांच से मिलता है: फ़ास्टिंग ग्लूकोज़ या HbA1c।"
+          }
+        }
+      }
+    },
     "Sin datos": {
       "extractionState": "manual",
       "localizations": {
@@ -36620,6 +40966,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "अभी कोई डेटा नहीं"
+          }
+        }
+      }
+    },
+    "Sin diabetes: ayunas <100 mg/dL (o HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Con diabetes, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without diabetes: fasting <100 mg/dL (or HbA1c <5.7) 100 · 100–125 (5.7–6.4) 60. With diabetes, HbA1c: <7: 40 · 7–7.9: 30 · 8–8.9: 20 · 9–9.9: 10 · ≥10: 0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem diabetes: jejum <100 mg/dL (ou HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Com diabetes, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans diabète : à jeun <100 mg/dL (ou HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Avec diabète, HbA1c : <7 : 40 · 7–7,9 : 30 · 8–8,9 : 20 · 9–9,9 : 10 · ≥10 : 0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senza diabete: a digiuno <100 mg/dL (o HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Con diabete, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utan diabetes: fasta <100 mg/dL (eller HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Med diabetes, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uden diabetes: faste <100 mg/dL (eller HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Med diabetes, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无糖尿病：空腹 <100 mg/dL（或 HbA1c <5.7）100 · 100–125（5.7–6.4）60。有糖尿病，HbA1c：<7：40 · 7–7.9：30 · 8–8.9：20 · 9–9.9：10 · ≥10：0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डायबिटीज़ न हो तो: फ़ास्टिंग <100 mg/dL (या HbA1c <5.7) 100 · 100–125 (5.7–6.4) 60। डायबिटीज़ हो तो, HbA1c: <7: 40 · 7–7.9: 30 · 8–8.9: 20 · 9–9.9: 10 · ≥10: 0"
           }
         }
       }
@@ -37150,6 +41549,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "सिस्टम"
+          }
+        }
+      }
+    },
+    "Sistólica (máxima)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systolic (upper)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistólica (máxima)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systolique (max.)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistolica (massima)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systoliskt (övertryck)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systolisk (overtryk)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收缩压（高压）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिस्टोलिक (ऊपरी)"
           }
         }
       }
@@ -37896,6 +42348,59 @@
         }
       }
     },
+    "Tabaco y vapeo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tobacco and vaping"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabaco e vape"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabac et vapotage"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabacco e svapo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tobak och vejpning"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tobak og damp"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "烟草与电子烟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तंबाकू और वेपिंग"
+          }
+        }
+      }
+    },
     "Tabla de 2015; la actualización de 2022 da valores algo más bajos (te situaría un poco más arriba).": {
       "extractionState": "manual",
       "localizations": {
@@ -38581,6 +43086,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रुझान, तुलना और लंबे समय का बदलाव।"
+          }
+        }
+      }
+    },
+    "Tengo diabetes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have diabetes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tenho diabetes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J’ai du diabète"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ho il diabete"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag har diabetes"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg har diabetes"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我有糖尿病"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मुझे डायबिटीज़ है"
           }
         }
       }
@@ -39429,6 +43987,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "फ़ैट के अलावा सब कुछ: मांसपेशियां, हड्डियां, अंग और पानी। स्केल इसे बायोइम्पीडेंस से निकालता है।"
+          }
+        }
+      }
+    },
+    "Tomo medicación para el colesterol": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I take cholesterol medication"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomo remédio para o colesterol"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je prends un traitement contre le cholestérol"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prendo farmaci per il colesterolo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag tar kolesterolsänkande medicin"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg tager kolesterolsænkende medicin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我在服用降胆固醇药物"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेरी कोलेस्ट्रॉल की दवा चल रही है"
+          }
+        }
+      }
+    },
+    "Tomo medicación para la presión": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I take blood pressure medication"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomo remédio para a pressão"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je prends un traitement contre l’hypertension"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prendo farmaci per la pressione"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag tar blodtrycksmedicin"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg tager blodtryksmedicin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我在服用降压药"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेरी ब्लड प्रेशर की दवा चल रही है"
           }
         }
       }
@@ -41818,6 +46482,59 @@
         }
       }
     },
+    "Usa la media de varias mediciones, sentado y tras 5 minutos de reposo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the average of several readings, taken sitting down after 5 minutes of rest."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use a média de várias medições, sentado e após 5 minutos de repouso."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilise la moyenne de plusieurs mesures, prises assis après 5 minutes de repos."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa la media di più misurazioni, da seduto e dopo 5 minuti di riposo."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd medelvärdet av flera mätningar, sittande och efter 5 minuters vila."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug gennemsnittet af flere målinger, siddende og efter 5 minutters hvile."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取多次测量的平均值，测量时保持坐姿并先休息 5 分钟。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कई मापों का औसत इस्तेमाल करें, बैठकर और 5 मिनट आराम के बाद।"
+          }
+        }
+      }
+    },
     "Usar como predeterminadas": {
       "extractionState": "manual",
       "localizations": {
@@ -42291,6 +47008,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कल का मान: आज का माप अभी नहीं है"
+          }
+        }
+      }
+    },
+    "Vapeo o cigarrillo electrónico": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I vape or use e-cigarettes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uso vape ou cigarro eletrônico"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je vapote (cigarette électronique)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svapo o uso la sigaretta elettronica"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag vejpar eller använder e-cigarett"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeg damper eller bruger e-cigaret"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我使用电子烟"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैं वेप या ई-सिगरेट इस्तेमाल करता/करती हूं"
           }
         }
       }
@@ -45577,6 +50347,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "पिछले 30 दिन"
+          }
+        }
+      }
+    },
+    "≥150 min/semana: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/week: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/semana: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/semaine : 100 · 120–149 : 90 · 90–119 : 80 · 60–89 : 60 · 30–59 : 40 · 1–29 : 20 · 0 : 0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/settimana: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/vecka: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/uge: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 分钟/周：100 · 120–149：90 · 90–119：80 · 60–89：60 · 30–59：40 · 1–29：20 · 0：0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥150 min/हफ़्ता: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
           }
         }
       }

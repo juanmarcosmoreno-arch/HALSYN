@@ -10,7 +10,7 @@ import SwiftUI
 final class ReferenceProfileStore {
     static let shared = ReferenceProfileStore()
 
-    static let birthDateKey = "halsyn.profile.birthDate"
+    static let birthDateKey = ProfileDefaults.birthDateKey
     static let sexKey = "halsyn.profile.sex"
     static let heightKey = "halsyn.profile.heightCm"
 

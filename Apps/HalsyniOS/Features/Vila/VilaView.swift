@@ -37,6 +37,7 @@ struct VilaView: View {
                 }
                 if !data.nights.isEmpty {
                     SleepScheduleCard(nights: data.nights, targetHours: $sleepTarget)
+                    SleepRegularityCard(nights: data.nights)
                 }
                 NavigationLink {
                     MetricDetailView(kind: .heartRateVariability)

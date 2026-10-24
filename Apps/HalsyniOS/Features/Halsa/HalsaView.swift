@@ -70,6 +70,7 @@ struct HalsaView: View {
                     }
                     metricsGrid(snapshot)
                     BodyCard()
+                    CardioHealthCard()
                     recoveryCard(snapshot)
                     JournalQuickCard()
                     trendCard(snapshot)
@@ -257,7 +258,7 @@ struct HalsaView: View {
                     model.selectedTab = .insikt
                 }
                 NavigationLink(value: HalsaDestination.metric(.steps)) {
-                    HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar, target: HealthScoreConfiguration().stepsReference, unit: "pasos")
+                    HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar, target: HealthScoreConfiguration.stepsReference(age: ReferenceProfileStore.shared.age), unit: "pasos")
                         .frame(height: 210)
                 }
                 .buttonStyle(.plain)

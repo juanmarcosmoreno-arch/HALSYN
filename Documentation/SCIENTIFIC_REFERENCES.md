@@ -18,12 +18,37 @@ Orientan los umbrales; **no validan** la puntuación de HÅLSYN en conjunto.
 |---|---|---|
 | Sueño 7–9 h (adultos) | Watson NF, et al. *Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society.* Sleep. 2015;38(6):843–844. | ≥ 7 h por noche de forma regular en adultos; el rango 7–9 h se usa como referencia de máxima puntuación. |
 | 150 min/semana de actividad | Bull FC, et al. *World Health Organization 2020 guidelines on physical activity and sedentary behaviour.* Br J Sports Med. 2020;54(24):1451–1462. | 150–300 min/semana de actividad moderada (o equivalente) en adultos. Se usan los "minutos de ejercicio" de Apple como aproximación. |
-| 8.000 pasos/día | Paluch AE, et al. *Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts.* Lancet Public Health. 2022;7(3):e219–e228. | El beneficio se estabiliza aproximadamente entre 6.000–8.000 pasos (≥ 60 años) y 8.000–10.000 (< 60 años); 8.000 se usa como referencia única provisional. |
+| Pasos/día según la edad | Paluch AE, et al. *Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts.* Lancet Public Health. 2022;7(3):e219–e228. doi:10.1016/S2468-2667(21)00302-9 | El beneficio se estabiliza aproximadamente entre 6.000–8.000 pasos (≥ 60 años) y 8.000–10.000 (< 60 años). Se usa el centro de cada rango: 7.000 (≥ 60) y 9.000 (< 60); sin edad, 8.000. Edad del perfil de la app o, si no, de Salud (`HealthScoreConfiguration.stepsReference(age:)`). |
 | Carga aguda:crónica | Gabbett TJ. *The training—injury prevention paradox: should athletes be training smarter and harder?* Br J Sports Med. 2016;50(5):273–280. | Concepto de comparar carga reciente con habitual; zona 0,8–1,3. |
 | Críticas al cociente | Impellizzeri FM, et al. *Acute:Chronic Workload Ratio: Conceptual Issues and Fundamental Pitfalls.* Int J Sports Physiol Perform. 2020;15(6):907–913. | Motivo del peso bajo (15 %) y de no tratarlo como predictor de lesiones. |
 | HRV y FC en reposo frente a la media personal | Práctica habitual de comparar con la línea basal individual en lugar de valores poblacionales, dada la gran variabilidad entre personas. | Comparación con la media de 28 días; sin percentiles poblacionales (Fase 8). |
 
 Pendiente: revisar cada cita con su texto completo antes de la publicación y registrar DOI/PMID.
+
+## Life's Essential 8 — salud cardiovascular (`CardiovascularHealthEngine`)
+
+Lloyd-Jones DM, et al. *Life's Essential 8: Updating and Enhancing the American Heart Association's Construct of Cardiovascular Health: A Presidential Advisory From the American Heart Association.* Circulation. 2022;146(5):e18–e43. doi:10.1161/CIR.0000000000001078
+
+Ocho componentes de 0 a 100 (tablas para adultos) y su media simple. Alta ≥ 80, moderada 50–79, baja < 50.
+
+| Componente | Fuente en la app | Puntos |
+|---|---|---|
+| Actividad física | Minutos de ejercicio de Apple, 7 días completos anteriores (≥ 4 con dato) | ≥150: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0 |
+| Sueño | Media de las noches de 2 semanas (≥ 7) | 7–<9 h: 100 · 9–<10: 90 · 6–<7: 70 · 5–<6 o ≥10: 40 · 4–<5: 20 · <4: 0 |
+| IMC | Último peso de Salud + altura del perfil | <25: 100 · 25–29,9: 70 · 30–34,9: 30 · 35–39,9: 15 · ≥40: 0 |
+| Nicotina | Escrito por el usuario | Nunca: 100 · dejado ≥5 años: 75 · 1–<5: 50 · <1 año o vapeo: 25 · actual: 0 · humo en casa: −20 |
+| Colesterol no-HDL | Escrito (total − HDL, mg/dL) | <130: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · tratado: −20 |
+| Glucosa | Escrito (ayunas o HbA1c) | Sin diabetes: <100 / <5,7 %: 100 · 100–125 / 5,7–6,4 %: 60. Con diabetes (HbA1c): <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0 |
+| Presión arterial | Escrito (mmHg) | <120/<80: 100 · 120–129/<80: 75 · 130–139 o 80–89: 50 · 140–159 o 90–99: 25 · ≥160 o ≥100: 0 · tratada: −20 |
+| Alimentación | No se calcula aún (requiere el cuestionario MEPA) | — |
+
+Limitaciones: los minutos de ejercicio de Apple no distinguen intensidad (la AHA cuenta doble la vigorosa); con componentes sin dato se promedian los disponibles (mínimo 4) y la interfaz lo indica como parcial. Pendiente: verificar las tablas con el texto completo antes de publicar.
+
+## Regularidad del sueño (`SleepRegularityIndex`)
+
+- Definición: Phillips AJK, et al. *Irregular sleep/wake patterns are associated with poorer academic performance and delayed circadian and sleep/wake timing.* Sci Rep. 2017;7:3216. doi:10.1038/s41598-017-03171-4. SRI = 200 × (minutos en el mismo estado que 24 h después / minutos comparados) − 100.
+- Contexto: Windred DP, et al. *Sleep regularity is a stronger predictor of mortality risk than sleep duration: a prospective cohort study.* Sleep. 2024;47(1):zsad253. doi:10.1093/sleep/zsad253. UK Biobank, 60.977 adultos con acelerómetro; mediana 81,0 (RIC 73,8–86,3); los cuatro quintiles más regulares, 20–48 % menos mortalidad que el más irregular.
+- En la app: épocas de 1 minuto, ventana de mediodía a mediodía por noche, solo pares de noches consecutivas (mínimo 5). Solo sueño nocturno (sin siestas). El valor depende del método de cálculo, por lo que se presenta como tendencia y con el contexto del estudio, no como percentil.
 
 ## Referencias por edad (Fase 8)
 

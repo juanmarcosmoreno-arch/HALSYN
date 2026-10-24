@@ -42,7 +42,8 @@ public struct HealthScoreConfiguration: Sendable {
     public var minimumBaselineDays: Int
     /// Sueño recomendado para adultos (horas).
     public var recommendedSleep: ClosedRange<Double>
-    /// Media diaria de pasos a partir de la cual no se suma más.
+    /// Media diaria de pasos a partir de la cual no se suma más
+    /// (ver `stepsReference(age:)`).
     public var stepsReference: Double
     /// Minutos semanales de actividad moderada-vigorosa de referencia.
     public var weeklyExerciseReference: Double
@@ -63,6 +64,20 @@ public struct HealthScoreConfiguration: Sendable {
         self.recommendedSleep = recommendedSleep
         self.stepsReference = stepsReference
         self.weeklyExerciseReference = weeklyExerciseReference
+    }
+
+    /// Pasos de referencia según la edad (Paluch et al., Lancet Public Health
+    /// 2022): el beneficio sobre la mortalidad se estabiliza entre 6.000 y 8.000
+    /// pasos al día a partir de los 60 años y entre 8.000 y 10.000 antes. Se usa
+    /// el centro de cada rango; sin edad, 8.000 (entre ambos).
+    public static func stepsReference(age: Int?) -> Double {
+        guard let age else { return 8000 }
+        return age >= 60 ? 7000 : 9000
+    }
+
+    /// Configuración para una edad concreta.
+    public static func forAge(_ age: Int?) -> HealthScoreConfiguration {
+        HealthScoreConfiguration(stepsReference: stepsReference(age: age))
     }
 }
 

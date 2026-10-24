@@ -17,7 +17,7 @@ SOURCES = [
     ROOT / "Packages/HalsynKit/Sources/HalsynCore",
 ]
 # Interpolaciones que son enteros (SwiftUI usa %lld para Int).
-INT_INTERPOLATIONS = {"phase", "streak", "weeks", "history.filter(\\.isCompleted).count", "history.count", "have", "need", "days", "lap.index", "split.index", "index + 1", "count", "number", "slot + 1", "Int(max)", "Int(distance)", "Int(distance / 1000)", "Int(latestResting)", "runSettings.intervalPlans.count", "time.hours", "time.minutes", "step.rawValue + 1", "Step.allCases.count", "fromAge", "toAge", "age", "subject.age", "percentile", "lower", "comparison.count", "impact.withCount", "impact.withoutCount", "store.streak", "report.loggedDays", "min(item.withCount, item.need)", "min(item.withoutCount, item.need)", "item.need", "predictions[0].basedOn", "week.index + 1", "plan.weeks.count", "repeats", "runCount", "retiredCount", "reachedTarget", "nights.count", "minutes", "seconds", "number", "beats", "repetition", "total", "lap.index"}
+INT_INTERPOLATIONS = {"phase", "streak", "weeks", "history.filter(\\.isCompleted).count", "history.count", "have", "need", "days", "lap.index", "split.index", "index + 1", "count", "number", "slot + 1", "Int(max)", "Int(distance)", "Int(distance / 1000)", "Int(latestResting)", "runSettings.intervalPlans.count", "time.hours", "time.minutes", "step.rawValue + 1", "Step.allCases.count", "fromAge", "toAge", "age", "subject.age", "percentile", "lower", "comparison.count", "impact.withCount", "impact.withoutCount", "store.streak", "report.loggedDays", "min(item.withCount, item.need)", "min(item.withoutCount, item.need)", "item.need", "predictions[0].basedOn", "week.index + 1", "plan.weeks.count", "repeats", "runCount", "retiredCount", "reachedTarget", "nights.count", "pairs", "have", "minutes", "seconds", "number", "beats", "repetition", "total", "lap.index"}
 # Literales que no son texto de interfaz o no deben traducirse.
 IGNORE = {
     "HÅLSYN", "Halsyn", "HEALTH IN MOTION", "Know your body. Understand your health. Improve your life.",
@@ -29,7 +29,7 @@ IGNORE = {
     "plan-%@", "screen-%@", "6x400", "5x1k", "8x1min", "6 × 400 m", "5 × 1 km", "8 × 1 min", "<Z1",
     "friend-2015-treadmill", "nhanes-1999-2008-pulse", "P%@", "mL/kg/min", "Kaminsky LA, Arena R, Myers J. Reference Standards for Cardiorespiratory Fitness Measured With Cardiopulmonary Exercise Testing: Data From the Fitness Registry and the Importance of Exercise National Database. Mayo Clin Proc. 2015;90(11):1515–1523.", "Ostchega Y, Porter KS, Hughes J, Dillon CF, Nwankwo T. Resting pulse rate reference data for children, adolescents, and adults: United States, 1999–2008. National Health Statistics Reports no. 41. NCHS; 2011.",
     "KROPP", "LJUS", "halsyn-plan-today", "kg", "lb", "°C", "°F", "5 km", "10 km", "−", "+",
-    "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
+    "mg/dL", "mmHg", "LE8-2022", "CardiovascularHealthEngine %@", "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
 }
 STRING = re.compile(r'"((?:[^"\\\n]|\\.)*)"')
 INTERP = re.compile(r'\\\((.*?)\)(?=[^)]*$|[^)])')
@@ -67,6 +67,8 @@ for base in SOURCES:
         for line in path.read_text().splitlines():
             stripped = line.strip()
             if stripped.startswith("//") or "#Preview" in stripped or "#expect" in stripped:
+                continue
+            if "citation:" in stripped:  # citas bibliográficas: no se traducen
                 continue
             if "Calendar.current" in stripped or "format:" in stripped and "String(format" in stripped:
                 continue

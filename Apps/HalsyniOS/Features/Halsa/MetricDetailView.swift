@@ -56,7 +56,7 @@ struct MetricDetailView: View {
                             style: isSum ? .bar : .line,
                             // Indicadores fisiológicos: tu rango habitual de los 30 días anteriores.
                             usualRange: isSum ? nil : usualRange(all.filter { $0.day < cutoff }.map(\.value)),
-                            target: kind == .steps ? HealthScoreConfiguration().stepsReference : nil,
+                            target: kind == .steps ? HealthScoreConfiguration.stepsReference(age: ReferenceProfileStore.shared.age) : nil,
                             unit: kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: kind, unit: unitSystem),
                             format: { formatted($0) }
                         )
