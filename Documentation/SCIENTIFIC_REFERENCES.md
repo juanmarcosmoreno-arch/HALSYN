@@ -40,7 +40,9 @@ Ocho componentes de 0 a 100 (tablas para adultos) y su media simple. Alta ≥ 80
 | Colesterol no-HDL | Escrito (total − HDL, mg/dL) | <130: 100 · 130–159: 60 · 160–189: 40 · 190–219: 20 · ≥220: 0 · tratado: −20 |
 | Glucosa | Escrito (ayunas o HbA1c) | Sin diabetes: <100 / <5,7 %: 100 · 100–125 / 5,7–6,4 %: 60. Con diabetes (HbA1c): <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0 |
 | Presión arterial | Escrito (mmHg) | <120/<80: 100 · 120–129/<80: 75 · 130–139 o 80–89: 50 · 140–159 o 90–99: 25 · ≥160 o ≥100: 0 · tratada: −20 |
-| Alimentación | No se calcula aún (requiere el cuestionario MEPA) | — |
+| Alimentación | Cuestionario MEPA de 16 preguntas (raciones al día o a la semana), criterios de la tabla C del suplemento de la AHA | MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0 |
+
+MEPA: Cerwinske LA, Rasmussen HE, Volgman AS, Tangney CC. *Evaluation of a dietary screener: the Mediterranean Eating Pattern for Americans tool.* J Hum Nutr Diet. 2017;30(5):596–603. doi:10.1111/jhn.12451. El cuestionario es © Christy Tangney y Heather Rasmussen (Rush University Medical Center): **pedir permiso de uso antes de publicar en la App Store**. Preguntas traducidas y porciones en unidades métricas (3 oz ≈ 85 g, 1 oz ≈ 30 g). Criterio de alcohol de la tabla C: más de 0 y menos de 2 al día (hombres) o de 1 al día (mujeres); sin sexo en el perfil se usa el de mujeres.
 
 Limitaciones: los minutos de ejercicio de Apple no distinguen intensidad (la AHA cuenta doble la vigorosa); con componentes sin dato se promedian los disponibles (mínimo 4) y la interfaz lo indica como parcial. Pendiente: verificar las tablas con el texto completo antes de publicar.
 

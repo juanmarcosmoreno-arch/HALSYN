@@ -207,19 +207,27 @@ public struct HalsynScoreRing: View {
                     )
                     .opacity(score == nil || animatedProgress == 0 ? 0 : 1)
             }
-            VStack(spacing: 2) {
-                Text(verbatim: score.map(String.init) ?? "—")
-                    .font(.system(size: 56, weight: .light, design: .default).monospacedDigit())
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.halsynPrimaryText)
-                if let caption {
-                    Text(LocalizedStringKey(caption))
-                        .font(.halsynCaption)
-                        .foregroundStyle(.halsynSecondaryText)
-                        .multilineTextAlignment(.center)
+            // El número escala con el anillo: en los chicos no llena todo el hueco.
+            GeometryReader { proxy in
+                let diameter = min(proxy.size.width, proxy.size.height)
+                let showsCaption = caption != nil && diameter >= 150
+                VStack(spacing: 2) {
+                    Text(verbatim: score.map(String.init) ?? "—")
+                        .font(.system(size: min(56, diameter * (showsCaption ? 0.26 : 0.3)), weight: .light, design: .default).monospacedDigit())
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .foregroundStyle(.halsynPrimaryText)
+                    if showsCaption, let caption {
+                        Text(LocalizedStringKey(caption))
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.8)
+                    }
                 }
+                .padding(lineWidth * 1.5)
+                .frame(width: proxy.size.width, height: proxy.size.height)
             }
-            .padding(lineWidth * 1.5)
         }
         .aspectRatio(1, contentMode: .fit)
         .onAppear { update(animated: !reduceMotion) }

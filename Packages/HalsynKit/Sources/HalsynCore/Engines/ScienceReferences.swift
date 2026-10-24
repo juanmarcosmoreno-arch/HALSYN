@@ -19,6 +19,10 @@ public enum ScienceReferences {
         citation: "Lloyd-Jones DM, et al. Life's Essential 8: Updating and Enhancing the American Heart Association's Construct of Cardiovascular Health. Circulation. 2022;146(5):e18–e43.",
         url: "https://doi.org/10.1161/CIR.0000000000001078"
     )
+    public static let mepa = ScienceReference(
+        citation: "Cerwinske LA, Rasmussen HE, Volgman AS, Tangney CC. Evaluation of a dietary screener: the Mediterranean Eating Pattern for Americans tool. J Hum Nutr Diet. 2017;30(5):596–603.",
+        url: "https://doi.org/10.1111/jhn.12451"
+    )
     public static let sleepRegularityMortality = ScienceReference(
         citation: "Windred DP, et al. Sleep regularity is a stronger predictor of mortality risk than sleep duration: a prospective cohort study. Sleep. 2024;47(1):zsad253.",
         url: "https://doi.org/10.1093/sleep/zsad253"

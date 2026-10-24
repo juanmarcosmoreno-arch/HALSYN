@@ -127,12 +127,15 @@ public struct CardioHealthInputs: Codable, Hashable, Sendable {
     public var lipids: Lipids?
     public var glucose: Glucose?
     public var nicotine: Nicotine?
+    /// Respuestas del cuestionario MEPA.
+    public var diet: DietAnswers?
 
-    public init(bloodPressure: BloodPressure? = nil, lipids: Lipids? = nil, glucose: Glucose? = nil, nicotine: Nicotine? = nil) {
+    public init(bloodPressure: BloodPressure? = nil, lipids: Lipids? = nil, glucose: Glucose? = nil, nicotine: Nicotine? = nil, diet: DietAnswers? = nil) {
         self.bloodPressure = bloodPressure
         self.lipids = lipids
         self.glucose = glucose
         self.nicotine = nicotine
+        self.diet = diet
     }
 }
 
@@ -196,17 +199,18 @@ public struct CardioHealthResult: Hashable, Sendable {
 /// - Puntos de cada componente según las tablas publicadas para adultos.
 /// - Actividad: minutos de ejercicio de Apple como aproximación a los minutos
 ///   de actividad moderada o vigorosa (la AHA cuenta doble los vigorosos).
-/// - Alimentación: requiere un cuestionario validado (MEPA); aún no se calcula.
+/// - Alimentación: cuestionario MEPA (16 preguntas, Cerwinske et al. 2017) con
+///   los criterios de la tabla C del material suplementario de la AHA.
 /// - Con componentes sin dato se promedia lo disponible y se indica.
 public enum CardiovascularHealthEngine {
     public static let version = "LE8-2022"
     public static let minimumComponents = 4
 
-    public static func evaluate(measurements: CardioHealthMeasurements, inputs: CardioHealthInputs) -> CardioHealthResult {
+    public static func evaluate(measurements: CardioHealthMeasurements, inputs: CardioHealthInputs, sex: ReferenceSex? = nil) -> CardioHealthResult {
         let components = CardioComponent.allCases.map { component -> CardioComponentScore in
             let points: Int?
             switch component {
-            case .diet: points = nil
+            case .diet: points = inputs.diet.flatMap { $0.score(sex: sex) }.map(dietPoints)
             case .physicalActivity: points = measurements.weeklyActivityMinutes.map(activityPoints)
             case .nicotine: points = inputs.nicotine.map(nicotinePoints)
             case .sleep: points = measurements.averageSleepHours.map(sleepPoints)
@@ -223,6 +227,17 @@ public enum CardiovascularHealthEngine {
     }
 
     // MARK: Tablas (adultos)
+
+    /// Puntuación MEPA (0–16) → puntos de alimentación (tabla individual de la AHA).
+    public static func dietPoints(_ mepa: Int) -> Int {
+        switch mepa {
+        case 15...: 100
+        case 12...14: 80
+        case 8...11: 50
+        case 4...7: 25
+        default: 0
+        }
+    }
 
     /// Minutos semanales de actividad moderada o vigorosa.
     public static func activityPoints(_ minutes: Double) -> Int {
@@ -345,5 +360,124 @@ extension HealthDataProviding {
             bmi = CardiovascularHealthEngine.bodyMassIndex(weightKilograms: weight, heightMeters: heightMeters)
         }
         return CardioHealthMeasurements(weeklyActivityMinutes: minutes, averageSleepHours: hours, bodyMassIndex: bmi)
+    }
+}
+
+/// Preguntas del cuestionario MEPA (Mediterranean Eating Pattern for Americans).
+public enum MEPAItem: String, CaseIterable, Codable, Hashable, Identifiable, Sendable {
+    case oliveOil
+    case leafyGreens
+    case otherVegetables
+    case berries
+    case otherFruit
+    case redMeat
+    case fish
+    case chicken
+    case cheese
+    case butterCream
+    case beans
+    case wholeGrains
+    case sweets
+    case nuts
+    case fastFood
+    case alcohol
+
+    public var id: String { rawValue }
+
+    public var title: String {
+        switch self {
+        case .oliveOil: "Aceite de oliva (también el de ensaladas y para cocinar)"
+        case .leafyGreens: "Verduras de hoja verde: espinaca, kale, acelga, lechuga romana"
+        case .otherVegetables: "Otras verduras"
+        case .berries: "Frutos rojos: arándanos, frambuesas, fresas"
+        case .otherFruit: "Otras frutas (sin contar frutos rojos)"
+        case .redMeat: "Carne roja, hamburguesa, panceta o salchichas"
+        case .fish: "Pescado o marisco (no frito)"
+        case .chicken: "Pollo (no frito)"
+        case .cheese: "Queso entero o queso crema (no light)"
+        case .butterCream: "Mantequilla o nata"
+        case .beans: "Legumbres: judías, lentejas, soja como edamame o tofu"
+        case .wholeGrains: "Pan, pasta o cereales integrales"
+        case .sweets: "Dulces industriales: golosinas, bollería, galletas o pasteles"
+        case .nuts: "Frutos secos"
+        case .fastFood: "Comidas en restaurantes de comida rápida"
+        case .alcohol: "Bebidas alcohólicas"
+        }
+    }
+
+    /// Tamaño de una ración.
+    public var portion: String {
+        switch self {
+        case .oliveOil, .butterCream: "Ración: 1 cucharada"
+        case .leafyGreens: "Ración: 1 taza cruda o ½ taza cocida"
+        case .otherVegetables, .berries, .otherFruit, .beans: "Ración: ½ taza"
+        case .redMeat, .fish, .chicken: "Ración: 85 g"
+        case .cheese: "Ración: 30 g"
+        case .wholeGrains: "Ración: 1 rebanada de pan o ¾ taza de pasta o cereal"
+        case .sweets: "Ración: 1 galleta o 1 pieza de bollería"
+        case .nuts: "Ración: ¼ de taza (unos 30 g)"
+        case .fastFood: "Cuenta cada comida"
+        case .alcohol: "Ración: 1 copa de vino, 1 cerveza o 1 trago de destilado"
+        }
+    }
+
+    /// Condición que suma 1 punto (tabla C de la AHA).
+    public var criterion: String {
+        switch self {
+        case .oliveOil: "Suma con más de 2 al día"
+        case .leafyGreens: "Suma con más de 7 a la semana"
+        case .otherVegetables: "Suma con más de 2 al día"
+        case .berries: "Suma con más de 2 a la semana"
+        case .otherFruit: "Suma con más de 1 al día"
+        case .redMeat: "Suma con menos de 3 a la semana"
+        case .fish: "Suma con más de 1 a la semana"
+        case .chicken: "Suma con menos de 5 a la semana"
+        case .cheese: "Suma con menos de 4 a la semana"
+        case .butterCream: "Suma con menos de 5 a la semana"
+        case .beans: "Suma con más de 3 a la semana"
+        case .wholeGrains: "Suma con más de 3 al día"
+        case .sweets: "Suma con menos de 4 a la semana"
+        case .nuts: "Suma con más de 4 a la semana"
+        case .fastFood: "Suma con menos de 1 a la semana"
+        case .alcohol: "Suma con un consumo moderado: más de 0 y menos de 2 al día en hombres o de 1 al día en mujeres"
+        }
+    }
+
+    /// `true` si las raciones semanales cumplen el criterio.
+    public func isMet(servingsPerWeek value: Double, sex: ReferenceSex?) -> Bool {
+        switch self {
+        case .oliveOil, .otherVegetables: value > 14
+        case .leafyGreens, .otherFruit: value > 7
+        case .berries: value > 2
+        case .redMeat: value < 3
+        case .fish: value > 1
+        case .chicken, .butterCream: value < 5
+        case .cheese, .sweets: value < 4
+        case .beans: value > 3
+        case .wholeGrains: value > 21
+        case .nuts: value > 4
+        case .fastFood: value < 1
+        // Sin sexo conocido se usa el límite más prudente (el de mujeres).
+        case .alcohol: value > 0 && value < (sex == .male ? 14 : 7)
+        }
+    }
+}
+
+/// Respuestas del cuestionario MEPA, en raciones por semana.
+public struct DietAnswers: Codable, Hashable, Sendable {
+    public var servingsPerWeek: [MEPAItem: Double]
+    public var date: Date
+
+    public init(servingsPerWeek: [MEPAItem: Double], date: Date) {
+        self.servingsPerWeek = servingsPerWeek
+        self.date = date
+    }
+
+    public var isComplete: Bool { MEPAItem.allCases.allSatisfy { servingsPerWeek[$0] != nil } }
+
+    /// Puntuación MEPA (0–16); `nil` si falta alguna respuesta.
+    public func score(sex: ReferenceSex?) -> Int? {
+        guard isComplete else { return nil }
+        return MEPAItem.allCases.filter { $0.isMet(servingsPerWeek: servingsPerWeek[$0] ?? 0, sex: sex) }.count
     }
 }

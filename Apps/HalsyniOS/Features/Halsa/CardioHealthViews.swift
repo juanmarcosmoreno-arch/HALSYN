@@ -29,7 +29,7 @@ final class CardioInputsStore {
 private func loadCardioHealth(_ model: AppModel) async -> (CardioHealthMeasurements, CardioHealthResult) {
     let height = ReferenceProfileStore.shared.heightCentimeters.map { $0 / 100 }
     let measurements = await model.provider.cardioHealthMeasurements(on: .now, heightMeters: height, calendar: .current)
-    return (measurements, CardiovascularHealthEngine.evaluate(measurements: measurements, inputs: CardioInputsStore.shared.inputs))
+    return (measurements, CardiovascularHealthEngine.evaluate(measurements: measurements, inputs: CardioInputsStore.shared.inputs, sex: ReferenceProfileStore.shared.sex))
 }
 
 // MARK: - Tarjeta en HÄLSA
@@ -115,7 +115,11 @@ struct CardioHealthView: View {
             result = loaded.1
         }
         .sheet(item: $editing) { component in
-            CardioInputEditor(component: component)
+            if component == .diet {
+                DietQuestionnaireView()
+            } else {
+                CardioInputEditor(component: component)
+            }
         }
     }
 
@@ -177,7 +181,7 @@ struct CardioHealthView: View {
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
-                if !item.component.isAutomatic && item.component != .diet {
+                if !item.component.isAutomatic {
                     Button {
                         editing = item.component
                     } label: {
@@ -200,6 +204,7 @@ struct CardioHealthView: View {
         case .bloodPressure: store.inputs.bloodPressure?.date
         case .bloodLipids: store.inputs.lipids?.date
         case .bloodGlucose: store.inputs.glucose?.date
+        case .diet: store.inputs.diet?.date
         default: nil
         }
     }
@@ -208,7 +213,11 @@ struct CardioHealthView: View {
         let inputs = store.inputs
         switch component {
         case .diet:
-            return "Aún no se calcula: la AHA usa un cuestionario validado de alimentación (MEPA) que todavía no está en la app."
+            guard let diet = inputs.diet, let mepa = diet.score(sex: ReferenceProfileStore.shared.sex) else {
+                return "Sin dato. Son 16 preguntas sobre lo que comes en una semana normal (cuestionario MEPA)."
+            }
+            let date = diet.date.formatted(date: .abbreviated, time: .omitted)
+            return "MEPA \(mepa) de 16 respuestas saludables (\(date))."
         case .physicalActivity:
             guard let minutes = measurements.weeklyActivityMinutes else { return "Faltan días con minutos de ejercicio en Salud." }
             let value = HalsynFormat.integer(minutes)
@@ -263,7 +272,7 @@ struct CardioHealthView: View {
                 Text("No es un diagnóstico ni sustituye una valoración médica. Tus datos escritos se guardan solo en este iPhone.")
                     .font(.halsynCaption.weight(.semibold))
                     .foregroundStyle(.halsynSecondaryText)
-                ReferenceLinks(references: [ScienceReferences.lifesEssential8])
+                ReferenceLinks(references: [ScienceReferences.lifesEssential8, ScienceReferences.mepa])
                 Text(verbatim: "CardiovascularHealthEngine \(CardiovascularHealthEngine.version)")
                     .font(.caption2.monospaced())
                     .foregroundStyle(.halsynSecondaryText)
@@ -276,7 +285,7 @@ struct CardioHealthView: View {
 enum CardioTexts {
     static func bands(_ component: CardioComponent) -> LocalizedStringKey {
         switch component {
-        case .diet: "Puntos según el cuestionario MEPA (0–16 respuestas saludables)."
+        case .diet: "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
         case .physicalActivity: "≥150 min/semana: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
         case .sleep: "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h o ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
         case .bodyMassIndex: "<25: 100 · 25–29,9: 70 · 30–34,9: 30 · 35–39,9: 15 · ≥40: 0"
@@ -485,5 +494,121 @@ struct ReferenceLinks: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - Cuestionario de alimentación (MEPA)
+
+/// Las 16 preguntas del MEPA. Cada una se responde en raciones al día o a la semana.
+struct DietQuestionnaireView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var counts: [MEPAItem: Int] = [:]
+    @State private var perDay: [MEPAItem: Bool] = [:]
+    private var store: CardioInputsStore { .shared }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    Text("Piensa en una semana normal. Indica cuántas raciones tomas de cada cosa, al día o a la semana. Si no lo comes nunca, deja 0.")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+                ForEach(Array(MEPAItem.allCases.enumerated()), id: \.element) { index, item in
+                    Section {
+                        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                            Text(verbatim: "\(index + 1).")
+                                .font(.caption2.monospacedDigit())
+                                .foregroundStyle(.halsynSecondaryText)
+                            Text(LocalizedStringKey(item.title))
+                                .font(.halsynBody)
+                            Text(LocalizedStringKey(item.portion))
+                                .font(.caption2)
+                                .foregroundStyle(.halsynSecondaryText)
+                            HStack {
+                                Stepper(value: count(item), in: 0...60) {
+                                    Text(verbatim: "\(counts[item] ?? 0)")
+                                        .font(.halsynHeadline.monospacedDigit())
+                                }
+                                Picker("Frecuencia", selection: frequency(item)) {
+                                    Text("al día").tag(true)
+                                    Text("a la semana").tag(false)
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(maxWidth: 190)
+                            }
+                            Label(LocalizedStringKey(item.criterion), systemImage: isMet(item) ? "checkmark.circle.fill" : "circle")
+                                .font(.caption2)
+                                .foregroundStyle(isMet(item) ? Color.halsynAccentText : Color.halsynSecondaryText)
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+                Section {
+                    let score = MEPAItem.allCases.filter(isMet).count
+                    LabeledContent("Respuestas saludables") {
+                        Text(verbatim: "\(score) / 16")
+                            .font(.halsynHeadline.monospacedDigit())
+                    }
+                } footer: {
+                    Text("Cuestionario MEPA (Mediterranean Eating Pattern for Americans) de Tangney y Rasmussen, Rush University Medical Center, con los criterios de puntuación de la American Heart Association.")
+                }
+            }
+            .navigationTitle(Text("Alimentación"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancelar") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Guardar") { save() }
+                }
+            }
+            .onAppear(perform: load)
+        }
+    }
+
+    private func count(_ item: MEPAItem) -> Binding<Int> {
+        Binding(get: { counts[item] ?? 0 }, set: { counts[item] = $0 })
+    }
+
+    private func frequency(_ item: MEPAItem) -> Binding<Bool> {
+        Binding(get: { perDay[item] ?? Self.defaultsToPerDay(item) }, set: { perDay[item] = $0 })
+    }
+
+    /// Las preguntas con criterio diario empiezan en "al día".
+    private static func defaultsToPerDay(_ item: MEPAItem) -> Bool {
+        [.oliveOil, .otherVegetables, .otherFruit, .wholeGrains].contains(item)
+    }
+
+    private func servingsPerWeek(_ item: MEPAItem) -> Double {
+        let value = Double(counts[item] ?? 0)
+        return (perDay[item] ?? Self.defaultsToPerDay(item)) ? value * 7 : value
+    }
+
+    private func isMet(_ item: MEPAItem) -> Bool {
+        item.isMet(servingsPerWeek: servingsPerWeek(item), sex: ReferenceProfileStore.shared.sex)
+    }
+
+    private func load() {
+        guard let diet = store.inputs.diet else { return }
+        for item in MEPAItem.allCases {
+            let weekly = diet.servingsPerWeek[item] ?? 0
+            // Se muestra al día si es un número entero de raciones diarias.
+            if weekly >= 7, weekly.truncatingRemainder(dividingBy: 7) == 0 {
+                counts[item] = Int(weekly / 7)
+                perDay[item] = true
+            } else {
+                counts[item] = Int(weekly)
+                perDay[item] = false
+            }
+        }
+    }
+
+    private func save() {
+        var inputs = store.inputs
+        inputs.diet = DietAnswers(servingsPerWeek: Dictionary(uniqueKeysWithValues: MEPAItem.allCases.map { ($0, servingsPerWeek($0)) }), date: .now)
+        store.inputs = inputs
+        dismiss()
     }
 }

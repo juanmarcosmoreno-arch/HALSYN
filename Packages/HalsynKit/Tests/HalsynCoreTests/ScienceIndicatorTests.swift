@@ -94,3 +94,43 @@ struct StepsReferenceTests {
         #expect(HealthScoreConfiguration.stepsReference(age: nil) == 8000)
     }
 }
+
+@Suite("Cuestionario MEPA")
+struct MEPATests {
+    private func answers(_ values: [MEPAItem: Double]) -> DietAnswers {
+        var all = Dictionary(uniqueKeysWithValues: MEPAItem.allCases.map { ($0, 0.0) })
+        all.merge(values) { _, new in new }
+        return DietAnswers(servingsPerWeek: all, date: firstDay)
+    }
+
+    @Test func criteriaFollowTableC() {
+        // Todo a 0: suman los límites "menos de" (carne, pollo, queso, mantequilla, dulces, comida rápida).
+        #expect(answers([:]).score(sex: .male) == 6)
+        let healthy = answers([.oliveOil: 21, .leafyGreens: 8, .otherVegetables: 21, .berries: 3, .otherFruit: 14, .fish: 2, .beans: 4, .wholeGrains: 28, .nuts: 5, .alcohol: 5])
+        #expect(healthy.score(sex: .male) == 16)
+        #expect(healthy.score(sex: .female) == 16)
+        // 10 bebidas a la semana: moderado en hombres, no en mujeres ni con sexo desconocido.
+        let drinks = answers([.alcohol: 10])
+        #expect(drinks.score(sex: .male) == 7)
+        #expect(drinks.score(sex: nil) == 6)
+        // Límites estrictos: exactamente 2 al día de aceite no suma.
+        #expect(answers([.oliveOil: 14]).score(sex: .male) == 6)
+    }
+
+    @Test func incompleteAnswersGiveNoScore() {
+        var partial = answers([:])
+        partial.servingsPerWeek[.nuts] = nil
+        #expect(partial.score(sex: .male) == nil)
+    }
+
+    @Test func mepaMapsToDietPoints() {
+        #expect(CardiovascularHealthEngine.dietPoints(16) == 100)
+        #expect(CardiovascularHealthEngine.dietPoints(13) == 80)
+        #expect(CardiovascularHealthEngine.dietPoints(8) == 50)
+        #expect(CardiovascularHealthEngine.dietPoints(5) == 25)
+        #expect(CardiovascularHealthEngine.dietPoints(3) == 0)
+        let inputs = CardioHealthInputs(diet: answers([.oliveOil: 21]))
+        let result = CardiovascularHealthEngine.evaluate(measurements: CardioHealthMeasurements(), inputs: inputs, sex: .male)
+        #expect(result.components.first { $0.component == .diet }?.points == 25) // MEPA 7
+    }
+}

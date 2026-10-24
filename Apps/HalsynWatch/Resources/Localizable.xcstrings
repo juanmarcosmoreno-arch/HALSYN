@@ -2863,6 +2863,59 @@
         }
       }
     },
+    "Aceite de oliva (también el de ensaladas y para cocinar)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olive oil (including in salads and for cooking)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azeite de oliva (inclusive em saladas e para cozinhar)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huile d'olive (y compris dans les salades et pour cuisiner)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olio d'oliva (anche nelle insalate e per cucinare)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olivolja (även i sallader och till matlagning)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olivenolie (også i salater og til madlavning)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "橄榄油（包括沙拉和烹饪用的）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जैतून का तेल (सलाद और खाना पकाने में इस्तेमाल किया गया भी)"
+          }
+        }
+      }
+    },
     "Actividad física": {
       "extractionState": "manual",
       "localizations": {
@@ -5619,59 +5672,6 @@
         }
       }
     },
-    "Aún no se calcula: la AHA usa un cuestionario validado de alimentación (MEPA) que todavía no está en la app.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not calculated yet: the AHA uses a validated diet questionnaire (MEPA) that isn't in the app yet."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ainda não é calculado: a AHA usa um questionário validado de alimentação (MEPA) que ainda não está no app."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas encore calculé : l’AHA utilise un questionnaire alimentaire validé (MEPA) qui n’est pas encore dans l’app."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non ancora calcolato: l’AHA usa un questionario alimentare validato (MEPA) che non è ancora nell’app."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beräknas inte än: AHA använder ett validerat kostformulär (MEPA) som inte finns i appen än."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beregnes ikke endnu: AHA bruger et valideret kostspørgeskema (MEPA), som endnu ikke er i appen."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "暂不计算：AHA 使用经过验证的饮食问卷（MEPA），该问卷尚未加入 App。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अभी इसकी गणना नहीं होती: AHA एक प्रमाणित आहार प्रश्नावली (MEPA) इस्तेमाल करता है, जो अभी ऐप में नहीं है।"
-          }
-        }
-      }
-    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -5721,6 +5721,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आधार"
+          }
+        }
+      }
+    },
+    "Bebidas alcohólicas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcoholic drinks"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bebidas alcoólicas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boissons alcoolisées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bevande alcoliche"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alkoholhaltiga drycker"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alkoholiske drikke"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "含酒精饮料"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शराब वाले पेय"
           }
         }
       }
@@ -8375,6 +8428,59 @@
         }
       }
     },
+    "Carne roja, hamburguesa, panceta o salchichas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red meat, hamburger, bacon or sausage"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne vermelha, hambúrguer, bacon ou linguiça"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viande rouge, hamburger, bacon ou saucisses"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carne rossa, hamburger, pancetta o salsicce"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rött kött, hamburgare, bacon eller korv"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rødt kød, burger, bacon eller pølser"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "红肉、汉堡、培根或香肠"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रेड मीट, हैमबर्गर, बेकन या सॉसेज"
+          }
+        }
+      }
+    },
     "Carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -9219,6 +9325,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "रंग"
+          }
+        }
+      }
+    },
+    "Comidas en restaurantes de comida rápida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals at fast-food restaurants"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refeições em restaurantes de fast-food"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repas dans des fast-foods"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasti nei fast food"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måltider på snabbmatsrestauranger"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måltider på fastfoodrestauranter"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在快餐店吃的餐"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ास्ट-फ़ूड रेस्तरां में खाना"
           }
         }
       }
@@ -11078,6 +11237,59 @@
         }
       }
     },
+    "Cuenta cada comida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count each meal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conte cada refeição"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comptez chaque repas"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta ogni pasto"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räkna varje måltid"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæl hvert måltid"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每餐计一次"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर बार के खाने को गिनें"
+          }
+        }
+      }
+    },
     "Cuerpo": {
       "extractionState": "manual",
       "localizations": {
@@ -11127,6 +11339,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "शरीर"
+          }
+        }
+      }
+    },
+    "Cuestionario MEPA (Mediterranean Eating Pattern for Americans) de Tangney y Rasmussen, Rush University Medical Center, con los criterios de puntuación de la American Heart Association.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA questionnaire (Mediterranean Eating Pattern for Americans) by Tangney and Rasmussen, Rush University Medical Center, with the American Heart Association scoring criteria."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questionário MEPA (Mediterranean Eating Pattern for Americans) de Tangney e Rasmussen, Rush University Medical Center, com os critérios de pontuação da American Heart Association."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questionnaire MEPA (Mediterranean Eating Pattern for Americans) de Tangney et Rasmussen, Rush University Medical Center, avec les critères de notation de l'American Heart Association."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questionario MEPA (Mediterranean Eating Pattern for Americans) di Tangney e Rasmussen, Rush University Medical Center, con i criteri di punteggio dell'American Heart Association."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA-formuläret (Mediterranean Eating Pattern for Americans) av Tangney och Rasmussen, Rush University Medical Center, med American Heart Associations poängkriterier."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA-spørgeskemaet (Mediterranean Eating Pattern for Americans) af Tangney og Rasmussen, Rush University Medical Center, med American Heart Associations pointkriterier."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 问卷（Mediterranean Eating Pattern for Americans），作者 Tangney 和 Rasmussen，Rush University Medical Center，采用美国心脏协会的评分标准。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA प्रश्नावली (Mediterranean Eating Pattern for Americans), Tangney और Rasmussen, Rush University Medical Center, American Heart Association के अंक मानदंडों के साथ।"
           }
         }
       }
@@ -13777,6 +14042,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आप अपने औसत से %@ ज़्यादा सोए।"
+          }
+        }
+      }
+    },
+    "Dulces industriales: golosinas, bollería, galletas o pasteles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commercial sweets: candy, pastries, cookies or cakes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doces industrializados: balas, confeitaria, biscoitos ou bolos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucreries industrielles : bonbons, viennoiseries, biscuits ou gâteaux"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dolci industriali: caramelle, merendine, biscotti o torte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Industrisötsaker: godis, bakverk, kakor eller tårtor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Industrielle søde sager: slik, wienerbrød, småkager eller kager"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工业甜食：糖果、酥皮点心、饼干或蛋糕"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बाज़ार की मिठाइयाँ: कैंडी, पेस्ट्री, बिस्कुट या केक"
           }
         }
       }
@@ -19717,6 +20035,59 @@
         }
       }
     },
+    "Frecuencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequency"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequência"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fréquence"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequenza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frekvens"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hyppighed"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "频率"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आवृत्ति"
+          }
+        }
+      }
+    },
     "Frecuencia cardíaca": {
       "extractionState": "manual",
       "localizations": {
@@ -19925,6 +20296,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "आपके मिलते-जुलते रन की तुलना में"
+          }
+        }
+      }
+    },
+    "Frutos rojos: arándanos, frambuesas, fresas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berries: blueberries, raspberries, strawberries"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutas vermelhas: mirtilos, framboesas, morangos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits rouges : myrtilles, framboises, fraises"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutti di bosco: mirtilli, lamponi, fragole"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bär: blåbär, hallon, jordgubbar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bær: blåbær, hindbær, jordbær"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浆果：蓝莓、覆盆子、草莓"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बेरी: ब्लूबेरी, रास्पबेरी, स्ट्रॉबेरी"
+          }
+        }
+      }
+    },
+    "Frutos secos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuts"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oleaginosas (castanhas e nozes)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruits à coque"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frutta secca"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nötter"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nødder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "坚果"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मेवे"
           }
         }
       }
@@ -24752,6 +25229,59 @@
         }
       }
     },
+    "Legumbres: judías, lentejas, soja como edamame o tofu": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legumes: beans, lentils, soy such as edamame or tofu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leguminosas: feijão, lentilha, soja como edamame ou tofu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Légumineuses : haricots, lentilles, soja comme l'edamame ou le tofu"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legumi: fagioli, lenticchie, soia come edamame o tofu"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baljväxter: bönor, linser, soja som edamame eller tofu"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bælgfrugter: bønner, linser, soja som edamame eller tofu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "豆类：豆子、扁豆、大豆（如毛豆或豆腐）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दालें और फलियाँ: राजमा, मसूर, सोया जैसे एडामामे या टोफ़ू"
+          }
+        }
+      }
+    },
     "Leyendo tus datos…": {
       "extractionState": "manual",
       "localizations": {
@@ -26073,6 +26603,165 @@
           "stringUnit": {
             "state": "translated",
             "value": "औसत"
+          }
+        }
+      }
+    },
+    "MEPA %lld de 16 respuestas saludables (%@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld of 16 healthy answers (%@)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld de 16 respostas saudáveis (%@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld réponses saines sur 16 (%@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld risposte sane su 16 (%@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld av 16 hälsosamma svar (%@)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA %lld af 16 sunde svar (%@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA：16 个健康回答中有 %lld 个（%@）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA: 16 में से %lld स्वस्थ जवाब (%@)।"
+          }
+        }
+      }
+    },
+    "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16 : 100 · 12–14 : 80 · 8–11 : 50 · 4–7 : 25 · 0–3 : 0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16：100 · 12–14：80 · 8–11：50 · 4–7：25 · 0–3：0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MEPA 15–16: 100 · 12–14: 80 · 8–11: 50 · 4–7: 25 · 0–3: 0"
+          }
+        }
+      }
+    },
+    "Mantequilla o nata": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Butter or cream"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manteiga ou creme de leite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beurre ou crème"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burro o panna"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smör eller grädde"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smør eller fløde"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "黄油或奶油"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मक्खन या क्रीम"
           }
         }
       }
@@ -32066,6 +32755,112 @@
         }
       }
     },
+    "Otras frutas (sin contar frutos rojos)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other fruit (not counting berries)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outras frutas (sem contar as vermelhas)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autres fruits (sans compter les fruits rouges)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altra frutta (esclusi i frutti di bosco)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annan frukt (bär oräknade)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anden frugt (bær ikke medregnet)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他水果（不含浆果）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दूसरे फल (बेरी को छोड़कर)"
+          }
+        }
+      }
+    },
+    "Otras verduras": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other vegetables"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outros vegetais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autres légumes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altre verdure"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andra grönsaker"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andre grøntsager"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他蔬菜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दूसरी सब्ज़ियाँ"
+          }
+        }
+      }
+    },
     "P%@": {
       "extractionState": "manual",
       "localizations": {
@@ -32115,6 +32910,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "P%@"
+          }
+        }
+      }
+    },
+    "Pan, pasta o cereales integrales": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole-grain bread, pasta or cereal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pão, massa ou cereais integrais"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pain, pâtes ou céréales complets"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pane, pasta o cereali integrali"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fullkornsbröd, -pasta eller -flingor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuldkornsbrød, -pasta eller -morgenmad"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全谷物面包、意面或谷物"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साबुत अनाज की ब्रेड, पास्ता या सीरियल"
           }
         }
       }
@@ -33338,6 +34186,59 @@
         }
       }
     },
+    "Pescado o marisco (no frito)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fish or seafood (not fried)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peixe ou frutos do mar (não fritos)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poisson ou fruits de mer (non frits)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pesce o frutti di mare (non fritti)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fisk eller skaldjur (inte friterat)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fisk eller skaldyr (ikke friturestegt)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鱼或海鲜（非油炸）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मछली या समुद्री भोजन (तला हुआ नहीं)"
+          }
+        }
+      }
+    },
     "Peso": {
       "extractionState": "manual",
       "localizations": {
@@ -33493,6 +34394,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "वेटेज: %@"
+          }
+        }
+      }
+    },
+    "Piensa en una semana normal. Indica cuántas raciones tomas de cada cosa, al día o a la semana. Si no lo comes nunca, deja 0.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Think of a typical week. Enter how many servings you have of each item, per day or per week. If you never eat it, leave 0."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pense em uma semana normal. Indique quantas porções você consome de cada item, por dia ou por semana. Se nunca come, deixe 0."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensez à une semaine normale. Indiquez combien de portions vous prenez de chaque aliment, par jour ou par semaine. Si vous n'en mangez jamais, laissez 0."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pensa a una settimana normale. Indica quante porzioni prendi di ogni alimento, al giorno o alla settimana. Se non lo mangi mai, lascia 0."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tänk på en vanlig vecka. Ange hur många portioner du äter av varje sak, per dag eller per vecka. Om du aldrig äter det, lämna 0."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tænk på en almindelig uge. Angiv hvor mange portioner du får af hver ting, om dagen eller om ugen. Hvis du aldrig spiser det, så lad 0 stå."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "想想普通的一周。填写每种食物你吃几份，按每天或每周计。从不吃就保留 0。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सामान्य हफ़्ते के बारे में सोचें। हर चीज़ की कितनी सर्विंग आप लेते हैं, रोज़ या हफ़्ते में, बताएँ। अगर कभी नहीं खाते, तो 0 रहने दें।"
           }
         }
       }
@@ -33705,6 +34659,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कम भरोसेमंद: आपके रन इससे काफ़ी छोटे हैं"
+          }
+        }
+      }
+    },
+    "Pollo (no frito)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chicken (not fried)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frango (não frito)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poulet (non frit)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pollo (non fritto)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kyckling (inte friterad)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kylling (ikke friturestegt)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鸡肉（非油炸）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चिकन (तला हुआ नहीं)"
           }
         }
       }
@@ -35405,59 +36412,6 @@
         }
       }
     },
-    "Puntos según el cuestionario MEPA (0–16 respuestas saludables).": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Points based on the MEPA questionnaire (0–16 healthy answers)."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pontos segundo o questionário MEPA (0–16 respostas saudáveis)."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Points selon le questionnaire MEPA (0–16 réponses saines)."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Punti secondo il questionario MEPA (0–16 risposte salutari)."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poäng enligt MEPA-formuläret (0–16 hälsosamma svar)."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Point ifølge MEPA-spørgeskemaet (0–16 sunde svar)."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "根据 MEPA 问卷计分（0–16 个健康回答）。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "MEPA प्रश्नावली के अनुसार अंक (0–16 सेहतमंद जवाब)।"
-          }
-        }
-      }
-    },
     "Puntuación": {
       "extractionState": "manual",
       "localizations": {
@@ -35666,6 +36620,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "बाकी"
+          }
+        }
+      }
+    },
+    "Queso entero o queso crema (no light)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-fat cheese or cream cheese (not light)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queijo integral ou cream cheese (não light)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fromage entier ou fromage à la crème (non allégé)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formaggio intero o formaggio spalmabile (non light)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fet ost eller färskost (inte light)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fed ost eller flødeost (ikke light)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全脂奶酪或奶油奶酪（非低脂）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ुल-फ़ैट चीज़ या क्रीम चीज़ (लाइट नहीं)"
           }
         }
       }
@@ -36355,6 +37362,483 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld की लय"
+          }
+        }
+      }
+    },
+    "Ración: 1 copa de vino, 1 cerveza o 1 trago de destilado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 1 glass of wine, 1 beer or 1 shot of spirits"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 1 taça de vinho, 1 cerveja ou 1 dose de destilado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 1 verre de vin, 1 bière ou 1 verre d'alcool fort"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 1 bicchiere di vino, 1 birra o 1 bicchierino di superalcolico"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 glas vin, 1 öl eller 1 shot sprit"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 glas vin, 1 øl eller 1 shot spiritus"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：1 杯葡萄酒、1 瓶啤酒或 1 小杯烈酒"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 1 गिलास वाइन, 1 बीयर या 1 पेग स्पिरिट"
+          }
+        }
+      }
+    },
+    "Ración: 1 cucharada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 1 tablespoon"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 1 colher de sopa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 1 cuillère à soupe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 1 cucchiaio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 matsked"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 spiseske"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：1 汤匙"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 1 बड़ा चम्मच"
+          }
+        }
+      }
+    },
+    "Ración: 1 galleta o 1 pieza de bollería": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 1 cookie or 1 pastry"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 1 biscoito ou 1 doce"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 1 biscuit ou 1 viennoiserie"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 1 biscotto o 1 merendina"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 kaka eller 1 bakelse"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 småkage eller 1 stykke wienerbrød"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：1 块饼干或 1 个点心"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 1 बिस्कुट या 1 पेस्ट्री"
+          }
+        }
+      }
+    },
+    "Ración: 1 rebanada de pan o ¾ taza de pasta o cereal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 1 slice of bread or ¾ cup of pasta or cereal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 1 fatia de pão ou ¾ xícara de massa ou cereal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 1 tranche de pain ou ¾ de tasse de pâtes ou de céréales"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 1 fetta di pane o ¾ di tazza di pasta o cereali"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 brödskiva eller ¾ kopp pasta eller flingor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 skive brød eller ¾ kop pasta eller morgenmad"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：1 片面包或 ¾ 杯意面或谷物"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 1 स्लाइस ब्रेड या ¾ कप पास्ता या सीरियल"
+          }
+        }
+      }
+    },
+    "Ración: 1 taza cruda o ½ taza cocida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 1 cup raw or ½ cup cooked"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 1 xícara crua ou ½ xícara cozida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 1 tasse crue ou ½ tasse cuite"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 1 tazza cruda o ½ tazza cotta"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 kopp rå eller ½ kopp tillagad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 1 kop rå eller ½ kop tilberedt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：生的 1 杯或熟的 ½ 杯"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 1 कप कच्ची या ½ कप पकी"
+          }
+        }
+      }
+    },
+    "Ración: 30 g": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 30 g"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 30 g"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 30 g"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 30 g"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 30 g"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 30 g"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：30 克"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 30 ग्राम"
+          }
+        }
+      }
+    },
+    "Ración: 85 g": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: 85 g"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: 85 g"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : 85 g"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: 85 g"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 85 g"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: 85 g"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：85 克"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: 85 ग्राम"
+          }
+        }
+      }
+    },
+    "Ración: ¼ de taza (unos 30 g)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: ¼ cup (about 30 g)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: ¼ de xícara (cerca de 30 g)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : ¼ de tasse (environ 30 g)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: ¼ di tazza (circa 30 g)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: ¼ kopp (cirka 30 g)"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: ¼ kop (ca. 30 g)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：¼ 杯（约 30 克）"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: ¼ कप (लगभग 30 ग्राम)"
+          }
+        }
+      }
+    },
+    "Ración: ½ taza": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serving: ½ cup"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porção: ½ xícara"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion : ½ tasse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porzione: ½ tazza"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: ½ kopp"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portion: ½ kop"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一份：½ 杯"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक सर्विंग: ½ कप"
           }
         }
       }
@@ -37097,6 +38581,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "नींद के दौरान अनुमानित प्रति मिनट सांसें।"
+          }
+        }
+      }
+    },
+    "Respuestas saludables": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Healthy answers"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respostas saudáveis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réponses saines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risposte sane"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsosamma svar"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunde svar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康回答"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्वस्थ जवाब"
           }
         }
       }
@@ -40599,6 +42136,59 @@
         }
       }
     },
+    "Sin dato. Son 16 preguntas sobre lo que comes en una semana normal (cuestionario MEPA).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data. It's 16 questions about what you eat in a typical week (MEPA questionnaire)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem dado. São 16 perguntas sobre o que você come em uma semana normal (questionário MEPA)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de donnée. Ce sont 16 questions sur ce que vous mangez pendant une semaine normale (questionnaire MEPA)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun dato. Sono 16 domande su ciò che mangi in una settimana normale (questionario MEPA)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen uppgift. Det är 16 frågor om vad du äter en vanlig vecka (MEPA-formuläret)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen data. Det er 16 spørgsmål om, hvad du spiser i en almindelig uge (MEPA-spørgeskemaet)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无数据。共 16 个问题，关于你在普通一周里吃什么（MEPA 问卷）。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई डेटा नहीं। एक सामान्य हफ़्ते में आप क्या खाते हैं, इस पर 16 सवाल हैं (MEPA प्रश्नावली)।"
+          }
+        }
+      }
+    },
     "Sin datos": {
       "extractionState": "manual",
       "localizations": {
@@ -42238,6 +43828,695 @@
           "stringUnit": {
             "state": "translated",
             "value": "सुझाव"
+          }
+        }
+      }
+    },
+    "Suma con menos de 1 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with less than 1 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com menos de 1 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec moins de 1 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con meno di 1 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mindre än 1 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med under 1 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周少于 1 次时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 1 से कम पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con menos de 3 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with less than 3 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com menos de 3 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec moins de 3 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con meno di 3 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mindre än 3 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med under 3 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周少于 3 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 3 से कम पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con menos de 4 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with less than 4 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com menos de 4 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec moins de 4 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con meno di 4 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mindre än 4 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med under 4 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周少于 4 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 4 से कम पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con menos de 5 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with less than 5 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com menos de 5 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec moins de 5 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con meno di 5 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mindre än 5 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med under 5 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周少于 5 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 5 से कम पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 1 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 1 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 1 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 1 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 1 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 1 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 1 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周多于 1 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 1 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 1 al día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 1 per day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 1 por dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 1 par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 1 al giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 1 per dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 1 om dagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天多于 1 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोज़ 1 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 2 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 2 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 2 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 2 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 2 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 2 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 2 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周多于 2 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 2 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 2 al día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 2 per day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 2 por dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 2 par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 2 al giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 2 per dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 2 om dagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天多于 2 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोज़ 2 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 3 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 3 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 3 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 3 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 3 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 3 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 3 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周多于 3 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 3 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 3 al día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 3 per day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 3 por dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 3 par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 3 al giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 3 per dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 3 om dagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天多于 3 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोज़ 3 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 4 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 4 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 4 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 4 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 4 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 4 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 4 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周多于 4 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 4 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con más de 7 a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with more than 7 per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com mais de 7 por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec plus de 7 par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con più di 7 alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas med mer än 7 per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller med over 7 om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周多于 7 份时计分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में 7 से ज़्यादा पर अंक मिलता है"
+          }
+        }
+      }
+    },
+    "Suma con un consumo moderado: más de 0 y menos de 2 al día en hombres o de 1 al día en mujeres": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts with moderate drinking: more than 0 and less than 2 per day for men or 1 per day for women"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soma com consumo moderado: mais de 0 e menos de 2 por dia para homens ou de 1 por dia para mulheres"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compte avec une consommation modérée : plus de 0 et moins de 2 par jour pour les hommes ou de 1 par jour pour les femmes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conta con un consumo moderato: più di 0 e meno di 2 al giorno per gli uomini o di 1 al giorno per le donne"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Räknas vid måttlig konsumtion: mer än 0 och mindre än 2 per dag för män eller 1 per dag för kvinnor"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tæller ved moderat forbrug: over 0 og under 2 om dagen for mænd eller 1 om dagen for kvinder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适量饮酒时计分：男性每天多于 0 且少于 2 份，女性少于 1 份"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीमित मात्रा में पीने पर अंक मिलता है: पुरुषों के लिए रोज़ 0 से ज़्यादा और 2 से कम, महिलाओं के लिए 1 से कम"
           }
         }
       }
@@ -47807,6 +50086,59 @@
         }
       }
     },
+    "Verduras de hoja verde: espinaca, kale, acelga, lechuga romana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leafy greens: spinach, kale, chard, romaine lettuce"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folhas verdes: espinafre, couve, acelga, alface-romana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Légumes à feuilles vertes : épinards, chou kale, blettes, laitue romaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verdure a foglia verde: spinaci, cavolo riccio, bietole, lattuga romana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bladgrönt: spenat, grönkål, mangold, romansallad"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grønne bladgrøntsager: spinat, grønkål, bladbede, romainesalat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "绿叶蔬菜：菠菜、羽衣甘蓝、甜菜叶、罗马生菜"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हरी पत्तेदार सब्ज़ियाँ: पालक, केल, चार्ड, रोमेन लेट्यूस"
+          }
+        }
+      }
+    },
     "Versión": {
       "extractionState": "manual",
       "localizations": {
@@ -48969,6 +51301,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अधिकतम HR %lld bpm वाले ज़ोन"
+          }
+        }
+      }
+    },
+    "a la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "per week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "por semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "par semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "alla settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "per vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "om ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में"
+          }
+        }
+      }
+    },
+    "al día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "per day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "por dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "al giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "per dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "om dagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोज़"
           }
         }
       }

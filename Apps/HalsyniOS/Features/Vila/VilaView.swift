@@ -98,6 +98,11 @@ struct RecoveryCard: View {
                     HalsynScoreRing(score: estimate?.value, caption: estimate?.band?.title)
                         .frame(width: 130, height: 130)
                     VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
+                        if let title = estimate?.band?.title {
+                            Text(LocalizedStringKey(title))
+                                .font(.halsynHeadline)
+                                .foregroundStyle(.halsynPrimaryText)
+                        }
                         if let estimate, estimate.value != nil {
                             Label(confidenceText(estimate.confidence), systemImage: "gauge.with.dots.needle.33percent")
                                 .font(.halsynCaption)
