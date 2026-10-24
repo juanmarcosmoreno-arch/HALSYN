@@ -88,8 +88,19 @@ final class WorkoutManager: NSObject {
         [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning), HKQuantityType(.runningPower), HKObjectType.workoutType()]
     }
 
+    /// Pide permisos de Salud solo si falta alguno por decidir: lo ya
+    /// respondido queda guardado y no se vuelve a preguntar.
     private func requestAuthorization() async throws {
+        let status = try? await healthStore.statusForAuthorizationRequest(toShare: Self.shareTypes, read: Self.readTypes)
+        guard status != .unnecessary else { return }
         try await healthStore.requestAuthorization(toShare: Self.shareTypes, read: Self.readTypes)
+    }
+
+    /// La ubicación se pide una sola vez; después se usa lo que se eligió.
+    private func requestLocationIfNeeded() {
+        if locationManager.authorizationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
 
     // MARK: Ciclo de vida
@@ -120,7 +131,7 @@ final class WorkoutManager: NSObject {
 
             if !isIndoor {
                 routeBuilder = HKWorkoutRouteBuilder(healthStore: healthStore, device: nil)
-                locationManager.requestWhenInUseAuthorization()
+                requestLocationIfNeeded()
                 locationManager.startUpdatingLocation()
             }
 
