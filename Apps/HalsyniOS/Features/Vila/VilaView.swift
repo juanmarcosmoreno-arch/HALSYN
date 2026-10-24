@@ -24,7 +24,12 @@ struct VilaView: View {
             if let data {
                 RecoveryCard(estimate: data.recovery.last, history: data.recovery)
                 if let night = data.nights.last {
-                    LastNightCard(night: night, targetHours: sleepTarget)
+                    NavigationLink {
+                        NightDetailView(night: night, targetHours: sleepTarget)
+                    } label: {
+                        LastNightCard(night: night, targetHours: sleepTarget)
+                    }
+                    .buttonStyle(.plain)
                 } else {
                     HalsynCard {
                         HalsynEmptyState(systemImage: "moon.zzz", title: "Sin sueño registrado", message: "Lleva el Apple Watch al dormir (o usa otra app que guarde el sueño en Salud) para ver tus noches aquí.")
@@ -33,20 +38,30 @@ struct VilaView: View {
                 if !data.nights.isEmpty {
                     SleepScheduleCard(nights: data.nights, targetHours: $sleepTarget)
                 }
-                BaselineTrendCard(
-                    title: "Variabilidad cardíaca (HRV)",
-                    eyebrow: HalsynLexicon.puls.rawValue,
-                    series: data.hrv,
-                    unit: "ms",
-                    explanation: "Más alta que tu rango habitual suele acompañar a un buen descanso; más baja, a cansancio, estrés o enfermedad. Compárala solo contigo."
-                )
-                BaselineTrendCard(
-                    title: "FC en reposo",
-                    eyebrow: HalsynLexicon.puls.rawValue,
-                    series: data.restingHeartRate,
-                    unit: "lpm",
-                    explanation: "Una FC en reposo por encima de tu rango habitual durante varios días puede indicar que necesitas más descanso."
-                )
+                NavigationLink {
+                    MetricDetailView(kind: .heartRateVariability)
+                } label: {
+                    BaselineTrendCard(
+                        title: "Variabilidad cardíaca (HRV)",
+                        eyebrow: HalsynLexicon.puls.rawValue,
+                        series: data.hrv,
+                        unit: "ms",
+                        explanation: "Más alta que tu rango habitual suele acompañar a un buen descanso; más baja, a cansancio, estrés o enfermedad. Compárala solo contigo."
+                    )
+                }
+                .buttonStyle(.plain)
+                NavigationLink {
+                    MetricDetailView(kind: .restingHeartRate)
+                } label: {
+                    BaselineTrendCard(
+                        title: "FC en reposo",
+                        eyebrow: HalsynLexicon.puls.rawValue,
+                        series: data.restingHeartRate,
+                        unit: "lpm",
+                        explanation: "Una FC en reposo por encima de tu rango habitual durante varios días puede indicar que necesitas más descanso."
+                    )
+                }
+                .buttonStyle(.plain)
                 if !model.isDemo {
                     HealthAccessHint()
                 }
@@ -208,12 +223,14 @@ private struct RecoveryComponentRow: View {
 struct LastNightCard: View {
     let night: SleepNight
     let targetHours: Double
+    /// Título de la tarjeta; `nil` = "Anoche".
+    var title: String?
 
     var body: some View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                 HStack(alignment: .firstTextBaseline) {
-                    HalsynSectionHeader("Anoche", eyebrow: HalsynLexicon.somn.rawValue)
+                    HalsynSectionHeader(title ?? String(localized: "Anoche"), eyebrow: HalsynLexicon.somn.rawValue)
                     if night.origin.isDemo { HalsynDemoBadge() }
                 }
                 HStack(alignment: .firstTextBaseline, spacing: HalsynSpacing.l) {
@@ -286,6 +303,12 @@ struct SleepScheduleCard: View {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                 HalsynSectionHeader("Tus noches · 14 días", eyebrow: HalsynLexicon.tid.rawValue)
                 HalsynSleepScheduleChart(nights: nights, targetHours: targetHours)
+                NavigationLink {
+                    SleepNightsView()
+                } label: {
+                    DetailLinkRow("Ver todas las noches", systemImage: "moon.zzz")
+                }
+                .buttonStyle(.plain)
 
                 if let regularity {
                     HStack(alignment: .top) {

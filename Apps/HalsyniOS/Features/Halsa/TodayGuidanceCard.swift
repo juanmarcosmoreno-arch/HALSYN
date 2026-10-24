@@ -16,7 +16,10 @@ struct TodayGuidanceCard: View {
     var body: some View {
         VStack(spacing: 0) {
             if loaded {
-                card
+                NavigationLink(value: HalsaDestination.vila) {
+                    card
+                }
+                .buttonStyle(.plain)
             }
         }
         .task(id: model.reloadKey) { await load() }

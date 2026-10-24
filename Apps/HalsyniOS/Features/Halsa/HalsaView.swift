@@ -256,8 +256,11 @@ struct HalsaView: View {
                 HalsynSectionHeader("Tendencias", eyebrow: HalsynLexicon.steg.rawValue, actionTitle: "Ver INSIKT") {
                     model.selectedTab = .insikt
                 }
-                HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar, target: HealthScoreConfiguration().stepsReference, unit: "pasos")
-                    .frame(height: 210)
+                NavigationLink(value: HalsaDestination.metric(.steps)) {
+                    HalsynTrendChart(values: snapshot.stepsTrend, title: "Pasos", style: .bar, target: HealthScoreConfiguration().stepsReference, unit: "pasos")
+                        .frame(height: 210)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
@@ -267,13 +270,22 @@ struct HalsaView: View {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                 HalsynSectionHeader("Running", eyebrow: HalsynModule.spring.brandName)
                 if let workout = snapshot.lastWorkout {
-                    HStack {
-                        HalsynMetric(title: "Última carrera", value: workout.distanceMeters.map { HalsynFormat.distance(meters: $0, unit: unitSystem) }, unit: unitSystem.distanceUnitSymbol)
-                        Spacer()
-                        HalsynMetric(title: "Ritmo medio", value: workout.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
-                        Spacer()
-                        HalsynMetric(title: "FC media", value: workout.averageHeartRate.map { String(Int($0)) }, unit: "lpm")
+                    NavigationLink {
+                        WorkoutDetailView(workout: workout)
+                    } label: {
+                        HStack {
+                            HalsynMetric(title: "Última carrera", value: workout.distanceMeters.map { HalsynFormat.distance(meters: $0, unit: unitSystem) }, unit: unitSystem.distanceUnitSymbol)
+                            Spacer()
+                            HalsynMetric(title: "Ritmo medio", value: workout.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
+                            Spacer()
+                            HalsynMetric(title: "FC media", value: workout.averageHeartRate.map { String(Int($0)) }, unit: "lpm")
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.halsynSecondaryText)
+                                .accessibilityHidden(true)
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
                 HalsynPrimaryButton("Ir a SPRING", systemImage: "figure.run") {
                     model.selectedTab = .spring

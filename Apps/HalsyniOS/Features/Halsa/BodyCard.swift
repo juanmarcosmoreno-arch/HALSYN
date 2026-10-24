@@ -79,8 +79,16 @@ struct BodyCard: View {
         .buttonStyle(.plain)
 
         HStack(alignment: .top, spacing: HalsynSpacing.s) {
-            tile("Grasa", fat.map { HalsynFormat.decimal($0.value * 100, fractionDigits: 1) }, "%")
-            tile("Masa magra", lean.map { mass($0.value) }, unitSystem.massUnitSymbol)
+            NavigationLink(value: HalsaDestination.metric(.bodyFatPercentage)) {
+                tile("Grasa", fat.map { HalsynFormat.decimal($0.value * 100, fractionDigits: 1) }, "%")
+            }
+            .buttonStyle(.plain)
+            .disabled(fat == nil)
+            NavigationLink(value: HalsaDestination.metric(.leanBodyMass)) {
+                tile("Masa magra", lean.map { mass($0.value) }, unitSystem.massUnitSymbol)
+            }
+            .buttonStyle(.plain)
+            .disabled(lean == nil)
             bmiTile(weight)
         }
         Text("El peso varía 1–2 kg de un día a otro por agua y comida; la tendencia de semanas es lo que cuenta. La grasa de las balanzas es una estimación.")

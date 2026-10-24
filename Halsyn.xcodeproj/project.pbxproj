@@ -21,6 +21,7 @@
 		2752AD2B26F7C1E205E6F3B0 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = ABD986204A7438A2DF3C3486 /* HalsynHealthKit */; };
 		2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E2B3491782961A00596E7 /* WatchHomeView.swift */; };
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
+		29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */; };
 		2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */; };
 		3488A1EE0D11D22C6A42F245 /* HalsynWatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3530DF3A7BFC80590D57C81F /* HalsynWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77138D7BC2F85CADF76184DF /* HalsynWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -180,6 +181,7 @@
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		572F68D555D13942BB8FD46E /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
+		5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailViews.swift; sourceTree = "<group>"; };
 		5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		64A6208785D9C37B5AAD2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 		FACF7FE4DE16A3FB0BC823CF /* Vila */ = {
 			isa = PBXGroup;
 			children = (
+				5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */,
 				3A50B12EAAB493A54F5A80BF /* VilaView.swift */,
 			);
 			path = Vila;
@@ -900,6 +903,7 @@
 				D62F77788E6DC657EAA6F730 /* ScoreTexts.swift in Sources */,
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
 				C1D6EEB1C3F42240B68A59C5 /* ShoeViews.swift in Sources */,
+				29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */,
 				223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */,
 				190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */,
 				B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */,
@@ -1034,7 +1038,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1219,7 +1223,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

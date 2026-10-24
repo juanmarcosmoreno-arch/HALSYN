@@ -70,6 +70,17 @@ struct MetricDetailView: View {
                 }
             }
 
+            if kind == .sleepDuration {
+                NavigationLink {
+                    SleepNightsView()
+                } label: {
+                    HalsynCard {
+                        DetailLinkRow("Noche a noche: horarios y fases", systemImage: "moon.zzz")
+                    }
+                }
+                .buttonStyle(.plain)
+            }
+
             HalsynCard {
                 VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                     HalsynSectionHeader("Qué mide")

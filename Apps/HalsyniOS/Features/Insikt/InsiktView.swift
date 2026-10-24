@@ -76,10 +76,20 @@ struct InsiktView: View {
 
                 if let trends {
                     if !scores.isEmpty {
-                        scoreCard
+                        NavigationLink {
+                            HistoryView()
+                        } label: {
+                            scoreCard
+                        }
+                        .buttonStyle(.plain)
                     }
                     ForEach(trends) { trend in
-                        trendCard(trend)
+                        NavigationLink {
+                            MetricDetailView(kind: trend.kind)
+                        } label: {
+                            trendCard(trend)
+                        }
+                        .buttonStyle(.plain)
                     }
                     NavigationLink {
                         VilaView()
@@ -125,7 +135,14 @@ struct InsiktView: View {
     private func insights(_ report: InsightReport) -> some View {
         if !report.trends.isEmpty {
             HalsynSectionHeader("Lo que cambió", eyebrow: HalsynModule.insikt.brandName)
-            ForEach(report.trends) { TrendInsightCard(insight: $0) }
+            ForEach(report.trends) { insight in
+                NavigationLink {
+                    MetricDetailView(kind: insight.metric)
+                } label: {
+                    TrendInsightCard(insight: insight)
+                }
+                .buttonStyle(.plain)
+            }
         }
         if !report.relationships.isEmpty {
             HalsynSectionHeader("Patrones en tus datos", eyebrow: HalsynModule.insikt.brandName)
@@ -133,7 +150,14 @@ struct InsiktView: View {
         }
         if !report.weekdays.isEmpty {
             HalsynSectionHeader("Tu semana tipo", eyebrow: HalsynLexicon.tid.rawValue)
-            ForEach(report.weekdays) { WeekdayInsightCard(insight: $0) }
+            ForEach(report.weekdays) { insight in
+                NavigationLink {
+                    MetricDetailView(kind: insight.metric)
+                } label: {
+                    WeekdayInsightCard(insight: insight)
+                }
+                .buttonStyle(.plain)
+            }
         }
         if report.trends.isEmpty && report.relationships.isEmpty && report.weekdays.isEmpty {
             HalsynCard {
