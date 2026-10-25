@@ -74,6 +74,15 @@ public struct PlannedSession: Codable, Hashable, Identifiable, Sendable {
     public var repeatDistance: Double?
     public var pace: PaceRange?
 
+    public init(date: Date, kind: SessionKind, distance: Double, repeats: Int? = nil, repeatDistance: Double? = nil, pace: PaceRange? = nil) {
+        self.date = date
+        self.kind = kind
+        self.distance = distance
+        self.repeats = repeats
+        self.repeatDistance = repeatDistance
+        self.pace = pace
+    }
+
     public var id: Date { date }
 }
 
