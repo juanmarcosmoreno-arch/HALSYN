@@ -153,7 +153,7 @@ struct TrainingPlanCard: View {
         if progress.status != .notStarted {
             let done = SessionText.distance(progress.actualDistance, unit: unitSystem)
             let planned = SessionText.distance(progress.plannedDistance, unit: unitSystem)
-            HalsynStatusIndicator(GoalText.progressStatus(progress.status), text: String(localized: "\(done) de \(planned) planeados en las últimas semanas"))
+            HalsynStatusIndicator(RaceGoalText.progressStatus(progress.status), text: String(localized: "\(done) de \(planned) planeados en las últimas semanas"))
         }
         if let week = plan.week(containing: .now, calendar: calendar) {
             Text("Semana \(week.index + 1) de \(plan.weeks.count) · \(String(localized: String.LocalizationValue(week.phase.title)))")
@@ -343,11 +343,11 @@ struct PlanSetupView: View {
         Section {
             if let estimate {
                 LabeledContent {
-                    Text(verbatim: GoalText.vdot(estimate.vdot)).monospacedDigit()
+                    Text(verbatim: RaceGoalText.vdot(estimate.vdot)).monospacedDigit()
                 } label: {
                     VStack(alignment: .leading, spacing: 1) {
                         Text("Tu forma (VDOT)")
-                        Text(verbatim: GoalText.source(estimate, unit: unitSystem))
+                        Text(verbatim: RaceGoalText.source(estimate, unit: unitSystem))
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
@@ -389,9 +389,9 @@ struct PlanSetupView: View {
         let assessment = GoalCoach.assess(goalTime: hasGoalTime ? goalTime : nil, distance: distance, raceDate: raceDate, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current)
         return Section {
             if let verdict = assessment.verdict {
-                HalsynStatusIndicator(GoalText.verdictStatus(verdict), text: GoalText.verdictTitle(verdict))
+                HalsynStatusIndicator(RaceGoalText.verdictStatus(verdict), text: RaceGoalText.verdictTitle(verdict))
             }
-            Text(GoalText.verdictDetail(assessment))
+            Text(RaceGoalText.verdictDetail(assessment))
                 .font(.caption)
                 .foregroundStyle(.secondary)
             LabeledContent("Con tu forma de hoy") {
@@ -402,7 +402,7 @@ struct PlanSetupView: View {
             }
             ForEach(Array(assessment.warnings.enumerated()), id: \.offset) { _, warning in
                 Label {
-                    Text(GoalText.warning(warning, weekly: weeklyDistance, unit: unitSystem))
+                    Text(RaceGoalText.warning(warning, weekly: weeklyDistance, unit: unitSystem))
                 } icon: {
                     Image(systemName: "exclamationmark.triangle")
                 }

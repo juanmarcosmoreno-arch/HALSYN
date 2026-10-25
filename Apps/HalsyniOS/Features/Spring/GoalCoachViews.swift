@@ -41,7 +41,7 @@ final class FitnessStore {
 
 // MARK: - Textos
 
-enum GoalText {
+enum RaceGoalText {
     static func verdictTitle(_ verdict: GoalAssessment.Verdict) -> String {
         switch verdict {
         case .alreadyThere: String(localized: "Tu forma de hoy ya da ese tiempo")
@@ -236,7 +236,7 @@ struct ResultEntryView: View {
 
                 Section {
                     if let result, let vdot = result.vdot {
-                        LabeledContent("Tu forma (VDOT)", value: GoalText.vdot(vdot))
+                        LabeledContent("Tu forma (VDOT)", value: RaceGoalText.vdot(vdot))
                         ForEach([RaceDistance.fiveK, .tenK, .half, .marathon]) { target in
                             LabeledContent {
                                 Text(verbatim: HalsynFormat.duration(VDOT.raceTime(vdot: vdot, distance: target.rawValue)))
@@ -317,9 +317,9 @@ struct GoalStatusCard: View {
                 if let estimate {
                     let assessment = GoalCoach.assess(goalTime: plan.goal.goalTime, distance: plan.goal.distance, raceDate: plan.goal.raceDate, estimate: estimate, weeklyDistance: plan.startingWeeklyDistance, today: .now, calendar: .current)
                     if let verdict = assessment.verdict {
-                        HalsynStatusIndicator(GoalText.verdictStatus(verdict), text: GoalText.verdictTitle(verdict))
+                        HalsynStatusIndicator(RaceGoalText.verdictStatus(verdict), text: RaceGoalText.verdictTitle(verdict))
                     }
-                    Text(GoalText.verdictDetail(assessment))
+                    Text(RaceGoalText.verdictDetail(assessment))
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
@@ -330,14 +330,14 @@ struct GoalStatusCard: View {
                 }
 
                 Divider().overlay(Color.halsynHairline)
-                HalsynStatusIndicator(GoalText.progressStatus(progress.status), text: progressTitle(progress.status))
-                Text(GoalText.progress(progress, unit: unitSystem))
+                HalsynStatusIndicator(RaceGoalText.progressStatus(progress.status), text: progressTitle(progress.status))
+                Text(RaceGoalText.progress(progress, unit: unitSystem))
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
                 if let adjustment = plan.lastAdjustment {
                     Label {
-                        Text(GoalText.adjustment(adjustment, unit: unitSystem))
+                        Text(RaceGoalText.adjustment(adjustment, unit: unitSystem))
                     } icon: {
                         Image(systemName: "arrow.triangle.2.circlepath")
                     }
@@ -349,11 +349,11 @@ struct GoalStatusCard: View {
                 Divider().overlay(Color.halsynHairline)
                 if let estimate {
                     LabeledContent {
-                        Text(verbatim: GoalText.vdot(estimate.vdot)).monospacedDigit()
+                        Text(verbatim: RaceGoalText.vdot(estimate.vdot)).monospacedDigit()
                     } label: {
                         VStack(alignment: .leading, spacing: 1) {
                             Text("Tu forma (VDOT)")
-                            Text(verbatim: GoalText.source(estimate, unit: unitSystem))
+                            Text(verbatim: RaceGoalText.source(estimate, unit: unitSystem))
                                 .font(.caption2)
                                 .foregroundStyle(.halsynSecondaryText)
                         }
@@ -429,7 +429,7 @@ struct GoalStatusCard: View {
             }
             Spacer()
             if let vdot = result.vdot {
-                Text(verbatim: GoalText.vdot(vdot))
+                Text(verbatim: RaceGoalText.vdot(vdot))
                     .font(.halsynCaption.monospacedDigit())
                     .foregroundStyle(.halsynSecondaryText)
             }
