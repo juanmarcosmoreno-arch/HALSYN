@@ -57,6 +57,8 @@ struct InsiktView: View {
                 ModuleHeader(module: .insikt, isDemo: model.isDemo)
                     .padding(.top, HalsynSpacing.s)
 
+                WeeklySummaryCard()
+
                 if let report {
                     insights(report)
                 } else {

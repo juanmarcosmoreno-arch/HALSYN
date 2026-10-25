@@ -2916,6 +2916,59 @@
         }
       }
     },
+    "Activa Apple Intelligence en Ajustes para ver además un resumen redactado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Apple Intelligence in Settings to also see a written summary."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative a Apple Intelligence nos Ajustes para ver também um resumo escrito."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez Apple Intelligence dans Réglages pour voir aussi un résumé rédigé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva Apple Intelligence in Impostazioni per vedere anche un riepilogo scritto."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slå på Apple Intelligence i Inställningar för att även se en skriven sammanfattning."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slå Apple Intelligence til i Indstillinger for også at se et skrevet resumé."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在“设置”中打开 Apple 智能，还能看到文字总结。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लिखित सारांश भी देखने के लिए सेटिंग्स में Apple Intelligence चालू करें।"
+          }
+        }
+      }
+    },
     "Actividad física": {
       "extractionState": "manual",
       "localizations": {
@@ -4241,6 +4294,59 @@
         }
       }
     },
+    "Antes: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant : %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidigare: %@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Før: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前：%@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले: %@"
+          }
+        }
+      }
+    },
     "Análisis": {
       "extractionState": "manual",
       "localizations": {
@@ -4396,6 +4502,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "इस डिवाइस पर Apple Health उपलब्ध नहीं है।"
+          }
+        }
+      }
+    },
+    "Apple Intelligence se está preparando; el resumen redactado aparecerá más tarde.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence is getting ready; the written summary will appear later."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Apple Intelligence está se preparando; o resumo escrito aparecerá mais tarde."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence se prépare ; le résumé rédigé apparaîtra plus tard."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence si sta preparando; il riepilogo scritto apparirà più tardi."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence förbereds; den skrivna sammanfattningen visas senare."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence gør sig klar; det skrevne resumé vises senere."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple 智能正在准备中，文字总结稍后会出现。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence तैयार हो रहा है; लिखित सारांश बाद में दिखेगा।"
           }
         }
       }
@@ -5403,6 +5562,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "आज का रिकवरी डेटा अभी नहीं है"
+          }
+        }
+      }
+    },
+    "Aún no hay datos suficientes de esta semana.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There isn't enough data for this week yet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não há dados suficientes desta semana."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il n'y a pas encore assez de données cette semaine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non ci sono ancora dati sufficienti per questa settimana."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns inte tillräckligt med data för den här veckan än."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der er endnu ikke nok data for denne uge."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周的数据还不够。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस हफ़्ते के लिए अभी पर्याप्त डेटा नहीं है।"
           }
         }
       }
@@ -15053,6 +15265,59 @@
         }
       }
     },
+    "Ejercicio en la semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise this week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercício na semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercice dans la semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esercizio nella settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träning under veckan"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Træning i ugen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本周运动"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हफ़्ते में व्यायाम"
+          }
+        }
+      }
+    },
     "El VO₂ máx. del Apple Watch es una estimación submáxima; la tabla se obtuvo con pruebas de laboratorio.": {
       "extractionState": "manual",
       "localizations": {
@@ -20190,6 +20455,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "श्वसन दर"
+          }
+        }
+      }
+    },
+    "Frente a la media de tus 4 semanas anteriores. Los cambios pequeños se muestran como parecidos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared with the average of your previous 4 weeks. Small changes are shown as similar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em relação à média das suas 4 semanas anteriores. Mudanças pequenas aparecem como parecidas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par rapport à la moyenne de vos 4 semaines précédentes. Les petits changements apparaissent comme similaires."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rispetto alla media delle tue 4 settimane precedenti. I piccoli cambiamenti sono mostrati come simili."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med snittet för dina 4 föregående veckor. Små förändringar visas som liknande."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I forhold til gennemsnittet af dine 4 foregående uger. Små ændringer vises som nogenlunde ens."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与你前 4 周的平均值相比。小的变化显示为相近。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके पिछले 4 हफ़्तों के औसत की तुलना में। छोटे बदलाव लगभग समान दिखाए जाते हैं।"
           }
         }
       }
@@ -28144,6 +28462,59 @@
         }
       }
     },
+    "Menos que antes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less than before"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos que antes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moins qu'avant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meno di prima"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre än tidigare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre end før"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比之前少"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले से कम"
+          }
+        }
+      }
+    },
     "Menos regular que la mayoría": {
       "extractionState": "manual",
       "localizations": {
@@ -29783,6 +30154,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "एक दिन में सबसे ज़्यादा कदम"
+          }
+        }
+      }
+    },
+    "Más que antes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More than before"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais que antes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus qu'avant"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più di prima"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mer än tidigare"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mere end før"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "比之前多"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले से ज़्यादा"
           }
         }
       }
@@ -33444,6 +33868,59 @@
         }
       }
     },
+    "Parecido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Similar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parecido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Similaire"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simile"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liknande"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nogenlunde ens"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "相近"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लगभग समान"
+          }
+        }
+      }
+    },
     "Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Los ritmos salen de tus carreras recientes.": {
       "extractionState": "manual",
       "localizations": {
@@ -33652,6 +34129,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "कदम"
+          }
+        }
+      }
+    },
+    "Pasos al día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steps per day"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos por dia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas par jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passi al giorno"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steg per dag"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skridt om dagen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天步数"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रोज़ के क़दम"
           }
         }
       }
@@ -36518,6 +37048,59 @@
         }
       }
     },
+    "Puntuación media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average score"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontuação média"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score moyen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punteggio medio"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snittpoäng"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gennemsnitlig score"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "平均分"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "औसत स्कोर"
+          }
+        }
+      }
+    },
     "Puntuación parcial: es la media de los componentes con dato. La AHA la define con los ocho.": {
       "extractionState": "manual",
       "localizations": {
@@ -38104,6 +38687,112 @@
           "stringUnit": {
             "state": "translated",
             "value": "अनुमानित रिकवरी"
+          }
+        }
+      }
+    },
+    "Redactado en tu iPhone con Apple Intelligence a partir de estos datos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Written on your iPhone with Apple Intelligence from this data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escrito no seu iPhone com a Apple Intelligence a partir destes dados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rédigé sur votre iPhone avec Apple Intelligence à partir de ces données."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scritto sul tuo iPhone con Apple Intelligence a partire da questi dati."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriven på din iPhone med Apple Intelligence utifrån dessa data."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skrevet på din iPhone med Apple Intelligence ud fra disse data."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由 Apple 智能在你的 iPhone 上根据这些数据撰写。"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस डेटा से आपके iPhone पर Apple Intelligence द्वारा लिखा गया।"
+          }
+        }
+      }
+    },
+    "Redactando tu resumen…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing your summary…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escrevendo seu resumo…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rédaction de votre résumé…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sto scrivendo il tuo riepilogo…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriver din sammanfattning…"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriver dit resumé…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在撰写你的总结…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका सारांश लिखा जा रहा है…"
           }
         }
       }
@@ -43673,6 +44362,59 @@
         }
       }
     },
+    "Sueño por noche": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep per night"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono por noite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommeil par nuit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonno per notte"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömn per natt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Søvn pr. nat"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每晚睡眠"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हर रात की नींद"
+          }
+        }
+      }
+    },
     "Sueño, HRV y FC en reposo frente a tu rango habitual.": {
       "extractionState": "manual",
       "localizations": {
@@ -47489,6 +48231,59 @@
         }
       }
     },
+    "Tu semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua semana"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre semaine"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua settimana"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din vecka"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din uge"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的一周"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका हफ़्ता"
+          }
+        }
+      }
+    },
     "Tu semana tipo": {
       "extractionState": "manual",
       "localizations": {
@@ -50559,6 +51354,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "हर हफ़्ते की मात्रा"
+          }
+        }
+      }
+    },
+    "Volver a redactar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Write again"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escrever de novo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rédiger à nouveau"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riscrivi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriv igen"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriv igen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新撰写"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर से लिखें"
           }
         }
       }

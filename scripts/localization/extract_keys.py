@@ -70,6 +70,8 @@ for base in SOURCES:
                 continue
             if "citation:" in stripped:  # citas bibliográficas: no se traducen
                 continue
+            if "// nolocalize" in stripped:  # instrucciones internas (p. ej. para el modelo de lenguaje)
+                continue
             if "Calendar.current" in stripped or "format:" in stripped and "String(format" in stripped:
                 continue
             for match in STRING.finditer(line):

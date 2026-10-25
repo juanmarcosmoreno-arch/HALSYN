@@ -32,8 +32,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
-      - name: Versión de Xcode
-        run: xcodebuild -version
+      - name: Usar Xcode 26 si está instalado (SDK con FoundationModels)
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | grep -vi beta | sort -V | tail -1)
+          if [ -n "$XCODE" ]; then sudo xcode-select -s "$XCODE/Contents/Developer"; fi
+          xcodebuild -version
       - name: HalsynKit en macOS (núcleo + design system)
         working-directory: Packages/HalsynKit
         run: swift build && swift test
