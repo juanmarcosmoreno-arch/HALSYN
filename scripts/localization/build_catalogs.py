@@ -16,7 +16,7 @@ Uso: python3 scripts/localization/build_catalogs.py
 import json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-LANGUAGES = ["en", "pt-BR", "fr", "it", "sv", "da", "zh-Hans", "hi"]
+LANGUAGES = ["en", "sv"]
 SOURCE = "es"
 SPEC = re.compile(r"%(?:\d+\$)?(@|lld)")
 

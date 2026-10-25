@@ -8,6 +8,8 @@ public enum SessionKind: String, Codable, Hashable, CaseIterable, Sendable {
     case intervals
     case recovery
     case rest
+    /// Test a tope para medir tu forma (VDOT).
+    case test
 
     public var title: String {
         switch self {
@@ -17,6 +19,7 @@ public enum SessionKind: String, Codable, Hashable, CaseIterable, Sendable {
         case .intervals: "Series"
         case .recovery: "Rodaje de recuperación"
         case .rest: "Descanso"
+        case .test: "Test de forma"
         }
     }
 
@@ -27,10 +30,11 @@ public enum SessionKind: String, Codable, Hashable, CaseIterable, Sendable {
         case .tempo: "speedometer"
         case .intervals: "repeat"
         case .rest: "bed.double"
+        case .test: "stopwatch"
         }
     }
 
-    public var isHard: Bool { self == .tempo || self == .intervals }
+    public var isHard: Bool { self == .tempo || self == .intervals || self == .test }
 }
 
 /// Ritmos de entrenamiento derivados de tu forma actual (s/km).
@@ -107,13 +111,16 @@ public struct PlanGoal: Codable, Hashable, Sendable {
     public var longRunWeekday: Int
     /// Días de gimnasio (1 = domingo … 7 = sábado). Opcional para planes guardados antes.
     public var gymWeekdays: Set<Int>?
+    /// Tiempo objetivo en segundos (opcional).
+    public var goalTime: TimeInterval?
 
-    public init(distance: RaceDistance, raceDate: Date, runsPerWeek: Int, longRunWeekday: Int = 1, gymWeekdays: Set<Int> = []) {
+    public init(distance: RaceDistance, raceDate: Date, runsPerWeek: Int, longRunWeekday: Int = 1, gymWeekdays: Set<Int> = [], goalTime: TimeInterval? = nil) {
         self.distance = distance
         self.raceDate = raceDate
         self.runsPerWeek = min(max(runsPerWeek, 3), 5)
         self.longRunWeekday = longRunWeekday
         self.gymWeekdays = gymWeekdays
+        self.goalTime = goalTime
     }
 }
 
@@ -124,6 +131,10 @@ public struct TrainingPlan: Codable, Hashable, Sendable {
     public var createdAt: Date
     /// Kilómetros por semana de partida (media de tus últimas 4 semanas).
     public var startingWeeklyDistance: Double
+    /// VDOT con el que se calcularon los ritmos (planes nuevos).
+    public var vdot: Double?
+    /// Último reajuste semanal.
+    public var lastAdjustment: PlanAdjustment?
 
     public func session(on day: Date, calendar: Calendar) -> PlannedSession? {
         weeks.lazy.flatMap(\.sessions).first { calendar.isDate($0.date, inSameDayAs: day) }
@@ -138,6 +149,36 @@ public struct TrainingPlan: Codable, Hashable, Sendable {
 }
 
 extension RaceDistance: Codable {}
+
+/// Qué cambió en el último reajuste del plan.
+public struct PlanAdjustment: Codable, Hashable, Sendable {
+    public enum Reason: String, Codable, Hashable, Sendable {
+        /// Hiciste bastante menos de lo planeado: se baja el volumen.
+        case behind
+        /// Vas según lo previsto: el plan sigue igual.
+        case onTrack
+        /// Hiciste más de lo planeado: no se sube más deprisa.
+        case abovePlan
+        /// Tu forma cambió (test o carrera): nuevos ritmos.
+        case fitnessUpdated
+    }
+
+    public var date: Date
+    public var reason: Reason
+    /// Volumen previsto para la semana siguiente antes y después (m).
+    public var previousVolume: Double
+    public var newVolume: Double
+    /// Cambio de VDOT aplicado a los ritmos, si lo hubo.
+    public var vdotChange: Double?
+
+    public init(date: Date, reason: Reason, previousVolume: Double, newVolume: Double, vdotChange: Double? = nil) {
+        self.date = date
+        self.reason = reason
+        self.previousVolume = previousVolume
+        self.newVolume = newVolume
+        self.vdotChange = vdotChange
+    }
+}
 
 /// Genera un plan semanal hacia una carrera.
 ///
@@ -193,6 +234,24 @@ public enum TrainingPlanGenerator {
     }
 
     public static func make(goal: PlanGoal, tenKTime: TimeInterval, weeklyDistance: Double, today: Date, calendar: Calendar) -> TrainingPlan? {
+        make(goal: goal, paces: TrainingPaces.from(tenK: tenKTime, target: goal.distance), weeklyDistance: weeklyDistance, initialTest: false, today: today, calendar: calendar)
+    }
+
+    /// Plan a partir de tu forma (VDOT). Si la forma sale de entrenamientos o
+    /// tiene más de 6 semanas, la primera semana empieza con un test.
+    public static func make(goal: PlanGoal, estimate: FitnessEstimate, weeklyDistance: Double, today: Date, calendar: Calendar) -> TrainingPlan? {
+        let paces = TrainingPaces.from(vdot: estimate.vdot, target: goal.distance, goalTime: goal.goalTime)
+        guard var plan = make(goal: goal, paces: paces, weeklyDistance: weeklyDistance, initialTest: estimate.needsTest(today: today, calendar: calendar), today: today, calendar: calendar) else { return nil }
+        plan.vdot = estimate.vdot
+        return plan
+    }
+
+    /// Distancia del test: 3 km si aún corres poco por semana, 5 km si no.
+    public static func testDistance(weeklyDistance: Double) -> Double {
+        weeklyDistance < 15_000 ? 3000 : 5000
+    }
+
+    static func make(goal: PlanGoal, paces: TrainingPaces, weeklyDistance: Double, initialTest: Bool, today: Date, calendar: Calendar) -> TrainingPlan? {
         let firstDay = calendar.startOfDay(for: today)
         // Las semanas empiezan el lunes siguiente a hoy (o hoy si es lunes).
         var mondayComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: firstDay)
@@ -204,15 +263,29 @@ public enum TrainingPlanGenerator {
         let weekCount = min(days / 7 + 1, maximumWeeks)
         guard weekCount >= minimumWeeks else { return nil }
 
-        let paces = TrainingPaces.from(tenK: tenKTime, target: goal.distance)
-        let peak = max(peakVolume(goal.distance, runsPerWeek: goal.runsPerWeek), weeklyDistance)
-        let taper = taperWeeks(goal.distance)
-        var volume = max(weeklyDistance, 12_000)
-        var weeks: [PlannedWeek] = []
+        let weeks = buildWeeks(
+            start: start, firstIndex: 0, count: weekCount,
+            startVolume: max(weeklyDistance, 12_000),
+            peak: max(peakVolume(goal.distance, runsPerWeek: goal.runsPerWeek), weeklyDistance),
+            goal: goal, paces: paces, raceDay: raceDay,
+            initialTest: initialTest, testDistance: testDistance(weeklyDistance: weeklyDistance),
+            calendar: calendar
+        )
+        return TrainingPlan(goal: goal, paces: paces, weeks: weeks, createdAt: today, startingWeeklyDistance: weeklyDistance)
+    }
 
-        for index in 0..<weekCount {
-            guard let weekStart = calendar.date(byAdding: .day, value: 7 * index, to: start) else { continue }
-            let weeksLeft = weekCount - 1 - index
+    /// Semanas desde `start` hasta la carrera. `firstIndex` numera la primera
+    /// (para reajustes a mitad de plan) y marca el ritmo de las semanas de
+    /// asimilación (cada cuarta) y de los tests (cada 6 semanas).
+    static func buildWeeks(start: Date, firstIndex: Int, count: Int, startVolume: Double, peak: Double, goal: PlanGoal, paces: TrainingPaces, raceDay: Date, initialTest: Bool, testDistance: Double, calendar: Calendar) -> [PlannedWeek] {
+        let taper = taperWeeks(goal.distance)
+        let totalWeeks = firstIndex + count
+        var volume = startVolume
+        var weeks: [PlannedWeek] = []
+        for local in 0..<count {
+            let index = firstIndex + local
+            guard let weekStart = calendar.date(byAdding: .day, value: 7 * local, to: start) else { continue }
+            let weeksLeft = count - 1 - local
             let phase: PlannedWeek.Phase
             var weekVolume: Double
             if weeksLeft == 0 {
@@ -225,19 +298,90 @@ public enum TrainingPlanGenerator {
                 phase = .recovery
                 weekVolume = volume * 0.8
             } else {
-                phase = index < (weekCount - taper) / 2 ? .base : .build
-                if index > 0 { volume = min(volume * 1.08, peak) }
+                phase = index < (totalWeeks - taper) / 2 ? .base : .build
+                if local > 0 { volume = min(volume * 1.08, peak) }
                 weekVolume = volume
             }
+            // Test: al empezar si la forma no es fiable y luego cada 6 semanas,
+            // solo en semanas normales y con al menos 3 semanas hasta la carrera.
+            let wantsTest = (local == 0 && initialTest) || (index > 0 && index % testEveryWeeks == 0)
+            let includesTest = wantsTest && (phase == .base || phase == .build) && weeksLeft >= 3
             weeks.append(PlannedWeek(index: index, start: weekStart, phase: phase, sessions: sessions(
-                week: weekStart, phase: phase, volume: weekVolume, goal: goal, paces: paces, raceDay: raceDay, calendar: calendar
+                week: weekStart, phase: phase, volume: weekVolume, goal: goal, paces: paces, raceDay: raceDay,
+                test: includesTest ? testDistance : nil, calendar: calendar
             )))
         }
-        return TrainingPlan(goal: goal, paces: paces, weeks: weeks, createdAt: today, startingWeeklyDistance: weeklyDistance)
+        return weeks
+    }
+
+    public static let testEveryWeeks = 6
+
+    /// `true` si toca el reajuste de esta semana (una vez por semana, desde la segunda).
+    public static func needsWeeklyReplan(_ plan: TrainingPlan, today: Date, calendar: Calendar) -> Bool {
+        guard let current = plan.week(containing: today, calendar: calendar), current.index > 0, current.phase != .race else { return false }
+        let last = plan.lastAdjustment?.date ?? plan.createdAt
+        return last < current.start
+    }
+
+    /// Reajusta las semanas que quedan (desde la siguiente) con lo que corriste
+    /// de verdad y tu forma más reciente. Las semanas pasadas y la actual no
+    /// cambian.
+    ///
+    /// - Si hiciste menos de lo planeado, la siguiente semana parte de tu
+    ///   volumen real y sube como mucho un 8 por ciento: lo perdido no se recupera.
+    /// - Si hiciste más, no se sube más deprisa de lo previsto.
+    /// - Si hay un test o una carrera nuevos, los ritmos se recalculan.
+    public static func replan(_ plan: TrainingPlan, runs: [WorkoutSummary], estimate: FitnessEstimate?, today: Date, calendar: Calendar) -> TrainingPlan {
+        guard let current = plan.week(containing: today, calendar: calendar),
+              let nextStart = calendar.date(byAdding: .day, value: 7, to: current.start) else { return plan }
+        let future = plan.weeks.filter { $0.start >= nextStart }
+        guard let nextOld = future.first else { return plan }
+
+        var updated = plan
+        var vdotChange: Double?
+        if let estimate, abs(estimate.vdot - (plan.vdot ?? 0)) >= 0.5 {
+            vdotChange = plan.vdot.map { estimate.vdot - $0 }
+            updated.vdot = estimate.vdot
+            updated.paces = TrainingPaces.from(vdot: estimate.vdot, target: plan.goal.distance, goalTime: plan.goal.goalTime)
+        }
+
+        let progress = PlanProgress.evaluate(plan: plan, runs: runs, estimate: estimate, today: today, calendar: calendar)
+        let actual = progress.weeksEvaluated > 0 ? progress.actualDistance / Double(progress.weeksEvaluated) : plan.startingWeeklyDistance
+        // Nivel de volumen previsto: la primera semana normal que queda.
+        let plannedLevel = future.first { $0.phase == .base || $0.phase == .build }?.distance ?? nextOld.distance
+        let startVolume = min(plannedLevel, max(actual, 12_000) * 1.08)
+
+        let previousWeek = plan.weeks.first { $0.index == current.index - 1 }
+        let recentTest = (current.sessions + (previousWeek?.sessions ?? [])).contains { $0.kind == .test }
+        let needsTest = (estimate?.needsTest(today: today, calendar: calendar) ?? true) && !recentTest
+
+        let raceDay = calendar.startOfDay(for: plan.goal.raceDate)
+        let newWeeks = buildWeeks(
+            start: nextStart, firstIndex: nextOld.index, count: future.count,
+            startVolume: startVolume,
+            peak: max(peakVolume(plan.goal.distance, runsPerWeek: plan.goal.runsPerWeek), plan.startingWeeklyDistance),
+            goal: plan.goal, paces: updated.paces, raceDay: raceDay,
+            initialTest: needsTest, testDistance: testDistance(weeklyDistance: actual),
+            calendar: calendar
+        )
+        updated.weeks = plan.weeks.filter { $0.start < nextStart } + newWeeks
+
+        let reason: PlanAdjustment.Reason
+        if vdotChange != nil || (plan.vdot == nil && updated.vdot != nil) {
+            reason = .fitnessUpdated
+        } else {
+            switch progress.status {
+            case .behind, .slightlyBehind: reason = startVolume < plannedLevel - 500 ? .behind : .onTrack
+            case .abovePlan: reason = .abovePlan
+            case .onTrack, .notStarted: reason = .onTrack
+            }
+        }
+        updated.lastAdjustment = PlanAdjustment(date: today, reason: reason, previousVolume: nextOld.distance, newVolume: newWeeks.first?.distance ?? nextOld.distance, vdotChange: vdotChange)
+        return updated
     }
 
     /// Reparte el volumen semanal en sesiones.
-    static func sessions(week start: Date, phase: PlannedWeek.Phase, volume: Double, goal: PlanGoal, paces: TrainingPaces, raceDay: Date, calendar: Calendar) -> [PlannedSession] {
+    static func sessions(week start: Date, phase: PlannedWeek.Phase, volume: Double, goal: PlanGoal, paces: TrainingPaces, raceDay: Date, test: Double? = nil, calendar: Calendar) -> [PlannedSession] {
         // Días de carrera según cuántos por semana (desde el lunes, 0 = lunes).
         let longOffset = (goal.longRunWeekday + 5) % 7
         let pattern: [Int] = switch goal.runsPerWeek {
@@ -287,7 +431,11 @@ public enum TrainingPlanGenerator {
             if date >= raceDay { continue }
             let share = remaining / Double(others.count - position)
             remaining -= share
-            if position < qualitySlots, let kind = quality.dropFirst(position).first ?? quality.first {
+            if position == 0, let test {
+                // El test ocupa la primera sesión de calidad: calentamiento y
+                // vuelta a la calma de unos 3 km en total.
+                result.append(PlannedSession(date: date, kind: .test, distance: test + 3000, repeats: 1, repeatDistance: test))
+            } else if position < qualitySlots, let kind = quality.dropFirst(position).first ?? quality.first {
                 result.append(qualitySession(kind, date: date, distance: round(share), paces: paces, phase: phase))
             } else {
                 result.append(PlannedSession(date: date, kind: phase == .recovery ? .recovery : .easy, distance: max(round(share), 3000), pace: paces.easy))
@@ -346,6 +494,11 @@ public enum PlanAdaptation {
         switch session.kind {
         case .rest:
             return nil
+        case .test:
+            // Solo el test: el calentamiento se hace antes, sin grabar, para que
+            // el entrenamiento guardado sea exactamente el esfuerzo a tope.
+            guard let length = session.repeatDistance else { return nil }
+            return IntervalPlan(id: id, name: name, warmup: nil, work: .distance(length), workPace: nil, recovery: .open, repeats: 1, cooldown: nil)
         case .intervals, .tempo:
             guard let repeats = session.repeats, let length = session.repeatDistance else { return nil }
             return IntervalPlan(

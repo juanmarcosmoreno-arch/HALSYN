@@ -31,6 +31,18 @@ final class TrainingPlanStore {
         }
     }
 
+    /// Reajuste semanal automático (una vez por semana).
+    func replanIfNeeded(runs: [WorkoutSummary]) {
+        guard let plan, TrainingPlanGenerator.needsWeeklyReplan(plan, today: .now, calendar: .current) else { return }
+        save(TrainingPlanGenerator.replan(plan, runs: runs, estimate: FitnessStore.shared.estimate(runs: runs), today: .now, calendar: .current))
+    }
+
+    /// Tras registrar o borrar un resultado: ritmos y semanas con la forma nueva.
+    func applyLatestFitness(runs: [WorkoutSummary]) {
+        guard let plan else { return }
+        save(TrainingPlanGenerator.replan(plan, runs: runs, estimate: FitnessStore.shared.estimate(runs: runs), today: .now, calendar: .current))
+    }
+
     /// Pone la sesión en el reloj (SPRING › Intervalos), sustituyendo la anterior del plan.
     func sendToWatch(_ session: PlannedSession) -> Bool {
         let name = String(localized: String.LocalizationValue(session.kind.title))
@@ -62,6 +74,9 @@ enum SessionText {
         case .tempo:
             let block = distance(session.repeatDistance ?? 0, unit: unit)
             return String(localized: "\(block) continuos a \(pace), con calentamiento y vuelta a la calma")
+        case .test:
+            let length = distance(session.repeatDistance ?? 0, unit: unit)
+            return String(localized: "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo.")
         default:
             return String(localized: "\(distance(session.distance, unit: unit)) a \(pace)")
         }
@@ -77,6 +92,7 @@ struct TrainingPlanCard: View {
     @State private var guidance: TrainingGuidance = .unknown
     @State private var showsSetup = false
     @State private var sent = false
+    @State private var testResult: PerformanceResult?
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
@@ -99,7 +115,14 @@ struct TrainingPlanCard: View {
         .sheet(isPresented: $showsSetup) {
             PlanSetupView(workouts: workouts)
         }
-        .task(id: model.reloadKey) {
+        .sheet(item: $testResult) { prefill in
+            ResultEntryView(prefill: prefill) { result in
+                FitnessStore.shared.add(result)
+                store.applyLatestFitness(runs: workouts)
+            }
+        }
+        .task(id: "\(model.reloadKey)|\(workouts.count)") {
+            store.replanIfNeeded(runs: workouts)
             let today = Date.now
             let recovery = await model.provider.recoveryEstimates(endingOn: today, days: 1).last { Calendar.current.isDateInToday($0.day) }?.value
             let signals = await model.provider.unusualSignals(on: today, calendar: .current)
@@ -114,12 +137,23 @@ struct TrainingPlanCard: View {
         HStack(alignment: .firstTextBaseline) {
             Text(LocalizedStringKey(plan.goal.distance.title))
                 .font(.halsynHeadline)
+            if let goal = plan.goal.goalTime {
+                Text(verbatim: HalsynFormat.duration(goal))
+                    .font(.halsynHeadline.monospacedDigit())
+                    .foregroundStyle(.halsynAccentText)
+            }
             Spacer()
             if days >= 0 {
                 Text("Faltan \(days) días")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
             }
+        }
+        let progress = PlanProgress.evaluate(plan: plan, runs: workouts, estimate: FitnessStore.shared.estimate(runs: workouts), today: .now, calendar: calendar)
+        if progress.status != .notStarted {
+            let done = SessionText.distance(progress.actualDistance, unit: unitSystem)
+            let planned = SessionText.distance(progress.plannedDistance, unit: unitSystem)
+            HalsynStatusIndicator(GoalText.progressStatus(progress.status), text: String(localized: "\(done) de \(planned) planeados en las últimas semanas"))
         }
         if let week = plan.week(containing: .now, calendar: calendar) {
             Text("Semana \(week.index + 1) de \(plan.weeks.count) · \(String(localized: String.LocalizationValue(week.phase.title)))")
@@ -184,6 +218,20 @@ struct TrainingPlanCard: View {
                         .foregroundStyle(.halsynSecondaryText)
                 }
             }
+            if original.kind == .test {
+                let found = GoalCoach.testCandidate(for: original, runs: workouts, calendar: .current)
+                Button {
+                    testResult = found.map(PerformanceResult.init(testWorkout:))
+                        ?? PerformanceResult(date: .now, distance: original.repeatDistance ?? 5000, time: 25 * 60, kind: .test)
+                } label: {
+                    Label(found == nil ? LocalizedStringKey("Registrar el resultado del test") : LocalizedStringKey("Guardar el test que corriste hoy"), systemImage: "stopwatch")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.halsynAccent)
+                Text("Con el resultado se recalculan tu forma, tus ritmos y si el objetivo es alcanzable.")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
         }
     }
 }
@@ -193,17 +241,24 @@ struct TrainingPlanCard: View {
 struct PlanSetupView: View {
     let workouts: [WorkoutSummary]
     @Environment(\.dismiss) private var dismiss
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var distance: RaceDistance = .tenK
     @State private var raceDate = Calendar.current.date(byAdding: .weekOfYear, value: 10, to: .now) ?? .now
     @State private var runsPerWeek = 4
     @State private var longRunWeekday = 1
     @State private var gymWeekdays: Set<Int> = []
-    @State private var failed = false
+    @State private var hasGoalTime = false
+    @State private var goalTime: TimeInterval = 50 * 60
+    @State private var enteringResult = false
+    @State private var testSent = false
+    private var fitness: FitnessStore { .shared }
 
     private var minimumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.minimumWeeks, to: .now) ?? .now }
     private var maximumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.maximumWeeks, to: .now) ?? .now }
+    private var weeklyDistance: Double { TrainingPlanGenerator.recentWeeklyDistance(workouts, endingOn: .now, calendar: .current) }
 
     var body: some View {
+        let estimate = fitness.estimate(runs: workouts)
         NavigationStack {
             Form {
                 Section {
@@ -211,6 +266,19 @@ struct PlanSetupView: View {
                         ForEach(RaceDistance.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
                     }
                     DatePicker("Fecha de la carrera", selection: $raceDate, in: minimumDate...maximumDate, displayedComponents: .date)
+                    Toggle("Tengo un tiempo objetivo", isOn: $hasGoalTime)
+                    if hasGoalTime {
+                        DurationPicker(seconds: $goalTime)
+                    }
+                }
+
+                fitnessSection(estimate)
+
+                if let estimate {
+                    assessmentSection(estimate)
+                }
+
+                Section {
                     Stepper(value: $runsPerWeek, in: 3...5) {
                         LabeledContent("Días de carrera por semana", value: "\(runsPerWeek)")
                     }
@@ -219,6 +287,8 @@ struct PlanSetupView: View {
                             Text(Calendar.current.weekdaySymbols[weekday - 1].capitalized).tag(weekday)
                         }
                     }
+                } header: {
+                    Text("Tu semana")
                 }
 
                 Section {
@@ -231,11 +301,7 @@ struct PlanSetupView: View {
 
                 Section {
                 } footer: {
-                    if failed {
-                        Text("Hacen falta 3 carreras de 3 km o más en los últimos 90 días para calcular tus ritmos. Sal a correr con el reloj y vuelve a intentarlo.")
-                    } else {
-                        Text("Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Los ritmos salen de tus carreras recientes.")
-                    }
+                    Text("Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
                 }
             }
             .navigationTitle("Nuevo plan")
@@ -246,16 +312,107 @@ struct PlanSetupView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Crear") {
-                        let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays)
-                        if let plan = TrainingPlanGenerator.make(goal: goal, runs: workouts, today: .now, calendar: .current) {
+                        guard let estimate else { return }
+                        let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays, goalTime: hasGoalTime && goalTime > 0 ? goalTime : nil)
+                        if let plan = TrainingPlanGenerator.make(goal: goal, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current) {
                             TrainingPlanStore.shared.save(plan)
                             dismiss()
-                        } else {
-                            failed = true
                         }
                     }
+                    .disabled(estimate == nil)
                 }
             }
+            .sheet(isPresented: $enteringResult) {
+                ResultEntryView { result in
+                    FitnessStore.shared.add(result)
+                }
+            }
+            .onAppear {
+                if let estimate, !hasGoalTime {
+                    goalTime = VDOT.raceTime(vdot: estimate.vdot, distance: distance.rawValue).rounded()
+                }
+            }
+            .onChange(of: distance) { _, newValue in
+                if let estimate { goalTime = VDOT.raceTime(vdot: estimate.vdot, distance: newValue.rawValue).rounded() }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func fitnessSection(_ estimate: FitnessEstimate?) -> some View {
+        Section {
+            if let estimate {
+                LabeledContent {
+                    Text(verbatim: GoalText.vdot(estimate.vdot)).monospacedDigit()
+                } label: {
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text("Tu forma (VDOT)")
+                        Text(verbatim: GoalText.source(estimate, unit: unitSystem))
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } else {
+                Text("Para calcular tus ritmos y si el objetivo es posible, primero hace falta medir tu forma: un test a tope o una carrera reciente.")
+                    .foregroundStyle(.secondary)
+            }
+            Button {
+                enteringResult = true
+            } label: {
+                Label("Registrar un test o una carrera", systemImage: "plus.circle")
+            }
+            if estimate == nil || estimate?.needsTest(today: .now, calendar: .current) == true {
+                let testDistance = TrainingPlanGenerator.testDistance(weeklyDistance: weeklyDistance)
+                Button {
+                    let session = PlannedSession(date: .now, kind: .test, distance: testDistance + 3000, repeats: 1, repeatDistance: testDistance)
+                    testSent = TrainingPlanStore.shared.sendToWatch(session)
+                } label: {
+                    Label(testSent ? LocalizedStringKey("Test enviado al reloj") : LocalizedStringKey("Hacer el test con el reloj"), systemImage: testSent ? "checkmark.circle.fill" : "stopwatch")
+                }
+                if testSent {
+                    let length = SessionText.distance(testDistance, unit: unitSystem)
+                    Text("Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        } header: {
+            Text("Tu forma actual")
+        } footer: {
+            if estimate?.isFromTraining == true {
+                Text("Estimada con tu mejor entrenamiento reciente: probablemente se queda corta. Si creas el plan así, la primera semana empieza con un test.")
+            }
+        }
+    }
+
+    private func assessmentSection(_ estimate: FitnessEstimate) -> some View {
+        let assessment = GoalCoach.assess(goalTime: hasGoalTime ? goalTime : nil, distance: distance, raceDate: raceDate, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current)
+        return Section {
+            if let verdict = assessment.verdict {
+                HalsynStatusIndicator(GoalText.verdictStatus(verdict), text: GoalText.verdictTitle(verdict))
+            }
+            Text(GoalText.verdictDetail(assessment))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            LabeledContent("Con tu forma de hoy") {
+                Text(verbatim: HalsynFormat.duration(assessment.predictedTime)).monospacedDigit()
+            }
+            LabeledContent("Con la mejora habitual hasta la carrera") {
+                Text(verbatim: HalsynFormat.duration(assessment.reachableTime)).monospacedDigit()
+            }
+            ForEach(Array(assessment.warnings.enumerated()), id: \.offset) { _, warning in
+                Label {
+                    Text(GoalText.warning(warning, weekly: weeklyDistance, unit: unitSystem))
+                } icon: {
+                    Image(systemName: "exclamationmark.triangle")
+                }
+                .font(.caption)
+                .foregroundStyle(.halsynCaution)
+            }
+        } header: {
+            Text("¿Es posible?")
+        } footer: {
+            Text("Mejora habitual: como mucho 1 punto de VDOT cada 4 a 6 semanas de entrenamiento constante (pauta de Daniels). Ambicioso es hasta el doble de rápido. La mejora real varía mucho entre personas.")
         }
     }
 }
@@ -263,14 +420,17 @@ struct PlanSetupView: View {
 // MARK: - Todas las semanas
 
 struct TrainingPlanView: View {
+    @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var confirmingDelete = false
+    @State private var runs: [WorkoutSummary] = []
     @Environment(\.dismiss) private var dismiss
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
         HalsynScreen {
             if let plan = store.plan {
+                GoalStatusCard(plan: plan, runs: runs)
                 HalsynCard {
                     VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                         HalsynSectionHeader("Tus ritmos", eyebrow: HalsynLexicon.fart.rawValue)
@@ -299,6 +459,9 @@ struct TrainingPlanView: View {
         }
         .navigationTitle("Plan de entrenamiento")
         .navigationBarTitleDisplayMode(.inline)
+        .task(id: model.reloadKey) {
+            runs = await model.provider.recentWorkouts(limit: 120)
+        }
     }
 
     private func paceRow(_ title: LocalizedStringKey, _ range: PaceRange) -> some View {

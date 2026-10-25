@@ -64,6 +64,7 @@
 		A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B9279686B3614FAA157395 /* CardioHealthViews.swift */; };
 		AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
 		B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C309410DCB678925A4740B86 /* TrainingPlanViews.swift */; };
+		BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */; };
 		BEFAD8DFC84DD6944CD0CBE7 /* InsightCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684F62352CB5E8552F5DF92 /* InsightCards.swift */; };
 		C01B3188E9A822BE46B6A995 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
 		C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */; };
@@ -164,6 +165,7 @@
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
 		076BE91FF6016BAB5F98966A /* GoalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStore.swift; sourceTree = "<group>"; };
 		0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
+		0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoachViews.swift; sourceTree = "<group>"; };
 		0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 		2AE58940C381D97F1B0FB11D /* Spring */ = {
 			isa = PBXGroup;
 			children = (
+				0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */,
 				689D2E538F9012576AB97BCA /* RacePredictionCard.swift */,
 				B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
@@ -774,15 +777,9 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
-				da,
 				en,
 				es,
-				fr,
-				hi,
-				it,
-				"pt-BR",
 				sv,
-				"zh-Hans",
 			);
 			mainGroup = 11DE5893061FFA3049D38CFD;
 			minimizedProjectReferenceProxies = 1;
@@ -888,6 +885,7 @@
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
+				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
 				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
 				CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */,
 				3A402181B1A49020E1995FB6 /* HabitJournalViews.swift in Sources */,
@@ -1050,7 +1048,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1235,7 +1233,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

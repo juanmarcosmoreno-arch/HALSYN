@@ -21,7 +21,7 @@
 - Design system con tokens claro/oscuro verificados (WCAG AA), 13 componentes requeridos + logotipo, símbolo, distintivo demo.
 - Pantallas: HÄLSA, SPRING (+ detalle de carrera), VILA, INSIKT, MÅL, Perfil (+ vocabulario y galería), detalle de métrica. Reloj: inicio, Mi estado, SPRING (vista previa de pantallas), Recuperación, Resumen diario.
 - Iconos y splash generados desde un SVG maestro.
-- 9 idiomas (es, en, pt-BR, fr, it, sv, da, zh-Hans, hi) con String Catalogs generados y formatos regionales.
+- 9 idiomas en la fase 1; desde 0.9.0 (34), 3: es, en, sv, con String Catalogs generados y formatos regionales.
 
 ## Pendientes conocidos de la Fase 1
 

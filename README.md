@@ -18,7 +18,7 @@ Plataforma nativa de salud, bienestar y rendimiento para **iPhone** y **Apple Wa
 
 ## Idiomas
 
-Español, inglés, portugués (Brasil), francés, italiano, sueco, danés, chino simplificado e hindi. El usuario puede cambiar el idioma solo para HÅLSYN en **Ajustes › HÅLSYN › Idioma**. Ver [LOCALIZATION](Documentation/LOCALIZATION.md).
+Español, inglés y sueco (otros idiomas se añadirán antes de publicar en el App Store). El usuario puede cambiar el idioma solo para HÅLSYN en **Ajustes › HÅLSYN › Idioma**. Ver [LOCALIZATION](Documentation/LOCALIZATION.md).
 
 ## Estructura
 

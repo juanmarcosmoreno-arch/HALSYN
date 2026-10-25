@@ -23,6 +23,22 @@ public enum ScienceReferences {
         citation: "Cerwinske LA, Rasmussen HE, Volgman AS, Tangney CC. Evaluation of a dietary screener: the Mediterranean Eating Pattern for Americans tool. J Hum Nutr Diet. 2017;30(5):596–603.",
         url: "https://doi.org/10.1111/jhn.12451"
     )
+    public static let danielsVDOT = ScienceReference(
+        citation: "Daniels J, Gilbert J. Oxygen Power: Performance Tables for Distance Runners. 1979; Daniels J. Daniels' Running Formula. Human Kinetics.",
+        url: "https://search.worldcat.org/search?q=Daniels%27+Running+Formula"
+    )
+    public static let gradedTraining = ScienceReference(
+        citation: "Buist I, et al. No effect of a graded training program on the number of running-related injuries in novice runners: a randomized controlled trial. Am J Sports Med. 2008;36(1):33–39.",
+        url: "https://doi.org/10.1177/0363546507307505"
+    )
+    public static let weeklyProgression = ScienceReference(
+        citation: "Nielsen RO, et al. Excessive progression in weekly running distance and risk of running-related injuries: an association which varies according to type of injury. J Orthop Sports Phys Ther. 2014;44(10):739–747.",
+        url: "https://doi.org/10.2519/jospt.2014.5164"
+    )
+    public static let taper = ScienceReference(
+        citation: "Bosquet L, Montpetit J, Arvisais D, Mujika I. Effects of tapering on performance: a meta-analysis. Med Sci Sports Exerc. 2007;39(8):1358–1365.",
+        url: "https://doi.org/10.1249/mss.0b013e31806010e0"
+    )
     public static let sleepRegularityMortality = ScienceReference(
         citation: "Windred DP, et al. Sleep regularity is a stronger predictor of mortality risk than sleep duration: a prospective cohort study. Sleep. 2024;47(1):zsad253.",
         url: "https://doi.org/10.1093/sleep/zsad253"

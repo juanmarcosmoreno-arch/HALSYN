@@ -16,46 +16,10 @@
             "value": "HÅLSYN reads your Apple Health data to show your status, recovery and workouts on your watch."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O HÅLSYN lê seus dados do Apple Health para mostrar seu estado, sua recuperação e seus treinos no relógio."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN lit tes données Apple Health pour afficher ton état, ta récupération et tes entraînements sur la montre."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN legge i tuoi dati di Apple Health per mostrare il tuo stato, il tuo recupero e i tuoi allenamenti sull’orologio."
-          }
-        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN läser dina data från Apple Health för att visa ditt tillstånd, din återhämtning och dina träningspass på klockan."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN læser dine data fra Apple Health for at vise din tilstand, din restitution og din træning på uret."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN 会读取你的 Apple Health 数据，以便在手表上显示你的状态、恢复情况和训练。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "घड़ी पर आपकी स्थिति, रिकवरी और वर्कआउट दिखाने के लिए HÅLSYN आपका Apple Health डेटा पढ़ता है।"
           }
         }
       }
@@ -75,46 +39,10 @@
             "value": "HÅLSYN saves the runs you record on your watch to Apple Health."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O HÅLSYN salva no Apple Health as corridas que você registra no relógio."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN enregistre dans Apple Health les courses que tu enregistres sur la montre."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN salva in Apple Health le corse che registri con l’orologio."
-          }
-        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN sparar löppassen som du registrerar på klockan i Apple Health."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN gemmer de løbeture, du registrerer på uret, i Apple Health."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN 会将你在手表上记录的跑步保存到 Apple Health。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आप घड़ी पर जो रन रिकॉर्ड करते हैं, HÅLSYN उन्हें Apple Health में सेव करता है।"
           }
         }
       }
@@ -134,46 +62,10 @@
             "value": "HÅLSYN uses your location during outdoor runs to measure distance, pace and route."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O HÅLSYN usa sua localização durante as corridas ao ar livre para medir distância, ritmo e percurso."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN utilise ta position pendant les courses en extérieur pour mesurer la distance, l’allure et le parcours."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN usa la tua posizione durante le corse all’aperto per misurare distanza, ritmo e percorso."
-          }
-        },
         "sv": {
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN använder din plats under löppass utomhus för att mäta distans, tempo och rutt."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN bruger din lokalitet under løbeture udendørs til at måle distance, tempo og rute."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN 会在户外跑步时使用你的位置来测量距离、配速和路线。"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HÅLSYN आउटडोर रन के दौरान दूरी, पेस और रूट मापने के लिए आपकी लोकेशन का उपयोग करता है।"
           }
         }
       }

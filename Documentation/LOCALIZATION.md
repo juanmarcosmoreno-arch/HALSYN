@@ -1,18 +1,14 @@
 # Idiomas
 
-HÅLSYN está disponible en **9 idiomas**:
+HÅLSYN está disponible en **3 idiomas**:
 
 | Código | Idioma | Notas |
 |---|---|---|
 | `es` | Español | Idioma de desarrollo; las claves son el texto en español |
 | `en` | Inglés | |
-| `pt-BR` | Portugués (Brasil) | Añadir `pt-PT` si se quiere la variante europea |
-| `fr` | Francés | |
-| `it` | Italiano | |
 | `sv` | Sueco | |
-| `da` | Danés | |
-| `zh-Hans` | Chino simplificado | |
-| `hi` | Hindi | India tiene muchos idiomas oficiales; se eligió el hindi como primero. Añadir bengalí, tamil, telugu, etc. sigue el mismo proceso |
+
+Desde la versión 0.9.0 (34) solo se mantienen estos tres mientras la app no esté en el App Store. Las traducciones de portugués (Brasil), francés, italiano, danés, chino simplificado e hindi, completas hasta esa versión, se guardan en `Localization/translations/inactive/`. Para recuperar un idioma: moverlo a `Localization/translations/`, traducir las claves que falten, añadirlo a `LANGUAGES` en `build_catalogs.py` y a `CFBundleLocalizations` en `project.yml`.
 
 Los nombres de módulo (HÄLSA, SPRING, VILA, INSIKT, MÅL) y el vocabulario sueco (PULS, SÖMN, STEG…) **no se traducen** en ningún idioma: son marca.
 

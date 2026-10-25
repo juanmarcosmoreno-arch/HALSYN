@@ -167,6 +167,8 @@ public enum GeneratedTextValidator {
         "diagnos", "disease", "treatment", "medication", "illness", "disorder", "arrhythmia", "infection", "symptom", // nolocalize
         // fr / it
         "maladie", "traitement", "médicament", "malattia", "trattamento", "farmac", "sintom", "symptôme", // nolocalize
+        // de
+        "krankheit", "behandlung", "medikament", "arznei", // nolocalize
         // sv / da
         "sjukdom", "behandling", "läkemedel", "sygdom", "medicin", // nolocalize
         // zh

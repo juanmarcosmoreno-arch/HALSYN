@@ -18,8 +18,8 @@ enum OnDeviceNarrator {
         case unavailable
     }
 
-    /// Idiomas de la app que admite el modelo de Apple (hindi aún no).
-    static let supportedLanguages: Set<String> = ["es", "en", "pt", "fr", "it", "sv", "da", "zh"]
+    /// Idiomas de la app; el modelo de Apple los admite todos.
+    static let supportedLanguages: Set<String> = ["es", "en", "sv"]
 
     static var languageCode: String { Locale.current.language.languageCode?.identifier ?? "en" }
 
