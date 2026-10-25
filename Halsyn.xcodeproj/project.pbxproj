@@ -14,6 +14,7 @@
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
 		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
 		14E49DFE91A16EA2F031ECE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */; };
+		15879167671C319CA4CF2ECC /* CoachSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EB0050B5243C3667893CE /* CoachSpeech.swift */; };
 		190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */; };
 		1CD55B8B71C60F19D7BC6224 /* intro-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */; };
 		223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6683A16BF5216CF3290D7F7A /* SpringView.swift */; };
@@ -44,6 +45,7 @@
 		5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
 		6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */; };
+		727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EB0050B5243C3667893CE /* CoachSpeech.swift */; };
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
 		75E9CC5B5C2C51BC1512D127 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */; };
 		77541E5DEE56835277CDA93E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */; };
@@ -53,6 +55,7 @@
 		90FE68C347C0C39BFFD54795 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */; };
 		928C6AE5BBB2D8919251CD95 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */; };
+		92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
@@ -209,7 +212,9 @@
 		88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Halsyn.entitlements; sourceTree = "<group>"; };
 		8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSnapshotTests.swift; sourceTree = "<group>"; };
+		8C7EB0050B5243C3667893CE /* CoachSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSpeech.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
+		94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSpeaker.swift; sourceTree = "<group>"; };
 		96F5C5AEE2CB0282A4C6164C /* HalsynKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HalsynKit; path = Packages/HalsynKit; sourceTree = SOURCE_ROOT; };
 		99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridge.swift; sourceTree = "<group>"; };
 		9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGuidanceCard.swift; sourceTree = "<group>"; };
@@ -540,6 +545,7 @@
 		CF0C825ECFA355DF5EFABAE3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8C7EB0050B5243C3667893CE /* CoachSpeech.swift */,
 				BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */,
 			);
 			path = Shared;
@@ -548,6 +554,7 @@
 		D01C071F06BA57D6F6E74752 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */,
 				A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */,
 				1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */,
 				9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */,
@@ -864,6 +871,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15879167671C319CA4CF2ECC /* CoachSpeech.swift in Sources */,
 				A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */,
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
 				2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */,
@@ -883,6 +891,8 @@
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
 				9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */,
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
+				92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */,
+				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
 				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
@@ -1048,7 +1058,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1233,7 +1243,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

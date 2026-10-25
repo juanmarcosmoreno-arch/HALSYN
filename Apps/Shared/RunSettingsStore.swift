@@ -28,6 +28,9 @@ final class RunSettingsStore: NSObject {
     private(set) var phoneSnapshot: WidgetSnapshot?
 
     static let snapshotContextKey = "dailySnapshot"
+    /// Mensaje del reloj al iPhone con un aviso de voz, y su respuesta.
+    nonisolated static let speechMessageKey = "speak"
+    nonisolated static let spokenReplyKey = "spoken"
     private static let snapshotStorageKey = "halsyn.phoneSnapshot"
 
     enum LinkState: Equatable {
@@ -146,6 +149,22 @@ final class RunSettingsStore: NSObject {
     fileprivate func received(_ context: [String: Data]) {
         receive(context)
     }
+
+    #if os(watchOS)
+    /// Pide al iPhone que diga el aviso. `false` si el iPhone no está al
+    /// alcance; si no llega o no puede decirlo, se llama a `fallback`.
+    func speakOnPhone(_ text: String, fallback: @escaping @MainActor () -> Void) -> Bool {
+        guard let session, session.activationState == .activated, session.isReachable else { return false }
+        session.sendMessage([Self.speechMessageKey: text], replyHandler: { reply in
+            if (reply[RunSettingsStore.spokenReplyKey] as? Bool) != true {
+                Task { @MainActor in fallback() }
+            }
+        }, errorHandler: { _ in
+            Task { @MainActor in fallback() }
+        })
+        return true
+    }
+    #endif
 }
 
 extension RunSettingsStore: WCSessionDelegate {
@@ -168,6 +187,18 @@ extension RunSettingsStore: WCSessionDelegate {
 
     nonisolated func sessionWatchStateDidChange(_ session: WCSession) {
         Task { @MainActor in self.stateChanged() }
+    }
+
+    /// Avisos de voz del reloj: los dice el iPhone por sus auriculares.
+    nonisolated func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
+        guard let text = message[RunSettingsStore.speechMessageKey] as? String else {
+            replyHandler([:])
+            return
+        }
+        Task { @MainActor in
+            let spoken = CoachSpeaker.shared.say(text)
+            replyHandler([RunSettingsStore.spokenReplyKey: spoken])
+        }
     }
     #endif
 }

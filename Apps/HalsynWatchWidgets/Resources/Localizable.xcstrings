@@ -5033,6 +5033,23 @@
         }
       }
     },
+    "Dónde suena": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plays on"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelas på"
+          }
+        }
+      }
+    },
     "Edad": {
       "extractionState": "manual",
       "localizations": {
@@ -5203,19 +5220,19 @@
         }
       }
     },
-    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz, el reloj dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas, por los auriculares o por su altavoz.": {
+    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz se dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Lap button on the watch marks manual laps at any time. With voice feedback, the watch announces each lap with its pace and heart rate, each rep and recovery, and alerts, through your headphones or its speaker."
+            "value": "The watch's Lap button marks manual laps at any time. With voice prompts, each lap is announced with its pace and heart rate, along with every interval, recovery and alert. On the iPhone they play through the headphones connected to the phone and briefly lower the music; if the iPhone isn't nearby, the watch speaks. For a more natural voice, download an enhanced voice in Settings › Accessibility › Spoken Content › Voices."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Varv-knappen på klockan markerar manuella varv när som helst. Med röstfeedback säger klockan varje varv med tempo och puls, varje intervall och vila samt larm, i hörlurarna eller i högtalaren."
+            "value": "Klockans Varv-knapp markerar manuella varv när som helst. Med röstmeddelanden läses varje varv upp med tempo och puls, liksom varje intervall, återhämtning och varning. På iPhone hörs de i hörlurarna som är anslutna till telefonen och sänker musiken en stund; om iPhone inte finns i närheten pratar klockan. För en mer naturlig röst kan du hämta en förbättrad röst i Inställningar › Hjälpmedel › Uppläst innehåll › Röster."
           }
         }
       }
@@ -8276,6 +8293,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kilometer %lld"
+          }
+        }
+      }
+    },
+    "Kilómetro 1. Así sonarán los avisos durante la carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometre 1. This is how the prompts will sound during your run."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer 1. Så här kommer meddelandena att låta under löpningen."
           }
         }
       }
@@ -12309,6 +12343,23 @@
         }
       }
     },
+    "Probar la voz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test the voice"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Testa rösten"
+          }
+        }
+      }
+    },
     "Profundo": {
       "extractionState": "manual",
       "localizations": {
@@ -13291,6 +13342,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sömnregelbundenhet"
+          }
+        }
+      }
+    },
+    "Reloj": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klocka"
           }
         }
       }
@@ -17596,6 +17664,23 @@
         }
       }
     },
+    "Voz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Röst"
+          }
+        }
+      }
+    },
     "Vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -17949,6 +18034,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "iOS visar en lista över data. Du kan aktivera bara de du vill – HÅLSYN fungerar med det du delar."
+          }
+        }
+      }
+    },
+    "iPhone (auriculares del teléfono)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone (phone's headphones)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone (telefonens hörlurar)"
           }
         }
       }

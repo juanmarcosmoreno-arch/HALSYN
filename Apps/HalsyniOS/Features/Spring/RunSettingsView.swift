@@ -1,3 +1,4 @@
+import AVFoundation
 import HalsynCore
 import HalsynDesign
 import SwiftUI
@@ -126,9 +127,34 @@ struct RunSettingsView: View {
             Toggle(isOn: runSetting(\.isVoiceEnabled)) {
                 Label("Avisos de voz", systemImage: "speaker.wave.2")
             }
+            if settings.isVoiceEnabled {
+                Picker(selection: runSetting(\.voiceRoute)) {
+                    Text("iPhone (auriculares del teléfono)").tag(VoiceOutput.phone)
+                    Text("Reloj").tag(VoiceOutput.watch)
+                } label: {
+                    Label("Dónde suena", systemImage: "headphones")
+                }
+                LabeledContent {
+                    Text(verbatim: voiceDescription)
+                } label: {
+                    Label("Voz", systemImage: "person.wave.2")
+                }
+                Button {
+                    CoachSpeaker.shared.say(String(localized: "Kilómetro 1. Así sonarán los avisos durante la carrera."))
+                } label: {
+                    Label("Probar la voz", systemImage: "play.circle")
+                }
+            }
         } footer: {
-            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz, el reloj dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas, por los auriculares o por su altavoz.")
+            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz se dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.")
         }
+    }
+
+    /// "Paulina · México" con la voz que usará el iPhone.
+    private var voiceDescription: String {
+        guard let voice = CoachSpeech.bestVoice() else { return "—" }
+        let region = Locale(identifier: voice.language).region.flatMap { Locale.current.localizedString(forRegionCode: $0.identifier) }
+        return [voice.name, region].compactMap { $0 }.joined(separator: " · ")
     }
 
     private func autoLapTitle(_ distance: Double?) -> LocalizedStringKey {

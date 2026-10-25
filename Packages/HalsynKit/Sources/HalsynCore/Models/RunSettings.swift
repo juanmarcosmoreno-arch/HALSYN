@@ -21,10 +21,20 @@ public struct RunSettings: Hashable, Codable, Sendable {
     /// Avisos de voz en el reloj. Opcional para leer ajustes guardados antes de existir.
     public var voiceFeedback: Bool?
 
+    /// Dónde suena la voz. Opcional para ajustes guardados antes.
+    public var voiceOutput: VoiceOutput?
+
     /// Avisos de voz activados (por defecto, sí).
     public var isVoiceEnabled: Bool {
         get { voiceFeedback ?? true }
         set { voiceFeedback = newValue }
+    }
+
+    /// Por defecto en el iPhone: así se oye por los auriculares conectados al
+    /// teléfono aunque estés escuchando música en él.
+    public var voiceRoute: VoiceOutput {
+        get { voiceOutput ?? .phone }
+        set { voiceOutput = newValue }
     }
 
     public init(

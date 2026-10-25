@@ -1,8 +1,9 @@
 import AVFoundation
 import HalsynCore
 
-/// Avisos de voz durante la carrera (auriculares Bluetooth o altavoz del reloj).
-/// Baja el volumen de la música mientras habla y lo devuelve al terminar.
+/// Avisos de voz durante la carrera. Por defecto los dice el iPhone (por los
+/// auriculares conectados al teléfono, encima de la música); si el iPhone no
+/// está al alcance o no puede, los dice el reloj (su altavoz o sus auriculares).
 @MainActor
 final class VoiceCoach: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = VoiceCoach()
@@ -15,20 +16,23 @@ final class VoiceCoach: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     func say(_ text: String) {
-        guard RunSettingsStore.shared.settings.isVoiceEnabled else { return }
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .voicePrompt, options: [.duckOthers, .interruptSpokenAudioAndMixWithOthers])
-        try? session.setActive(true)
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: Bundle.main.preferredLocalizations.first ?? Locale.current.identifier)
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-        synthesizer.speak(utterance)
+        let settings = RunSettingsStore.shared.settings
+        guard settings.isVoiceEnabled else { return }
+        if settings.voiceRoute == .phone, RunSettingsStore.shared.speakOnPhone(text, fallback: { [weak self] in self?.speakHere(text) }) {
+            return
+        }
+        speakHere(text)
+    }
+
+    private func speakHere(_ text: String) {
+        _ = CoachSpeech.activateAudio()
+        synthesizer.speak(CoachSpeech.utterance(text))
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         Task { @MainActor in
             guard !self.synthesizer.isSpeaking else { return }
-            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+            CoachSpeech.deactivateAudio()
         }
     }
 
