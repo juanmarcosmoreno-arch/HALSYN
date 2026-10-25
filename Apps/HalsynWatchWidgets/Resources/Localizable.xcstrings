@@ -528,23 +528,6 @@
         }
       }
     },
-    "%lld planes de intervalos": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld interval plans"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld intervallplaner"
-          }
-        }
-      }
-    },
     "%lld × %@ m a %@, con 2 min de trote entre series": {
       "extractionState": "manual",
       "localizations": {
@@ -796,6 +779,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "<120/<80: 100 · 120–129/<80: 75 · 130–139 eller 80–89: 50 · 140–159 eller 90–99: 25 · ≥160 eller ≥100: 0 · Med medicin: −20"
+          }
+        }
+      }
+    },
+    "A esta altura de la semana pasada: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By this point last week: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid den här tiden förra veckan: %@"
+          }
+        }
+      }
+    },
+    "A esta altura del año pasado: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By this point last year: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid den här tiden förra året: %@"
+          }
+        }
+      }
+    },
+    "A esta altura del mes pasado: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By this point last month: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid den här tiden förra månaden: %@"
           }
         }
       }
@@ -1174,40 +1208,6 @@
         }
       }
     },
-    "Alerta de ritmo activa": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pace alert on"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempovarning på"
-          }
-        }
-      }
-    },
-    "Alerta de zona activa": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zone alert on"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zonvarning på"
-          }
-        }
-      }
-    },
     "Alerta de zona cardíaca": {
       "extractionState": "manual",
       "localizations": {
@@ -1238,23 +1238,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varningar"
-          }
-        }
-      }
-    },
-    "Alertas de ritmo y zona activas": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pace and zone alerts on"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo- och zonvarningar på"
           }
         }
       }
@@ -1816,6 +1799,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lägg till skor"
+          }
+        }
+      }
+    },
+    "Año": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Year"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "År"
           }
         }
       }
@@ -4727,6 +4727,74 @@
         }
       }
     },
+    "Distancia por mes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance per month"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distans per månad"
+          }
+        }
+      }
+    },
+    "Distancia por mes · últimos 12 meses": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance per month · last 12 months"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distans per månad · senaste 12 månaderna"
+          }
+        }
+      }
+    },
+    "Distancia por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance per week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distans per vecka"
+          }
+        }
+      }
+    },
+    "Distancia por semana · últimas 12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance per week · last 12 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distans per vecka · senaste 12 veckorna"
+          }
+        }
+      }
+    },
     "Distancia recorrida caminando o corriendo.": {
       "extractionState": "manual",
       "localizations": {
@@ -5866,6 +5934,23 @@
         }
       }
     },
+    "Entre las carreras guardadas en Salud que carga HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Among the runs saved in Health that HÅLSYN loads."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bland de löppass i Hälsa som HÅLSYN läser in."
+          }
+        }
+      }
+    },
     "Entrenamiento": {
       "extractionState": "manual",
       "localizations": {
@@ -6134,23 +6219,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den här källan registrerar inte sömnstadier."
-          }
-        }
-      }
-    },
-    "Esta semana": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This week"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Den här veckan"
           }
         }
       }
@@ -9572,6 +9640,23 @@
         }
       }
     },
+    "Mejor ritmo (5 km o más)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best pace (5 km or more)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa tempo (5 km eller mer)"
+          }
+        }
+      }
+    },
     "Mejora habitual: como mucho 1 punto de VDOT cada 4 a 6 semanas de entrenamiento constante (pauta de Daniels). Ambicioso es hasta el doble de rápido. La mejora real varía mucho entre personas.": {
       "extractionState": "manual",
       "localizations": {
@@ -9653,6 +9738,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Månadsvis"
+          }
+        }
+      }
+    },
+    "Mes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Month"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Månad"
           }
         }
       }
@@ -13924,6 +14026,23 @@
         }
       }
     },
+    "Récords": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rekord"
+          }
+        }
+      }
+    },
     "SERIE": {
       "extractionState": "manual",
       "localizations": {
@@ -14230,6 +14349,23 @@
         }
       }
     },
+    "Semana con más distancia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week with the most distance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vecka med längst distans"
+          }
+        }
+      }
+    },
     "Semana de carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -14447,23 +14583,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utan"
-          }
-        }
-      }
-    },
-    "Sin alertas": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No alerts"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inga varningar"
           }
         }
       }
@@ -16797,6 +16916,23 @@
         }
       }
     },
+    "Tus estadísticas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your stats"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din statistik"
+          }
+        }
+      }
+    },
     "Tus hábitos": {
       "extractionState": "manual",
       "localizations": {
@@ -17881,40 +18017,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulszoner"
-          }
-        }
-      }
-    },
-    "Zonas cardíacas sin configurar": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heart rate zones not set up"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pulszoner inte inställda"
-          }
-        }
-      }
-    },
-    "Zonas con FC máx. %lld lpm": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zones with max HR %lld bpm"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zoner med maxpuls %lld slag/min"
           }
         }
       }

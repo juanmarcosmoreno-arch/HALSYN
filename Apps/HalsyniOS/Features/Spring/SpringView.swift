@@ -3,9 +3,10 @@ import HalsynDesign
 import HealthKit
 import SwiftUI
 
-/// SPRING — running. Las carreras se registran en el Apple Watch (Fase 4);
-/// aquí se ven el historial y el resumen semanal, y se configuran pantallas,
-/// zonas, alertas e intervalos (Fase 5), que se envían al reloj.
+/// SPRING — running. Las carreras se registran en el Apple Watch; aquí se ven
+/// las estadísticas, el plan, las zapatillas, la predicción y el historial. Los
+/// ajustes del reloj (pantallas, zonas, alertas, intervalos, voz) están en el
+/// engranaje de la tarjeta de inicio.
 struct SpringView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
@@ -13,7 +14,6 @@ struct SpringView: View {
     @State private var predictions: [RacePrediction] = []
     @State private var allWorkouts: [WorkoutSummary] = []
     @State private var showsStartInfo = false
-    private var runSettings: RunSettings { RunSettingsStore.shared.settings }
 
     var body: some View {
         NavigationStack {
@@ -21,9 +21,8 @@ struct SpringView: View {
                 ModuleHeader(module: .spring, isDemo: model.isDemo)
                     .padding(.top, HalsynSpacing.s)
                 startCard
-                settingsCard
                 if let workouts {
-                    weeklySummary(workouts)
+                    RunningStatsCard(workouts: allWorkouts)
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
                     RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
@@ -37,7 +36,8 @@ struct SpringView: View {
                 WorkoutDetailView(workout: workout)
             }
             .task(id: model.reloadKey) {
-                let recent = await model.provider.recentWorkouts(limit: 60)
+                // Suficientes para las estadísticas del año y los récords.
+                let recent = await model.provider.recentWorkouts(limit: 400)
                 allWorkouts = recent
                 workouts = Array(recent.prefix(20))
                 predictions = RacePredictor.predictions(from: recent, endingOn: .now, calendar: .current)
@@ -52,89 +52,26 @@ struct SpringView: View {
     private var startCard: some View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                Text("Carrera libre")
-                    .font(.halsynTitle)
-                    .foregroundStyle(.halsynPrimaryText)
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Carrera libre")
+                        .font(.halsynTitle)
+                        .foregroundStyle(.halsynPrimaryText)
+                    Spacer()
+                    NavigationLink {
+                        RunSettingsView()
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.title3)
+                            .foregroundStyle(.halsynAccentText)
+                    }
+                    .accessibilityLabel(Text("Ajustes de carrera"))
+                }
                 Text("Tiempo, distancia, ritmo y frecuencia cardíaca en directo desde tu Apple Watch, incluso sin el iPhone.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
                 HalsynPrimaryButton("Correr con Apple Watch", systemImage: "applewatch") {
                     showsStartInfo = true
                 }
-            }
-        }
-    }
-
-    /// Pantallas configuradas y acceso a los ajustes de carrera.
-    private var settingsCard: some View {
-        NavigationLink {
-            RunSettingsView()
-        } label: {
-            HalsynCard {
-                VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                    HStack {
-                        HalsynSectionHeader("Ajustes de carrera", eyebrow: HalsynLexicon.form.rawValue)
-                        Image(systemName: "chevron.right")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.halsynSecondaryText)
-                            .accessibilityHidden(true)
-                    }
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: HalsynSpacing.s) {
-                            ForEach(runSettings.validScreens) { profile in
-                                WatchScreenPreview(profile: profile)
-                                    .frame(width: 96)
-                            }
-                        }
-                    }
-                    .allowsHitTesting(false)
-                    VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
-                        settingRow("heart", zonesText)
-                        settingRow("bell.badge", alertsText)
-                        settingRow("repeat", "\(runSettings.intervalPlans.count) planes de intervalos")
-                    }
-                }
-            }
-        }
-        .buttonStyle(.plain)
-    }
-
-    private func settingRow(_ systemImage: String, _ text: LocalizedStringKey) -> some View {
-        Label(text, systemImage: systemImage)
-            .font(.halsynCaption)
-            .foregroundStyle(.halsynSecondaryText)
-    }
-
-    private var zonesText: LocalizedStringKey {
-        guard let max = runSettings.zones.zones.last?.upperBound else { return "Zonas cardíacas sin configurar" }
-        return "Zonas con FC máx. \(Int(max)) lpm"
-    }
-
-    private var alertsText: LocalizedStringKey {
-        switch (runSettings.alerts.paceEnabled, runSettings.alerts.zoneEnabled) {
-        case (true, true): "Alertas de ritmo y zona activas"
-        case (true, false): "Alerta de ritmo activa"
-        case (false, true): "Alerta de zona activa"
-        case (false, false): "Sin alertas"
-        }
-    }
-
-    private func weeklySummary(_ workouts: [WorkoutSummary]) -> some View {
-        let weekStart = Calendar.current.dateInterval(of: .weekOfYear, for: .now)?.start ?? .now
-        let thisWeek = workouts.filter { $0.start >= weekStart && $0.activity.isRun }
-        let distance = thisWeek.compactMap(\.distanceMeters).reduce(0, +)
-        let duration = thisWeek.map(\.duration).reduce(0, +)
-        return HalsynCard {
-            VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                HalsynSectionHeader("Esta semana", eyebrow: HalsynLexicon.rorelse.rawValue)
-                HStack {
-                    HalsynMetric(title: "Distancia", value: HalsynFormat.distance(meters: distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol)
-                    Spacer()
-                    HalsynMetric(title: "Carreras", value: String(thisWeek.count), unit: "")
-                    Spacer()
-                    HalsynMetric(title: "Ritmo medio", value: Pace(distanceMeters: distance, duration: duration)?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
-                }
-                DataOriginFootnote(origin: thisWeek.first?.origin)
             }
         }
     }
