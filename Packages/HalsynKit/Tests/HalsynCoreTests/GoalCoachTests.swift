@@ -198,13 +198,54 @@ struct GoalPlanTests {
         let later = calendar.date(byAdding: .day, value: 10, to: today)!
         let test = PerformanceResult(date: later, distance: 5000, time: VDOT.raceTime(vdot: 46, distance: 5000), kind: .test)
         let estimate = try #require(FitnessEstimator.estimate(results: [test], runs: [], today: later, calendar: calendar))
-        let updated = TrainingPlanGenerator.replan(plan, runs: [], estimate: estimate, today: later, calendar: calendar)
+        // El reajuste semanal no toca los ritmos; solo al registrar un resultado.
+        let weekly = TrainingPlanGenerator.replan(plan, runs: [], estimate: estimate, today: later, calendar: calendar)
+        #expect(weekly.paces == plan.paces && weekly.vdot == plan.vdot)
+        let updated = TrainingPlanGenerator.replan(plan, runs: [], estimate: estimate, updatingFitness: true, today: later, calendar: calendar)
         #expect(abs((updated.vdot ?? 0) - 46) < 0.01)
         #expect(updated.paces.tempo.center.secondsPerKilometer < plan.paces.tempo.center.secondsPerKilometer)
         #expect(updated.lastAdjustment?.reason == .fitnessUpdated)
         #expect(abs((updated.lastAdjustment?.vdotChange ?? 0) - 2) < 0.01)
         // El objetivo sigue marcando el ritmo de carrera.
         #expect(updated.paces.race.secondsPerKilometer == 288)
+    }
+
+    @Test func replanKeepsTheProgressionWhenOnTrack() throws {
+        let plan = try makePlan()
+        let later = calendar.date(byAdding: .day, value: 17, to: today)! // 3.ª semana
+        let current = try #require(plan.week(containing: later, calendar: calendar))
+        // Corrió exactamente lo planeado las 2 semanas.
+        let runs = plan.weeks.prefix(2).map { week in run(week.start.addingTimeInterval(3600 * 30), km: week.distance / 1000, minutesPerKm: 5.5) }
+        let updated = TrainingPlanGenerator.replan(plan, runs: Array(runs), estimate: trainingEstimate, today: later, calendar: calendar)
+        #expect(updated.weeks[current.index + 1].level == plan.weeks[current.index + 1].level)
+        #expect(updated.lastAdjustment?.reason == .onTrack)
+    }
+
+    @Test func resultBeforeThePlanStartsIsApplied() throws {
+        let plan = try makePlan()
+        // Viernes: el plan empieza el lunes. Registra un test el sábado.
+        let saturday = calendar.date(byAdding: .day, value: 1, to: today)!
+        #expect(plan.week(containing: saturday, calendar: calendar) == nil)
+        let test = PerformanceResult(date: saturday, distance: 5000, time: VDOT.raceTime(vdot: 47, distance: 5000), kind: .test)
+        let estimate = try #require(FitnessEstimator.estimate(results: [test], runs: [], today: saturday, calendar: calendar))
+        let updated = TrainingPlanGenerator.replan(plan, runs: [], estimate: estimate, updatingFitness: true, today: saturday, calendar: calendar)
+        #expect(abs((updated.vdot ?? 0) - 47) < 0.01)
+        #expect(updated.weeks.count == plan.weeks.count)
+        // Con un test recién hecho, la primera semana ya no empieza con otro.
+        #expect(!updated.weeks[0].sessions.contains { $0.kind == .test })
+    }
+
+    @Test func noPeriodicTestRightAfterAResult() throws {
+        // Test hecho hace 3 días: el periódico de la semana 6 no se mueve, pero
+        // uno que caería a menos de 4 semanas del resultado no se pone.
+        let fresh = FitnessEstimate(vdot: 44, date: daysAgo(3), source: .result(PerformanceResult(date: daysAgo(3), distance: 5000, time: 1300, kind: .test)))
+        let limit = try #require(TrainingPlanGenerator.noTestBefore(fresh, calendar: calendar))
+        #expect(calendar.dateComponents([.day], from: calendar.startOfDay(for: daysAgo(3)), to: limit).day == 28)
+    }
+
+    @Test func slowGoalsAreNotCappedAtSixHours() {
+        #expect(VDOT.raceTime(vdot: 20, distance: RaceDistance.marathon.rawValue) > 6 * 3600)
+        #expect(VDOT.value(distance: RaceDistance.marathon.rawValue, time: 5.5 * 3600) != nil)
     }
 
     @Test func oldPlansStillDecode() throws {

@@ -2568,19 +2568,19 @@
         }
       }
     },
-    "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre %@ a tope, a ritmo parejo.": {
+    "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre %@ a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Warm up with 10–15 min of easy running without recording, and do 3 or 4 strides. Then start the test on your watch and run %@ all out, at an even pace."
+            "value": "Warm up with 10–15 min of easy running without recording, and do 3 or 4 strides. Then start the test on your watch and run %@ all out, at an even pace. When the watch says “Intervals completed”, stop the workout right away."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Värm upp lugnt i 10–15 min utan att spela in och gör 3 eller 4 stegringar. Starta sedan testet på klockan och spring %@ för fullt i jämnt tempo."
+            "value": "Värm upp lugnt i 10–15 min utan att spela in och gör 3 eller 4 stegringar. Starta sedan testet på klockan och spring %@ för fullt i jämnt tempo. När klockan säger ”Avklarade intervaller” avslutar du passet direkt."
           }
         }
       }
@@ -3010,6 +3010,23 @@
         }
       }
     },
+    "Carrera terminada: registra tu resultado para ver tu forma nueva.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race finished: log your result to see your new fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loppet är klart: registrera ditt resultat för att se din nya form."
+          }
+        }
+      }
+    },
     "Carreras": {
       "extractionState": "manual",
       "localizations": {
@@ -3261,6 +3278,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämfört över %lld dagar med och %lld utan. Det är ett samband i dina data, inte ett bevis för att det ena orsakar det andra."
+          }
+        }
+      }
+    },
+    "Competición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tävling"
           }
         }
       }
@@ -3754,6 +3788,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ett test är bra nu: det finns i din plan, eller registrera det om du redan har gjort det."
+          }
+        }
+      }
+    },
+    "Conviene un test: si haces uno, regístralo aquí.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A test is a good idea: if you do one, log it here."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ett test är en bra idé: om du gör ett, registrera det här."
           }
         }
       }
@@ -5964,6 +6015,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det är en uppskattning av välmående, inte en klinisk bedömning, och den är inte validerad i studier."
+          }
+        }
+      }
+    },
+    "Ese tiempo queda fuera de lo que el modelo puede valorar (esfuerzos de unos 4 minutos a 7 horas). El plan te prepara para la distancia con tu forma actual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That time is outside what the model can assess (efforts of about 4 minutes to 7 hours). The plan prepares you for the distance with your current fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den tiden ligger utanför vad modellen kan bedöma (ansträngningar på ungefär 4 minuter till 7 timmar). Planen förbereder dig för distansen med din nuvarande form."
           }
         }
       }
@@ -11357,19 +11425,19 @@
         }
       }
     },
-    "Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.": {
+    "Partimos de tu volumen de las últimas 4 semanas y lo subimos poco a poco, con una semana más suave cada cuatro. Cada sesión tiene una distancia mínima, así que si corres poco, las primeras semanas pueden sumar algo más que tu media. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "We start from your volume over the last 4 weeks and increase it by no more than 8 percent per week, with an easier week every fourth week. Each week the plan readjusts to what you actually ran, and every 6 weeks there's a test to update your paces."
+            "value": "We start from your volume over the last 4 weeks and build it up gradually, with an easier week every fourth week. Each session has a minimum distance, so if you don't run much, the first weeks may add up to a bit more than your average. Every week the plan adjusts to what you actually ran, and every 6 weeks there is a test to update your paces."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vi utgår från din volym de senaste 4 veckorna och ökar med högst 8 procent per vecka, med en lättare vecka var fjärde vecka. Varje vecka justeras planen efter vad du faktiskt sprang, och var 6:e vecka finns ett test som uppdaterar dina tempon."
+            "value": "Vi utgår från din volym de senaste 4 veckorna och ökar den gradvis, med en lättare vecka var fjärde vecka. Varje pass har en minsta distans, så om du springer lite kan de första veckorna bli något mer än ditt snitt. Varje vecka anpassas planen efter vad du faktiskt sprang, och var 6:e vecka görs ett test för att uppdatera dina tempon."
           }
         }
       }
@@ -13414,19 +13482,19 @@
         }
       }
     },
-    "Revisa la distancia y el tiempo: tienen que ser de un esfuerzo de entre unos 4 minutos y 5 horas.": {
+    "Revisa la distancia y el tiempo: tienen que ser de un esfuerzo de entre unos 4 minutos y 7 horas.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Check the distance and time: they need to come from an effort lasting between about 4 minutes and 5 hours."
+            "value": "Check the distance and time: they need to be from an effort of about 4 minutes to 7 hours."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kontrollera distans och tid: ansträngningen ska ha varat mellan ungefär 4 minuter och 5 timmar."
+            "value": "Kontrollera distansen och tiden: de ska komma från en ansträngning på ungefär 4 minuter till 7 timmar."
           }
         }
       }
@@ -13682,6 +13750,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tempo och zon"
+          }
+        }
+      }
+    },
+    "Ritmos y semanas calculados con tu forma actual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paces and weeks calculated from your current fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempon och veckor beräknade utifrån din nuvarande form."
           }
         }
       }
@@ -14855,6 +14940,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bara inställningar skickas, aldrig hälsodata."
+          }
+        }
+      }
+    },
+    "Son el tiempo y la distancia del entrenamiento completo: si seguiste grabando después del test, corrígelos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are the time and distance of the whole workout: if you kept recording after the test, correct them."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det här är tiden och distansen för hela passet: om du fortsatte spela in efter testet, rätta dem."
           }
         }
       }
@@ -16134,19 +16236,19 @@
         }
       }
     },
-    "Tu forma cambió con el último resultado: ritmos y semanas actualizados.": {
+    "Tu forma bajó %@ puntos de VDOT: ritmos y semanas actualizados.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your fitness changed with your latest result: paces and weeks updated."
+            "value": "Your fitness dropped %@ VDOT points: paces and weeks updated."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Din form ändrades med det senaste resultatet: tempon och veckor har uppdaterats."
+            "value": "Din form sjönk %@ VDOT-poäng: tempon och veckor uppdaterade."
           }
         }
       }
@@ -16181,6 +16283,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Din form uppskattas utifrån dina pass och är förmodligen i underkant: testet första veckan finjusterar den."
+          }
+        }
+      }
+    },
+    "Tu forma subió %@ puntos de VDOT: ritmos y semanas actualizados.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fitness rose %@ VDOT points: paces and weeks updated."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din form steg %@ VDOT-poäng: tempon och veckor uppdaterade."
           }
         }
       }

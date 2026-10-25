@@ -19,7 +19,9 @@ public enum VDOT {
     public static let thresholdFraction = 0.88
     public static let intervalFraction = 0.975
 
-    public static let validMinutes: ClosedRange<Double> = 3.5...300
+    /// Esfuerzos de unos 3,5 min a 7 h. Por encima de unas 5 h es una
+    /// extrapolación de las tablas, que llegan hasta maratones de ese orden.
+    public static let validMinutes: ClosedRange<Double> = 3.5...420
 
     /// ml/kg/min a una velocidad en m/min.
     public static func oxygenCost(metersPerMinute v: Double) -> Double {
@@ -52,13 +54,20 @@ public enum VDOT {
 
     /// Tiempo de carrera previsto para una distancia con un VDOT (bisección).
     public static func raceTime(vdot: Double, distance meters: Double) -> TimeInterval {
+        func needed(_ seconds: Double) -> Double {
+            let minutes = seconds / 60
+            return oxygenCost(metersPerMinute: meters / minutes) / sustainableFraction(minutes: minutes)
+        }
         var low = 60.0, high = 6 * 3600.0
+        // Si el tiempo pasa del tope, se amplía el intervalo en vez de devolver el tope.
+        while needed(high) > vdot, high < 48 * 3600 {
+            low = high
+            high *= 2
+        }
         for _ in 0..<80 {
             let mid = (low + high) / 2
-            let minutes = mid / 60
-            let needed = oxygenCost(metersPerMinute: meters / minutes) / sustainableFraction(minutes: minutes)
             // Más tiempo → menos VDOT necesario.
-            if needed > vdot { low = mid } else { high = mid }
+            if needed(mid) > vdot { low = mid } else { high = mid }
         }
         return (low + high) / 2
     }

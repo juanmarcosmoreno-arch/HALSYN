@@ -33,14 +33,16 @@ final class TrainingPlanStore {
 
     /// Reajuste semanal automático (una vez por semana).
     func replanIfNeeded(runs: [WorkoutSummary]) {
-        guard let plan, TrainingPlanGenerator.needsWeeklyReplan(plan, today: .now, calendar: .current) else { return }
+        // Con datos de demostración no se reajusta: el plan es del usuario real.
+        guard let plan, !runs.contains(where: \.origin.isDemo),
+              TrainingPlanGenerator.needsWeeklyReplan(plan, today: .now, calendar: .current) else { return }
         save(TrainingPlanGenerator.replan(plan, runs: runs, estimate: FitnessStore.shared.estimate(runs: runs), today: .now, calendar: .current))
     }
 
     /// Tras registrar o borrar un resultado: ritmos y semanas con la forma nueva.
     func applyLatestFitness(runs: [WorkoutSummary]) {
-        guard let plan else { return }
-        save(TrainingPlanGenerator.replan(plan, runs: runs, estimate: FitnessStore.shared.estimate(runs: runs), today: .now, calendar: .current))
+        guard let plan, !runs.contains(where: \.origin.isDemo) else { return }
+        save(TrainingPlanGenerator.replan(plan, runs: runs, estimate: FitnessStore.shared.estimate(runs: runs), updatingFitness: true, today: .now, calendar: .current))
     }
 
     /// Pone la sesión en el reloj (SPRING › Intervalos), sustituyendo la anterior del plan.
@@ -76,7 +78,7 @@ enum SessionText {
             return String(localized: "\(block) continuos a \(pace), con calentamiento y vuelta a la calma")
         case .test:
             let length = distance(session.repeatDistance ?? 0, unit: unit)
-            return String(localized: "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo.")
+            return String(localized: "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.")
         default:
             return String(localized: "\(distance(session.distance, unit: unit)) a \(pace)")
         }
@@ -218,7 +220,7 @@ struct TrainingPlanCard: View {
                         .foregroundStyle(.halsynSecondaryText)
                 }
             }
-            if original.kind == .test {
+            if session.kind == .test {
                 let found = GoalCoach.testCandidate(for: original, runs: workouts, calendar: .current)
                 Button {
                     testResult = found.map(PerformanceResult.init(testWorkout:))
@@ -251,10 +253,11 @@ struct PlanSetupView: View {
     @State private var goalTime: TimeInterval = 50 * 60
     @State private var enteringResult = false
     @State private var testSent = false
+    @State private var testPrefill: PerformanceResult?
     private var fitness: FitnessStore { .shared }
 
     private var minimumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.minimumWeeks, to: .now) ?? .now }
-    private var maximumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.maximumWeeks, to: .now) ?? .now }
+    private var maximumDate: Date { Calendar.current.date(byAdding: .day, value: 7 * TrainingPlanGenerator.maximumWeeks - 1, to: .now) ?? .now }
     private var weeklyDistance: Double { TrainingPlanGenerator.recentWeeklyDistance(workouts, endingOn: .now, calendar: .current) }
 
     var body: some View {
@@ -301,7 +304,7 @@ struct PlanSetupView: View {
 
                 Section {
                 } footer: {
-                    Text("Partimos de tu volumen de las últimas 4 semanas y subimos como mucho un 8 por ciento por semana, con una semana más suave cada cuatro. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
+                    Text("Partimos de tu volumen de las últimas 4 semanas y lo subimos poco a poco, con una semana más suave cada cuatro. Cada sesión tiene una distancia mínima, así que si corres poco, las primeras semanas pueden sumar algo más que tu media. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
                 }
             }
             .navigationTitle("Nuevo plan")
@@ -327,13 +330,19 @@ struct PlanSetupView: View {
                     FitnessStore.shared.add(result)
                 }
             }
-            .onAppear {
-                if let estimate, !hasGoalTime {
-                    goalTime = VDOT.raceTime(vdot: estimate.vdot, distance: distance.rawValue).rounded()
+            .sheet(item: $testPrefill) { prefill in
+                ResultEntryView(prefill: prefill) { result in
+                    FitnessStore.shared.add(result)
                 }
             }
+            .onAppear {
+                if !hasGoalTime { goalTime = VDOT.raceTime(vdot: estimate?.vdot ?? 40, distance: distance.rawValue).rounded() }
+            }
             .onChange(of: distance) { _, newValue in
-                if let estimate { goalTime = VDOT.raceTime(vdot: estimate.vdot, distance: newValue.rawValue).rounded() }
+                goalTime = VDOT.raceTime(vdot: estimate?.vdot ?? 40, distance: newValue.rawValue).rounded()
+            }
+            .onChange(of: estimate?.vdot) { _, vdot in
+                if let vdot, !hasGoalTime { goalTime = VDOT.raceTime(vdot: vdot, distance: distance.rawValue).rounded() }
             }
         }
     }
@@ -371,9 +380,19 @@ struct PlanSetupView: View {
                 }
                 if testSent {
                     let length = SessionText.distance(testDistance, unit: unitSystem)
-                    Text("Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo.")
+                    Text("Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                }
+                // Si ya corriste el test hoy, se guarda con un toque.
+                let todayTest = PlannedSession(date: .now, kind: .test, distance: testDistance + 3000, repeats: 1, repeatDistance: testDistance)
+                if let found = GoalCoach.testCandidate(for: todayTest, runs: workouts, calendar: .current),
+                   !fitness.results.contains(where: { $0.workoutID == found.id }) {
+                    Button {
+                        testPrefill = PerformanceResult(testWorkout: found)
+                    } label: {
+                        Label("Guardar el test que corriste hoy", systemImage: "stopwatch")
+                    }
                 }
             }
         } header: {
@@ -423,14 +442,18 @@ struct TrainingPlanView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var confirmingDelete = false
-    @State private var runs: [WorkoutSummary] = []
+    @State private var runs: [WorkoutSummary]?
     @Environment(\.dismiss) private var dismiss
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
         HalsynScreen {
             if let plan = store.plan {
-                GoalStatusCard(plan: plan, runs: runs)
+                if let runs {
+                    GoalStatusCard(plan: plan, runs: runs)
+                } else {
+                    HalsynLoadingState()
+                }
                 HalsynCard {
                     VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                         HalsynSectionHeader("Tus ritmos", eyebrow: HalsynLexicon.fart.rawValue)

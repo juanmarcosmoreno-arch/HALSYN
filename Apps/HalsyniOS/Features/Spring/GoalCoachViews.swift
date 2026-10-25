@@ -58,7 +58,10 @@ enum RaceGoalText {
         case .realistic?: return "Pide una mejora dentro de lo habitual para las semanas que quedan."
         case .ambitious?: return "Pide mejorar más rápido de lo habitual. Es posible, pero no lo des por hecho."
         case .unlikely?: return "Pide más del doble de la mejora habitual. Un objetivo cerca de \(reachable) es más alcanzable."
-        case nil: return "Sin tiempo objetivo: el plan te prepara para la distancia con tu forma actual."
+        case nil:
+            return assessment.goalTime == nil
+                ? "Sin tiempo objetivo: el plan te prepara para la distancia con tu forma actual."
+                : "Ese tiempo queda fuera de lo que el modelo puede valorar (esfuerzos de unos 4 minutos a 7 horas). El plan te prepara para la distancia con tu forma actual."
         }
     }
 
@@ -125,7 +128,12 @@ enum RaceGoalText {
         case .behind: return "Plan reajustado: la próxima semana son \(after) (antes \(before)), porque la anterior hiciste menos. Lo que no hiciste no se recupera."
         case .abovePlan: return "Hiciste más de lo planeado: mantenemos la progresión para no cargar de golpe."
         case .onTrack: return "Plan revisado: vas según lo previsto y la próxima semana sigue igual."
-        case .fitnessUpdated: return "Tu forma cambió con el último resultado: ritmos y semanas actualizados."
+        case .fitnessUpdated:
+            guard let change = adjustment.vdotChange else { return "Ritmos y semanas calculados con tu forma actual." }
+            let points = vdot(abs(change))
+            return change > 0
+                ? "Tu forma subió \(points) puntos de VDOT: ritmos y semanas actualizados."
+                : "Tu forma bajó \(points) puntos de VDOT: ritmos y semanas actualizados."
         }
     }
 
@@ -206,7 +214,7 @@ struct ResultEntryView: View {
                 Section {
                     Picker("Tipo", selection: $kind) {
                         Text("Test").tag(PerformanceResult.Kind.test)
-                        Text("Carrera").tag(PerformanceResult.Kind.race)
+                        Text("Competición").tag(PerformanceResult.Kind.race)
                     }
                     .pickerStyle(.segmented)
                     Picker("Distancia", selection: $preset) {
@@ -227,7 +235,11 @@ struct ResultEntryView: View {
                     }
                     DatePicker("Fecha", selection: $date, in: ...Date.now, displayedComponents: .date)
                 } footer: {
-                    Text("Solo esfuerzos a tope: un test o una carrera. Un rodaje no sirve para medir tu forma.")
+                    if prefill?.workoutID != nil {
+                        Text("Son el tiempo y la distancia del entrenamiento completo: si seguiste grabando después del test, corrígelos.")
+                    } else {
+                        Text("Solo esfuerzos a tope: un test o una carrera. Un rodaje no sirve para medir tu forma.")
+                    }
                 }
 
                 Section("Tiempo") {
@@ -246,7 +258,7 @@ struct ResultEntryView: View {
                             }
                         }
                     } else {
-                        Text("Revisa la distancia y el tiempo: tienen que ser de un esfuerzo de entre unos 4 minutos y 5 horas.")
+                        Text("Revisa la distancia y el tiempo: tienen que ser de un esfuerzo de entre unos 4 minutos y 7 horas.")
                             .foregroundStyle(.secondary)
                     }
                 } header: {
@@ -314,7 +326,13 @@ struct GoalStatusCard: View {
                             .font(.halsynMetricValue)
                     }
                 }
-                if let estimate {
+                let raceFinished = Calendar.current.startOfDay(for: .now) > Calendar.current.startOfDay(for: plan.goal.raceDate)
+                if raceFinished {
+                    Label("Carrera terminada: registra tu resultado para ver tu forma nueva.", systemImage: "flag.checkered")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else if let estimate {
                     let assessment = GoalCoach.assess(goalTime: plan.goal.goalTime, distance: plan.goal.distance, raceDate: plan.goal.raceDate, estimate: estimate, weeklyDistance: plan.startingWeeklyDistance, today: .now, calendar: .current)
                     if let verdict = assessment.verdict {
                         HalsynStatusIndicator(RaceGoalText.verdictStatus(verdict), text: RaceGoalText.verdictTitle(verdict))
@@ -360,7 +378,9 @@ struct GoalStatusCard: View {
                     }
                     .font(.halsynCaption)
                     if estimate.needsTest(today: .now, calendar: .current) {
-                        Label("Conviene un test: está en tu plan, o regístralo si ya lo hiciste.", systemImage: "stopwatch")
+                        let today = Calendar.current.startOfDay(for: .now)
+                        let testPlanned = plan.weeks.contains { $0.sessions.contains { $0.kind == .test && $0.date >= today } }
+                        Label(testPlanned ? LocalizedStringKey("Conviene un test: está en tu plan, o regístralo si ya lo hiciste.") : LocalizedStringKey("Conviene un test: si haces uno, regístralo aquí."), systemImage: "stopwatch")
                             .font(.caption2)
                             .foregroundStyle(.halsynCaution)
                     }
