@@ -8,6 +8,7 @@ import SwiftUI
 enum AppTab: Hashable {
     case halsa
     case spring
+    case cykel
     case insikt
     case profile
 }

@@ -30,6 +30,7 @@ IGNORE = {
     "friend-2015-treadmill", "nhanes-1999-2008-pulse", "P%@", "mL/kg/min", "Kaminsky LA, Arena R, Myers J. Reference Standards for Cardiorespiratory Fitness Measured With Cardiopulmonary Exercise Testing: Data From the Fitness Registry and the Importance of Exercise National Database. Mayo Clin Proc. 2015;90(11):1515–1523.", "Ostchega Y, Porter KS, Hughes J, Dillon CF, Nwankwo T. Resting pulse rate reference data for children, adolescents, and adults: United States, 1999–2008. National Health Statistics Reports no. 41. NCHS; 2011.",
     "KROPP", "LJUS", "halsyn-plan-today", "kg", "lb", "°C", "°F", "5 km", "10 km", "−", "+",
     "mg/dL", "mmHg", "LE8-2022", "CardiovascularHealthEngine %@", "km", "mi", "/km", "/mi", "m", "ms", "h", "min", "kcal", "W", "%", "Z", "Resp.",
+    "CYKEL", "FTP", "km/h", "mph", "halsyn://cykel", "> %@ W", "%@ W", "%@–%@ W", "Z%@", "Z%lld", "KRAFT · Z%@",
 }
 STRING = re.compile(r'"((?:[^"\\\n]|\\.)*)"')
 INTERP = re.compile(r'\\\((.*?)\)(?=[^)]*$|[^)])')

@@ -12,6 +12,7 @@ Plataforma nativa de salud, bienestar y rendimiento para **iPhone** y **Apple Wa
 |---|---|---|
 | **HÄLSA** | Salud | Estado fisiológico diario, puntuación, indicadores |
 | **SPRING** | Correr | Running avanzado en Apple Watch |
+| **CYKEL** | Ciclismo | Salidas en bici con velocidad, desnivel, potencia y FTP |
 | **VILA** | Descanso | Sueño, recuperación, HRV, FC en reposo |
 | **INSIKT** | Comprensión | Tendencias y análisis longitudinal |
 | **MÅL** | Objetivo | Metas de salud y entrenamiento |

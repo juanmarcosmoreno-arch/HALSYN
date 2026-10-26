@@ -4,6 +4,8 @@ public enum WorkoutActivity: String, Codable, CaseIterable, Sendable {
     case outdoorRun
     case indoorRun
     case walk
+    case outdoorRide
+    case indoorRide
     case other
 
     public var title: String {
@@ -11,19 +13,46 @@ public enum WorkoutActivity: String, Codable, CaseIterable, Sendable {
         case .outdoorRun: "Carrera al aire libre"
         case .indoorRun: "Carrera en cinta"
         case .walk: "Caminata"
+        case .outdoorRide: "Bici al aire libre"
+        case .indoorRide: "Bici en interior"
         case .other: "Entrenamiento"
         }
     }
 
     public var isRun: Bool { self == .outdoorRun || self == .indoorRun }
 
+    /// Salida en bici (CYKEL), en exterior o en rodillo.
+    public var isRide: Bool { self == .outdoorRide || self == .indoorRide }
+
+    public var isIndoor: Bool { self == .indoorRun || self == .indoorRide }
+
+    public var sport: WorkoutSport {
+        switch self {
+        case .outdoorRun, .indoorRun: .running
+        case .walk: .walking
+        case .outdoorRide, .indoorRide: .cycling
+        case .other: .other
+        }
+    }
+
     public var systemImage: String {
         switch self {
         case .outdoorRun, .indoorRun: "figure.run"
         case .walk: "figure.walk"
+        case .outdoorRide: "figure.outdoor.cycle"
+        case .indoorRide: "figure.indoor.cycle"
         case .other: "figure.mixed.cardio"
         }
     }
+}
+
+/// Deporte de un entrenamiento: separa las estadísticas de SPRING (correr) y
+/// de CYKEL (bici).
+public enum WorkoutSport: String, Codable, CaseIterable, Sendable {
+    case running
+    case walking
+    case cycling
+    case other
 }
 
 /// Resumen de un entrenamiento terminado. Los campos opcionales son `nil`
@@ -37,8 +66,13 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
     public let averageHeartRate: Double?
     public let maxHeartRate: Double?
     public let activeEnergyKilocalories: Double?
+    /// Pasos por minuto corriendo; pedaladas por minuto (rpm) en bici.
     public let averageCadence: Double?
     public let origin: DataOrigin
+    /// Potencia media en vatios, si un medidor la registró.
+    public let averagePower: Double?
+    /// Desnivel positivo en metros, si el entrenamiento lo guardó.
+    public let elevationGain: Double?
 
     public init(
         id: UUID = UUID(),
@@ -50,7 +84,9 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
         maxHeartRate: Double?,
         activeEnergyKilocalories: Double?,
         averageCadence: Double?,
-        origin: DataOrigin
+        origin: DataOrigin,
+        averagePower: Double? = nil,
+        elevationGain: Double? = nil
     ) {
         self.id = id
         self.activity = activity
@@ -62,6 +98,8 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
         self.activeEnergyKilocalories = activeEnergyKilocalories
         self.averageCadence = averageCadence
         self.origin = origin
+        self.averagePower = averagePower
+        self.elevationGain = elevationGain
     }
 
     public var end: Date { start.addingTimeInterval(duration) }
@@ -70,6 +108,12 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
     public var averagePace: Pace? {
         guard let distanceMeters else { return nil }
         return Pace(distanceMeters: distanceMeters, duration: duration)
+    }
+
+    /// Velocidad media (distancia / tiempo), la referencia en bici.
+    public var averageSpeed: Speed? {
+        guard let distanceMeters else { return nil }
+        return Speed(distanceMeters: distanceMeters, duration: duration)
     }
 }
 

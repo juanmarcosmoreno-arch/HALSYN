@@ -17,8 +17,8 @@ configFiles:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    MARKETING_VERSION: "0.9.0"
-    CURRENT_PROJECT_VERSION: "39"
+    MARKETING_VERSION: "0.10.0"
+    CURRENT_PROJECT_VERSION: "40"
     # Equipo de firma y bundle ID: en Config/Local.xcconfig (ver Config/Halsyn.xcconfig).
     CODE_SIGN_STYLE: Automatic
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
@@ -116,8 +116,8 @@ targets:
         # La app de reloj debe funcionar sin el iPhone (requisito de SPRING).
         WKRunsIndependentlyOfCompanionApp: true
         NSHealthShareUsageDescription: HÅLSYN lee tus datos de Apple Health para mostrar tu estado, tu recuperación y tus entrenamientos en el reloj.
-        NSHealthUpdateUsageDescription: HÅLSYN guarda en Apple Health las carreras que registras en el reloj.
-        NSLocationWhenInUseUsageDescription: HÅLSYN usa tu ubicación durante las carreras al aire libre para medir distancia, ritmo y ruta.
+        NSHealthUpdateUsageDescription: HÅLSYN guarda en Apple Health las carreras y salidas en bici que registras en el reloj.
+        NSLocationWhenInUseUsageDescription: HÅLSYN usa tu ubicación durante las carreras y salidas en bici al aire libre para medir distancia, ritmo, velocidad y ruta.
         # Mantiene la sesión de entrenamiento activa con la pantalla apagada.
         WKBackgroundModes:
           - workout-processing

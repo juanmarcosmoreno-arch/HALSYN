@@ -131,3 +131,35 @@
 - Recordatorios locales que solo dicen el objetivo, nunca datos de salud.
 - Widgets de iPhone y complicaciones del reloj (HÄLSA, VILA y objetivo; acceso rápido a SPRING) con datos compartidos por App Group.
 - Reloj: gráfico de ritmo y pulso en vivo durante la carrera, indicador de zona y mapa sin gestos (no bloquea pasar de página ni parar).
+
+## CYKEL (bici) — 0.10.0
+
+- **Pestaña CYKEL** en el iPhone:
+  - salida en bici desde el reloj (exterior o rodillo);
+  - estadísticas de semana, mes y año con velocidad, desnivel y potencia;
+  - récords: más larga, más rápida de 20 km o más y más desnivel;
+  - historial.
+- **Potencia y FTP**:
+  - FTP propio, de Apple Health o estimado (95 % de los mejores 20 min);
+  - 7 zonas de Coggan en vatios;
+  - en cada salida: potencia media, ponderada, mejores 20 min, intensidad, carga y tiempo en zonas.
+- **Detalle de la salida**:
+  - ruta;
+  - perfil de altitud y velocidad;
+  - parciales de 5 km;
+  - FC por zonas.
+- **Reloj**:
+  - CYKEL en la pantalla de inicio;
+  - páginas de velocidad y pulso, y de potencia (3 s, con zona si hay FTP), cadencia, velocidad media y desnivel;
+  - vuelta automática cada 5 km con aviso de voz.
+  - Medidores de potencia y sensores de cadencia y velocidad emparejados con el reloj.
+  - Los permisos de bici se piden la primera vez que se sale en bici.
+- **HÄLSA**: tarjeta con la última salida.
+- Las salidas de otras apps o del app Entreno que estén en Salud también cuentan.
+
+## Pendientes conocidos de CYKEL
+
+- Zonas cardíacas propias de bici (ahora se usan las de SPRING, con aviso).
+- Carga semanal y forma (CTL/ATL) con la carga de cada salida.
+- Objetivos de distancia en bici en MÅL y salidas en el resumen semanal de INSIKT.
+- Verificar en dispositivo la lectura en vivo de potencia, cadencia y velocidad con distintos sensores.

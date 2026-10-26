@@ -182,8 +182,16 @@ public struct RunSnapshot: Hashable, Sendable {
     public var intervalsCompleted = false
     /// Ritmo objetivo vigente (serie actual o alerta de ritmo de carrera libre).
     public var paceTarget: PaceRange?
-    /// Potencia de carrera en vatios, solo si el reloj la entrega en vivo.
+    /// Potencia en vatios (carrera o medidor de bici), solo si llega en vivo.
+    /// En bici es la media de los últimos 3 s, como en los ciclocomputadores.
     public var power: Double?
+    /// Potencia media de la sesión (bici, la calcula HealthKit).
+    public var averagePower: Double?
+    /// Zona de potencia 1…7 (bici, con FTP configurado).
+    public var powerZone: Int?
+    /// Cadencia de pedaleo en rpm (sensor de cadencia o medidor de potencia).
+    public var cadence: Double?
+    public var averageCadence: Double?
     /// Ritmo actual (s/km) cada 5 s de tiempo activo, para el gráfico en vivo.
     public var paceSamples: [LiveSample] = []
     /// FC cada 5 s de tiempo activo.
@@ -258,6 +266,12 @@ public struct RunSessionTracker: Sendable {
     private var lastHeartRate: Double?
     private var activeEnergy: Double?
     private var power: Double?
+    private var powerReadings: [(date: Date, watts: Double)] = []
+    private var averagePower: Double?
+    private var cadence: Double?
+    private var cadenceDate: Date?
+    private var averageCadence: Double?
+    private let ftp: Double?
     private let zones: HeartRateZoneConfiguration
     private var zoneTime = ZoneTimeAccumulator()
     private var currentZone: Int?
@@ -282,6 +296,7 @@ public struct RunSessionTracker: Sendable {
         gps = GPSDistanceAccumulator(configuration: gpsConfiguration)
         lapTracker = LapTracker(autoLapDistance: settings.autoLapDistance)
         zones = settings.zones
+        ftp = settings.validFunctionalThresholdPower
         alerts = RunAlertEngine(configuration: settings.alerts)
         freeRunPaceTarget = settings.alerts.paceEnabled ? settings.alerts.paceRange : nil
         intervals = plan.map(IntervalTracker.init(plan:))
@@ -362,6 +377,28 @@ public struct RunSessionTracker: Sendable {
         guard watts > 0, watts < 2000 else { return }
         power = watts
     }
+
+    /// Potencia de un medidor de bici. 0 W es válido (rueda libre). Se muestra
+    /// la media de los últimos `powerSmoothing` segundos.
+    public mutating func updateCyclingPower(_ watts: Double, average: Double?, at date: Date) {
+        guard watts >= 0, watts < 2500 else { return }
+        powerReadings.append((date, watts))
+        powerReadings.removeAll { date.timeIntervalSince($0.date) > Self.powerSmoothing }
+        power = powerReadings.map(\.watts).reduce(0, +) / Double(powerReadings.count)
+        if let average, average >= 0, average < 2500 { averagePower = average }
+    }
+
+    /// Cadencia de pedaleo en rpm.
+    public mutating func updateCadence(_ rpm: Double, average: Double?, at date: Date) {
+        guard rpm >= 0, rpm < 250 else { return }
+        cadence = rpm
+        cadenceDate = date
+        if let average, average >= 0, average < 250 { averageCadence = average }
+    }
+
+    public static let powerSmoothing: TimeInterval = 3
+    /// Sin lecturas nuevas durante este tiempo, potencia y cadencia se muestran vacías.
+    public static let sensorTimeout: TimeInterval = 6
 
     /// Se llama cada segundo: avanza los pasos por tiempo y evalúa las alertas.
     public mutating func tick(at date: Date) {
@@ -482,7 +519,12 @@ public struct RunSessionTracker: Sendable {
         snapshot.intervalPlanName = intervals?.plan.name
         snapshot.intervalsCompleted = intervalsCompleted
         snapshot.paceTarget = currentPaceTarget
-        snapshot.power = power
+        let powerIsStale = powerReadings.last.map { date.timeIntervalSince($0.date) > Self.sensorTimeout } ?? false
+        snapshot.power = powerIsStale ? nil : power
+        snapshot.averagePower = averagePower
+        snapshot.powerZone = ftp.flatMap { ftp in snapshot.power.flatMap { PowerZones.zone(for: $0, ftp: ftp) } }
+        snapshot.cadence = (cadenceDate.map { date.timeIntervalSince($0) > Self.sensorTimeout } ?? false) ? nil : cadence
+        snapshot.averageCadence = averageCadence
         snapshot.paceSamples = paceSamples
         snapshot.heartRateSamples = heartRateSamples
         return snapshot

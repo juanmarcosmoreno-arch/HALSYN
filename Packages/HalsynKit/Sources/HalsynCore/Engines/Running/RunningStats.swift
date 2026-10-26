@@ -36,6 +36,13 @@ public struct RunningTotals: Hashable, Sendable {
     public let averagePace: Pace?
     /// FC media ponderada por la duración de cada carrera.
     public let averageHeartRate: Double?
+    /// Desnivel positivo sumado de los entrenamientos que lo guardaron; `nil` si ninguno.
+    public let elevationGain: Double?
+    /// Potencia media ponderada por duración (solo salidas con medidor).
+    public let averagePower: Double?
+
+    /// Velocidad media (misma base que el ritmo medio): la referencia en bici.
+    public var averageSpeed: Speed? { Speed(pace: averagePace) }
 
     public init(_ runs: [WorkoutSummary]) {
         count = runs.count
@@ -46,6 +53,11 @@ public struct RunningTotals: Hashable, Sendable {
         let withHeartRate = runs.compactMap { run in run.averageHeartRate.map { ($0, run.duration) } }
         let weight = withHeartRate.map(\.1).reduce(0, +)
         averageHeartRate = weight > 0 ? withHeartRate.map { $0.0 * $0.1 }.reduce(0, +) / weight : nil
+        let gains = runs.compactMap(\.elevationGain)
+        elevationGain = gains.isEmpty ? nil : gains.reduce(0, +)
+        let withPower = runs.compactMap { run in run.averagePower.map { ($0, run.duration) } }
+        let powerWeight = withPower.map(\.1).reduce(0, +)
+        averagePower = powerWeight > 0 ? withPower.map { $0.0 * $0.1 }.reduce(0, +) / powerWeight : nil
     }
 }
 
@@ -60,10 +72,13 @@ public struct StatsBucket: Hashable, Identifiable, Sendable {
 /// Mejores marcas entre las carreras cargadas.
 public struct RunningRecords: Hashable, Sendable {
     public let longest: WorkoutSummary?
-    /// Mejor ritmo medio en carreras de 5 km o más.
+    /// Mejor ritmo medio (o velocidad) en entrenamientos de al menos
+    /// `RunningStatsBuilder.fastestMinimumDistance(for:)`.
     public let fastest: WorkoutSummary?
     /// Semana (lunes) con más kilómetros y su distancia.
     public let biggestWeek: StatsBucket?
+    /// Mayor desnivel positivo en un solo entrenamiento.
+    public let mostClimbing: WorkoutSummary?
 }
 
 public struct RunningStats: Hashable, Sendable {
@@ -77,13 +92,18 @@ public struct RunningStats: Hashable, Sendable {
     public let records: RunningRecords
 }
 
-/// Estadísticas de SPRING. Solo carreras (no caminatas).
+/// Estadísticas de SPRING (solo carreras, no caminatas) y de CYKEL (solo bici).
 public enum RunningStatsBuilder {
     public static let bucketCount = 12
     public static let fastestMinimumDistance: Double = 5000
 
-    public static func build(runs allWorkouts: [WorkoutSummary], period: StatsPeriod, today: Date, calendar: Calendar) -> RunningStats {
-        let runs = allWorkouts.filter { $0.activity.isRun && $0.start <= today }
+    /// 5 km corriendo; 20 km en bici.
+    public static func fastestMinimumDistance(for sport: WorkoutSport) -> Double {
+        sport == .cycling ? 20_000 : fastestMinimumDistance
+    }
+
+    public static func build(runs allWorkouts: [WorkoutSummary], period: StatsPeriod, today: Date, calendar: Calendar, sport: WorkoutSport = .running) -> RunningStats {
+        let runs = allWorkouts.filter { $0.activity.sport == sport && $0.start <= today }
         let currentStart = calendar.dateInterval(of: period.component, for: today)?.start ?? calendar.startOfDay(for: today)
         let previousStart = calendar.date(byAdding: period.component, value: -1, to: currentStart) ?? currentStart
         // Mismo tiempo transcurrido en el periodo anterior.
@@ -105,7 +125,7 @@ public enum RunningStatsBuilder {
 
         let longest = runs.filter { ($0.distanceMeters ?? 0) > 0 }.max { ($0.distanceMeters ?? 0) < ($1.distanceMeters ?? 0) }
         let fastest = runs
-            .filter { ($0.distanceMeters ?? 0) >= fastestMinimumDistance }
+            .filter { ($0.distanceMeters ?? 0) >= fastestMinimumDistance(for: sport) }
             .compactMap { run in run.averagePace.map { (run, $0) } }
             .min { $0.1.secondsPerKilometer < $1.1.secondsPerKilometer }?.0
         var weeks: [Date: Double] = [:]
@@ -114,7 +134,11 @@ public enum RunningStatsBuilder {
             weeks[start, default: 0] += run.distanceMeters ?? 0
         }
         let biggest = weeks.filter { $0.value > 0 }.max { $0.value < $1.value }.map { StatsBucket(start: $0.key, distance: $0.value, isCurrent: false) }
+        let climbing = runs.filter { ($0.elevationGain ?? 0) > 0 }.max { ($0.elevationGain ?? 0) < ($1.elevationGain ?? 0) }
 
-        return RunningStats(period: period, current: current, previousToDate: previous, buckets: buckets, records: RunningRecords(longest: longest, fastest: fastest, biggestWeek: biggest))
+        return RunningStats(
+            period: period, current: current, previousToDate: previous, buckets: buckets,
+            records: RunningRecords(longest: longest, fastest: fastest, biggestWeek: biggest, mostClimbing: climbing)
+        )
     }
 }

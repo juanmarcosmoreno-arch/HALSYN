@@ -144,6 +144,51 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
     }
 
+    public func cyclingWorkouts(limit: Int) async throws -> [WorkoutSummary] {
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.workout(HKQuery.predicateForWorkouts(with: .cycling))],
+            sortDescriptors: [SortDescriptor(\HKWorkout.endDate, order: .reverse)],
+            limit: limit
+        )
+        do {
+            return try await descriptor.result(for: store).map(Self.summary)
+        } catch let error as HKError where error.code == .errorNoData {
+            return []
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
+    public func cyclingPowerSamples(in interval: DateInterval) async throws -> [PowerSample] {
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.cyclingPower), predicate: Self.predicate(for: interval))],
+            sortDescriptors: [SortDescriptor(\HKQuantitySample.startDate)]
+        )
+        do {
+            return try await descriptor.result(for: store).map {
+                PowerSample(start: $0.startDate, end: $0.endDate, watts: $0.quantity.doubleValue(for: .watt()))
+            }
+        } catch let error as HKError where error.code == .errorNoData {
+            return []
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
+    public func latestFunctionalThresholdPower() async -> ThresholdPowerReading? {
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.cyclingFunctionalThresholdPower))],
+            sortDescriptors: [SortDescriptor(\HKQuantitySample.endDate, order: .reverse)],
+            limit: 1
+        )
+        guard let sample = try? await descriptor.result(for: store).first else { return nil }
+        return ThresholdPowerReading(
+            watts: sample.quantity.doubleValue(for: .watt()),
+            date: sample.endDate,
+            origin: .healthKit(sourceName: sample.sourceRevision.source.name)
+        )
+    }
+
     public func workoutRoute(workoutID: UUID) async throws -> [LocationSample] {
         do {
             let workouts = try await HKSampleQueryDescriptor(
@@ -300,19 +345,31 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         let beatsPerMinute = HKUnit.count().unitDivided(by: HKUnit.minute())
         let heartRate = workout.statistics(for: HKQuantityType(.heartRate))
         let isIndoor = (workout.metadata?[HKMetadataKeyIndoorWorkout] as? Bool) ?? false
+        let isRide = workout.workoutActivityType == .cycling
+        let activity: WorkoutActivity
+        switch workout.workoutActivityType {
+        case .walking: activity = .walk
+        case .cycling: activity = isIndoor ? .indoorRide : .outdoorRide
+        default: activity = isIndoor ? .indoorRun : .outdoorRun
+        }
+        let distanceType = HKQuantityType(isRide ? .distanceCycling : .distanceWalkingRunning)
+        let elevation = (workout.metadata?[HKMetadataKeyElevationAscended] as? HKQuantity)?.doubleValue(for: .meter())
         return WorkoutSummary(
             id: workout.uuid,
-            activity: workout.workoutActivityType == .walking ? .walk : (isIndoor ? .indoorRun : .outdoorRun),
+            activity: activity,
             start: workout.startDate,
             duration: workout.duration,
-            distanceMeters: workout.statistics(for: HKQuantityType(.distanceWalkingRunning))?.sumQuantity()?.doubleValue(for: HKUnit.meter()),
+            distanceMeters: workout.statistics(for: distanceType)?.sumQuantity()?.doubleValue(for: HKUnit.meter()),
             averageHeartRate: heartRate?.averageQuantity()?.doubleValue(for: beatsPerMinute),
             maxHeartRate: heartRate?.maximumQuantity()?.doubleValue(for: beatsPerMinute),
             activeEnergyKilocalories: workout.statistics(for: HKQuantityType(.activeEnergyBurned))?.sumQuantity()?.doubleValue(for: HKUnit.kilocalorie()),
-            // La cadencia media no se deriva todavía: se calculará en la Fase 4
-            // con los datos del propio entrenamiento, no con una estimación.
-            averageCadence: nil,
-            origin: .healthKit(sourceName: workout.sourceRevision.source.name)
+            // Corriendo, la cadencia media no se deriva todavía (se calculará con
+            // los datos del propio entrenamiento, no con una estimación). En bici
+            // es la que guardó el sensor de cadencia o el medidor de potencia.
+            averageCadence: isRide ? workout.statistics(for: HKQuantityType(.cyclingCadence))?.averageQuantity()?.doubleValue(for: beatsPerMinute) : nil,
+            origin: .healthKit(sourceName: workout.sourceRevision.source.name),
+            averagePower: isRide ? workout.statistics(for: HKQuantityType(.cyclingPower))?.averageQuantity()?.doubleValue(for: .watt()) : nil,
+            elevationGain: elevation
         )
     }
 

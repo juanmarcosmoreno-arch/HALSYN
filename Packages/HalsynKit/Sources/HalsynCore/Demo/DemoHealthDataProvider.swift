@@ -49,18 +49,45 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         return workouts
     }
 
+    /// Salidas en bici sintéticas: unas dos por semana, algunas en rodillo y
+    /// algunas con medidor de potencia. Siempre con origen `.demo`.
+    public func recentRides(limit: Int) async -> [WorkoutSummary] {
+        let today = calendar.startOfDay(for: now())
+        var rides: [WorkoutSummary] = []
+        var offset = 0
+        while rides.count < limit && offset < 180 {
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: today) else { break }
+            var rng = generator(for: day, salt: 0xB1CE)
+            if Double.random(in: 0..<1, using: &rng) < 0.3 {
+                rides.append(makeRide(on: day, using: &rng))
+            }
+            offset += 1
+        }
+        return rides
+    }
+
+    public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] {
+        demoPower(for: workout)
+    }
+
     /// Ruta y FC sintéticas (deterministas) para ver el detalle en modo demo.
     /// Recorrido de ejemplo en Djurgården (Estocolmo); siempre etiquetado como demo.
     public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
-        guard let distance = workout.distanceMeters, distance > 0, workout.duration > 0 else { return .empty(.demo) }
+        guard workout.duration > 0 else { return .empty(.demo) }
+        if workout.activity == .indoorRide {
+            // En rodillo no hay ruta: solo FC y potencia.
+            return WorkoutDetailData(heartRate: demoHeartRate(for: workout), power: demoPower(for: workout), origin: .demo)
+        }
+        guard let distance = workout.distanceMeters, distance > 0 else { return .empty(.demo) }
         var rng = generator(for: workout.start, salt: 0x2047E)
         let center = (latitude: 59.3263, longitude: 18.1157)
         let metersPerDegreeLatitude = 111_195.0
         let metersPerDegreeLongitude = metersPerDegreeLatitude * cos(center.latitude * .pi / 180)
-        // Bucle irregular de ~2,4 km recorrido las veces necesarias, un punto por segundo.
+        // Bucle irregular de ~2,4 km (12 km en bici) recorrido las veces necesarias, un punto por segundo.
         // La posición se interpola por longitud de arco para que la distancia de la ruta
         // coincida con la del entrenamiento.
-        let loop = Self.demoLoop(length: 2400)
+        let isRide = workout.activity.isRide
+        let loop = Self.demoLoop(length: isRide ? 12_000 : 2400)
         let speed = distance / workout.duration
         var route: [LocationSample] = []
         var heartRate: [HeartRatePoint] = []
@@ -78,7 +105,7 @@ public struct DemoHealthDataProvider: HealthDataProviding {
             route.append(LocationSample(
                 latitude: center.latitude + point.north / metersPerDegreeLatitude,
                 longitude: center.longitude + point.east / metersPerDegreeLongitude,
-                altitude: 12 + 8 * sin(covered / 380),
+                altitude: isRide ? 40 + 32 * sin(covered / 1500) : 12 + 8 * sin(covered / 380),
                 horizontalAccuracy: 4,
                 verticalAccuracy: 3,
                 timestamp: date
@@ -90,7 +117,44 @@ public struct DemoHealthDataProvider: HealthDataProviding {
             }
             second += 1
         }
-        return WorkoutDetailData(route: route, heartRate: heartRate, origin: .demo)
+        return WorkoutDetailData(route: route, heartRate: heartRate, power: isRide ? demoPower(for: workout) : [], origin: .demo)
+    }
+
+    /// FC sintética cada 5 s (rodillo, sin ruta).
+    private func demoHeartRate(for workout: WorkoutSummary) -> [HeartRatePoint] {
+        var rng = generator(for: workout.start, salt: 0x4EA27)
+        let average = workout.averageHeartRate ?? 135
+        let maximum = workout.maxHeartRate ?? average + 15
+        return stride(from: 0.0, through: workout.duration, by: 5).map { second in
+            let warmup = min(second / 300, 1)
+            let bpm = min(maximum, (average - 22) + 22 * warmup + 7 * sin(second / 300) + Double.random(in: -2...2, using: &rng))
+            return HeartRatePoint(date: workout.start.addingTimeInterval(second), bpm: bpm.rounded())
+        }
+    }
+
+    /// Potencia sintética, una lectura por segundo, solo si la salida tiene
+    /// potencia media: terreno ondulado, bloques más fuertes en rodillo y algo
+    /// de rueda libre (0 W) en exterior. Se escala para que la media coincida.
+    private func demoPower(for workout: WorkoutSummary) -> [PowerSample] {
+        guard workout.activity.isRide, let target = workout.averagePower, workout.duration > 0 else { return [] }
+        var rng = generator(for: workout.start, salt: 0x9077E)
+        let indoor = workout.activity == .indoorRide
+        var raw: [Double] = []
+        for second in 0..<Int(workout.duration) {
+            let t = Double(second)
+            var factor = indoor
+                ? (second % 900 >= 600 ? 1.18 : 0.92)
+                : 1 + 0.22 * sin(t / 420) + 0.08 * sin(t / 37)
+            factor *= 1 + Double.random(in: -0.12...0.12, using: &rng)
+            if !indoor && Double.random(in: 0..<1, using: &rng) < 0.05 { factor = 0 }
+            raw.append(max(0, factor))
+        }
+        let mean = raw.reduce(0, +) / Double(max(raw.count, 1))
+        guard mean > 0 else { return [] }
+        return raw.enumerated().map { second, factor in
+            let start = workout.start.addingTimeInterval(Double(second))
+            return PowerSample(start: start, end: start.addingTimeInterval(1), watts: (factor / mean * target).rounded())
+        }
     }
 
     /// Puntuación calculada por el mismo `HealthScoreEngine` que en modo real,
@@ -247,6 +311,30 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         )
     }
 
+    private func makeRide(on day: Date, using rng: inout SeededRandomNumberGenerator) -> WorkoutSummary {
+        let indoor = Double.random(in: 0..<1, using: &rng) < 0.3
+        let speed = Double.random(in: indoor ? 27...32 : 23.5...31, using: &rng) / 3.6
+        let duration = indoor ? Double.random(in: 2700...4500, using: &rng) : Double.random(in: 3600...10_800, using: &rng)
+        let startHour = Double.random(in: 7...18, using: &rng)
+        let average = Double.random(in: 126...148, using: &rng).rounded()
+        let hasPower = indoor || Double.random(in: 0..<1, using: &rng) < 0.5
+        let distance = speed * duration
+        return WorkoutSummary(
+            id: UUID(uuid: uuidBytes(for: day, salt: 0xB1)),
+            activity: indoor ? .indoorRide : .outdoorRide,
+            start: day.addingTimeInterval(startHour * 3600),
+            duration: duration,
+            distanceMeters: distance,
+            averageHeartRate: average,
+            maxHeartRate: average + Double.random(in: 14...28, using: &rng).rounded(),
+            activeEnergyKilocalories: (duration / 3600 * 560).rounded(),
+            averageCadence: hasPower ? Double.random(in: 80...92, using: &rng).rounded() : nil,
+            origin: .demo,
+            averagePower: hasPower ? Double.random(in: 165...215, using: &rng).rounded() : nil,
+            elevationGain: indoor ? nil : (distance / 1000 * Double.random(in: 6...14, using: &rng)).rounded()
+        )
+    }
+
     /// Polilínea cerrada (metros norte/este) con su longitud acumulada, escalada a `length`.
     private static func demoLoop(length: Double) -> [(north: Double, east: Double, along: Double)] {
         let raw: [(Double, Double)] = (0...360).map { degree in
@@ -302,8 +390,8 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         SeededRandomNumberGenerator(seed: seed ^ (UInt64(dayNumber(day)) &* 0x100_0000_01B3) ^ (salt &* 0x9E37_79B9))
     }
 
-    private func uuidBytes(for day: Date) -> uuid_t {
-        var rng = generator(for: day, salt: 0x1D)
+    private func uuidBytes(for day: Date, salt: UInt64 = 0x1D) -> uuid_t {
+        var rng = generator(for: day, salt: salt)
         let a = rng.next(), b = rng.next()
         func byte(_ v: UInt64, _ i: UInt64) -> UInt8 { UInt8((v >> (i * 8)) & 0xFF) }
         return (byte(a, 0), byte(a, 1), byte(a, 2), byte(a, 3), byte(a, 4), byte(a, 5), byte(a, 6), byte(a, 7),

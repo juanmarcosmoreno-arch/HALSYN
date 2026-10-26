@@ -24,6 +24,12 @@ public struct RunSettings: Hashable, Codable, Sendable {
     /// Dónde suena la voz. Opcional para ajustes guardados antes.
     public var voiceOutput: VoiceOutput?
 
+    /// CYKEL: vuelta automática en bici en metros. `nil` = la predeterminada
+    /// (5 km o 5 mi); 0 = sin vueltas automáticas.
+    public var rideAutoLap: Double?
+    /// CYKEL: FTP en vatios que eligió el usuario (zonas de potencia en el reloj).
+    public var functionalThresholdPower: Double?
+
     /// Avisos de voz activados (por defecto, sí).
     public var isVoiceEnabled: Bool {
         get { voiceFeedback ?? true }
@@ -53,6 +59,34 @@ public struct RunSettings: Hashable, Codable, Sendable {
         self.intervalPlans = intervalPlans
         self.unitSystem = unitSystem
         self.modifiedAt = modifiedAt
+    }
+
+    /// Opciones de vuelta automática en bici (en la unidad elegida).
+    public var rideAutoLapOptions: [Double?] {
+        [nil, 1, 5, 10, 20].map { $0.map { $0 * unitSystem.metersPerDistanceUnit } }
+    }
+
+    /// Vuelta automática en bici en metros (`nil` = sin vueltas automáticas).
+    public var rideAutoLapDistance: Double? {
+        get {
+            guard let rideAutoLap else { return unitSystem.metersPerDistanceUnit * 5 }
+            return rideAutoLap > 0 ? rideAutoLap : nil
+        }
+        set { rideAutoLap = newValue ?? 0 }
+    }
+
+    /// FTP válido (entre 50 y 600 W) o `nil`.
+    public var validFunctionalThresholdPower: Double? {
+        functionalThresholdPower.flatMap { (50...600).contains($0) ? $0 : nil }
+    }
+
+    /// Ajustes para una salida en bici: misma voz y zonas cardíacas, vuelta
+    /// automática de bici y sin alertas de ritmo ni de zona (son de carrera).
+    public func forRide() -> RunSettings {
+        var copy = self
+        copy.autoLapDistance = rideAutoLapDistance
+        copy.alerts = RunAlertConfiguration()
+        return copy
     }
 
     /// Pantallas válidas (al menos una). Corrige perfiles incoherentes en vez de fallar.

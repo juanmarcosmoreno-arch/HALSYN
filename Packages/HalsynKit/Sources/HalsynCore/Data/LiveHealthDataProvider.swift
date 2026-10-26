@@ -120,12 +120,28 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return (try? await client.runningWorkouts(limit: limit)) ?? []
     }
 
-    /// Ruta y FC del entrenamiento. Si una parte falla o no existe, queda vacía.
+    public func recentRides(limit: Int) async -> [WorkoutSummary] {
+        guard client.isHealthDataAvailable else { return [] }
+        return (try? await client.cyclingWorkouts(limit: limit)) ?? []
+    }
+
+    /// Ruta, FC y (en bici) potencia del entrenamiento. Si una parte falla o no existe, queda vacía.
     public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
         guard client.isHealthDataAvailable else { return .empty(workout.origin) }
         async let route = try? client.workoutRoute(workoutID: workout.id)
         async let heartRate = try? client.heartRateSamples(in: DateInterval(start: workout.start, end: workout.end))
-        return WorkoutDetailData(route: await route ?? [], heartRate: await heartRate ?? [], origin: workout.origin)
+        async let power = ridePower(for: workout)
+        return WorkoutDetailData(route: await route ?? [], heartRate: await heartRate ?? [], power: await power, origin: workout.origin)
+    }
+
+    public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] {
+        guard client.isHealthDataAvailable, workout.activity.isRide else { return [] }
+        return (try? await client.cyclingPowerSamples(in: DateInterval(start: workout.start, end: workout.end))) ?? []
+    }
+
+    public func functionalThresholdPower() async -> ThresholdPowerReading? {
+        guard client.isHealthDataAvailable else { return nil }
+        return await client.latestFunctionalThresholdPower()
     }
 
     /// Puntuación de `HealthScoreEngine` sobre los datos de Apple Health.

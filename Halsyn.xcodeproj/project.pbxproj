@@ -11,6 +11,7 @@
 		0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D2E538F9012576AB97BCA /* RacePredictionCard.swift */; };
 		04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D02F9B2FC365CA043BC585 /* HalsynApp.swift */; };
 		097B08A01D304919CB7C3D8A /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */; };
+		0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012271C724A4E059BEE1136 /* CykelView.swift */; };
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
 		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
 		14E49DFE91A16EA2F031ECE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */; };
@@ -37,6 +38,7 @@
 		45AE95AA2BC6195879C93A39 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */; };
 		48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */; };
 		49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */; };
+		4C23264D043C0A64276E6D8A /* WatchCykelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D0AE604EA43676C25FB466 /* WatchCykelView.swift */; };
 		4CA610B235E91DE973008222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A6208785D9C37B5AAD2808 /* Assets.xcassets */; };
 		4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */; };
 		4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */; };
@@ -45,7 +47,9 @@
 		5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
 		6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */; };
+		6C8DF87D9FCDDB7FBFAEDCD5 /* PowerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */; };
 		727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EB0050B5243C3667893CE /* CoachSpeech.swift */; };
+		72FDAA2B910DD04FBD952227 /* RideSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41FC591F6F7EB869825F662 /* RideSettingsView.swift */; };
 		746EEC6C79ECFFB7516FF727 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */; };
 		75E9CC5B5C2C51BC1512D127 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6C2D9AC86818D9949BE9C864 /* PrivacyInfo.xcprivacy */; };
 		770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */; };
@@ -53,6 +57,7 @@
 		777DC5A30C5784AC1D05BD31 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */; };
 		875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */; };
+		8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C9E6640D89A5E92944ADB /* RideDetailView.swift */; };
 		90FE68C347C0C39BFFD54795 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */; };
 		928C6AE5BBB2D8919251CD95 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */; };
@@ -174,6 +179,7 @@
 		118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAppDelegate.swift; sourceTree = "<group>"; };
 		1454A2D0901AA32A51BA4A32 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetailView.swift; sourceTree = "<group>"; };
+		15D0AE604EA43676C25FB466 /* WatchCykelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCykelView.swift; sourceTree = "<group>"; };
 		1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		200B7BAFC27B646B278C5486 /* HabitJournalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitJournalViews.swift; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 		3A50B12EAAB493A54F5A80BF /* VilaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VilaView.swift; sourceTree = "<group>"; };
 		3BE3971E7F6E6318AF74A495 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3F17B6D6A0876C711FE13FDE /* InsiktView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsiktView.swift; sourceTree = "<group>"; };
+		449C9E6640D89A5E92944ADB /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCoach.swift; sourceTree = "<group>"; };
 		4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsView.swift; sourceTree = "<group>"; };
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
@@ -209,6 +216,7 @@
 		7A8ACB727E30A37717E1A516 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7B7E2B3491782961A00596E7 /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
 		7CCDDA395B13EEDF085E1836 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		8012271C724A4E059BEE1136 /* CykelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CykelView.swift; sourceTree = "<group>"; };
 		81C047BDEBFD597D75D57B03 /* BodyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCard.swift; sourceTree = "<group>"; };
 		88DD84EC85247AE96E5C4252 /* Halsyn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Halsyn.entitlements; sourceTree = "<group>"; };
 		8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
@@ -223,6 +231,7 @@
 		9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceComparison.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceNarrator.swift; sourceTree = "<group>"; };
+		B41FC591F6F7EB869825F662 /* RideSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSettingsView.swift; sourceTree = "<group>"; };
 		B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAnalysisViews.swift; sourceTree = "<group>"; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
 		BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsStore.swift; sourceTree = "<group>"; };
@@ -241,6 +250,7 @@
 		E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStatsCard.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
+		EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerViews.swift; sourceTree = "<group>"; };
 		F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSpringView.swift; sourceTree = "<group>"; };
 		FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HalsynWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +347,7 @@
 		2310AB6B29CDDF0C363609A1 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4E82B11746F89BB7B970958E /* Cykel */,
 				F7B6FB1470846B1A72CC84D2 /* Halsa */,
 				94A3A811412D07B584AA8576 /* Insikt */,
 				39D830EA03192C0871F9DE23 /* Mal */,
@@ -409,6 +420,17 @@
 				C679F7ECC8F784CE5679F240 /* Resources */,
 			);
 			path = HalsynWidgets;
+			sourceTree = "<group>";
+		};
+		4E82B11746F89BB7B970958E /* Cykel */ = {
+			isa = PBXGroup;
+			children = (
+				8012271C724A4E059BEE1136 /* CykelView.swift */,
+				EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */,
+				449C9E6640D89A5E92944ADB /* RideDetailView.swift */,
+				B41FC591F6F7EB869825F662 /* RideSettingsView.swift */,
+			);
+			path = Cykel;
 			sourceTree = "<group>";
 		};
 		604F1E72EA09B2A22D68070E /* Workout */ = {
@@ -518,6 +540,7 @@
 		9CF89FE06CDEFEC894CD7CDF /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				15D0AE604EA43676C25FB466 /* WatchCykelView.swift */,
 				7B7E2B3491782961A00596E7 /* WatchHomeView.swift */,
 				F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */,
 			);
@@ -879,6 +902,7 @@
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
 				2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */,
 				4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */,
+				4C23264D043C0A64276E6D8A /* WatchCykelView.swift in Sources */,
 				2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */,
 				45AE95AA2BC6195879C93A39 /* WatchModel.swift in Sources */,
 				E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */,
@@ -896,6 +920,7 @@
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
 				92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */,
 				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
+				0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
 				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
@@ -913,10 +938,13 @@
 				409FA53999DCE71CC27C5CCA /* NightlySummaryNotifications.swift in Sources */,
 				D657E1B0EFB54B6150A65133 /* OnDeviceNarrator.swift in Sources */,
 				ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */,
+				6C8DF87D9FCDDB7FBFAEDCD5 /* PowerViews.swift in Sources */,
 				865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */,
 				0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */,
 				0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */,
 				52AEB8C0146C419F0A048B2A /* ReferenceComparison.swift in Sources */,
+				8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */,
+				72FDAA2B910DD04FBD952227 /* RideSettingsView.swift in Sources */,
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
@@ -1062,7 +1090,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1077,7 +1105,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1247,7 +1275,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1268,7 +1296,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

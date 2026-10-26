@@ -6,6 +6,7 @@ import WidgetKit
 enum WatchDestination: Hashable {
     case status
     case spring
+    case cykel
     case recovery
     case summary
 }
@@ -57,6 +58,17 @@ struct WatchHomeView: View {
                     RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(HalsynPalette.darkPrimary))
                 )
 
+                NavigationLink(value: WatchDestination.cykel) {
+                    Label {
+                        VStack(alignment: .leading) {
+                            Text(verbatim: HalsynModule.cykel.brandName).font(.headline)
+                            Text("Salir en bici").font(.caption2).foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                        }
+                    } icon: {
+                        Image(systemName: "bicycle")
+                    }
+                }
+
                 if model.isDemo {
                     Button {
                         Task {
@@ -95,6 +107,7 @@ struct WatchHomeView: View {
                 switch destination {
                 case .status: WatchStatusView(provider: provider, reloadKey: model.reloadKey)
                 case .spring: WatchSpringView()
+                case .cykel: WatchCykelView()
                 case .recovery: WatchRecoveryView(provider: provider, reloadKey: model.reloadKey)
                 case .summary: WatchDailySummaryView(provider: provider, reloadKey: model.reloadKey)
                 }
@@ -112,9 +125,13 @@ struct WatchHomeView: View {
                     publishForComplications()
                 }
             }
-            // Complicación "Correr": halsyn://spring abre SPRING directamente.
+            // Complicación "Correr": halsyn://spring abre SPRING directamente (halsyn://cykel, CYKEL).
             .onOpenURL { url in
-                path = url.host == "spring" ? [.spring] : []
+                switch url.host {
+                case "spring": path = [.spring]
+                case "cykel": path = [.cykel]
+                default: path = []
+                }
             }
         }
     }

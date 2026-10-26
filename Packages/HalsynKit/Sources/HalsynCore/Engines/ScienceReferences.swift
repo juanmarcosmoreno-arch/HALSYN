@@ -59,6 +59,32 @@ public enum ScienceReferences {
         citation: "Bull FC, et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. Br J Sports Med. 2020;54(24):1451–1462.",
         url: "https://doi.org/10.1136/bjsports-2020-102955"
     )
+    // CYKEL
+    public static let powerMeterTraining = ScienceReference(
+        citation: "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder (CO): VeloPress; 2019.",
+        url: "https://search.worldcat.org/isbn/9781937715939"
+    )
+    public static let powerLevels = ScienceReference(
+        citation: "Coggan AR. Power training levels. TrainingPeaks.",
+        url: "https://www.trainingpeaks.com/learn/articles/power-training-levels/"
+    )
+    public static let ftpVersusMLSS = ScienceReference(
+        citation: "Borszcz FK, Tramontin AF, Costa VP. Is the functional threshold power interchangeable with the maximal lactate steady state in trained cyclists? Int J Sports Physiol Perform. 2019;14(8):1029–1035.",
+        url: "https://doi.org/10.1123/ijspp.2018-0572"
+    )
+    public static let ftpRecreational = ScienceReference(
+        citation: "Valenzuela PL, Morales JS, Foster C, Lucia A, de la Villa P. Is the functional threshold power a valid surrogate of the lactate threshold? Int J Sports Physiol Perform. 2018;13(10):1293–1298.",
+        url: "https://doi.org/10.1123/ijspp.2018-0008"
+    )
+    public static let heartRateTransfer = ScienceReference(
+        citation: "Roecker K, Striegel H, Dickhuth HH. Heart-rate recommendations: transfer between running and cycling exercise? Int J Sports Med. 2003;24(3):173–178.",
+        url: "https://doi.org/10.1055/s-2003-39087"
+    )
+    public static let activeCommuting = ScienceReference(
+        citation: "Celis-Morales CA, et al. Association between active commuting and incident cardiovascular disease, cancer, and mortality: prospective cohort study. BMJ. 2017;357:j1456.",
+        url: "https://doi.org/10.1136/bmj.j1456"
+    )
+
     public static let trainingLoad = ScienceReference(
         citation: "Gabbett TJ. The training—injury prevention paradox: should athletes be training smarter and harder? Br J Sports Med. 2016;50(5):273–280.",
         url: "https://doi.org/10.1136/bjsports-2015-095788"

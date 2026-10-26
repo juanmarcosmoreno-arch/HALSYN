@@ -103,17 +103,17 @@ private struct WorkoutPagesView: View {
     var body: some View {
         TabView(selection: $page) {
             WorkoutControlsView().tag(Page.controls)
-            if workout.plan != nil {
-                WorkoutIntervalView().tag(Page.interval)
+            if workout.isCycling {
+                // CYKEL: velocidad y pulso; después potencia, cadencia y desnivel.
+                RideMetricsView(page: .main).tag(Page.screen(0))
+                RideMetricsView(page: .sensors).tag(Page.screen(1))
+                if !workout.isIndoor {
+                    WorkoutMapView().tag(Page.map)
+                }
+                WorkoutLapsView().tag(Page.laps)
+            } else {
+                runPages
             }
-            ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
-                WorkoutMetricsView(profile: profile).tag(Page.screen(index))
-            }
-            WorkoutChartView().tag(Page.chart)
-            if !workout.isIndoor {
-                WorkoutMapView().tag(Page.map)
-            }
-            WorkoutLapsView().tag(Page.laps)
         }
         .tabViewStyle(.page)
         .onAppear {
@@ -125,6 +125,21 @@ private struct WorkoutPagesView: View {
                 withAnimation { page = workout.plan != nil ? .interval : .screen(0) }
             }
         }
+    }
+
+    @ViewBuilder
+    private var runPages: some View {
+        if workout.plan != nil {
+            WorkoutIntervalView().tag(Page.interval)
+        }
+        ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
+            WorkoutMetricsView(profile: profile).tag(Page.screen(index))
+        }
+        WorkoutChartView().tag(Page.chart)
+        if !workout.isIndoor {
+            WorkoutMapView().tag(Page.map)
+        }
+        WorkoutLapsView().tag(Page.laps)
     }
 }
 
@@ -235,6 +250,63 @@ private struct WorkoutMetricsView: View {
                     PauseButton()
                 }
                 HalsynWorkoutScreen(profile: profile) { snapshot.value(for: $0, unit: unitSystem) }
+            }
+            .padding(.horizontal, 4)
+            .overlay(alignment: .top) {
+                BannerOverlay(banner: workout.banner, now: context.date)
+            }
+            .overlay {
+                if workout.phase == .paused {
+                    PausedPanel()
+                }
+            }
+        }
+        .background(Color.black.ignoresSafeArea())
+    }
+}
+
+/// Métricas de una salida en bici. Potencia y cadencia solo con sensores
+/// Bluetooth emparejados; sin ellos se muestran vacías ("--"), nunca estimadas.
+private struct RideMetricsView: View {
+    enum Page { case main, sensors }
+
+    let page: Page
+    @Environment(WorkoutManager.self) private var workout
+    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
+            let snapshot = workout.snapshot(at: context.date)
+            VStack(alignment: .center, spacing: 2) {
+                HStack {
+                    if let zone = snapshot.heartRateZone, workout.phase != .paused {
+                        HalsynZoneGauge(zone: zone)
+                    } else {
+                        Spacer()
+                    }
+                    PauseButton()
+                }
+                VStack(spacing: 0) {
+                    switch page {
+                    case .main:
+                        HalsynWorkoutField(label: "TID", value: HalsynFormat.duration(snapshot.elapsed), unit: "", size: .large, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "VELOCIDAD", value: Speed(pace: snapshot.currentPace)?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol, size: .medium, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "DISTANCIA", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol, size: .medium, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) }, unit: "lpm", size: .medium, emphasis: Color(HalsynPalette.alertDark), alignment: .center)
+                    case .sensors:
+                        HalsynWorkoutField(label: snapshot.powerZone.map { "KRAFT · Z\($0)" } ?? "KRAFT", // nolocalize value: snapshot.power.map { HalsynFormat.integer($0) }, unit: "W", size: .large, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "CADENCIA", value: snapshot.cadence.map { HalsynFormat.integer($0) }, unit: "rpm", size: .medium, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "VEL. MEDIA", value: Speed(pace: snapshot.averagePace)?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol, size: .medium, alignment: .center)
+                        Spacer(minLength: 2)
+                        HalsynWorkoutField(label: "DESNIVEL", value: snapshot.elevationGain.map { HalsynFormat.integer($0) }, unit: "m", size: .medium, alignment: .center)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
             .padding(.horizontal, 4)
             .overlay(alignment: .top) {
@@ -445,7 +517,9 @@ private struct WorkoutLapsView: View {
                     Spacer()
                     VStack(alignment: .trailing) {
                         Text(verbatim: HalsynFormat.duration(lap.duration)).monospacedDigit()
-                        Text(verbatim: "\(lap.pace?.formatted(in: unitSystem) ?? "--") \(unitSystem.paceUnitSymbol)")
+                        Text(verbatim: workout.isCycling
+                            ? "\(Speed(pace: lap.pace)?.formatted(in: unitSystem) ?? "--") \(unitSystem.speedUnitSymbol)"
+                            : "\(lap.pace?.formatted(in: unitSystem) ?? "--") \(unitSystem.paceUnitSymbol)")
                             .font(.caption2)
                             .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                     }
@@ -474,7 +548,7 @@ private struct WorkoutSummaryView: View {
         ScrollView {
             VStack(spacing: 10) {
                 outcome
-                Label(workout.isWalking ? LocalizedStringKey("Caminata") : LocalizedStringKey("Carrera"), systemImage: workout.isWalking ? "figure.walk" : "figure.run")
+                Label(activityTitle, systemImage: workout.isCycling ? (workout.isIndoor ? "figure.indoor.cycle" : "figure.outdoor.cycle") : (workout.isWalking ? "figure.walk" : "figure.run"))
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                 if let name = snapshot.intervalPlanName {
@@ -485,7 +559,20 @@ private struct WorkoutSummaryView: View {
                 HalsynWorkoutField(label: "DISTANCIA", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol, size: .large, alignment: .center)
                 HStack {
                     HalsynWorkoutField(label: "TID", value: HalsynFormat.duration(snapshot.elapsed), unit: "", size: .small, alignment: .center)
-                    HalsynWorkoutField(label: "RITMO", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol, size: .small, alignment: .center)
+                    if workout.isCycling {
+                        HalsynWorkoutField(label: "VEL. MEDIA", value: Speed(pace: snapshot.averagePace)?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol, size: .small, alignment: .center)
+                    } else {
+                        HalsynWorkoutField(label: "RITMO", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol, size: .small, alignment: .center)
+                    }
+                }
+                if workout.isCycling {
+                    HStack {
+                        HalsynWorkoutField(label: "KRAFT", value: snapshot.averagePower.map { HalsynFormat.integer($0) }, unit: "W", size: .small, alignment: .center)
+                        HalsynWorkoutField(label: "DESNIVEL", value: snapshot.elevationGain.map { HalsynFormat.integer($0) }, unit: "m", size: .small, alignment: .center)
+                    }
+                    if let cadence = snapshot.averageCadence {
+                        HalsynWorkoutField(label: "CADENCIA", value: HalsynFormat.integer(cadence), unit: "rpm", size: .small, alignment: .center)
+                    }
                 }
                 if route.count > 1 {
                     Map(initialPosition: .automatic, interactionModes: []) {
@@ -503,7 +590,7 @@ private struct WorkoutSummaryView: View {
                     .allowsHitTesting(false)
                     .accessibilityLabel(Text("Mapa de la ruta"))
                 }
-                if snapshot.paceSamples.count > 3 {
+                if snapshot.paceSamples.count > 3 && !workout.isCycling {
                     HalsynLiveRunChart(
                         paceSamples: snapshot.paceSamples,
                         heartRateSamples: snapshot.heartRateSamples,
@@ -539,6 +626,11 @@ private struct WorkoutSummaryView: View {
         }
     }
 
+    private var activityTitle: LocalizedStringKey {
+        if workout.isCycling { return "Bici" }
+        return workout.isWalking ? "Caminata" : "Carrera"
+    }
+
     @ViewBuilder
     private var outcome: some View {
         switch workout.outcome {
@@ -547,7 +639,7 @@ private struct WorkoutSummaryView: View {
                 .font(.footnote)
                 .foregroundStyle(Color(HalsynPalette.darkAccent))
         case .discarded:
-            Label("Carrera descartada", systemImage: "trash")
+            Label(workout.isCycling ? LocalizedStringKey("Salida descartada") : LocalizedStringKey("Carrera descartada"), systemImage: "trash")
                 .font(.footnote)
                 .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
         case .failed:

@@ -5,29 +5,48 @@ import SwiftUI
 
 /// "Tus estadísticas": totales de la semana, el mes o el año, comparación con
 /// el periodo anterior a la misma altura, distancia por semana o por mes y
-/// récords. Solo carreras (no caminatas).
+/// récords. En SPRING solo carreras (no caminatas); en CYKEL solo bici, con
+/// velocidad en lugar de ritmo y el desnivel.
 struct RunningStatsCard: View {
     let workouts: [WorkoutSummary]
+    var sport: WorkoutSport = .running
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
-    @AppStorage("halsyn.spring.statsPeriod") private var period: StatsPeriod = .week
+    @AppStorage("halsyn.spring.statsPeriod") private var runPeriod: StatsPeriod = .week
+    @AppStorage("halsyn.cykel.statsPeriod") private var ridePeriod: StatsPeriod = .week
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
+    private var isCycling: Bool { sport == .cycling }
+
+    private var period: Binding<StatsPeriod> {
+        isCycling ? $ridePeriod : $runPeriod
+    }
+
     var body: some View {
-        let stats = RunningStatsBuilder.build(runs: workouts, period: period, today: .now, calendar: .current)
+        let stats = RunningStatsBuilder.build(runs: workouts, period: period.wrappedValue, today: .now, calendar: .current, sport: sport)
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                 HalsynSectionHeader("Tus estadísticas", eyebrow: HalsynLexicon.rorelse.rawValue)
-                Picker("Periodo", selection: $period) {
+                Picker("Periodo", selection: period) {
                     ForEach(StatsPeriod.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
                 }
                 .pickerStyle(.segmented)
 
                 LazyVGrid(columns: columns, alignment: .leading, spacing: HalsynSpacing.m) {
                     HalsynMetric(title: "Distancia", value: HalsynFormat.distance(meters: stats.current.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol)
-                    HalsynMetric(title: "Carreras", value: String(stats.current.count), unit: "")
+                    HalsynMetric(title: isCycling ? "Salidas" : "Carreras", value: String(stats.current.count), unit: "")
                     HalsynMetric(title: "Tiempo", value: stats.current.duration > 0 ? sleepText(stats.current.duration) : "0", unit: "")
-                    HalsynMetric(title: "Ritmo medio", value: stats.current.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
+                    if isCycling {
+                        HalsynMetric(title: "Velocidad media", value: stats.current.averageSpeed?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol)
+                        if let gain = stats.current.elevationGain {
+                            HalsynMetric(title: "Desnivel", value: HalsynFormat.integer(gain), unit: "m")
+                        }
+                        if let power = stats.current.averagePower {
+                            HalsynMetric(title: "Potencia media", value: HalsynFormat.integer(power), unit: "W")
+                        }
+                    } else {
+                        HalsynMetric(title: "Ritmo medio", value: stats.current.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol)
+                    }
                     if let heartRate = stats.current.averageHeartRate {
                         HalsynMetric(title: "FC media", value: HalsynFormat.integer(heartRate), unit: String(localized: "lpm"))
                     }
@@ -45,9 +64,16 @@ struct RunningStatsCard: View {
                         .font(.halsynHeadline)
                         .foregroundStyle(.halsynPrimaryText)
                     if let longest = stats.records.longest {
-                        recordRow("Carrera más larga", value: SessionText.distance(longest.distanceMeters ?? 0, unit: unitSystem), workout: longest)
+                        recordRow(isCycling ? "Salida más larga" : "Carrera más larga", value: SessionText.distance(longest.distanceMeters ?? 0, unit: unitSystem), workout: longest)
                     }
-                    if let fastest = stats.records.fastest, let pace = fastest.averagePace {
+                    if isCycling {
+                        if let fastest = stats.records.fastest, let speed = fastest.averageSpeed {
+                            recordRow("Más rápida (20 km o más)", value: speed.formatted(in: unitSystem) + " " + unitSystem.speedUnitSymbol, workout: fastest)
+                        }
+                        if let climb = stats.records.mostClimbing, let gain = climb.elevationGain {
+                            recordRow("Más desnivel", value: HalsynFormat.integer(gain) + " m", workout: climb)
+                        }
+                    } else if let fastest = stats.records.fastest, let pace = fastest.averagePace {
                         recordRow("Mejor ritmo (5 km o más)", value: pace.formatted(in: unitSystem) + " " + unitSystem.paceUnitSymbol, workout: fastest)
                     }
                     if let week = stats.records.biggestWeek {
@@ -65,7 +91,7 @@ struct RunningStatsCard: View {
                         }
                         .accessibilityElement(children: .combine)
                     }
-                    Text("Entre las carreras guardadas en Salud que carga HÅLSYN.")
+                    Text(isCycling ? LocalizedStringKey("Entre las salidas en bici guardadas en Salud que carga HÅLSYN.") : LocalizedStringKey("Entre las carreras guardadas en Salud que carga HÅLSYN."))
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                 }

@@ -11,6 +11,8 @@ struct HalsaSnapshot: Sendable {
     /// Primer objetivo del usuario y su progreso.
     var goal: (definition: GoalDefinition, progress: GoalProgress)?
     var lastWorkout: WorkoutSummary?
+    /// Última salida en bici (CYKEL), si hay.
+    var lastRide: WorkoutSummary?
     /// Valores crudos de hoy para los widgets.
     var stepsToday: Double?
     var sleepHours: Double?
@@ -36,6 +38,7 @@ struct HalsaSnapshot: Sendable {
             snapshot.goal = (first, GoalEvaluator(calendar: .current).progress(first, data: data, now: today))
         }
         snapshot.lastWorkout = await provider.recentWorkouts(limit: 1).first
+        snapshot.lastRide = await provider.recentRides(limit: 1).first
         snapshot.summary = await provider.dailySummary(on: today, calendar: .current)
         return snapshot
     }
@@ -75,6 +78,7 @@ struct HalsaView: View {
                     JournalQuickCard()
                     trendCard(snapshot)
                     springCard(snapshot)
+                    cykelCard(snapshot)
                     goalCard(snapshot)
                     DataOriginFootnote(origin: model.isDemo ? .demo : nil, extra: "HÅLSYN ofrece estimaciones de bienestar. No es un dispositivo médico ni sustituye una evaluación profesional.")
                 } else {
@@ -290,6 +294,36 @@ struct HalsaView: View {
                 }
                 HalsynPrimaryButton("Ir a SPRING", systemImage: "figure.run") {
                     model.selectedTab = .spring
+                }
+            }
+        }
+    }
+
+    /// Solo si hay salidas en bici: la última, con acceso a CYKEL.
+    @ViewBuilder
+    private func cykelCard(_ snapshot: HalsaSnapshot) -> some View {
+        if let ride = snapshot.lastRide {
+            HalsynCard {
+                VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                    HalsynSectionHeader("Ciclismo", eyebrow: HalsynModule.cykel.brandName, actionTitle: "Ver CYKEL") {
+                        model.selectedTab = .cykel
+                    }
+                    NavigationLink {
+                        RideDetailView(ride: ride)
+                    } label: {
+                        HStack {
+                            HalsynMetric(title: "Última salida", value: ride.distanceMeters.map { HalsynFormat.distance(meters: $0, unit: unitSystem) }, unit: unitSystem.distanceUnitSymbol)
+                            Spacer()
+                            HalsynMetric(title: "Velocidad media", value: ride.averageSpeed?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol)
+                            Spacer()
+                            HalsynMetric(title: "FC media", value: ride.averageHeartRate.map { String(Int($0)) }, unit: "lpm")
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.halsynSecondaryText)
+                                .accessibilityHidden(true)
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }

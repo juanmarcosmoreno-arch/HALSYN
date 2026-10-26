@@ -46,6 +46,12 @@ public protocol HealthDataProviding: Sendable {
     /// Serie diaria de los últimos `days` días, terminando en `endingOn` (incluido).
     func dailySeries(_ kind: MetricKind, days: Int, endingOn: Date) async -> MetricSeries
     func recentWorkouts(limit: Int) async -> [WorkoutSummary]
+    /// Salidas en bici (CYKEL), de la más nueva a la más antigua.
+    func recentRides(limit: Int) async -> [WorkoutSummary]
+    /// Lecturas de potencia de una salida (vacío sin medidor).
+    func ridePower(for workout: WorkoutSummary) async -> [PowerSample]
+    /// Último FTP guardado en Apple Health.
+    func functionalThresholdPower() async -> ThresholdPowerReading?
     /// Ruta y FC de un entrenamiento (vacíos si no existen).
     func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData
     /// Puntuación diaria (`HealthScoreEngine`) si hay datos suficientes.
@@ -76,4 +82,10 @@ extension HealthDataProviding {
     public func sleepNights(endingOn end: Date, days: Int) async -> [SleepNight] { [] }
 
     public func userCharacteristics() async -> UserCharacteristics { UserCharacteristics() }
+
+    public func recentRides(limit: Int) async -> [WorkoutSummary] { [] }
+
+    public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] { [] }
+
+    public func functionalThresholdPower() async -> ThresholdPowerReading? { nil }
 }

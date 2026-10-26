@@ -30,19 +30,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN guarda en Apple Health las carreras que registras en el reloj."
+            "value": "HÅLSYN guarda en Apple Health las carreras y salidas en bici que registras en el reloj."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN saves the runs you record on your watch to Apple Health."
+            "value": "HÅLSYN saves the runs and rides you record on the watch to Apple Health."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN sparar löppassen som du registrerar på klockan i Apple Health."
+            "value": "HÅLSYN sparar löprundorna och cykelturerna du registrerar på klockan i Apple Hälsa."
           }
         }
       }
@@ -53,19 +53,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN usa tu ubicación durante las carreras al aire libre para medir distancia, ritmo y ruta."
+            "value": "HÅLSYN usa tu ubicación durante las carreras y salidas en bici al aire libre para medir distancia, ritmo, velocidad y ruta."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN uses your location during outdoor runs to measure distance, pace and route."
+            "value": "HÅLSYN uses your location during outdoor runs and rides to measure distance, pace, speed and route."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN använder din plats under löppass utomhus för att mäta distans, tempo och rutt."
+            "value": "HÅLSYN använder din plats under löprundor och cykelturer utomhus för att mäta distans, tempo, hastighet och rutt."
           }
         }
       }

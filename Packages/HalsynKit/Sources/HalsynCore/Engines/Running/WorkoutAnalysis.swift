@@ -11,16 +11,18 @@ public struct HeartRatePoint: Hashable, Sendable {
     }
 }
 
-/// Datos de detalle de un entrenamiento terminado: ruta y FC.
-/// Ambos vacíos cuando no existen (cinta, sin GPS, sin permiso): no se inventan.
+/// Datos de detalle de un entrenamiento terminado: ruta, FC y potencia (bici).
+/// Vacíos cuando no existen (cinta, sin GPS, sin medidor, sin permiso): no se inventan.
 public struct WorkoutDetailData: Hashable, Sendable {
     public var route: [LocationSample]
     public var heartRate: [HeartRatePoint]
+    public var power: [PowerSample]
     public var origin: DataOrigin
 
-    public init(route: [LocationSample] = [], heartRate: [HeartRatePoint] = [], origin: DataOrigin) {
+    public init(route: [LocationSample] = [], heartRate: [HeartRatePoint] = [], power: [PowerSample] = [], origin: DataOrigin) {
         self.route = route
         self.heartRate = heartRate
+        self.power = power
         self.origin = origin
     }
 
@@ -39,6 +41,7 @@ public struct Split: Hashable, Identifiable, Sendable {
 
     public var id: Int { index }
     public var pace: Pace? { Pace(distanceMeters: distance, duration: duration) }
+    public var speed: Speed? { Speed(distanceMeters: distance, duration: duration) }
 }
 
 /// Análisis posterior al entrenamiento a partir de la ruta y la FC guardadas.
@@ -47,11 +50,14 @@ public enum WorkoutAnalysis {
     /// El tiempo solo cuenta entre puntos consecutivos con menos de 30 s de
     /// separación, así las pausas no inflan el parcial. Es una aproximación: la
     /// distancia total guardada por Apple Health puede diferir ligeramente.
-    public static func splits(from route: [LocationSample], unit: UnitSystem = .metric) -> [Split] {
+    /// - Parameters:
+    ///   - splitDistance: largo de cada parcial; por defecto, la unidad (1 km o 1 mi).
+    ///   - configuration: filtro GPS (`.cycling` en bici, que admite más velocidad).
+    public static func splits(from route: [LocationSample], unit: UnitSystem = .metric, splitDistance: Double? = nil, configuration: GPSDistanceAccumulator.Configuration = .init()) -> [Split] {
         let sorted = route.sorted { $0.timestamp < $1.timestamp }
         guard sorted.count > 1 else { return [] }
-        var gps = GPSDistanceAccumulator()
-        var laps = LapTracker(autoLapDistance: unit.metersPerDistanceUnit)
+        var gps = GPSDistanceAccumulator(configuration: configuration)
+        var laps = LapTracker(autoLapDistance: splitDistance ?? unit.metersPerDistanceUnit)
         var elapsed: TimeInterval = 0
         var previous: Date?
         for sample in sorted {

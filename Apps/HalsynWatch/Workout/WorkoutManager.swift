@@ -5,8 +5,11 @@ import HealthKit
 import Observation
 import WatchKit
 
-/// Gestiona una carrera real en el Apple Watch.
+/// Gestiona una carrera (SPRING) o una salida en bici (CYKEL) real en el Apple Watch.
 ///
+/// - En bici: distancia de `distanceCycling`, potencia y cadencia de los
+///   sensores Bluetooth emparejados con el reloj (si los hay), vuelta
+///   automática de bici y sin alertas de ritmo.
 /// - `HKWorkoutSession` + `HKLiveWorkoutBuilder`: estado, FC, distancia y energía
 ///   en vivo; al terminar guarda el entrenamiento en Apple Health (una sola vez:
 ///   el iPhone nunca escribe entrenamientos, así no hay duplicados).
@@ -32,6 +35,8 @@ final class WorkoutManager: NSObject {
     private(set) var isIndoor = false
     /// Caminata en lugar de carrera (mismas pantallas y guardado).
     private(set) var isWalking = false
+    /// Salida en bici (CYKEL): otras pantallas, otra distancia y sensores de bici.
+    private(set) var isCycling = false
     /// Plan de intervalos de la carrera actual (`nil` = libre).
     private(set) var plan: IntervalPlan?
     /// Pantallas de métricas de esta carrera (fijadas al empezar).
@@ -88,12 +93,24 @@ final class WorkoutManager: NSObject {
         [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning), HKQuantityType(.runningPower), HKObjectType.workoutType()]
     }
 
+    /// En bici se guardan también la distancia de bici y lo que midan los sensores.
+    static var rideShareTypes: Set<HKSampleType> {
+        [HKObjectType.workoutType(), HKSeriesType.workoutRoute(), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceCycling), HKQuantityType(.cyclingPower), HKQuantityType(.cyclingCadence), HKQuantityType(.cyclingSpeed)]
+    }
+
+    static var rideReadTypes: Set<HKObjectType> {
+        [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceCycling), HKQuantityType(.cyclingPower), HKQuantityType(.cyclingCadence), HKQuantityType(.cyclingSpeed), HKObjectType.workoutType()]
+    }
+
     /// Pide permisos de Salud solo si falta alguno por decidir: lo ya
-    /// respondido queda guardado y no se vuelve a preguntar.
-    private func requestAuthorization() async throws {
-        let status = try? await healthStore.statusForAuthorizationRequest(toShare: Self.shareTypes, read: Self.readTypes)
+    /// respondido queda guardado y no se vuelve a preguntar. Los de bici se
+    /// piden la primera vez que se sale en bici, no al correr.
+    private func requestAuthorization(cycling: Bool) async throws {
+        let share = cycling ? Self.rideShareTypes : Self.shareTypes
+        let read = cycling ? Self.rideReadTypes : Self.readTypes
+        let status = try? await healthStore.statusForAuthorizationRequest(toShare: share, read: read)
         guard status != .unnecessary else { return }
-        try await healthStore.requestAuthorization(toShare: Self.shareTypes, read: Self.readTypes)
+        try await healthStore.requestAuthorization(toShare: share, read: read)
     }
 
     /// La ubicación se pide una sola vez; después se usa lo que se eligió.
@@ -112,18 +129,36 @@ final class WorkoutManager: NSObject {
         await start(configuration: configuration, plan: plan)
     }
 
+    /// Salida en bici (CYKEL), en exterior o en rodillo.
+    func startRide(indoor: Bool) async {
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .cycling
+        configuration.locationType = indoor ? .indoor : .outdoor
+        await start(configuration: configuration)
+    }
+
     /// Inicia con una configuración (también la que envía el iPhone con `startWatchApp`).
     func start(configuration: HKWorkoutConfiguration, plan: IntervalPlan? = nil) async {
         guard !isActive else { return }
-        reset(plan: plan)
+        let cycling = configuration.activityType == .cycling
+        // Los intervalos son de carrera: en bici no se usan.
+        reset(plan: cycling ? nil : plan, cycling: cycling)
         isIndoor = configuration.locationType == .indoor
         isWalking = configuration.activityType == .walking
         tracker.handle(.start, at: .now)
         do {
-            try await requestAuthorization()
+            try await requestAuthorization(cycling: cycling)
             let session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             let builder = session.associatedWorkoutBuilder()
-            builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
+            let dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
+            if cycling {
+                // Los sensores Bluetooth emparejados con el reloj se recogen solos;
+                // se activan también aquí por si la configuración no los incluye.
+                for identifier in [HKQuantityTypeIdentifier.distanceCycling, .cyclingPower, .cyclingCadence, .cyclingSpeed] {
+                    dataSource.enableCollection(for: HKQuantityType(identifier), predicate: nil)
+                }
+            }
+            builder.dataSource = dataSource
             session.delegate = self
             builder.delegate = self
             self.session = session
@@ -159,7 +194,7 @@ final class WorkoutManager: NSObject {
             let recovered: HKWorkoutSession? = try await healthStore.recoverActiveWorkoutSession()
             guard let session = recovered else { return }
             // El plan de intervalos no se conserva tras un cierre: la carrera sigue como libre.
-            reset(plan: nil)
+            reset(plan: nil, cycling: session.workoutConfiguration.activityType == .cycling)
             let builder = session.associatedWorkoutBuilder()
             session.delegate = self
             builder.delegate = self
@@ -219,9 +254,12 @@ final class WorkoutManager: NSObject {
         reset()
     }
 
-    private func reset(plan: IntervalPlan? = nil) {
+    private func reset(plan: IntervalPlan? = nil, cycling: Bool = false) {
         let settings = RunSettingsStore.shared.settings
-        tracker = RunSessionTracker(settings: settings, plan: plan)
+        isCycling = cycling
+        tracker = cycling
+            ? RunSessionTracker(settings: settings.forRide(), gpsConfiguration: .cycling)
+            : RunSessionTracker(settings: settings, plan: plan)
         self.plan = plan
         screens = settings.validScreens
         routeCoordinates = []
@@ -281,6 +319,13 @@ final class WorkoutManager: NSObject {
         do {
             try await builder.endCollection(at: date)
             if shouldSave {
+                // Interior o exterior explícito (HÅLSYN lo usa para distinguir cinta y rodillo)
+                // y desnivel positivo medido con el GPS (Salud lo muestra en el entrenamiento).
+                var metadata: [String: Any] = [HKMetadataKeyIndoorWorkout: isIndoor]
+                if !isIndoor, let gain = tracker.snapshot(at: date).elevationGain, gain > 0 {
+                    metadata[HKMetadataKeyElevationAscended] = HKQuantity(unit: .meter(), doubleValue: gain.rounded())
+                }
+                try? await builder.addMetadata(metadata)
                 let workout = try await builder.finishWorkout()
                 if let workout, let routeBuilder, !isIndoor {
                     _ = try await routeBuilder.finishRoute(with: workout, metadata: nil)
@@ -326,8 +371,11 @@ final class WorkoutManager: NSObject {
                 haptic = .notification
                 title = String(localized: "Vuelta \(lap.index)")
                 detail = lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
-                // Con vuelta automática por unidad se dice "Kilómetro n"; si no, "Vuelta n".
-                if RunSettingsStore.shared.settings.autoLapDistance == unit.metersPerDistanceUnit {
+                if isCycling {
+                    detail = Speed(pace: lap.pace).map { "\($0.formatted(in: unit)) \(unit.speedUnitSymbol)" }
+                    spoken = VoiceCoach.rideLap(lap, autoLap: RunSettingsStore.shared.settings.rideAutoLapDistance, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
+                } else if RunSettingsStore.shared.settings.autoLapDistance == unit.metersPerDistanceUnit {
+                    // Con vuelta automática por unidad se dice "Kilómetro n"; si no, "Vuelta n".
                     spoken = VoiceCoach.lap(number: lap.index, pace: lap.pace, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
                 } else {
                     spoken = [title, lap.pace.map { String(localized: "Ritmo \(VoiceCoach.spoken($0, unit: unit))") }].compactMap { $0 }.joined(separator: ". ")
@@ -365,17 +413,24 @@ final class WorkoutManager: NSObject {
         }
     }
 
-    fileprivate func collected(distance: Double?, heartRate: Double?, energy: Double?, power: Double?, at date: Date) {
-        if let distance {
+    fileprivate func collected(_ values: CollectedValues, at date: Date) {
+        if let distance = isCycling ? values.cyclingDistance : values.distance {
             tracker.updateDistance(total: distance, at: date)
         }
-        if let heartRate {
+        if let heartRate = values.heartRate {
             tracker.addHeartRate(heartRate, at: date)
         }
-        if let energy {
+        if let energy = values.energy {
             tracker.updateActiveEnergy(total: energy)
         }
-        if let power {
+        if isCycling {
+            if let power = values.cyclingPower {
+                tracker.updateCyclingPower(power, average: values.averageCyclingPower, at: date)
+            }
+            if let cadence = values.cadence {
+                tracker.updateCadence(cadence, average: values.averageCadence, at: date)
+            }
+        } else if let power = values.runningPower {
             tracker.updatePower(power)
         }
         handleCues()
@@ -409,6 +464,19 @@ final class WorkoutManager: NSObject {
     }
 }
 
+/// Valores que entrega `HKLiveWorkoutBuilder` en una actualización.
+struct CollectedValues: Sendable {
+    var distance: Double?
+    var cyclingDistance: Double?
+    var heartRate: Double?
+    var energy: Double?
+    var runningPower: Double?
+    var cyclingPower: Double?
+    var averageCyclingPower: Double?
+    var cadence: Double?
+    var averageCadence: Double?
+}
+
 // MARK: - Delegados (se llaman fuera del hilo principal)
 
 extension WorkoutManager: HKWorkoutSessionDelegate {
@@ -430,30 +498,37 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
     nonisolated func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {}
 
     nonisolated func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
-        var distance: Double?
-        var heartRate: Double?
-        var energy: Double?
-        var power: Double?
+        var values = CollectedValues()
+        let perMinute = HKUnit.count().unitDivided(by: .minute())
         for type in collectedTypes {
             guard let quantityType = type as? HKQuantityType, let statistics = workoutBuilder.statistics(for: quantityType) else { continue }
             switch quantityType {
             case HKQuantityType(.distanceWalkingRunning):
-                distance = statistics.sumQuantity()?.doubleValue(for: .meter())
+                values.distance = statistics.sumQuantity()?.doubleValue(for: .meter())
+            case HKQuantityType(.distanceCycling):
+                values.cyclingDistance = statistics.sumQuantity()?.doubleValue(for: .meter())
             case HKQuantityType(.heartRate):
-                heartRate = statistics.mostRecentQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
+                values.heartRate = statistics.mostRecentQuantity()?.doubleValue(for: perMinute)
             case HKQuantityType(.activeEnergyBurned):
-                energy = statistics.sumQuantity()?.doubleValue(for: .kilocalorie())
+                values.energy = statistics.sumQuantity()?.doubleValue(for: .kilocalorie())
             case HKQuantityType(.runningPower):
                 // Solo si el reloj la mide y la entrega en vivo; si no, el campo queda en "--".
-                power = statistics.mostRecentQuantity()?.doubleValue(for: .watt())
+                values.runningPower = statistics.mostRecentQuantity()?.doubleValue(for: .watt())
+            case HKQuantityType(.cyclingPower):
+                // Medidor de potencia Bluetooth emparejado con el reloj.
+                values.cyclingPower = statistics.mostRecentQuantity()?.doubleValue(for: .watt())
+                values.averageCyclingPower = statistics.averageQuantity()?.doubleValue(for: .watt())
+            case HKQuantityType(.cyclingCadence):
+                values.cadence = statistics.mostRecentQuantity()?.doubleValue(for: perMinute)
+                values.averageCadence = statistics.averageQuantity()?.doubleValue(for: perMinute)
             default:
                 break
             }
         }
         let now = Date()
-        let values = (distance: distance, heartRate: heartRate, energy: energy, power: power)
+        let collected = values
         Task { @MainActor in
-            self.collected(distance: values.distance, heartRate: values.heartRate, energy: values.energy, power: values.power, at: now)
+            self.collected(collected, at: now)
         }
     }
 }

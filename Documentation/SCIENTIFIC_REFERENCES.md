@@ -119,3 +119,33 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - **Modelo de 5 zonas (50/60/70/80/90 %)**: convención extendida en entrenamiento de resistencia y en dispositivos deportivos; **no** es un estándar clínico. Las guías del ACSM (*ACSM's Guidelines for Exercise Testing and Prescription*) describen la intensidad por % de FC máx. y % de reserva con rangos parecidos, pero sus categorías no coinciden exactamente con estas 5 zonas.
 - **FC máxima**: HÅLSYN **no la estima por la edad** (las fórmulas tipo 220 − edad tienen un error individual grande). Solo usa un valor introducido por el usuario o el máximo registrado en sus carreras, y lo dice.
 - La interfaz presenta las zonas como guía de entrenamiento, nunca como indicación médica.
+
+## Ciclismo — CYKEL (`PowerAnalysis`, `PowerZones`, `FTPEstimator`)
+
+- **FTP, potencia normalizada, factor de intensidad y TSS**: Allen H, Coggan AR, McGregor S. *Training and Racing with a Power Meter.* 3.ª ed. VeloPress; 2019 (ISBN 978-1-937715-93-9, https://search.worldcat.org/isbn/9781937715939).
+  - FTP ≈ 0,95 × potencia media de un esfuerzo máximo de 20 min.
+  - Potencia normalizada: media móvil de 30 s sobre la serie de 1 Hz, a la cuarta potencia, media y raíz cuarta.
+  - IF = NP / FTP.
+  - TSS = (s × NP × IF) / (FTP × 3600) × 100, de modo que 1 h al FTP = 100.
+  - NP, IF y TSS son marcas de TrainingPeaks. La interfaz usa nombres descriptivos ("Ponderada", "Intensidad", "Carga") y lo indica.
+- **Zonas de potencia**: Coggan AR. *Power training levels* (TrainingPeaks), https://www.trainingpeaks.com/learn/articles/power-training-levels/.
+  - Techos en % del FTP: 55, 75, 90, 105 y 120.
+  - Coggan define L6 como >121 % y L7 como esfuerzos máximos cortos, sin porcentaje. El corte del 150 % entre Z6 y Z7 es una convención de las apps y la interfaz lo dice.
+- **Validez del FTP** (por qué se presenta como estimación):
+  - Borszcz FK, Tramontin AF, Costa VP. *Int J Sports Physiol Perform.* 2019;14(8):1029–1035, doi:10.1123/ijspp.2018-0572. Frente al MLSS: sesgo 1,4 % ± 9,2 % (límites de acuerdo del 95 %).
+  - Valenzuela PL, et al. *Int J Sports Physiol Perform.* 2018;13(10):1293–1298, doi:10.1123/ijspp.2018-0008. En ciclistas recreativos el FTP queda por debajo del umbral de lactato.
+  - Otras referencias revisadas y no citadas en la interfaz:
+    - Inglis EC, et al. 2020 (doi:10.1123/ijspp.2019-0214): el FTP sobreestima el MLSS.
+    - MacInnis MJ, et al. 2019 (doi:10.1123/ijspp.2018-0100): en su muestra, la potencia de 60 min ≈ 0,90 × la de 20 min.
+- **Estimación en la app**: 95 % de la mejor media de 20 min seguidos de las salidas con potencia de las últimas 6 semanas (`FTPEstimate.windowDays = 42`).
+  - Solo vale si esos 20 min fueron un esfuerzo máximo, y así se dice.
+  - Prioridad del FTP: el del usuario, después el que guarda el Apple Watch en Salud (`cyclingFunctionalThresholdPower`) y, por último, la estimación.
+- **Serie de potencia**: cada lectura vale hasta la siguiente. Un hueco de más de 5 s (pausa o sensor perdido) corta la serie y no cuenta ni como 0 ni como potencia. Los 0 W reales (rueda libre) sí cuentan.
+- **Zonas cardíacas en bici**: Roecker K, Striegel H, Dickhuth HH. *Int J Sports Med.* 2003;24(3):173–178, doi:10.1055/s-2003-39087. Los umbrales de FC no se trasladan entre correr y pedalear. CYKEL usa las zonas de SPRING y advierte que son orientativas.
+- **Bici y salud** (asociación, no causa): Celis-Morales CA, et al. *BMJ.* 2017;357:j1456, doi:10.1136/bmj.j1456.
+  - UK Biobank, 263.450 adultos, mediana de seguimiento 5 años.
+  - Ir al trabajo en bici: HR 0,59 (IC 95 % 0,42–0,83) para mortalidad por cualquier causa.
+- **Datos que no se inventan**:
+  - Potencia y cadencia solo con sensores Bluetooth emparejados con el reloj (watchOS 10+).
+  - En interior no hay distancia sin un sensor de velocidad.
+  - El desnivel se calcula con la altitud GPS (con histéresis de 3 m), se marca como aproximado y se guarda en Salud (`HKMetadataKeyElevationAscended`).

@@ -392,6 +392,23 @@
         }
       }
     },
+    "%@–%@ W": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ W"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@–%@ W"
+          }
+        }
+      }
+    },
     "%@–%@ lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -783,6 +800,57 @@
         }
       }
     },
+    "> %@ W": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> %@ W"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> %@ W"
+          }
+        }
+      }
+    },
+    "A %@ kilómetros por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At %@ kilometers per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %@ kilometer i timmen"
+          }
+        }
+      }
+    },
+    "A %@ millas por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At %@ miles per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I %@ miles i timmen"
+          }
+        }
+      }
+    },
     "A esta altura de la semana pasada: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -1123,6 +1191,23 @@
         }
       }
     },
+    "Ajustes de bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike settings"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykelinställningar"
+          }
+        }
+      }
+    },
     "Ajustes de carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -1327,6 +1412,40 @@
         }
       }
     },
+    "Altitud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altitude"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höjd"
+          }
+        }
+      }
+    },
+    "Altitud y velocidad según el GPS del reloj (la altitud GPS es aproximada).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altitude and speed from the watch's GPS (GPS altitude is approximate)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höjd och hastighet enligt klockans GPS (GPS-höjden är ungefärlig)."
+          }
+        }
+      }
+    },
     "Altura": {
       "extractionState": "manual",
       "localizations": {
@@ -1493,6 +1612,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Health är inte tillgängligt på den här enheten."
+          }
+        }
+      }
+    },
+    "Apple Health tiene %@ W. Usar ese": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health has %@ W. Use that"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Hälsa har %@ W. Använd det"
           }
         }
       }
@@ -2007,6 +2143,57 @@
         }
       }
     },
+    "Bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykel"
+          }
+        }
+      }
+    },
+    "Bici al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outdoor ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykling utomhus"
+          }
+        }
+      }
+    },
+    "Bici en interior": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indoor ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykling inomhus"
+          }
+        }
+      }
+    },
     "Borrar": {
       "extractionState": "manual",
       "localizations": {
@@ -2054,6 +2241,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rensa ålder, kön och längd"
+          }
+        }
+      }
+    },
+    "Borrar mi FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete my FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radera min FTP"
           }
         }
       }
@@ -2364,6 +2568,23 @@
         }
       }
     },
+    "Cada %lld mi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld mi"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var %lld:e mile"
+          }
+        }
+      }
+    },
     "Cada día": {
       "extractionState": "manual",
       "localizations": {
@@ -2517,6 +2738,23 @@
         }
       }
     },
+    "Calculados a partir de la ruta GPS, sin contar las paradas largas; pueden diferir ligeramente de la distancia total de Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculated from the GPS route, excluding long stops; they may differ slightly from the total distance in Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräknade från GPS-rutten, utan långa stopp; de kan skilja sig något från den totala distansen i Apple Hälsa."
+          }
+        }
+      }
+    },
     "Calculados a partir de la ruta GPS; pueden diferir ligeramente de la distancia total de Apple Health.": {
       "extractionState": "manual",
       "localizations": {
@@ -2598,6 +2836,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Byt bild"
+          }
+        }
+      }
+    },
+    "Cambiar mi FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change my FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändra min FTP"
           }
         }
       }
@@ -2772,6 +3027,23 @@
         }
       }
     },
+    "Capacidad anaeróbica": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anaerobic capacity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anaerob kapacitet"
+          }
+        }
+      }
+    },
     "CardiovascularHealthEngine %@": {
       "extractionState": "manual",
       "localizations": {
@@ -2785,6 +3057,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "CardiovascularHealthEngine %@"
+          }
+        }
+      }
+    },
+    "Carga (TSS)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load (TSS)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning (TSS)"
           }
         }
       }
@@ -3074,6 +3363,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stäng"
+          }
+        }
+      }
+    },
+    "Ciclismo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cycling"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykling"
           }
         }
       }
@@ -3482,6 +3788,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med ett måltempo meddelar klockan om du springer snabbare eller långsammare under draget."
+          }
+        }
+      }
+    },
+    "Con tu FTP de %@ W. Una hora entera a tu FTP son 100 de carga; la intensidad es la ponderada dividida entre el FTP.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With your FTP of %@ W. One full hour at your FTP is a load of 100; intensity is the weighted power divided by your FTP."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med din FTP på %@ W. En hel timme på din FTP ger belastningen 100; intensiteten är den viktade effekten delad med FTP."
+          }
+        }
+      }
+    },
+    "Con tu FTP, el reloj muestra en qué zona de potencia vas (Z1–Z7) y el iPhone calcula la intensidad y la carga de cada salida.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With your FTP, the watch shows which power zone you're in (Z1–Z7) and the iPhone calculates the intensity and load of each ride."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med din FTP visar klockan vilken effektzon du ligger i (Z1–Z7) och iPhone beräknar intensitet och belastning för varje cykeltur."
           }
         }
       }
@@ -4217,6 +4557,23 @@
         }
       }
     },
+    "De Apple Health (%@). Escríbelo como tuyo para ver tu zona de potencia en el reloj.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From Apple Health (%@). Enter it as your own to see your power zone on the watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från Apple Hälsa (%@). Ange den som din egen för att se din effektzon på klockan."
+          }
+        }
+      }
+    },
     "Define tu FC máxima para ver las zonas.": {
       "extractionState": "manual",
       "localizations": {
@@ -4468,6 +4825,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Svep för att se varje stadium"
+          }
+        }
+      }
+    },
+    "Desnivel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elevation gain"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höjdmeter"
           }
         }
       }
@@ -5254,6 +5628,23 @@
         }
       }
     },
+    "El FTP es la potencia más alta que puedes sostener cerca de una hora. Se estima como el 95 por ciento de tu mejor media de 20 minutos. En los estudios coincide de media con el umbral de lactato, pero en cada persona puede desviarse alrededor de un 9 por ciento y suele quedarse corto en ciclistas recreativos: es una referencia para entrenar, no una medida de laboratorio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FTP is the highest power you can sustain for about an hour. It is estimated as 95 percent of your best 20-minute average. In studies it matches the lactate threshold on average, but for an individual it can be off by around 9 percent and it tends to fall short in recreational cyclists: it is a training reference, not a lab measurement."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FTP är den högsta effekt du kan hålla i ungefär en timme. Den uppskattas som 95 procent av ditt bästa 20-minutersmedel. I studier stämmer den i genomsnitt med laktattröskeln, men för en enskild person kan den avvika med omkring 9 procent och den blir ofta för låg hos motionscyklister: det är en referens för träning, inte ett laboratoriemått."
+          }
+        }
+      }
+    },
     "El VDOT es la forma estimada a partir de un esfuerzo a tope (Daniels y Gilbert). La mejora habitual sigue la pauta de Daniels de subir como mucho 1 punto cada 4 a 6 semanas; la tuya puede ser distinta.": {
       "extractionState": "manual",
       "localizations": {
@@ -5420,6 +5811,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Klockan vibrerar efter 10 s utanför intervallet och upprepar varje minut så länge du är utanför. Den meddelar också när du är tillbaka i intervallet."
+          }
+        }
+      }
+    },
+    "Elegido por ti. El reloj lo usa para mostrar tu zona de potencia en directo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set by you. The watch uses it to show your live power zone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vald av dig. Klockan använder den för att visa din effektzon live."
           }
         }
       }
@@ -5611,6 +6019,23 @@
         }
       }
     },
+    "En 263.450 adultos del UK Biobank, quienes iban al trabajo en bici tuvieron un 41 por ciento menos de mortalidad en unos 5 años que quienes no se desplazaban de forma activa (cociente de riesgos 0,59). Es una asociación observada, no prueba que la bici sea la causa.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Among 263,450 UK Biobank adults, those who cycled to work had 41 percent lower mortality over about 5 years than those who did not commute actively (hazard ratio 0.59). This is an observed association; it does not prove that cycling is the cause."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bland 263 450 vuxna i UK Biobank hade de som cyklade till jobbet 41 procent lägre dödlighet under cirka 5 år än de som inte pendlade aktivt (hazardkvot 0,59). Det är ett observerat samband, inget bevis för att cyklingen är orsaken."
+          }
+        }
+      }
+    },
     "En 60.977 adultos de UK Biobank, dormir con horarios regulares se asoció a un riesgo de mortalidad entre un 20 y un 48 por ciento menor que en el grupo más irregular, y predijo mejor que la duración del sueño. La mediana fue 81 y la mitad central estuvo entre 74 y 86.": {
       "extractionState": "manual",
       "localizations": {
@@ -5662,6 +6087,23 @@
         }
       }
     },
+    "En cada vuelta el reloj vibra y, con los avisos de voz activados, dice la distancia, la velocidad de ese tramo y el pulso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At each lap the watch vibrates and, with voice cues on, says the distance, the speed of that stretch and your heart rate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid varje varv vibrerar klockan och, med röstmeddelanden på, säger den distansen, hastigheten på sträckan och pulsen."
+          }
+        }
+      }
+    },
     "En cama": {
       "extractionState": "manual",
       "localizations": {
@@ -5709,6 +6151,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "På klockan: SPRING › Intervaller › dagens pass."
+          }
+        }
+      }
+    },
+    "En interior el reloj solo mide distancia con un sensor de velocidad o un rodillo que la envíe.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indoors, the watch only measures distance with a speed sensor or a trainer that sends it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inomhus mäter klockan bara distans med en hastighetssensor eller en trainer som skickar den."
           }
         }
       }
@@ -5951,6 +6410,23 @@
         }
       }
     },
+    "Entre las salidas en bici guardadas en Salud que carga HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Among the rides saved in Health that HÅLSYN loads."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bland de cykelturer som sparats i Hälsa och som HÅLSYN läser in."
+          }
+        }
+      }
+    },
     "Entrenamiento": {
       "extractionState": "manual",
       "localizations": {
@@ -6121,6 +6597,40 @@
         }
       }
     },
+    "Escribe tu FTP en CYKEL › Potencia y FTP para ver la intensidad, la carga y el tiempo en cada zona.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your FTP in CYKEL › Power and FTP to see intensity, load and time in each zone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ange din FTP i CYKEL › Effekt och FTP för att se intensitet, belastning och tid i varje zon."
+          }
+        }
+      }
+    },
+    "Escribir mi FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter my FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ange min FTP"
+          }
+        }
+      }
+    },
     "Ese tiempo queda fuera de lo que el modelo puede valorar (esfuerzos de unos 4 minutos a 7 horas). El plan te prepara para la distancia con tu forma actual.": {
       "extractionState": "manual",
       "localizations": {
@@ -6219,6 +6729,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den här källan registrerar inte sömnstadier."
+          }
+        }
+      }
+    },
+    "Esta salida no tiene ruta GPS en Apple Health, o HÅLSYN no tiene permiso para leerla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This ride has no GPS route in Apple Health, or HÅLSYN isn't allowed to read it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här cykelturen har ingen GPS-rutt i Apple Hälsa, eller så får HÅLSYN inte läsa den."
           }
         }
       }
@@ -6423,6 +6950,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattad utifrån ditt bästa pass på sistone: den är förmodligen i underkant. Om du skapar planen så börjar första veckan med ett test."
+          }
+        }
+      }
+    },
+    "Estimado: 95 por ciento de tus mejores 20 minutos (%@ W, %@). Solo vale si esos 20 minutos fueron a tope.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated: 95 percent of your best 20 minutes (%@ W, %@). Only valid if those 20 minutes were an all-out effort."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattad: 95 procent av dina bästa 20 minuter (%@ W, %@). Gäller bara om de 20 minuterna kördes för fullt."
           }
         }
       }
@@ -7328,6 +7872,23 @@
         }
       }
     },
+    "Gráfico de potencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power chart"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effektdiagram"
+          }
+        }
+      }
+    },
     "Guardada en Apple Health": {
       "extractionState": "manual",
       "localizations": {
@@ -8161,6 +8722,40 @@
         }
       }
     },
+    "Iniciar bici al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start outdoor ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta cykling utomhus"
+          }
+        }
+      }
+    },
+    "Iniciar bici en interior": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start indoor ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta cykling inomhus"
+          }
+        }
+      }
+    },
     "Iniciar caminata": {
       "extractionState": "manual",
       "localizations": {
@@ -8259,6 +8854,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hård"
+          }
+        }
+      }
+    },
+    "Intensidad (IF)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensity (IF)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensitet (IF)"
           }
         }
       }
@@ -8552,6 +9164,23 @@
         }
       }
     },
+    "La ponderada da más peso a los tramos fuertes: refleja mejor el esfuerzo de una salida con cambios de ritmo que la media. Método de Coggan; potencia normalizada (NP), factor de intensidad (IF) y TSS son marcas de TrainingPeaks.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weighted power gives more weight to hard stretches: it reflects the effort of a ride with changes of pace better than the average. Coggan's method; Normalized Power (NP), Intensity Factor (IF) and TSS are trademarks of TrainingPeaks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viktad effekt ger mer vikt åt hårda partier: den speglar ansträngningen i en tur med tempoväxlingar bättre än medelvärdet. Coggans metod; Normalized Power (NP), Intensity Factor (IF) och TSS är varumärken som tillhör TrainingPeaks."
+          }
+        }
+      }
+    },
     "La puntuación aparece cuando hay datos de al menos el 60 % de las dimensiones. Sigue llevando tu Apple Watch.": {
       "extractionState": "manual",
       "localizations": {
@@ -8599,6 +9228,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den allmänna rekommendationen för vuxna är 7 till 9 timmar."
+          }
+        }
+      }
+    },
+    "La salida se registra en el reloj, aunque dejes el iPhone en casa. Puedes iniciarla desde aquí o tocando CYKEL en el reloj.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ride is recorded on the watch, even if you leave your iPhone at home. You can start it here or by tapping CYKEL on the watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykelturen registreras på klockan, även om du lämnar iPhone hemma. Du kan starta den här eller genom att trycka på CYKEL på klockan."
           }
         }
       }
@@ -8684,6 +9330,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intervaller och tröskelpass läggs långt från gymmet: inte samma dag eller dagen efter, eftersom styrketräning också tröttar benen."
+          }
+        }
+      }
+    },
+    "Las zonas cardíacas son las de SPRING. En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: tómalas como orientación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate zones are the SPRING ones. On the bike, heart rate is usually somewhat lower than when running at the same effort, and thresholds don't transfer well from one sport to another: treat them as a guide."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszonerna är desamma som i SPRING. På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning, och trösklar går inte att överföra väl mellan sporter: se dem som en vägledning."
           }
         }
       }
@@ -9007,6 +9670,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Logotyp"
+          }
+        }
+      }
+    },
+    "Los avisos de voz, dónde suenan y las zonas cardíacas son los mismos que en SPRING.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice cues, where they play and heart rate zones are the same as in SPRING."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Röstmeddelanden, var de hörs och pulszonerna är desamma som i SPRING."
           }
         }
       }
@@ -9589,6 +10269,23 @@
         }
       }
     },
+    "Medidor de potencia, sensor de cadencia o de velocidad: emparéjalos en el reloj, en Ajustes › Bluetooth. HÅLSYN los usa durante la salida y sus datos quedan en Apple Health. Sin ellos, potencia y cadencia se muestran vacías: no se estiman.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power meter, cadence or speed sensor: pair them on the watch in Settings › Bluetooth. HÅLSYN uses them during the ride and their data is kept in Apple Health. Without them, power and cadence are shown empty: they are not estimated."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effektmätare, kadens- eller hastighetssensor: parkoppla dem på klockan under Inställningar › Bluetooth. HÅLSYN använder dem under turen och deras data sparas i Apple Hälsa. Utan dem visas effekt och kadens tomma: de uppskattas inte."
+          }
+        }
+      }
+    },
     "Meditación o respiración": {
       "extractionState": "manual",
       "localizations": {
@@ -9670,6 +10367,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Normal förbättring: högst 1 VDOT-poäng var 4:e till 6:e vecka med regelbunden träning (Daniels riktlinje). Ambitiöst är upp till dubbelt så snabbt. Den verkliga förbättringen varierar mycket mellan personer."
+          }
+        }
+      }
+    },
+    "Mejores 20 min": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best 20 min"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa 20 min"
           }
         }
       }
@@ -9823,6 +10537,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mile %lld"
+          }
+        }
+      }
+    },
+    "Minuto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minute"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minut"
           }
         }
       }
@@ -10184,6 +10915,23 @@
         }
       }
     },
+    "Más desnivel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most climbing"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flest höjdmeter"
+          }
+        }
+      }
+    },
     "Más lento": {
       "extractionState": "manual",
       "localizations": {
@@ -10282,6 +11030,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mer regelbunden än de flesta"
+          }
+        }
+      }
+    },
+    "Más rápida (20 km o más)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest (20 km or more)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbast (20 km eller mer)"
           }
         }
       }
@@ -10490,6 +11255,23 @@
         }
       }
     },
+    "Neuromuscular": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuromuscular"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuromuskulär"
+          }
+        }
+      }
+    },
     "Nicotina": {
       "extractionState": "manual",
       "localizations": {
@@ -10627,6 +11409,23 @@
       }
     },
     "No medida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not measured"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte uppmätt"
+          }
+        }
+      }
+    },
+    "No medido": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -11527,6 +12326,23 @@
         }
       }
     },
+    "Para medir potencia necesitas un medidor de potencia Bluetooth emparejado con el Apple Watch (Ajustes › Bluetooth del reloj). Si conoces tu FTP, escríbelo para ver tus zonas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To measure power you need a Bluetooth power meter paired with your Apple Watch (Settings › Bluetooth on the watch). If you know your FTP, enter it to see your zones."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att mäta effekt behöver du en Bluetooth-effektmätare parkopplad med Apple Watch (Inställningar › Bluetooth på klockan). Om du vet din FTP kan du ange den för att se dina zoner."
+          }
+        }
+      }
+    },
     "Parciales": {
       "extractionState": "manual",
       "localizations": {
@@ -11540,6 +12356,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delsträckor"
+          }
+        }
+      }
+    },
+    "Parciales de 5 km": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 km splits"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delsträckor à 5 km"
+          }
+        }
+      }
+    },
+    "Parciales de 5 mi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 mi splits"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delsträckor à 5 mi"
           }
         }
       }
@@ -11748,6 +12598,23 @@
         }
       }
     },
+    "Pedalear con Apple Watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ride with Apple Watch"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykla med Apple Watch"
+          }
+        }
+      }
+    },
     "Percentil %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -11778,6 +12645,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Profil"
+          }
+        }
+      }
+    },
+    "Perfil de altitud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elevation profile"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höjdprofil"
           }
         }
       }
@@ -12071,6 +12955,23 @@
         }
       }
     },
+    "Ponderada (NP)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weighted (NP)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viktad (NP)"
+          }
+        }
+      }
+    },
     "Por debajo de la zona": {
       "extractionState": "manual",
       "localizations": {
@@ -12258,6 +13159,23 @@
         }
       }
     },
+    "Potencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effekt"
+          }
+        }
+      }
+    },
     "Potencia de carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -12271,6 +13189,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löpeffekt"
+          }
+        }
+      }
+    },
+    "Potencia media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average power"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medeleffekt"
+          }
+        }
+      }
+    },
+    "Potencia y FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Power and FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effekt och FTP"
           }
         }
       }
@@ -13244,6 +14196,23 @@
         }
       }
     },
+    "Recuperación activa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv återhämtning"
+          }
+        }
+      }
+    },
     "Recuperación estimada": {
       "extractionState": "manual",
       "localizations": {
@@ -13495,6 +14464,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulsreserv (Karvonen)"
+          }
+        }
+      }
+    },
+    "Resistencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endurance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uthållighet"
           }
         }
       }
@@ -14077,6 +15063,108 @@
         }
       }
     },
+    "Salida descartada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ride discarded"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykeltur förkastad"
+          }
+        }
+      }
+    },
+    "Salida en bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykeltur"
+          }
+        }
+      }
+    },
+    "Salida más larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längsta cykeltur"
+          }
+        }
+      }
+    },
+    "Salidas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rides"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turer"
+          }
+        }
+      }
+    },
+    "Salidas en bici con velocidad, desnivel y potencia.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike rides with speed, elevation and power."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykelturer med hastighet, höjdmeter och effekt."
+          }
+        }
+      }
+    },
+    "Salir en bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go for a ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ut och cykla"
+          }
+        }
+      }
+    },
     "Salud": {
       "extractionState": "manual",
       "localizations": {
@@ -14413,6 +15501,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Veckovis"
+          }
+        }
+      }
+    },
+    "Sensores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensors"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensorer"
           }
         }
       }
@@ -14876,6 +15981,23 @@
         }
       }
     },
+    "Sin distancia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No distance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen distans"
+          }
+        }
+      }
+    },
     "Sin días marcados, todos los días. El aviso solo nombra el objetivo, nunca tus datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -14927,6 +16049,23 @@
         }
       }
     },
+    "Sin medidor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No power meter"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen effektmätare"
+          }
+        }
+      }
+    },
     "Sin objetivos todavía": {
       "extractionState": "manual",
       "localizations": {
@@ -14974,6 +16113,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingen rutt"
+          }
+        }
+      }
+    },
+    "Sin salidas todavía": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rides yet"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga cykelturer än"
+          }
+        }
+      }
+    },
+    "Sin sensor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sensor"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen sensor"
           }
         }
       }
@@ -15059,6 +16232,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Systoliskt (övertryck)"
+          }
+        }
+      }
+    },
+    "Sobre CYKEL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CYKEL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om CYKEL"
           }
         }
       }
@@ -15760,6 +16950,23 @@
         }
       }
     },
+    "Tempo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo"
+          }
+        }
+      }
+    },
     "Tendencia de %@: días con datos en cada periodo de 4 semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -16066,6 +17273,23 @@
         }
       }
     },
+    "Tiempo en zonas de potencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time in power zones"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i effektzoner"
+          }
+        }
+      }
+    },
     "Tiempo, distancia, ritmo y frecuencia cardíaca en directo desde tu Apple Watch, incluso sin el iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -16079,6 +17303,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tid, distans, tempo och puls i realtid från din Apple Watch, även utan iPhone."
+          }
+        }
+      }
+    },
+    "Tiempo, distancia, velocidad, desnivel y frecuencia cardíaca en directo desde tu Apple Watch; potencia y cadencia si emparejas un medidor o un sensor con el reloj.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live time, distance, speed, elevation and heart rate from your Apple Watch; power and cadence if you pair a meter or sensor with the watch."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid, distans, hastighet, höjdmeter och puls live från din Apple Watch; effekt och kadens om du parkopplar en mätare eller sensor med klockan."
           }
         }
       }
@@ -16164,6 +17405,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tryck på en natt för att se tiderna"
+          }
+        }
+      }
+    },
+    "Todavía no hay 20 minutos seguidos con potencia en tus salidas de las últimas 6 semanas para estimar tu FTP. Si lo conoces (de un test o de otra app), escríbelo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your rides in the last 6 weeks don't yet have 20 continuous minutes with power to estimate your FTP. If you know it (from a test or another app), enter it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina cykelturer de senaste 6 veckorna har ännu inte 20 sammanhängande minuter med effekt för att uppskatta din FTP. Om du vet den (från ett test eller en annan app), ange den."
           }
         }
       }
@@ -16300,6 +17558,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Efter dagar med «%@» sov du i snitt %@; efter dagar utan %@."
+          }
+        }
+      }
+    },
+    "Tu FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din FTP"
           }
         }
       }
@@ -17001,6 +18276,23 @@
         }
       }
     },
+    "Tus salidas en bici guardadas en Apple Health aparecerán aquí.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your bike rides saved in Apple Health will appear here."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina cykelturer som sparats i Apple Hälsa visas här."
+          }
+        }
+      }
+    },
     "Tus zonas": {
       "extractionState": "manual",
       "localizations": {
@@ -17171,6 +18463,23 @@
         }
       }
     },
+    "Usa el resultado de un test de 20 minutos (95 por ciento de la media), de un test en laboratorio o el que te dé otra app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the result of a 20-minute test (95 percent of the average), a lab test or the one another app gives you."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd resultatet från ett 20-minuterstest (95 procent av medelvärdet), ett laboratorietest eller det som en annan app ger dig."
+          }
+        }
+      }
+    },
     "Usa la media de varias mediciones, sentado y tras 5 minutos de reposo.": {
       "extractionState": "manual",
       "localizations": {
@@ -17184,6 +18493,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Använd medelvärdet av flera mätningar, sittande och efter 5 minuters vila."
+          }
+        }
+      }
+    },
+    "Usar %@ W como mi FTP": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use %@ W as my FTP"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd %@ W som min FTP"
           }
         }
       }
@@ -17273,6 +18599,40 @@
         }
       }
     },
+    "VEL. MEDIA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AVG SPEED"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SNITTFART"
+          }
+        }
+      }
+    },
+    "VELOCIDAD": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SPEED"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FART"
+          }
+        }
+      }
+    },
     "VO₂ máx. estimado": {
       "extractionState": "manual",
       "localizations": {
@@ -17303,6 +18663,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Högsta VO₂ max"
+          }
+        }
+      }
+    },
+    "VO₂max": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂max"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂max"
           }
         }
       }
@@ -17507,6 +18884,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fart"
+          }
+        }
+      }
+    },
+    "Velocidad a lo largo de la salida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speed along the ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hastighet längs turen"
+          }
+        }
+      }
+    },
+    "Velocidad media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average speed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelhastighet"
+          }
+        }
+      }
+    },
+    "Ver CYKEL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View CYKEL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa CYKEL"
           }
         }
       }
@@ -17817,6 +19245,23 @@
         }
       }
     },
+    "Voz y zonas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voice and zones"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Röst och zoner"
+          }
+        }
+      }
+    },
     "Vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -18017,6 +19462,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulszoner"
+          }
+        }
+      }
+    },
+    "Zonas de Coggan en porcentaje del FTP: 55, 75, 90, 105, 120 y 150. El límite del 150 entre Z6 y Z7 es una convención de las apps; Z7 son esfuerzos máximos y cortos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coggan zones as a percentage of FTP: 55, 75, 90, 105, 120 and 150. The 150 limit between Z6 and Z7 is an app convention; Z7 covers short, maximal efforts."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coggans zoner i procent av FTP: 55, 75, 90, 105, 120 och 150. Gränsen 150 mellan Z6 och Z7 är en konvention i apparna; Z7 är korta, maximala ansträngningar."
+          }
+        }
+      }
+    },
+    "Zonas de SPRING. En bici la FC suele ser algo más baja que corriendo al mismo esfuerzo: tómalas como orientación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SPRING zones. On the bike, heart rate is usually somewhat lower than when running at the same effort: treat them as a guide."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoner från SPRING. På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning: se dem som en vägledning."
           }
         }
       }
@@ -18429,6 +19908,23 @@
         }
       }
     },
+    "¿Tienes medidor de potencia o sensor de cadencia? Emparéjalo en Ajustes › Bluetooth del reloj y HÅLSYN lo usará solo. En interior, sin sensor de velocidad no hay distancia.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Have a power meter or cadence sensor? Pair it in Settings › Bluetooth on the watch and HÅLSYN will use it automatically. Indoors, there's no distance without a speed sensor."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har du en effektmätare eller kadenssensor? Parkoppla den under Inställningar › Bluetooth på klockan så använder HÅLSYN den automatiskt. Inomhus blir det ingen distans utan hastighetssensor."
+          }
+        }
+      }
+    },
     "¿Tienes una balanza Xiaomi? En la app Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal. Otras balanzas inteligentes tienen una opción parecida.": {
       "extractionState": "manual",
       "localizations": {
@@ -18459,6 +19955,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste löppass"
+          }
+        }
+      }
+    },
+    "Última salida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last ride"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste turen"
+          }
+        }
+      }
+    },
+    "Últimas %lld a %@ millas por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last %lld at %@ miles per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste %lld i %@ miles i timmen"
           }
         }
       }
@@ -18510,6 +20040,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste mätning"
+          }
+        }
+      }
+    },
+    "Últimos %lld a %@ kilómetros por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last %lld at %@ kilometers per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste %lld i %@ kilometer i timmen"
           }
         }
       }

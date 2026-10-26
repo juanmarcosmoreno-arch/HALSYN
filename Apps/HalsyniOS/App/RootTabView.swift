@@ -14,6 +14,9 @@ struct RootTabView: View {
             SpringView()
                 .tabItem { Label(HalsynModule.spring.brandName, systemImage: "figure.run") }
                 .tag(AppTab.spring)
+            CykelView()
+                .tabItem { Label(HalsynModule.cykel.brandName, systemImage: "bicycle") }
+                .tag(AppTab.cykel)
             InsiktView()
                 .tabItem { Label(HalsynModule.insikt.brandName, systemImage: "chart.xyaxis.line") }
                 .tag(AppTab.insikt)

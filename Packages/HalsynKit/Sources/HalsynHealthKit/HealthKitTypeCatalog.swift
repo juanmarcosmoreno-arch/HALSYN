@@ -60,7 +60,21 @@ public enum HealthKitTypeCatalog {
         types.insert(HKCharacteristicType(.biologicalSex))
         // Altura para el IMC.
         types.insert(HKQuantityType(.height))
+        // CYKEL: distancia, potencia, cadencia, velocidad y FTP de las salidas en bici.
+        types.formUnion(cyclingReadTypes)
         return types
+    }
+
+    /// Datos de bici (CYKEL): los registra el Apple Watch y los sensores
+    /// Bluetooth (medidor de potencia, cadencia, velocidad) emparejados con él.
+    public static var cyclingReadTypes: Set<HKObjectType> {
+        [
+            HKQuantityType(.distanceCycling),
+            HKQuantityType(.cyclingPower),
+            HKQuantityType(.cyclingCadence),
+            HKQuantityType(.cyclingSpeed),
+            HKQuantityType(.cyclingFunctionalThresholdPower),
+        ]
     }
 
     /// Métricas de running con API pública. La disponibilidad en vivo frente a

@@ -46,6 +46,31 @@ final class VoiceCoach: NSObject, AVSpeechSynthesizerDelegate {
         return String(localized: "\(minutes) minutos \(seconds) segundos")
     }
 
+    /// En bici: "Kilómetro 25. Últimos 5 a 28,1 kilómetros por hora. Pulso 140".
+    static func rideLap(_ lap: Lap, autoLap: Double?, heartRate: Double?, unit: UnitSystem) -> String {
+        let count = Int(((autoLap ?? lap.distance) / unit.metersPerDistanceUnit).rounded())
+        var parts: [String]
+        if count > 0 {
+            let number = lap.index * count
+            parts = [unit == .imperial ? String(localized: "Milla \(number)") : String(localized: "Kilómetro \(number)")]
+        } else {
+            parts = [String(localized: "Vuelta \(lap.index)")]
+        }
+        if let speed = Speed(pace: lap.pace) {
+            let value = speed.formatted(in: unit)
+            if count > 0 {
+                parts.append(unit == .imperial ? String(localized: "Últimas \(count) a \(value) millas por hora") : String(localized: "Últimos \(count) a \(value) kilómetros por hora"))
+            } else {
+                parts.append(unit == .imperial ? String(localized: "A \(value) millas por hora") : String(localized: "A \(value) kilómetros por hora"))
+            }
+        }
+        if let heartRate {
+            let beats = Int(heartRate.rounded())
+            parts.append(String(localized: "Pulso \(beats)"))
+        }
+        return parts.joined(separator: ". ")
+    }
+
     static func lap(number: Int, pace: Pace?, heartRate: Double?, unit: UnitSystem) -> String {
         var parts: [String] = [unit == .imperial ? String(localized: "Milla \(number)") : String(localized: "Kilómetro \(number)")]
         if let pace { parts.append(String(localized: "Ritmo \(spoken(pace, unit: unit))")) }

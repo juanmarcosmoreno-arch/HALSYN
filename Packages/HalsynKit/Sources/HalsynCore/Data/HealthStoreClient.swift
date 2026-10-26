@@ -37,6 +37,15 @@ public protocol HealthStoreClient: Sendable {
     /// Entrenamientos de carrera más recientes, del más nuevo al más antiguo.
     func runningWorkouts(limit: Int) async throws -> [WorkoutSummary]
 
+    /// Salidas en bici más recientes (CYKEL), de la más nueva a la más antigua.
+    func cyclingWorkouts(limit: Int) async throws -> [WorkoutSummary]
+
+    /// Lecturas de potencia de bici en el intervalo, en orden cronológico.
+    func cyclingPowerSamples(in interval: DateInterval) async throws -> [PowerSample]
+
+    /// Último FTP guardado en Salud (vatios), si existe.
+    func latestFunctionalThresholdPower() async -> ThresholdPowerReading?
+
     /// Puntos de la ruta de un entrenamiento (vacío en cinta o sin GPS).
     func workoutRoute(workoutID: UUID) async throws -> [LocationSample]
 
@@ -68,4 +77,7 @@ extension HealthStoreClient {
     public func characteristics() async -> UserCharacteristics { UserCharacteristics() }
     public func workoutRoute(workoutID: UUID) async throws -> [LocationSample] { [] }
     public func heartRateSamples(in interval: DateInterval) async throws -> [HeartRatePoint] { [] }
+    public func cyclingWorkouts(limit: Int) async throws -> [WorkoutSummary] { [] }
+    public func cyclingPowerSamples(in interval: DateInterval) async throws -> [PowerSample] { [] }
+    public func latestFunctionalThresholdPower() async -> ThresholdPowerReading? { nil }
 }

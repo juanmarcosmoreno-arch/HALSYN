@@ -13,7 +13,6 @@ struct WorkoutDetailView: View {
     @State private var detail: WorkoutDetailData?
     @State private var insights: RunInsights?
     @State private var comparison: SimilarRunComparison?
-    @AppStorage(RouteMapStyle.key) private var satellite = false
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -87,36 +86,7 @@ struct WorkoutDetailView: View {
     @ViewBuilder
     private func routeSection(_ detail: WorkoutDetailData) -> some View {
         if detail.route.count > 1 {
-            let points = WorkoutAnalysis.simplified(detail.route).map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
-            VStack(alignment: .leading, spacing: HalsynSpacing.s) {
-                HalsynSectionHeader("Ruta", eyebrow: HalsynLexicon.rorelse.rawValue)
-                Map(initialPosition: .automatic, interactionModes: [.pan, .zoom]) {
-                    MapPolyline(coordinates: points)
-                        .stroke(Color.halsynAccent, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                    if let first = points.first {
-                        Annotation("Salida", coordinate: first) {
-                            Circle().fill(Color.halsynPositive).frame(width: 12, height: 12)
-                                .overlay(Circle().strokeBorder(.white, lineWidth: 2))
-                        }
-                    }
-                    if let last = points.last {
-                        Annotation("Llegada", coordinate: last) {
-                            Circle().fill(Color.halsynAlert).frame(width: 12, height: 12)
-                                .overlay(Circle().strokeBorder(.white, lineWidth: 2))
-                        }
-                    }
-                }
-                .mapStyle(RouteMapStyle.style(satellite: satellite))
-                .overlay(alignment: .topTrailing) { MapStyleToggle(satellite: $satellite) }
-                .frame(height: 240)
-                .clipShape(RoundedRectangle(cornerRadius: HalsynRadius.card, style: .continuous))
-                .accessibilityLabel(Text("Mapa de la ruta"))
-                if detail.origin.isDemo {
-                    Text("Ruta de ejemplo (modo demo).")
-                        .font(.caption2)
-                        .foregroundStyle(.halsynSecondaryText)
-                }
-            }
+            WorkoutRouteMap(route: detail.route, isDemo: detail.origin.isDemo)
         } else if workout.activity == .outdoorRun {
             HalsynCard {
                 HalsynEmptyState(systemImage: "map", title: "Sin ruta", message: "Este entrenamiento no tiene ruta GPS en Apple Health, o HÅLSYN no tiene permiso para leerla.")
@@ -171,41 +141,97 @@ struct WorkoutDetailView: View {
     @ViewBuilder
     private func heartRateSection(_ detail: WorkoutDetailData) -> some View {
         if !detail.heartRate.isEmpty {
-            let zones = RunSettingsStore.shared.settings.zones
-            let zoneSeconds = WorkoutAnalysis.zoneSeconds(detail.heartRate, zones: zones)
-            HalsynCard {
-                VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                    HalsynSectionHeader("Frecuencia cardíaca", eyebrow: HalsynLexicon.puls.rawValue)
-                    let bpms = detail.heartRate.map(\.bpm)
-                    let low = (bpms.min() ?? 60) - 5
-                    let high = (bpms.max() ?? 180) + 5
-                    Chart {
-                        // Zonas de fondo con los mismos colores que en el reloj.
-                        ForEach(zones.zones) { zone in
-                            let from = max(zone.lowerBound, low)
-                            let to = min(zone.upperBound, high)
-                            if to > from {
-                                RectangleMark(yStart: .value("Desde", from), yEnd: .value("Hasta", to))
-                                    .foregroundStyle(HalsynZoneColors.color(zone.index).opacity(0.18))
-                            }
-                        }
-                        ForEach(detail.heartRate, id: \.date) { point in
-                            LineMark(x: .value("Hora", point.date), y: .value("lpm", point.bpm))
-                                .interpolationMethod(.monotone)
-                                .foregroundStyle(zones.zones.isEmpty ? Color.halsynAlert : Color.halsynPrimaryText)
-                        }
-                    }
-                    .chartYScale(domain: low...high)
-                    .frame(height: 140)
-                    .accessibilityLabel(Text("Gráfico de frecuencia cardíaca"))
+            HeartRateZonesCard(samples: detail.heartRate)
+        }
+    }
+}
 
-                    if zoneSeconds.isEmpty {
-                        Label("Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona.", systemImage: "heart.text.square")
-                            .font(.halsynCaption)
-                            .foregroundStyle(.halsynSecondaryText)
-                    } else {
-                        ZoneDistributionView(seconds: zoneSeconds, zones: zones.zones)
+/// Ruta de un entrenamiento con salida y llegada (carrera o bici).
+struct WorkoutRouteMap: View {
+    let route: [LocationSample]
+    let isDemo: Bool
+    @AppStorage(RouteMapStyle.key) private var satellite = false
+
+    var body: some View {
+        let points = WorkoutAnalysis.simplified(route).map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+            HalsynSectionHeader("Ruta", eyebrow: HalsynLexicon.rorelse.rawValue)
+            Map(initialPosition: .automatic, interactionModes: [.pan, .zoom]) {
+                MapPolyline(coordinates: points)
+                    .stroke(Color.halsynAccent, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                if let first = points.first {
+                    Annotation("Salida", coordinate: first) {
+                        Circle().fill(Color.halsynPositive).frame(width: 12, height: 12)
+                            .overlay(Circle().strokeBorder(.white, lineWidth: 2))
                     }
+                }
+                if let last = points.last {
+                    Annotation("Llegada", coordinate: last) {
+                        Circle().fill(Color.halsynAlert).frame(width: 12, height: 12)
+                            .overlay(Circle().strokeBorder(.white, lineWidth: 2))
+                    }
+                }
+            }
+            .mapStyle(RouteMapStyle.style(satellite: satellite))
+            .overlay(alignment: .topTrailing) { MapStyleToggle(satellite: $satellite) }
+            .frame(height: 240)
+            .clipShape(RoundedRectangle(cornerRadius: HalsynRadius.card, style: .continuous))
+            .accessibilityLabel(Text("Mapa de la ruta"))
+            if isDemo {
+                Text("Ruta de ejemplo (modo demo).")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+        }
+    }
+}
+
+/// FC del entrenamiento sobre las zonas de SPRING y tiempo en cada zona.
+struct HeartRateZonesCard: View {
+    let samples: [HeartRatePoint]
+    /// Nota opcional bajo el reparto por zonas (p. ej. en bici).
+    var note: LocalizedStringKey?
+
+    var body: some View {
+        let zones = RunSettingsStore.shared.settings.zones
+        let zoneSeconds = WorkoutAnalysis.zoneSeconds(samples, zones: zones)
+        HalsynCard {
+            VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                HalsynSectionHeader("Frecuencia cardíaca", eyebrow: HalsynLexicon.puls.rawValue)
+                let bpms = samples.map(\.bpm)
+                let low = (bpms.min() ?? 60) - 5
+                let high = (bpms.max() ?? 180) + 5
+                Chart {
+                    // Zonas de fondo con los mismos colores que en el reloj.
+                    ForEach(zones.zones) { zone in
+                        let from = max(zone.lowerBound, low)
+                        let to = min(zone.upperBound, high)
+                        if to > from {
+                            RectangleMark(yStart: .value("Desde", from), yEnd: .value("Hasta", to))
+                                .foregroundStyle(HalsynZoneColors.color(zone.index).opacity(0.18))
+                        }
+                    }
+                    ForEach(samples, id: \.date) { point in
+                        LineMark(x: .value("Hora", point.date), y: .value("lpm", point.bpm))
+                            .interpolationMethod(.monotone)
+                            .foregroundStyle(zones.zones.isEmpty ? Color.halsynAlert : Color.halsynPrimaryText)
+                    }
+                }
+                .chartYScale(domain: low...high)
+                .frame(height: 140)
+                .accessibilityLabel(Text("Gráfico de frecuencia cardíaca"))
+
+                if zoneSeconds.isEmpty {
+                    Label("Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona.", systemImage: "heart.text.square")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                } else {
+                    ZoneDistributionView(seconds: zoneSeconds, zones: zones.zones)
+                }
+                if let note {
+                    Text(note)
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
                 }
             }
         }
