@@ -297,7 +297,7 @@ private struct RideMetricsView: View {
                         Spacer(minLength: 2)
                         HalsynWorkoutField(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) }, unit: "lpm", size: .medium, emphasis: Color(HalsynPalette.alertDark), alignment: .center)
                     case .sensors:
-                        HalsynWorkoutField(label: snapshot.powerZone.map { "KRAFT · Z\($0)" } ?? "KRAFT", // nolocalize value: snapshot.power.map { HalsynFormat.integer($0) }, unit: "W", size: .large, alignment: .center)
+                        HalsynWorkoutField(label: powerLabel(snapshot.powerZone), value: snapshot.power.map { HalsynFormat.integer($0) }, unit: "W", size: .large, alignment: .center)
                         Spacer(minLength: 2)
                         HalsynWorkoutField(label: "CADENCIA", value: snapshot.cadence.map { HalsynFormat.integer($0) }, unit: "rpm", size: .medium, alignment: .center)
                         Spacer(minLength: 2)
@@ -319,6 +319,11 @@ private struct RideMetricsView: View {
             }
         }
         .background(Color.black.ignoresSafeArea())
+    }
+
+    /// "KRAFT · Z3": marca sueca y zona de potencia, no se traducen.
+    private func powerLabel(_ zone: Int?) -> String {
+        zone.map { "KRAFT · Z\($0)" } ?? "KRAFT" // nolocalize
     }
 }
 
