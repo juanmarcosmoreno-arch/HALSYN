@@ -511,6 +511,23 @@
         }
       }
     },
+    "%lld entrenamientos sin frecuencia cardíaca no suman.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld workouts without heart rate don't count."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld träningspass utan puls räknas inte."
+          }
+        }
+      }
+    },
     "%lld h %lld min": {
       "extractionState": "manual",
       "localizations": {
@@ -541,6 +558,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld minuter %lld sekunder"
+          }
+        }
+      }
+    },
+    "%lld salidas sin potencia no suman en esta vista.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld rides without power don't count in this view."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld cykelturer utan effekt räknas inte i den här vyn."
           }
         }
       }
@@ -1153,6 +1187,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Just nu springer du ungefär %@ per vecka; för att förbereda dig för den här distansen bör du utgå från runt %@."
+          }
+        }
+      }
+    },
+    "Ahora se usan las zonas de SPRING. Los umbrales de pulso no se trasladan bien de correr a pedalear, así que conviene tener zonas propias si entrenas en bici.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SPRING zones are used now. Heart rate thresholds don't transfer well from running to cycling, so it's worth having your own zones if you train on the bike."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu används zonerna från SPRING. Pulströsklar går inte att överföra väl från löpning till cykling, så det lönar sig att ha egna zoner om du tränar på cykel."
           }
         }
       }
@@ -2058,6 +2109,23 @@
         }
       }
     },
+    "Aún no hay salidas en bici con FC registrada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rides with recorded heart rate yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga cykelturer med registrerad puls än."
+          }
+        }
+      }
+    },
     "Aún no hay suficientes registros para este periodo.": {
       "extractionState": "manual",
       "localizations": {
@@ -2891,6 +2959,23 @@
         }
       }
     },
+    "Caminar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walking"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gång"
+          }
+        }
+      }
+    },
     "Caminar 8.000 pasos": {
       "extractionState": "manual",
       "localizations": {
@@ -3061,6 +3146,23 @@
         }
       }
     },
+    "Carga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning"
+          }
+        }
+      }
+    },
     "Carga (TSS)": {
       "extractionState": "manual",
       "localizations": {
@@ -3078,6 +3180,57 @@
         }
       }
     },
+    "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia. Son tendencias para entrenar, no una medida médica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load of each workout: Banister's TRIMP, from the duration and average heart rate relative to your resting and maximum heart rate. Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference. These are training trends, not a medical measure."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning för varje pass: Banisters TRIMP, utifrån längd och medelpuls i förhållande till din vilopuls och maxpuls. Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden mellan dem. Det är träningstrender, inte ett medicinskt mått."
+          }
+        }
+      }
+    },
+    "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia (modelo de Banister, como en el gráfico de rendimiento de Coggan).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load of each ride with power: TSS (one hour at your FTP = 100). Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference (Banister's model, as in Coggan's performance chart)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning för varje tur med effekt: TSS (en timme på din FTP = 100). Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden (Banisters modell, som i Coggans prestationsdiagram)."
+          }
+        }
+      }
+    },
+    "Carga de entrenamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training load"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsbelastning"
+          }
+        }
+      }
+    },
     "Carga de la última semana frente a la de las últimas 4. 100 entre 0,8 y 1,3 veces lo habitual; resta si subes de golpe. Peso bajo porque este cociente es discutido como predictor de lesiones.": {
       "extractionState": "manual",
       "localizations": {
@@ -3091,6 +3244,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Belastningen den senaste veckan jämfört med de senaste 4. 100 mellan 0,8 och 1,3 gånger det vanliga; drar av om du ökar plötsligt. Låg vikt eftersom kvoten är omdiskuterad som prediktor för skador."
+          }
+        }
+      }
+    },
+    "Carga por semana, últimas 12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load per week, last 12 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning per vecka, senaste 12 veckorna"
           }
         }
       }
@@ -3673,6 +3843,40 @@
         }
       }
     },
+    "Con FC en reposo %@, FC máx. %@ corriendo y %@ en bici.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using resting HR %@, max HR %@ running and %@ cycling."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med vilopuls %@, maxpuls %@ vid löpning och %@ på cykel."
+          }
+        }
+      }
+    },
+    "Con FC en reposo %@, FC máx. %@ corriendo y %@ en bici. Sin sexo en tu perfil, se usa la media de las curvas de hombres y mujeres.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using resting HR %@, max HR %@ running and %@ cycling. With no sex in your profile, the average of the men's and women's curves is used."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med vilopuls %@, maxpuls %@ vid löpning och %@ på cykel. Utan kön i din profil används medelvärdet av kurvorna för män och kvinnor."
+          }
+        }
+      }
+    },
     "Con cambios de ritmo": {
       "extractionState": "manual",
       "localizations": {
@@ -4064,6 +4268,23 @@
         }
       }
     },
+    "Configura tus zonas en CYKEL › Ajustes de bici para ver el tiempo en cada zona.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up your zones in CYKEL › Bike settings to see the time in each zone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ställ in dina zoner i CYKEL › Cykelinställningar för att se tiden i varje zon."
+          }
+        }
+      }
+    },
     "Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona.": {
       "extractionState": "manual",
       "localizations": {
@@ -4179,6 +4400,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hjärta"
+          }
+        }
+      }
+    },
+    "Correr": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpning"
           }
         }
       }
@@ -5815,6 +6053,23 @@
         }
       }
     },
+    "El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING: cambia la FC máxima por la de bici, que suele ser algo más baja.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The watch and each ride's details use these zones. They start as a copy of the SPRING ones: change the max heart rate to your cycling one, which is usually somewhat lower."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockan och detaljerna för varje tur använder de här zonerna. De utgår från en kopia av zonerna i SPRING: byt maxpulsen mot den på cykel, som ofta är något lägre."
+          }
+        }
+      }
+    },
     "Elegido por ti. El reloj lo usa para mostrar tu zona de potencia en directo.": {
       "extractionState": "manual",
       "localizations": {
@@ -6066,6 +6321,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I HÅLSYN: aktiviteten bygger på träningsminuter från Apple Watch (AHA räknar högintensiva minuter dubbelt, så din kan vara något underskattad); sömnen på ditt snitt för 2 veckor; BMI på din senaste vikt och din längd. AHA tillåter 100 för BMI 25 till 29,9 hos personer med mycket muskelmassa."
+          }
+        }
+      }
+    },
+    "En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: por eso puedes tener zonas propias en Ajustes de bici.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On the bike, heart rate is usually somewhat lower than when running at the same effort, and thresholds don't transfer well from one sport to another: that's why you can have your own zones in Bike settings."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning, och trösklar går inte att överföra väl mellan sporter: därför kan du ha egna zoner i Cykelinställningar."
           }
         }
       }
@@ -7362,6 +7634,40 @@
         }
       }
     },
+    "Fatiga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatigue"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trötthet"
+          }
+        }
+      }
+    },
+    "Fatiga (7 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatigue (7 days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trötthet (7 dagar)"
+          }
+        }
+      }
+    },
     "Favorable": {
       "extractionState": "manual",
       "localizations": {
@@ -7481,6 +7787,57 @@
         }
       }
     },
+    "Forma física": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Form"
+          }
+        }
+      }
+    },
+    "Forma física (42 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness (42 days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Form (42 dagar)"
+          }
+        }
+      }
+    },
+    "Forma física y fatiga, últimos 90 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness and fatigue, last 90 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Form och trötthet, senaste 90 dagarna"
+          }
+        }
+      }
+    },
     "Frecuencia": {
       "extractionState": "manual",
       "localizations": {
@@ -7579,6 +7936,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämfört med dina liknande löppass"
+          }
+        }
+      }
+    },
+    "Frescura": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freshness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fräschhet"
+          }
+        }
+      }
+    },
+    "Frescura negativa: esta semana acumulas más carga que tu media de las últimas 6 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negative freshness: this week you're accumulating more load than your average for the last 6 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negativ fräschhet: den här veckan samlar du på dig mer belastning än ditt snitt de senaste 6 veckorna."
+          }
+        }
+      }
+    },
+    "Frescura positiva: tu fatiga de la última semana está por debajo de tu forma de las últimas 6 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positive freshness: your fatigue from the last week is below your fitness of the last 6 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positiv fräschhet: din trötthet från den senaste veckan ligger under din form från de senaste 6 veckorna."
           }
         }
       }
@@ -9045,6 +9453,23 @@
         }
       }
     },
+    "La forma física necesita unas 6 semanas de datos: por ahora sale más baja de lo real.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness needs about 6 weeks of data: for now it comes out lower than it really is."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formen behöver cirka 6 veckors data: just nu blir den lägre än den egentligen är."
+          }
+        }
+      }
+    },
     "La foto y el nombre se guardan solo en este iPhone.": {
       "extractionState": "manual",
       "localizations": {
@@ -9330,23 +9755,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intervaller och tröskelpass läggs långt från gymmet: inte samma dag eller dagen efter, eftersom styrketräning också tröttar benen."
-          }
-        }
-      }
-    },
-    "Las zonas cardíacas son las de SPRING. En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: tómalas como orientación.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heart rate zones are the SPRING ones. On the bike, heart rate is usually somewhat lower than when running at the same effort, and thresholds don't transfer well from one sport to another: treat them as a guide."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pulszonerna är desamma som i SPRING. På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning, och trösklar går inte att överföra väl mellan sporter: se dem som en vägledning."
           }
         }
       }
@@ -9674,19 +10082,19 @@
         }
       }
     },
-    "Los avisos de voz, dónde suenan y las zonas cardíacas son los mismos que en SPRING.": {
+    "Los avisos de voz y dónde suenan son los mismos que en SPRING.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voice cues, where they play and heart rate zones are the same as in SPRING."
+            "value": "Voice cues and where they play are the same as in SPRING."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Röstmeddelanden, var de hörs och pulszonerna är desamma som i SPRING."
+            "value": "Röstmeddelanden och var de hörs är desamma som i SPRING."
           }
         }
       }
@@ -10218,6 +10626,23 @@
         }
       }
     },
+    "Media semanal antes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly average before"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckosnitt innan"
+          }
+        }
+      }
+    },
     "Media y variación de los horarios. Horarios estables suelen ayudar a dormir mejor.": {
       "extractionState": "manual",
       "localizations": {
@@ -10282,6 +10707,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Effektmätare, kadens- eller hastighetssensor: parkoppla dem på klockan under Inställningar › Bluetooth. HÅLSYN använder dem under turen och deras data sparas i Apple Hälsa. Utan dem visas effekt och kadens tomma: de uppskattas inte."
+          }
+        }
+      }
+    },
+    "Medir con": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure with"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mät med"
           }
         }
       }
@@ -11153,6 +11595,23 @@
         }
       }
     },
+    "Máxima registrada en tus salidas en bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Highest recorded on your rides"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högsta registrerade på dina cykelturer"
+          }
+        }
+      }
+    },
     "Método": {
       "extractionState": "manual",
       "localizations": {
@@ -11438,6 +11897,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inte uppmätt"
+          }
+        }
+      }
+    },
+    "No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo en bici) o usa la más alta registrada en tus salidas en bici. Suele ser algo más baja que corriendo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max heart rate is not estimated from age: enter it (for example, from a cycling exercise test) or use the highest recorded on your rides. It is usually somewhat lower than when running."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxpulsen uppskattas inte utifrån ålder: ange den (till exempel från ett arbetsprov på cykel) eller använd den högsta som registrerats på dina cykelturer. Den är ofta något lägre än vid löpning."
           }
         }
       }
@@ -12390,6 +12866,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delsträckor à 5 mi"
+          }
+        }
+      }
+    },
+    "Parecida a tu media semanal de las 4 semanas anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Similar to your weekly average for the previous 4 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ungefär som ditt veckosnitt de 4 föregående veckorna."
           }
         }
       }
@@ -16372,6 +16865,23 @@
         }
       }
     },
+    "Subir mucho la carga de una semana a otra se asoció con más lesiones en algunos estudios, aunque ese cociente está discutido: tómalo como aviso, no como regla.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sharp week-to-week increases in load have been associated with more injuries in some studies, although that ratio is debated: treat it as a warning, not a rule."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kraftiga ökningar av belastningen från en vecka till nästa har kopplats till fler skador i vissa studier, men den kvoten är omdiskuterad: se det som en varning, inte en regel."
+          }
+        }
+      }
+    },
     "Sueño": {
       "extractionState": "manual",
       "localizations": {
@@ -17443,6 +17953,40 @@
         }
       }
     },
+    "Todavía no hay entrenamientos con frecuencia cardíaca para calcular la carga. Hacen falta tu FC en reposo (de Salud) y tu FC máxima (en tus zonas o la más alta registrada).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There are no workouts with heart rate to calculate the load yet. It needs your resting heart rate (from Health) and your max heart rate (in your zones or the highest recorded)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns ännu inga pass med puls för att beräkna belastningen. Det behövs din vilopuls (från Hälsa) och din maxpuls (i dina zoner eller den högsta registrerade)."
+          }
+        }
+      }
+    },
+    "Todavía no hay salidas con potencia y FTP para calcular la carga.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There are no rides with power and FTP to calculate the load yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns ännu inga cykelturer med effekt och FTP för att beräkna belastningen."
+          }
+        }
+      }
+    },
     "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia.": {
       "extractionState": "manual",
       "localizations": {
@@ -18310,6 +18854,23 @@
         }
       }
     },
+    "Tus zonas de bici (CYKEL › Ajustes de bici).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your bike zones (CYKEL › Bike settings)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina cykelzoner (CYKEL › Cykelinställningar)."
+          }
+        }
+      }
+    },
     "Tú": {
       "extractionState": "manual",
       "localizations": {
@@ -18340,6 +18901,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tröskel"
+          }
+        }
+      }
+    },
+    "Un %lld por ciento menos que tu media semanal de las 4 semanas anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld percent less than your weekly average for the previous 4 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld procent mindre än ditt veckosnitt de 4 föregående veckorna."
+          }
+        }
+      }
+    },
+    "Un %lld por ciento más que tu media semanal de las 4 semanas anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld percent more than your weekly average for the previous 4 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld procent mer än ditt veckosnitt de 4 föregående veckorna."
           }
         }
       }
@@ -19245,23 +19840,6 @@
         }
       }
     },
-    "Voz y zonas": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voice and zones"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Röst och zoner"
-          }
-        }
-      }
-    },
     "Vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -19483,19 +20061,53 @@
         }
       }
     },
-    "Zonas de SPRING. En bici la FC suele ser algo más baja que corriendo al mismo esfuerzo: tómalas como orientación.": {
+    "Zonas de SPRING. En bici la FC suele ser algo más baja que corriendo al mismo esfuerzo: puedes poner zonas propias en CYKEL › Ajustes de bici.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "SPRING zones. On the bike, heart rate is usually somewhat lower than when running at the same effort: treat them as a guide."
+            "value": "SPRING zones. On the bike, heart rate is usually somewhat lower than when running at the same effort: you can set your own zones in CYKEL › Bike settings."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zoner från SPRING. På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning: se dem som en vägledning."
+            "value": "Zoner från SPRING. På cykeln är pulsen ofta något lägre än vid löpning med samma ansträngning: du kan ställa in egna zoner i CYKEL › Cykelinställningar."
+          }
+        }
+      }
+    },
+    "Zonas de bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bike zones"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cykelzoner"
+          }
+        }
+      }
+    },
+    "Zonas propias para la bici": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Own zones for the bike"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egna zoner för cykeln"
           }
         }
       }
@@ -20027,6 +20639,23 @@
         }
       }
     },
+    "Últimas 12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 12 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 12 veckorna"
+          }
+        }
+      }
+    },
     "Últimas 4 semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -20125,6 +20754,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 30 dagarna"
+          }
+        }
+      }
+    },
+    "Últimos 7 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 7 dagarna"
           }
         }
       }

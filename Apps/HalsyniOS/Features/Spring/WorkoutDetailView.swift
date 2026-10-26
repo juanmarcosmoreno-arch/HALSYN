@@ -186,14 +186,16 @@ struct WorkoutRouteMap: View {
     }
 }
 
-/// FC del entrenamiento sobre las zonas de SPRING y tiempo en cada zona.
+/// FC del entrenamiento sobre las zonas de su deporte y tiempo en cada zona.
 struct HeartRateZonesCard: View {
     let samples: [HeartRatePoint]
+    /// `.cycling` usa las zonas de bici (propias o, si no hay, las de SPRING).
+    var sport: WorkoutSport = .running
     /// Nota opcional bajo el reparto por zonas (p. ej. en bici).
     var note: LocalizedStringKey?
 
     var body: some View {
-        let zones = RunSettingsStore.shared.settings.zones
+        let zones = RunSettingsStore.shared.settings.zones(for: sport)
         let zoneSeconds = WorkoutAnalysis.zoneSeconds(samples, zones: zones)
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
@@ -222,7 +224,9 @@ struct HeartRateZonesCard: View {
                 .accessibilityLabel(Text("Gráfico de frecuencia cardíaca"))
 
                 if zoneSeconds.isEmpty {
-                    Label("Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona.", systemImage: "heart.text.square")
+                    Label(sport == .cycling
+                          ? LocalizedStringKey("Configura tus zonas en CYKEL › Ajustes de bici para ver el tiempo en cada zona.")
+                          : LocalizedStringKey("Configura tus zonas en SPRING › Ajustes de carrera para ver el tiempo en cada zona."), systemImage: "heart.text.square")
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                 } else {

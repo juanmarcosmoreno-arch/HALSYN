@@ -45,7 +45,13 @@ struct RideDetailView: View {
                     }
                 }
                 if !detail.heartRate.isEmpty {
-                    HeartRateZonesCard(samples: detail.heartRate, note: "Zonas de SPRING. En bici la FC suele ser algo más baja que corriendo al mismo esfuerzo: tómalas como orientación.")
+                    HeartRateZonesCard(
+                        samples: detail.heartRate,
+                        sport: .cycling,
+                        note: settings.settings.usesOwnRideZones
+                            ? LocalizedStringKey("Tus zonas de bici (CYKEL › Ajustes de bici).")
+                            : LocalizedStringKey("Zonas de SPRING. En bici la FC suele ser algo más baja que corriendo al mismo esfuerzo: puedes poner zonas propias en CYKEL › Ajustes de bici.")
+                    )
                 }
             } else {
                 HalsynLoadingState()

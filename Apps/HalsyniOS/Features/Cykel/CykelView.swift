@@ -22,6 +22,10 @@ struct CykelView: View {
                 if let rides {
                     RunningStatsCard(workouts: rides, sport: .cycling)
                     PowerCard(rides: rides)
+                    TrainingLoadCard(
+                        allowsPower: rides.contains { $0.averagePower != nil },
+                        powerFTP: FTPStore.shared.resolved(manual: RunSettingsStore.shared.settings.validFunctionalThresholdPower)?.watts
+                    )
                     history(Array(rides.prefix(20)))
                     aboutCard
                 } else {
@@ -95,7 +99,7 @@ struct CykelView: View {
                 Text("En 263.450 adultos del UK Biobank, quienes iban al trabajo en bici tuvieron un 41 por ciento menos de mortalidad en unos 5 años que quienes no se desplazaban de forma activa (cociente de riesgos 0,59). Es una asociación observada, no prueba que la bici sea la causa.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynPrimaryText)
-                Text("Las zonas cardíacas son las de SPRING. En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: tómalas como orientación.")
+                Text("En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: por eso puedes tener zonas propias en Ajustes de bici.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
                 ReferenceLinks(references: [ScienceReferences.activeCommuting, ScienceReferences.heartRateTransfer])

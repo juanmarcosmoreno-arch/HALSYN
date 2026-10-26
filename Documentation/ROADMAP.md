@@ -157,9 +157,13 @@
 - **HÄLSA**: tarjeta con la última salida.
 - Las salidas de otras apps o del app Entreno que estén en Salud también cuentan.
 
-## Pendientes conocidos de CYKEL
+- **Zonas cardíacas propias de bici** (0.10.0 (43)): opcionales, con FC máxima de las salidas. Las usan el reloj y el detalle; sin ellas, las de SPRING.
+- **Carga de entrenamiento** (0.10.0 (43)), en SPRING y CYKEL:
+  - TRIMP de Banister por pulso (correr, caminar y bici) o TSS con potencia (bici);
+  - últimos 7 días frente a la media de las 4 semanas anteriores;
+  - 12 semanas por deporte;
+  - forma física (42 días), fatiga (7 días) y frescura.
 
-- Zonas cardíacas propias de bici (ahora se usan las de SPRING, con aviso).
-- Carga semanal y forma (CTL/ATL) con la carga de cada salida.
+## Pendientes conocidos de CYKEL
 - Objetivos de distancia en bici en MÅL y salidas en el resumen semanal de INSIKT.
 - Verificar en dispositivo la lectura en vivo de potencia, cadencia y velocidad con distintos sensores.

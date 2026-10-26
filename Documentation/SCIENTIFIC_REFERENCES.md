@@ -141,7 +141,7 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
   - Solo vale si esos 20 min fueron un esfuerzo máximo, y así se dice.
   - Prioridad del FTP: el del usuario, después el que guarda el Apple Watch en Salud (`cyclingFunctionalThresholdPower`) y, por último, la estimación.
 - **Serie de potencia**: cada lectura vale hasta la siguiente. Un hueco de más de 5 s (pausa o sensor perdido) corta la serie y no cuenta ni como 0 ni como potencia. Los 0 W reales (rueda libre) sí cuentan.
-- **Zonas cardíacas en bici**: Roecker K, Striegel H, Dickhuth HH. *Int J Sports Med.* 2003;24(3):173–178, doi:10.1055/s-2003-39087. Los umbrales de FC no se trasladan entre correr y pedalear. CYKEL usa las zonas de SPRING y advierte que son orientativas.
+- **Zonas cardíacas en bici**: Roecker K, Striegel H, Dickhuth HH. *Int J Sports Med.* 2003;24(3):173–178, doi:10.1055/s-2003-39087. Los umbrales de FC no se trasladan entre correr y pedalear. Por eso CYKEL permite zonas propias (`RunSettings.rideZones`), con su FC máxima (introducida o la más alta registrada en salidas en bici). Si no se definen, usa las de SPRING y lo advierte.
 - **Bici y salud** (asociación, no causa): Celis-Morales CA, et al. *BMJ.* 2017;357:j1456, doi:10.1136/bmj.j1456.
   - UK Biobank, 263.450 adultos, mediana de seguimiento 5 años.
   - Ir al trabajo en bici: HR 0,59 (IC 95 % 0,42–0,83) para mortalidad por cualquier causa.
@@ -149,3 +149,22 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
   - Potencia y cadencia solo con sensores Bluetooth emparejados con el reloj (watchOS 10+).
   - En interior no hay distancia sin un sensor de velocidad.
   - El desnivel se calcula con la altitud GPS (con histéresis de 3 m), se marca como aproximado y se guarda en Salud (`HKMetadataKeyElevationAscended`).
+
+## Carga de entrenamiento (`BanisterTRIMP`, `PerformanceModel`, `TrainingLoadBuilder`)
+
+- **Carga por pulso (TRIMP de Banister)**: Morton RH, Fitz-Clarke JR, Banister EW. *Modeling human performance in running.* J Appl Physiol. 1990;69(3):1171–1177, doi:10.1152/jappl.1990.69.3.1171.
+  - TRIMP = minutos × x × a·e^(b·x), con x = (FC media − FC en reposo) / (FC máx. − FC en reposo), limitado a 0–1.
+  - a = 0,64 y b = 1,92 en hombres; a = 0,86 y b = 1,67 en mujeres.
+  - Sin sexo en el perfil se usa la media de las dos curvas, y la interfaz lo dice.
+  - FC en reposo: mediana de los últimos 30 días en Salud o, si no hay, la de las zonas.
+  - FC máxima: la de las zonas de cada deporte (la de bici si hay zonas propias) o la más alta registrada. Nunca se estima por la edad.
+  - Un entrenamiento sin FC media no suma, y se dice cuántos quedan fuera.
+- **Carga por potencia (bici)**: TSS de Coggan con el FTP (ver la sección de CYKEL). Solo salidas con medidor; el resto no suma en esa vista.
+- **Forma física, fatiga y frescura**: modelo de impulso-respuesta de Calvert TW, Banister EW, Savage MV, Bach T. *IEEE Trans Syst Man Cybern.* 1976;SMC-6(2):94–102, doi:10.1109/TSMC.1976.5409179. Se aplica como en el *Performance Management Chart* de Coggan (Allen y Coggan, 2019):
+  - forma (CTL) y fatiga (ATL): valor = ayer + (carga de hoy − ayer) / 42 o / 7;
+  - frescura (TSB) = forma − fatiga del día anterior.
+  - Las constantes de 42 y 7 días son una convención de software, no constantes ajustadas a cada persona.
+  - Se empieza en 0 con el primer entrenamiento de los últimos 180 días. Con menos de 42 días de historia, la forma sale baja y la interfaz lo avisa.
+- **Comparación semanal**: los últimos 7 días frente a la media semanal de los 28 anteriores (solo con al menos 35 días de historia).
+  - Por encima de 1,5 se recuerda que las subidas bruscas se asociaron con más lesiones en algunos estudios (Gabbett TJ, *Br J Sports Med* 2016, doi:10.1136/bjsports-2015-095788).
+  - También que el cociente agudo:crónico está discutido (Impellizzeri FM, et al. *Int J Sports Physiol Perform.* 2020;15(6):907–913, doi:10.1123/ijspp.2019-0864): es un aviso, no una regla.

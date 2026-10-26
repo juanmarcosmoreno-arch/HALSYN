@@ -23,6 +23,7 @@ struct SpringView: View {
                 startCard
                 if let workouts {
                     RunningStatsCard(workouts: allWorkouts)
+                    TrainingLoadCard()
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
                     RacePredictionCard(predictions: predictions, unitSystem: unitSystem)

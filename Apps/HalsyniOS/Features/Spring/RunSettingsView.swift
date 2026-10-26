@@ -320,42 +320,49 @@ struct ScreenEditorView: View {
 // MARK: - Zonas
 
 struct ZoneSettingsView: View {
+    /// `.cycling`: zonas propias de CYKEL (FC máxima de tus salidas en bici).
+    var sport: WorkoutSport = .running
     @Environment(AppModel.self) private var model
     @State private var observedMax: Double?
     @State private var latestResting: Double?
     @State private var loaded = false
     private var store: RunSettingsStore { .shared }
-    private var zones: HeartRateZoneConfiguration { store.settings.zones }
+    private var isCycling: Bool { sport == .cycling }
+    private var path: WritableKeyPath<RunSettings, HeartRateZoneConfiguration> { isCycling ? \.cyclingZones : \.zones }
+    private var zones: HeartRateZoneConfiguration { store.settings[keyPath: path] }
 
     var body: some View {
         Form {
             Section {
-                Picker("Método", selection: runSetting(\.zones.method)) {
+                Picker("Método", selection: runSetting(path.appending(path: \.method))) {
                     ForEach(HeartRateZoneMethod.allCases) { method in
                         Text(LocalizedStringKey(method.title)).tag(method)
                     }
                 }
-                Picker("FC máxima", selection: runSetting(\.zones.maxSource)) {
+                Picker("FC máxima", selection: runSetting(path.appending(path: \.maxSource))) {
                     ForEach(MaxHeartRateSource.allCases) { source in
-                        Text(LocalizedStringKey(source.title)).tag(source)
+                        Text(sourceTitle(source)).tag(source)
                     }
                 }
                 switch zones.maxSource {
                 case .manual:
-                    bpmField("FC máxima (lpm)", value: runSetting(\.zones.maxHeartRate))
+                    bpmField("FC máxima (lpm)", value: runSetting(path.appending(path: \.maxHeartRate)))
                 case .observed:
                     observedRow
                 }
                 if zones.method == .heartRateReserve {
-                    bpmField("FC en reposo (lpm)", value: runSetting(\.zones.restingHeartRate))
+                    bpmField("FC en reposo (lpm)", value: runSetting(path.appending(path: \.restingHeartRate)))
                     if let latestResting, !model.isDemo {
                         Button("Usar la de Apple Health: \(Int(latestResting)) lpm") {
-                            store.update { $0.zones.restingHeartRate = latestResting.rounded() }
+                            let path = path
+                            store.update { $0[keyPath: path].restingHeartRate = latestResting.rounded() }
                         }
                     }
                 }
             } footer: {
-                Text("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo) o usa la más alta registrada en tus carreras.")
+                Text(isCycling
+                     ? LocalizedStringKey("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo en bici) o usa la más alta registrada en tus salidas en bici. Suele ser algo más baja que corriendo.")
+                     : LocalizedStringKey("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo) o usa la más alta registrada en tus carreras."))
             }
 
             Section {
@@ -384,7 +391,7 @@ struct ZoneSettingsView: View {
                 Text("Modelo de 5 zonas: empiezan al 50, 60, 70, 80 y 90 por ciento. Es una convención de entrenamiento, no una indicación médica. Si tienes una condición cardíaca, consulta a un profesional.")
             }
         }
-        .navigationTitle("Zonas cardíacas")
+        .navigationTitle(isCycling ? LocalizedStringKey("Zonas de bici") : LocalizedStringKey("Zonas cardíacas"))
         .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
         .halsynScreenBackground()
@@ -395,7 +402,8 @@ struct ZoneSettingsView: View {
                 loaded = true
                 return
             }
-            observedMax = HeartRateZoneConfiguration.observedMax(in: await model.provider.recentWorkouts(limit: 60))
+            let workouts = isCycling ? await model.provider.recentRides(limit: 60) : await model.provider.recentWorkouts(limit: 60)
+            observedMax = HeartRateZoneConfiguration.observedMax(in: workouts)
             if case let .available(reading) = await model.provider.latest(.restingHeartRate, on: .now) {
                 latestResting = reading.value
             }
@@ -403,6 +411,11 @@ struct ZoneSettingsView: View {
             applyObserved()
         }
         .onChange(of: zones.maxSource) { _, _ in applyObserved() }
+    }
+
+    private func sourceTitle(_ source: MaxHeartRateSource) -> LocalizedStringKey {
+        if isCycling && source == .observed { return "Máxima registrada en tus salidas en bici" }
+        return LocalizedStringKey(source.title)
     }
 
     @ViewBuilder
@@ -416,7 +429,7 @@ struct ZoneSettingsView: View {
                 Text(verbatim: "\(Int(observedMax)) lpm").monospacedDigit()
             }
         } else if loaded {
-            Text("Aún no hay carreras con FC registrada.")
+            Text(isCycling ? LocalizedStringKey("Aún no hay salidas en bici con FC registrada.") : LocalizedStringKey("Aún no hay carreras con FC registrada."))
                 .font(.halsynCaption)
                 .foregroundStyle(.halsynSecondaryText)
         } else {
@@ -426,7 +439,8 @@ struct ZoneSettingsView: View {
 
     private func applyObserved() {
         guard zones.maxSource == .observed, !model.isDemo, let observedMax else { return }
-        store.update { $0.zones.maxHeartRate = observedMax.rounded() }
+        let path = path
+        store.update { $0[keyPath: path].maxHeartRate = observedMax.rounded() }
     }
 
     private func bpmField(_ title: LocalizedStringKey, value: Binding<Double?>) -> some View {

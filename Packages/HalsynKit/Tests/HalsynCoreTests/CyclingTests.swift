@@ -266,3 +266,28 @@ struct CyclingStatsTests {
         }
     }
 }
+
+@Suite("CYKEL · zonas cardíacas de bici")
+struct CyclingZonesTests {
+    @Test func rideZonesDefaultToSpringAndCanBeOwn() throws {
+        var settings = RunSettings()
+        settings.zones = HeartRateZoneConfiguration(maxSource: .manual, maxHeartRate: 190)
+        #expect(!settings.usesOwnRideZones)
+        #expect(settings.forRide().zones == settings.zones)
+        #expect(settings.zones(for: .cycling) == settings.zones)
+        // Al activarlas se copian las de SPRING y después se editan aparte.
+        settings.usesOwnRideZones = true
+        settings.cyclingZones.maxHeartRate = 180
+        #expect(settings.zones.maxHeartRate == 190)
+        #expect(settings.forRide().zones.maxHeartRate == 180)
+        #expect(settings.zones(for: .running).maxHeartRate == 190)
+        #expect(settings.forRide().zones.zones.last?.upperBound == 180)
+        // Al desactivarlas se vuelve a las de SPRING.
+        settings.usesOwnRideZones = false
+        #expect(settings.rideZones == nil && settings.forRide().zones.maxHeartRate == 190)
+        // Viajan al reloj y se leen igual.
+        settings.usesOwnRideZones = true
+        let decoded = try RunSettings.decoded(from: settings.encoded())
+        #expect(decoded.rideZones == settings.rideZones)
+    }
+}

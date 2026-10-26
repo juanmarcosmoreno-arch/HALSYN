@@ -39,7 +39,30 @@ struct RideSettingsView: View {
             }
 
             Section {
-                Text("Los avisos de voz, dónde suenan y las zonas cardíacas son los mismos que en SPRING.")
+                Toggle(isOn: runSetting(\.usesOwnRideZones)) {
+                    Label("Zonas propias para la bici", systemImage: "heart")
+                }
+                if settings.usesOwnRideZones {
+                    NavigationLink {
+                        ZoneSettingsView(sport: .cycling)
+                    } label: {
+                        LabeledContent {
+                            Text(zonesSummary)
+                        } label: {
+                            Label("Zonas de bici", systemImage: "bicycle")
+                        }
+                    }
+                }
+            } header: {
+                Text("Zonas cardíacas")
+            } footer: {
+                Text(settings.usesOwnRideZones
+                     ? LocalizedStringKey("El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING: cambia la FC máxima por la de bici, que suele ser algo más baja.")
+                     : LocalizedStringKey("Ahora se usan las zonas de SPRING. Los umbrales de pulso no se trasladan bien de correr a pedalear, así que conviene tener zonas propias si entrenas en bici."))
+            }
+
+            Section {
+                Text("Los avisos de voz y dónde suenan son los mismos que en SPRING.")
                     .font(.halsynCaption)
                 NavigationLink {
                     RunSettingsView()
@@ -47,7 +70,7 @@ struct RideSettingsView: View {
                     Label("Ajustes de carrera", systemImage: "figure.run")
                 }
             } header: {
-                Text("Voz y zonas")
+                Text("Voz")
             }
 
             Section {
@@ -65,6 +88,11 @@ struct RideSettingsView: View {
             FTPEditorSheet(initial: settings.validFunctionalThresholdPower ?? FTPStore.shared.resolved(manual: nil)?.watts)
                 .presentationDetents([.medium])
         }
+    }
+
+    private var zonesSummary: LocalizedStringKey {
+        guard let max = settings.cyclingZones.zones.last?.upperBound else { return "Sin configurar" }
+        return "FC máx. \(Int(max)) lpm"
     }
 
     private func autoLapTitle(_ count: Int) -> LocalizedStringKey {

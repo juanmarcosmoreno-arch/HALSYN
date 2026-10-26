@@ -29,6 +29,9 @@ public struct RunSettings: Hashable, Codable, Sendable {
     public var rideAutoLapUnits: Int?
     /// CYKEL: FTP en vatios que eligió el usuario (zonas de potencia en el reloj).
     public var functionalThresholdPower: Double?
+    /// CYKEL: zonas cardíacas propias de bici. `nil` = las mismas que SPRING.
+    /// La FC a igual esfuerzo y los umbrales cambian entre correr y pedalear.
+    public var rideZones: HeartRateZoneConfiguration?
 
     /// Avisos de voz activados (por defecto, sí).
     public var isVoiceEnabled: Bool {
@@ -82,13 +85,32 @@ public struct RunSettings: Hashable, Codable, Sendable {
         functionalThresholdPower.flatMap { (50...600).contains($0) ? $0 : nil }
     }
 
-    /// Ajustes para una salida en bici: misma voz y zonas cardíacas, vuelta
-    /// automática de bici y sin alertas de ritmo ni de zona (son de carrera).
+    /// Zonas cardíacas que se usan en bici: las propias o, si no hay, las de SPRING.
+    public var cyclingZones: HeartRateZoneConfiguration {
+        get { rideZones ?? zones }
+        set { rideZones = newValue }
+    }
+
+    /// `true` si la bici tiene zonas propias. Al activarlo se parte de una copia
+    /// de las de SPRING; al desactivarlo se vuelve a usar las de SPRING.
+    public var usesOwnRideZones: Bool {
+        get { rideZones != nil }
+        set { rideZones = newValue ? (rideZones ?? zones) : nil }
+    }
+
+    /// Ajustes para una salida en bici: misma voz, zonas cardíacas de bici,
+    /// vuelta automática de bici y sin alertas de ritmo ni de zona (son de carrera).
     public func forRide() -> RunSettings {
         var copy = self
         copy.autoLapDistance = rideAutoLapDistance
+        copy.zones = cyclingZones
         copy.alerts = RunAlertConfiguration()
         return copy
+    }
+
+    /// Zonas cardíacas del deporte: bici con las suyas; el resto, las de SPRING.
+    public func zones(for sport: WorkoutSport) -> HeartRateZoneConfiguration {
+        sport == .cycling ? cyclingZones : zones
     }
 
     /// Pantallas válidas (al menos una). Corrige perfiles incoherentes en vez de fallar.

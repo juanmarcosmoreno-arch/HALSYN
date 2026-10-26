@@ -85,6 +85,20 @@ public enum ScienceReferences {
         url: "https://doi.org/10.1136/bmj.j1456"
     )
 
+    // Carga de entrenamiento
+    public static let banisterTRIMP = ScienceReference(
+        citation: "Morton RH, Fitz-Clarke JR, Banister EW. Modeling human performance in running. J Appl Physiol. 1990;69(3):1171–1177.",
+        url: "https://doi.org/10.1152/jappl.1990.69.3.1171"
+    )
+    public static let fitnessFatigueModel = ScienceReference(
+        citation: "Calvert TW, Banister EW, Savage MV, Bach T. A systems model of the effects of training on physical performance. IEEE Trans Syst Man Cybern. 1976;SMC-6(2):94–102.",
+        url: "https://doi.org/10.1109/TSMC.1976.5409179"
+    )
+    public static let workloadRatioPitfalls = ScienceReference(
+        citation: "Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:Chronic Workload Ratio: Conceptual Issues and Fundamental Pitfalls. Int J Sports Physiol Perform. 2020;15(6):907–913.",
+        url: "https://doi.org/10.1123/ijspp.2019-0864"
+    )
+
     public static let trainingLoad = ScienceReference(
         citation: "Gabbett TJ. The training—injury prevention paradox: should athletes be training smarter and harder? Br J Sports Med. 2016;50(5):273–280.",
         url: "https://doi.org/10.1136/bjsports-2015-095788"
