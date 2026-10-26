@@ -24,9 +24,9 @@ public struct RunSettings: Hashable, Codable, Sendable {
     /// Dónde suena la voz. Opcional para ajustes guardados antes.
     public var voiceOutput: VoiceOutput?
 
-    /// CYKEL: vuelta automática en bici en metros. `nil` = la predeterminada
-    /// (5 km o 5 mi); 0 = sin vueltas automáticas.
-    public var rideAutoLap: Double?
+    /// CYKEL: vuelta automática en bici, en unidades de distancia (km o mi, las
+    /// que estén elegidas). `nil` = la predeterminada (5); 0 = sin vueltas automáticas.
+    public var rideAutoLapUnits: Int?
     /// CYKEL: FTP en vatios que eligió el usuario (zonas de potencia en el reloj).
     public var functionalThresholdPower: Double?
 
@@ -61,18 +61,20 @@ public struct RunSettings: Hashable, Codable, Sendable {
         self.modifiedAt = modifiedAt
     }
 
-    /// Opciones de vuelta automática en bici (en la unidad elegida).
-    public var rideAutoLapOptions: [Double?] {
-        [nil, 1, 5, 10, 20].map { $0.map { $0 * unitSystem.metersPerDistanceUnit } }
+    /// Opciones de vuelta automática en bici, en unidades (0 = desactivada).
+    public static let rideAutoLapUnitOptions = [0, 1, 5, 10, 20]
+    public static let defaultRideAutoLapUnits = 5
+
+    /// Unidades por vuelta en bici (0 = sin vueltas automáticas). Al cambiar de
+    /// km a mi se conserva el número: "cada 5 km" pasa a "cada 5 mi".
+    public var rideLapUnits: Int {
+        get { max(0, rideAutoLapUnits ?? Self.defaultRideAutoLapUnits) }
+        set { rideAutoLapUnits = max(0, newValue) }
     }
 
     /// Vuelta automática en bici en metros (`nil` = sin vueltas automáticas).
     public var rideAutoLapDistance: Double? {
-        get {
-            guard let rideAutoLap else { return unitSystem.metersPerDistanceUnit * 5 }
-            return rideAutoLap > 0 ? rideAutoLap : nil
-        }
-        set { rideAutoLap = newValue ?? 0 }
+        rideLapUnits > 0 ? Double(rideLapUnits) * unitSystem.metersPerDistanceUnit : nil
     }
 
     /// FTP válido (entre 50 y 600 W) o `nil`.

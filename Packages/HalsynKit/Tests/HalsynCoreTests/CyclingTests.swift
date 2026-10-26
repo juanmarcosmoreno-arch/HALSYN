@@ -71,6 +71,22 @@ struct CyclingPowerTests {
         #expect(segments[0].prefix(30).allSatisfy { $0 == 100 })
     }
 
+    @Test func longBackToBackReadingsAreOneSeries() throws {
+        // Lecturas de 10 s y de 60 s seguidas (otras apps o series agrupadas).
+        for length in [10, 60] {
+            let readings = (0..<(1800 / length)).map { index -> PowerSample in
+                let date = start.addingTimeInterval(Double(index * length))
+                return PowerSample(start: date, end: date.addingTimeInterval(Double(length)), watts: 200)
+            }
+            let segments = PowerAnalysis.secondsSeries(readings)
+            #expect(segments.count == 1)
+            #expect(segments.first?.count == 1800)
+            let summary = try #require(PowerAnalysis.summary(segments: segments))
+            #expect(summary.best20Minutes == 200)
+            #expect(abs((summary.normalizedPower ?? 0) - 200) < 0.001)
+        }
+    }
+
     @Test func shortRidesHaveNoNormalizedPower() throws {
         let summary = try #require(PowerAnalysis.summary(samples(seconds: 200) { _ in 250 }))
         #expect(summary.normalizedPower == nil)
@@ -116,6 +132,14 @@ struct CyclingPowerTests {
 
 @Suite("CYKEL · velocidad y estadísticas")
 struct CyclingStatsTests {
+    @Test func wallClockEndIncludesPauses() {
+        let paused = WorkoutSummary(activity: .outdoorRide, start: start, duration: 3600, distanceMeters: 30_000, averageHeartRate: nil, maxHeartRate: nil, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo, endDate: start.addingTimeInterval(4200))
+        #expect(paused.end == start.addingTimeInterval(3600))
+        #expect(paused.wallClockEnd == start.addingTimeInterval(4200))
+        let unknown = ride(start, km: 30, kmh: 30)
+        #expect(unknown.wallClockEnd == unknown.end)
+    }
+
     @Test func speedFormatting() throws {
         let speed = try #require(Speed(distanceMeters: 30_000, duration: 3600))
         #expect(abs(speed.value(in: .metric) - 30) < 0.0001)
@@ -156,11 +180,16 @@ struct CyclingStatsTests {
         let ride = settings.forRide()
         #expect(ride.autoLapDistance == 5000)
         #expect(!ride.alerts.paceEnabled && !ride.alerts.zoneEnabled)
-        settings.rideAutoLapDistance = nil
-        #expect(settings.rideAutoLap == 0 && settings.rideAutoLapDistance == nil)
+        settings.rideLapUnits = 0
+        #expect(settings.rideAutoLapUnits == 0 && settings.rideAutoLapDistance == nil)
+        settings.rideAutoLapUnits = nil
         settings.unitSystem = .imperial
-        settings.rideAutoLap = nil
         #expect(abs((settings.rideAutoLapDistance ?? 0) - 8046.72) < 0.01)
+        // Una elección explícita se conserva en unidades al cambiar de km a mi.
+        settings.unitSystem = .metric
+        settings.rideLapUnits = 10
+        settings.unitSystem = .imperial
+        #expect(abs((settings.rideAutoLapDistance ?? 0) - 16_093.44) < 0.01)
         settings.functionalThresholdPower = 2000
         #expect(settings.validFunctionalThresholdPower == nil)
         settings.functionalThresholdPower = 245
@@ -171,7 +200,7 @@ struct CyclingStatsTests {
         // Ajustes guardados antes de CYKEL (sin las claves nuevas).
         let data = try RunSettings().encoded()
         var json = try #require(try JSONSerialization.jsonObject(with: data) as? [String: Any])
-        json.removeValue(forKey: "rideAutoLap")
+        json.removeValue(forKey: "rideAutoLapUnits")
         json.removeValue(forKey: "functionalThresholdPower")
         let decoded = try RunSettings.decoded(from: JSONSerialization.data(withJSONObject: json))
         #expect(decoded.rideAutoLapDistance == 5000)

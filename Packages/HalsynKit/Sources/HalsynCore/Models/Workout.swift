@@ -73,6 +73,8 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
     public let averagePower: Double?
     /// Desnivel positivo en metros, si el entrenamiento lo guardó.
     public let elevationGain: Double?
+    /// Hora real de fin (con las pausas). `duration` es solo el tiempo activo.
+    public let endDate: Date?
 
     public init(
         id: UUID = UUID(),
@@ -86,7 +88,8 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
         averageCadence: Double?,
         origin: DataOrigin,
         averagePower: Double? = nil,
-        elevationGain: Double? = nil
+        elevationGain: Double? = nil,
+        endDate: Date? = nil
     ) {
         self.id = id
         self.activity = activity
@@ -100,9 +103,14 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
         self.origin = origin
         self.averagePower = averagePower
         self.elevationGain = elevationGain
+        self.endDate = endDate
     }
 
+    /// Inicio + tiempo activo (sin pausas).
     public var end: Date { start.addingTimeInterval(duration) }
+
+    /// Fin real con las pausas, para leer las muestras de todo el entrenamiento.
+    public var wallClockEnd: Date { max(endDate ?? end, end) }
 
     /// Ritmo medio, solo si hay distancia suficiente para que tenga sentido.
     public var averagePace: Pace? {

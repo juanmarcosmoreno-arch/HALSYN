@@ -369,7 +369,8 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
             averageCadence: isRide ? workout.statistics(for: HKQuantityType(.cyclingCadence))?.averageQuantity()?.doubleValue(for: beatsPerMinute) : nil,
             origin: .healthKit(sourceName: workout.sourceRevision.source.name),
             averagePower: isRide ? workout.statistics(for: HKQuantityType(.cyclingPower))?.averageQuantity()?.doubleValue(for: .watt()) : nil,
-            elevationGain: elevation
+            elevationGain: elevation,
+            endDate: workout.endDate
         )
     }
 

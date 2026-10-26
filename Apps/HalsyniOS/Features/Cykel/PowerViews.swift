@@ -28,6 +28,9 @@ final class FTPStore {
     private(set) var health: ThresholdPowerReading?
     private(set) var estimate: FTPEstimate?
     private(set) var reloadKey: String?
+    /// Fuente de datos con la que se cargó: al pasar de demo a Apple Health (o al
+    /// revés) no se mezcla un FTP de una con las salidas de la otra.
+    private var mode: DataMode?
 
     /// Prioridad: el del usuario, el de Apple Health y, si no hay, la estimación.
     func resolved(manual: Double?) -> ResolvedFTP? {
@@ -40,22 +43,38 @@ final class FTPStore {
     /// Lee el FTP de Salud y calcula la estimación con las salidas con potencia
     /// de las últimas 6 semanas (una vez por recarga de datos).
     func load(provider: any HealthDataProviding, rides: [WorkoutSummary], key: String) async {
+        resetIfSourceChanged(provider)
         guard reloadKey != key else { return }
-        reloadKey = key
-        health = await provider.functionalThresholdPower()
+        let health = await provider.functionalThresholdPower()
         let start = Calendar.current.date(byAdding: .day, value: -FTPEstimate.windowDays, to: .now) ?? .now
         var bests: [(ride: WorkoutSummary, best20Minutes: Double?)] = []
         for ride in rides where ride.start >= start && ride.averagePower != nil && ride.duration >= 1200 {
             let summary = PowerAnalysis.summary(await provider.ridePower(for: ride))
             bests.append((ride, summary?.best20Minutes))
         }
+        // Si la tarea se canceló (cambio de pestaña), las consultas pudieron
+        // volver vacías: no se guarda nada y se repite la próxima vez.
+        guard !Task.isCancelled, mode == provider.mode else { return }
+        self.health = health
         estimate = FTPEstimator.estimate(rides: bests, today: .now, calendar: .current)
+        reloadKey = key
     }
 
     /// Solo el FTP de Salud (desde el detalle si no se pasó por CYKEL).
     func loadHealthIfNeeded(provider: any HealthDataProviding) async {
+        resetIfSourceChanged(provider)
         guard reloadKey == nil, health == nil else { return }
-        health = await provider.functionalThresholdPower()
+        let reading = await provider.functionalThresholdPower()
+        guard !Task.isCancelled, mode == provider.mode else { return }
+        health = reading
+    }
+
+    private func resetIfSourceChanged(_ provider: any HealthDataProviding) {
+        guard mode != provider.mode else { return }
+        mode = provider.mode
+        health = nil
+        estimate = nil
+        reloadKey = nil
     }
 }
 

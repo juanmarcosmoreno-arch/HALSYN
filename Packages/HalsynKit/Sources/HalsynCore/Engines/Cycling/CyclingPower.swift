@@ -92,8 +92,8 @@ public struct PowerSummary: Hashable, Sendable {
 /// Cálculos de potencia sobre las lecturas guardadas en Apple Health.
 ///
 /// Las lecturas se pasan a una serie de un valor por segundo: cada lectura vale
-/// hasta la siguiente; si entre dos lecturas pasan más de `maxGap` segundos
-/// (pausa o sensor desconectado) la serie se corta y ese hueco no cuenta, ni
+/// hasta la siguiente; si entre el final de una lectura y la siguiente pasan más
+/// de `maxGap` segundos (pausa o sensor desconectado) la serie se corta y ese hueco no cuenta, ni
 /// como cero ni como potencia. Los ceros reales (dejar de pedalear) sí cuentan,
 /// como en el método original de la potencia normalizada.
 public enum PowerAnalysis {
@@ -117,9 +117,11 @@ public enum PowerAnalysis {
             var span = ownSpan
             var breaksAfter = false
             if index + 1 < sorted.count {
-                let gap = sorted[index + 1].start.timeIntervalSince(sample.start)
-                if gap <= maxGap {
-                    span = max(0, gap)
+                // El hueco se mide desde el final de la lectura: lecturas largas
+                // seguidas (p. ej. de 10 s o 60 s) no cortan la serie.
+                let next = sorted[index + 1]
+                if next.start.timeIntervalSince(sample.end) <= maxGap {
+                    span = max(0, next.start.timeIntervalSince(sample.start))
                 } else {
                     breaksAfter = true
                 }

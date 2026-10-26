@@ -373,7 +373,8 @@ final class WorkoutManager: NSObject {
                 detail = lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
                 if isCycling {
                     detail = Speed(pace: lap.pace).map { "\($0.formatted(in: unit)) \(unit.speedUnitSymbol)" }
-                    spoken = VoiceCoach.rideLap(lap, autoLap: RunSettingsStore.shared.settings.rideAutoLapDistance, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
+                    let covered = tracker.lapTracker.laps.prefix(lap.index).reduce(0) { $0 + $1.distance }
+                    spoken = VoiceCoach.rideLap(lap, cumulativeDistance: covered, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
                 } else if RunSettingsStore.shared.settings.autoLapDistance == unit.metersPerDistanceUnit {
                     // Con vuelta automática por unidad se dice "Kilómetro n"; si no, "Vuelta n".
                     spoken = VoiceCoach.lap(number: lap.index, pace: lap.pace, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)

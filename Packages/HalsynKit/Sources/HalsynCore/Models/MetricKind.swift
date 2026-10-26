@@ -166,7 +166,7 @@ public enum MetricUnit: String, Codable, Sendable {
         switch self {
         case .beatsPerMinute: "lpm"
         case .milliseconds: "ms"
-        case .breathsPerMinute: "rpm"
+        case .breathsPerMinute: "resp/min"
         case .vo2Max: "ml/kg·min"
         case .percent: "%"
         case .count: ""

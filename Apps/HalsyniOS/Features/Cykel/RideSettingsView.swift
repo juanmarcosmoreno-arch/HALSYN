@@ -12,9 +12,9 @@ struct RideSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Picker(selection: runSetting(\.rideAutoLapDistance)) {
-                    ForEach(settings.rideAutoLapOptions, id: \.self) { option in
-                        Text(autoLapTitle(option)).tag(option)
+                Picker(selection: runSetting(\.rideLapUnits)) {
+                    ForEach(RunSettings.rideAutoLapUnitOptions, id: \.self) { count in
+                        Text(autoLapTitle(count)).tag(count)
                     }
                 } label: {
                     Label("Vuelta automática", systemImage: "flag")
@@ -67,9 +67,8 @@ struct RideSettingsView: View {
         }
     }
 
-    private func autoLapTitle(_ distance: Double?) -> LocalizedStringKey {
-        guard let distance else { return "Desactivada" }
-        let count = Int((distance / settings.unitSystem.metersPerDistanceUnit).rounded())
+    private func autoLapTitle(_ count: Int) -> LocalizedStringKey {
+        guard count > 0 else { return "Desactivada" }
         return settings.unitSystem == .imperial ? "Cada \(count) mi" : "Cada \(count) km"
     }
 }

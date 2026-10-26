@@ -15075,7 +15075,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cykeltur förkastad"
+            "value": "Cykelturen slängdes"
           }
         }
       }
@@ -19721,7 +19721,7 @@
         }
       }
     },
-    "rpm": {
+    "resp/min": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -19734,6 +19734,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "andetag/min"
+          }
+        }
+      }
+    },
+    "rpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "varv/min"
           }
         }
       }
@@ -19959,6 +19976,23 @@
         }
       }
     },
+    "Última milla a %@ millas por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last mile at %@ miles per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste mile i %@ miles i timmen"
+          }
+        }
+      }
+    },
     "Última salida": {
       "extractionState": "manual",
       "localizations": {
@@ -20006,6 +20040,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 4 veckorna"
+          }
+        }
+      }
+    },
+    "Último kilómetro a %@ kilómetros por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last kilometer at %@ kilometers per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste kilometern i %@ kilometer i timmen"
           }
         }
       }

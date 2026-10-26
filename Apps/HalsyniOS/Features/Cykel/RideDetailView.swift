@@ -188,23 +188,29 @@ private struct RidePowerCard: View {
     }
 
     /// Media de cada 30 s, en minutos desde la salida.
-    private var points: [(minute: Double, watts: Double)] {
+    private struct PowerPoint: Identifiable {
+        let id: Int
+        let minute: Double
+        let watts: Double
+    }
+
+    private var points: [PowerPoint] {
         var buckets: [Int: (sum: Double, count: Int)] = [:]
         for sample in samples {
             let key = Int(sample.start.timeIntervalSince(start) / 30)
             guard key >= 0 else { continue }
-            buckets[key, default: (0, 0)].sum += sample.watts
-            buckets[key, default: (0, 0)].count += 1
+            let current = buckets[key] ?? (0, 0)
+            buckets[key] = (current.sum + sample.watts, current.count + 1)
         }
         return buckets.keys.sorted().compactMap { key in
             guard let bucket = buckets[key], bucket.count > 0 else { return nil }
-            return (Double(key) / 2, bucket.sum / Double(bucket.count))
+            return PowerPoint(id: key, minute: Double(key) / 2, watts: bucket.sum / Double(bucket.count))
         }
     }
 
     private var chart: some View {
         Chart {
-            ForEach(points, id: \.minute) { point in
+            ForEach(points) { point in
                 LineMark(x: .value("Minuto", point.minute), y: .value("W", point.watts))
                     .interpolationMethod(.monotone)
                     .foregroundStyle(Color.halsynAccent)
@@ -220,7 +226,7 @@ private struct RidePowerCard: View {
                     }
             }
         }
-        .chartXAxisLabel(Text("min"))
+        .chartXAxisLabel("min")
         .frame(height: 140)
         .accessibilityLabel(Text("Gráfico de potencia"))
     }
@@ -264,48 +270,78 @@ private struct RideProfileCard: View {
     let route: [LocationSample]
     let unitSystem: UnitSystem
 
+    /// Punto del gráfico ya en la unidad elegida.
+    private struct ChartPoint: Identifiable {
+        let id: Int
+        let distance: Double
+        let altitude: Double?
+        let speed: Double?
+    }
+
     var body: some View {
-        let profile = RideAnalysis.profile(from: route)
-        let altitudes = profile.compactMap(\.altitude)
-        if profile.count > 2 {
+        let points = chartPoints
+        if points.count > 2 {
             HalsynCard {
                 VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                     HalsynSectionHeader("Perfil", eyebrow: HalsynLexicon.fart.rawValue)
-                    if altitudes.count > 2, let low = altitudes.min(), let high = altitudes.max() {
-                        Chart {
-                            ForEach(Array(profile.enumerated()), id: \.offset) { _, point in
-                                if let altitude = point.altitude {
-                                    AreaMark(x: .value("Distancia", point.distance / unitSystem.metersPerDistanceUnit), yStart: .value("Base", low - 5), yEnd: .value("Altitud", altitude))
-                                        .foregroundStyle(Color.halsynChart.opacity(0.35))
-                                        .interpolationMethod(.monotone)
-                                }
-                            }
-                        }
-                        .chartYScale(domain: (low - 5)...(high + 5))
-                        .chartXAxisLabel(Text(verbatim: unitSystem.distanceUnitSymbol))
-                        .chartYAxisLabel(Text(verbatim: "m"))
-                        .frame(height: 110)
-                        .accessibilityLabel(Text("Perfil de altitud"))
-                    }
-                    Chart {
-                        ForEach(Array(profile.enumerated()), id: \.offset) { _, point in
-                            if let speed = point.speed {
-                                LineMark(x: .value("Distancia", point.distance / unitSystem.metersPerDistanceUnit), y: .value("Velocidad", speed.value(in: unitSystem)))
-                                    .foregroundStyle(Color.halsynAccent)
-                                    .interpolationMethod(.monotone)
-                            }
-                        }
-                    }
-                    .chartXAxisLabel(Text(verbatim: unitSystem.distanceUnitSymbol))
-                    .chartYAxisLabel(Text(verbatim: unitSystem.speedUnitSymbol))
-                    .frame(height: 110)
-                    .accessibilityLabel(Text("Velocidad a lo largo de la salida"))
+                    elevationChart(points)
+                    speedChart(points)
                     Text("Altitud y velocidad según el GPS del reloj (la altitud GPS es aproximada).")
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                 }
             }
         }
+    }
+
+    private var chartPoints: [ChartPoint] {
+        RideAnalysis.profile(from: route).enumerated().map { index, point in
+            ChartPoint(
+                id: index,
+                distance: point.distance / unitSystem.metersPerDistanceUnit,
+                altitude: point.altitude,
+                speed: point.speed?.value(in: unitSystem)
+            )
+        }
+    }
+
+    @ViewBuilder
+    private func elevationChart(_ points: [ChartPoint]) -> some View {
+        let withAltitude = points.filter { $0.altitude != nil }
+        let altitudes = withAltitude.compactMap(\.altitude)
+        if altitudes.count > 2, let low = altitudes.min(), let high = altitudes.max() {
+            let base = low - 5
+            Chart(withAltitude) { point in
+                AreaMark(
+                    x: .value("Distancia", point.distance),
+                    yStart: .value("Base", base),
+                    yEnd: .value("Altitud", point.altitude ?? base)
+                )
+                .foregroundStyle(Color.halsynChart.opacity(0.35))
+                .interpolationMethod(.monotone)
+            }
+            .chartYScale(domain: base...(high + 5))
+            .chartXAxisLabel(unitSystem.distanceUnitSymbol)
+            .chartYAxisLabel("m")
+            .frame(height: 110)
+            .accessibilityLabel(Text("Perfil de altitud"))
+        }
+    }
+
+    private func speedChart(_ points: [ChartPoint]) -> some View {
+        let withSpeed = points.filter { $0.speed != nil }
+        return Chart(withSpeed) { point in
+            LineMark(
+                x: .value("Distancia", point.distance),
+                y: .value("Velocidad", point.speed ?? 0)
+            )
+            .foregroundStyle(Color.halsynAccent)
+            .interpolationMethod(.monotone)
+        }
+        .chartXAxisLabel(unitSystem.distanceUnitSymbol)
+        .chartYAxisLabel(unitSystem.speedUnitSymbol)
+        .frame(height: 110)
+        .accessibilityLabel(Text("Velocidad a lo largo de la salida"))
     }
 }
 

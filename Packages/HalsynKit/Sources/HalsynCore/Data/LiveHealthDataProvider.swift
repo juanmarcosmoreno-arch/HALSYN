@@ -129,14 +129,14 @@ public struct LiveHealthDataProvider: HealthDataProviding {
     public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
         guard client.isHealthDataAvailable else { return .empty(workout.origin) }
         async let route = try? client.workoutRoute(workoutID: workout.id)
-        async let heartRate = try? client.heartRateSamples(in: DateInterval(start: workout.start, end: workout.end))
+        async let heartRate = try? client.heartRateSamples(in: DateInterval(start: workout.start, end: workout.wallClockEnd))
         async let power = ridePower(for: workout)
         return WorkoutDetailData(route: await route ?? [], heartRate: await heartRate ?? [], power: await power, origin: workout.origin)
     }
 
     public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] {
         guard client.isHealthDataAvailable, workout.activity.isRide else { return [] }
-        return (try? await client.cyclingPowerSamples(in: DateInterval(start: workout.start, end: workout.end))) ?? []
+        return (try? await client.cyclingPowerSamples(in: DateInterval(start: workout.start, end: workout.wallClockEnd))) ?? []
     }
 
     public func functionalThresholdPower() async -> ThresholdPowerReading? {
