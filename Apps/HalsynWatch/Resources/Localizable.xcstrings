@@ -511,19 +511,19 @@
         }
       }
     },
-    "%lld entrenamientos sin frecuencia cardíaca no suman.": {
+    "%lld entrenamientos sin FC media o sin FC máxima para su deporte no suman.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld workouts without heart rate don't count."
+            "value": "%lld workouts without average heart rate or without a max heart rate for their sport don't count."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld träningspass utan puls räknas inte."
+            "value": "%lld träningspass utan medelpuls eller utan maxpuls för sin sport räknas inte."
           }
         }
       }
@@ -3180,36 +3180,36 @@
         }
       }
     },
-    "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia. Son tendencias para entrenar, no una medida médica.": {
+    "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Load of each workout: Banister's TRIMP, from the duration and average heart rate relative to your resting and maximum heart rate. Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference. These are training trends, not a medical measure."
+            "value": "Load of each workout: Banister's TRIMP, from the duration and average heart rate relative to your resting and maximum heart rate. Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, their difference at the end of yesterday (how you arrive at today). These are training trends, not a medical measure."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Belastning för varje pass: Banisters TRIMP, utifrån längd och medelpuls i förhållande till din vilopuls och maxpuls. Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden mellan dem. Det är träningstrender, inte ett medicinskt mått."
+            "value": "Belastning för varje pass: Banisters TRIMP, utifrån längd och medelpuls i förhållande till din vilopuls och maxpuls. Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden mellan dem vid slutet av gårdagen (hur du kommer in i dag). Det är träningstrender, inte ett medicinskt mått."
           }
         }
       }
     },
-    "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia, como en el gráfico de rendimiento de Coggan.": {
+    "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy), como en el gráfico de rendimiento de Coggan.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Load of each ride with power: TSS (one hour at your FTP = 100). Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference, as in Coggan's performance chart."
+            "value": "Load of each ride with power: TSS (one hour at your FTP = 100). Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, their difference at the end of yesterday (how you arrive at today), as in Coggan's performance chart."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Belastning för varje tur med effekt: TSS (en timme på din FTP = 100). Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden, som i Coggans prestationsdiagram."
+            "value": "Belastning för varje tur med effekt: TSS (en timme på din FTP = 100). Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden vid slutet av gårdagen (hur du kommer in i dag), som i Coggans prestationsdiagram."
           }
         }
       }
@@ -6053,19 +6053,19 @@
         }
       }
     },
-    "El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING: cambia la FC máxima por la de bici, que suele ser algo más baja.": {
+    "El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING (sin la FC máxima registrada corriendo): pon la de bici, que suele ser algo más baja.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The watch and each ride's details use these zones. They start as a copy of the SPRING ones: change the max heart rate to your cycling one, which is usually somewhat lower."
+            "value": "The watch and each ride's details use these zones. They start as a copy of the SPRING ones (without the max heart rate recorded while running): set your cycling one, which is usually somewhat lower."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klockan och detaljerna för varje tur använder de här zonerna. De utgår från en kopia av zonerna i SPRING: byt maxpulsen mot den på cykel, som ofta är något lägre."
+            "value": "Klockan och detaljerna för varje tur använder de här zonerna. De utgår från en kopia av zonerna i SPRING (utan maxpulsen som registrerats vid löpning): ange den på cykel, som ofta är något lägre."
           }
         }
       }
@@ -7940,53 +7940,70 @@
         }
       }
     },
-    "Frescura": {
+    "Frescura al empezar hoy": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freshness"
+            "value": "Freshness starting today"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fräschhet"
+            "value": "Fräschhet inför i dag"
           }
         }
       }
     },
-    "Frescura negativa: esta semana acumulas más carga que tu media de las últimas 6 semanas.": {
+    "Frescura negativa: al terminar ayer tu fatiga (media de 7 días) superaba tu forma física (media de 42 días).": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Negative freshness: this week you're accumulating more load than your average for the last 6 weeks."
+            "value": "Negative freshness: at the end of yesterday your fatigue (7-day average) was above your fitness (42-day average)."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Negativ fräschhet: den här veckan samlar du på dig mer belastning än ditt snitt de senaste 6 veckorna."
+            "value": "Negativ fräschhet: vid slutet av gårdagen låg din trötthet (7-dagarsmedel) över din form (42-dagarsmedel)."
           }
         }
       }
     },
-    "Frescura positiva: tu fatiga de la última semana está por debajo de tu forma de las últimas 6 semanas.": {
+    "Frescura neutra: al terminar ayer tu fatiga y tu forma física estaban igualadas.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Positive freshness: your fatigue from the last week is below your fitness of the last 6 weeks."
+            "value": "Neutral freshness: at the end of yesterday your fatigue and your fitness were even."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Positiv fräschhet: din trötthet från den senaste veckan ligger under din form från de senaste 6 veckorna."
+            "value": "Neutral fräschhet: vid slutet av gårdagen var din trötthet och din form lika."
+          }
+        }
+      }
+    },
+    "Frescura positiva: al terminar ayer tu fatiga (media de 7 días) estaba por debajo de tu forma física (media de 42 días).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positive freshness: at the end of yesterday your fatigue (7-day average) was below your fitness (42-day average)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positiv fräschhet: vid slutet av gårdagen låg din trötthet (7-dagarsmedel) under din form (42-dagarsmedel)."
           }
         }
       }
@@ -9453,19 +9470,19 @@
         }
       }
     },
-    "La forma física necesita unas 6 semanas de datos: por ahora sale más baja de lo real.": {
+    "La forma física necesita unos 3 meses de datos: por ahora sale más baja de lo real y la frescura, más negativa.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fitness needs about 6 weeks of data: for now it comes out lower than it really is."
+            "value": "Fitness needs about 3 months of data: for now it comes out lower than it really is, and freshness more negative."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Formen behöver cirka 6 veckors data: just nu blir den lägre än den egentligen är."
+            "value": "Formen behöver cirka 3 månaders data: just nu blir den lägre än den egentligen är och fräschheten mer negativ."
           }
         }
       }

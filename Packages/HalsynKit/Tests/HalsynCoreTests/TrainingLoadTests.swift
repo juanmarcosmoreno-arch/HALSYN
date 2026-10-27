@@ -72,6 +72,27 @@ struct TrainingLoadTests {
         #expect(end.fatigue < end.fitness && end.form > 20)
     }
 
+    @Test func midnightDaylightSavingDoesNotDropDays() throws {
+        // En Chile la hora cambia a medianoche (6 de septiembre de 2026): ese día empieza a la 01:00.
+        var chile = Calendar(identifier: .gregorian)
+        chile.timeZone = TimeZone(identifier: "America/Santiago")!
+        let first = chile.date(from: DateComponents(year: 2026, month: 8, day: 27, hour: 10))!
+        let last = chile.date(from: DateComponents(year: 2026, month: 9, day: 16, hour: 10))!
+        let loads = (0..<21).map { WorkoutLoad(workoutID: UUID(), date: chile.date(byAdding: .day, value: $0, to: first)!, sport: .cycling, value: 100) }
+        let series = PerformanceModel.series(loads: loads, from: first, through: last, calendar: chile)
+        #expect(series.count == 21)
+        #expect(series.allSatisfy { $0.load == 100 })
+        let end = try #require(series.last)
+        #expect(chile.isDate(end.day, inSameDayAs: last))
+    }
+
+    @Test func onlyRidersUseTheirRideMax() {
+        let ride = workout(daysAgo(1), minutes: 60, heartRate: 140, activity: .outdoorRide)
+        let inputs = HeartRateLoadInputs(restingHeartRate: 50, maxHeartRate: [.cycling: 180], sex: .female)
+        #expect(inputs.max(for: .walking) == 180)
+        #expect(TrainingLoadCalculator.heartRateLoads([ride], inputs: inputs).loads.count == 1)
+    }
+
     @Test func summaryWeeksAndRollingWindows() throws {
         let loads = [
             WorkoutLoad(workoutID: UUID(), date: daysAgo(0), sport: .running, value: 50),     // jueves (esta semana)

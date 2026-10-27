@@ -167,7 +167,9 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
   - frescura (TSB) = forma − fatiga del día anterior.
   - Son medias normalizadas: en estado estable valen la carga diaria. El modelo de impulso-respuesta original suma impulsos y tiene otra escala, así que no se mezclan. Referencia: Calvert TW, Banister EW, Savage MV, Bach T. *IEEE Trans Syst Man Cybern.* 1976;SMC-6(2):94–102, doi:10.1109/TSMC.1976.5409179.
   - Las constantes de 42 y 7 días son una convención de software, no constantes ajustadas a cada persona.
-  - Se empieza en 0 con el primer entrenamiento de los últimos 180 días. Con menos de 42 días de historia, la forma sale baja y la interfaz lo avisa.
+  - Se empieza en 0 con el primer entrenamiento de los últimos 180 días. A los 42 días la forma solo llega al ~63 % de su valor estable, así que con menos de 90 días (~89 %) la interfaz avisa y no da veredicto de frescura.
+  - La frescura del día es la de ayer al terminar (cómo llegas a hoy) y se dice así.
+  - FC máxima: la de las zonas de cada deporte, la más alta registrada en ese deporte o, para quien solo pedalea, la de sus salidas.
 - **Comparación semanal**: los últimos 7 días frente a la media semanal de los 28 anteriores (solo con al menos 35 días de historia).
   - Por encima de 1,5 se recuerda que las subidas bruscas se asociaron con más lesiones en algunos estudios (Gabbett TJ, *Br J Sports Med* 2016, doi:10.1136/bjsports-2015-095788).
   - También que el cociente agudo:crónico está discutido. Impellizzeri FM, et al. *Int J Sports Physiol Perform.* 2020;15(6):907–913 (doi:10.1123/ijspp.2019-0864) concluyen que no hay evidencia para usarlo en la gestión de la carga ni para reducir lesiones: es un aviso, no una regla.

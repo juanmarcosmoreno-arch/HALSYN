@@ -290,4 +290,17 @@ struct CyclingZonesTests {
         let decoded = try RunSettings.decoded(from: settings.encoded())
         #expect(decoded.rideZones == settings.rideZones)
     }
+
+    @Test func observedRunningMaxIsNotCopiedToTheBike() {
+        var settings = RunSettings()
+        settings.zones = HeartRateZoneConfiguration(maxSource: .observed, maxHeartRate: 195)
+        settings.usesOwnRideZones = true
+        #expect(settings.cyclingZones.maxSource == .observed)
+        #expect(settings.cyclingZones.maxHeartRate == nil)
+        #expect(settings.forRide().zones.zones.isEmpty)
+        // Activarlas otra vez no pisa lo ya editado.
+        settings.cyclingZones.maxHeartRate = 182
+        settings.usesOwnRideZones = true
+        #expect(settings.cyclingZones.maxHeartRate == 182)
+    }
 }

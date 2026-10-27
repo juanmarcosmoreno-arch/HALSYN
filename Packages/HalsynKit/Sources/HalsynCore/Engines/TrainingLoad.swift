@@ -73,9 +73,10 @@ public struct HeartRateLoadInputs: Hashable, Sendable {
         self.sex = sex
     }
 
-    /// FC máxima para un deporte: la suya o, si no hay, la de correr.
+    /// FC máxima para un deporte: la suya o, si no hay, la de correr (o la de bici
+    /// para quien solo pedalea).
     public func max(for sport: WorkoutSport) -> Double? {
-        maxHeartRate[sport] ?? maxHeartRate[.running]
+        maxHeartRate[sport] ?? maxHeartRate[.running] ?? maxHeartRate[.cycling]
     }
 }
 
@@ -136,8 +137,10 @@ public enum PerformanceModel {
             fitness += (load - fitness) / fitnessDays
             fatigue += (load - fatigue) / fatigueDays
             points.append(FitnessFatiguePoint(day: day, load: load, fitness: fitness, fatigue: fatigue, form: form))
+            // startOfDay en cada paso: donde el cambio de hora es a medianoche
+            // (Chile, Cuba…) el día empieza a la 01:00 y no se arrastra esa hora.
             guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
-            day = next
+            day = calendar.startOfDay(for: next)
         }
         return points
     }
@@ -169,8 +172,11 @@ public struct TrainingLoadSummary: Hashable, Sendable {
     public let skipped: Int
 
     public var today: FitnessFatiguePoint? { points.last }
-    /// La forma física (42 días) aún se está construyendo.
-    public var isBuildingUp: Bool { historyDays < Int(PerformanceModel.fitnessDays) }
+    /// Días de historia para que la forma (media de 42 días que empieza en 0)
+    /// llegue a cerca del 90 por ciento de su valor estable.
+    public static let settledHistoryDays = 90
+    /// La forma física aún se está construyendo: sale baja y la frescura, negativa.
+    public var isBuildingUp: Bool { historyDays < Self.settledHistoryDays }
 
     /// Últimos 7 días frente a la media semanal anterior (1 = igual).
     public var ratio: Double? {

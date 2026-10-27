@@ -57,7 +57,7 @@ struct RideSettingsView: View {
                 Text("Zonas cardíacas")
             } footer: {
                 Text(settings.usesOwnRideZones
-                     ? LocalizedStringKey("El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING: cambia la FC máxima por la de bici, que suele ser algo más baja.")
+                     ? LocalizedStringKey("El reloj y el detalle de cada salida usan estas zonas. Parten de una copia de las de SPRING (sin la FC máxima registrada corriendo): pon la de bici, que suele ser algo más baja.")
                      : LocalizedStringKey("Ahora se usan las zonas de SPRING. Los umbrales de pulso no se trasladan bien de correr a pedalear, así que conviene tener zonas propias si entrenas en bici."))
             }
 

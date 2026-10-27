@@ -92,10 +92,20 @@ public struct RunSettings: Hashable, Codable, Sendable {
     }
 
     /// `true` si la bici tiene zonas propias. Al activarlo se parte de una copia
-    /// de las de SPRING; al desactivarlo se vuelve a usar las de SPRING.
+    /// de las de SPRING (sin la FC máxima registrada corriendo, que no es de bici);
+    /// al desactivarlo se vuelve a usar las de SPRING.
     public var usesOwnRideZones: Bool {
         get { rideZones != nil }
-        set { rideZones = newValue ? (rideZones ?? zones) : nil }
+        set {
+            guard newValue else {
+                rideZones = nil
+                return
+            }
+            guard rideZones == nil else { return }
+            var copy = zones
+            if copy.maxSource == .observed { copy.maxHeartRate = nil }
+            rideZones = copy
+        }
     }
 
     /// Ajustes para una salida en bici: misma voz, zonas cardíacas de bici,

@@ -63,8 +63,12 @@ final class TrainingLoadStore {
         let restingHeartRate = resting.isEmpty ? settings.zones.restingHeartRate : resting[resting.count / 2]
         var maxHeartRate: [WorkoutSport: Double] = [:]
         maxHeartRate[.running] = settings.zones.zones.last?.upperBound ?? HeartRateZoneConfiguration.observedMax(in: runs.filter { $0.activity.isRun })
+        let rideObserved = HeartRateZoneConfiguration.observedMax(in: rides)
         if settings.usesOwnRideZones {
-            maxHeartRate[.cycling] = settings.cyclingZones.zones.last?.upperBound ?? HeartRateZoneConfiguration.observedMax(in: rides)
+            maxHeartRate[.cycling] = settings.cyclingZones.zones.last?.upperBound ?? rideObserved
+        } else if maxHeartRate[.running] == nil {
+            // Quien solo pedalea: la máxima registrada en sus salidas.
+            maxHeartRate[.cycling] = rideObserved
         }
         var sex = ReferenceProfileStore.shared.sex
         if sex == nil {
@@ -90,7 +94,9 @@ struct TrainingLoadCard: View {
     private var key: String {
         let current = settings.settings
         let sex = ReferenceProfileStore.shared.sex?.rawValue ?? "-"
-        return "\(model.reloadKey)|\(metric.rawValue)|\(powerFTP ?? 0)|\(current.zones.hashValue)|\(current.rideZones?.hashValue ?? 0)|\(sex)"
+        // El FTP solo cambia la carga con potencia: así SPRING y CYKEL comparten la de pulso.
+        let ftp = metric == .power ? powerFTP ?? 0 : 0
+        return "\(model.reloadKey)|\(metric.rawValue)|\(ftp)|\(current.zones.hashValue)|\(current.rideZones?.hashValue ?? 0)|\(sex)"
     }
 
     var body: some View {
@@ -178,17 +184,17 @@ private struct TrainingLoadContent: View {
                     LazyVGrid(columns: columns, alignment: .leading, spacing: HalsynSpacing.s) {
                         HalsynMetric(title: "Forma física", value: HalsynFormat.integer(today.fitness), unit: "")
                         HalsynMetric(title: "Fatiga", value: HalsynFormat.integer(today.fatigue), unit: "")
-                        HalsynMetric(title: "Frescura", value: signed(today.form), unit: "")
+                        HalsynMetric(title: "Frescura al empezar hoy", value: signed(today.form), unit: "")
                     }
-                    Text(today.form >= 0
-                         ? LocalizedStringKey("Frescura positiva: tu fatiga de la última semana está por debajo de tu forma de las últimas 6 semanas.")
-                         : LocalizedStringKey("Frescura negativa: esta semana acumulas más carga que tu media de las últimas 6 semanas."))
-                        .font(.halsynCaption)
-                        .foregroundStyle(.halsynSecondaryText)
+                    if !summary.isBuildingUp {
+                        Text(formText(today.form))
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
                     fitnessChart
                 }
                 if summary.isBuildingUp {
-                    HalsynStatusIndicator(.caution, text: "La forma física necesita unas 6 semanas de datos: por ahora sale más baja de lo real.")
+                    HalsynStatusIndicator(.caution, text: "La forma física necesita unos 3 meses de datos: por ahora sale más baja de lo real y la frescura, más negativa.")
                 }
                 footnotes
             }
@@ -298,6 +304,17 @@ private struct TrainingLoadContent: View {
         return "Parecida a tu media semanal de las 4 semanas anteriores."
     }
 
+    /// Frescura (forma − fatiga al terminar ayer), con el mismo redondeo que se muestra.
+    private func formText(_ form: Double) -> LocalizedStringKey {
+        let rounded = Int(form.rounded())
+        if rounded > 0 {
+            return "Frescura positiva: al terminar ayer tu fatiga (media de 7 días) estaba por debajo de tu forma física (media de 42 días)."
+        } else if rounded < 0 {
+            return "Frescura negativa: al terminar ayer tu fatiga (media de 7 días) superaba tu forma física (media de 42 días)."
+        }
+        return "Frescura neutra: al terminar ayer tu fatiga y tu forma física estaban igualadas."
+    }
+
     private func signed(_ value: Double) -> String {
         let rounded = Int(value.rounded())
         return rounded > 0 ? "+\(rounded)" : "\(rounded)"
@@ -310,14 +327,14 @@ private struct TrainingLoadContent: View {
                 let skipped = summary.skipped
                 Text(summary.metric == .power
                      ? LocalizedStringKey("\(skipped) salidas sin potencia no suman en esta vista.")
-                     : LocalizedStringKey("\(skipped) entrenamientos sin frecuencia cardíaca no suman."))
+                     : LocalizedStringKey("\(skipped) entrenamientos sin FC media o sin FC máxima para su deporte no suman."))
             }
             if let inputs {
                 Text(inputsText(inputs))
             }
             Text(summary.metric == .power
-                 ? LocalizedStringKey("Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia, como en el gráfico de rendimiento de Coggan.")
-                 : LocalizedStringKey("Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia. Son tendencias para entrenar, no una medida médica."))
+                 ? LocalizedStringKey("Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy), como en el gráfico de rendimiento de Coggan.")
+                 : LocalizedStringKey("Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica."))
             if let ratio = summary.ratio, ratio >= 1.5 {
                 Text("Subir mucho la carga de una semana a otra se asoció con más lesiones en algunos estudios, aunque ese cociente está discutido: tómalo como aviso, no como regla.")
             }
