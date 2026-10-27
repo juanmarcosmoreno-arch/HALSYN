@@ -3197,19 +3197,19 @@
         }
       }
     },
-    "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia (modelo de Banister, como en el gráfico de rendimiento de Coggan).": {
+    "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia, como en el gráfico de rendimiento de Coggan.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Load of each ride with power: TSS (one hour at your FTP = 100). Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference (Banister's model, as in Coggan's performance chart)."
+            "value": "Load of each ride with power: TSS (one hour at your FTP = 100). Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, the difference, as in Coggan's performance chart."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Belastning för varje tur med effekt: TSS (en timme på din FTP = 100). Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden (Banisters modell, som i Coggans prestationsdiagram)."
+            "value": "Belastning för varje tur med effekt: TSS (en timme på din FTP = 100). Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden, som i Coggans prestationsdiagram."
           }
         }
       }

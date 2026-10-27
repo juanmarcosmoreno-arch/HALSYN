@@ -24,15 +24,15 @@ struct TrainingLoadTests {
     @Test func banisterTRIMPBySex() throws {
         // 60 min a la mitad de la reserva (FC 120 con reposo 60 y máx. 180).
         let male = try #require(BanisterTRIMP.load(duration: 3600, averageHeartRate: 120, restingHeartRate: 60, maxHeartRate: 180, sex: .male))
-        #expect(abs(male - 60 * 0.5 * 0.64 * exp(0.96)) < 0.001)
-        #expect(abs(male - 50.14) < 0.01)
+        #expect(abs(male - 60 * 0.5 * exp(0.96)) < 0.001)
+        #expect(abs(male - 78.35) < 0.01)
         let female = try #require(BanisterTRIMP.load(duration: 3600, averageHeartRate: 120, restingHeartRate: 60, maxHeartRate: 180, sex: .female))
-        #expect(abs(female - 59.46) < 0.01)
+        #expect(abs(female - 69.14) < 0.01)
         let unknown = try #require(BanisterTRIMP.load(duration: 3600, averageHeartRate: 120, restingHeartRate: 60, maxHeartRate: 180, sex: nil))
         #expect(abs(unknown - (male + female) / 2) < 0.001)
         // Por encima de la máxima se satura en 1; sin FC media o con datos incoherentes, nada.
         let capped = try #require(BanisterTRIMP.load(duration: 600, averageHeartRate: 200, restingHeartRate: 60, maxHeartRate: 180, sex: .male))
-        #expect(abs(capped - 10 * 0.64 * exp(1.92)) < 0.001)
+        #expect(abs(capped - 10 * exp(1.92)) < 0.001)
         #expect(BanisterTRIMP.load(duration: 3600, averageHeartRate: nil, restingHeartRate: 60, maxHeartRate: 180, sex: .male) == nil)
         #expect(BanisterTRIMP.load(duration: 3600, averageHeartRate: 120, restingHeartRate: 60, maxHeartRate: 80, sex: .male) == nil)
     }

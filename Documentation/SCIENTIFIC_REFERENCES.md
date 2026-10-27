@@ -152,19 +152,22 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 
 ## Carga de entrenamiento (`BanisterTRIMP`, `PerformanceModel`, `TrainingLoadBuilder`)
 
-- **Carga por pulso (TRIMP de Banister)**: Morton RH, Fitz-Clarke JR, Banister EW. *Modeling human performance in running.* J Appl Physiol. 1990;69(3):1171–1177, doi:10.1152/jappl.1990.69.3.1171.
-  - TRIMP = minutos × x × a·e^(b·x), con x = (FC media − FC en reposo) / (FC máx. − FC en reposo), limitado a 0–1.
-  - a = 0,64 y b = 1,92 en hombres; a = 0,86 y b = 1,67 en mujeres.
+- **Carga por pulso (TRIMP de Banister)**: Banister EW, Morton RH, Fitz-Clarke J. *Dose/response effects of exercise modeled from training: physical and biochemical measures.* Ann Physiol Anthropol. 1992;11(3):345–356, doi:10.2114/ahs1983.11.345 (apéndice, ec. 1; leído en texto completo).
+  - TRIMP = minutos × x × e^(b·x), con x = (FC media − FC en reposo) / (FC máx. − FC en reposo), limitado a 0–1; b = 1,92 en hombres y 1,67 en mujeres.
+  - Los multiplicadores 0,64 y 0,86 que se ven en muchas apps vienen de un capítulo de libro de 1991 sin DOI (Banister EW, *Physiological testing of the high-performance athlete*, Human Kinetics). No se usan.
+  - Concepto también en Morton RH, Fitz-Clarke JR, Banister EW. *J Appl Physiol.* 1990;69(3):1171–1177, doi:10.1152/jappl.1990.69.3.1171.
+  - Validación: Wallace LK, Slattery KM, Coutts AJ. *Eur J Appl Physiol.* 2014;114(1):11–20, doi:10.1007/s00421-013-2745-1. En 7 corredores durante 15 semanas, el modelo con TRIMP se relacionó con el rendimiento real en 1500 m (r = 0,65 ± 0,13).
   - Sin sexo en el perfil se usa la media de las dos curvas, y la interfaz lo dice.
   - FC en reposo: mediana de los últimos 30 días en Salud o, si no hay, la de las zonas.
   - FC máxima: la de las zonas de cada deporte (la de bici si hay zonas propias) o la más alta registrada. Nunca se estima por la edad.
   - Un entrenamiento sin FC media no suma, y se dice cuántos quedan fuera.
 - **Carga por potencia (bici)**: TSS de Coggan con el FTP (ver la sección de CYKEL). Solo salidas con medidor; el resto no suma en esa vista.
-- **Forma física, fatiga y frescura**: modelo de impulso-respuesta de Calvert TW, Banister EW, Savage MV, Bach T. *IEEE Trans Syst Man Cybern.* 1976;SMC-6(2):94–102, doi:10.1109/TSMC.1976.5409179. Se aplica como en el *Performance Management Chart* de Coggan (Allen y Coggan, 2019):
-  - forma (CTL) y fatiga (ATL): valor = ayer + (carga de hoy − ayer) / 42 o / 7;
+- **Forma física, fatiga y frescura**: como en el *Performance Management Chart* de Coggan (TrainingPeaks, https://www.trainingpeaks.com/learn/articles/the-science-of-the-performance-manager/):
+  - forma (CTL) y fatiga (ATL): valor = ayer + (carga de hoy − ayer) / 42 o / 7. Es la forma 1/T que documenta TrainingPeaks, no 1 − e^(−1/T);
   - frescura (TSB) = forma − fatiga del día anterior.
+  - Son medias normalizadas: en estado estable valen la carga diaria. El modelo de impulso-respuesta original suma impulsos y tiene otra escala, así que no se mezclan. Referencia: Calvert TW, Banister EW, Savage MV, Bach T. *IEEE Trans Syst Man Cybern.* 1976;SMC-6(2):94–102, doi:10.1109/TSMC.1976.5409179.
   - Las constantes de 42 y 7 días son una convención de software, no constantes ajustadas a cada persona.
   - Se empieza en 0 con el primer entrenamiento de los últimos 180 días. Con menos de 42 días de historia, la forma sale baja y la interfaz lo avisa.
 - **Comparación semanal**: los últimos 7 días frente a la media semanal de los 28 anteriores (solo con al menos 35 días de historia).
   - Por encima de 1,5 se recuerda que las subidas bruscas se asociaron con más lesiones en algunos estudios (Gabbett TJ, *Br J Sports Med* 2016, doi:10.1136/bjsports-2015-095788).
-  - También que el cociente agudo:crónico está discutido (Impellizzeri FM, et al. *Int J Sports Physiol Perform.* 2020;15(6):907–913, doi:10.1123/ijspp.2019-0864): es un aviso, no una regla.
+  - También que el cociente agudo:crónico está discutido. Impellizzeri FM, et al. *Int J Sports Physiol Perform.* 2020;15(6):907–913 (doi:10.1123/ijspp.2019-0864) concluyen que no hay evidencia para usarlo en la gestión de la carga ni para reducir lesiones: es un aviso, no una regla.

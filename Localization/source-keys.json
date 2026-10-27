@@ -187,7 +187,7 @@
  "Carga": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
  "Carga (TSS)": "Apps/HalsyniOS/Features/Cykel/RideDetailView.swift",
  "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia. Son tendencias para entrenar, no una medida médica.": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
- "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia (modelo de Banister, como en el gráfico de rendimiento de Coggan).": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
+ "Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia, como en el gráfico de rendimiento de Coggan.": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
  "Carga de entrenamiento": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
  "Carga de la última semana frente a la de las últimas 4. 100 entre 0,8 y 1,3 veces lo habitual; resta si subes de golpe. Peso bajo porque este cociente es discutido como predictor de lesiones.": "Apps/HalsyniOS/Features/Halsa/ScoreDetailView.swift",
  "Carga por semana, últimas 12 semanas": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",

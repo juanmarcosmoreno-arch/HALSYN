@@ -316,14 +316,14 @@ private struct TrainingLoadContent: View {
                 Text(inputsText(inputs))
             }
             Text(summary.metric == .power
-                 ? LocalizedStringKey("Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia (modelo de Banister, como en el gráfico de rendimiento de Coggan).")
+                 ? LocalizedStringKey("Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia, como en el gráfico de rendimiento de Coggan.")
                  : LocalizedStringKey("Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia. Son tendencias para entrenar, no una medida médica."))
             if let ratio = summary.ratio, ratio >= 1.5 {
                 Text("Subir mucho la carga de una semana a otra se asoció con más lesiones en algunos estudios, aunque ese cociente está discutido: tómalo como aviso, no como regla.")
             }
             ReferenceLinks(references: summary.metric == .power
-                           ? [ScienceReferences.powerMeterTraining, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls]
-                           : [ScienceReferences.banisterTRIMP, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls])
+                           ? [ScienceReferences.powerMeterTraining, ScienceReferences.performanceManager, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls]
+                           : [ScienceReferences.banisterTRIMP, ScienceReferences.trimpValidation, ScienceReferences.performanceManager, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls])
         }
         .font(.caption2)
         .foregroundStyle(.halsynSecondaryText)

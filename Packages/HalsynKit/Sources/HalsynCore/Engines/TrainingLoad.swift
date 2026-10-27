@@ -33,14 +33,15 @@ public struct WorkoutLoad: Hashable, Sendable {
     }
 }
 
-/// TRIMP de Banister con la FC media de la sesión:
-/// minutos × x × a·e^(b·x), con x = (FC media − FC reposo) / (FC máx − FC reposo).
-/// a, b = 0,64 y 1,92 en hombres; 0,86 y 1,67 en mujeres. Sin sexo conocido se
-/// usa la media de las dos curvas (y la interfaz lo dice).
+/// TRIMP de Banister con la FC media de la sesión (Banister, Morton y
+/// Fitz-Clarke 1992, apéndice, ec. 1):
+/// minutos × x × e^(b·x), con x = (FC media − FC reposo) / (FC máx − FC reposo);
+/// b = 1,92 en hombres y 1,67 en mujeres. Sin sexo conocido se usa la media de
+/// las dos curvas (y la interfaz lo dice).
 public enum BanisterTRIMP {
     public static func weight(_ ratio: Double, sex: ReferenceSex?) -> Double {
-        let male = 0.64 * exp(1.92 * ratio)
-        let female = 0.86 * exp(1.67 * ratio)
+        let male = exp(1.92 * ratio)
+        let female = exp(1.67 * ratio)
         switch sex {
         case .male: return male
         case .female: return female
@@ -96,8 +97,9 @@ public enum TrainingLoadCalculator {
     }
 }
 
-/// Forma física, fatiga y frescura de un día (modelo de impulso-respuesta de
-/// Banister tal como lo usa el Performance Management Chart de Coggan).
+/// Forma física, fatiga y frescura de un día, como en el Performance Management
+/// Chart de Coggan (medias exponenciales normalizadas, inspiradas en el modelo
+/// de impulso-respuesta de Banister): en estado estable valen la carga diaria.
 public struct FitnessFatiguePoint: Hashable, Identifiable, Sendable {
     public let day: Date
     /// Carga del día.

@@ -87,8 +87,16 @@ public enum ScienceReferences {
 
     // Carga de entrenamiento
     public static let banisterTRIMP = ScienceReference(
-        citation: "Morton RH, Fitz-Clarke JR, Banister EW. Modeling human performance in running. J Appl Physiol. 1990;69(3):1171–1177.",
-        url: "https://doi.org/10.1152/jappl.1990.69.3.1171"
+        citation: "Banister EW, Morton RH, Fitz-Clarke J. Dose/response effects of exercise modeled from training: physical and biochemical measures. Ann Physiol Anthropol. 1992;11(3):345–356.",
+        url: "https://doi.org/10.2114/ahs1983.11.345"
+    )
+    public static let trimpValidation = ScienceReference(
+        citation: "Wallace LK, Slattery KM, Coutts AJ. A comparison of methods for quantifying training load: relationships between modelled and actual training responses. Eur J Appl Physiol. 2014;114(1):11–20.",
+        url: "https://doi.org/10.1007/s00421-013-2745-1"
+    )
+    public static let performanceManager = ScienceReference(
+        citation: "Coggan AR. The science of the Performance Manager. TrainingPeaks.",
+        url: "https://www.trainingpeaks.com/learn/articles/the-science-of-the-performance-manager/"
     )
     public static let fitnessFatigueModel = ScienceReference(
         citation: "Calvert TW, Banister EW, Savage MV, Bach T. A systems model of the effects of training on physical performance. IEEE Trans Syst Man Cybern. 1976;SMC-6(2):94–102.",
