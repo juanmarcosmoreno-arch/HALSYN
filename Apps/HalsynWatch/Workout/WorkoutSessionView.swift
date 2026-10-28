@@ -197,7 +197,25 @@ private struct PauseButton: View {
     }
 }
 
-/// En pausa: reanudar (también con doble toque) o terminar.
+/// En pausa: distancia y ritmo medio (velocidad media en bici) hasta ahora.
+private struct PausedSummary: View {
+    @Environment(WorkoutManager.self) private var workout
+
+    var body: some View {
+        let snapshot = workout.snapshot(at: .now)
+        HStack(spacing: 4) {
+            HalsynWorkoutField(label: "DISTANCIA", value: HalsynFormat.distance(meters: snapshot.distance, unit: unitSystem), unit: unitSystem.distanceUnitSymbol, size: .small, alignment: .center)
+            if workout.isCycling {
+                HalsynWorkoutField(label: "VEL. MEDIA", value: Speed(pace: snapshot.averagePace)?.formatted(in: unitSystem), unit: unitSystem.speedUnitSymbol, size: .small, alignment: .center)
+            } else {
+                HalsynWorkoutField(label: "RITMO MEDIO", value: snapshot.averagePace?.formatted(in: unitSystem), unit: unitSystem.paceUnitSymbol, size: .small, alignment: .center)
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// En pausa: distancia y ritmo medio, y reanudar (también con doble toque) o terminar.
 private struct PausedPanel: View {
     @Environment(WorkoutManager.self) private var workout
     @State private var confirmingEnd = false
@@ -205,6 +223,7 @@ private struct PausedPanel: View {
     var body: some View {
         VStack(spacing: 8) {
             PausedLabel()
+            PausedSummary()
             Button {
                 workout.togglePause()
             } label: {
@@ -468,6 +487,9 @@ private struct WorkoutControlsView: View {
 
     var body: some View {
         VStack(spacing: 10) {
+            if workout.phase == .paused {
+                PausedSummary()
+            }
             HStack(spacing: 10) {
                 controlButton(
                     workout.phase == .paused ? "Reanudar" : "Pausa",

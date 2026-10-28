@@ -867,7 +867,7 @@
  "RECUPERAR": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/Intervals.swift",
  "REM": "Packages/HalsynKit/Sources/HalsynCore/Models/Sleep.swift",
  "RITMO": "Apps/HalsynWatch/Workout/WorkoutSessionView.swift",
- "RITMO MEDIO": "Packages/HalsynKit/Sources/HalsynCore/Models/WorkoutScreenProfile.swift",
+ "RITMO MEDIO": "Apps/HalsynWatch/Workout/WorkoutSessionView.swift",
  "RITMO OBJETIVO": "Packages/HalsynKit/Sources/HalsynCore/Models/WorkoutScreenProfile.swift",
  "RITMO VUELTA": "Packages/HalsynKit/Sources/HalsynCore/Models/WorkoutScreenProfile.swift",
  "Racha de %lld": "Apps/HalsyniOS/Features/Mal/MalView.swift",
