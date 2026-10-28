@@ -23,6 +23,8 @@ public struct RunSettings: Hashable, Codable, Sendable {
 
     /// Dónde suena la voz. Opcional para ajustes guardados antes.
     public var voiceOutput: VoiceOutput?
+    /// Qué avisos de voz se dicen (`cues`). Opcional para ajustes guardados antes.
+    public var voiceCues: VoiceCueSettings?
 
     /// CYKEL: vuelta automática en bici, en unidades de distancia (km o mi, las
     /// que estén elegidas). `nil` = la predeterminada (5); 0 = sin vueltas automáticas.

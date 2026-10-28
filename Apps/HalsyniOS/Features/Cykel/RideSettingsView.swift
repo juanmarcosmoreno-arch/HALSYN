@@ -62,8 +62,11 @@ struct RideSettingsView: View {
             }
 
             Section {
-                Text("Los avisos de voz y dónde suenan son los mismos que en SPRING.")
-                    .font(.halsynCaption)
+                NavigationLink {
+                    VoiceCuesView()
+                } label: {
+                    Label("Qué dice la voz", systemImage: "text.bubble")
+                }
                 NavigationLink {
                     RunSettingsView()
                 } label: {
@@ -71,6 +74,8 @@ struct RideSettingsView: View {
                 }
             } header: {
                 Text("Voz")
+            } footer: {
+                Text("Los avisos de voz (si se oyen, dónde suenan y qué dicen) son los mismos que en SPRING.")
             }
 
             Section {

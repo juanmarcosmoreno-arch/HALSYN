@@ -9,6 +9,9 @@ struct WatchCykelView: View {
 
     var body: some View {
         List {
+            LocationPermissionHint()
+                .listRowBackground(Color.clear)
+
             Button {
                 Task { await workout.startRide(indoor: false) }
             } label: {
@@ -29,6 +32,8 @@ struct WatchCykelView: View {
             }
         }
         .navigationTitle(Text(verbatim: HalsynModule.cykel.brandName))
+        // Se pide aquí (si falta) y no durante la cuenta atrás.
+        .onAppear { workout.requestLocationIfNeeded() }
     }
 }
 

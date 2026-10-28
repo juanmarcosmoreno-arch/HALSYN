@@ -134,20 +134,37 @@ struct RunSettingsView: View {
                 } label: {
                     Label("Dónde suena", systemImage: "headphones")
                 }
+                NavigationLink {
+                    VoiceCuesView()
+                } label: {
+                    LabeledContent {
+                        Text(cuesSummary)
+                    } label: {
+                        Label("Qué dice", systemImage: "text.bubble")
+                    }
+                }
                 LabeledContent {
                     Text(verbatim: voiceDescription)
                 } label: {
                     Label("Voz", systemImage: "person.wave.2")
                 }
                 Button {
-                    CoachSpeaker.shared.say(String(localized: "Kilómetro 1. Así sonarán los avisos durante la carrera."))
+                    CoachSpeaker.shared.say(CoachPhrases.example(cues: settings.cues, unit: unitSystem))
                 } label: {
                     Label("Probar la voz", systemImage: "play.circle")
                 }
             }
         } footer: {
-            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz se dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.")
+            Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. En «Qué dice» eliges qué avisos se oyen: vueltas (y cada cuántas), ritmo, pulso, tiempo, series y alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.")
         }
+    }
+
+    /// "Cada km", "Cada 5 km" o "Solo series y alertas".
+    private var cuesSummary: LocalizedStringKey {
+        let cues = settings.cues
+        guard cues.laps else { return cues.intervals || cues.alerts ? "Sin vueltas" : "Nada" }
+        let count = cues.lapEvery
+        return count == 1 ? "Cada vuelta" : "Cada \(count) vueltas"
     }
 
     /// "Paulina · México" con la voz que usará el iPhone.

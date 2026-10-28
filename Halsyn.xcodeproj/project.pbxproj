@@ -25,6 +25,7 @@
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
 		29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */; };
 		2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */; };
+		30A0B3020C9F7F66E6D0F79D /* CoachPhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */; };
 		3488A1EE0D11D22C6A42F245 /* HalsynWatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7277067EA9904BD807B4EF30 /* HalsynWatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3530DF3A7BFC80590D57C81F /* HalsynWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77138D7BC2F85CADF76184DF /* HalsynWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		373B7B82FA296698A6F9D4E6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7611553809C5B7115788D3 /* SwiftUI.framework */; };
@@ -43,6 +44,7 @@
 		4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */; };
 		4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */; };
 		52AEB8C0146C419F0A048B2A /* ReferenceComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */; };
+		5A58EDCCA93137245162962D /* CoachPhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */; };
 		5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDDA395B13EEDF085E1836 /* HistoryView.swift */; };
 		5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
@@ -64,6 +66,7 @@
 		928C6AE5BBB2D8919251CD95 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */; };
 		92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
+		96EA43C7BCE036CD2E4E73AE /* LocationPermissionHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
 		9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C047BDEBFD597D75D57B03 /* BodyCard.swift */; };
@@ -72,6 +75,7 @@
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
 		A767F3B4D0ABF1D71E85AC51 /* HalsynWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B9279686B3614FAA157395 /* CardioHealthViews.swift */; };
+		AC5B2F8616E283E9E74B70E7 /* VoiceCuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE3E5F07FDF32921E2F028E /* VoiceCuesView.swift */; };
 		AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
 		B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C309410DCB678925A4740B86 /* TrainingPlanViews.swift */; };
 		BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */; };
@@ -195,6 +199,7 @@
 		3F17B6D6A0876C711FE13FDE /* InsiktView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsiktView.swift; sourceTree = "<group>"; };
 		449C9E6640D89A5E92944ADB /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCoach.swift; sourceTree = "<group>"; };
+		4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionHint.swift; sourceTree = "<group>"; };
 		4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsView.swift; sourceTree = "<group>"; };
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -250,9 +255,11 @@
 		DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsynWatchApp.swift; sourceTree = "<group>"; };
 		DCACFEAFCA40B1F932E49923 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStatsCard.swift; sourceTree = "<group>"; };
+		E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPhrases.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
 		EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerViews.swift; sourceTree = "<group>"; };
+		EFE3E5F07FDF32921E2F028E /* VoiceCuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCuesView.swift; sourceTree = "<group>"; };
 		F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSpringView.swift; sourceTree = "<group>"; };
 		FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HalsynWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,6 +379,7 @@
 				2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */,
 				6683A16BF5216CF3290D7F7A /* SpringView.swift */,
 				C309410DCB678925A4740B86 /* TrainingPlanViews.swift */,
+				EFE3E5F07FDF32921E2F028E /* VoiceCuesView.swift */,
 				8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */,
 			);
 			path = Spring;
@@ -542,6 +550,7 @@
 		9CF89FE06CDEFEC894CD7CDF /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */,
 				15D0AE604EA43676C25FB466 /* WatchCykelView.swift */,
 				7B7E2B3491782961A00596E7 /* WatchHomeView.swift */,
 				F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */,
@@ -573,6 +582,7 @@
 		CF0C825ECFA355DF5EFABAE3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */,
 				8C7EB0050B5243C3667893CE /* CoachSpeech.swift */,
 				BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */,
 			);
@@ -900,8 +910,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A58EDCCA93137245162962D /* CoachPhrases.swift in Sources */,
 				15879167671C319CA4CF2ECC /* CoachSpeech.swift in Sources */,
 				A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */,
+				96EA43C7BCE036CD2E4E73AE /* LocationPermissionHint.swift in Sources */,
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
 				2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */,
 				4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */,
@@ -921,6 +933,7 @@
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
 				9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */,
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
+				30A0B3020C9F7F66E6D0F79D /* CoachPhrases.swift in Sources */,
 				92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */,
 				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
 				0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */,
@@ -963,6 +976,7 @@
 				840224E9A346CC33C8289CBF /* TrainingLoadViews.swift in Sources */,
 				B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */,
 				9567A32313BE792ACA298B1F /* VilaView.swift in Sources */,
+				AC5B2F8616E283E9E74B70E7 /* VoiceCuesView.swift in Sources */,
 				D71774A07F32F0DA9402B900 /* WeeklySummaryCard.swift in Sources */,
 				E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */,
 				CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */,
@@ -1094,7 +1108,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1279,7 +1293,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

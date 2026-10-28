@@ -47,6 +47,8 @@ final class WorkoutManager: NSObject {
     private(set) var banner: Banner?
     /// Cuenta atrás antes de empezar (3, 2, 1); `nil` fuera de ella.
     private(set) var countdown: Int?
+    /// Permiso de ubicación (para avisar en SPRING y CYKEL si falta o es "una vez").
+    private(set) var locationAuthorization: CLAuthorizationStatus = .notDetermined
 
     struct Banner: Equatable {
         let id = UUID()
@@ -77,6 +79,7 @@ final class WorkoutManager: NSObject {
         locationManager.activityType = .fitness
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
+        locationAuthorization = locationManager.authorizationStatus
     }
 
     func snapshot(at date: Date) -> RunSnapshot {
@@ -113,11 +116,25 @@ final class WorkoutManager: NSObject {
         try await healthStore.requestAuthorization(toShare: share, read: read)
     }
 
-    /// La ubicación se pide una sola vez; después se usa lo que se eligió.
-    private func requestLocationIfNeeded() {
-        if locationManager.authorizationStatus == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        }
+    /// La ubicación se pide solo si aún no hay respuesta. Si vuelve a estar sin
+    /// decidir después de haberla pedido, es que se eligió «Permitir una vez»
+    /// (watchOS la olvida al cerrar la app): SPRING y CYKEL lo explican.
+    func requestLocationIfNeeded() {
+        locationAuthorization = locationManager.authorizationStatus
+        guard locationAuthorization == .notDetermined else { return }
+        UserDefaults.standard.set(true, forKey: Self.locationAskedKey)
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    static let locationAskedKey = "halsyn.watch.locationAsked"
+
+    /// Ya se pidió antes y vuelve a estar sin decidir: se eligió «una vez».
+    var locationWasAllowedOnce: Bool {
+        locationAuthorization == .notDetermined && UserDefaults.standard.bool(forKey: Self.locationAskedKey)
+    }
+
+    var locationDenied: Bool {
+        locationAuthorization == .denied || locationAuthorization == .restricted
     }
 
     // MARK: Ciclo de vida
@@ -361,6 +378,7 @@ final class WorkoutManager: NSObject {
     /// Hápticos y aviso en pantalla para cada evento de la carrera.
     private func handleCues() {
         let unit = RunSettingsStore.shared.settings.unitSystem
+        let cues = RunSettingsStore.shared.settings.cues
         for cue in tracker.consumeCues() {
             let haptic: WKHapticType
             let title: String
@@ -370,17 +388,10 @@ final class WorkoutManager: NSObject {
             case let .autoLap(lap):
                 haptic = .notification
                 title = String(localized: "Vuelta \(lap.index)")
-                detail = lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
-                if isCycling {
-                    detail = Speed(pace: lap.pace).map { "\($0.formatted(in: unit)) \(unit.speedUnitSymbol)" }
-                    let covered = tracker.lapTracker.laps.prefix(lap.index).reduce(0) { $0 + $1.distance }
-                    spoken = VoiceCoach.rideLap(lap, cumulativeDistance: covered, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
-                } else if RunSettingsStore.shared.settings.autoLapDistance == unit.metersPerDistanceUnit {
-                    // Con vuelta automática por unidad se dice "Kilómetro n"; si no, "Vuelta n".
-                    spoken = VoiceCoach.lap(number: lap.index, pace: lap.pace, heartRate: tracker.snapshot(at: .now).heartRate, unit: unit)
-                } else {
-                    spoken = [title, lap.pace.map { String(localized: "Ritmo \(VoiceCoach.spoken($0, unit: unit))") }].compactMap { $0 }.joined(separator: ". ")
-                }
+                detail = isCycling
+                    ? Speed(pace: lap.pace).map { "\($0.formatted(in: unit)) \(unit.speedUnitSymbol)" }
+                    : lap.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" }
+                spoken = lapPhrase(lap, unit: unit)
             case let .intervalStep(progress):
                 switch progress.step.kind {
                 case .work: haptic = .start
@@ -389,7 +400,9 @@ final class WorkoutManager: NSObject {
                 }
                 title = Bundle.main.localizedString(forKey: progress.step.kind.title, value: nil, table: nil)
                 detail = progress.step.repetition.map { "\($0)/\(plan?.repeats ?? $0)" }
-                if progress.step.kind == .work, let repetition = progress.step.repetition {
+                if !cues.intervals {
+                    spoken = nil
+                } else if progress.step.kind == .work, let repetition = progress.step.repetition {
                     let total = plan?.repeats ?? repetition
                     spoken = String(localized: "Serie \(repetition) de \(total). ¡Vamos!")
                 } else {
@@ -398,7 +411,7 @@ final class WorkoutManager: NSObject {
             case .intervalsCompleted:
                 haptic = .success
                 title = String(localized: "Intervalos completados")
-                spoken = title
+                spoken = cues.intervals ? title : nil
             case let .alert(alert):
                 switch alert {
                 case .paceTooFast, .heartRateAboveZone: haptic = .directionDown
@@ -406,12 +419,33 @@ final class WorkoutManager: NSObject {
                 case .paceBackInRange, .heartRateBackInZone: haptic = .click
                 }
                 title = Bundle.main.localizedString(forKey: alert.title, value: nil, table: nil)
-                spoken = title
+                spoken = cues.alerts ? title : nil
             }
             WKInterfaceDevice.current().play(haptic)
             if let spoken { VoiceCoach.shared.say(spoken) }
             banner = Banner(title: title, detail: detail, date: .now)
         }
+    }
+
+    /// Lo que dice la voz en una vuelta automática, según lo elegido en Ajustes
+    /// (`nil` si esta vuelta no toca o los avisos de vueltas están apagados).
+    private func lapPhrase(_ lap: Lap, unit: UnitSystem) -> String? {
+        let cues = RunSettingsStore.shared.settings.cues
+        let laps = tracker.lapTracker.laps.prefix(lap.index)
+        // Solo cuentan las automáticas: una vuelta manual no corre la cuenta.
+        let ordinal = laps.filter { $0.trigger == .automatic }.count
+        guard cues.speaksLap(ordinal) else { return nil }
+        // Distancia real al cerrar la vuelta (con las manuales incluidas).
+        let covered = laps.reduce(0) { $0 + $1.distance }
+        let lapUnits = Int((lap.distance / unit.metersPerDistanceUnit).rounded())
+        let wholeUnits = lapUnits > 0 && abs(lap.distance - Double(lapUnits) * unit.metersPerDistanceUnit) < 1
+        let number = wholeUnits ? Int((covered / unit.metersPerDistanceUnit).rounded()) : nil
+        let title = CoachPhrases.lapTitle(unitNumber: number, lapNumber: ordinal, unit: unit)
+        let snapshot = tracker.snapshot(at: .now)
+        if isCycling {
+            return CoachPhrases.rideLap(title: title, lapSpeed: Speed(pace: lap.pace), lapUnits: wholeUnits ? lapUnits : 0, averageSpeed: Speed(pace: snapshot.averagePace), heartRate: snapshot.heartRate, elapsed: snapshot.elapsed, unit: unit, cues: cues)
+        }
+        return CoachPhrases.runLap(title: title, lapPace: lap.pace, averagePace: snapshot.averagePace, heartRate: snapshot.heartRate, elapsed: snapshot.elapsed, unit: unit, cues: cues)
     }
 
     fileprivate func collected(_ values: CollectedValues, at date: Date) {
@@ -542,4 +576,11 @@ extension WorkoutManager: CLLocationManagerDelegate {
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {}
+
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        Task { @MainActor in
+            self.locationAuthorization = status
+        }
+    }
 }

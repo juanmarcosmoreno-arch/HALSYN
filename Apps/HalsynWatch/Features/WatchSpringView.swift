@@ -10,6 +10,9 @@ struct WatchSpringView: View {
 
     var body: some View {
         List {
+            LocationPermissionHint()
+                .listRowBackground(Color.clear)
+
             Button {
                 Task { await workout.start(indoor: false) }
             } label: {
@@ -69,6 +72,8 @@ struct WatchSpringView: View {
             }
         }
         .navigationTitle(Text(verbatim: HalsynModule.spring.brandName))
+        // Se pide aquí (si falta) y no durante la cuenta atrás.
+        .onAppear { workout.requestLocationIfNeeded() }
     }
 }
 

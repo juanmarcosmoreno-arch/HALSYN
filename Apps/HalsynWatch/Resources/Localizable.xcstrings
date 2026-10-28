@@ -545,6 +545,23 @@
         }
       }
     },
+    "%lld horas %lld minutos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld hours %lld minutes"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld timmar %lld minuter"
+          }
+        }
+      }
+    },
     "%lld minutos %lld segundos": {
       "extractionState": "manual",
       "localizations": {
@@ -626,6 +643,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "1 år"
+          }
+        }
+      }
+    },
+    "1 hora %lld minutos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 hour %lld minutes"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 timme %lld minuter"
           }
         }
       }
@@ -1378,6 +1412,23 @@
         }
       }
     },
+    "Alertas de ritmo y zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace and zone alerts"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo- och zonvarningar"
+          }
+        }
+      }
+    },
     "Algo por debajo": {
       "extractionState": "manual",
       "localizations": {
@@ -1735,6 +1786,23 @@
         }
       }
     },
+    "Así sonará": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it will sound"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Så här låter det"
+          }
+        }
+      }
+    },
     "Atrás": {
       "extractionState": "manual",
       "localizations": {
@@ -1799,6 +1867,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Påminn vid"
+          }
+        }
+      }
+    },
+    "Avisar en las vueltas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Announce laps"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meddela varv"
           }
         }
       }
@@ -2602,6 +2687,23 @@
         }
       }
     },
+    "Cada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var"
+          }
+        }
+      }
+    },
     "Cada %lld km": {
       "extractionState": "manual",
       "localizations": {
@@ -2649,6 +2751,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Var %lld:e mile"
+          }
+        }
+      }
+    },
+    "Cada %lld vueltas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld laps"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var %lld:e varv"
           }
         }
       }
@@ -2734,6 +2853,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varje vecka"
+          }
+        }
+      }
+    },
+    "Cada vuelta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every lap"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje varv"
           }
         }
       }
@@ -3958,6 +4094,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med normal förbättring fram till loppet"
+          }
+        }
+      }
+    },
+    "Con la vuelta automática cada kilómetro, «Cada 5» habla en los kilómetros 5, 10, 15… En bici, el ritmo se dice como velocidad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With the auto lap every kilometer, “Every 5” speaks at kilometers 5, 10, 15… On the bike, pace is announced as speed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med automatiskt varv varje kilometer pratar ”Var 5:e” vid kilometer 5, 10, 15 … På cykeln sägs tempot som hastighet."
           }
         }
       }
@@ -5917,19 +6070,19 @@
         }
       }
     },
-    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. Con los avisos de voz se dice cada vuelta con su ritmo y su pulso, cada serie y recuperación y las alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.": {
+    "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. En «Qué dice» eliges qué avisos se oyen: vueltas (y cada cuántas), ritmo, pulso, tiempo, series y alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The watch's Lap button marks manual laps at any time. With voice prompts, each lap is announced with its pace and heart rate, along with every interval, recovery and alert. On the iPhone they play through the headphones connected to the phone and briefly lower the music; if the iPhone isn't nearby, the watch speaks. For a more natural voice, download an enhanced voice in Settings › Accessibility › Spoken Content › Voices."
+            "value": "The watch's Lap button marks manual laps at any time. In “What it says” you choose which cues you hear: laps (and how often), pace, heart rate, time, intervals and alerts. On the iPhone they play through the headphones connected to the phone and lower the music for a moment; if the iPhone isn't nearby, the watch speaks. For a more natural voice, download an enhanced voice in Settings › Accessibility › Spoken Content › Voices."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klockans Varv-knapp markerar manuella varv när som helst. Med röstmeddelanden läses varje varv upp med tempo och puls, liksom varje intervall, återhämtning och varning. På iPhone hörs de i hörlurarna som är anslutna till telefonen och sänker musiken en stund; om iPhone inte finns i närheten pratar klockan. För en mer naturlig röst kan du hämta en förbättrad röst i Inställningar › Hjälpmedel › Uppläst innehåll › Röster."
+            "value": "Klockans Varv-knapp markerar manuella varv när som helst. Under ”Vad den säger” väljer du vilka meddelanden som hörs: varv (och hur ofta), tempo, puls, tid, intervaller och varningar. På iPhone hörs de i hörlurarna som är anslutna till telefonen och sänker musiken en stund; om iPhone inte är i närheten pratar klockan. För en mer naturlig röst kan du hämta en förbättrad röst under Inställningar › Hjälpmedel › Uppläst innehåll › Röster."
           }
         }
       }
@@ -6478,6 +6631,23 @@
         }
       }
     },
+    "En las vueltas automáticas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On auto laps"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid automatiska varv"
+          }
+        }
+      }
+    },
     "En pausa": {
       "extractionState": "manual",
       "localizations": {
@@ -6899,6 +7069,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ange min FTP"
+          }
+        }
+      }
+    },
+    "Escuchar el ejemplo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play the example"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lyssna på exemplet"
           }
         }
       }
@@ -9402,23 +9589,6 @@
         }
       }
     },
-    "Kilómetro 1. Así sonarán los avisos durante la carrera.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilometre 1. This is how the prompts will sound during your run."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilometer 1. Så här kommer meddelandena att låta under löpningen."
-          }
-        }
-      }
-    },
     "Kilómetros": {
       "extractionState": "manual",
       "localizations": {
@@ -9776,6 +9946,23 @@
         }
       }
     },
+    "Las vibraciones del reloj siguen igual aunque apagues un aviso de voz.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The watch's vibrations stay the same even if you turn off a voice cue."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klockans vibrationer är desamma även om du stänger av ett röstmeddelande."
+          }
+        }
+      }
+    },
     "Latidos por minuto medidos por el sensor óptico del Apple Watch a lo largo del día.": {
       "extractionState": "manual",
       "localizations": {
@@ -10099,19 +10286,19 @@
         }
       }
     },
-    "Los avisos de voz y dónde suenan son los mismos que en SPRING.": {
+    "Los avisos de voz (si se oyen, dónde suenan y qué dicen) son los mismos que en SPRING.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voice cues and where they play are the same as in SPRING."
+            "value": "Voice cues (whether you hear them, where they play and what they say) are the same as in SPRING."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Röstmeddelanden och var de hörs är desamma som i SPRING."
+            "value": "Röstmeddelandena (om de hörs, var de hörs och vad de säger) är desamma som i SPRING."
           }
         }
       }
@@ -11680,6 +11867,23 @@
         }
       }
     },
+    "Nada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget"
+          }
+        }
+      }
+    },
     "Nada de esto hoy": {
       "extractionState": "manual",
       "localizations": {
@@ -12832,6 +13036,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "För att mäta effekt behöver du en Bluetooth-effektmätare parkopplad med Apple Watch (Inställningar › Bluetooth på klockan). Om du vet din FTP kan du ange den för att se dina zoner."
+          }
+        }
+      }
+    },
+    "Para que no vuelva a preguntar en cada carrera, elige «Permitir al usar la app» y no «Permitir una vez». También en el reloj: Ajustes › Privacidad y seguridad › Localización › HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So it doesn't ask again on every run, choose “Allow While Using App”, not “Allow Once”. Also on the watch: Settings › Privacy & Security › Location Services › HÅLSYN."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att den inte ska fråga vid varje löprunda, välj ”Tillåt när appen används” och inte ”Tillåt en gång”. Det går också på klockan: Inställningar › Integritet och säkerhet › Platstjänster › HÅLSYN."
           }
         }
       }
@@ -14298,6 +14519,40 @@
         }
       }
     },
+    "Qué dice": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What it says"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad den säger"
+          }
+        }
+      }
+    },
+    "Qué dice la voz": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What the voice says"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad rösten säger"
+          }
+        }
+      }
+    },
     "Qué es y cómo se calcula": {
       "extractionState": "manual",
       "localizations": {
@@ -15233,6 +15488,23 @@
         }
       }
     },
+    "Ritmo de la vuelta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lap pace"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varvets tempo"
+          }
+        }
+      }
+    },
     "Ritmo de vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -15297,6 +15569,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Snittempo"
+          }
+        }
+      }
+    },
+    "Ritmo medio %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average pace %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medeltempo %@"
           }
         }
       }
@@ -16083,6 +16372,23 @@
         }
       }
     },
+    "Series y recuperaciones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals and recoveries"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller och vila"
+          }
+        }
+      }
+    },
     "Sexo (tablas de referencia)": {
       "extractionState": "manual",
       "localizations": {
@@ -16198,6 +16504,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utan"
+          }
+        }
+      }
+    },
+    "Sin avisos de vueltas: solo series y alertas, si están activadas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No lap cues: only intervals and alerts, if they're on."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga varvmeddelanden: bara intervaller och varningar, om de är på."
           }
         }
       }
@@ -16593,6 +16916,23 @@
         }
       }
     },
+    "Sin permiso de ubicación, las carreras y salidas al aire libre no tienen ruta ni distancia por GPS. Actívalo en el reloj: Ajustes › Privacidad y seguridad › Localización › HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without location permission, outdoor runs and rides have no route or GPS distance. Turn it on on the watch: Settings › Privacy & Security › Location Services › HÅLSYN."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utan platsbehörighet får löprundor och cykelturer utomhus ingen rutt eller GPS-distans. Slå på det på klockan: Inställningar › Integritet och säkerhet › Platstjänster › HÅLSYN."
+          }
+        }
+      }
+    },
     "Sin publicidad ni venta de datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -16691,6 +17031,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inget tidsmål: planen förbereder dig för distansen med din nuvarande form."
+          }
+        }
+      }
+    },
+    "Sin vueltas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No laps"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga varv"
           }
         }
       }
@@ -17698,6 +18055,23 @@
         }
       }
     },
+    "Tiempo %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid %@"
+          }
+        }
+      }
+    },
     "Tiempo de ejercicio": {
       "extractionState": "manual",
       "localizations": {
@@ -17813,6 +18187,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tid i effektzoner"
+          }
+        }
+      }
+    },
+    "Tiempo total": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total tid"
           }
         }
       }
@@ -19530,6 +19921,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Medelhastighet"
+          }
+        }
+      }
+    },
+    "Velocidad media %@ kilómetros por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average speed %@ kilometers per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelhastighet %@ kilometer i timmen"
+          }
+        }
+      }
+    },
+    "Velocidad media %@ millas por hora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average speed %@ miles per hour"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelhastighet %@ miles i timmen"
           }
         }
       }
