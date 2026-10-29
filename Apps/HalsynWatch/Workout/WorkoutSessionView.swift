@@ -809,6 +809,11 @@ private struct WorkoutSummaryView: View {
             Label("Guardada en Apple Health", systemImage: "checkmark.circle.fill")
                 .font(.footnote)
                 .foregroundStyle(Color(HalsynPalette.darkAccent))
+            if workout.recoverySkipped {
+                Text("No había pulso en los últimos segundos: no se midió la recuperación.")
+                    .font(.caption2)
+                    .foregroundStyle(Color(HalsynPalette.cautionDark))
+            }
         case .discarded:
             Label(workout.isCycling ? LocalizedStringKey("Salida descartada") : LocalizedStringKey("Carrera descartada"), systemImage: "trash")
                 .font(.footnote)

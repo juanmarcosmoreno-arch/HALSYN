@@ -31,6 +31,10 @@ final class ScaleScanner: NSObject {
     @ObservationIgnored private var central: CBCentralManager?
     @ObservationIgnored private var lastPayload: Data?
     @ObservationIgnored private var stabilizedAt: Date?
+    /// Se vio a alguien encima de la balanza en esta búsqueda. Hasta entonces se
+    /// ignora la última lectura que la balanza sigue anunciando tras bajarse
+    /// (sería la pesada anterior, quizá de otra persona).
+    @ObservationIgnored private var sawLoad = false
     @ObservationIgnored private var waitTask: Task<Void, Never>?
 
     static let services = [CBUUID(string: XiaomiScaleParser.bodyCompositionServiceUUID), CBUUID(string: XiaomiScaleParser.weightServiceUUID)]
@@ -41,6 +45,7 @@ final class ScaleScanner: NSObject {
         reading = nil
         lastPayload = nil
         stabilizedAt = nil
+        sawLoad = false
         searchStarted = .now
         if let central {
             begin(central)
@@ -82,6 +87,14 @@ final class ScaleScanner: NSObject {
         for (uuid, data) in serviceData {
             guard data != lastPayload,
                   let parsed = XiaomiScaleParser.parse(serviceUUID: uuid.uuidString, data: [UInt8](data)) else { continue }
+            if parsed.isLoadRemoved {
+                guard sawLoad else {
+                    lastPayload = data
+                    continue
+                }
+            } else {
+                sawLoad = true
+            }
             lastPayload = data
             reading = parsed
             if !parsed.isStabilized {
@@ -128,13 +141,26 @@ extension ScaleScanner: CBCentralManagerDelegate {
 /// Guarda el peso (y, si se elige, la grasa estimada) en Apple Health.
 @MainActor
 enum ScaleHealthWriter {
-    static func save(weightKilograms: Double, bodyFatPercent: Double?, model: XiaomiScaleReading.Model) async throws {
+    enum WriteError: LocalizedError {
+        case weightNotAllowed
+
+        var errorDescription: String? {
+            String(localized: "HÅLSYN no tiene permiso para guardar el peso. Actívalo en Salud › Compartir › Apps › HÅLSYN › Peso.")
+        }
+    }
+
+    /// Guarda el peso; la grasa solo si hay permiso para ella. Devuelve si la grasa se guardó.
+    @discardableResult
+    static func save(weightKilograms: Double, bodyFatPercent: Double?, model: XiaomiScaleReading.Model) async throws -> Bool {
         let store = HKHealthStore()
         let types: Set<HKSampleType> = bodyFatPercent == nil
             ? [HKQuantityType(.bodyMass)]
             : [HKQuantityType(.bodyMass), HKQuantityType(.bodyFatPercentage)]
         if types.contains(where: { store.authorizationStatus(for: $0) == .notDetermined }) {
             try await store.requestAuthorization(toShare: types, read: [])
+        }
+        guard store.authorizationStatus(for: HKQuantityType(.bodyMass)) == .sharingAuthorized else {
+            throw WriteError.weightNotAllowed
         }
         let now = Date()
         let device = HKDevice(
@@ -143,13 +169,13 @@ enum ScaleHealthWriter {
             model: nil, hardwareVersion: nil, firmwareVersion: nil, softwareVersion: nil,
             localIdentifier: nil, udiDeviceIdentifier: nil
         )
-        var samples: [HKObject] = [
-            HKQuantitySample(type: HKQuantityType(.bodyMass), quantity: HKQuantity(unit: .gramUnit(with: .kilo), doubleValue: weightKilograms), start: now, end: now, device: device, metadata: nil),
-        ]
-        if let bodyFatPercent {
-            samples.append(HKQuantitySample(type: HKQuantityType(.bodyFatPercentage), quantity: HKQuantity(unit: .percent(), doubleValue: bodyFatPercent / 100), start: now, end: now, device: device, metadata: nil))
+        // Por separado: si la grasa no tiene permiso, el peso se guarda igual.
+        try await store.save(HKQuantitySample(type: HKQuantityType(.bodyMass), quantity: HKQuantity(unit: .gramUnit(with: .kilo), doubleValue: weightKilograms), start: now, end: now, device: device, metadata: nil))
+        guard let bodyFatPercent, store.authorizationStatus(for: HKQuantityType(.bodyFatPercentage)) == .sharingAuthorized else {
+            return false
         }
-        try await store.save(samples)
+        try await store.save(HKQuantitySample(type: HKQuantityType(.bodyFatPercentage), quantity: HKQuantity(unit: .percent(), doubleValue: bodyFatPercent / 100), start: now, end: now, device: nil, metadata: nil))
+        return true
     }
 }
 
@@ -162,6 +188,8 @@ struct ScaleWeighInView: View {
     @State private var saveFat = false
     @State private var saving = false
     @State private var saved = false
+    /// Se pidió guardar la grasa y no había permiso para ella.
+    @State private var fatSkipped = false
     @State private var errorMessage: String?
     private var profile: ReferenceProfileStore { .shared }
 
@@ -269,7 +297,7 @@ struct ScaleWeighInView: View {
             }
         }
         if saved {
-            HalsynStatusIndicator(.positive, text: "Guardado en Apple Health.")
+            HalsynStatusIndicator(.positive, text: fatSkipped ? String(localized: "Peso guardado en Apple Health. La grasa no: falta el permiso en Salud.") : String(localized: "Guardado en Apple Health."))
             HalsynPrimaryButton("Listo") { dismiss() }
         } else {
             if let errorMessage {
@@ -286,6 +314,7 @@ struct ScaleWeighInView: View {
             }
             Button("Volver a pesar") {
                 saved = false
+                errorMessage = nil
                 scanner.start()
             }
             .font(.halsynCaption)
@@ -310,9 +339,12 @@ struct ScaleWeighInView: View {
         saving = true
         errorMessage = nil
         do {
-            try await ScaleHealthWriter.save(weightKilograms: (reading.weightKilograms * 100).rounded() / 100, bodyFatPercent: fat.map { ($0.percent * 10).rounded() / 10 }, model: reading.model)
+            let fatSaved = try await ScaleHealthWriter.save(weightKilograms: (reading.weightKilograms * 100).rounded() / 100, bodyFatPercent: fat.map { $0.percent.rounded() }, model: reading.model)
+            fatSkipped = fat != nil && !fatSaved
             saved = true
             model.refresh()
+        } catch let error as ScaleHealthWriter.WriteError {
+            errorMessage = error.errorDescription
         } catch {
             errorMessage = String(localized: "No se pudo guardar en Salud: \(error.localizedDescription)")
         }

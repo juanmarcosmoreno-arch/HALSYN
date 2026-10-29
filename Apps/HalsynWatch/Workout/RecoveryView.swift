@@ -50,10 +50,10 @@ private struct MeasuringRecoveryView: View {
                         .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                 }
                 if let drop {
-                    Text(verbatim: "−\(HalsynFormat.integer(max(0, drop))) · \(HalsynFormat.integer(meter.endHeartRate))")
+                    Text(verbatim: "\(HalsynFormat.drop(drop)) · \(HalsynFormat.integer(meter.endHeartRate))")
                         .font(.footnote.monospacedDigit())
                         .foregroundStyle(Color(HalsynPalette.positiveDark))
-                        .accessibilityLabel(Text("Bajó \(HalsynFormat.integer(max(0, drop))) desde \(HalsynFormat.integer(meter.endHeartRate))"))
+                        .accessibilityLabel(Text("Cambio \(HalsynFormat.drop(drop)) desde \(HalsynFormat.integer(meter.endHeartRate))"))
                 }
                 RecoveryChart(samples: meter.samples, duration: meter.duration)
                     .frame(height: 50)
@@ -92,9 +92,15 @@ private struct RecoveryResultView: View {
                 RecoveryChart(samples: result.samples, duration: meter.duration)
                     .frame(height: 60)
                 if result.oneMinute == nil {
-                    Text("Se paró antes del minuto: no hay valor para guardar.")
-                        .font(.caption2)
-                        .foregroundStyle(Color(HalsynPalette.cautionDark))
+                    Group {
+                        if meter.measuredSeconds < 60 {
+                            Text("Se paró antes del minuto: no hay valor para guardar.")
+                        } else {
+                            Text("No hubo lecturas del pulso cerca del minuto (¿la correa estaba floja?): no hay valor para guardar.")
+                        }
+                    }
+                    .font(.caption2)
+                    .foregroundStyle(Color(HalsynPalette.cautionDark))
                 }
                 saveButtons
                 Text("Para comparar, recupera siempre igual (por ejemplo, caminando despacio).")
@@ -147,7 +153,7 @@ private struct RecoveryResultView: View {
             Spacer()
             Group {
                 if let drop {
-                    Text("−\(HalsynFormat.integer(drop)) lpm")
+                    Text("\(HalsynFormat.drop(drop)) lpm")
                 } else {
                     Text(verbatim: "—")
                 }

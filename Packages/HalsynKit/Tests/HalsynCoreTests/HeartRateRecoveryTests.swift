@@ -52,8 +52,12 @@ struct HeartRateRecoveryTests {
         readings = readings.map { RecoveryReading(date: $0.date, oneMinute: $0.oneMinute, twoMinutes: nil, endHeartRate: 170, origin: .demo) }
         let trend = try #require(RecoveryTrend.make(readings))
         #expect(trend.isMeaningful)
-        // Diferencias dentro del ruido no cuentan como cambio.
+        // Diferencias dentro del ruido (unos 9 lpm con una media de 28) no cuentan como cambio.
         #expect(!RecoveryTrend(recentAverage: 31, previousAverage: 29, count: 5).isMeaningful)
+        #expect(!RecoveryTrend(recentAverage: 34, previousAverage: 28, count: 5).isMeaningful)
+        #expect(RecoveryTrend(recentAverage: 38, previousAverage: 28, count: 5).isMeaningful)
+        #expect(HalsynFormat.drop(28, locale: Locale(identifier: "es_ES")) == "−28")
+        #expect(HalsynFormat.drop(-3, locale: Locale(identifier: "es_ES")) == "+3")
     }
 
     @Test func resultsBecomeReadingsOnlyWithTheFirstMinute() {

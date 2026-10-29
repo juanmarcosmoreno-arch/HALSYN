@@ -58,9 +58,9 @@ struct HeartRateRecoveryCard: View {
     @ViewBuilder
     private func lastMeasurement(_ last: RecoveryReading) -> some View {
         HStack(alignment: .top) {
-            HalsynMetric(title: "1 min", value: "−\(HalsynFormat.integer(last.oneMinute))", unit: "lpm")
+            HalsynMetric(title: "1 min", value: HalsynFormat.drop(last.oneMinute), unit: "lpm")
             Spacer()
-            HalsynMetric(title: "2 min", value: last.twoMinutes.map { "−\(HalsynFormat.integer($0))" }, unit: "lpm")
+            HalsynMetric(title: "2 min", value: last.twoMinutes.map { HalsynFormat.drop($0) }, unit: "lpm")
             Spacer()
             HalsynMetric(title: "Al terminar", value: last.endHeartRate.map { HalsynFormat.integer($0) }, unit: "lpm", alignment: .trailing)
         }

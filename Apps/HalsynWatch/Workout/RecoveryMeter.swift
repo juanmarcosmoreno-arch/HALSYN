@@ -34,6 +34,8 @@ final class RecoveryMeter: NSObject {
     private(set) var exerciseEnd: Date = .now
     private(set) var duration: TimeInterval = 120
     private(set) var saveState: SaveState = .pending
+    /// Segundos que duró la medición (para explicar por qué falta un valor).
+    private(set) var measuredSeconds: TimeInterval = 0
 
     @ObservationIgnored private let healthStore: HKHealthStore
     @ObservationIgnored private var session: HKWorkoutSession?
@@ -53,13 +55,15 @@ final class RecoveryMeter: NSObject {
         max(0, date.timeIntervalSince(exerciseEnd))
     }
 
-    func start(endHeartRate: Double, exerciseEnd: Date, minutes: Int) async {
+    /// `initialSamples`: pulso que llegó entre el fin del ejercicio y este momento.
+    func start(endHeartRate: Double, exerciseEnd: Date, minutes: Int, initialSamples: [RecoverySample] = []) async {
         guard phase == nil else { return }
         self.endHeartRate = endHeartRate
         self.exerciseEnd = exerciseEnd
         duration = TimeInterval(max(1, minutes) * 60)
-        samples = [RecoverySample(elapsed: 0, bpm: endHeartRate)]
-        currentHeartRate = endHeartRate
+        samples = [RecoverySample(elapsed: 0, bpm: endHeartRate)] + initialSamples
+        currentHeartRate = initialSamples.last?.bpm ?? endHeartRate
+        measuredSeconds = 0
         saveState = .pending
         announcedMinute = false
         phase = .measuring
@@ -130,13 +134,10 @@ final class RecoveryMeter: NSObject {
     private func tick(at date: Date) {
         guard phase == .measuring else { return }
         let elapsed = elapsed(at: date)
-        if elapsed >= 60, !announcedMinute {
+        // Sin lecturas cerca del minuto: se avisa sin número (no se inventa).
+        if elapsed >= 60 + HeartRateRecovery.tolerance, !announcedMinute {
             announcedMinute = true
             WKInterfaceDevice.current().play(.notification)
-            if let bpm = HeartRateRecovery.heartRate(at: 60, in: samples) {
-                let count = Int((endHeartRate - bpm).rounded())
-                VoiceCoach.shared.say(String(localized: "Un minuto: el pulso bajó \(count) pulsaciones"))
-            }
         }
         if elapsed >= duration {
             Task { await finish() }
@@ -147,12 +148,23 @@ final class RecoveryMeter: NSObject {
         guard phase == .measuring, HeartRateRecovery.plausibleBPM.contains(bpm) else { return }
         currentHeartRate = bpm
         samples.append(RecoverySample(elapsed: elapsed(at: date), bpm: bpm))
+        // Al minuto se dice la bajada con la primera lectura pasado el minuto: es
+        // la misma que se usa después para el resultado, así coinciden.
+        if !announcedMinute, elapsed(at: date) >= 60 {
+            announcedMinute = true
+            WKInterfaceDevice.current().play(.notification)
+            if let bpm = HeartRateRecovery.heartRate(at: 60, in: samples) {
+                let count = Int((endHeartRate - bpm).rounded())
+                VoiceCoach.shared.say(String(localized: "Un minuto: el pulso bajó \(count) pulsaciones"))
+            }
+        }
     }
 
     private func finish() async {
         guard phase == .measuring else { return }
         ticker?.cancel()
         ticker = nil
+        measuredSeconds = elapsed(at: .now)
         let result = HeartRateRecovery.result(date: exerciseEnd, endHeartRate: endHeartRate, samples: samples)
         phase = .finished(result)
         WKInterfaceDevice.current().play(.success)

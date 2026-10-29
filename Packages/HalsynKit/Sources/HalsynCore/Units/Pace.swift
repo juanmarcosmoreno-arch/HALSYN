@@ -114,6 +114,11 @@ public enum HalsynFormat {
         value.formatted(.number.precision(.fractionLength(fractionDigits)).locale(locale))
     }
 
+    /// Bajada del pulso: "−28" si bajó, "+3" si subió.
+    public static func drop(_ value: Double, locale: Locale = .current) -> String {
+        value >= 0 ? "−" + integer(value, locale: locale) : "+" + integer(-value, locale: locale)
+    }
+
     /// Entero con separador de miles según la configuración regional.
     public static func integer(_ value: Double, locale: Locale = .current) -> String {
         Int(value.rounded()).formatted(.number.locale(locale))

@@ -120,11 +120,15 @@ public struct RecoveryTrend: Hashable, Sendable {
     /// Positivo = ahora baja más (recupera más rápido).
     public var change: Double { recentAverage - previousAverage }
 
-    /// Diferencia mínima para hablar de cambio: el error típico de la bajada al
-    /// minuto ronda el 25 por ciento (Buchheit 2014), así que se pide al menos
-    /// 3 lpm y un 10 por ciento.
+    /// Error típico de una medición de la bajada al minuto (≈25 por ciento, Buchheit 2014).
+    public static let typicalError: Double = 0.25
+
+    /// Diferencia mínima para hablar de cambio: dos veces el error de la
+    /// diferencia entre dos medias de `count` mediciones (25 por ciento cada una),
+    /// y al menos 3 lpm. Con una media de 28 lpm hacen falta unos 9 lpm.
     public var isMeaningful: Bool {
-        abs(change) >= max(3, previousAverage * 0.1)
+        let standardError = Self.typicalError * previousAverage * (2.0 / Double(max(count, 1))).squareRoot()
+        return abs(change) >= max(3, 2 * standardError)
     }
 
     /// Con `count` mediciones recientes y otras tantas anteriores; `nil` si no hay.

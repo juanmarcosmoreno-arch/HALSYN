@@ -71,6 +71,12 @@ final class WorkoutManager: NSObject {
     /// Lecturas de FC de los últimos segundos (para la FC al terminar).
     @ObservationIgnored private var recentHeartRates: [(date: Date, bpm: Double)] = []
     @ObservationIgnored private var measuresRecovery = false
+    /// Desde cuándo está en pausa (el ejercicio terminó ahí, no al tocar Terminar).
+    @ObservationIgnored private var pausedAt: Date?
+    /// Se pidió medir la recuperación pero no había pulso al terminar.
+    private(set) var recoverySkipped = false
+    /// Con más pausa que esto antes de terminar, la recuperación ya pasó: no se ofrece.
+    static let maximumPauseForRecovery: TimeInterval = 45
     @ObservationIgnored private var session: HKWorkoutSession?
     @ObservationIgnored private var builder: HKLiveWorkoutBuilder?
     @ObservationIgnored private var routeBuilder: HKWorkoutRouteBuilder?
@@ -281,9 +287,13 @@ final class WorkoutManager: NSObject {
         handleCues()
     }
 
-    /// Se ofrece medir la recuperación al terminar (ajuste del iPhone y con pulso).
+    /// Se ofrece medir la recuperación al terminar: ajuste del iPhone, pulso en los
+    /// últimos segundos de ejercicio y, si está en pausa, que la pausa sea corta.
     var offersRecovery: Bool {
-        RunSettingsStore.shared.settings.offersRecovery && !recentHeartRates.isEmpty
+        let stop = pausedAt ?? .now
+        guard RunSettingsStore.shared.settings.offersRecovery,
+              Date.now.timeIntervalSince(stop) <= Self.maximumPauseForRecovery else { return false }
+        return HeartRateRecovery.endHeartRate(recentHeartRates, end: stop) != nil
     }
 
     /// Termina la carrera. `save == false` la descarta sin escribir en Apple Health.
@@ -325,6 +335,8 @@ final class WorkoutManager: NSObject {
         finalSnapshot = nil
         shouldSave = true
         measuresRecovery = false
+        recoverySkipped = false
+        pausedAt = nil
         recentHeartRates = []
         session = nil
         builder = nil
@@ -348,10 +360,12 @@ final class WorkoutManager: NSObject {
                 tracker.handle(.began, at: date)
                 WKInterfaceDevice.current().play(.start)
             } else if tracker.phase == .paused {
+                pausedAt = nil
                 tracker.handle(.resume, at: date)
                 WKInterfaceDevice.current().play(.start)
             }
         case .paused:
+            pausedAt = date
             tracker.handle(.pause, at: date)
             WKInterfaceDevice.current().play(.stop)
         case .stopped:
@@ -385,9 +399,19 @@ final class WorkoutManager: NSObject {
                     _ = try await routeBuilder.finishRoute(with: workout, metadata: nil)
                 }
                 outcome = .saved
-                // La sesión de la carrera ya terminó: ahora la de recuperación.
-                if measuresRecovery, let endHeartRate = HeartRateRecovery.endHeartRate(recentHeartRates, end: date) {
-                    await recoveryMeter.start(endHeartRate: endHeartRate, exerciseEnd: date, minutes: RunSettingsStore.shared.settings.recoveryDuration)
+                // La sesión de la carrera ya terminó: ahora la de recuperación. El
+                // ejercicio terminó al pausar (si se pausó) o al terminar; el pulso
+                // que llegó después de ese momento ya es parte de la recuperación.
+                if measuresRecovery {
+                    let stop = pausedAt ?? date
+                    if let endHeartRate = HeartRateRecovery.endHeartRate(recentHeartRates, end: stop) {
+                        let after = recentHeartRates
+                            .filter { $0.date > stop }
+                            .map { RecoverySample(elapsed: $0.date.timeIntervalSince(stop), bpm: $0.bpm) }
+                        await recoveryMeter.start(endHeartRate: endHeartRate, exerciseEnd: stop, minutes: RunSettingsStore.shared.settings.recoveryDuration, initialSamples: after)
+                    } else {
+                        recoverySkipped = true
+                    }
                 }
             } else {
                 builder.discardWorkout()

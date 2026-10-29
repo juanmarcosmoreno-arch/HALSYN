@@ -2347,23 +2347,6 @@
         }
       }
     },
-    "Bajó %@ desde %@": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dropped %@ from %@"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sjönk %@ från %@"
-          }
-        }
-      }
-    },
     "Balanza Xiaomi": {
       "extractionState": "manual",
       "localizations": {
@@ -3176,6 +3159,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Förändring"
+          }
+        }
+      }
+    },
+    "Cambio %@ desde %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change %@ from %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändring %@ från %@"
           }
         }
       }
@@ -9708,6 +9708,23 @@
         }
       }
     },
+    "HÅLSYN no tiene permiso para guardar el peso. Actívalo en Salud › Compartir › Apps › HÅLSYN › Peso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN isn't allowed to save weight. Turn it on in Health › Sharing › Apps › HÅLSYN › Weight."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN har inte behörighet att spara vikt. Slå på det i Hälsa › Delning › Appar › HÅLSYN › Vikt."
+          }
+        }
+      }
+    },
     "HÅLSYN ofrece estimaciones de bienestar y rendimiento. No es un dispositivo médico, no diagnostica enfermedades y no sustituye la valoración de un profesional sanitario.": {
       "extractionState": "manual",
       "localizations": {
@@ -12666,6 +12683,23 @@
         }
       }
     },
+    "No había pulso en los últimos segundos: no se midió la recuperación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There was no heart rate in the last seconds: recovery wasn't measured."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det fanns ingen puls under de sista sekunderna: återhämtningen mättes inte."
+          }
+        }
+      }
+    },
     "No hay cambios ni patrones claros en tus datos. Es normal: INSIKT solo habla cuando la diferencia es real.": {
       "extractionState": "manual",
       "localizations": {
@@ -12696,6 +12730,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingen Apple Watch är parkopplad."
+          }
+        }
+      }
+    },
+    "No hubo lecturas del pulso cerca del minuto (¿la correa estaba floja?): no hay valor para guardar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There were no heart rate readings near the minute (was the band loose?): there's no value to save."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det fanns inga pulsvärden nära minuten (satt armbandet löst?): det finns inget värde att spara."
           }
         }
       }
@@ -14277,6 +14328,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vikt (BMI)"
+          }
+        }
+      }
+    },
+    "Peso guardado en Apple Health. La grasa no: falta el permiso en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight saved to Apple Health. Body fat wasn't: Health permission is missing."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikten sparades i Apple Hälsa. Kroppsfettet inte: behörighet saknas i Hälsa."
           }
         }
       }
@@ -22403,23 +22471,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 7 dagarna"
-          }
-        }
-      }
-    },
-    "−%@ lpm": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "−%@ bpm"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "−%@ slag/min"
           }
         }
       }

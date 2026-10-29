@@ -186,7 +186,8 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - **Tendencia**:
   - Se comparan las últimas 5 mediciones con las 5 anteriores.
   - Solo entran las que terminaron con una FC parecida (±10 lpm), porque la recuperación depende de la intensidad (Mann TN, et al. *Eur J Appl Physiol.* 2014, doi:10.1007/s00421-014-2907-9).
-  - Solo se habla de cambio si supera 3 lpm y el 10 % (error típico de la bajada al minuto ~25 %: Buchheit M. *Front Physiol.* 2014;5:73, doi:10.3389/fphys.2014.00073).
+  - Solo se habla de cambio si la diferencia supera dos veces el error de la diferencia entre dos medias de 5 mediciones, y al menos 3 lpm. Con un error típico del ~25 % por medición (Buchheit M. *Front Physiol.* 2014;5:73, doi:10.3389/fphys.2014.00073) y una media de 28 lpm, eso son unos 9 lpm.
+  - Si se pausó antes de terminar, la recuperación empieza en la pausa. Con más de 45 s de pausa ya no se ofrece medirla.
 - **Interpretación**:
   - Suele mejorar con el entrenamiento (Daanen HA, et al. *Int J Sports Physiol Perform.* 2012;7(3):251–260, doi:10.1123/ijspp.7.3.251).
   - Pero una mejora con mucho cansancio puede ser sobrecarga (Aubry A, et al. *PLoS One.* 2015;10(10):e0139754, doi:10.1371/journal.pone.0139754).
