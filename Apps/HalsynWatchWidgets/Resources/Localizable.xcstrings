@@ -4659,23 +4659,6 @@
         }
       }
     },
-    "Crear un plan nuevo": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create a new plan"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skapa en ny plan"
-          }
-        }
-      }
-    },
     "Cuenta cada comida": {
       "extractionState": "manual",
       "localizations": {
@@ -21298,23 +21281,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Saknas data? Kontrollera i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN vilka data du delar, och att du bär din Apple Watch."
-          }
-        }
-      }
-    },
-    "¿Hacer un plan nuevo?": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Make a new plan?"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Göra en ny plan?"
           }
         }
       }

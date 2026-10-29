@@ -84,8 +84,8 @@ final class WorkoutManager: NSObject {
         // Si la última vez estaba permitida y ahora no está decidida, watchOS la
         // olvidó: pasa con «Permitir una vez» (y puede pasar al reinstalar la app).
         let defaults = UserDefaults.standard
-        if let last = defaults.object(forKey: Self.locationStatusKey) as? Int32,
-           let previous = CLAuthorizationStatus(rawValue: last),
+        if let last = defaults.object(forKey: Self.locationStatusKey) as? Int,
+           let previous = CLAuthorizationStatus(rawValue: Int32(last)),
            previous == .authorizedWhenInUse || previous == .authorizedAlways,
            locationAuthorization == .notDetermined {
             locationWasReset = true
@@ -100,9 +100,9 @@ final class WorkoutManager: NSObject {
 
     private func rememberLocationStatus(_ status: CLAuthorizationStatus) {
         let defaults = UserDefaults.standard
-        let previous = (defaults.object(forKey: Self.locationStatusKey) as? Int32).flatMap(CLAuthorizationStatus.init(rawValue:))
+        let previous = (defaults.object(forKey: Self.locationStatusKey) as? Int).flatMap { CLAuthorizationStatus(rawValue: Int32($0)) }
         guard previous != status else { return }
-        defaults.set(status.rawValue, forKey: Self.locationStatusKey)
+        defaults.set(Int(status.rawValue), forKey: Self.locationStatusKey)
         // Que el reloj diga la decisión (no el estado inicial sin decidir).
         if status != .notDetermined {
             PermissionLog.add("Ubicación: \(PermissionLog.describe(status))")

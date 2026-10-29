@@ -100,7 +100,6 @@ struct TrainingPlanCard: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var guidance: TrainingGuidance = .unknown
     @State private var showsSetup = false
-    @State private var confirmingNew = false
     @State private var confirmingDiscard = false
     @State private var sent = false
     @State private var testResult: PerformanceResult?
@@ -191,7 +190,8 @@ struct TrainingPlanCard: View {
         }
         HStack(spacing: HalsynSpacing.s) {
             Button {
-                confirmingNew = true
+                // La pantalla de creación avisa de que reemplaza el plan actual.
+                showsSetup = true
             } label: {
                 Label("Nuevo plan", systemImage: "calendar.badge.plus")
                     .frame(maxWidth: .infinity)
@@ -205,12 +205,6 @@ struct TrainingPlanCard: View {
         }
         .buttonStyle(.bordered)
         .font(.halsynCaption)
-        .confirmationDialog("¿Hacer un plan nuevo?", isPresented: $confirmingNew, titleVisibility: .visible) {
-            Button("Crear un plan nuevo") { showsSetup = true }
-            Button("Cancelar", role: .cancel) {}
-        } message: {
-            Text("El plan actual se reemplaza cuando crees el nuevo. Tus carreras y tus resultados de tests se conservan.")
-        }
         .confirmationDialog("¿Descartar el plan?", isPresented: $confirmingDiscard, titleVisibility: .visible) {
             Button("Descartar el plan", role: .destructive) { store.save(nil) }
             Button("Cancelar", role: .cancel) {}
@@ -337,6 +331,14 @@ struct PlanSetupView: View {
                     Text("Días de gimnasio")
                 } footer: {
                     Text("Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.")
+                }
+
+                if TrainingPlanStore.shared.plan != nil {
+                    Section {
+                    } footer: {
+                        Text("El plan actual se reemplaza cuando crees el nuevo. Tus carreras y tus resultados de tests se conservan.")
+                            .foregroundStyle(.halsynCaution)
+                    }
                 }
 
                 Section {
