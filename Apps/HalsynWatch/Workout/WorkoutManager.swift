@@ -87,17 +87,8 @@ final class WorkoutManager: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationAuthorization = locationManager.authorizationStatus
-        // Si la última vez estaba permitida y ahora no está decidida, watchOS la
-        // olvidó: pasa con «Permitir una vez» (y puede pasar al reinstalar la app).
-        let defaults = UserDefaults.standard
-        if let last = defaults.object(forKey: Self.locationStatusKey) as? Int,
-           let previous = CLAuthorizationStatus(rawValue: Int32(last)),
-           previous == .authorizedWhenInUse || previous == .authorizedAlways,
-           locationAuthorization == .notDetermined {
-            locationWasReset = true
-            PermissionLog.add("Ubicación: el reloj olvidó el permiso (¿«Permitir una vez»?)")
-        }
         rememberLocationStatus(locationAuthorization)
+        UserDefaults.standard.removeObject(forKey: "halsyn.watch.locationAsked")
     }
 
     /// El permiso de ubicación se perdió desde la última vez (ver `init`).
@@ -108,6 +99,12 @@ final class WorkoutManager: NSObject {
         let defaults = UserDefaults.standard
         let previous = (defaults.object(forKey: Self.locationStatusKey) as? Int).flatMap { CLAuthorizationStatus(rawValue: Int32($0)) }
         guard previous != status else { return }
+        // Estaba permitida y vuelve a estar sin decidir: watchOS la olvidó (pasa con
+        // «Permitir una vez», al arrancar o al volver de segundo plano).
+        if status == .notDetermined, previous == .authorizedWhenInUse || previous == .authorizedAlways {
+            locationWasReset = true
+            PermissionLog.add("Ubicación: el reloj olvidó el permiso (¿«Permitir una vez»?)")
+        }
         defaults.set(Int(status.rawValue), forKey: Self.locationStatusKey)
         // Que el reloj diga la decisión (no el estado inicial sin decidir).
         if status != .notDetermined {
@@ -147,6 +144,7 @@ final class WorkoutManager: NSObject {
     /// («Permitir una vez»), SPRING, CYKEL y Permisos lo explican.
     func requestLocationIfNeeded() {
         locationAuthorization = locationManager.authorizationStatus
+        rememberLocationStatus(locationAuthorization)
         guard locationAuthorization == .notDetermined else { return }
         PermissionLog.add("Ubicación: se pidió")
         locationManager.requestWhenInUseAuthorization()

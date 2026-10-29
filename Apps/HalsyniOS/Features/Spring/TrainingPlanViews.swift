@@ -131,6 +131,8 @@ struct TrainingPlanCard: View {
                 store.applyLatestFitness(runs: workouts)
             }
         }
+        // Plan nuevo o descartado: la sesión enviada al reloj era del anterior.
+        .onChange(of: store.plan?.createdAt) { _, _ in sent = false }
         .task(id: "\(model.reloadKey)|\(workouts.count)") {
             store.replanIfNeeded(runs: workouts)
             let today = Date.now
@@ -357,7 +359,13 @@ struct PlanSetupView: View {
                         guard let estimate else { return }
                         let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays, goalTime: hasGoalTime && goalTime > 0 ? goalTime : nil)
                         if let plan = TrainingPlanGenerator.make(goal: goal, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current) {
-                            TrainingPlanStore.shared.replace(with: plan)
+                            // Si desde aquí se envió el test al reloj, se conserva (ya
+                            // sustituyó a la sesión del plan anterior).
+                            if testSent {
+                                TrainingPlanStore.shared.save(plan)
+                            } else {
+                                TrainingPlanStore.shared.replace(with: plan)
+                            }
                             dismiss()
                         }
                     }
