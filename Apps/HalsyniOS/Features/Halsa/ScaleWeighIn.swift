@@ -31,9 +31,9 @@ final class ScaleScanner: NSObject {
     @ObservationIgnored private var central: CBCentralManager?
     @ObservationIgnored private var lastPayload: Data?
     @ObservationIgnored private var stabilizedAt: Date?
-    /// Se vio a alguien encima de la balanza en esta búsqueda. Hasta entonces se
-    /// ignora la última lectura que la balanza sigue anunciando tras bajarse
-    /// (sería la pesada anterior, quizá de otra persona).
+    /// Llegó una lectura en vivo (sin estabilizar) en esta búsqueda. Hasta
+    /// entonces se ignora la última pesada que la balanza sigue anunciando
+    /// (sería la anterior, quizá de otra persona).
     @ObservationIgnored private var sawLoad = false
     @ObservationIgnored private var waitTask: Task<Void, Never>?
     @ObservationIgnored private var seenDevices: Set<UUID> = []
@@ -48,6 +48,8 @@ final class ScaleScanner: NSObject {
         var lastPayload: String?
         /// Se oyó un equipo Xiaomi cifrado (0xFE95).
         var sawEncrypted = false
+        /// Se ignoró la pesada anterior que la balanza seguía anunciando.
+        var ignoredPrevious = false
     }
 
     private(set) var diagnostics = Diagnostics()
@@ -117,15 +119,17 @@ final class ScaleScanner: NSObject {
             diagnostics.lastPayload = "\(short): " + data.map { String(format: "%02X", $0) }.joined(separator: " ")
             guard data != lastPayload,
                   let parsed = XiaomiScaleParser.parse(serviceUUID: short, data: [UInt8](data)) else { continue }
-            if parsed.isLoadRemoved {
-                guard sawLoad else {
-                    lastPayload = data
-                    continue
-                }
-            } else {
+            lastPayload = data
+            // Una pesada en vivo siempre manda primero lecturas sin estabilizar.
+            // Hasta ver una, lo estable es la pesada anterior que la balanza
+            // sigue anunciando (aunque no diga «retirado»): no se muestra.
+            if !parsed.isStabilized, !parsed.isLoadRemoved {
                 sawLoad = true
             }
-            lastPayload = data
+            guard sawLoad else {
+                diagnostics.ignoredPrevious = true
+                continue
+            }
             reading = parsed
             if !parsed.isStabilized {
                 state = .measuring
@@ -251,9 +255,7 @@ struct ScaleWeighInView: View {
                             result(reading)
                         }
                     }
-                    if scanner.state == .scanning || scanner.state == .measuring {
-                        diagnostics
-                    }
+                    diagnostics
                     help
                 }
                 .padding(HalsynSpacing.l)
@@ -382,11 +384,14 @@ struct ScaleWeighInView: View {
                 if let name = info.scaleName {
                     Text("Balanza oída: \(name)")
                 }
+                if info.ignoredPrevious, scanner.reading == nil {
+                    Text("La balanza todavía anuncia la pesada anterior (no se usa). Súbete para pesarte de nuevo; si ya estabas arriba, bájate y vuelve a subir.")
+                }
                 if let payload = info.lastPayload {
                     Text("Últimos datos: \(payload)")
                         .monospaced()
                         .textSelection(.enabled)
-                } else if waited > 20 {
+                } else if waited > 20, scanner.state == .scanning {
                     if info.scaleName != nil {
                         Text("Se oye la balanza pero todavía no manda el peso. Súbete y espera a que el número quede fijo en la pantalla de la balanza.")
                     } else if info.sawEncrypted {

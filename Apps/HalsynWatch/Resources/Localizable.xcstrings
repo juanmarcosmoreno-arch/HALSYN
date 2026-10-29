@@ -10201,6 +10201,23 @@
         }
       }
     },
+    "La balanza todavía anuncia la pesada anterior (no se usa). Súbete para pesarte de nuevo; si ya estabas arriba, bájate y vuelve a subir.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The scale is still advertising the previous weigh-in (not used). Step on to weigh yourself again; if you were already on it, step off and back on."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vågen annonserar fortfarande föregående vägning (används inte). Kliv på för att väga dig igen; om du redan stod på den, kliv av och på igen."
+          }
+        }
+      }
+    },
     "La carrera se registra en el reloj, incluso si dejas el iPhone en casa. Puedes iniciarla desde aquí o tocando SPRING en el reloj.": {
       "extractionState": "manual",
       "localizations": {

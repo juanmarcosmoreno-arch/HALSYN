@@ -605,6 +605,7 @@
  "Kilómetro %lld": "Apps/Shared/CoachPhrases.swift",
  "Kilómetros": "Apps/HalsyniOS/Features/Spring/GoalCoachViews.swift",
  "La FC en reposo del Apple Watch se calcula de otra forma (lecturas ópticas en reposo a lo largo del día).": "Packages/HalsynKit/Sources/HalsynCore/Engines/ReferenceLibrary.swift",
+ "La balanza todavía anuncia la pesada anterior (no se usa). Súbete para pesarte de nuevo; si ya estabas arriba, bájate y vuelve a subir.": "Apps/HalsyniOS/Features/Halsa/ScaleWeighIn.swift",
  "La carrera se registra en el reloj, incluso si dejas el iPhone en casa. Puedes iniciarla desde aquí o tocando SPRING en el reloj.": "Apps/HalsyniOS/Features/Spring/SpringView.swift",
  "La estima el Apple Watch como si terminaras a una intensidad estándar: no se compara directamente con tus mediciones.": "Apps/HalsyniOS/Features/Spring/HeartRateRecoveryCard.swift",
  "La forma física necesita unos 3 meses de datos: por ahora sale más baja de lo real y la frescura, más negativa.": "Apps/HalsyniOS/Shared/TrainingLoadViews.swift",
