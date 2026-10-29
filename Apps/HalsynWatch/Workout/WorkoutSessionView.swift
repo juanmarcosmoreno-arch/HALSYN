@@ -94,7 +94,7 @@ private struct PrimaryActionShortcut: ViewModifier {
 
 private struct WorkoutPagesView: View {
     enum Page: Hashable {
-        case controls, interval, screen(Int), chart, map, laps
+        case controls, interval, intervalDetail, screen(Int), chart, map, laps
     }
 
     @Environment(WorkoutManager.self) private var workout
@@ -130,7 +130,9 @@ private struct WorkoutPagesView: View {
     @ViewBuilder
     private var runPages: some View {
         if workout.plan != nil {
-            WorkoutIntervalView().tag(Page.interval)
+            // Primero el anillo que se vacía con lo que falta; después el detalle.
+            WorkoutIntervalRingView().tag(Page.interval)
+            WorkoutIntervalView().tag(Page.intervalDetail)
         }
         ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
             WorkoutMetricsView(profile: profile).tag(Page.screen(index))
@@ -372,6 +374,142 @@ private struct WorkoutChartView: View {
     }
 }
 
+/// Color de cada paso de los intervalos (el mismo en el anillo y en el detalle).
+private func intervalTint(_ kind: IntervalStepKind) -> Color {
+    switch kind {
+    case .work: Color(HalsynPalette.alertDark)
+    case .recovery: Color(HalsynPalette.darkAccent)
+    case .warmup, .cooldown: Color(HalsynPalette.cautionDark)
+    }
+}
+
+/// Paso actual en un anillo que se va vaciando con el tiempo o la distancia que
+/// falta; en el centro, lo que queda. En pasos abiertos el anillo queda lleno.
+private struct WorkoutIntervalRingView: View {
+    @Environment(WorkoutManager.self) private var workout
+    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
+            let snapshot = workout.snapshot(at: context.date)
+            Group {
+                if let interval = snapshot.interval {
+                    ring(interval, snapshot: snapshot)
+                } else {
+                    VStack(spacing: 4) {
+                        Label(snapshot.intervalsCompleted ? LocalizedStringKey("Intervalos completados") : LocalizedStringKey("Carrera libre"), systemImage: "checkmark.circle")
+                            .font(.headline)
+                            .foregroundStyle(Color(HalsynPalette.darkAccent))
+                        HalsynWorkoutScreen(profile: workout.screens.first ?? .easyRun) { snapshot.value(for: $0, unit: unitSystem) }
+                    }
+                }
+            }
+            .padding(.horizontal, 4)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(alignment: .top) {
+                BannerOverlay(banner: workout.banner, now: context.date)
+            }
+            .overlay {
+                if workout.phase == .paused {
+                    PausedPanel()
+                }
+            }
+        }
+        .background(Color.black.ignoresSafeArea())
+    }
+
+    private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
+        VStack(spacing: 2) {
+            ringHeader(interval)
+            ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem))
+            ringFooter(snapshot)
+        }
+    }
+
+    private func ringHeader(_ interval: IntervalProgress) -> some View {
+        HStack {
+            Text(LocalizedStringKey(interval.step.kind.label))
+                .font(.caption2.weight(.bold))
+                .tracking(1)
+                .foregroundStyle(intervalTint(interval.step.kind))
+            Spacer()
+            if let repetition = interval.step.repetition {
+                Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
+                    .font(.caption2.monospacedDigit())
+                    .foregroundStyle(Color.white)
+            }
+        }
+    }
+
+    private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue) -> some View {
+        let tint = intervalTint(interval.step.kind)
+        let isOpen = interval.step.goal == .open
+        let remaining: Double = isOpen ? 1 : 1 - (interval.fraction ?? 0)
+        return ZStack {
+            Circle()
+                .stroke(tint.opacity(0.22), lineWidth: 9)
+            Circle()
+                .trim(from: 0, to: remaining)
+                .stroke(tint.opacity(isOpen ? 0.5 : 1), style: StrokeStyle(lineWidth: 9, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .animation(.linear(duration: 0.5), value: remaining)
+            ringCenter(value: value, tint: tint, isOpen: isOpen)
+                .padding(.horizontal, 16)
+        }
+        .aspectRatio(1, contentMode: .fit)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(LocalizedStringKey(interval.step.kind.title)))
+        .accessibilityValue(Text(verbatim: "\(value.value ?? "--") \(value.unit)"))
+    }
+
+    private func ringCenter(value: WorkoutFieldValue, tint: Color, isOpen: Bool) -> some View {
+        VStack(spacing: 0) {
+            Text(isOpen ? LocalizedStringKey("TID") : LocalizedStringKey("QUEDAN"))
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(tint)
+            Text(verbatim: value.value ?? "--")
+                .font(.system(size: 34, weight: .semibold, design: .rounded).monospacedDigit())
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+                .foregroundStyle(Color.white)
+            if !value.unit.isEmpty {
+                Text(LocalizedStringKey(value.unit))
+                    .font(.caption2)
+                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            }
+            if isOpen {
+                Text("Pulsa Vuelta para continuar")
+                    .font(.system(size: 10))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            }
+        }
+    }
+
+    private func ringFooter(_ snapshot: RunSnapshot) -> some View {
+        HStack {
+            compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
+            Spacer()
+            if let target = snapshot.paceTarget {
+                compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
+            } else {
+                compact(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) })
+            }
+        }
+    }
+
+    private func compact(label: LocalizedStringKey, value: String?) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(label)
+                .font(.system(size: 10, weight: .semibold))
+                .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            Text(verbatim: value ?? "--")
+                .font(.footnote.monospacedDigit().weight(.semibold))
+                .foregroundStyle(Color.white)
+        }
+    }
+}
+
 /// Paso actual de los intervalos: qué toca, cuánto falta y el ritmo objetivo.
 private struct WorkoutIntervalView: View {
     @Environment(WorkoutManager.self) private var workout
@@ -435,11 +573,7 @@ private struct WorkoutIntervalView: View {
     }
 
     private func tint(_ kind: IntervalStepKind) -> Color {
-        switch kind {
-        case .work: Color(HalsynPalette.alertDark)
-        case .recovery: Color(HalsynPalette.darkAccent)
-        case .warmup, .cooldown: Color(HalsynPalette.cautionDark)
-        }
+        intervalTint(kind)
     }
 }
 

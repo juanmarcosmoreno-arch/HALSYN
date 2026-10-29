@@ -6,6 +6,8 @@ import UserNotifications
 
 @main
 struct HalsynApp: App {
+    /// Completa en el iPhone los permisos de Salud que pide el reloj.
+    @UIApplicationDelegateAdaptor(HalsynAppDelegate.self) private var appDelegate
     @State private var model = AppModel()
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = false

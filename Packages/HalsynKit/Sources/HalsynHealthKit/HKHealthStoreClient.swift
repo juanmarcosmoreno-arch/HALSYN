@@ -10,8 +10,8 @@ import HealthKit
 /// semántica (ventanas, sueño, estados) vive en `LiveHealthDataProvider`.
 /// - Las estadísticas usan `HKStatisticsCollectionQueryDescriptor`, que combina
 ///   las fuentes según la prioridad del usuario en Salud (sin duplicados).
-/// - Solo se pide acceso de lectura. La escritura de entrenamientos se pedirá
-///   en la Fase 4, cuando exista.
+/// - Se pide la lectura de la app y, de paso, lo que lee y escribe el reloj en
+///   los entrenamientos (los permisos son comunes al iPhone y al reloj).
 public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
     // HKHealthStore es seguro entre hilos según la documentación de Apple.
     private let store: HKHealthStore
@@ -28,7 +28,7 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
 
     public func shouldRequestAuthorization() async throws -> Bool {
         do {
-            let status = try await store.statusForAuthorizationRequest(toShare: [], read: HealthKitTypeCatalog.coreReadTypes)
+            let status = try await store.statusForAuthorizationRequest(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.allReadTypes)
             return status != .unnecessary
         } catch {
             throw Self.map(error)
@@ -37,7 +37,9 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
 
     public func requestAuthorization() async throws {
         do {
-            try await store.requestAuthorization(toShare: [], read: HealthKitTypeCatalog.coreReadTypes)
+            // También lo que escribe el reloj: los permisos son comunes al iPhone y al
+            // reloj, así que con una sola hoja aquí el reloj no vuelve a preguntar.
+            try await store.requestAuthorization(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.allReadTypes)
         } catch {
             throw Self.map(error)
         }

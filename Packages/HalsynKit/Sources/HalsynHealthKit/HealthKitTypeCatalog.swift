@@ -94,6 +94,43 @@ public enum HealthKitTypeCatalog {
         ]
     }
 
+    /// Lo que guarda el reloj al terminar una carrera, una caminata o una salida
+    /// en bici: entrenamiento, ruta, energía, distancia y lo que midan los sensores.
+    /// Los permisos de Salud son comunes al iPhone y al reloj, así que el iPhone los
+    /// pide todos de una vez y el reloj no tiene que volver a preguntar.
+    public static var watchShareTypes: Set<HKSampleType> {
+        [
+            HKObjectType.workoutType(),
+            HKSeriesType.workoutRoute(),
+            HKQuantityType(.activeEnergyBurned),
+            HKQuantityType(.distanceWalkingRunning),
+            HKQuantityType(.distanceCycling),
+            HKQuantityType(.cyclingPower),
+            HKQuantityType(.cyclingCadence),
+            HKQuantityType(.cyclingSpeed),
+        ]
+    }
+
+    /// Lo que lee el reloj durante el entrenamiento.
+    public static var watchReadTypes: Set<HKObjectType> {
+        [
+            HKQuantityType(.heartRate),
+            HKQuantityType(.activeEnergyBurned),
+            HKQuantityType(.distanceWalkingRunning),
+            HKQuantityType(.runningPower),
+            HKQuantityType(.distanceCycling),
+            HKQuantityType(.cyclingPower),
+            HKQuantityType(.cyclingCadence),
+            HKQuantityType(.cyclingSpeed),
+            HKObjectType.workoutType(),
+        ]
+    }
+
+    /// Todo lo que pide el iPhone: lectura de la app y lo del reloj (lectura y escritura).
+    public static var allReadTypes: Set<HKObjectType> {
+        coreReadTypes.union(watchReadTypes)
+    }
+
     /// Tipos que HÅLSYN escribirá (entrenamientos y rutas creados en el reloj).
     public static var shareTypes: Set<HKSampleType> {
         [

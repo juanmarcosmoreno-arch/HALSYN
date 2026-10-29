@@ -31,6 +31,13 @@ final class TrainingPlanStore {
         }
     }
 
+    /// Plan nuevo en lugar del actual: la sesión del día que se había enviado al
+    /// reloj era del plan anterior y se quita.
+    func replace(with plan: TrainingPlan) {
+        RunSettingsStore.shared.update { settings in settings.intervalPlans.removeAll { $0.id == Self.watchPlanID } }
+        save(plan)
+    }
+
     /// Reajuste semanal automático (una vez por semana).
     func replanIfNeeded(runs: [WorkoutSummary]) {
         // Con datos de demostración no se reajusta: el plan es del usuario real.
@@ -93,6 +100,8 @@ struct TrainingPlanCard: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var guidance: TrainingGuidance = .unknown
     @State private var showsSetup = false
+    @State private var confirmingNew = false
+    @State private var confirmingDiscard = false
     @State private var sent = false
     @State private var testResult: PerformanceResult?
     private var store: TrainingPlanStore { .shared }
@@ -179,6 +188,34 @@ struct TrainingPlanCard: View {
         } label: {
             Label("Ver todas las semanas", systemImage: "calendar")
                 .font(.halsynCaption)
+        }
+        HStack(spacing: HalsynSpacing.s) {
+            Button {
+                confirmingNew = true
+            } label: {
+                Label("Nuevo plan", systemImage: "calendar.badge.plus")
+                    .frame(maxWidth: .infinity)
+            }
+            Button(role: .destructive) {
+                confirmingDiscard = true
+            } label: {
+                Label("Descartar", systemImage: "trash")
+                    .frame(maxWidth: .infinity)
+            }
+        }
+        .buttonStyle(.bordered)
+        .font(.halsynCaption)
+        .confirmationDialog("¿Hacer un plan nuevo?", isPresented: $confirmingNew, titleVisibility: .visible) {
+            Button("Crear un plan nuevo") { showsSetup = true }
+            Button("Cancelar", role: .cancel) {}
+        } message: {
+            Text("El plan actual se reemplaza cuando crees el nuevo. Tus carreras y tus resultados de tests se conservan.")
+        }
+        .confirmationDialog("¿Descartar el plan?", isPresented: $confirmingDiscard, titleVisibility: .visible) {
+            Button("Descartar el plan", role: .destructive) { store.save(nil) }
+            Button("Cancelar", role: .cancel) {}
+        } message: {
+            Text("Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.")
         }
     }
 
@@ -318,7 +355,7 @@ struct PlanSetupView: View {
                         guard let estimate else { return }
                         let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays, goalTime: hasGoalTime && goalTime > 0 ? goalTime : nil)
                         if let plan = TrainingPlanGenerator.make(goal: goal, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current) {
-                            TrainingPlanStore.shared.save(plan)
+                            TrainingPlanStore.shared.replace(with: plan)
                             dismiss()
                         }
                     }
@@ -442,6 +479,7 @@ struct TrainingPlanView: View {
     @Environment(AppModel.self) private var model
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var confirmingDelete = false
+    @State private var showsSetup = false
     @State private var runs: [WorkoutSummary]?
     @Environment(\.dismiss) private var dismiss
     private var store: TrainingPlanStore { .shared }
@@ -468,12 +506,15 @@ struct TrainingPlanView: View {
                 ForEach(plan.weeks) { week in
                     weekCard(week)
                 }
-                Button("Borrar plan", role: .destructive) { confirmingDelete = true }
-                    .confirmationDialog("¿Borrar el plan?", isPresented: $confirmingDelete) {
-                        Button("Borrar", role: .destructive) {
+                Button("Descartar el plan", role: .destructive) { confirmingDelete = true }
+                    .confirmationDialog("¿Descartar el plan?", isPresented: $confirmingDelete, titleVisibility: .visible) {
+                        Button("Descartar el plan", role: .destructive) {
                             store.save(nil)
                             dismiss()
                         }
+                        Button("Cancelar", role: .cancel) {}
+                    } message: {
+                        Text("Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.")
                     }
                 Text("Pautas habituales de entrenamiento, no una prescripción. Si tienes dolor o una lesión, para y consulta a un profesional.")
                     .font(.caption2)
@@ -482,6 +523,30 @@ struct TrainingPlanView: View {
         }
         .navigationTitle("Plan de entrenamiento")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if store.plan != nil {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button {
+                            showsSetup = true
+                        } label: {
+                            Label("Nuevo plan", systemImage: "calendar.badge.plus")
+                        }
+                        Button(role: .destructive) {
+                            confirmingDelete = true
+                        } label: {
+                            Label("Descartar el plan", systemImage: "trash")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                    .accessibilityLabel(Text("Opciones del plan"))
+                }
+            }
+        }
+        .sheet(isPresented: $showsSetup) {
+            PlanSetupView(workouts: runs ?? [])
+        }
         .task(id: model.reloadKey) {
             runs = await model.provider.recentWorkouts(limit: 120)
         }

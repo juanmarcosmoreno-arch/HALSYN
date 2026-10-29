@@ -1,6 +1,7 @@
 import CoreLocation
 import Foundation
 import HalsynCore
+import HalsynHealthKit
 import HealthKit
 import Observation
 import WatchKit
@@ -80,6 +81,32 @@ final class WorkoutManager: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationAuthorization = locationManager.authorizationStatus
+        // Si la última vez estaba permitida y ahora no está decidida, watchOS la
+        // olvidó: pasa con «Permitir una vez» (y puede pasar al reinstalar la app).
+        let defaults = UserDefaults.standard
+        if let last = defaults.object(forKey: Self.locationStatusKey) as? Int32,
+           let previous = CLAuthorizationStatus(rawValue: last),
+           previous == .authorizedWhenInUse || previous == .authorizedAlways,
+           locationAuthorization == .notDetermined {
+            locationWasReset = true
+            PermissionLog.add("Ubicación: el reloj olvidó el permiso (¿«Permitir una vez»?)")
+        }
+        rememberLocationStatus(locationAuthorization)
+    }
+
+    /// El permiso de ubicación se perdió desde la última vez (ver `init`).
+    private(set) var locationWasReset = false
+    static let locationStatusKey = "halsyn.watch.locationStatus"
+
+    private func rememberLocationStatus(_ status: CLAuthorizationStatus) {
+        let defaults = UserDefaults.standard
+        let previous = (defaults.object(forKey: Self.locationStatusKey) as? Int32).flatMap(CLAuthorizationStatus.init(rawValue:))
+        guard previous != status else { return }
+        defaults.set(status.rawValue, forKey: Self.locationStatusKey)
+        // Que el reloj diga la decisión (no el estado inicial sin decidir).
+        if status != .notDetermined {
+            PermissionLog.add("Ubicación: \(PermissionLog.describe(status))")
+        }
     }
 
     func snapshot(at date: Date) -> RunSnapshot {
@@ -88,49 +115,40 @@ final class WorkoutManager: NSObject {
 
     // MARK: Permisos
 
-    static var shareTypes: Set<HKSampleType> {
-        [HKObjectType.workoutType(), HKSeriesType.workoutRoute(), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning)]
+    /// Pide permisos de Salud solo si falta alguno por decidir. Se piden de una
+    /// vez los de correr y los de bici, los mismos que pide el iPhone (los permisos
+    /// son comunes): respondidos en cualquiera de los dos, no se vuelve a preguntar.
+    private func requestAuthorization() async throws {
+        guard await healthNeedsAuthorization() else { return }
+        PermissionLog.add("Salud: se pidió al empezar un entrenamiento")
+        try await healthStore.requestAuthorization(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.watchReadTypes)
     }
 
-    static var readTypes: Set<HKObjectType> {
-        [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceWalkingRunning), HKQuantityType(.runningPower), HKObjectType.workoutType()]
+    /// `true` si hay permisos de Salud sin responder (no dice si se negaron:
+    /// HealthKit no lo revela para la lectura).
+    func healthNeedsAuthorization() async -> Bool {
+        let status = try? await healthStore.statusForAuthorizationRequest(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.watchReadTypes)
+        return status != .unnecessary
     }
 
-    /// En bici se guardan también la distancia de bici y lo que midan los sensores.
-    static var rideShareTypes: Set<HKSampleType> {
-        [HKObjectType.workoutType(), HKSeriesType.workoutRoute(), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceCycling), HKQuantityType(.cyclingPower), HKQuantityType(.cyclingCadence), HKQuantityType(.cyclingSpeed)]
+    /// Desde la pantalla de permisos, sin entrenamiento en marcha.
+    func requestHealthAuthorization() async {
+        PermissionLog.add("Salud: se pidió desde Permisos")
+        try? await healthStore.requestAuthorization(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.watchReadTypes)
     }
 
-    static var rideReadTypes: Set<HKObjectType> {
-        [HKQuantityType(.heartRate), HKQuantityType(.activeEnergyBurned), HKQuantityType(.distanceCycling), HKQuantityType(.cyclingPower), HKQuantityType(.cyclingCadence), HKQuantityType(.cyclingSpeed), HKObjectType.workoutType()]
-    }
-
-    /// Pide permisos de Salud solo si falta alguno por decidir: lo ya
-    /// respondido queda guardado y no se vuelve a preguntar. Los de bici se
-    /// piden la primera vez que se sale en bici, no al correr.
-    private func requestAuthorization(cycling: Bool) async throws {
-        let share = cycling ? Self.rideShareTypes : Self.shareTypes
-        let read = cycling ? Self.rideReadTypes : Self.readTypes
-        let status = try? await healthStore.statusForAuthorizationRequest(toShare: share, read: read)
-        guard status != .unnecessary else { return }
-        try await healthStore.requestAuthorization(toShare: share, read: read)
-    }
-
-    /// La ubicación se pide solo si aún no hay respuesta. Si vuelve a estar sin
-    /// decidir después de haberla pedido, es que se eligió «Permitir una vez»
-    /// (watchOS la olvida al cerrar la app): SPRING y CYKEL lo explican.
+    /// La ubicación se pide solo si aún no hay respuesta. Si watchOS la olvida
+    /// («Permitir una vez»), SPRING, CYKEL y Permisos lo explican.
     func requestLocationIfNeeded() {
         locationAuthorization = locationManager.authorizationStatus
         guard locationAuthorization == .notDetermined else { return }
-        UserDefaults.standard.set(true, forKey: Self.locationAskedKey)
+        PermissionLog.add("Ubicación: se pidió")
         locationManager.requestWhenInUseAuthorization()
     }
 
-    static let locationAskedKey = "halsyn.watch.locationAsked"
-
-    /// Ya se pidió antes y vuelve a estar sin decidir: se eligió «una vez».
+    /// Ubicación olvidada y aún sin volver a permitir: se avisa cómo dejarla fija.
     var locationWasAllowedOnce: Bool {
-        locationAuthorization == .notDetermined && UserDefaults.standard.bool(forKey: Self.locationAskedKey)
+        locationWasReset && locationAuthorization == .notDetermined
     }
 
     var locationDenied: Bool {
@@ -164,7 +182,7 @@ final class WorkoutManager: NSObject {
         isWalking = configuration.activityType == .walking
         tracker.handle(.start, at: .now)
         do {
-            try await requestAuthorization(cycling: cycling)
+            try await requestAuthorization()
             let session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             let builder = session.associatedWorkoutBuilder()
             let dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
@@ -581,6 +599,7 @@ extension WorkoutManager: CLLocationManagerDelegate {
         let status = manager.authorizationStatus
         Task { @MainActor in
             self.locationAuthorization = status
+            self.rememberLocationStatus(status)
         }
     }
 }

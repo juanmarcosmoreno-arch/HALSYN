@@ -2415,23 +2415,6 @@
         }
       }
     },
-    "Borrar plan": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete plan"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ta bort plan"
-          }
-        }
-      }
-    },
     "Borrar zapatillas": {
       "extractionState": "manual",
       "localizations": {
@@ -3945,6 +3928,23 @@
         }
       }
     },
+    "Comprobando…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontrollerar …"
+          }
+        }
+      }
+    },
     "Con": {
       "extractionState": "manual",
       "localizations": {
@@ -4659,6 +4659,23 @@
         }
       }
     },
+    "Crear un plan nuevo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a new plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skapa en ny plan"
+          }
+        }
+      }
+    },
     "Cuenta cada comida": {
       "extractionState": "manual",
       "localizations": {
@@ -5148,6 +5165,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Släng"
+          }
+        }
+      }
+    },
+    "Descartar el plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard the plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Släng planen"
           }
         }
       }
@@ -6155,6 +6189,23 @@
         }
       }
     },
+    "El plan actual se reemplaza cuando crees el nuevo. Tus carreras y tus resultados de tests se conservan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current plan is replaced when you create the new one. Your runs and test results are kept."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den nuvarande planen ersätts när du skapar den nya. Dina löprundor och testresultat sparas."
+          }
+        }
+      }
+    },
     "El pulso subió algo al final": {
       "extractionState": "manual",
       "localizations": {
@@ -6304,6 +6355,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Välj ett eller flera. Du kan ändra det senare."
+          }
+        }
+      }
+    },
+    "Elige «Permitir al usar la app». «Permitir una vez» se olvida al cerrar la app y el reloj vuelve a preguntar. Para cambiarlo: Ajustes › Privacidad y seguridad › Localización › HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose “Allow While Using App”. “Allow Once” is forgotten when the app closes and the watch asks again. To change it: Settings › Privacy & Security › Location Services › HÅLSYN."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Välj ”Tillåt när appen används”. ”Tillåt en gång” glöms när appen stängs och klockan frågar igen. För att ändra det: Inställningar › Integritet och säkerhet › Platstjänster › HÅLSYN."
           }
         }
       }
@@ -7698,6 +7766,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vilopuls"
+          }
+        }
+      }
+    },
+    "Falta permitir Salud o ubicación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health or location still needs permission"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsa eller plats behöver tillstånd"
+          }
+        }
+      }
+    },
+    "Falta responder": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not answered yet"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte besvarat än"
           }
         }
       }
@@ -12751,6 +12853,23 @@
         }
       }
     },
+    "Opciones del plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan options"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planalternativ"
+          }
+        }
+      }
+    },
     "Oscuro": {
       "extractionState": "manual",
       "localizations": {
@@ -13427,6 +13546,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Period"
+          }
+        }
+      }
+    },
+    "Permisos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permissions"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behörigheter"
+          }
+        }
+      }
+    },
+    "Permitir Salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillåt Hälsa"
+          }
+        }
+      }
+    },
+    "Permitir ubicación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow location"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillåt plats"
           }
         }
       }
@@ -16066,6 +16236,40 @@
         }
       }
     },
+    "Salud: se pidió al empezar un entrenamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health: requested when starting a workout"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsa: efterfrågades när ett träningspass startade"
+          }
+        }
+      }
+    },
+    "Salud: se pidió desde Permisos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health: requested from Permissions"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsa: efterfrågades från Behörigheter"
+          }
+        }
+      }
+    },
     "Saturación de oxígeno": {
       "extractionState": "manual",
       "localizations": {
@@ -16096,6 +16300,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bastu"
+          }
+        }
+      }
+    },
+    "Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan's weeks and today's session sent to the watch are deleted. Your runs and test results are kept."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planens veckor och dagens pass som skickats till klockan raderas. Dina löprundor och testresultat sparas."
           }
         }
       }
@@ -17201,6 +17422,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det här är tiden och distansen för hela passet: om du fortsatte spela in efter testet, rätta dem."
+          }
+        }
+      }
+    },
+    "Son los mismos permisos en el iPhone y en el reloj. Si aquí no aparece la hoja, abre HÅLSYN en el iPhone y acéptala allí: vale para los dos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The permissions are the same on the iPhone and the watch. If the sheet doesn't appear here, open HÅLSYN on the iPhone and accept it there: it works for both."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behörigheterna är desamma på iPhone och klockan. Om rutan inte visas här, öppna HÅLSYN på iPhone och godkänn den där: det gäller för båda."
           }
         }
       }
@@ -19296,6 +19534,74 @@
         }
       }
     },
+    "Ubicación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plats"
+          }
+        }
+      }
+    },
+    "Ubicación: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plats: %@"
+          }
+        }
+      }
+    },
+    "Ubicación: el reloj olvidó el permiso (¿«Permitir una vez»?)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location: the watch forgot the permission (“Allow Once”?)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plats: klockan glömde behörigheten (”Tillåt en gång”?)"
+          }
+        }
+      }
+    },
+    "Ubicación: se pidió": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location: requested"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plats: efterfrågades"
+          }
+        }
+      }
+    },
     "Umbral": {
       "extractionState": "manual",
       "localizations": {
@@ -20588,6 +20894,23 @@
         }
       }
     },
+    "al usar la app": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "while using the app"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "när appen används"
+          }
+        }
+      }
+    },
     "frente a hace un mes": {
       "extractionState": "manual",
       "localizations": {
@@ -20741,6 +21064,23 @@
         }
       }
     },
+    "no permitida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not allowed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inte tillåten"
+          }
+        }
+      }
+    },
     "plan-%@": {
       "extractionState": "manual",
       "localizations": {
@@ -20826,6 +21166,23 @@
         }
       }
     },
+    "sin decidir": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not decided"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inte bestämd"
+          }
+        }
+      }
+    },
     "«Tiempo dormido» es la parte del periodo entre dormirte y despertarte que pasaste dormido.": {
       "extractionState": "manual",
       "localizations": {
@@ -20860,23 +21217,6 @@
         }
       }
     },
-    "¿Borrar el plan?": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete the plan?"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ta bort planen?"
-          }
-        }
-      }
-    },
     "¿Borrar estas zapatillas?": {
       "extractionState": "manual",
       "localizations": {
@@ -20890,6 +21230,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Radera de här skorna?"
+          }
+        }
+      }
+    },
+    "¿Descartar el plan?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard the plan?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Släng planen?"
           }
         }
       }
@@ -20941,6 +21298,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Saknas data? Kontrollera i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN vilka data du delar, och att du bär din Apple Watch."
+          }
+        }
+      }
+    },
+    "¿Hacer un plan nuevo?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make a new plan?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Göra en ny plan?"
           }
         }
       }

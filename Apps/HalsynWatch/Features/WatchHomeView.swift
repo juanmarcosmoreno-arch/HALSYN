@@ -7,6 +7,7 @@ enum WatchDestination: Hashable {
     case status
     case spring
     case cykel
+    case permissions
     case recovery
     case summary
 }
@@ -15,6 +16,9 @@ enum WatchDestination: Hashable {
 /// requerir el mínimo de toques.
 struct WatchHomeView: View {
     @Environment(WatchModel.self) private var model
+    @Environment(WorkoutManager.self) private var workout
+    /// Falta algún permiso (Salud o ubicación): se muestra arriba.
+    @State private var permissionsPending = false
     @State private var score: DailyScore?
     @State private var recovery: DailyScore?
     @State private var isConnecting = false
@@ -42,6 +46,20 @@ struct WatchHomeView: View {
                             .frame(maxWidth: 120)
                     }
                     .listRowBackground(Color.clear)
+                }
+
+                if permissionsPending {
+                    NavigationLink(value: WatchDestination.permissions) {
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text("Permisos").font(.headline)
+                                Text("Falta permitir Salud o ubicación").font(.caption2).foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                            }
+                        } icon: {
+                            Image(systemName: "exclamationmark.shield")
+                                .foregroundStyle(Color(HalsynPalette.cautionDark))
+                        }
+                    }
                 }
 
                 NavigationLink(value: WatchDestination.spring) {
@@ -101,6 +119,11 @@ struct WatchHomeView: View {
                 NavigationLink(value: WatchDestination.summary) {
                     Label("Resumen diario", systemImage: "list.bullet.rectangle")
                 }
+                if !permissionsPending {
+                    NavigationLink(value: WatchDestination.permissions) {
+                        Label("Permisos", systemImage: "checkmark.shield")
+                    }
+                }
             }
             .navigationTitle(Text(verbatim: HalsynBrand.name))
             .navigationDestination(for: WatchDestination.self) { destination in
@@ -108,11 +131,17 @@ struct WatchHomeView: View {
                 case .status: WatchStatusView(provider: provider, reloadKey: model.reloadKey)
                 case .spring: WatchSpringView()
                 case .cykel: WatchCykelView()
+                case .permissions: WatchPermissionsView()
                 case .recovery: WatchRecoveryView(provider: provider, reloadKey: model.reloadKey)
                 case .summary: WatchDailySummaryView(provider: provider, reloadKey: model.reloadKey)
                 }
             }
             .containerBackground(HalsynGradients.deep, for: .navigation)
+            .task(id: "\(model.reloadKey)|\(workout.locationAuthorization.rawValue)|\(path.count)") {
+                let location = workout.locationAuthorization
+                let health = await workout.healthNeedsAuthorization()
+                permissionsPending = health || location == .notDetermined || workout.locationDenied
+            }
             .task(id: "\(model.reloadKey)|\(phoneSnapshot?.updatedAt.timeIntervalSince1970 ?? 0)") {
                 // Si el iPhone ya calculó la puntuación de hoy, se usa esa: tiene todo el
                 // historial. El cálculo propio queda para cuando no hay iPhone cerca.
@@ -243,4 +272,5 @@ struct WatchDailySummaryView: View {
 #Preview {
     WatchHomeView()
         .environment(WatchModel())
+        .environment(WorkoutManager.shared)
 }

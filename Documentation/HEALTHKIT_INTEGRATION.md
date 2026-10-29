@@ -73,3 +73,14 @@ Las series diarias **no rellenan con ceros** los días sin datos.
 - Disponibilidad de cada tipo por modelo de Apple Watch y versión de watchOS.
 - Qué métricas de running se entregan en vivo durante un entrenamiento (Fase 4, `RUNNING_ENGINE.md`).
 - Firma con HealthKit en cuentas de desarrollador gratuitas.
+
+## Permisos del reloj (0.10.0 (48))
+
+- **Salud**:
+  - Los permisos son comunes al iPhone y a su app del reloj. El iPhone pide de una vez su lectura y lo que lee y escribe el reloj (`HealthKitTypeCatalog.watchShareTypes` y `watchReadTypes`, de correr y de bici).
+  - El reloj solo vuelve a pedir si `statusForAuthorizationRequest` dice que falta algo, y entonces pide todo junto.
+  - Si watchOS manda la confirmación al iPhone, `HalsynAppDelegate.applicationShouldRequestHealthAuthorization` la completa con `handleAuthorizationForExtension`. Antes no existía, y la petición del reloj quedaba sin respuesta y se repetía en cada entrenamiento.
+- **Ubicación** (es solo del reloj):
+  - Se pide al abrir SPRING o CYKEL, no durante la cuenta atrás.
+  - Se guarda el último estado. Si estaba permitida y al abrir vuelve a «sin decidir», watchOS la olvidó (lo habitual es «Permitir una vez»): se avisa en SPRING, CYKEL y Permisos.
+- **Pantalla Permisos en el reloj**: estado de Salud y de ubicación, botones para pedirlos y un historial con fecha y número de compilación, para ver si se pierden al actualizar la app.
