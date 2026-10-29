@@ -41,10 +41,12 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>HÅLSYN usa Bluetooth para leer el peso de tu balanza Xiaomi mientras te pesas con la app abierta.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>HÅLSYN lee tus datos de Apple Health (frecuencia cardíaca, HRV, sueño, actividad y entrenamientos) para mostrarte tu estado y tus tendencias. Los datos se procesan en tu dispositivo.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>HÅLSYN guarda en Apple Health los entrenamientos que registras con la app.</string>
+	<string>HÅLSYN guarda en Apple Health los entrenamientos que registras con la app y el peso de tu balanza.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -12,6 +12,7 @@ struct BodyCard: View {
     @State private var lean: MetricReading?
     @State private var series: [DailyValue] = []
     @State private var loaded = false
+    @State private var weighing = false
     private var profile: ReferenceProfileStore { .shared }
 
     var body: some View {
@@ -29,7 +30,18 @@ struct BodyCard: View {
                 } else {
                     HalsynLoadingState()
                 }
+                Button {
+                    weighing = true
+                } label: {
+                    Label("Pesarme con la balanza Xiaomi", systemImage: "scalemass")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(.halsynAccent)
             }
+        }
+        .sheet(isPresented: $weighing) {
+            ScaleWeighInView()
         }
         .task(id: model.reloadKey) {
             let today = Date.now
@@ -144,7 +156,7 @@ struct BodyCard: View {
                 .font(.halsynBody)
                 .foregroundStyle(.halsynPrimaryText)
             Label {
-                Text("¿Tienes una balanza Xiaomi? En la app Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal. Otras balanzas inteligentes tienen una opción parecida.")
+                Text("¿Tienes una balanza Xiaomi? Pésate con el botón de abajo: HÅLSYN la lee por Bluetooth. También puedes usar Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal.")
             } icon: {
                 Image(systemName: "scalemass")
             }

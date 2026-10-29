@@ -43,6 +43,26 @@ struct HeartRateRecoveryTests {
         #expect(RecoveryTrend.make(Array(readings.prefix(9))) == nil)
     }
 
+    @Test func trendOnlyComparesSimilarEndings() throws {
+        // Las 5 de 150 lpm al terminar no se comparan con una última de 175.
+        var readings = (0..<10).map { index in
+            RecoveryReading(date: end.addingTimeInterval(Double(index) * 86_400), oneMinute: index < 5 ? 22 : 30, twoMinutes: nil, endHeartRate: index < 5 ? 172 : 150, origin: .demo)
+        }
+        #expect(RecoveryTrend.make(readings) == nil)
+        readings = readings.map { RecoveryReading(date: $0.date, oneMinute: $0.oneMinute, twoMinutes: nil, endHeartRate: 170, origin: .demo) }
+        let trend = try #require(RecoveryTrend.make(readings))
+        #expect(trend.isMeaningful)
+        // Diferencias dentro del ruido no cuentan como cambio.
+        #expect(!RecoveryTrend(recentAverage: 31, previousAverage: 29, count: 5).isMeaningful)
+    }
+
+    @Test func resultsBecomeReadingsOnlyWithTheFirstMinute() {
+        let complete = HeartRateRecoveryResult(date: end, endHeartRate: 170, oneMinute: 28, twoMinutes: 44, fiveMinutes: nil, samples: [])
+        #expect(RecoveryReading(complete)?.twoMinutes == 44)
+        let short = HeartRateRecoveryResult(date: end, endHeartRate: 170, oneMinute: nil, twoMinutes: nil, fiveMinutes: nil, samples: [])
+        #expect(RecoveryReading(short) == nil)
+    }
+
     @Test func settingsDefaults() {
         var settings = RunSettings()
         #expect(settings.offersRecovery && settings.recoveryDuration == 2)

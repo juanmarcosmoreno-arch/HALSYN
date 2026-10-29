@@ -109,7 +109,7 @@ private struct RecoveryResultView: View {
     private var saveButtons: some View {
         switch meter.saveState {
         case .pending:
-            if result.oneMinute.map({ $0 > 0 }) == true {
+            if result.oneMinute != nil {
                 Button {
                     Task { await meter.save() }
                 } label: {
@@ -125,7 +125,7 @@ private struct RecoveryResultView: View {
         case .saving:
             ProgressView()
         case .saved:
-            Label("Guardada en Apple Health", systemImage: "checkmark.circle.fill")
+            Label("Guardada (la verás en el iPhone)", systemImage: "checkmark.circle.fill")
                 .font(.footnote)
                 .foregroundStyle(Color(HalsynPalette.darkAccent))
             Button("Hecho") { meter.close() }

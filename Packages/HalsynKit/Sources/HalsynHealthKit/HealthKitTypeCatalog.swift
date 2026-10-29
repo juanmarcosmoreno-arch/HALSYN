@@ -108,9 +108,12 @@ public enum HealthKitTypeCatalog {
             HKQuantityType(.cyclingPower),
             HKQuantityType(.cyclingCadence),
             HKQuantityType(.cyclingSpeed),
-            // Recuperación del pulso al minuto (medición opcional al terminar).
-            HKQuantityType(.heartRateRecoveryOneMinute),
         ]
+    }
+
+    /// Lo que guarda el iPhone al pesarte con la balanza Xiaomi por Bluetooth.
+    public static var scaleShareTypes: Set<HKSampleType> {
+        [HKQuantityType(.bodyMass), HKQuantityType(.bodyFatPercentage)]
     }
 
     /// Lo que lee el reloj durante el entrenamiento.
@@ -129,7 +132,7 @@ public enum HealthKitTypeCatalog {
     }
 
     /// Todo lo que pide el iPhone: lectura de la app y lo del reloj (lectura y
-    /// escritura), más la recuperación del pulso (de HÅLSYN o del Apple Watch).
+    /// escritura), más la «Recuperación cardíaca» que estima el Apple Watch.
     public static var allReadTypes: Set<HKObjectType> {
         coreReadTypes.union(watchReadTypes).union([HKQuantityType(.heartRateRecoveryOneMinute)])
     }

@@ -1,6 +1,29 @@
 {
   "sourceLanguage": "es",
   "strings": {
+    "NSBluetoothAlwaysUsageDescription": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN usa Bluetooth para leer el peso de tu balanza Xiaomi mientras te pesas con la app abierta."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN uses Bluetooth to read the weight from your Xiaomi scale while you weigh yourself with the app open."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN använder Bluetooth för att läsa vikten från din Xiaomi-våg medan du väger dig med appen öppen."
+          }
+        }
+      }
+    },
     "NSHealthShareUsageDescription": {
       "extractionState": "extracted_with_value",
       "localizations": {
@@ -30,19 +53,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN guarda en Apple Health los entrenamientos que registras con la app."
+            "value": "HÅLSYN guarda en Apple Health los entrenamientos que registras con la app y el peso de tu balanza."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN saves the workouts you record with the app to Apple Health."
+            "value": "HÅLSYN saves the workouts you record with the app and your scale's weight to Apple Health."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN sparar träningspassen som du registrerar med appen i Apple Health."
+            "value": "HÅLSYN sparar träningspassen du registrerar med appen och vikten från din våg i Apple Hälsa."
           }
         }
       }

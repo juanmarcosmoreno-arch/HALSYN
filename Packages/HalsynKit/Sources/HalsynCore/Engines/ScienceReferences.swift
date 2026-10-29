@@ -107,14 +107,24 @@ public enum ScienceReferences {
         url: "https://doi.org/10.1123/ijspp.2019-0864"
     )
 
+    // Composición corporal con balanza de pies
+    public static let footToFootBodyFat = ScienceReference(
+        citation: "Jebb SA, Cole TJ, Doman D, Murgatroyd PR, Prentice AM. Evaluation of the novel Tanita body-fat analyser to measure body composition by comparison with a four-compartment model. Br J Nutr. 2000;83(2):115–122.",
+        url: "https://doi.org/10.1017/S0007114500000155"
+    )
+
     // Recuperación del pulso
     public static let recoveryTrainingStatus = ScienceReference(
-        citation: "Daanen HAM, Lamberts RP, Kallen VL, Jin A, Van Meeteren NLU. A systematic review on heart-rate recovery to monitor changes in training status in athletes. Int J Sports Physiol Perform. 2012;7(3):251–260.",
+        citation: "Daanen HA, Lamberts RP, Kallen VL, Jin A, Van Meeteren NL. A systematic review on heart-rate recovery to monitor changes in training status in athletes. Int J Sports Physiol Perform. 2012;7(3):251–260.",
         url: "https://doi.org/10.1123/ijspp.7.3.251"
     )
     public static let recoveryMonitoring = ScienceReference(
         citation: "Buchheit M. Monitoring training status with HR measures: do all roads lead to Rome? Front Physiol. 2014;5:73.",
         url: "https://doi.org/10.3389/fphys.2014.00073"
+    )
+    public static let recoveryOverreaching = ScienceReference(
+        citation: "Aubry A, Hausswirth C, Louis J, Coutts AJ, Buchheit M, Le Meur Y. The development of functional overreaching is associated with a faster heart rate recovery in endurance athletes. PLoS One. 2015;10(10):e0139754.",
+        url: "https://doi.org/10.1371/journal.pone.0139754"
     )
 
     public static let trainingLoad = ScienceReference(

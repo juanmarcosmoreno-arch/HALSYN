@@ -2364,6 +2364,23 @@
         }
       }
     },
+    "Balanza Xiaomi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xiaomi scale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xiaomi-våg"
+          }
+        }
+      }
+    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -4064,23 +4081,6 @@
         }
       }
     },
-    "Con %lld mediciones más se ve si tu recuperación mejora.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "With %lld more measurements you'll see whether your recovery is improving."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Med %lld mätningar till ser du om din återhämtning blir bättre."
-          }
-        }
-      }
-    },
     "Con 3 carreras de 3 km o más en los últimos 90 días, HÅLSYN estima tus tiempos para 5 km, 10 km, media maratón y maratón.": {
       "extractionState": "manual",
       "localizations": {
@@ -4778,19 +4778,19 @@
         }
       }
     },
-    "Cuanto más baja el pulso en el primer minuto, mejor suele ser la condición aeróbica; con el entrenamiento suele mejorar. Depende de lo fuerte que terminaste, del calor y de si caminas o te quedas quieto: compara mediciones parecidas. Es un seguimiento de entrenamiento, no una prueba médica.": {
+    "Cuanto más baja el pulso en el primer minuto, mejor suele ser la condición aeróbica, y con el entrenamiento suele mejorar. Depende de lo fuerte que terminaste, del calor y de si caminas o te quedas quieto: recupera siempre igual y compara mediciones parecidas. De una vez a otra puede variar bastante, así que mira la tendencia. Es un seguimiento de entrenamiento, no una prueba médica.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The more your heart rate drops in the first minute, the better your aerobic fitness usually is; it tends to improve with training. It depends on how hard you finished, the heat and whether you walk or stand still: compare similar measurements. It's training tracking, not a medical test."
+            "value": "The more your heart rate drops in the first minute, the better your aerobic fitness usually is, and it tends to improve with training. It depends on how hard you finished, the heat and whether you walk or stand still: always recover the same way and compare similar measurements. It can vary quite a lot from one time to the next, so look at the trend. It's training tracking, not a medical test."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ju mer pulsen sjunker under första minuten, desto bättre brukar konditionen vara; den brukar förbättras med träning. Den beror på hur hårt du avslutade, värmen och om du går eller står still: jämför liknande mätningar. Det är träningsuppföljning, inte ett medicinskt test."
+            "value": "Ju mer pulsen sjunker under första minuten, desto bättre brukar konditionen vara, och den brukar förbättras med träning. Den beror på hur hårt du avslutade, värmen och om du går eller står still: återhämta dig alltid på samma sätt och jämför liknande mätningar. Den kan variera ganska mycket från gång till gång, så titta på trenden. Det är träningsuppföljning, inte ett medicinskt test."
           }
         }
       }
@@ -4876,6 +4876,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppnått %lld av de senaste %lld perioderna"
+          }
+        }
+      }
+    },
+    "Curva del pulso de la última recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate curve of the last recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulskurva för senaste återhämtningen"
           }
         }
       }
@@ -6189,6 +6206,23 @@
         }
       }
     },
+    "El Bluetooth del iPhone está apagado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The iPhone's Bluetooth is off."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth på iPhone är avstängt."
+          }
+        }
+      }
+    },
     "El FTP es la potencia más alta que puedes sostener cerca de una hora. Se estima como el 95 por ciento de tu mejor media de 20 minutos. En los estudios coincide de media con el umbral de lactato, pero en cada persona puede desviarse alrededor de un 9 por ciento y suele quedarse corto en ciclistas recreativos: es una referencia para entrenar, no una medida de laboratorio.": {
       "extractionState": "manual",
       "localizations": {
@@ -6852,6 +6886,23 @@
         }
       }
     },
+    "En modo demo no se guarda en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In demo mode nothing is saved to Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I demoläge sparas inget i Hälsa."
+          }
+        }
+      }
+    },
     "En pausa": {
       "extractionState": "manual",
       "localizations": {
@@ -6937,19 +6988,19 @@
         }
       }
     },
-    "En tus últimas %lld mediciones el pulso baja %@ lpm más en el primer minuto que en las %lld anteriores: recuperas más rápido.": {
+    "En tus últimas %lld mediciones el pulso baja %@ lpm más en el primer minuto que en las %lld anteriores: suele indicar mejor condición. Si a la vez te notas muy cansado, puede ser sobrecarga.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "In your last %lld measurements your heart rate drops %@ bpm more in the first minute than in the previous %lld: you're recovering faster."
+            "value": "In your last %lld measurements your heart rate drops %@ bpm more in the first minute than in the previous %lld: this usually means better fitness. If you also feel very tired, it may be overreaching."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "I dina senaste %lld mätningar sjunker pulsen %@ slag/min mer under första minuten än i de %lld föregående: du återhämtar dig snabbare."
+            "value": "I dina senaste %lld mätningar sjunker pulsen %@ slag/min mer under första minuten än i de %lld föregående: det brukar tyda på bättre kondition. Om du samtidigt känner dig mycket trött kan det vara överbelastning."
           }
         }
       }
@@ -7515,6 +7566,23 @@
         }
       }
     },
+    "Este dispositivo no tiene Bluetooth de bajo consumo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device doesn't have Bluetooth Low Energy."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här enheten har inte Bluetooth Low Energy."
+          }
+        }
+      }
+    },
     "Este entrenamiento no tiene ruta GPS en Apple Health, o HÅLSYN no tiene permiso para leerla.": {
       "extractionState": "manual",
       "localizations": {
@@ -7528,6 +7596,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det här passet har ingen GPS-rutt i Apple Health, eller så har HÅLSYN inte behörighet att läsa den."
+          }
+        }
+      }
+    },
+    "Estimación con la ecuación publicada de Jebb y colaboradores (2000), hecha con otra balanza de pies (Tanita) y no validada en Xiaomi: el error de una persona ronda ±8 puntos. Será distinta de la de Zepp Life, cuyo cálculo no es público. Mira la tendencia de semanas, no un día.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimate using the published equation by Jebb and colleagues (2000), made with another foot-to-foot scale (Tanita) and not validated on Xiaomi: the error for one person is around ±8 points. It will differ from Zepp Life's, whose calculation isn't public. Look at the trend over weeks, not a single day."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattning med den publicerade ekvationen av Jebb med flera (2000), gjord med en annan fotvåg (Tanita) och inte validerad på Xiaomi: felet för en enskild person ligger runt ±8 procentenheter. Den kommer att skilja sig från Zepp Lifes, vars beräkning inte är offentlig. Titta på trenden över veckor, inte en enskild dag."
           }
         }
       }
@@ -8586,6 +8671,23 @@
         }
       }
     },
+    "Funciona con la Mi Smart Scale 2 y la Mi Body Composition Scale 2 (las de Zepp Life). Las nuevas Xiaomi S400 y S200 cifran sus datos y solo se leen con la app de Xiaomi. Si no aparece nada, pisa la balanza para despertarla y deja el iPhone cerca.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Works with the Mi Smart Scale 2 and the Mi Body Composition Scale 2 (the Zepp Life ones). The newer Xiaomi S400 and S200 encrypt their data and can only be read with Xiaomi's app. If nothing appears, step on the scale to wake it and keep the iPhone close."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fungerar med Mi Smart Scale 2 och Mi Body Composition Scale 2 (de som används med Zepp Life). De nyare Xiaomi S400 och S200 krypterar sina data och kan bara läsas med Xiaomis app. Om inget visas, kliv på vågen för att väcka den och håll iPhone nära."
+          }
+        }
+      }
+    },
     "Fórmula de Riegel con tus 3 mejores carreras recientes (de %lld). Supone que entrenas para esa distancia y vas a tope; si casi nunca corres fuerte, los tiempos reales pueden ser mejores. El rango refleja el error de la fórmula.": {
       "extractionState": "manual",
       "localizations": {
@@ -8739,6 +8841,23 @@
         }
       }
     },
+    "Grasa estimada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated body fat"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattat kroppsfett"
+          }
+        }
+      }
+    },
     "Gráfico de frecuencia cardíaca": {
       "extractionState": "manual",
       "localizations": {
@@ -8773,6 +8892,23 @@
         }
       }
     },
+    "Guardada (la verás en el iPhone)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved (you'll see it on the iPhone)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sparad (du ser den på iPhone)"
+          }
+        }
+      }
+    },
     "Guardada en Apple Health": {
       "extractionState": "manual",
       "localizations": {
@@ -8786,6 +8922,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sparat i Apple Health"
+          }
+        }
+      }
+    },
+    "Guardado en Apple Health.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved to Apple Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sparat i Apple Hälsa."
+          }
+        }
+      }
+    },
+    "Guardando…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sparar …"
           }
         }
       }
@@ -8837,6 +9007,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spara i Apple Health"
+          }
+        }
+      }
+    },
+    "Guardar también la grasa estimada en Salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also save the estimated body fat to Health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spara även uppskattat kroppsfett i Hälsa"
           }
         }
       }
@@ -8956,6 +9143,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Din vikt i Hälsa och din längd under Profil behövs."
+          }
+        }
+      }
+    },
+    "Hacen falta 10 mediciones que terminen con un pulso parecido para ver si tu recuperación cambia.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It takes 10 measurements ending at a similar heart rate to see whether your recovery is changing."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs 10 mätningar som slutar med liknande puls för att se om din återhämtning förändras."
           }
         }
       }
@@ -9470,6 +9674,23 @@
         }
       }
     },
+    "HÅLSYN no tiene permiso de Bluetooth. Actívalo en Ajustes › Privacidad y seguridad › Bluetooth › HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN doesn't have Bluetooth permission. Turn it on in Settings › Privacy & Security › Bluetooth › HÅLSYN."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN har inte behörighet för Bluetooth. Slå på det under Inställningar › Integritet och säkerhet › Bluetooth › HÅLSYN."
+          }
+        }
+      }
+    },
     "HÅLSYN ofrece estimaciones de bienestar y rendimiento. No es un dispositivo médico, no diagnostica enfermedades y no sustituye la valoración de un profesional sanitario.": {
       "extractionState": "manual",
       "localizations": {
@@ -9929,6 +10150,23 @@
         }
       }
     },
+    "La estima el Apple Watch como si terminaras a una intensidad estándar: no se compara directamente con tus mediciones.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch estimates it as if you had finished at a standard intensity: it isn't directly comparable with your measurements."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch uppskattar den som om du hade avslutat på en standardintensitet: den går inte att jämföra direkt med dina mätningar."
+          }
+        }
+      }
+    },
     "La forma física necesita unos 3 meses de datos: por ahora sale más baja de lo real y la frescura, más negativa.": {
       "extractionState": "manual",
       "localizations": {
@@ -10201,23 +10439,6 @@
         }
       }
     },
-    "Las del Apple Watch (Recuperación cardíaca de Salud) solo traen el primer minuto.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Those from the Apple Watch (Cardio Recovery in Health) only include the first minute."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De från Apple Watch (Återhämtning i Hälsa) innehåller bara första minuten."
-          }
-        }
-      }
-    },
     "Las notificaciones están desactivadas para HÅLSYN en Ajustes.": {
       "extractionState": "manual",
       "localizations": {
@@ -10367,6 +10588,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Klar"
+          }
+        }
+      }
+    },
+    "Listo. Ya puedes bajarte.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done. You can step off."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klart. Du kan kliva av."
           }
         }
       }
@@ -11476,6 +11714,23 @@
         }
       }
     },
+    "Midiendo… quédate quieto hasta que el número se detenga.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measuring… stay still until the number stops."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mäter … stå still tills siffran stannar."
+          }
+        }
+      }
+    },
     "Milla %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -11506,6 +11761,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Minut"
+          }
+        }
+      }
+    },
+    "Minutos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuter"
           }
         }
       }
@@ -12581,6 +12853,23 @@
         }
       }
     },
+    "No se pudo guardar en Salud: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't save to Health: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte spara i Hälsa: %@"
+          }
+        }
+      }
+    },
     "No se pudo medir la recuperación": {
       "extractionState": "manual",
       "localizations": {
@@ -13414,6 +13703,23 @@
         }
       }
     },
+    "Para estimar la grasa hacen falta tu altura, tu edad y tu sexo en Perfil (y estar dentro de lo estudiado: 16–78 años, IMC 16–41).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To estimate body fat it needs your height, age and sex in Profile (and to be within what was studied: 16–78 years, BMI 16–41)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att uppskatta kroppsfettet behövs din längd, ålder och ditt kön i Profil (och att du ligger inom det som studerats: 16–78 år, BMI 16–41)."
+          }
+        }
+      }
+    },
     "Para la HRV no mostramos percentiles por edad: las tablas publicadas usan registros de 5 minutos o de 24 horas, en condiciones controladas, y no son comparables con las lecturas sueltas del Apple Watch. Aquí la comparación útil es contigo mismo.": {
       "extractionState": "manual",
       "localizations": {
@@ -13886,6 +14192,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tillåt plats"
+          }
+        }
+      }
+    },
+    "Pesarme con la balanza Xiaomi": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weigh myself with the Xiaomi scale"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Väg mig med Xiaomi-vågen"
           }
         }
       }
@@ -15467,6 +15790,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Återhämtning efter passet"
+          }
+        }
+      }
+    },
+    "Recuperación cardíaca de Salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardio Recovery from Health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återhämtning från Hälsa"
           }
         }
       }
@@ -17460,6 +17800,23 @@
         }
       }
     },
+    "Sin impedancia (hay que subirse descalzo y con los pies secos): solo se guarda el peso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No impedance (you need to step on barefoot with dry feet): only the weight is saved."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen impedans (du behöver kliva på barfota med torra fötter): bara vikten sparas."
+          }
+        }
+      }
+    },
     "Sin indicar": {
       "extractionState": "manual",
       "localizations": {
@@ -18238,6 +18595,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vektorsymbol som approximerar den godkända referensen; ska ersättas med designerns slutliga vektor."
+          }
+        }
+      }
+    },
+    "Súbete a la balanza descalzo. HÅLSYN la escucha por Bluetooth: no hace falta emparejarla ni abrir Zepp Life.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step on the scale barefoot. HÅLSYN listens to it over Bluetooth: no need to pair it or open Zepp Life."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kliv på vågen barfota. HÅLSYN lyssnar på den via Bluetooth: du behöver inte parkoppla den eller öppna Zepp Life."
           }
         }
       }
@@ -19908,19 +20282,19 @@
         }
       }
     },
-    "Tus últimas %lld mediciones son parecidas a las %lld anteriores.": {
+    "Tus últimas %lld mediciones son parecidas a las %lld anteriores (la diferencia está dentro del margen normal de una medición a otra).": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your last %lld measurements are similar to the previous %lld."
+            "value": "Your last %lld measurements are similar to the previous %lld (the difference is within the normal variation between measurements)."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dina senaste %lld mätningar liknar de %lld föregående."
+            "value": "Dina senaste %lld mätningar liknar de %lld föregående (skillnaden ligger inom den normala variationen mellan mätningar)."
           }
         }
       }
@@ -20979,6 +21353,23 @@
         }
       }
     },
+    "Volver a pesar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weigh again"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Väg igen"
+          }
+        }
+      }
+    },
     "Volver a redactar": {
       "extractionState": "manual",
       "localizations": {
@@ -21778,19 +22169,19 @@
         }
       }
     },
-    "¿Tienes una balanza Xiaomi? En la app Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal. Otras balanzas inteligentes tienen una opción parecida.": {
+    "¿Tienes una balanza Xiaomi? Pésate con el botón de abajo: HÅLSYN la lee por Bluetooth. También puedes usar Zepp Life (o Mi Fit): Perfil › Añadir cuentas › Salud de Apple, y activa peso y grasa corporal.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Have a Xiaomi scale? In the Zepp Life (or Mi Fit) app: Profile › Add accounts › Apple Health, and turn on weight and body fat. Other smart scales have a similar option."
+            "value": "Have a Xiaomi scale? Weigh yourself with the button below: HÅLSYN reads it over Bluetooth. You can also use Zepp Life (or Mi Fit): Profile › Add accounts › Apple Health, and turn on weight and body fat."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Har du en Xiaomi-våg? I appen Zepp Life (eller Mi Fit): Profil › Lägg till konton › Apple Health, och aktivera vikt och kroppsfett. Andra smarta vågar har ett liknande alternativ."
+            "value": "Har du en Xiaomi-våg? Väg dig med knappen nedan: HÅLSYN läser den via Bluetooth. Du kan också använda Zepp Life (eller Mi Fit): Profil › Lägg till konton › Apple Hälsa, och slå på vikt och kroppsfett."
           }
         }
       }

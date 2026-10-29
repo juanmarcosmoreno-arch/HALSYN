@@ -31,6 +31,8 @@ final class RunSettingsStore: NSObject {
     /// Mensaje del reloj al iPhone con un aviso de voz, y su respuesta.
     nonisolated static let speechMessageKey = "speak"
     nonisolated static let spokenReplyKey = "spoken"
+    /// Medición de recuperación del pulso que el reloj envía al iPhone (`transferUserInfo`).
+    nonisolated static let recoveryInfoKey = "recovery"
     private static let snapshotStorageKey = "halsyn.phoneSnapshot"
 
     enum LinkState: Equatable {
@@ -151,6 +153,14 @@ final class RunSettingsStore: NSObject {
     }
 
     #if os(watchOS)
+    /// Envía al iPhone una medición de recuperación guardada. `transferUserInfo`
+    /// la entrega aunque el iPhone esté lejos o apagado (cuando vuelva).
+    func sendRecovery(_ result: HeartRateRecoveryResult) {
+        guard let session, session.activationState == .activated,
+              let data = try? RecoveryHistoryStore.encode(result) else { return }
+        session.transferUserInfo([Self.recoveryInfoKey: data])
+    }
+
     /// Pide al iPhone que diga el aviso. `false` si el iPhone no está al
     /// alcance; si no llega o no puede decirlo, se llama a `fallback`.
     func speakOnPhone(_ text: String, fallback: @escaping @MainActor () -> Void) -> Bool {
@@ -187,6 +197,13 @@ extension RunSettingsStore: WCSessionDelegate {
 
     nonisolated func sessionWatchStateDidChange(_ session: WCSession) {
         Task { @MainActor in self.stateChanged() }
+    }
+
+    /// Mediciones de recuperación del pulso guardadas en el reloj.
+    nonisolated func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+        guard let data = userInfo[RunSettingsStore.recoveryInfoKey] as? Data,
+              let result = try? RecoveryHistoryStore.decodeOne(data) else { return }
+        Task { @MainActor in RecoveryHistoryStore.shared.add(result) }
     }
 
     /// Avisos de voz del reloj: los dice el iPhone por sus auriculares.

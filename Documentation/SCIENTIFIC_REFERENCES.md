@@ -173,3 +173,37 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - **Comparación semanal**: los últimos 7 días frente a la media semanal de los 28 anteriores (solo con al menos 35 días de historia).
   - Por encima de 1,5 se recuerda que las subidas bruscas se asociaron con más lesiones en algunos estudios (Gabbett TJ, *Br J Sports Med* 2016, doi:10.1136/bjsports-2015-095788).
   - También que el cociente agudo:crónico está discutido. Impellizzeri FM, et al. *Int J Sports Physiol Perform.* 2020;15(6):907–913 (doi:10.1123/ijspp.2019-0864) concluyen que no hay evidencia para usarlo en la gestión de la carga ni para reducir lesiones: es un aviso, no una regla.
+
+## Recuperación del pulso (`HeartRateRecovery`, `RecoveryTrend`)
+
+- **Medición**:
+  - Al terminar, el reloj abre una sesión de enfriamiento (`.cooldown`) para tener el pulso cada ~5 s. Esa sesión se descarta.
+  - La FC al terminar es la más alta de los últimos 20 s de ejercicio.
+  - La bajada a 1, 2 y 5 min usa la FC interpolada entre lecturas, con un máximo de 10 s de distancia; si no hay lecturas, no hay valor.
+- **Dónde se guarda**: en la app (el reloj la envía al iPhone), no en la «Recuperación cardíaca» de Salud.
+  - La de Apple es una predicción normalizada al 85 % de la FC máxima prevista, con tope en 55 lpm (Apple, *Using Apple Watch to measure heart rate, calorimetry, and activity*, nov. 2024). Mezclarlas confundiría su gráfico.
+  - La de Apple se muestra aparte y no se compara.
+- **Tendencia**:
+  - Se comparan las últimas 5 mediciones con las 5 anteriores.
+  - Solo entran las que terminaron con una FC parecida (±10 lpm), porque la recuperación depende de la intensidad (Mann TN, et al. *Eur J Appl Physiol.* 2014, doi:10.1007/s00421-014-2907-9).
+  - Solo se habla de cambio si supera 3 lpm y el 10 % (error típico de la bajada al minuto ~25 %: Buchheit M. *Front Physiol.* 2014;5:73, doi:10.3389/fphys.2014.00073).
+- **Interpretación**:
+  - Suele mejorar con el entrenamiento (Daanen HA, et al. *Int J Sports Physiol Perform.* 2012;7(3):251–260, doi:10.1123/ijspp.7.3.251).
+  - Pero una mejora con mucho cansancio puede ser sobrecarga (Aubry A, et al. *PLoS One.* 2015;10(10):e0139754, doi:10.1371/journal.pone.0139754).
+  - Depende de la postura y de si se camina (Barak OF, et al. *J Sports Sci Med.* 2011; Buchheit M, et al. *Exp Physiol.* 2009, doi:10.1113/expphysiol.2009.048041), por eso se pide recuperar siempre igual.
+- **Sin interpretación clínica**: los umbrales de Cole 1999 (≤12 lpm) o Shetler 2001 (<22 lpm a 2 min) son de pruebas de esfuerzo en pacientes con ECG. No se usan ni se muestran.
+
+## Balanza Xiaomi por Bluetooth (`XiaomiScaleParser`, `BodyFatEstimate`)
+
+- **Lectura sin emparejar** de la publicidad BLE:
+  - Mi Smart Scale 2 (0x181D, 10 bytes: peso).
+  - Mi Body Composition Scale 2 (0x181B, 13 bytes: peso e impedancia).
+  - Formato contrastado en xiaomi-ble (Apache-2.0), ble_monitor (MIT), ESPHome y la wiki de openScale, solo como hechos de interoperabilidad, sin copiar código. Tests con capturas publicadas.
+  - Los modelos S400, S200 y S800 cifran los datos (MiBeacon v5, 0xFE95) y no se pueden leer sin la clave de Xiaomi.
+- **Grasa estimada**: Jebb SA, et al. *Br J Nutr.* 2000;83(2):115–122, doi:10.1017/S0007114500000155.
+  - Es la única ecuación publicada de pies a pies frente a un modelo de 4 compartimentos, con validación independiente (Chouinard LE, et al. *Obesity.* 2007, doi:10.1038/oby.2007.510).
+  - %grasa = −156,1 − 89,1·ln(altura m) + 45,6·ln(peso) + 0,120·edad + 0,0494·Z + 19,6·ln(altura m) [mujeres].
+  - La altura va en metros (el artículo dice cm por error; así lo transcribe también la revisión de Oliver et al. 2026).
+  - Solo para 16–78 años e IMC 16–41.
+  - Se muestra como rango de ±8 puntos y se avisa de que no está validada en Xiaomi. Las balanzas de consumo tienen errores de 7–8 puntos frente a 4C (Siedler MR, et al. *Br J Nutr.* 2023, doi:10.1017/S0007114522003749).
+  - Guardarla en Salud es opcional; el peso sí se guarda.

@@ -9,9 +9,9 @@ import WatchKit
 /// Al guardar el entrenamiento se abre una sesión corta de enfriamiento
 /// (`HKWorkoutActivityType.cooldown`) solo para tener el pulso cada pocos
 /// segundos; esa sesión se descarta y no queda como entrenamiento en Salud.
-/// Al final se pregunta si guardar la medición: si sí, la bajada del primer
-/// minuto va a Salud (`heartRateRecoveryOneMinute`) con la de 2 minutos y la FC
-/// al terminar en los metadatos.
+/// Al final se pregunta si guardar la medición: si sí, se guarda en la app y se
+/// envía al iPhone. No va a la «Recuperación cardíaca» de Salud: la de Apple es
+/// una estimación normalizada a una intensidad estándar y mezclarlas confundiría.
 @MainActor
 @Observable
 final class RecoveryMeter: NSObject {
@@ -89,30 +89,15 @@ final class RecoveryMeter: NSObject {
         Task { await finish() }
     }
 
-    /// Guarda la bajada del primer minuto en Salud (solo si se midió y bajó).
+    /// Guarda la medición en el reloj y la envía al iPhone (solo si llegó al minuto).
     func save() async {
-        guard case let .finished(result) = phase, let oneMinute = result.oneMinute, oneMinute > 0 else {
+        guard case let .finished(result) = phase, result.oneMinute != nil else {
             saveState = .notSaved
             return
         }
-        saveState = .saving
-        var metadata: [String: Any] = [RecoveryReading.endHeartRateKey: result.endHeartRate]
-        if let twoMinutes = result.twoMinutes {
-            metadata[RecoveryReading.twoMinutesKey] = twoMinutes
-        }
-        let sample = HKQuantitySample(
-            type: HKQuantityType(.heartRateRecoveryOneMinute),
-            quantity: HKQuantity(unit: HKUnit.count().unitDivided(by: .minute()), doubleValue: oneMinute),
-            start: result.date,
-            end: result.date.addingTimeInterval(60),
-            metadata: metadata
-        )
-        do {
-            try await healthStore.save(sample)
-            saveState = .saved
-        } catch {
-            saveState = .failed(error.localizedDescription)
-        }
+        RecoveryHistoryStore.shared.add(result)
+        RunSettingsStore.shared.sendRecovery(result)
+        saveState = .saved
     }
 
     func discard() {

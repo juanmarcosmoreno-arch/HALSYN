@@ -83,13 +83,14 @@ public enum HeartRateRecovery {
     }
 }
 
-/// Medición guardada en Apple Health (de HÅLSYN o del Apple Watch).
+/// Una recuperación para la tendencia: de HÅLSYN (con 2 minutos y FC al terminar)
+/// o la «Recuperación cardíaca» de Salud (solo el primer minuto, estimada por Apple).
 public struct RecoveryReading: Hashable, Identifiable, Sendable {
     public let id: UUID
     public let date: Date
     /// Bajada en el primer minuto (lpm).
     public let oneMinute: Double
-    /// Solo en las de HÅLSYN (metadatos).
+    /// Solo en las de HÅLSYN.
     public let twoMinutes: Double?
     public let endHeartRate: Double?
     public let origin: DataOrigin
@@ -103,9 +104,11 @@ public struct RecoveryReading: Hashable, Identifiable, Sendable {
         self.origin = origin
     }
 
-    /// Claves de metadatos con las que HÅLSYN guarda el resto de la medición.
-    public static let twoMinutesKey = "HalsynRecoveryTwoMinutes"
-    public static let endHeartRateKey = "HalsynRecoveryEndHeartRate"
+    /// Una medición de HÅLSYN como lectura de la tendencia (solo si llegó al minuto).
+    public init?(_ result: HeartRateRecoveryResult) {
+        guard let oneMinute = result.oneMinute else { return nil }
+        self.init(date: result.date, oneMinute: oneMinute, twoMinutes: result.twoMinutes, endHeartRate: result.endHeartRate, origin: .derived(engine: "HÅLSYN"))
+    }
 }
 
 /// Tendencia: media de las últimas mediciones frente a las anteriores.
@@ -117,9 +120,26 @@ public struct RecoveryTrend: Hashable, Sendable {
     /// Positivo = ahora baja más (recupera más rápido).
     public var change: Double { recentAverage - previousAverage }
 
+    /// Diferencia mínima para hablar de cambio: el error típico de la bajada al
+    /// minuto ronda el 25 por ciento (Buchheit 2014), así que se pide al menos
+    /// 3 lpm y un 10 por ciento.
+    public var isMeaningful: Bool {
+        abs(change) >= max(3, previousAverage * 0.1)
+    }
+
     /// Con `count` mediciones recientes y otras tantas anteriores; `nil` si no hay.
+    /// Solo compara mediciones que terminaron con una FC parecida a la última
+    /// (±`endHeartRateBand` lpm), porque la recuperación depende de lo fuerte que
+    /// se terminó.
+    public static let endHeartRateBand: Double = 10
+
     public static func make(_ readings: [RecoveryReading], count: Int = 5) -> RecoveryTrend? {
-        let sorted = readings.sorted { $0.date < $1.date }
+        var sorted = readings.sorted { $0.date < $1.date }
+        if let reference = sorted.last?.endHeartRate {
+            sorted = sorted.filter { reading in
+                reading.endHeartRate.map { abs($0 - reference) <= endHeartRateBand } ?? true
+            }
+        }
         guard count > 0, sorted.count >= count * 2 else { return nil }
         let recent = sorted.suffix(count).map(\.oneMinute)
         let previous = sorted.dropLast(count).suffix(count).map(\.oneMinute)

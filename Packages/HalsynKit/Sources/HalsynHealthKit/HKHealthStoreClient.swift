@@ -28,18 +28,27 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
 
     public func shouldRequestAuthorization() async throws -> Bool {
         do {
-            let status = try await store.statusForAuthorizationRequest(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.allReadTypes)
+            let status = try await store.statusForAuthorizationRequest(toShare: Self.shareTypes, read: HealthKitTypeCatalog.allReadTypes)
             return status != .unnecessary
         } catch {
             throw Self.map(error)
         }
     }
 
+    /// Escritura: lo del reloj y, solo en el iPhone, el peso de la balanza.
+    private static var shareTypes: Set<HKSampleType> {
+        #if os(iOS)
+        HealthKitTypeCatalog.watchShareTypes.union(HealthKitTypeCatalog.scaleShareTypes)
+        #else
+        HealthKitTypeCatalog.watchShareTypes
+        #endif
+    }
+
     public func requestAuthorization() async throws {
         do {
             // También lo que escribe el reloj: los permisos son comunes al iPhone y al
             // reloj, así que con una sola hoja aquí el reloj no vuelve a preguntar.
-            try await store.requestAuthorization(toShare: HealthKitTypeCatalog.watchShareTypes, read: HealthKitTypeCatalog.allReadTypes)
+            try await store.requestAuthorization(toShare: Self.shareTypes, read: HealthKitTypeCatalog.allReadTypes)
         } catch {
             throw Self.map(error)
         }
@@ -185,14 +194,12 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         )
         do {
             return try await descriptor.result(for: store).map { sample in
-                let twoMinutes = (sample.metadata?[RecoveryReading.twoMinutesKey] as? NSNumber)?.doubleValue
-                let endHeartRate = (sample.metadata?[RecoveryReading.endHeartRateKey] as? NSNumber)?.doubleValue
-                return RecoveryReading(
+                RecoveryReading(
                     id: sample.uuid,
                     date: sample.startDate,
                     oneMinute: sample.quantity.doubleValue(for: perMinute),
-                    twoMinutes: twoMinutes,
-                    endHeartRate: endHeartRate,
+                    twoMinutes: nil,
+                    endHeartRate: nil,
                     origin: .healthKit(sourceName: sample.sourceRevision.source.name)
                 )
             }

@@ -14,6 +14,7 @@
 		09DEC27C21ACF8937112B3A9 /* PermissionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E2F10A3967F3786DBCD4F6 /* PermissionLog.swift */; };
 		0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012271C724A4E059BEE1136 /* CykelView.swift */; };
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
+		0FF4C84553B55372CC80C84E /* RecoveryHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */; };
 		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
 		14E49DFE91A16EA2F031ECE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */; };
 		152BEB2871B5D4587AF414B9 /* HalsynAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF212713B7D0C847F8B1081B /* HalsynAppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		777DC5A30C5784AC1D05BD31 /* HalsynWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E6AA6373826CEDDC52FD1 /* HalsynWidgetViews.swift */; };
 		840224E9A346CC33C8289CBF /* TrainingLoadViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84A152E1452ADF3D915CB7 /* TrainingLoadViews.swift */; };
 		865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */; };
+		86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAE112449D9350EF7C4A8A /* ScaleWeighIn.swift */; };
 		875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */; };
 		8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C9E6640D89A5E92944ADB /* RideDetailView.swift */; };
 		8F4A9F08F7C21ACEB69604E7 /* RecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928934EF5A513D64F8F6F04E /* RecoveryView.swift */; };
@@ -89,6 +91,7 @@
 		C5A9FC3B37C0379DE1589776 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0857277597E36AAE3B0052AC /* HalsynCore */; };
 		C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287A71EB2C50957EA5FACDE /* SharedViews.swift */; };
 		C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */; };
+		C6A0D3F801295003406C89A7 /* RecoveryHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */; };
 		C9B76934A0B24C5F8EF19B43 /* intro-dark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D250FF30FFD4688AE26DFDE4 /* intro-dark.mp4 */; };
 		CD89E046AFDC8366E2A2D151 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = F8BC070349D54F9995A35913 /* HalsynCore */; };
 		CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE91FF6016BAB5F98966A /* GoalStore.swift */; };
@@ -184,6 +187,7 @@
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
 		076BE91FF6016BAB5F98966A /* GoalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStore.swift; sourceTree = "<group>"; };
+		0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryHistoryStore.swift; sourceTree = "<group>"; };
 		0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
 		0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCoachViews.swift; sourceTree = "<group>"; };
 		0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		200B7BAFC27B646B278C5486 /* HabitJournalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitJournalViews.swift; sourceTree = "<group>"; };
 		212FD4C77719A56D78D06081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22FAE112449D9350EF7C4A8A /* ScaleWeighIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleWeighIn.swift; sourceTree = "<group>"; };
 		2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeViews.swift; sourceTree = "<group>"; };
 		290129784398211208980B11 /* HalsynWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWidgets.entitlements; sourceTree = "<group>"; };
 		2B84A152E1452ADF3D915CB7 /* TrainingLoadViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLoadViews.swift; sourceTree = "<group>"; };
@@ -601,6 +606,7 @@
 			children = (
 				E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */,
 				8C7EB0050B5243C3667893CE /* CoachSpeech.swift */,
+				0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */,
 				BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */,
 			);
 			path = Shared;
@@ -655,6 +661,7 @@
 				0210D91C67294E38A972B396 /* HalsaView.swift */,
 				7CCDDA395B13EEDF085E1836 /* HistoryView.swift */,
 				79DE85C4ACB81B8FD737DA1C /* MetricDetailView.swift */,
+				22FAE112449D9350EF7C4A8A /* ScaleWeighIn.swift */,
 				14CC8677E0FD0779DAECFFD0 /* ScoreDetailView.swift */,
 				71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */,
 				9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */,
@@ -933,6 +940,7 @@
 				A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */,
 				96EA43C7BCE036CD2E4E73AE /* LocationPermissionHint.swift in Sources */,
 				09DEC27C21ACF8937112B3A9 /* PermissionLog.swift in Sources */,
+				0FF4C84553B55372CC80C84E /* RecoveryHistoryStore.swift in Sources */,
 				EA6D1553D8C58A85F8DE7417 /* RecoveryMeter.swift in Sources */,
 				8F4A9F08F7C21ACEB69604E7 /* RecoveryView.swift in Sources */,
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
@@ -982,6 +990,7 @@
 				865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */,
 				0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */,
 				0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */,
+				C6A0D3F801295003406C89A7 /* RecoveryHistoryStore.swift in Sources */,
 				52AEB8C0146C419F0A048B2A /* ReferenceComparison.swift in Sources */,
 				8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */,
 				72FDAA2B910DD04FBD952227 /* RideSettingsView.swift in Sources */,
@@ -990,6 +999,7 @@
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
 				770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */,
+				86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */,
 				C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */,
 				D62F77788E6DC657EAA6F730 /* ScoreTexts.swift in Sources */,
 				C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */,
@@ -1132,7 +1142,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1317,7 +1327,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
