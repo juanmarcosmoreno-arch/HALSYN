@@ -52,6 +52,8 @@ public protocol HealthDataProviding: Sendable {
     func ridePower(for workout: WorkoutSummary) async -> [PowerSample]
     /// Último FTP guardado en Apple Health.
     func functionalThresholdPower() async -> ThresholdPowerReading?
+    /// Recuperaciones de la FC tras entrenar de los últimos `days` días, de la más antigua a la más nueva.
+    func heartRateRecoveries(days: Int) async -> [RecoveryReading]
     /// Ruta y FC de un entrenamiento (vacíos si no existen).
     func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData
     /// Puntuación diaria (`HealthScoreEngine`) si hay datos suficientes.
@@ -88,4 +90,6 @@ extension HealthDataProviding {
     public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] { [] }
 
     public func functionalThresholdPower() async -> ThresholdPowerReading? { nil }
+
+    public func heartRateRecoveries(days: Int) async -> [RecoveryReading] { [] }
 }

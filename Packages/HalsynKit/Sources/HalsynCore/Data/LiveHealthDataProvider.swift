@@ -139,6 +139,14 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return (try? await client.cyclingPowerSamples(in: DateInterval(start: workout.start, end: workout.wallClockEnd))) ?? []
     }
 
+    public func heartRateRecoveries(days: Int) async -> [RecoveryReading] {
+        guard client.isHealthDataAvailable, days > 0 else { return [] }
+        let end = now()
+        let start = calendar.date(byAdding: .day, value: -days, to: end) ?? end
+        let readings = (try? await client.heartRateRecoveries(in: DateInterval(start: start, end: end))) ?? []
+        return readings.sorted { $0.date < $1.date }
+    }
+
     public func functionalThresholdPower() async -> ThresholdPowerReading? {
         guard client.isHealthDataAvailable else { return nil }
         return await client.latestFunctionalThresholdPower()

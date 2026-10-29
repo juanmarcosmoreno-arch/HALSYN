@@ -25,6 +25,10 @@ public struct RunSettings: Hashable, Codable, Sendable {
     public var voiceOutput: VoiceOutput?
     /// Qué avisos de voz se dicen (`cues`). Opcional para ajustes guardados antes.
     public var voiceCues: VoiceCueSettings?
+    /// Ofrecer medir la recuperación del pulso al terminar (por defecto, sí).
+    public var recoveryPrompt: Bool?
+    /// Minutos de medición de la recuperación (1, 2 o 5; por defecto, 2).
+    public var recoveryMinutes: Int?
 
     /// CYKEL: vuelta automática en bici, en unidades de distancia (km o mi, las
     /// que estén elegidas). `nil` = la predeterminada (5); 0 = sin vueltas automáticas.
@@ -64,6 +68,20 @@ public struct RunSettings: Hashable, Codable, Sendable {
         self.intervalPlans = intervalPlans
         self.unitSystem = unitSystem
         self.modifiedAt = modifiedAt
+    }
+
+    public static let recoveryMinuteOptions = [1, 2, 5]
+
+    /// Al terminar se ofrece medir cómo baja el pulso.
+    public var offersRecovery: Bool {
+        get { recoveryPrompt ?? true }
+        set { recoveryPrompt = newValue }
+    }
+
+    /// Duración de la medición de la recuperación, en minutos.
+    public var recoveryDuration: Int {
+        get { recoveryMinutes.flatMap { Self.recoveryMinuteOptions.contains($0) ? $0 : nil } ?? 2 }
+        set { recoveryMinutes = newValue }
     }
 
     /// Opciones de vuelta automática en bici, en unidades (0 = desactivada).

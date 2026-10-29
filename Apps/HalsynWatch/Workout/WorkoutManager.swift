@@ -66,6 +66,11 @@ final class WorkoutManager: NSObject {
     var isActive: Bool { phase == .preparing || phase == .running || phase == .paused || phase == .stopping }
 
     @ObservationIgnored let healthStore = HKHealthStore()
+    /// Recuperación del pulso al terminar (opcional, se ofrece al guardar).
+    let recoveryMeter: RecoveryMeter
+    /// Lecturas de FC de los últimos segundos (para la FC al terminar).
+    @ObservationIgnored private var recentHeartRates: [(date: Date, bpm: Double)] = []
+    @ObservationIgnored private var measuresRecovery = false
     @ObservationIgnored private var session: HKWorkoutSession?
     @ObservationIgnored private var builder: HKLiveWorkoutBuilder?
     @ObservationIgnored private var routeBuilder: HKWorkoutRouteBuilder?
@@ -75,6 +80,7 @@ final class WorkoutManager: NSObject {
     @ObservationIgnored private var lastRoutePoint: CLLocation?
 
     private override init() {
+        recoveryMeter = RecoveryMeter(healthStore: healthStore)
         super.init()
         locationManager.delegate = self
         locationManager.activityType = .fitness
@@ -228,6 +234,11 @@ final class WorkoutManager: NSObject {
         do {
             let recovered: HKWorkoutSession? = try await healthStore.recoverActiveWorkoutSession()
             guard let session = recovered else { return }
+            // Una medición de recuperación interrumpida no se retoma: se cierra sin guardar.
+            if session.workoutConfiguration.activityType == .cooldown {
+                session.end()
+                return
+            }
             // El plan de intervalos no se conserva tras un cierre: la carrera sigue como libre.
             reset(plan: nil, cycling: session.workoutConfiguration.activityType == .cycling)
             let builder = session.associatedWorkoutBuilder()
@@ -272,9 +283,16 @@ final class WorkoutManager: NSObject {
         handleCues()
     }
 
+    /// Se ofrece medir la recuperación al terminar (ajuste del iPhone y con pulso).
+    var offersRecovery: Bool {
+        RunSettingsStore.shared.settings.offersRecovery && !recentHeartRates.isEmpty
+    }
+
     /// Termina la carrera. `save == false` la descarta sin escribir en Apple Health.
-    func end(save: Bool) {
+    /// Con `measureRecovery`, tras guardar se mide cómo baja el pulso.
+    func end(save: Bool, measureRecovery: Bool = false) {
         shouldSave = save
+        measuresRecovery = save && measureRecovery
         locationManager.stopUpdatingLocation()
         if let session {
             session.end()
@@ -286,6 +304,7 @@ final class WorkoutManager: NSObject {
 
     /// Vuelve al estado inicial tras ver el resumen.
     func dismissSummary() {
+        recoveryMeter.close()
         reset()
     }
 
@@ -307,6 +326,8 @@ final class WorkoutManager: NSObject {
         errorMessage = nil
         finalSnapshot = nil
         shouldSave = true
+        measuresRecovery = false
+        recentHeartRates = []
         session = nil
         builder = nil
         routeBuilder = nil
@@ -366,6 +387,10 @@ final class WorkoutManager: NSObject {
                     _ = try await routeBuilder.finishRoute(with: workout, metadata: nil)
                 }
                 outcome = .saved
+                // La sesión de la carrera ya terminó: ahora la de recuperación.
+                if measuresRecovery, let endHeartRate = HeartRateRecovery.endHeartRate(recentHeartRates, end: date) {
+                    await recoveryMeter.start(endHeartRate: endHeartRate, exerciseEnd: date, minutes: RunSettingsStore.shared.settings.recoveryDuration)
+                }
             } else {
                 builder.discardWorkout()
                 routeBuilder?.discard()
@@ -472,6 +497,8 @@ final class WorkoutManager: NSObject {
         }
         if let heartRate = values.heartRate {
             tracker.addHeartRate(heartRate, at: date)
+            recentHeartRates.append((date, heartRate))
+            recentHeartRates.removeAll { date.timeIntervalSince($0.date) > 60 }
         }
         if let energy = values.energy {
             tracker.updateActiveEnergy(total: energy)

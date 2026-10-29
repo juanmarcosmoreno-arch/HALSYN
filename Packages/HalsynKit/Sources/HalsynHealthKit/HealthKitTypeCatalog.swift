@@ -108,6 +108,8 @@ public enum HealthKitTypeCatalog {
             HKQuantityType(.cyclingPower),
             HKQuantityType(.cyclingCadence),
             HKQuantityType(.cyclingSpeed),
+            // Recuperación del pulso al minuto (medición opcional al terminar).
+            HKQuantityType(.heartRateRecoveryOneMinute),
         ]
     }
 
@@ -126,9 +128,10 @@ public enum HealthKitTypeCatalog {
         ]
     }
 
-    /// Todo lo que pide el iPhone: lectura de la app y lo del reloj (lectura y escritura).
+    /// Todo lo que pide el iPhone: lectura de la app y lo del reloj (lectura y
+    /// escritura), más la recuperación del pulso (de HÅLSYN o del Apple Watch).
     public static var allReadTypes: Set<HKObjectType> {
-        coreReadTypes.union(watchReadTypes)
+        coreReadTypes.union(watchReadTypes).union([HKQuantityType(.heartRateRecoveryOneMinute)])
     }
 
     /// Tipos que HÅLSYN escribirá (entrenamientos y rutas creados en el reloj).

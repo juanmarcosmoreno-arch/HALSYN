@@ -12,7 +12,11 @@ struct WorkoutSessionView: View {
 
     var body: some View {
         NavigationStack {
-            if workout.outcome != nil || workout.phase == .ended {
+            if workout.recoveryMeter.isActive {
+                // Recuperación del pulso: antes del resumen de la carrera.
+                RecoveryView()
+                    .toolbar(.hidden, for: .navigationBar)
+            } else if workout.outcome != nil || workout.phase == .ended {
                 WorkoutSummaryView()
                     // "Hecho" en lugar de la cruz del sistema.
                     .toolbar {
@@ -246,6 +250,9 @@ private struct PausedPanel: View {
         .background(RoundedRectangle(cornerRadius: 18).fill(Color.black.opacity(0.88)))
         .confirmationDialog("¿Terminar el entrenamiento?", isPresented: $confirmingEnd) {
             Button("Guardar en Apple Health") { workout.end(save: true) }
+            if workout.offersRecovery {
+                Button("Guardar y medir recuperación") { workout.end(save: true, measureRecovery: true) }
+            }
             Button("Descartar", role: .destructive) { workout.end(save: false) }
             Button("Seguir", role: .cancel) {}
         }
@@ -643,6 +650,9 @@ private struct WorkoutControlsView: View {
         }
         .confirmationDialog("¿Terminar el entrenamiento?", isPresented: $confirmingEnd) {
             Button("Guardar en Apple Health") { workout.end(save: true) }
+            if workout.offersRecovery {
+                Button("Guardar y medir recuperación") { workout.end(save: true, measureRecovery: true) }
+            }
             Button("Descartar", role: .destructive) { workout.end(save: false) }
             Button("Seguir", role: .cancel) {}
         }

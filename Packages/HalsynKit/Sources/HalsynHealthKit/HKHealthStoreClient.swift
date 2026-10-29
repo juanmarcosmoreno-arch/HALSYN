@@ -177,6 +177,32 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
     }
 
+    public func heartRateRecoveries(in interval: DateInterval) async throws -> [RecoveryReading] {
+        let perMinute = HKUnit.count().unitDivided(by: .minute())
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.heartRateRecoveryOneMinute), predicate: Self.predicate(for: interval))],
+            sortDescriptors: [SortDescriptor(\HKQuantitySample.startDate)]
+        )
+        do {
+            return try await descriptor.result(for: store).map { sample in
+                let twoMinutes = (sample.metadata?[RecoveryReading.twoMinutesKey] as? NSNumber)?.doubleValue
+                let endHeartRate = (sample.metadata?[RecoveryReading.endHeartRateKey] as? NSNumber)?.doubleValue
+                return RecoveryReading(
+                    id: sample.uuid,
+                    date: sample.startDate,
+                    oneMinute: sample.quantity.doubleValue(for: perMinute),
+                    twoMinutes: twoMinutes,
+                    endHeartRate: endHeartRate,
+                    origin: .healthKit(sourceName: sample.sourceRevision.source.name)
+                )
+            }
+        } catch let error as HKError where error.code == .errorNoData {
+            return []
+        } catch {
+            throw Self.map(error)
+        }
+    }
+
     public func latestFunctionalThresholdPower() async -> ThresholdPowerReading? {
         let descriptor = HKSampleQueryDescriptor(
             predicates: [HKSamplePredicate.quantitySample(type: HKQuantityType(.cyclingFunctionalThresholdPower))],

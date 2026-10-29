@@ -1344,6 +1344,74 @@
         }
       }
     },
+    "Al terminar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the end"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid slutet"
+          }
+        }
+      }
+    },
+    "Al terminar en el reloj aparece «Guardar y medir recuperación»: caminas despacio y el reloj mide cuánto baja tu pulso en 1 y 2 minutos, te lo grafica y te pregunta si guardarlo. Lo estándar es el primer minuto; con 5 minutos ves también la recuperación más lenta.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you finish on the watch, “Save and measure recovery” appears: you walk slowly and the watch measures how much your heart rate drops in 1 and 2 minutes, charts it and asks whether to save it. The standard is the first minute; with 5 minutes you also see the slower recovery."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "När du avslutar på klockan visas ”Spara och mät återhämtning”: du går lugnt och klockan mäter hur mycket pulsen sjunker på 1 och 2 minuter, visar det i ett diagram och frågar om det ska sparas. Standard är den första minuten; med 5 minuter ser du även den långsammare återhämtningen."
+          }
+        }
+      }
+    },
+    "Al terminar una carrera en el reloj, elige «Guardar y medir recuperación» y camina despacio: el reloj mide cuánto baja tu pulso en 1 y 2 minutos y te pregunta si guardarlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you finish a run on the watch, choose “Save and measure recovery” and walk slowly: the watch measures how much your heart rate drops in 1 and 2 minutes and asks whether to save it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "När du avslutar en löprunda på klockan, välj ”Spara och mät återhämtning” och gå lugnt: klockan mäter hur mycket pulsen sjunker på 1 och 2 minuter och frågar om det ska sparas."
+          }
+        }
+      }
+    },
+    "Al terminar: %@ lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the end: %@ bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid slutet: %@ slag/min"
+          }
+        }
+      }
+    },
     "Alcohol": {
       "extractionState": "manual",
       "localizations": {
@@ -2258,6 +2326,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det finns ingen hel vecka av planen att jämföra med än."
+          }
+        }
+      }
+    },
+    "Bajada del pulso en el primer minuto en cada medición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate drop in the first minute for each measurement"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsens fall under första minuten vid varje mätning"
+          }
+        }
+      }
+    },
+    "Bajó %@ desde %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dropped %@ from %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sjönk %@ från %@"
           }
         }
       }
@@ -3962,6 +4064,23 @@
         }
       }
     },
+    "Con %lld mediciones más se ve si tu recuperación mejora.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With %lld more measurements you'll see whether your recovery is improving."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med %lld mätningar till ser du om din återhämtning blir bättre."
+          }
+        }
+      }
+    },
     "Con 3 carreras de 3 km o más en los últimos 90 días, HÅLSYN estima tus tiempos para 5 km, 10 km, media maratón y maratón.": {
       "extractionState": "manual",
       "localizations": {
@@ -4659,6 +4778,23 @@
         }
       }
     },
+    "Cuanto más baja el pulso en el primer minuto, mejor suele ser la condición aeróbica; con el entrenamiento suele mejorar. Depende de lo fuerte que terminaste, del calor y de si caminas o te quedas quieto: compara mediciones parecidas. Es un seguimiento de entrenamiento, no una prueba médica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The more your heart rate drops in the first minute, the better your aerobic fitness usually is; it tends to improve with training. It depends on how hard you finished, the heat and whether you walk or stand still: compare similar measurements. It's training tracking, not a medical test."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ju mer pulsen sjunker under första minuten, desto bättre brukar konditionen vara; den brukar förbättras med träning. Den beror på hur hårt du avslutade, värmen och om du går eller står still: jämför liknande mätningar. Det är träningsuppföljning, inte ett medicinskt test."
+          }
+        }
+      }
+    },
     "Cuenta cada comida": {
       "extractionState": "manual",
       "localizations": {
@@ -4740,6 +4876,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppnått %lld av de senaste %lld perioderna"
+          }
+        }
+      }
+    },
+    "Curva del pulso durante la recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate curve during recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulskurva under återhämtningen"
           }
         }
       }
@@ -6767,6 +6920,40 @@
         }
       }
     },
+    "En tus últimas %lld mediciones el pulso baja %@ lpm menos en el primer minuto que en las %lld anteriores. Puede ser cansancio, calor o que terminaste más fuerte.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In your last %lld measurements your heart rate drops %@ bpm less in the first minute than in the previous %lld. It may be fatigue, heat or that you finished harder."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dina senaste %lld mätningar sjunker pulsen %@ slag/min mindre under första minuten än i de %lld föregående. Det kan vara trötthet, värme eller att du avslutade hårdare."
+          }
+        }
+      }
+    },
+    "En tus últimas %lld mediciones el pulso baja %@ lpm más en el primer minuto que en las %lld anteriores: recuperas más rápido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In your last %lld measurements your heart rate drops %@ bpm more in the first minute than in the previous %lld: you're recovering faster."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dina senaste %lld mätningar sjunker pulsen %@ slag/min mer under första minuten än i de %lld föregående: du återhämtar dig snabbare."
+          }
+        }
+      }
+    },
     "En uso desde": {
       "extractionState": "manual",
       "localizations": {
@@ -8654,6 +8841,23 @@
         }
       }
     },
+    "Guardar y medir recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save and measure recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spara och mät återhämtning"
+          }
+        }
+      }
+    },
     "HRV dentro o por encima de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -9993,6 +10197,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämförelserna med din egen historik blir bättre i takt med att HÅLSYN samlar in fler dagar med data. Det är normalt att vissa indikatorer saknas i början."
+          }
+        }
+      }
+    },
+    "Las del Apple Watch (Recuperación cardíaca de Salud) solo traen el primer minuto.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Those from the Apple Watch (Cardio Recovery in Health) only include the first minute."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De från Apple Watch (Återhämtning i Hälsa) innehåller bara första minuten."
           }
         }
       }
@@ -12139,6 +12360,23 @@
         }
       }
     },
+    "No guardar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Don't save"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spara inte"
+          }
+        }
+      }
+    },
     "No hay cambios ni patrones claros en tus datos. Es normal: INSIKT solo habla cuando la diferencia es real.": {
       "extractionState": "manual",
       "localizations": {
@@ -12322,6 +12560,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det gick inte att ansluta till Apple Health. Du kan försöka igen eller fortsätta med demodata."
+          }
+        }
+      }
+    },
+    "No se pudo guardar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't save"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte sparas"
+          }
+        }
+      }
+    },
+    "No se pudo medir la recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't measure recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte mäta återhämtningen"
           }
         }
       }
@@ -12819,6 +13091,23 @@
         }
       }
     },
+    "Ofrecer medir la recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offer to measure recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erbjud mätning av återhämtning"
+          }
+        }
+      }
+    },
     "Opcional.": {
       "extractionState": "manual",
       "localizations": {
@@ -13070,6 +13359,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "För att beräkna dina tempon och om målet är möjligt behöver vi först mäta din form: ett maxtest eller ett lopp nyligen."
+          }
+        }
+      }
+    },
+    "Para comparar, recupera siempre igual (por ejemplo, caminando despacio).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To compare, always recover the same way (for example, walking slowly)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att kunna jämföra, återhämta dig alltid på samma sätt (till exempel genom att gå lugnt)."
           }
         }
       }
@@ -14774,6 +15080,23 @@
         }
       }
     },
+    "RECUPERACIÓN": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RECOVERY"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ÅTERHÄMTNING"
+          }
+        }
+      }
+    },
     "RECUPERAR": {
       "extractionState": "manual",
       "localizations": {
@@ -15127,6 +15450,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aktiv återhämtning"
+          }
+        }
+      }
+    },
+    "Recuperación al terminar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery after finishing"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återhämtning efter passet"
+          }
+        }
+      }
+    },
+    "Recuperación del pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsåterhämtning"
           }
         }
       }
@@ -16355,6 +16712,23 @@
         }
       }
     },
+    "Se paró antes del minuto: no hay valor para guardar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It stopped before one minute: there's no value to save."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den stoppades före en minut: det finns inget värde att spara."
+          }
+        }
+      }
+    },
     "Seguir": {
       "extractionState": "manual",
       "localizations": {
@@ -16368,6 +16742,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fortsätt"
+          }
+        }
+      }
+    },
+    "Segundos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seconds"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sekunder"
           }
         }
       }
@@ -18191,6 +18582,23 @@
         }
       }
     },
+    "Terminar ya": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish now"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsluta nu"
+          }
+        }
+      }
+    },
     "Test": {
       "extractionState": "manual",
       "localizations": {
@@ -19500,6 +19908,23 @@
         }
       }
     },
+    "Tus últimas %lld mediciones son parecidas a las %lld anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your last %lld measurements are similar to the previous %lld."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina senaste %lld mätningar liknar de %lld föregående."
+          }
+        }
+      }
+    },
     "Tú": {
       "extractionState": "manual",
       "localizations": {
@@ -19666,6 +20091,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "En daglig påminnelse bjuder in dig att se din sammanfattning. Notisen innehåller inga hälsodata."
+          }
+        }
+      }
+    },
+    "Un minuto: el pulso bajó %lld pulsaciones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One minute: your heart rate dropped %lld beats"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En minut: pulsen sjönk %lld slag"
           }
         }
       }
@@ -21553,6 +21995,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 7 dagarna"
+          }
+        }
+      }
+    },
+    "−%@ lpm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "−%@ bpm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "−%@ slag/min"
           }
         }
       }

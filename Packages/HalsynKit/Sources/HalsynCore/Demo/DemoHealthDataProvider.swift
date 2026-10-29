@@ -66,6 +66,33 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         return rides
     }
 
+    /// Recuperaciones sintéticas después de algunas carreras demo, mejorando
+    /// poco a poco (unos 22 lpm hace 3 meses, unos 28 ahora). Siempre `.demo`.
+    public func heartRateRecoveries(days: Int) async -> [RecoveryReading] {
+        let runs = await recentWorkouts(limit: 120)
+        let today = calendar.startOfDay(for: now())
+        let start = calendar.date(byAdding: .day, value: -days, to: today) ?? today
+        return runs
+            .filter { $0.start >= start }
+            .enumerated()
+            .compactMap { index, run -> RecoveryReading? in
+                // Una de cada dos carreras se midió.
+                guard index % 2 == 0 else { return nil }
+                var rng = generator(for: run.start, salt: 0x4E4E)
+                let age = Double(calendar.dateComponents([.day], from: run.start, to: today).day ?? 0)
+                let oneMinute = (28 - age / 15 + Double.random(in: -3...3, using: &rng)).rounded()
+                let end = (run.maxHeartRate ?? 170) - Double.random(in: 0...6, using: &rng).rounded()
+                return RecoveryReading(
+                    date: run.end,
+                    oneMinute: oneMinute,
+                    twoMinutes: (oneMinute * 1.6 + Double.random(in: -3...3, using: &rng)).rounded(),
+                    endHeartRate: end,
+                    origin: .demo
+                )
+            }
+            .sorted { $0.date < $1.date }
+    }
+
     public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] {
         demoPower(for: workout)
     }

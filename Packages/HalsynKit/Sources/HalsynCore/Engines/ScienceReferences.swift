@@ -107,6 +107,16 @@ public enum ScienceReferences {
         url: "https://doi.org/10.1123/ijspp.2019-0864"
     )
 
+    // Recuperación del pulso
+    public static let recoveryTrainingStatus = ScienceReference(
+        citation: "Daanen HAM, Lamberts RP, Kallen VL, Jin A, Van Meeteren NLU. A systematic review on heart-rate recovery to monitor changes in training status in athletes. Int J Sports Physiol Perform. 2012;7(3):251–260.",
+        url: "https://doi.org/10.1123/ijspp.7.3.251"
+    )
+    public static let recoveryMonitoring = ScienceReference(
+        citation: "Buchheit M. Monitoring training status with HR measures: do all roads lead to Rome? Front Physiol. 2014;5:73.",
+        url: "https://doi.org/10.3389/fphys.2014.00073"
+    )
+
     public static let trainingLoad = ScienceReference(
         citation: "Gabbett TJ. The training—injury prevention paradox: should athletes be training smarter and harder? Br J Sports Med. 2016;50(5):273–280.",
         url: "https://doi.org/10.1136/bjsports-2015-095788"

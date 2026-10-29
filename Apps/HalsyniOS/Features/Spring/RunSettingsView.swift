@@ -24,6 +24,7 @@ struct RunSettingsView: View {
         Form {
             screensSection
             lapsSection
+            recoverySection
             Section {
                 NavigationLink {
                     ZoneSettingsView()
@@ -156,6 +157,29 @@ struct RunSettingsView: View {
             }
         } footer: {
             Text("El botón Vuelta del reloj marca vueltas manuales en cualquier momento. En «Qué dice» eliges qué avisos se oyen: vueltas (y cada cuántas), ritmo, pulso, tiempo, series y alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.")
+        }
+    }
+
+    // MARK: Recuperación
+
+    private var recoverySection: some View {
+        Section {
+            Toggle(isOn: runSetting(\.offersRecovery)) {
+                Label("Ofrecer medir la recuperación", systemImage: "heart.text.square")
+            }
+            if settings.offersRecovery {
+                Picker(selection: runSetting(\.recoveryDuration)) {
+                    ForEach(RunSettings.recoveryMinuteOptions, id: \.self) { minutes in
+                        Text("\(minutes) min").tag(minutes)
+                    }
+                } label: {
+                    Label("Duración", systemImage: "timer")
+                }
+            }
+        } header: {
+            Text("Recuperación al terminar")
+        } footer: {
+            Text("Al terminar en el reloj aparece «Guardar y medir recuperación»: caminas despacio y el reloj mide cuánto baja tu pulso en 1 y 2 minutos, te lo grafica y te pregunta si guardarlo. Lo estándar es el primer minuto; con 5 minutos ves también la recuperación más lenta.")
         }
     }
 

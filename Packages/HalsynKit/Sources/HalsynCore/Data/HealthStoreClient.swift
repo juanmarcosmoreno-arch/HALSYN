@@ -46,6 +46,9 @@ public protocol HealthStoreClient: Sendable {
     /// Último FTP guardado en Salud (vatios), si existe.
     func latestFunctionalThresholdPower() async -> ThresholdPowerReading?
 
+    /// Recuperaciones de la FC al minuto (de HÅLSYN o del Apple Watch) en el intervalo.
+    func heartRateRecoveries(in interval: DateInterval) async throws -> [RecoveryReading]
+
     /// Puntos de la ruta de un entrenamiento (vacío en cinta o sin GPS).
     func workoutRoute(workoutID: UUID) async throws -> [LocationSample]
 
@@ -80,4 +83,5 @@ extension HealthStoreClient {
     public func cyclingWorkouts(limit: Int) async throws -> [WorkoutSummary] { [] }
     public func cyclingPowerSamples(in interval: DateInterval) async throws -> [PowerSample] { [] }
     public func latestFunctionalThresholdPower() async -> ThresholdPowerReading? { nil }
+    public func heartRateRecoveries(in interval: DateInterval) async throws -> [RecoveryReading] { [] }
 }
