@@ -254,14 +254,18 @@ struct ScaleWeighInView: View {
                         .foregroundStyle(.halsynSecondaryText)
                     Toggle("Guardar también la grasa estimada en Salud", isOn: $saveFat)
                         .font(.halsynCaption)
-                } else if reading.model == .bodyComposition {
+                    ReferenceLinks(references: [ScienceReferences.footToFootBodyFat])
+                } else if reading.model == .weightOnly {
+                    Text("Esta balanza mide solo el peso (no tiene electrodos para la grasa).")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                } else {
                     Text(reading.impedance == nil
                          ? LocalizedStringKey("Sin impedancia (hay que subirse descalzo y con los pies secos): solo se guarda el peso.")
                          : LocalizedStringKey("Para estimar la grasa hacen falta tu altura, tu edad y tu sexo en Perfil (y estar dentro de lo estudiado: 16–78 años, IMC 16–41)."))
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                 }
-                ReferenceLinks(references: [ScienceReferences.footToFootBodyFat])
             }
         }
         if saved {

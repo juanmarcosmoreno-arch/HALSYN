@@ -438,6 +438,7 @@
  "Esfuerzo de los últimos 3 días": "Packages/HalsynKit/Sources/HalsynCore/Engines/RecoveryEngine.swift",
  "Esfuerzo similar o menor que lo habitual": "Apps/HalsyniOS/Features/Vila/VilaView.swift",
  "Esperando la frecuencia cardíaca": "Packages/HalsynKit/Sources/HalsynDesign/Components/HalsynLiveRunChart.swift",
+ "Esta balanza mide solo el peso (no tiene electrodos para la grasa).": "Apps/HalsyniOS/Features/Halsa/ScaleWeighIn.swift",
  "Esta fuente no registra fases del sueño.": "Apps/HalsyniOS/Features/Vila/VilaView.swift",
  "Esta salida no tiene ruta GPS en Apple Health, o HÅLSYN no tiene permiso para leerla.": "Apps/HalsyniOS/Features/Cykel/RideDetailView.swift",
  "Esta semana alcanzaste tu objetivo todas las noches registradas.": "Apps/HalsyniOS/Features/Vila/VilaView.swift",

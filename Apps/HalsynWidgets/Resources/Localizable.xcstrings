@@ -7464,6 +7464,23 @@
         }
       }
     },
+    "Esta balanza mide solo el peso (no tiene electrodos para la grasa).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This scale only measures weight (it has no electrodes for body fat)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här vågen mäter bara vikt (den har inga elektroder för kroppsfett)."
+          }
+        }
+      }
+    },
     "Esta fuente no registra fases del sueño.": {
       "extractionState": "manual",
       "localizations": {
