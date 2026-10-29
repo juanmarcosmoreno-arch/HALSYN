@@ -37,16 +37,30 @@ public enum XiaomiScaleParser {
     public static let plausibleImpedance: ClosedRange<Double> = 1...2999
     public static let plausibleWeight: ClosedRange<Double> = 5...300
 
-    /// Interpreta los datos de servicio. `serviceUUID` es "181B" o "181D".
+    /// Servicio de los modelos cifrados (Xiaomi MiBeacon).
+    public static let encryptedServiceUUID = "FE95"
+
+    /// Interpreta los datos de servicio. `serviceUUID` es "181B" o "181D" (corto
+    /// o en la forma larga de 128 bits del Bluetooth SIG).
     public static func parse(serviceUUID: String, data: [UInt8]) -> XiaomiScaleReading? {
-        switch serviceUUID.uppercased() {
-        case weightServiceUUID where data.count == 10:
-            return parseWeightScale(data)
-        case bodyCompositionServiceUUID where data.count == 13:
-            return parseBodyCompositionScale(data)
+        switch shortUUID(serviceUUID) {
+        case weightServiceUUID where data.count >= 10:
+            return parseWeightScale(Array(data.prefix(10)))
+        case bodyCompositionServiceUUID where data.count >= 13:
+            return parseBodyCompositionScale(Array(data.prefix(13)))
         default:
             return nil
         }
+    }
+
+    /// "0000181D-0000-1000-8000-00805F9B34FB" → "181D"; los cortos quedan igual.
+    public static func shortUUID(_ uuid: String) -> String {
+        let upper = uuid.uppercased()
+        let base = "-0000-1000-8000-00805F9B34FB"
+        if upper.count == 36, upper.hasPrefix("0000"), upper.hasSuffix(base) {
+            return String(upper.dropFirst(4).prefix(4))
+        }
+        return upper
     }
 
     private static func uint16(_ data: [UInt8], _ index: Int) -> Double {

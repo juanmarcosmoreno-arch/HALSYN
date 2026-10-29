@@ -2364,6 +2364,23 @@
         }
       }
     },
+    "Balanza oída: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scale heard: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Våg hörd: %@"
+          }
+        }
+      }
+    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -7273,6 +7290,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Balans belastning–återhämtning"
+          }
+        }
+      }
+    },
+    "Equipos Bluetooth oídos: %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth devices heard: %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth-enheter hörda: %lld"
           }
         }
       }
@@ -12819,6 +12853,23 @@
         }
       }
     },
+    "No se oye ninguna balanza. Pisa la balanza para encenderla, acerca el iPhone y cierra Zepp Life (si está conectada a ella, puede dejar de anunciarse).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No scale heard. Step on the scale to wake it, bring the iPhone closer and close Zepp Life (while connected to it, the scale may stop advertising)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen våg hörs. Kliv på vågen för att väcka den, håll iPhone nära och stäng Zepp Life (när den är ansluten kan vågen sluta annonsera)."
+          }
+        }
+      }
+    },
     "No se pudieron leer los datos": {
       "extractionState": "manual",
       "localizations": {
@@ -17133,6 +17184,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "De skickas till din Apple Watch när den är tillgänglig."
+          }
+        }
+      }
+    },
+    "Se oye la balanza pero todavía no manda el peso. Súbete y espera a que el número quede fijo en la pantalla de la balanza.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The scale is heard but isn't sending a weight yet. Step on and wait until the number holds still on the scale's display."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vågen hörs men skickar ingen vikt än. Kliv på och vänta tills siffran står still på vågens display."
+          }
+        }
+      }
+    },
+    "Se oyen equipos Xiaomi cifrados, pero ninguna balanza que mande el peso sin cifrar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encrypted Xiaomi devices are heard, but no scale sending an unencrypted weight."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krypterade Xiaomi-enheter hörs, men ingen våg som skickar vikten okrypterad."
           }
         }
       }
@@ -22471,6 +22556,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 7 dagarna"
+          }
+        }
+      }
+    },
+    "Últimos datos: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest data: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste data: %@"
           }
         }
       }

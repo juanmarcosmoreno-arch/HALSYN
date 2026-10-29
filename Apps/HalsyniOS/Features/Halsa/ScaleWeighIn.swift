@@ -36,8 +36,21 @@ final class ScaleScanner: NSObject {
     /// (sería la pesada anterior, quizá de otra persona).
     @ObservationIgnored private var sawLoad = false
     @ObservationIgnored private var waitTask: Task<Void, Never>?
+    @ObservationIgnored private var seenDevices: Set<UUID> = []
 
-    static let services = [CBUUID(string: XiaomiScaleParser.bodyCompositionServiceUUID), CBUUID(string: XiaomiScaleParser.weightServiceUUID)]
+    /// Diagnóstico de la búsqueda (para saber por qué no aparece la balanza).
+    struct Diagnostics: Equatable {
+        /// Equipos Bluetooth distintos oídos.
+        var devices = 0
+        /// Nombre de la balanza oída (MI_SCALE, MI SCALE2…), aunque no mande peso.
+        var scaleName: String?
+        /// Últimos datos de servicio 0x181D / 0x181B, en hexadecimal.
+        var lastPayload: String?
+        /// Se oyó un equipo Xiaomi cifrado (0xFE95).
+        var sawEncrypted = false
+    }
+
+    private(set) var diagnostics = Diagnostics()
     /// Tras estabilizarse, segundos que se espera a la impedancia (llega después del peso).
     static let impedanceWait: TimeInterval = 8
 
@@ -46,6 +59,8 @@ final class ScaleScanner: NSObject {
         lastPayload = nil
         stabilizedAt = nil
         sawLoad = false
+        seenDevices = []
+        diagnostics = Diagnostics()
         searchStarted = .now
         if let central {
             begin(central)
@@ -65,7 +80,10 @@ final class ScaleScanner: NSObject {
         switch central.state {
         case .poweredOn:
             state = .scanning
-            central.scanForPeripherals(withServices: Self.services, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+            // Sin filtro de servicios: la balanza manda el peso en «datos de
+            // servicio» y no siempre pone 0x181D en su lista de servicios, que es
+            // lo único que mira el filtro de iOS. Se filtra en `received`.
+            central.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         case .unauthorized:
             state = .unauthorized
         case .poweredOff:
@@ -82,11 +100,23 @@ final class ScaleScanner: NSObject {
         begin(central)
     }
 
-    fileprivate func received(_ serviceData: [CBUUID: Data]) {
+    fileprivate func received(_ advertisement: ScaleAdvertisement) {
         guard state == .scanning || state == .measuring else { return }
-        for (uuid, data) in serviceData {
+        if seenDevices.insert(advertisement.peripheral).inserted {
+            diagnostics.devices = seenDevices.count
+        }
+        if let name = advertisement.name, Self.looksLikeScale(name) {
+            diagnostics.scaleName = name
+        }
+        for (uuid, data) in advertisement.serviceData {
+            let short = XiaomiScaleParser.shortUUID(uuid)
+            if short == XiaomiScaleParser.encryptedServiceUUID {
+                diagnostics.sawEncrypted = true
+            }
+            guard short == XiaomiScaleParser.weightServiceUUID || short == XiaomiScaleParser.bodyCompositionServiceUUID else { continue }
+            diagnostics.lastPayload = "\(short): " + data.map { String(format: "%02X", $0) }.joined(separator: " ")
             guard data != lastPayload,
-                  let parsed = XiaomiScaleParser.parse(serviceUUID: uuid.uuidString, data: [UInt8](data)) else { continue }
+                  let parsed = XiaomiScaleParser.parse(serviceUUID: short, data: [UInt8](data)) else { continue }
             if parsed.isLoadRemoved {
                 guard sawLoad else {
                     lastPayload = data
@@ -119,6 +149,11 @@ final class ScaleScanner: NSObject {
         }
     }
 
+    private static func looksLikeScale(_ name: String) -> Bool {
+        let upper = name.uppercased()
+        return upper.contains("MI_SCALE") || upper.contains("MI SCALE") || upper.contains("MIBFS") || upper.contains("XMTZC")
+    }
+
     private func finish() {
         guard state != .finished, reading?.isStabilized == true else { return }
         waitTask?.cancel()
@@ -127,14 +162,26 @@ final class ScaleScanner: NSObject {
     }
 }
 
+/// Lo que interesa de un anuncio BLE, copiado para pasarlo al hilo principal.
+struct ScaleAdvertisement: Sendable {
+    let peripheral: UUID
+    let name: String?
+    let serviceData: [String: Data]
+}
+
 extension ScaleScanner: CBCentralManagerDelegate {
     nonisolated func centralManagerDidUpdateState(_ central: CBCentralManager) {
         Task { @MainActor in self.stateChanged(central) }
     }
 
     nonisolated func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        guard let serviceData = advertisementData[CBAdvertisementDataServiceDataKey] as? [CBUUID: Data] else { return }
-        Task { @MainActor in self.received(serviceData) }
+        let serviceData = (advertisementData[CBAdvertisementDataServiceDataKey] as? [CBUUID: Data]) ?? [:]
+        let advertisement = ScaleAdvertisement(
+            peripheral: peripheral.identifier,
+            name: (advertisementData[CBAdvertisementDataLocalNameKey] as? String) ?? peripheral.name,
+            serviceData: Dictionary(uniqueKeysWithValues: serviceData.map { ($0.key.uuidString, $0.value) })
+        )
+        Task { @MainActor in self.received(advertisement) }
     }
 }
 
@@ -203,6 +250,9 @@ struct ScaleWeighInView: View {
                         if scanner.state == .finished {
                             result(reading)
                         }
+                    }
+                    if scanner.state == .scanning || scanner.state == .measuring {
+                        diagnostics
                     }
                     help
                 }
@@ -318,6 +368,36 @@ struct ScaleWeighInView: View {
                 scanner.start()
             }
             .font(.halsynCaption)
+        }
+    }
+
+    /// Qué oye el iPhone: sirve para saber si la balanza no se oye, se oye sin
+    /// peso o manda datos que no se entienden.
+    private var diagnostics: some View {
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let info = scanner.diagnostics
+            let waited = scanner.searchStarted.map { context.date.timeIntervalSince($0) } ?? 0
+            VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
+                Text("Equipos Bluetooth oídos: \(info.devices)")
+                if let name = info.scaleName {
+                    Text("Balanza oída: \(name)")
+                }
+                if let payload = info.lastPayload {
+                    Text("Últimos datos: \(payload)")
+                        .monospaced()
+                        .textSelection(.enabled)
+                } else if waited > 20 {
+                    if info.scaleName != nil {
+                        Text("Se oye la balanza pero todavía no manda el peso. Súbete y espera a que el número quede fijo en la pantalla de la balanza.")
+                    } else if info.sawEncrypted {
+                        Text("Se oyen equipos Xiaomi cifrados, pero ninguna balanza que mande el peso sin cifrar.")
+                    } else {
+                        Text("No se oye ninguna balanza. Pisa la balanza para encenderla, acerca el iPhone y cierra Zepp Life (si está conectada a ella, puede dejar de anunciarse).")
+                    }
+                }
+            }
+            .font(.caption2)
+            .foregroundStyle(.halsynSecondaryText)
         }
     }
 

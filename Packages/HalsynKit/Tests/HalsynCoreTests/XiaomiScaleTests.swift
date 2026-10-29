@@ -13,6 +13,10 @@ struct XiaomiScaleTests {
         // Libras: raw/100.
         let pounds = try #require(XiaomiScaleParser.parse(serviceUUID: "181d", data: [0x23, 0x20, 0x4E, 0xE5, 0x07, 0x04, 0x0B, 0x10, 0x13, 0x01]))
         #expect(abs(pounds.weightKilograms - 200 * 0.45359237) < 0.001)
+        // UUID en forma larga.
+        let long = try #require(XiaomiScaleParser.parse(serviceUUID: "0000181d-0000-1000-8000-00805f9b34fb", data: [0x22, 0x9E, 0x43, 0xE5, 0x07, 0x04, 0x0B, 0x10, 0x13, 0x01]))
+        #expect(abs(long.weightKilograms - 86.55) < 0.001)
+        #expect(XiaomiScaleParser.shortUUID("FE95") == "FE95")
     }
 
     @Test func bodyCompositionScale() throws {
