@@ -12,7 +12,10 @@ struct WorkoutSessionView: View {
 
     var body: some View {
         NavigationStack {
-            if workout.recoveryMeter.isActive {
+            if workout.warmup.isActive {
+                WarmupView()
+                    .toolbar(.hidden, for: .navigationBar)
+            } else if workout.recoveryMeter.isActive {
                 // Recuperación del pulso: antes del resumen de la carrera.
                 RecoveryView()
                     .toolbar(.hidden, for: .navigationBar)

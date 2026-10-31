@@ -115,6 +115,44 @@ public struct IntervalPlan: Hashable, Codable, Identifiable, Sendable {
     ]
 }
 
+/// Cómo se reparte un plan en el reloj: el calentamiento va antes y no se graba
+/// (ni tiempo ni distancia); la vuelta a la calma, si se mide la recuperación,
+/// va después y es esa medición. El resto es el entrenamiento que se guarda.
+public struct IntervalSessionLayout: Hashable, Sendable {
+    /// Calentamiento previo, fuera del entrenamiento (`nil` = no hay).
+    public let warmup: IntervalGoal?
+    /// Lo que se graba: el plan sin el calentamiento (y sin la calma si se mide).
+    public let recorded: IntervalPlan
+    /// Minutos de la medición de recuperación que reemplaza a la calma
+    /// (`nil` = la calma queda dentro del entrenamiento, como antes).
+    public let recoveryMinutes: Int?
+
+    /// Una medición más larga no aporta (se miden 1, 2 y 5 minutos).
+    public static let recoveryMinuteRange: ClosedRange<Int> = 1...10
+
+    public init(plan: IntervalPlan, measuresRecovery: Bool, defaultRecoveryMinutes: Int) {
+        var recorded = plan
+        warmup = plan.warmup
+        recorded.warmup = nil
+        if measuresRecovery, let cooldown = plan.cooldown {
+            recorded.cooldown = nil
+            recoveryMinutes = Self.minutes(for: cooldown, default: defaultRecoveryMinutes)
+        } else {
+            recoveryMinutes = nil
+        }
+        self.recorded = recorded
+    }
+
+    /// Una calma por tiempo dura lo mismo; por distancia o abierta, lo elegido en Ajustes.
+    static func minutes(for cooldown: IntervalGoal, default fallback: Int) -> Int {
+        let range = recoveryMinuteRange
+        if case let .time(seconds) = cooldown {
+            return min(max(Int((seconds / 60).rounded()), range.lowerBound), range.upperBound)
+        }
+        return min(max(fallback, range.lowerBound), range.upperBound)
+    }
+}
+
 /// Progreso del paso actual.
 public struct IntervalProgress: Hashable, Sendable {
     public var step: IntervalStep

@@ -63,11 +63,16 @@ final class WorkoutManager: NSObject {
     private(set) var finalSnapshot: RunSnapshot?
 
     var phase: WorkoutPhase { tracker.phase }
-    var isActive: Bool { phase == .preparing || phase == .running || phase == .paused || phase == .stopping }
+    var isActive: Bool { warmup.isActive || phase == .preparing || phase == .running || phase == .paused || phase == .stopping }
 
     @ObservationIgnored let healthStore = HKHealthStore()
     /// Recuperación del pulso al terminar (opcional, se ofrece al guardar).
     let recoveryMeter: RecoveryMeter
+    /// Calentamiento previo de los planes (no se graba).
+    let warmup: WarmupSession
+    /// Minutos de la medición de recuperación que reemplaza a la vuelta a la
+    /// calma del plan (`nil` = sin plan, o la calma va dentro del entrenamiento).
+    @ObservationIgnored private var cooldownRecoveryMinutes: Int?
     /// Lecturas de FC de los últimos segundos (para la FC al terminar).
     @ObservationIgnored private var recentHeartRates: [(date: Date, bpm: Double)] = []
     @ObservationIgnored private var measuresRecovery = false
@@ -87,6 +92,7 @@ final class WorkoutManager: NSObject {
 
     private override init() {
         recoveryMeter = RecoveryMeter(healthStore: healthStore)
+        warmup = WarmupSession(healthStore: healthStore)
         super.init()
         locationManager.delegate = self
         locationManager.activityType = .fitness
@@ -186,8 +192,22 @@ final class WorkoutManager: NSObject {
     func start(configuration: HKWorkoutConfiguration, plan: IntervalPlan? = nil) async {
         guard !isActive else { return }
         let cycling = configuration.activityType == .cycling
-        // Los intervalos son de carrera: en bici no se usan.
-        reset(plan: cycling ? nil : plan, cycling: cycling)
+        // Los intervalos son de carrera: en bici no se usan. El calentamiento va
+        // antes y sin grabar; la calma, si se mide la recuperación, va después.
+        let settings = RunSettingsStore.shared.settings
+        let layout = cycling ? nil : plan.map {
+            IntervalSessionLayout(plan: $0, measuresRecovery: settings.offersRecovery, defaultRecoveryMinutes: settings.recoveryDuration)
+        }
+        if let layout, let goal = layout.warmup, var rest = plan {
+            rest.warmup = nil
+            if configuration.locationType != .indoor { requestLocationIfNeeded() }
+            await warmup.start(configuration: configuration, goal: goal) { [weak self] in
+                await self?.start(configuration: configuration, plan: rest)
+            }
+            return
+        }
+        reset(plan: layout?.recorded, cycling: cycling)
+        cooldownRecoveryMinutes = layout?.recoveryMinutes
         isIndoor = configuration.locationType == .indoor
         isWalking = configuration.activityType == .walking
         tracker.handle(.start, at: .now)
@@ -335,6 +355,7 @@ final class WorkoutManager: NSObject {
         finalSnapshot = nil
         shouldSave = true
         measuresRecovery = false
+        cooldownRecoveryMinutes = nil
         recoverySkipped = false
         pausedAt = nil
         recentHeartRates = []
@@ -408,7 +429,8 @@ final class WorkoutManager: NSObject {
                         let after = recentHeartRates
                             .filter { $0.date > stop }
                             .map { RecoverySample(elapsed: $0.date.timeIntervalSince(stop), bpm: $0.bpm) }
-                        await recoveryMeter.start(endHeartRate: endHeartRate, exerciseEnd: stop, minutes: RunSettingsStore.shared.settings.recoveryDuration, initialSamples: after)
+                        let minutes = cooldownRecoveryMinutes ?? RunSettingsStore.shared.settings.recoveryDuration
+                        await recoveryMeter.start(endHeartRate: endHeartRate, exerciseEnd: stop, minutes: minutes, initialSamples: after)
                     } else {
                         recoverySkipped = true
                     }
@@ -475,8 +497,17 @@ final class WorkoutManager: NSObject {
                 }
             case .intervalsCompleted:
                 haptic = .success
-                title = String(localized: "Intervalos completados")
-                spoken = cues.intervals ? title : nil
+                if cooldownRecoveryMinutes != nil {
+                    // La vuelta a la calma del plan es la medición de recuperación:
+                    // se guarda el entrenamiento y empieza a medir.
+                    title = String(localized: "Vuelta a la calma")
+                    detail = String(localized: "Mido tu recuperación")
+                    spoken = cues.intervals ? String(localized: "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.") : nil
+                    end(save: true, measureRecovery: true)
+                } else {
+                    title = String(localized: "Intervalos completados")
+                    spoken = cues.intervals ? title : nil
+                }
             case let .alert(alert):
                 switch alert {
                 case .paceTooFast, .heartRateAboveZone: haptic = .directionDown

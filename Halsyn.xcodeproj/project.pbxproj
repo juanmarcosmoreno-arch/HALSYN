@@ -71,6 +71,7 @@
 		928C6AE5BBB2D8919251CD95 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */; };
 		92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */; };
 		9567A32313BE792ACA298B1F /* VilaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A50B12EAAB493A54F5A80BF /* VilaView.swift */; };
+		959A8FEF71AAB902243374B0 /* WarmupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC0BB3192419160DABBD46 /* WarmupView.swift */; };
 		96EA43C7BCE036CD2E4E73AE /* LocationPermissionHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
@@ -91,6 +92,7 @@
 		C5A9FC3B37C0379DE1589776 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0857277597E36AAE3B0052AC /* HalsynCore */; };
 		C5B905688B56375BA7343DFD /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C287A71EB2C50957EA5FACDE /* SharedViews.swift */; };
 		C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */; };
+		C62E6FCBE7E5328B402DF503 /* WarmupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126FCB68487DECC28829F6E /* WarmupSession.swift */; };
 		C6A0D3F801295003406C89A7 /* RecoveryHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */; };
 		C9B76934A0B24C5F8EF19B43 /* intro-dark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D250FF30FFD4688AE26DFDE4 /* intro-dark.mp4 */; };
 		CD89E046AFDC8366E2A2D151 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = F8BC070349D54F9995A35913 /* HalsynCore */; };
@@ -272,10 +274,12 @@
 		DCACFEAFCA40B1F932E49923 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStatsCard.swift; sourceTree = "<group>"; };
 		E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPhrases.swift; sourceTree = "<group>"; };
+		E3EC0BB3192419160DABBD46 /* WarmupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmupView.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
 		EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerViews.swift; sourceTree = "<group>"; };
 		EFE3E5F07FDF32921E2F028E /* VoiceCuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCuesView.swift; sourceTree = "<group>"; };
+		F126FCB68487DECC28829F6E /* WarmupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmupSession.swift; sourceTree = "<group>"; };
 		F7103D35AD0B4B4E6E354D2F /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
 		F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSpringView.swift; sourceTree = "<group>"; };
 		FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HalsynWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,6 +471,8 @@
 				74B3B1D71FF3C2D6D7A15D1F /* RecoveryMeter.swift */,
 				928934EF5A513D64F8F6F04E /* RecoveryView.swift */,
 				46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */,
+				F126FCB68487DECC28829F6E /* WarmupSession.swift */,
+				E3EC0BB3192419160DABBD46 /* WarmupView.swift */,
 				8A878663BBD1BD389AD4A388 /* WorkoutManager.swift */,
 				0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */,
 			);
@@ -945,6 +951,8 @@
 				8F4A9F08F7C21ACEB69604E7 /* RecoveryView.swift in Sources */,
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
 				2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */,
+				C62E6FCBE7E5328B402DF503 /* WarmupSession.swift in Sources */,
+				959A8FEF71AAB902243374B0 /* WarmupView.swift in Sources */,
 				4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */,
 				4C23264D043C0A64276E6D8A /* WatchCykelView.swift in Sources */,
 				2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */,
@@ -1142,7 +1150,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 56;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1327,7 +1335,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 56;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

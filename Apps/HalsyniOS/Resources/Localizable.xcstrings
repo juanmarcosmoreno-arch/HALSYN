@@ -3112,6 +3112,23 @@
         }
       }
     },
+    "Calentamiento terminado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm-up done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppvärmning klar"
+          }
+        }
+      }
+    },
     "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre %@ a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.": {
       "extractionState": "manual",
       "localizations": {
@@ -3210,6 +3227,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Förändring jämfört med föregående period"
+          }
+        }
+      }
+    },
+    "Camina o trota suave, siempre igual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walk or jog easy, the same way every time."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gå eller jogga lugnt, likadant varje gång."
           }
         }
       }
@@ -6661,6 +6695,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Börja på"
+          }
+        }
+      }
+    },
+    "Empezar ya": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start now"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta nu"
           }
         }
       }
@@ -11816,6 +11867,23 @@
         }
       }
     },
+    "Mido tu recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measuring your recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mäter din återhämtning"
+          }
+        }
+      }
+    },
     "Milla %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -12866,6 +12934,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Maxpulsen uppskattas inte utifrån ålder: ange den (till exempel från ett arbetsprov) eller använd den högsta som registrerats under dina löppass."
+          }
+        }
+      }
+    },
+    "No se graba: el entrenamiento empieza al terminar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not recorded: the workout starts when it ends."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelas inte in: passet börjar när den är klar."
           }
         }
       }
@@ -17490,6 +17575,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Drag"
+          }
+        }
+      }
+    },
+    "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals done. Cool-down: walk or jog easy, I'm measuring your recovery."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervallerna klara. Nedvarvning: gå eller jogga lugnt, jag mäter din återhämtning."
           }
         }
       }

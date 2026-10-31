@@ -37,18 +37,14 @@ private struct MeasuringRecoveryView: View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
             let elapsed = meter.elapsed(at: context.date)
             let drop = meter.currentHeartRate.map { meter.endHeartRate - $0 }
-            VStack(spacing: 4) {
+            let remaining = max(0, 1 - elapsed / meter.duration)
+            VStack(spacing: 3) {
                 Text("RECUPERACIÓN")
                     .font(.caption2.weight(.bold))
                     .tracking(1)
                     .foregroundStyle(Color(HalsynPalette.darkAccent))
-                HStack(alignment: .firstTextBaseline, spacing: 3) {
-                    Text(verbatim: meter.currentHeartRate.map { HalsynFormat.integer($0) } ?? "--")
-                        .font(.system(size: 44, weight: .semibold, design: .rounded).monospacedDigit())
-                    Text("lpm")
-                        .font(.caption2)
-                        .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
-                }
+                ring(remaining: remaining, elapsed: elapsed)
+                    .frame(height: 92)
                 if let drop {
                     Text(verbatim: "\(HalsynFormat.drop(drop)) · \(HalsynFormat.integer(meter.endHeartRate))")
                         .font(.footnote.monospacedDigit())
@@ -56,11 +52,9 @@ private struct MeasuringRecoveryView: View {
                         .accessibilityLabel(Text("Cambio \(HalsynFormat.drop(drop)) desde \(HalsynFormat.integer(meter.endHeartRate))"))
                 }
                 RecoveryChart(samples: meter.samples, duration: meter.duration)
-                    .frame(height: 50)
-                ProgressView(value: min(elapsed / meter.duration, 1))
-                    .tint(Color(HalsynPalette.darkAccent))
-                Text(verbatim: "\(HalsynFormat.duration(elapsed)) / \(HalsynFormat.duration(meter.duration))")
-                    .font(.caption2.monospacedDigit())
+                    .frame(height: 34)
+                Text("Camina o trota suave, siempre igual.")
+                    .font(.system(size: 10))
                     .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
                 Button("Terminar ya") { meter.stopEarly() }
                     .font(.footnote)
@@ -68,6 +62,32 @@ private struct MeasuringRecoveryView: View {
             .padding(.horizontal, 4)
         }
         .background(Color.black.ignoresSafeArea())
+    }
+
+    /// Anillo que se gasta con el tiempo que falta; en el centro, el pulso.
+    private func ring(remaining: Double, elapsed: TimeInterval) -> some View {
+        ZStack {
+            Circle()
+                .stroke(Color(HalsynPalette.darkAccent).opacity(0.22), lineWidth: 7)
+            Circle()
+                .trim(from: 0, to: remaining)
+                .stroke(Color(HalsynPalette.darkAccent), style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .animation(.linear(duration: 1), value: remaining)
+            VStack(spacing: 0) {
+                HStack(alignment: .firstTextBaseline, spacing: 2) {
+                    Text(verbatim: meter.currentHeartRate.map { HalsynFormat.integer($0) } ?? "--")
+                        .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                    Text("lpm")
+                        .font(.caption2)
+                        .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                }
+                Text(verbatim: HalsynFormat.duration(max(0, meter.duration - elapsed)))
+                    .font(.caption2.monospacedDigit())
+                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            }
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 
