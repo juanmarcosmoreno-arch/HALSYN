@@ -2330,6 +2330,40 @@
         }
       }
     },
+    "BAJADA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DOWNHILL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NEDFÖR"
+          }
+        }
+      }
+    },
+    "Bajada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downhill"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nedför"
+          }
+        }
+      }
+    },
     "Bajada del pulso en el primer minuto en cada medición": {
       "extractionState": "manual",
       "localizations": {
@@ -3227,6 +3261,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Förändring jämfört med föregående period"
+          }
+        }
+      }
+    },
+    "Cambios de ritmo sin parar: el tramo suave se trota, no se camina.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace changes without stopping: jog the easy part, don't walk."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempoväxlingar utan att stanna: jogga den lugna delen, gå inte."
           }
         }
       }
@@ -4710,6 +4761,23 @@
         }
       }
     },
+    "Copia de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy of %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopia av %@"
+          }
+        }
+      }
+    },
     "Corazón": {
       "extractionState": "manual",
       "localizations": {
@@ -5917,6 +5985,23 @@
         }
       }
     },
+    "Duplicar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicera"
+          }
+        }
+      }
+    },
     "Duración": {
       "extractionState": "manual",
       "localizations": {
@@ -6172,23 +6257,6 @@
         }
       }
     },
-    "Edita planes, pantallas, zonas y alertas en el iPhone: SPRING › Ajustes de carrera.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edit plans, screens, zones and alerts on your iPhone: SPRING › Run settings."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Redigera planer, skärmar, zoner och varningar på iPhone: SPRING › Löpinställningar."
-          }
-        }
-      }
-    },
     "Editar": {
       "extractionState": "manual",
       "localizations": {
@@ -6338,6 +6406,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Klockans Varv-knapp markerar manuella varv när som helst. Under ”Vad den säger” väljer du vilka meddelanden som hörs: varv (och hur ofta), tempo, puls, tid, intervaller och varningar. På iPhone hörs de i hörlurarna som är anslutna till telefonen och sänker musiken en stund; om iPhone inte är i närheten pratar klockan. För en mer naturlig röst kan du hämta en förbättrad röst under Inställningar › Hjälpmedel › Uppläst innehåll › Röster."
+          }
+        }
+      }
+    },
+    "El calentamiento se hace antes y no se graba. Si mides la recuperación, la vuelta a la calma es esa medición.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The warm-up comes first and isn't recorded. If you measure recovery, the cool-down is that measurement."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppvärmningen görs först och spelas inte in. Mäter du återhämtningen är nedvarvningen den mätningen."
           }
         }
       }
@@ -7243,6 +7328,23 @@
         }
       }
     },
+    "Entrenamientos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pass"
+          }
+        }
+      }
+    },
     "Entrenamientos de carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -8127,6 +8229,23 @@
         }
       }
     },
+    "FONDO": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LONG"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LÅNGT"
+          }
+        }
+      }
+    },
     "Falta permitir Salud o ubicación": {
       "extractionState": "manual",
       "localizations": {
@@ -8225,6 +8344,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fler dagar behövs för att känna till ditt snitt"
+          }
+        }
+      }
+    },
+    "Fartlek": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fartlek"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fartlek"
           }
         }
       }
@@ -8429,6 +8565,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Slut"
+          }
+        }
+      }
+    },
+    "Fondo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long run"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Långpass"
           }
         }
       }
@@ -10116,23 +10269,6 @@
         }
       }
     },
-    "Intervalos": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intervals"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intervaller"
-          }
-        }
-      }
-    },
     "Intervalos completados": {
       "extractionState": "manual",
       "localizations": {
@@ -11047,23 +11183,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Behörigheter för varje datatyp ändrar du i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN. iOS talar inte om för appar vilka data som har nekats."
-          }
-        }
-      }
-    },
-    "Los planes aparecen en SPRING › Intervalos en el reloj. El reloj vibra al empezar cada serie y cada recuperación.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plans appear in SPRING › Intervals on the watch. The watch vibrates at the start of each rep and each recovery."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Planerna visas i SPRING › Intervaller på klockan. Klockan vibrerar i början av varje drag och varje återhämtning."
           }
         }
       }
@@ -12016,23 +12135,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Titta på din Apple Watch: passet börjar."
-          }
-        }
-      }
-    },
-    "Mis intervalos": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "My intervals"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mina intervaller"
           }
         }
       }
@@ -13261,6 +13363,23 @@
         }
       }
     },
+    "Nuevo entrenamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New workout"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nytt pass"
+          }
+        }
+      }
+    },
     "Nuevo objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -13291,23 +13410,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ny plan"
-          }
-        }
-      }
-    },
-    "Nuevo plan de intervalos": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New interval plan"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ny intervallplan"
           }
         }
       }
@@ -14090,6 +14192,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vi utgår från din volym de senaste 4 veckorna och ökar den gradvis, med en lättare vecka var fjärde vecka. Varje pass har en minsta distans, så om du springer lite kan de första veckorna bli något mer än ditt snitt. Varje vecka anpassas planen efter vad du faktiskt sprang, och var 6:e vecka görs ett test för att uppdatera dina tempon."
+          }
+        }
+      }
+    },
+    "Pasadas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller"
+          }
+        }
+      }
+    },
+    "Pasadas, repechos, fartlek o fondo: elige uno, ajústalo a tu gusto (toca para editar, desliza para borrar) y aparece en SPRING › Entrenamientos en el reloj. El reloj vibra y avisa en cada cambio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals, hills, fartlek or long run: pick one, adjust it as you like (tap to edit, swipe to delete) and it appears in SPRING › Workouts on the watch. The watch taps and announces each change."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller, backar, fartlek eller långpass: välj ett, anpassa det (tryck för att redigera, svep för att radera) så visas det i SPRING › Pass på klockan. Klockan vibrerar och säger till vid varje byte."
+          }
+        }
+      }
+    },
+    "Pasadas, repechos, fartlek y fondo. Créalos y edítalos en el iPhone: SPRING › Ajustes de carrera, igual que pantallas, zonas y alertas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervals, hills, fartlek and long runs. Create and edit them on the iPhone: SPRING › Run settings, like screens, zones and alerts."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller, backar, fartlek och långpass. Skapa och redigera dem på iPhone: SPRING › Löpinställningar, precis som skärmar, zoner och larm."
           }
         }
       }
@@ -16287,6 +16440,57 @@
         }
       }
     },
+    "Repecho": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hill"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backe"
+          }
+        }
+      }
+    },
+    "Repecho %lld de %lld. ¡Arriba!": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hill %lld of %lld. Up you go!"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backe %lld av %lld. Uppför!"
+          }
+        }
+      }
+    },
+    "Repechos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hills"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backar"
+          }
+        }
+      }
+    },
     "Repeticiones": {
       "extractionState": "manual",
       "localizations": {
@@ -16899,6 +17103,57 @@
         }
       }
     },
+    "RÁPIDO": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FAST"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SNABBT"
+          }
+        }
+      }
+    },
+    "Rápido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbt"
+          }
+        }
+      }
+    },
+    "Rápido, %lld de %lld.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast, %lld of %lld."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbt, %lld av %lld."
+          }
+        }
+      }
+    },
     "Récords": {
       "extractionState": "manual",
       "localizations": {
@@ -16929,6 +17184,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "DRAG"
+          }
+        }
+      }
+    },
+    "SUAVE": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "EASY"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUGNT"
+          }
+        }
+      }
+    },
+    "SUBIDA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UPHILL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UPPFÖR"
           }
         }
       }
@@ -18476,6 +18765,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lätt"
+          }
+        }
+      }
+    },
+    "Sube fuerte durante el tiempo marcado y baja trotando: la bajada es la recuperación. En subida el ritmo no sirve de referencia; guíate por el esfuerzo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run hard uphill for the set time and jog back down: the descent is the recovery. Pace means little on a hill; go by effort."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spring hårt uppför under den angivna tiden och jogga ner: nedförsbacken är återhämtningen. Tempo säger lite i backe; gå efter ansträngning."
           }
         }
       }
@@ -20754,6 +21060,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "En daglig påminnelse bjuder in dig att se din sammanfattning. Notisen innehåller inga hälsodata."
+          }
+        }
+      }
+    },
+    "Un bloque largo y continuo a ritmo cómodo. Con ritmo objetivo, el reloj avisa si te sales del rango.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One long, continuous block at a comfortable pace. With a target pace, the watch alerts you if you leave the range."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ett långt, sammanhängande block i bekvämt tempo. Med måltempo varnar klockan om du hamnar utanför intervallet."
           }
         }
       }

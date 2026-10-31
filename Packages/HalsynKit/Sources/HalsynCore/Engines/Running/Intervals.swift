@@ -54,6 +54,77 @@ public enum IntervalStepKind: String, Hashable, Codable, CaseIterable, Sendable 
     }
 }
 
+/// Tipo de entrenamiento armado: cambia los nombres de los pasos en el reloj,
+/// la voz y la plantilla con la que empieza. La estructura es la misma
+/// (calentamiento, bloques con recuperación, vuelta a la calma).
+public enum WorkoutStyle: String, Hashable, Codable, CaseIterable, Sendable {
+    /// Series por distancia o tiempo con recuperación.
+    case intervals
+    /// Subidas cortas y fuertes; se baja trotando.
+    case hills
+    /// Cambios de ritmo por tiempo, sin parar.
+    case fartlek
+    /// Un bloque largo y continuo.
+    case long
+
+    public var title: String {
+        switch self {
+        case .intervals: "Pasadas"
+        case .hills: "Repechos"
+        case .fartlek: "Fartlek"
+        case .long: "Fondo"
+        }
+    }
+
+    public var symbol: String {
+        switch self {
+        case .intervals: "repeat"
+        case .hills: "mountain.2"
+        case .fartlek: "waveform.path"
+        case .long: "road.lanes"
+        }
+    }
+
+    /// Nombre del paso para la pantalla y los avisos.
+    public func title(for kind: IntervalStepKind) -> String {
+        switch (self, kind) {
+        case (.hills, .work): "Repecho"
+        case (.hills, .recovery): "Bajada"
+        case (.fartlek, .work): "Rápido"
+        case (.fartlek, .recovery): "Suave"
+        case (.long, .work): "Fondo"
+        default: kind.title
+        }
+    }
+
+    /// Etiqueta corta del paso en el reloj.
+    public func label(for kind: IntervalStepKind) -> String {
+        switch (self, kind) {
+        case (.hills, .work): "SUBIDA"
+        case (.hills, .recovery): "BAJADA"
+        case (.fartlek, .work): "RÁPIDO"
+        case (.fartlek, .recovery): "SUAVE"
+        case (.long, .work): "FONDO"
+        default: kind.label
+        }
+    }
+
+    /// Plantilla para un entrenamiento nuevo de este tipo (todo se puede editar).
+    public func template(id: String, name: String) -> IntervalPlan {
+        switch self {
+        case .intervals:
+            IntervalPlan(id: id, name: name, warmup: .time(600), work: .distance(400), recovery: .time(90), repeats: 8, cooldown: .time(300), style: .intervals)
+        case .hills:
+            // Subidas de 30–60 s a esfuerzo fuerte; la bajada al trote es la recuperación.
+            IntervalPlan(id: id, name: name, warmup: .time(900), work: .time(45), recovery: .time(90), repeats: 8, cooldown: .time(300), style: .hills)
+        case .fartlek:
+            IntervalPlan(id: id, name: name, warmup: .time(600), work: .time(60), recovery: .time(60), repeats: 10, cooldown: .time(300), style: .fartlek)
+        case .long:
+            IntervalPlan(id: id, name: name, warmup: nil, work: .distance(15_000), recovery: .open, repeats: 1, cooldown: nil, style: .long)
+        }
+    }
+}
+
 public struct IntervalStep: Hashable, Codable, Sendable {
     public var kind: IntervalStepKind
     public var goal: IntervalGoal
@@ -83,8 +154,10 @@ public struct IntervalPlan: Hashable, Codable, Identifiable, Sendable {
     public var recovery: IntervalGoal
     public var repeats: Int
     public var cooldown: IntervalGoal?
+    /// Tipo (pasadas, repechos, fartlek, fondo). `nil` en los guardados antes = pasadas.
+    public var style: WorkoutStyle?
 
-    public init(id: String, name: String, warmup: IntervalGoal?, work: IntervalGoal, workPace: PaceRange? = nil, recovery: IntervalGoal, repeats: Int, cooldown: IntervalGoal?) {
+    public init(id: String, name: String, warmup: IntervalGoal?, work: IntervalGoal, workPace: PaceRange? = nil, recovery: IntervalGoal, repeats: Int, cooldown: IntervalGoal?, style: WorkoutStyle? = nil) {
         self.id = id
         self.name = name
         self.warmup = warmup
@@ -93,7 +166,10 @@ public struct IntervalPlan: Hashable, Codable, Identifiable, Sendable {
         self.recovery = recovery
         self.repeats = min(max(repeats, Self.repeatsRange.lowerBound), Self.repeatsRange.upperBound)
         self.cooldown = cooldown
+        self.style = style
     }
+
+    public var kind: WorkoutStyle { style ?? .intervals }
 
     public var steps: [IntervalStep] {
         var steps: [IntervalStep] = []
@@ -112,6 +188,9 @@ public struct IntervalPlan: Hashable, Codable, Identifiable, Sendable {
         IntervalPlan(id: "6x400", name: "6 × 400 m", warmup: .time(600), work: .distance(400), recovery: .time(90), repeats: 6, cooldown: .time(300)),
         IntervalPlan(id: "5x1k", name: "5 × 1 km", warmup: .time(600), work: .distance(1000), recovery: .time(120), repeats: 5, cooldown: .time(300)),
         IntervalPlan(id: "8x1min", name: "8 × 1 min", warmup: .time(600), work: .time(60), recovery: .time(60), repeats: 8, cooldown: .time(300)),
+        WorkoutStyle.hills.template(id: "hills-8x45", name: "Repechos 8 × 45 s"),
+        WorkoutStyle.fartlek.template(id: "fartlek-10x1", name: "Fartlek 10 × 1 min"),
+        WorkoutStyle.long.template(id: "long-15k", name: "Fondo 15 km"),
     ]
 }
 
@@ -264,6 +343,11 @@ public enum IntervalPlanFormatter {
             if meters < unit.metersPerDistanceUnit {
                 return "\(HalsynFormat.integer(meters, locale: locale)) m"
             }
+            let units = meters / unit.metersPerDistanceUnit
+            if abs(units - units.rounded()) < 0.001 {
+                // Kilómetros (o millas) enteros sin decimales: "15 km".
+                return "\(HalsynFormat.integer(units.rounded(), locale: locale)) \(unit.distanceUnitSymbol)"
+            }
             return "\(HalsynFormat.distance(meters: meters, unit: unit, locale: locale)) \(unit.distanceUnitSymbol)"
         case .open:
             // Paso que termina al pulsar Vuelta.
@@ -274,7 +358,10 @@ public enum IntervalPlanFormatter {
     public static func summary(_ plan: IntervalPlan, unit: UnitSystem = .metric, locale: Locale = .current) -> String {
         var parts: [String] = []
         if let warmup = plan.warmup { parts.append(goal(warmup, unit: unit, locale: locale)) }
-        var block = "\(plan.repeats) × \(goal(plan.work, unit: unit, locale: locale))"
+        // Un fondo de un solo bloque se escribe sin "1 ×".
+        var block = plan.kind == .long && plan.repeats == 1
+            ? goal(plan.work, unit: unit, locale: locale)
+            : "\(plan.repeats) × \(goal(plan.work, unit: unit, locale: locale))"
         if plan.repeats > 1 {
             block += " / \(goal(plan.recovery, unit: unit, locale: locale))"
         }

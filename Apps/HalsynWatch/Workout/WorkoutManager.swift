@@ -485,13 +485,19 @@ final class WorkoutManager: NSObject {
                 case .recovery, .cooldown: haptic = .stop
                 case .warmup: haptic = .click
                 }
-                title = Bundle.main.localizedString(forKey: progress.step.kind.title, value: nil, table: nil)
+                let style = plan?.kind ?? .intervals
+                title = Bundle.main.localizedString(forKey: style.title(for: progress.step.kind), value: nil, table: nil)
                 detail = progress.step.repetition.map { "\($0)/\(plan?.repeats ?? $0)" }
                 if !cues.intervals {
                     spoken = nil
                 } else if progress.step.kind == .work, let repetition = progress.step.repetition {
                     let total = plan?.repeats ?? repetition
-                    spoken = String(localized: "Serie \(repetition) de \(total). ¡Vamos!")
+                    switch style {
+                    case .hills: spoken = String(localized: "Repecho \(repetition) de \(total). ¡Arriba!")
+                    case .fartlek: spoken = String(localized: "Rápido, \(repetition) de \(total).")
+                    case .long: spoken = title
+                    case .intervals: spoken = String(localized: "Serie \(repetition) de \(total). ¡Vamos!")
+                    }
                 } else {
                     spoken = title
                 }

@@ -213,36 +213,41 @@ struct RunSettingsView: View {
                 NavigationLink {
                     IntervalPlanEditorView(planID: plan.id)
                 } label: {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: plan.name).font(.halsynHeadline)
-                        Text(verbatim: IntervalPlanFormatter.summary(plan, unit: unitSystem))
-                            .font(.halsynCaption)
-                            .foregroundStyle(.halsynSecondaryText)
+                    Label {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(verbatim: plan.name).font(.halsynHeadline)
+                            Text(verbatim: IntervalPlanFormatter.summary(plan, unit: unitSystem))
+                                .font(.halsynCaption)
+                                .foregroundStyle(.halsynSecondaryText)
+                        }
+                    } icon: {
+                        Image(systemName: plan.kind.symbol)
                     }
                 }
             }
             .onDelete { offsets in
                 store.update { $0.intervalPlans.remove(atOffsets: offsets) }
             }
-            Button {
-                store.update { settings in
-                    settings.intervalPlans.append(IntervalPlan(
-                        id: "plan-\(UUID().uuidString)",
-                        name: String(localized: "Mis intervalos"),
-                        warmup: .time(600),
-                        work: .distance(800),
-                        recovery: .time(120),
-                        repeats: 4,
-                        cooldown: .time(300)
-                    ))
+            Menu {
+                ForEach(WorkoutStyle.allCases, id: \.self) { style in
+                    Button {
+                        store.update { settings in
+                            settings.intervalPlans.append(style.template(
+                                id: "plan-\(UUID().uuidString)",
+                                name: Bundle.main.localizedString(forKey: style.title, value: nil, table: nil)
+                            ))
+                        }
+                    } label: {
+                        Label(LocalizedStringKey(style.title), systemImage: style.symbol)
+                    }
                 }
             } label: {
-                Label("Nuevo plan de intervalos", systemImage: "plus")
+                Label("Nuevo entrenamiento", systemImage: "plus")
             }
         } header: {
-            Text("Intervalos")
+            Text("Entrenamientos")
         } footer: {
-            Text("Los planes aparecen en SPRING › Intervalos en el reloj. El reloj vibra al empezar cada serie y cada recuperación.")
+            Text("Pasadas, repechos, fartlek o fondo: elige uno, ajústalo a tu gusto (toca para editar, desliza para borrar) y aparece en SPRING › Entrenamientos en el reloj. El reloj vibra y avisa en cada cambio.")
         }
     }
 
@@ -588,38 +593,81 @@ struct IntervalPlanEditorView: View {
                     Text(verbatim: IntervalPlanFormatter.summary(plan, unit: unitSystem))
                         .font(.halsynCaption.monospacedDigit())
                         .foregroundStyle(.halsynSecondaryText)
+                    Picker("Tipo", selection: Binding(get: { plan.kind }, set: { style in update(index) { $0.style = style } })) {
+                        ForEach(WorkoutStyle.allCases, id: \.self) { style in
+                            Label(LocalizedStringKey(style.title), systemImage: style.symbol).tag(style)
+                        }
+                    }
                 }
 
                 optionalGoalSection("Calentamiento", goal: plan.warmup) { goal in update(index) { $0.warmup = goal } }
 
-                Section {
-                    Stepper(value: Binding(get: { plan.repeats }, set: { value in update(index) { $0.repeats = value } }), in: IntervalPlan.repeatsRange) {
-                        LabeledContent("Repeticiones", value: "\(plan.repeats)")
-                    }
-                    GoalEditor(title: "Serie", goal: Binding(get: { plan.work }, set: { goal in update(index) { $0.work = goal } }), unit: unitSystem)
-                    Toggle("Ritmo objetivo", isOn: Binding(
-                        get: { plan.workPace != nil },
-                        set: { on in update(index) { $0.workPace = on ? PaceRange(fastest: 270, slowest: 285) : nil } }
-                    ))
-                    if let pace = plan.workPace {
-                        PaceStepper(title: "Más rápido que", seconds: Binding(get: { pace.fastest }, set: { value in update(index) { $0.workPace = PaceRange(fastest: value, slowest: pace.slowest) } }), unit: unitSystem, bounds: 150...(pace.slowest - 5))
-                        PaceStepper(title: "Más lento que", seconds: Binding(get: { pace.slowest }, set: { value in update(index) { $0.workPace = PaceRange(fastest: pace.fastest, slowest: value) } }), unit: unitSystem, bounds: (pace.fastest + 5)...900)
-                    }
-                    if plan.repeats > 1 {
-                        GoalEditor(title: "Recuperación", goal: Binding(get: { plan.recovery }, set: { goal in update(index) { $0.recovery = goal } }), unit: unitSystem)
-                    }
-                } header: {
-                    Text("Series")
-                } footer: {
-                    Text("Con ritmo objetivo, el reloj avisa si vas más rápido o más lento durante la serie.")
-                }
+                seriesSection(plan, index: index)
 
                 optionalGoalSection("Vuelta a la calma", goal: plan.cooldown) { goal in update(index) { $0.cooldown = goal } }
+
+                Section {
+                    Button {
+                        duplicate(plan, after: index)
+                    } label: {
+                        Label("Duplicar", systemImage: "plus.square.on.square")
+                    }
+                } footer: {
+                    Text("El calentamiento se hace antes y no se graba. Si mides la recuperación, la vuelta a la calma es esa medición.")
+                }
             }
             .navigationTitle(Text(verbatim: plan.name))
             .navigationBarTitleDisplayMode(.inline)
         } else {
             HalsynEmptyState(systemImage: "repeat", title: "Plan eliminado", message: "Vuelve a Ajustes de carrera.")
+        }
+    }
+
+    private func seriesSection(_ plan: IntervalPlan, index: Int) -> some View {
+        Section {
+            if plan.kind != .long || plan.repeats > 1 {
+                Stepper(value: Binding(get: { plan.repeats }, set: { value in update(index) { $0.repeats = value } }), in: IntervalPlan.repeatsRange) {
+                    LabeledContent("Repeticiones", value: "\(plan.repeats)")
+                }
+            }
+            GoalEditor(title: LocalizedStringKey(plan.kind.title(for: .work)), goal: Binding(get: { plan.work }, set: { goal in update(index) { $0.work = goal } }), unit: unitSystem)
+            Toggle("Ritmo objetivo", isOn: Binding(
+                get: { plan.workPace != nil },
+                set: { on in update(index) { $0.workPace = on ? PaceRange(fastest: 270, slowest: 285) : nil } }
+            ))
+            if let pace = plan.workPace {
+                PaceStepper(title: "Más rápido que", seconds: Binding(get: { pace.fastest }, set: { value in update(index) { $0.workPace = PaceRange(fastest: value, slowest: pace.slowest) } }), unit: unitSystem, bounds: 150...(pace.slowest - 5))
+                PaceStepper(title: "Más lento que", seconds: Binding(get: { pace.slowest }, set: { value in update(index) { $0.workPace = PaceRange(fastest: pace.fastest, slowest: value) } }), unit: unitSystem, bounds: (pace.fastest + 5)...900)
+            }
+            if plan.repeats > 1 {
+                GoalEditor(title: LocalizedStringKey(plan.kind.title(for: .recovery)), goal: Binding(get: { plan.recovery }, set: { goal in update(index) { $0.recovery = goal } }), unit: unitSystem)
+            }
+        } header: {
+            Text(LocalizedStringKey(plan.kind.title))
+        } footer: {
+            Text(styleFooter(plan.kind))
+        }
+    }
+
+    private func duplicate(_ plan: IntervalPlan, after index: Int) {
+        var copy = plan
+        copy.id = "plan-\(UUID().uuidString)"
+        copy.name = String(String(localized: "Copia de \(plan.name)").prefix(30))
+        store.update { settings in
+            settings.intervalPlans.insert(copy, at: min(index + 1, settings.intervalPlans.count))
+        }
+    }
+
+    private func styleFooter(_ style: WorkoutStyle) -> LocalizedStringKey {
+        switch style {
+        case .intervals:
+            "Con ritmo objetivo, el reloj avisa si vas más rápido o más lento durante la serie."
+        case .hills:
+            "Sube fuerte durante el tiempo marcado y baja trotando: la bajada es la recuperación. En subida el ritmo no sirve de referencia; guíate por el esfuerzo."
+        case .fartlek:
+            "Cambios de ritmo sin parar: el tramo suave se trota, no se camina."
+        case .long:
+            "Un bloque largo y continuo a ritmo cómodo. Con ritmo objetivo, el reloj avisa si te sales del rango."
         }
     }
 

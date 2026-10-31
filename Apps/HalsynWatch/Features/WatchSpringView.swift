@@ -41,7 +41,7 @@ struct WatchSpringView: View {
                             Label {
                                 Text(verbatim: plan.name)
                             } icon: {
-                                Image(systemName: "repeat")
+                                Image(systemName: plan.kind.symbol)
                             }
                             Text(verbatim: IntervalPlanFormatter.summary(plan, unit: settings.unitSystem))
                                 .font(.caption2)
@@ -50,9 +50,9 @@ struct WatchSpringView: View {
                     }
                 }
             } header: {
-                Text("Intervalos")
+                Text("Entrenamientos")
             } footer: {
-                Text("Edita planes, pantallas, zonas y alertas en el iPhone: SPRING › Ajustes de carrera.")
+                Text("Pasadas, repechos, fartlek y fondo. Créalos y edítalos en el iPhone: SPRING › Ajustes de carrera, igual que pantallas, zonas y alertas.")
             }
 
             Section {

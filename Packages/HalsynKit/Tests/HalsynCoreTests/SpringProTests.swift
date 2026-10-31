@@ -412,7 +412,7 @@ struct IntervalFormatterTests {
         #expect(IntervalPlanFormatter.goal(.time(600), locale: locale) == "10 min")
         #expect(IntervalPlanFormatter.goal(.time(90), locale: locale) == "1:30")
         #expect(IntervalPlanFormatter.goal(.distance(400), locale: locale) == "400 m")
-        #expect(IntervalPlanFormatter.goal(.distance(1000), locale: locale) == "1,00 km")
+        #expect(IntervalPlanFormatter.goal(.distance(1000), locale: locale) == "1 km")
     }
 
     @Test func summary() {

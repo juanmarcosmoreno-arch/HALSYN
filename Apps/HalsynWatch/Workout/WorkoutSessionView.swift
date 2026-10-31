@@ -438,7 +438,7 @@ private struct WorkoutIntervalRingView: View {
 
     private func ringHeader(_ interval: IntervalProgress) -> some View {
         HStack {
-            Text(LocalizedStringKey(interval.step.kind.label))
+            Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
                 .font(.caption2.weight(.bold))
                 .tracking(1)
                 .foregroundStyle(intervalTint(interval.step.kind))
@@ -468,7 +468,7 @@ private struct WorkoutIntervalRingView: View {
         }
         .aspectRatio(1, contentMode: .fit)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(LocalizedStringKey(interval.step.kind.title)))
+        .accessibilityLabel(Text(LocalizedStringKey(workout.plan?.kind.title(for: interval.step.kind) ?? interval.step.kind.title)))
         .accessibilityValue(Text(verbatim: "\(value.value ?? "--") \(value.unit)"))
     }
 
@@ -569,7 +569,7 @@ private struct WorkoutIntervalView: View {
 
     private func header(_ interval: IntervalProgress) -> some View {
         HStack {
-            Text(LocalizedStringKey(interval.step.kind.label))
+            Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
                 .font(.caption.weight(.bold))
                 .tracking(1)
                 .foregroundStyle(tint(interval.step.kind))

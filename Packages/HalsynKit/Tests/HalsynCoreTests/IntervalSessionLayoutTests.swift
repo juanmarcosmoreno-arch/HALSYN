@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import HalsynCore
 
@@ -26,5 +27,26 @@ struct IntervalSessionLayoutTests {
         #expect(IntervalSessionLayout.minutes(for: .time(20), default: 2) == 1)
         #expect(IntervalSessionLayout.minutes(for: .time(1800), default: 2) == 10)
         #expect(IntervalSessionLayout.minutes(for: .open, default: 5) == 5)
+    }
+}
+
+@Suite("Tipos de entrenamiento")
+struct WorkoutStyleTests {
+    @Test func templatesAndLabels() {
+        let hills = WorkoutStyle.hills.template(id: "h", name: "R")
+        #expect(hills.kind == .hills && hills.work == .time(45) && hills.repeats == 8)
+        #expect(hills.kind.label(for: .work) == "SUBIDA" && hills.kind.title(for: .recovery) == "Bajada")
+        #expect(WorkoutStyle.fartlek.label(for: .warmup) == "CALENTAR")
+        let long = WorkoutStyle.long.template(id: "l", name: "F")
+        #expect(long.steps.count == 1 && long.steps[0].kind == .work)
+        #expect(IntervalPlanFormatter.summary(long, locale: Locale(identifier: "es_ES")) == "15 km")
+    }
+
+    @Test func oldPlansDecodeAsIntervals() throws {
+        let old = #"{"id":"x","name":"x","work":{"distance":{"_0":400}},"recovery":{"time":{"_0":90}},"repeats":4}"#
+        let plan = try JSONDecoder().decode(IntervalPlan.self, from: Data(old.utf8))
+        #expect(plan.style == nil && plan.kind == .intervals)
+        let encoded = try JSONEncoder().encode(WorkoutStyle.hills.template(id: "h", name: "R"))
+        #expect(try JSONDecoder().decode(IntervalPlan.self, from: encoded).kind == .hills)
     }
 }

@@ -562,10 +562,11 @@ public enum PlanAdaptation {
                 work: .distance(length), workPace: session.pace,
                 recovery: session.kind == .intervals ? .time(120) : .open,
                 repeats: repeats,
-                cooldown: .distance(2000)
+                cooldown: .distance(2000),
+                style: session.kind == .intervals ? .intervals : nil
             )
         default:
-            return IntervalPlan(id: id, name: name, warmup: nil, work: .distance(session.distance), workPace: session.pace, recovery: .open, repeats: 1, cooldown: nil)
+            return IntervalPlan(id: id, name: name, warmup: nil, work: .distance(session.distance), workPace: session.pace, recovery: .open, repeats: 1, cooldown: nil, style: session.kind == .long ? .long : nil)
         }
     }
 }
