@@ -38,6 +38,19 @@ final class TrainingPlanStore {
         save(plan)
     }
 
+    /// Cambio a mano en la semana actual. Si cambia la sesión de hoy, la que se
+    /// había enviado al reloj ya no vale y se quita. Devuelve si se aplicó.
+    @discardableResult
+    func edit(_ change: (TrainingPlan) -> TrainingPlan?) -> Bool {
+        guard let plan, let updated = change(plan) else { return false }
+        let calendar = Calendar.current
+        if plan.session(on: .now, calendar: calendar) != updated.session(on: .now, calendar: calendar) {
+            RunSettingsStore.shared.update { settings in settings.intervalPlans.removeAll { $0.id == Self.watchPlanID } }
+        }
+        save(updated)
+        return true
+    }
+
     /// Reajuste semanal automático (una vez por semana).
     func replanIfNeeded(runs: [WorkoutSummary]) {
         // Con datos de demostración no se reajusta: el plan es del usuario real.
@@ -103,6 +116,7 @@ struct TrainingPlanCard: View {
     @State private var confirmingDiscard = false
     @State private var sent = false
     @State private var testResult: PerformanceResult?
+    @State private var editingToday = false
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
@@ -131,8 +145,11 @@ struct TrainingPlanCard: View {
                 store.applyLatestFitness(runs: workouts)
             }
         }
-        // Plan nuevo o descartado: la sesión enviada al reloj era del anterior.
-        .onChange(of: store.plan?.createdAt) { _, _ in sent = false }
+        .sheet(isPresented: $editingToday) {
+            PlanSessionEditView(day: .now)
+        }
+        // Plan nuevo, descartado o cambiado a mano: la sesión enviada al reloj ya no vale.
+        .onChange(of: store.plan) { _, _ in sent = false }
         .task(id: "\(model.reloadKey)|\(workouts.count)") {
             store.replanIfNeeded(runs: workouts)
             let today = Date.now
@@ -184,6 +201,14 @@ struct TrainingPlanCard: View {
                 .font(.halsynBody)
                 .foregroundStyle(.halsynSecondaryText)
         }
+        if plan.canEdit(.now, today: .now, calendar: calendar) {
+            Button {
+                editingToday = true
+            } label: {
+                Label(editTodayTitle(plan), systemImage: "arrow.left.arrow.right")
+                    .font(.halsynCaption)
+            }
+        }
         NavigationLink {
             TrainingPlanView()
         } label: {
@@ -213,6 +238,13 @@ struct TrainingPlanCard: View {
         } message: {
             Text("Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.")
         }
+    }
+
+    private func editTodayTitle(_ plan: TrainingPlan) -> LocalizedStringKey {
+        if let session = plan.session(on: .now, calendar: .current), session.kind != .rest {
+            return "Cambiar la sesión de hoy"
+        }
+        return "Correr hoy (traer una sesión)"
     }
 
     private func todaySession(_ session: PlannedSession, original: PlannedSession, change: PlanAdaptation.Change) -> some View {
@@ -491,7 +523,13 @@ struct TrainingPlanView: View {
     @State private var confirmingDelete = false
     @State private var showsSetup = false
     @State private var runs: [WorkoutSummary]?
+    @State private var editingDay: EditingDay?
     @Environment(\.dismiss) private var dismiss
+
+    private struct EditingDay: Identifiable {
+        let date: Date
+        var id: Date { date }
+    }
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
@@ -557,6 +595,9 @@ struct TrainingPlanView: View {
         .sheet(isPresented: $showsSetup) {
             PlanSetupView(workouts: runs ?? [])
         }
+        .sheet(item: $editingDay) { day in
+            PlanSessionEditView(day: day.date)
+        }
         .task(id: model.reloadKey) {
             runs = await model.provider.recentWorkouts(limit: 120)
         }
@@ -594,22 +635,19 @@ struct TrainingPlanView: View {
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                 }
+                if isCurrent {
+                    Text("Toca un día para moverlo, intercambiarlo, acortarlo o saltarlo.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
                 ForEach(week.sessions) { session in
-                    HStack(alignment: .top, spacing: HalsynSpacing.s) {
-                        Text(session.date, format: .dateTime.weekday(.abbreviated))
-                            .font(.halsynCaption)
-                            .foregroundStyle(.halsynSecondaryText)
-                            .frame(width: 36, alignment: .leading)
-                        Image(systemName: session.kind.systemImage)
-                            .foregroundStyle(session.kind.isHard ? Color.halsynHighlight : Color.halsynAccentText)
-                            .frame(width: 20)
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(LocalizedStringKey(session.kind.title)).font(.halsynCaption.weight(.semibold))
-                            Text(verbatim: SessionText.detail(session, unit: unitSystem))
-                                .font(.caption2)
-                                .foregroundStyle(.halsynSecondaryText)
-                        }
+                    Button {
+                        editingDay = EditingDay(date: session.date)
+                    } label: {
+                        sessionRow(session)
                     }
+                    .buttonStyle(.plain)
+                    .disabled(!(store.plan?.canEdit(session.date, today: .now, calendar: .current) ?? false))
                 }
             }
         }
@@ -619,6 +657,26 @@ struct TrainingPlanView: View {
                     .strokeBorder(Color.halsynAccent, lineWidth: 2)
             }
         }
+    }
+
+    private func sessionRow(_ session: PlannedSession) -> some View {
+        HStack(alignment: .top, spacing: HalsynSpacing.s) {
+            Text(session.date, format: .dateTime.weekday(.abbreviated))
+                .font(.halsynCaption)
+                .foregroundStyle(.halsynSecondaryText)
+                .frame(width: 36, alignment: .leading)
+            Image(systemName: session.kind.systemImage)
+                .foregroundStyle(session.kind.isHard ? Color.halsynHighlight : Color.halsynAccentText)
+                .frame(width: 20)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(LocalizedStringKey(session.kind.title)).font(.halsynCaption.weight(.semibold))
+                Text(verbatim: SessionText.detail(session, unit: unitSystem))
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+            Spacer(minLength: 0)
+        }
+        .contentShape(Rectangle())
     }
 }
 

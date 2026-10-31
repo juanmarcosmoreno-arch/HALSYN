@@ -2500,6 +2500,23 @@
         }
       }
     },
+    "Bloque de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ block"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block på %@"
+          }
+        }
+      }
+    },
     "Borrar": {
       "extractionState": "manual",
       "localizations": {
@@ -3193,6 +3210,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Byt bild"
+          }
+        }
+      }
+    },
+    "Cambiar la sesión de hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change today's session"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändra dagens pass"
           }
         }
       }
@@ -4842,6 +4876,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spring med Apple Watch"
+          }
+        }
+      }
+    },
+    "Correr hoy (traer una sesión)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run today (bring a session)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spring i dag (flytta hit ett pass)"
           }
         }
       }
@@ -6580,6 +6631,23 @@
         }
       }
     },
+    "El ritmo no cambia: solo cuánto dura. Acortar un día no se recupera otro; el plan sigue con lo que hagas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The pace stays the same: only the length changes. A shorter day isn't made up later; the plan carries on from what you do."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempot är detsamma: bara längden ändras. En kortare dag tas inte igen; planen fortsätter utifrån det du gör."
+          }
+        }
+      }
+    },
     "Elegido por ti. El reloj lo usa para mostrar tu zona de potencia en directo.": {
       "extractionState": "manual",
       "localizations": {
@@ -7562,6 +7630,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lyssna på exemplet"
+          }
+        }
+      }
+    },
+    "Ese día no corro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I won't run that day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag springer inte den dagen"
+          }
+        }
+      }
+    },
+    "Ese otro día queda libre.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That other day becomes free."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den andra dagen blir ledig."
           }
         }
       }
@@ -9504,6 +9606,23 @@
         }
       }
     },
+    "Hacerla otro día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do it another day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gör det en annan dag"
+          }
+        }
+      }
+    },
     "Haces más ejercicio los %@ y menos los %@.": {
       "extractionState": "manual",
       "localizations": {
@@ -9823,6 +9942,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I dag har du haft en utmärkt balans överlag."
+          }
+        }
+      }
+    },
+    "Hoy no corro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I won't run today"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jag springer inte i dag"
           }
         }
       }
@@ -10265,6 +10401,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intensitet (IF)"
+          }
+        }
+      }
+    },
+    "Intercambiar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swap"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Byt"
           }
         }
       }
@@ -10813,6 +10966,40 @@
         }
       }
     },
+    "Libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fri"
+          }
+        }
+      }
+    },
+    "Libre (gimnasio)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free (gym)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ledig (gym)"
+          }
+        }
+      }
+    },
     "Life's Essential 8 es la medida de salud cardiovascular de la American Heart Association (2022). Cada uno de los ocho componentes vale de 0 a 100 según tablas publicadas, y la puntuación es su media simple. En estudios con cientos de miles de personas, una puntuación más alta se asocia a menos infartos, ictus y mortalidad.": {
       "extractionState": "manual",
       "localizations": {
@@ -11132,6 +11319,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ändringar skickas automatiskt till din Apple Watch."
+          }
+        }
+      }
+    },
+    "Los cambios valen para esta semana. Las siguientes se reajustan cada lunes con lo que corriste.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes apply to this week. The following weeks are readjusted every Monday based on what you ran."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändringarna gäller den här veckan. Följande veckor justeras varje måndag utifrån det du sprungit."
           }
         }
       }
@@ -12207,6 +12411,23 @@
         }
       }
     },
+    "Mover aquí": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move here"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flytta hit"
+          }
+        }
+      }
+    },
     "Moverme más": {
       "extractionState": "manual",
       "localizations": {
@@ -12390,6 +12611,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fler analyser när det finns data"
+          }
+        }
+      }
+    },
+    "Más corta o más larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shorter or longer"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kortare eller längre"
           }
         }
       }
@@ -13002,6 +13240,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inte uppmätt"
+          }
+        }
+      }
+    },
+    "No quedan sesiones esta semana para traer.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No sessions left this week to bring over."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga pass kvar den här veckan att flytta."
           }
         }
       }
@@ -15641,6 +15896,23 @@
         }
       }
     },
+    "Queda como descanso. Si prefieres hacerla otro día, muévela arriba.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It becomes a rest day. If you'd rather do it another day, move it above."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det blir vila. Vill du hellre göra det en annan dag, flytta det ovan."
+          }
+        }
+      }
+    },
     "Queso entero o queso crema (no light)": {
       "extractionState": "manual",
       "localizations": {
@@ -17936,6 +18208,23 @@
         }
       }
     },
+    "Si ese día ya tiene una sesión, se intercambian. Evita poner dos sesiones duras seguidas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If that day already has a session, they swap. Avoid two hard sessions in a row."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har den dagen redan ett pass byter de plats. Undvik två hårda pass i rad."
+          }
+        }
+      }
+    },
     "Si faltan datos, solo se calcula con al menos el 60 % del peso disponible.": {
       "extractionState": "manual",
       "localizations": {
@@ -18034,6 +18323,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga varvmeddelanden: bara intervaller och varningar, om de är på."
+          }
+        }
+      }
+    },
+    "Sin carrera este día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No run this day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen löpning den här dagen"
           }
         }
       }
@@ -18714,6 +19020,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bara inställningar skickas, aldrig hälsodata."
+          }
+        }
+      }
+    },
+    "Solo se puede cambiar la semana actual, de hoy en adelante. Las semanas siguientes se reajustan solas cada lunes con lo que corriste.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only the current week can be changed, from today on. The following weeks readjust themselves every Monday based on what you ran."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bara den aktuella veckan kan ändras, från i dag och framåt. Följande veckor justeras själva varje måndag utifrån det du sprungit."
           }
         }
       }
@@ -19908,6 +20231,23 @@
         }
       }
     },
+    "Toca un día para moverlo, intercambiarlo, acortarlo o saltarlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a day to move, swap, shorten or skip it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck på en dag för att flytta, byta, korta eller hoppa över den."
+          }
+        }
+      }
+    },
     "Toca una noche para ver su horario": {
       "extractionState": "manual",
       "localizations": {
@@ -20040,6 +20380,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jag tar blodtrycksmedicin"
+          }
+        }
+      }
+    },
+    "Traer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bring"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flytta hit"
+          }
+        }
+      }
+    },
+    "Traer una sesión de otro día": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bring a session from another day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flytta hit ett pass från en annan dag"
           }
         }
       }
@@ -21179,6 +21553,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enheter"
+          }
+        }
+      }
+    },
+    "Unos %@ en total": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About %@ in total"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cirka %@ totalt"
           }
         }
       }
