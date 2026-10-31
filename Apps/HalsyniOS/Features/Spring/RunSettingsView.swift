@@ -48,6 +48,7 @@ struct RunSettingsView: View {
                 Text("Durante la carrera")
             }
             intervalsSection
+            ringColorSection
             watchSection
         }
         .navigationTitle("Ajustes de carrera")
@@ -203,6 +204,37 @@ struct RunSettingsView: View {
         if distance == 1609.344 { return "Cada milla" }
         if distance < 1000 { return "Cada \(Int(distance)) m" }
         return "Cada \(Int(distance / 1000)) km"
+    }
+
+    // MARK: Anillo del reloj
+
+    private var ringColorSection: some View {
+        Section {
+            Picker(selection: runSetting(\.ringColor)) {
+                ForEach(WorkoutRingColor.allCases, id: \.self) { color in
+                    Label {
+                        Text(LocalizedStringKey(color.title))
+                    } icon: {
+                        ringSwatch(color)
+                    }
+                    .tag(color)
+                }
+            } label: {
+                Label("Color del anillo", systemImage: "circle.dashed")
+            }
+            .pickerStyle(.navigationLink)
+        } footer: {
+            Text("El anillo que se va gastando en series, calentamiento y recuperación. Todos los colores se ven bien sobre el negro del reloj; «Según el tramo» usa rojo en las series, verde en la recuperación y amarillo al calentar y en la calma.")
+        }
+    }
+
+    @ViewBuilder
+    private func ringSwatch(_ color: WorkoutRingColor) -> some View {
+        if let rgb = color.rgb {
+            Image(systemName: "circle.fill").foregroundStyle(Color(rgb))
+        } else {
+            Image(systemName: "circle.lefthalf.filled").symbolRenderingMode(.palette).foregroundStyle(Color(HalsynPalette.alertDark), Color(HalsynPalette.darkAccent))
+        }
     }
 
     // MARK: Intervalos

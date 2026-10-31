@@ -66,12 +66,13 @@ private struct MeasuringRecoveryView: View {
 
     /// Anillo que se gasta con el tiempo que falta; en el centro, el pulso.
     private func ring(remaining: Double, elapsed: TimeInterval) -> some View {
-        ZStack {
+        let tint = ringTint(.cooldown)
+        return ZStack {
             Circle()
-                .stroke(Color(HalsynPalette.darkAccent).opacity(0.22), lineWidth: 7)
+                .stroke(tint.opacity(0.22), lineWidth: 7)
             Circle()
                 .trim(from: 0, to: remaining)
-                .stroke(Color(HalsynPalette.darkAccent), style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                .stroke(tint, style: StrokeStyle(lineWidth: 7, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 1), value: remaining)
             VStack(spacing: 0) {

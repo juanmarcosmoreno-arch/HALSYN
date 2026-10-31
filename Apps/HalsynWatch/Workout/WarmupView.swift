@@ -10,7 +10,7 @@ struct WarmupView: View {
 
     private var warmup: WarmupSession { workout.warmup }
     private var unitSystem: UnitSystem { RunSettingsStore.shared.settings.unitSystem }
-    private let tint = Color(HalsynPalette.cautionDark)
+    private var tint: Color { ringTint(.warmup) }
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in

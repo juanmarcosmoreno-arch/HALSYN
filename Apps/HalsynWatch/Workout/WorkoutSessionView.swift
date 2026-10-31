@@ -393,6 +393,11 @@ private func intervalTint(_ kind: IntervalStepKind) -> Color {
     }
 }
 
+/// Color del anillo: el elegido en el iPhone o, «Según el tramo», el del paso.
+@MainActor func ringTint(_ kind: IntervalStepKind) -> Color {
+    RunSettingsStore.shared.settings.ringColor.rgb.map { Color($0) } ?? intervalTint(kind)
+}
+
 /// Paso actual en un anillo que se va vaciando con el tiempo o la distancia que
 /// falta; en el centro, lo que queda. En pasos abiertos el anillo queda lleno.
 private struct WorkoutIntervalRingView: View {
@@ -452,7 +457,7 @@ private struct WorkoutIntervalRingView: View {
     }
 
     private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue) -> some View {
-        let tint = intervalTint(interval.step.kind)
+        let tint = ringTint(interval.step.kind)
         let isOpen = interval.step.goal == .open
         let remaining: Double = isOpen ? 1 : 1 - (interval.fraction ?? 0)
         return ZStack {

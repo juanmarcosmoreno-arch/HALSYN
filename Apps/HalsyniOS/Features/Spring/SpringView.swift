@@ -183,9 +183,12 @@ struct WorkoutRow: View {
                 .background(Circle().fill(Color.halsynAccentSoft.opacity(0.35)))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text(LocalizedStringKey(workout.activity.title))
-                    .font(.halsynHeadline)
-                    .foregroundStyle(.halsynPrimaryText)
+                HStack(spacing: 6) {
+                    Text(LocalizedStringKey(workout.activity.title))
+                        .font(.halsynHeadline)
+                        .foregroundStyle(.halsynPrimaryText)
+                    PerformanceMarkBadge(workoutID: workout.id)
+                }
                 Text(workout.start, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)

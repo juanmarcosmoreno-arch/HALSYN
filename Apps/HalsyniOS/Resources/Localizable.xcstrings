@@ -1633,6 +1633,23 @@
         }
       }
     },
+    "Amarillo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yellow"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gul"
+          }
+        }
+      }
+    },
     "Anillo y métricas": {
       "extractionState": "manual",
       "localizations": {
@@ -2500,6 +2517,23 @@
         }
       }
     },
+    "Blanco": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vit"
+          }
+        }
+      }
+    },
     "Bloque de %@": {
       "extractionState": "manual",
       "localizations": {
@@ -2836,6 +2870,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "NEDJOGG"
+          }
+        }
+      }
+    },
+    "COMPETICIÓN": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RACE"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TÄVLING"
           }
         }
       }
@@ -3877,6 +3928,23 @@
         }
       }
     },
+    "Celeste": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light blue"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ljusblå"
+          }
+        }
+      }
+    },
     "Cena tarde o pesada": {
       "extractionState": "manual",
       "localizations": {
@@ -4026,6 +4094,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Färg"
+          }
+        }
+      }
+    },
+    "Color del anillo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ring color"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ringens färg"
           }
         }
       }
@@ -6444,6 +6529,23 @@
         }
       }
     },
+    "El anillo que se va gastando en series, calentamiento y recuperación. Todos los colores se ven bien sobre el negro del reloj; «Según el tramo» usa rojo en las series, verde en la recuperación y amarillo al calentar y en la calma.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ring that runs down during intervals, warm-up and recovery. Every color stands out on the watch's black; \"By step\" uses red for work, green for recovery and yellow for warm-up and cool-down."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ringen som töms under intervaller, uppvärmning och återhämtning. Alla färger syns bra mot klockans svarta bakgrund; ”Efter del” använder rött för intervaller, grönt för återhämtning och gult för uppvärmning och nedvarvning."
+          }
+        }
+      }
+    },
     "El botón Vuelta del reloj marca vueltas manuales en cualquier momento. En «Qué dice» eliges qué avisos se oyen: vueltas (y cada cuántas), ritmo, pulso, tiempo, series y alertas. En el iPhone suenan por los auriculares conectados al teléfono y bajan la música un momento; si el iPhone no está cerca, habla el reloj. Para una voz más natural, descarga una voz mejorada en Ajustes › Accesibilidad › Contenido leído › Voces.": {
       "extractionState": "manual",
       "localizations": {
@@ -6491,6 +6593,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Non-HDL-kolesterol är totalkolesterol minus HDL. Om ditt provsvar är i mmol/L, multiplicera med 38,67."
+          }
+        }
+      }
+    },
+    "El entrenamiento no se borra; solo deja de contar para tu forma y tus ritmos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The workout isn't deleted; it just stops counting toward your fitness and paces."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passet raderas inte; det slutar bara räknas för din form och dina tempon."
           }
         }
       }
@@ -7120,6 +7239,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I demoläge sparas inget i Hälsa."
+          }
+        }
+      }
+    },
+    "En modo demo no se marca: tu forma y tu plan solo usan tus datos reales.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not available in demo mode: your fitness and plan only use your real data."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Går inte i demoläge: din form och din plan använder bara dina riktiga data."
           }
         }
       }
@@ -11578,6 +11714,57 @@
         }
       }
     },
+    "Marcado como competición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marked as a race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markerad som tävling"
+          }
+        }
+      }
+    },
+    "Marcado como test": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marked as a test"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markerad som test"
+          }
+        }
+      }
+    },
+    "Marcar como test o competición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as test or race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markera som test eller tävling"
+          }
+        }
+      }
+    },
     "Masa magra": {
       "extractionState": "manual",
       "localizations": {
@@ -12985,6 +13172,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inget anmärkningsvärt just nu"
+          }
+        }
+      }
+    },
+    "Naranja": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
           }
         }
       }
@@ -15930,6 +16134,23 @@
         }
       }
     },
+    "Quitar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort"
+          }
+        }
+      }
+    },
     "Quitar foto": {
       "extractionState": "manual",
       "localizations": {
@@ -15943,6 +16164,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ta bort bild"
+          }
+        }
+      }
+    },
+    "Quitar la marca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove mark"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort markering"
           }
         }
       }
@@ -17324,6 +17562,23 @@
         }
       }
     },
+    "Rosa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pink"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rosa"
+          }
+        }
+      }
+    },
     "Running": {
       "extractionState": "manual",
       "localizations": {
@@ -17932,6 +18187,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sekunder"
+          }
+        }
+      }
+    },
+    "Según el tramo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By step"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter del"
           }
         }
       }
@@ -19534,6 +19806,23 @@
         }
       }
     },
+    "TEST": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TEST"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TEST"
+          }
+        }
+      }
+    },
     "TIEMPO VUELTA": {
       "extractionState": "manual",
       "localizations": {
@@ -19955,6 +20244,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Testet har skickats till klockan"
+          }
+        }
+      }
+    },
+    "Test o competición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test or race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test eller tävling"
           }
         }
       }
@@ -21710,6 +22016,23 @@
         }
       }
     },
+    "VDOT %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@"
+          }
+        }
+      }
+    },
     "VEL. MEDIA": {
       "extractionState": "manual",
       "localizations": {
@@ -22199,6 +22522,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Visa alla veckor"
+          }
+        }
+      }
+    },
+    "Verde HÅLSYN": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN green"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN-grön"
           }
         }
       }
@@ -23117,6 +23457,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Saknas data? Kontrollera i Inställningar › Hälsa › Dataåtkomst och enheter › HÅLSYN vilka data du delar, och att du bär din Apple Watch."
+          }
+        }
+      }
+    },
+    "¿Fue un test o una competición, a tope? Márcalo y HÅLSYN usa este tiempo y esta distancia para tu forma, tus ritmos y tu plan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was it an all-out test or race? Mark it and HÅLSYN uses this time and distance for your fitness, your paces and your plan."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var det ett test eller en tävling för fullt? Markera det så använder HÅLSYN tiden och distansen för din form, dina tempon och din plan."
+          }
+        }
+      }
+    },
+    "¿Quitar la marca?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove the mark?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort markeringen?"
           }
         }
       }

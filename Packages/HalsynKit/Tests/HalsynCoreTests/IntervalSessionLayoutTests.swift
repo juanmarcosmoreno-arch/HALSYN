@@ -50,3 +50,18 @@ struct WorkoutStyleTests {
         #expect(try JSONDecoder().decode(IntervalPlan.self, from: encoded).kind == .hills)
     }
 }
+
+@Suite("Color del anillo del reloj")
+struct WorkoutRingColorTests {
+    @Test func defaultsToGreenAndContrastsWithBlack() throws {
+        #expect(RunSettings().ringColor == .green)
+        let black = HalsynRGBColor(hex: 0x000000)
+        for color in WorkoutRingColor.allCases {
+            guard let rgb = color.rgb else { continue }
+            // Muy por encima de 4,5:1 (WCAG AA) sobre el negro del reloj.
+            #expect(rgb.contrastRatio(with: black) >= 7, "\(color)")
+        }
+        let old = try JSONEncoder().encode(RunSettings())
+        #expect(try JSONDecoder().decode(RunSettings.self, from: old).ringColor == .green)
+    }
+}

@@ -471,3 +471,107 @@ extension PerformanceResult {
         self.init(date: workout.start, distance: workout.distanceMeters ?? 0, time: workout.duration, kind: .test, workoutID: workout.id)
     }
 }
+
+/// Marcar un entrenamiento como test o competición: el resultado se usa para
+/// tu forma (VDOT), tus ritmos y el plan, como un resultado registrado a mano.
+struct PerformanceMarkCard: View {
+    let workout: WorkoutSummary
+    @Environment(AppModel.self) private var model
+    @State private var editing: PerformanceResult?
+    @State private var confirmingRemoval = false
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    private var fitness: FitnessStore { .shared }
+
+    private var mark: PerformanceResult? {
+        fitness.results.first { $0.workoutID == workout.id }
+    }
+
+    var body: some View {
+        HalsynCard {
+            VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                HalsynSectionHeader("Test o competición", eyebrow: HalsynModule.mal.brandName)
+                if let mark {
+                    marked(mark)
+                } else if workout.origin.isDemo {
+                    Text("En modo demo no se marca: tu forma y tu plan solo usan tus datos reales.")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                } else {
+                    Text("¿Fue un test o una competición, a tope? Márcalo y HÅLSYN usa este tiempo y esta distancia para tu forma, tus ritmos y tu plan.")
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button {
+                        editing = PerformanceResult(testWorkout: workout)
+                    } label: {
+                        Label("Marcar como test o competición", systemImage: "stopwatch")
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(.halsynAccent)
+                }
+            }
+        }
+        .sheet(item: $editing) { prefill in
+            ResultEntryView(prefill: prefill) { result in
+                fitness.add(result)
+                Task { await refreshPlan() }
+            }
+        }
+        .confirmationDialog("¿Quitar la marca?", isPresented: $confirmingRemoval, titleVisibility: .visible) {
+            Button("Quitar la marca", role: .destructive) {
+                if let mark { fitness.remove(mark.id) }
+                Task { await refreshPlan() }
+            }
+            Button("Cancelar", role: .cancel) {}
+        } message: {
+            Text("El entrenamiento no se borra; solo deja de contar para tu forma y tus ritmos.")
+        }
+    }
+
+    private func marked(_ mark: PerformanceResult) -> some View {
+        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+            HStack {
+                Label(mark.kind == .test ? LocalizedStringKey("Marcado como test") : LocalizedStringKey("Marcado como competición"), systemImage: "checkmark.seal.fill")
+                    .font(.halsynHeadline)
+                    .foregroundStyle(.halsynAccentText)
+                Spacer()
+                if let vdot = mark.vdot {
+                    Text(verbatim: "VDOT \(RaceGoalText.vdot(vdot))")
+                        .font(.halsynCaption.monospacedDigit())
+                }
+            }
+            Text(verbatim: "\(SessionText.distance(mark.distance, unit: unitSystem)) · \(HalsynFormat.duration(mark.time))")
+                .font(.halsynCaption.monospacedDigit())
+                .foregroundStyle(.halsynSecondaryText)
+            HStack(spacing: HalsynSpacing.s) {
+                Button("Editar") { editing = mark }
+                Button("Quitar", role: .destructive) { confirmingRemoval = true }
+            }
+            .buttonStyle(.bordered)
+            .font(.halsynCaption)
+        }
+    }
+
+    /// Con el resultado nuevo se recalculan los ritmos y lo que queda del plan.
+    private func refreshPlan() async {
+        let runs = await model.provider.recentWorkouts(limit: 120)
+        TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+    }
+}
+
+/// «TEST» o «COMPETICIÓN» en la lista de entrenamientos.
+struct PerformanceMarkBadge: View {
+    let workoutID: UUID
+
+    var body: some View {
+        if let mark = FitnessStore.shared.results.first(where: { $0.workoutID == workoutID }) {
+            Text(mark.kind == .test ? LocalizedStringKey("TEST") : LocalizedStringKey("COMPETICIÓN"))
+                .font(.system(size: 10, weight: .bold))
+                .tracking(0.5)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Capsule().fill(Color.halsynAccentSoft.opacity(0.5)))
+                .foregroundStyle(.halsynAccentText)
+        }
+    }
+}

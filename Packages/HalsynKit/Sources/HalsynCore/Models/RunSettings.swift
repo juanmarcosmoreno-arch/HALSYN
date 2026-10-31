@@ -38,6 +38,14 @@ public struct RunSettings: Hashable, Codable, Sendable {
     /// CYKEL: zonas cardíacas propias de bici. `nil` = las mismas que SPRING.
     /// La FC a igual esfuerzo y los umbrales cambian entre correr y pedalear.
     public var rideZones: HeartRateZoneConfiguration?
+    /// Color del anillo de tramos, calentamiento y recuperación en el reloj.
+    /// `nil` = verde de HÅLSYN.
+    public var ringColorChoice: WorkoutRingColor?
+
+    public var ringColor: WorkoutRingColor {
+        get { ringColorChoice ?? .green }
+        set { ringColorChoice = newValue }
+    }
 
     /// Avisos de voz activados (por defecto, sí).
     public var isVoiceEnabled: Bool {
@@ -212,5 +220,35 @@ extension WorkoutScreenProfile {
             copy.fields[index] = field
         }
         return copy
+    }
+}
+
+/// Colores del anillo del reloj: todos muy visibles sobre el fondo negro.
+public enum WorkoutRingColor: String, Hashable, Codable, CaseIterable, Sendable {
+    case green, byStep, yellow, orange, cyan, pink, white
+
+    public var title: String {
+        switch self {
+        case .green: "Verde HÅLSYN"
+        case .byStep: "Según el tramo"
+        case .yellow: "Amarillo"
+        case .orange: "Naranja"
+        case .cyan: "Celeste"
+        case .pink: "Rosa"
+        case .white: "Blanco"
+        }
+    }
+
+    /// Color fijo; `nil` en `byStep` (serie roja, recuperación verde, calentar y calma amarillo).
+    public var rgb: HalsynRGBColor? {
+        switch self {
+        case .green: HalsynPalette.darkAccent
+        case .byStep: nil
+        case .yellow: HalsynRGBColor(hex: 0xFFD60A)
+        case .orange: HalsynRGBColor(hex: 0xFF9F0A)
+        case .cyan: HalsynRGBColor(hex: 0x64D2FF)
+        case .pink: HalsynRGBColor(hex: 0xFF6FB5)
+        case .white: HalsynRGBColor(hex: 0xFFFFFF)
+        }
     }
 }

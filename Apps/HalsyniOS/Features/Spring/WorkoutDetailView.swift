@@ -51,6 +51,10 @@ struct WorkoutDetailView: View {
 
             WorkoutShoePicker(workout: workout)
 
+            if workout.activity.isRun {
+                PerformanceMarkCard(workout: workout)
+            }
+
             if let comparison {
                 SimilarRunsCard(comparison: comparison, unitSystem: unitSystem)
             }
