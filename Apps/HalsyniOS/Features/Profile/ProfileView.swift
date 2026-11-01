@@ -145,6 +145,9 @@ struct ProfileView: View {
                     Button("Ver la introducción de nuevo") {
                         onboardingCompleted = false
                     }
+                    NavigationLink("Diagnóstico (cuelgues y cierres)") {
+                        DiagnosticsView()
+                    }
                     NavigationLink("Galería del design system") {
                         DesignSystemGalleryView()
                     }

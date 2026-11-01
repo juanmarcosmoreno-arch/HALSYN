@@ -2619,6 +2619,23 @@
         }
       }
     },
+    "Borrar informes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete reports"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radera rapporter"
+          }
+        }
+      }
+    },
     "Borrar mi FTP": {
       "extractionState": "manual",
       "localizations": {
@@ -4060,6 +4077,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cykling"
+          }
+        }
+      }
+    },
+    "Cierres: %lld · Cuelgues: %lld · Otros: %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crashes: %lld · Hangs: %lld · Other: %lld"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krascher: %lld · Låsningar: %lld · Övrigt: %lld"
           }
         }
       }
@@ -5845,6 +5879,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vaken"
+          }
+        }
+      }
+    },
+    "Diagnóstico": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diagnostics"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diagnostik"
+          }
+        }
+      }
+    },
+    "Diagnóstico (cuelgues y cierres)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diagnostics (hangs and crashes)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diagnostik (låsningar och krascher)"
           }
         }
       }
@@ -13618,6 +13686,23 @@
         }
       }
     },
+    "No hay informes. Si la app se traba o se cierra, iOS lo informa la próxima vez que la abres (a veces hasta un día después).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No reports. If the app hangs or crashes, iOS reports it the next time you open it (sometimes up to a day later)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga rapporter. Om appen låser sig eller kraschar rapporterar iOS det nästa gång du öppnar den (ibland upp till ett dygn senare)."
+          }
+        }
+      }
+    },
     "No hay ningún Apple Watch emparejado.": {
       "extractionState": "manual",
       "localizations": {
@@ -20894,6 +20979,23 @@
         }
       }
     },
+    "Toca un informe para compartirlo. No incluye tus datos de salud: solo qué parte de la app estaba funcionando cuando se trabó o se cerró.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a report to share it. It doesn't include your health data: only which part of the app was running when it hung or crashed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck på en rapport för att dela den. Den innehåller inte dina hälsodata: bara vilken del av appen som körde när den låste sig eller kraschade."
+          }
+        }
+      }
+    },
     "Toca una noche para ver su horario": {
       "extractionState": "manual",
       "localizations": {
@@ -23763,6 +23865,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Radera de här skorna?"
+          }
+        }
+      }
+    },
+    "¿Borrar los informes?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete the reports?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radera rapporterna?"
           }
         }
       }
