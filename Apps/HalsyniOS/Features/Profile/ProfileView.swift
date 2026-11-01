@@ -141,6 +141,8 @@ struct ProfileView: View {
                     Text("HÅLSYN ofrece estimaciones de bienestar y rendimiento. No es un dispositivo médico, no diagnostica enfermedades y no sustituye la valoración de un profesional sanitario.")
                 }
 
+                CloudBackupSection()
+
                 Section("Desarrollo") {
                     Button("Ver la introducción de nuevo") {
                         onboardingCompleted = false

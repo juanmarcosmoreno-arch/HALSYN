@@ -5220,6 +5220,23 @@
         }
       }
     },
+    "Copia en iCloud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud backup"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Säkerhetskopia i iCloud"
+          }
+        }
+      }
+    },
     "Corazón": {
       "extractionState": "manual",
       "localizations": {
@@ -10303,6 +10320,23 @@
         }
       }
     },
+    "Hacer copia ahora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back up now"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Säkerhetskopiera nu"
+          }
+        }
+      }
+    },
     "Hacer el test con el reloj": {
       "extractionState": "manual",
       "localizations": {
@@ -10979,6 +11013,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dagens indikatorer"
+          }
+        }
+      }
+    },
+    "Inicia sesión en iCloud en Ajustes del iPhone para tener una copia de tus datos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to iCloud in iPhone Settings to keep a backup of your data."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logga in på iCloud i iPhones inställningar för att ha en kopia av dina data."
           }
         }
       }
@@ -11965,6 +12016,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du har tränat %@ min de senaste 7 dagarna – du når riktvärdet på 150."
+          }
+        }
+      }
+    },
+    "Lo de este iPhone se reemplaza por la última copia de iCloud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The data on this iPhone is replaced by the latest iCloud backup."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datan på den här iPhonen ersätts med den senaste kopian i iCloud."
           }
         }
       }
@@ -14039,6 +14107,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spara inte"
+          }
+        }
+      }
+    },
+    "No había nada para restaurar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There was nothing to restore."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det fanns inget att återställa."
           }
         }
       }
@@ -17987,6 +18072,57 @@
         }
       }
     },
+    "Restaurado. Cierra la app y vuelve a abrirla para verlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored. Close the app and open it again to see it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställt. Stäng appen och öppna den igen för att se det."
+          }
+        }
+      }
+    },
+    "Restaurar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställ"
+          }
+        }
+      }
+    },
+    "Restaurar desde iCloud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore from iCloud"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställ från iCloud"
+          }
+        }
+      }
+    },
     "Resumen al final del día": {
       "extractionState": "manual",
       "localizations": {
@@ -19054,6 +19190,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den beräknas utifrån nattens sömn, HRV och vilopuls."
+          }
+        }
+      }
+    },
+    "Se copian tu plan, tus tests, tus zapatillas (con foto), tus mediciones de recuperación, tus ajustes de carrera, tus metas, tu diario y tu perfil cada vez que sales de la app. En un iPhone nuevo se recuperan solos. Tus entrenamientos, sueño y pulso ya están en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your plan, tests, shoes (with photos), recovery measurements, run settings, goals, journal and profile are backed up every time you leave the app. On a new iPhone they come back on their own. Your workouts, sleep and heart rate are already in Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din plan, dina tester, dina skor (med foto), dina återhämtningsmätningar, löpinställningar, mål, dagbok och profil kopieras varje gång du lämnar appen. På en ny iPhone kommer de tillbaka av sig själva. Dina pass, din sömn och din puls finns redan i Hälsa."
           }
         }
       }
@@ -21672,6 +21825,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tryck på en natt för att se tiderna"
+          }
+        }
+      }
+    },
+    "Todavía no": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not yet"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte än"
           }
         }
       }
@@ -24702,6 +24872,23 @@
         }
       }
     },
+    "¿Restaurar desde iCloud?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore from iCloud?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställa från iCloud?"
+          }
+        }
+      }
+    },
     "¿Terminar el entrenamiento?": {
       "extractionState": "manual",
       "localizations": {
@@ -24766,6 +24953,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste löppass"
+          }
+        }
+      }
+    },
+    "Última copia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last backup"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste kopia"
           }
         }
       }

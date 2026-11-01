@@ -6,6 +6,9 @@ import UserNotifications
 
 @main
 struct HalsynApp: App {
+    /// Antes que nada (los datos se leen al crear cada almacén): en un iPhone
+    /// nuevo o con la app reinstalada, trae de iCloud lo que falta.
+    private let restoredFromCloud = CloudBackup.restoreMissing()
     /// Completa en el iPhone los permisos de Salud que pide el reloj.
     @UIApplicationDelegateAdaptor(HalsynAppDelegate.self) private var appDelegate
     @State private var model = AppModel()
@@ -79,6 +82,8 @@ struct HalsynApp: App {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 model.refresh()
+            } else if phase == .background {
+                CloudBackup.backUp()
             }
         }
     }

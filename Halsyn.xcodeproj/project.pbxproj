@@ -50,6 +50,7 @@
 		4DBC7313C1B6AF88102A0490 /* WatchAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C36E5D5DE8BB3ECE051EB /* WatchAppDelegate.swift */; };
 		4E0B8E60B1401C9BEE9ACDF6 /* ChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A4722FF6BD5342BB9FF9B /* ChartSnapshotTests.swift */; };
 		52AEB8C0146C419F0A048B2A /* ReferenceComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */; };
+		59558B14D8FA668952CB79A4 /* CloudBackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAD59EF39E227D574B38EC1 /* CloudBackupSection.swift */; };
 		5A58EDCCA93137245162962D /* CoachPhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */; };
 		5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDDA395B13EEDF085E1836 /* HistoryView.swift */; };
 		5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */; };
@@ -82,6 +83,7 @@
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
 		9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C047BDEBFD597D75D57B03 /* BodyCard.swift */; };
+		9E099983E92C48B5B81C4521 /* CloudBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE702C636A9F7D6B1B672D /* CloudBackup.swift */; };
 		9F27F4B242AE061772102075 /* PlanSessionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12E86A3843D802F7D50216 /* PlanSessionEditView.swift */; };
 		A4432666AFBF0D862F26A96B /* MalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE07533E91D0B4E58019475 /* MalView.swift */; };
 		A5DBDC0338E3F46B38492818 /* HalsynWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA49E8CA5394BB7222838E0B /* HalsynWatchApp.swift */; };
@@ -197,6 +199,7 @@
 /* Begin PBXFileReference section */
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
+		06DE702C636A9F7D6B1B672D /* CloudBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackup.swift; sourceTree = "<group>"; };
 		076BE91FF6016BAB5F98966A /* GoalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStore.swift; sourceTree = "<group>"; };
 		0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryHistoryStore.swift; sourceTree = "<group>"; };
 		0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
@@ -268,6 +271,7 @@
 		A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerStrengthView.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceNarrator.swift; sourceTree = "<group>"; };
+		ADAD59EF39E227D574B38EC1 /* CloudBackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackupSection.swift; sourceTree = "<group>"; };
 		B41FC591F6F7EB869825F662 /* RideSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSettingsView.swift; sourceTree = "<group>"; };
 		B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAnalysisViews.swift; sourceTree = "<group>"; };
 		BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayerTests.swift; sourceTree = "<group>"; };
@@ -575,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */,
+				06DE702C636A9F7D6B1B672D /* CloudBackup.swift */,
 				E1FCAB2223FA0599DBC71D96 /* DiagnosticsStore.swift */,
 				69D02F9B2FC365CA043BC585 /* HalsynApp.swift */,
 				CF212713B7D0C847F8B1081B /* HalsynAppDelegate.swift */,
@@ -720,6 +725,7 @@
 		FC8F36869DD3B191732D4D4D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				ADAD59EF39E227D574B38EC1 /* CloudBackupSection.swift */,
 				CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */,
 				A102C2A0A397098A3444D807 /* DiagnosticsView.swift */,
 				3BE3971E7F6E6318AF74A495 /* ProfileView.swift */,
@@ -999,6 +1005,8 @@
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
 				9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */,
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
+				9E099983E92C48B5B81C4521 /* CloudBackup.swift in Sources */,
+				59558B14D8FA668952CB79A4 /* CloudBackupSection.swift in Sources */,
 				30A0B3020C9F7F66E6D0F79D /* CoachPhrases.swift in Sources */,
 				92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */,
 				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
@@ -1184,7 +1192,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1369,7 +1377,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
