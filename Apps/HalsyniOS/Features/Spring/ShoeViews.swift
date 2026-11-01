@@ -1,5 +1,6 @@
 import CoreImage
 import HalsynCore
+import ImageIO
 import HalsynDesign
 import Observation
 import PhotosUI
@@ -68,14 +69,50 @@ final class ShoeStore {
 /// devuelve la foto recortada en cuadrado.
 enum ShoePhotoProcessor {
     static let side: CGFloat = 900
+    /// Lado mayor con el que se lee la foto: una foto de 24–48 MP a tamaño
+    /// completo congelaba la pantalla y llenaba la memoria. Sobra para 900 px.
+    static let maxPixelSize = 1600
 
-    @MainActor
+    /// Todo fuera del hilo principal: leer la foto ya reducida (y derecha),
+    /// recortar el objeto y centrarlo.
     static func process(_ data: Data) async -> UIImage? {
-        guard let source = UIImage(data: data)?.normalizedOrientation() else { return nil }
-        let lifted = await Task.detached(priority: .userInitiated) { () -> UIImage? in
-            liftSubject(source)
+        await Task.detached(priority: .userInitiated) { () -> UIImage? in
+            guard let source = downsampled(data) else { return nil }
+            if let lifted = liftSubject(source), let fitted = fit(lifted, padding: 0.06) {
+                return fitted
+            }
+            return square(source)
         }.value
-        return lifted.flatMap { fit($0, padding: 0.06) } ?? ProfilePhotoStore.squareThumbnail(source, side: side)
+    }
+
+    /// Lee la imagen ya reducida y con la orientación aplicada (ImageIO no
+    /// decodifica la foto entera).
+    private static func downsampled(_ data: Data) -> UIImage? {
+        let sourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let source = CGImageSourceCreateWithData(data as CFData, sourceOptions) else { return nil }
+        let options = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxPixelSize,
+        ] as CFDictionary
+        guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options) else { return nil }
+        return UIImage(cgImage: image)
+    }
+
+    /// Recorte cuadrado centrado (si no se encontró la zapatilla).
+    private static func square(_ image: UIImage) -> UIImage? {
+        let size = image.size
+        let edge = min(size.width, size.height)
+        guard edge > 0 else { return nil }
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        let target = min(side, edge)
+        return UIGraphicsImageRenderer(size: CGSize(width: target, height: target), format: format).image { _ in
+            let scale = target / edge
+            let drawSize = CGSize(width: size.width * scale, height: size.height * scale)
+            image.draw(in: CGRect(x: (target - drawSize.width) / 2, y: (target - drawSize.height) / 2, width: drawSize.width, height: drawSize.height))
+        }
     }
 
     private static func liftSubject(_ image: UIImage) -> UIImage? {
@@ -107,16 +144,6 @@ enum ShoePhotoProcessor {
         return UIGraphicsImageRenderer(size: CGSize(width: side, height: side), format: format).image { _ in
             image.draw(in: CGRect(x: (side - drawSize.width) / 2, y: (side - drawSize.height) / 2, width: drawSize.width, height: drawSize.height))
         }
-    }
-}
-
-private extension UIImage {
-    /// Las fotos de la cámara vienen giradas por metadatos; Vision necesita los píxeles derechos.
-    func normalizedOrientation() -> UIImage {
-        guard imageOrientation != .up else { return self }
-        let format = UIGraphicsImageRendererFormat()
-        format.scale = scale
-        return UIGraphicsImageRenderer(size: size, format: format).image { _ in draw(in: CGRect(origin: .zero, size: size)) }
     }
 }
 
