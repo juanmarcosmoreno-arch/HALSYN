@@ -98,6 +98,10 @@ final class WorkoutManager: NSObject {
         locationManager.activityType = .fitness
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
+        // Con la pantalla apagada (muñeca bajada) siguen llegando puntos: si no, la
+        // ruta y el mapa se cortaban al primer kilómetro. Requiere el modo de
+        // segundo plano «location» (project.yml).
+        locationManager.allowsBackgroundLocationUpdates = true
         locationAuthorization = locationManager.authorizationStatus
         rememberLocationStatus(locationAuthorization)
         UserDefaults.standard.removeObject(forKey: "halsyn.watch.locationAsked")
