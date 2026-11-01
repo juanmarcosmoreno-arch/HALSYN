@@ -41,6 +41,8 @@ public struct RunSettings: Hashable, Codable, Sendable {
     /// Color del anillo de tramos, calentamiento y recuperación en el reloj.
     /// `nil` = verde de HÅLSYN.
     public var ringColorChoice: WorkoutRingColor?
+    /// Plan de entrenamiento para el reloj (objetivo y próximos días). `nil` = sin plan.
+    public var planSnapshot: PlanSnapshot?
 
     public var ringColor: WorkoutRingColor {
         get { ringColorChoice ?? .green }

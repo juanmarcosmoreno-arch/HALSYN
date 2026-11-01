@@ -276,6 +276,9 @@ public struct RunSessionTracker: Sendable {
     private var zoneTime = ZoneTimeAccumulator()
     private var currentZone: Int?
     public private(set) var intervals: IntervalTracker?
+    /// En la carrera libre con objetivo, Vuelta solo marca una vuelta (no
+    /// termina el objetivo de ritmo).
+    private var lapEndsOpenStep = true
     private var alerts: RunAlertEngine
     private var freeRunPaceTarget: PaceRange?
     private var intervalsCompleted = false
@@ -300,6 +303,7 @@ public struct RunSessionTracker: Sendable {
         alerts = RunAlertEngine(configuration: settings.alerts)
         freeRunPaceTarget = settings.alerts.paceEnabled ? settings.alerts.paceRange : nil
         intervals = plan.map(IntervalTracker.init(plan:))
+        lapEndsOpenStep = plan?.isGoalRun != true
     }
 
     public var phase: WorkoutPhase { stateMachine.phase }
@@ -448,7 +452,7 @@ public struct RunSessionTracker: Sendable {
         guard stateMachine.isActive else { return nil }
         let elapsed = timer.elapsed(at: date)
         let total = distance
-        if intervals?.currentStep?.goal == .open, let next = intervals?.advance(distance: total, elapsed: elapsed) {
+        if lapEndsOpenStep, intervals?.currentStep?.goal == .open, let next = intervals?.advance(distance: total, elapsed: elapsed) {
             pendingCues.append(.intervalStep(next))
         }
         checkIntervalsCompleted()

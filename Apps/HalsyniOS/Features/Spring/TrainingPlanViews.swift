@@ -29,6 +29,23 @@ final class TrainingPlanStore {
             defaults.removeObject(forKey: Self.key)
             RunSettingsStore.shared.update { settings in settings.intervalPlans.removeAll { $0.id == Self.watchPlanID } }
         }
+        syncToWatch()
+    }
+
+    /// Sesión de hoy adaptada a la recuperación (la que se ve en la tarjeta) y
+    /// la del plan de la que salió: si el plan cambia, la adaptación deja de valer.
+    @ObservationIgnored private var adaptation: (original: PlannedSession, adapted: PlannedSession)?
+
+    /// El objetivo y los próximos días del plan, en el reloj (SPRING › Plan).
+    /// Solo se envía si cambió, para no despertar al reloj cada vez.
+    func syncToWatch(original: PlannedSession? = nil, adapted: PlannedSession? = nil) {
+        if let original, let adapted { adaptation = (original, adapted) }
+        let calendar = Calendar.current
+        let current = plan?.session(on: .now, calendar: calendar)
+        let today = adaptation.flatMap { $0.original == current ? $0.adapted : nil }
+        let snapshot = plan.map { PlanSnapshot(plan: $0, today: .now, adaptedToday: today, calendar: calendar) }
+        guard RunSettingsStore.shared.settings.planSnapshot != snapshot else { return }
+        RunSettingsStore.shared.update { $0.planSnapshot = snapshot }
     }
 
     /// Plan nuevo en lugar del actual: la sesión del día que se había enviado al
@@ -77,34 +94,6 @@ final class TrainingPlanStore {
     }
 }
 
-/// Textos de sesiones.
-enum SessionText {
-    static func distance(_ meters: Double, unit: UnitSystem) -> String {
-        "\(HalsynFormat.decimal(meters / unit.metersPerDistanceUnit, fractionDigits: 1)) \(unit.distanceUnitSymbol)"
-    }
-
-    /// "6 × 800 m a 4:43–4:53 /km" o "8,0 km a 6:00–6:30 /km".
-    static func detail(_ session: PlannedSession, unit: UnitSystem) -> String {
-        let pace = session.pace.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" } ?? ""
-        switch session.kind {
-        case .rest:
-            return String(localized: "Descanso o paseo suave")
-        case .intervals:
-            let repeats = session.repeats ?? 0
-            let length = HalsynFormat.integer(session.repeatDistance ?? 0)
-            return String(localized: "\(repeats) × \(length) m a \(pace), con 2 min de trote entre series")
-        case .tempo:
-            let block = distance(session.repeatDistance ?? 0, unit: unit)
-            return String(localized: "\(block) continuos a \(pace), con calentamiento y vuelta a la calma")
-        case .test:
-            let length = distance(session.repeatDistance ?? 0, unit: unit)
-            return String(localized: "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.")
-        default:
-            return String(localized: "\(distance(session.distance, unit: unit)) a \(pace)")
-        }
-    }
-}
-
 // MARK: - Tarjeta de SPRING
 
 struct TrainingPlanCard: View {
@@ -114,9 +103,9 @@ struct TrainingPlanCard: View {
     @State private var guidance: TrainingGuidance = .unknown
     @State private var showsSetup = false
     @State private var confirmingDiscard = false
-    @State private var sent = false
     @State private var testResult: PerformanceResult?
     @State private var editingToday = false
+    @State private var editingGoal = false
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
@@ -148,14 +137,21 @@ struct TrainingPlanCard: View {
         .sheet(isPresented: $editingToday) {
             PlanSessionEditView(day: .now)
         }
-        // Plan nuevo, descartado o cambiado a mano: la sesión enviada al reloj ya no vale.
-        .onChange(of: store.plan) { _, _ in sent = false }
+        .sheet(isPresented: $editingGoal) {
+            PlanSetupView(workouts: workouts, editing: store.plan?.goal)
+        }
         .task(id: "\(model.reloadKey)|\(workouts.count)") {
             store.replanIfNeeded(runs: workouts)
             let today = Date.now
             let recovery = await model.provider.recoveryEstimates(endingOn: today, days: 1).last { Calendar.current.isDateInToday($0.day) }?.value
             let signals = await model.provider.unusualSignals(on: today, calendar: .current)
             guidance = ReadinessEngine.guidance(recovery: recovery, signals: signals)
+            // El reloj recibe el plan con la sesión de hoy ya adaptada (con datos reales).
+            if !model.isDemo, let plan = store.plan, let planned = plan.session(on: today, calendar: .current) {
+                store.syncToWatch(original: planned, adapted: PlanAdaptation.adapt(planned, guidance: guidance, paces: plan.paces).session)
+            } else {
+                store.syncToWatch()
+            }
         }
     }
 
@@ -215,6 +211,14 @@ struct TrainingPlanCard: View {
             Label("Ver todas las semanas", systemImage: "calendar")
                 .font(.halsynCaption)
         }
+        Button {
+            editingGoal = true
+        } label: {
+            Label("Cambiar objetivo o fecha", systemImage: "flag.checkered")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.bordered)
+        .font(.halsynCaption)
         HStack(spacing: HalsynSpacing.s) {
             Button {
                 // La pantalla de creación avisa de que reemplaza el plan actual.
@@ -271,19 +275,13 @@ struct TrainingPlanCard: View {
             case .none:
                 EmptyView()
             }
+            ExpandableText(LocalizedStringKey(session.kind.explanation))
+                .font(.caption2)
+                .foregroundStyle(.halsynSecondaryText)
             if session.kind != .rest {
-                Button {
-                    sent = store.sendToWatch(session)
-                } label: {
-                    Label(sent ? LocalizedStringKey("Enviada al reloj") : LocalizedStringKey("Enviar al reloj"), systemImage: sent ? "checkmark.circle.fill" : "applewatch")
-                }
-                .buttonStyle(.bordered)
-                .tint(.halsynAccent)
-                if sent {
-                    Text("En el reloj: SPRING › Intervalos › la sesión de hoy.")
-                        .font(.caption2)
-                        .foregroundStyle(.halsynSecondaryText)
-                }
+                Label("Ya está en el reloj: SPRING › Plan. Empieza desde ahí.", systemImage: "applewatch")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
             }
             if session.kind == .test {
                 let found = GoalCoach.testCandidate(for: original, runs: workouts, calendar: .current)
@@ -307,6 +305,9 @@ struct TrainingPlanCard: View {
 
 struct PlanSetupView: View {
     let workouts: [WorkoutSummary]
+    /// Objetivo del plan actual: se cambia objetivo, fecha o semana y se rehace el plan.
+    var editing: PlanGoal?
+    @State private var prefilled = false
     @Environment(\.dismiss) private var dismiss
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var distance: RaceDistance = .tenK
@@ -367,7 +368,13 @@ struct PlanSetupView: View {
                     Text("Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.")
                 }
 
-                if TrainingPlanStore.shared.plan != nil {
+                if editing != nil {
+                    Section {
+                    } footer: {
+                        Text("El plan se rehace desde hoy con lo nuevo: semanas, volumen y ritmos. Los cambios a mano de esta semana se pierden; tus carreras y tus resultados de tests se conservan.")
+                            .foregroundStyle(.halsynCaution)
+                    }
+                } else if TrainingPlanStore.shared.plan != nil {
                     Section {
                     } footer: {
                         Text("El plan actual se reemplaza cuando crees el nuevo. Tus carreras y tus resultados de tests se conservan.")
@@ -380,14 +387,14 @@ struct PlanSetupView: View {
                     Text("Partimos de tu volumen de las últimas 4 semanas y lo subimos poco a poco, con una semana más suave cada cuatro. Cada sesión tiene una distancia mínima, así que si corres poco, las primeras semanas pueden sumar algo más que tu media. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
                 }
             }
-            .navigationTitle("Nuevo plan")
+            .navigationTitle(editing == nil ? LocalizedStringKey("Nuevo plan") : LocalizedStringKey("Cambiar objetivo"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Crear") {
+                    Button(editing == nil ? LocalizedStringKey("Crear") : LocalizedStringKey("Guardar")) {
                         guard let estimate else { return }
                         let goal = PlanGoal(distance: distance, raceDate: raceDate, runsPerWeek: runsPerWeek, longRunWeekday: longRunWeekday, gymWeekdays: gymWeekdays, goalTime: hasGoalTime && goalTime > 0 ? goalTime : nil)
                         if let plan = TrainingPlanGenerator.make(goal: goal, estimate: estimate, weeklyDistance: weeklyDistance, today: .now, calendar: .current) {
@@ -415,9 +422,24 @@ struct PlanSetupView: View {
                 }
             }
             .onAppear {
+                if let editing, !prefilled {
+                    prefilled = true
+                    distance = editing.distance
+                    raceDate = min(max(editing.raceDate, minimumDate), maximumDate)
+                    runsPerWeek = editing.runsPerWeek
+                    longRunWeekday = editing.longRunWeekday
+                    gymWeekdays = editing.gymWeekdays ?? []
+                    hasGoalTime = editing.goalTime != nil
+                    goalTime = editing.goalTime ?? goalTime
+                }
                 if !hasGoalTime { goalTime = VDOT.raceTime(vdot: estimate?.vdot ?? 40, distance: distance.rawValue).rounded() }
             }
             .onChange(of: distance) { _, newValue in
+                // Al abrir para cambiar el objetivo se conserva el tiempo que tenía.
+                if let editing, editing.distance == newValue, let kept = editing.goalTime, hasGoalTime {
+                    goalTime = kept
+                    return
+                }
                 goalTime = VDOT.raceTime(vdot: estimate?.vdot ?? 40, distance: newValue.rawValue).rounded()
             }
             .onChange(of: estimate?.vdot) { _, vdot in
@@ -524,6 +546,7 @@ struct TrainingPlanView: View {
     @State private var showsSetup = false
     @State private var runs: [WorkoutSummary]?
     @State private var editingDay: EditingDay?
+    @State private var editingGoal = false
     @Environment(\.dismiss) private var dismiss
 
     private struct EditingDay: Identifiable {
@@ -576,6 +599,11 @@ struct TrainingPlanView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Button {
+                            editingGoal = true
+                        } label: {
+                            Label("Cambiar objetivo o fecha", systemImage: "flag.checkered")
+                        }
+                        Button {
                             showsSetup = true
                         } label: {
                             Label("Nuevo plan", systemImage: "calendar.badge.plus")
@@ -597,6 +625,9 @@ struct TrainingPlanView: View {
         }
         .sheet(item: $editingDay) { day in
             PlanSessionEditView(day: day.date)
+        }
+        .sheet(isPresented: $editingGoal) {
+            PlanSetupView(workouts: runs ?? [], editing: store.plan?.goal)
         }
         .task(id: model.reloadKey) {
             runs = await model.provider.recentWorkouts(limit: 120)

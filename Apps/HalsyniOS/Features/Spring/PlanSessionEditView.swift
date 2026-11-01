@@ -64,6 +64,9 @@ struct PlanSessionEditView: View {
                 } icon: {
                     Image(systemName: session.kind.systemImage)
                 }
+                ExpandableText(LocalizedStringKey(session.kind.explanation))
+                    .font(.halsynCaption)
+                    .foregroundStyle(.halsynSecondaryText)
             } else {
                 Label("Sin carrera este día", systemImage: "bed.double")
             }

@@ -130,7 +130,7 @@ struct HeartRateRecoveryCard: View {
 
     private var explanation: some View {
         VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
-            Text("Cuanto más baja el pulso en el primer minuto, mejor suele ser la condición aeróbica, y con el entrenamiento suele mejorar. Depende de lo fuerte que terminaste, del calor y de si caminas o te quedas quieto: recupera siempre igual y compara mediciones parecidas. De una vez a otra puede variar bastante, así que mira la tendencia. Es un seguimiento de entrenamiento, no una prueba médica.")
+            ExpandableText("Cuanto más baja el pulso en el primer minuto, mejor suele ser la condición aeróbica, y con el entrenamiento suele mejorar. Depende de lo fuerte que terminaste, del calor y de si caminas o te quedas quieto: recupera siempre igual y compara mediciones parecidas. De una vez a otra puede variar bastante, así que mira la tendencia. Es un seguimiento de entrenamiento, no una prueba médica.")
                 .font(.caption2)
                 .foregroundStyle(.halsynSecondaryText)
             ReferenceLinks(references: [ScienceReferences.recoveryTrainingStatus, ScienceReferences.recoveryMonitoring, ScienceReferences.recoveryOverreaching])

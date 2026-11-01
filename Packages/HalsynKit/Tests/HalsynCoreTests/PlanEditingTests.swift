@@ -77,4 +77,24 @@ struct PlanEditingTests {
         #expect(abs((easy.estimatedDuration ?? 0) - 8 * 360) < 0.01)
         #expect(PlannedSession(date: day, kind: .rest, distance: 0).volume == nil)
     }
+
+    @Test func snapshotForTheWatch() throws {
+        let plan = try plan()
+        let today = monday(plan)
+        let snapshot = PlanSnapshot(plan: plan, today: today, calendar: calendar)
+        #expect(!snapshot.sessions.isEmpty)
+        #expect(snapshot.sessions.allSatisfy { $0.date >= calendar.startOfDay(for: today) })
+        #expect(snapshot.sessions.allSatisfy { $0.date < calendar.date(byAdding: .day, value: 14, to: calendar.startOfDay(for: today))! })
+        if let first = plan.session(on: today, calendar: calendar) {
+            let rest = PlannedSession(date: first.date, kind: .rest, distance: 0)
+            let adapted = PlanSnapshot(plan: plan, today: today, adaptedToday: rest, calendar: calendar)
+            #expect(adapted.sessions.first { calendar.isDate($0.date, inSameDayAs: today) }?.kind == .rest)
+        }
+        let later = calendar.date(byAdding: .day, value: 3, to: today)!
+        #expect(snapshot.upcoming(from: later, calendar: calendar).allSatisfy { $0.date >= calendar.startOfDay(for: later) })
+        var settings = RunSettings()
+        settings.planSnapshot = snapshot
+        let decoded = try JSONDecoder().decode(RunSettings.self, from: JSONEncoder().encode(settings))
+        #expect(decoded.planSnapshot == snapshot)
+    }
 }

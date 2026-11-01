@@ -14,7 +14,7 @@ struct WarmupView: View {
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: isLuminanceReduced ? 1 : 0.5)) { context in
-            VStack(spacing: 4) {
+            VStack(spacing: 2) {
                 HStack {
                     Text("CALENTAR")
                         .font(.caption2.weight(.bold))
@@ -26,20 +26,33 @@ struct WarmupView: View {
                         .foregroundStyle(Color.white)
                 }
                 dial(at: context.date)
-                Text("No se graba: el entrenamiento empieza al terminar.")
-                    .font(.system(size: 10))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
-                HStack {
-                    Button("Cancelar", role: .cancel) { warmup.cancel() }
-                    Button("Empezar ya") { warmup.finish() }
-                        .tint(Color(HalsynPalette.darkAccent))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                HStack(alignment: .center) {
+                    roundButton("xmark", label: "Cancelar") { warmup.cancel() }
+                    Spacer(minLength: 4)
+                    Text("No se graba")
+                        .font(.system(size: 10))
+                        .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                    Spacer(minLength: 4)
+                    roundButton("forward.fill", label: "Empezar ya", tint: tint) { warmup.finish() }
                 }
-                .font(.footnote)
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, 6)
         }
         .background(Color.black.ignoresSafeArea())
+    }
+
+    /// Botón redondo pequeño: deja el espacio al anillo.
+    private func roundButton(_ symbol: String, label: LocalizedStringKey, tint: Color = .white, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(tint)
+                .frame(width: 36, height: 36)
+                .background(Circle().fill(Color.white.opacity(0.14)))
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(label))
     }
 
     private func dial(at date: Date) -> some View {

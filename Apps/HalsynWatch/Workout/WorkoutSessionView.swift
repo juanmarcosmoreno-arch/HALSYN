@@ -412,7 +412,7 @@ private struct WorkoutIntervalRingView: View {
                     ring(interval, snapshot: snapshot)
                 } else {
                     VStack(spacing: 4) {
-                        Label(snapshot.intervalsCompleted ? LocalizedStringKey("Intervalos completados") : LocalizedStringKey("Carrera libre"), systemImage: "checkmark.circle")
+                        Label(completedTitle(snapshot), systemImage: "checkmark.circle")
                             .font(.headline)
                             .foregroundStyle(Color(HalsynPalette.darkAccent))
                         HalsynWorkoutScreen(profile: workout.screens.first ?? .easyRun) { snapshot.value(for: $0, unit: unitSystem) }
@@ -433,11 +433,29 @@ private struct WorkoutIntervalRingView: View {
         .background(Color.black.ignoresSafeArea())
     }
 
+    private func completedTitle(_ snapshot: RunSnapshot) -> LocalizedStringKey {
+        guard snapshot.intervalsCompleted else { return "Carrera libre" }
+        return workout.plan?.isGoalRun == true ? "Objetivo cumplido" : "Intervalos completados"
+    }
+
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         VStack(spacing: 2) {
             ringHeader(interval)
-            ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem))
+            ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
             ringFooter(snapshot)
+        }
+    }
+
+    /// Con ritmo objetivo el anillo dice cómo vas: verde en ritmo, rojo si vas
+    /// más lento, amarillo si vas más rápido. Sin ritmo, el color elegido.
+    private func dialTint(_ interval: IntervalProgress, snapshot: RunSnapshot) -> Color {
+        guard let target = interval.step.paceTarget, let pace = snapshot.currentPace else {
+            return ringTint(interval.step.kind)
+        }
+        switch target.status(of: pace) {
+        case .slower: return Color(HalsynRGBColor(hex: 0xFF453A))
+        case .onPace: return Color(HalsynPalette.darkAccent)
+        case .faster: return Color(HalsynPalette.cautionDark)
         }
     }
 
@@ -456,8 +474,7 @@ private struct WorkoutIntervalRingView: View {
         }
     }
 
-    private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue) -> some View {
-        let tint = ringTint(interval.step.kind)
+    private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue, tint: Color) -> some View {
         let isOpen = interval.step.goal == .open
         let remaining: Double = isOpen ? 1 : 1 - (interval.fraction ?? 0)
         return ZStack {
@@ -465,7 +482,7 @@ private struct WorkoutIntervalRingView: View {
                 .stroke(tint.opacity(0.22), lineWidth: 9)
             Circle()
                 .trim(from: 0, to: remaining)
-                .stroke(tint.opacity(isOpen ? 0.5 : 1), style: StrokeStyle(lineWidth: 9, lineCap: .round))
+                .stroke(tint.opacity(isOpen && interval.step.paceTarget == nil ? 0.5 : 1), style: StrokeStyle(lineWidth: 9, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.5), value: remaining)
             ringCenter(value: value, tint: tint, isOpen: isOpen)
@@ -492,7 +509,7 @@ private struct WorkoutIntervalRingView: View {
                     .font(.caption2)
                     .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
             }
-            if isOpen {
+            if isOpen, workout.plan?.isGoalRun != true {
                 Text("Pulsa Vuelta para continuar")
                     .font(.system(size: 10))
                     .multilineTextAlignment(.center)

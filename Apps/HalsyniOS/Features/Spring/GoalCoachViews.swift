@@ -396,7 +396,7 @@ struct GoalStatusCard: View {
                 }
                 .buttonStyle(.borderless)
 
-                Text("El VDOT es la forma estimada a partir de un esfuerzo a tope (Daniels y Gilbert). La mejora habitual sigue la pauta de Daniels de subir como mucho 1 punto cada 4 a 6 semanas; la tuya puede ser distinta.")
+                ExpandableText("El VDOT es la forma estimada a partir de un esfuerzo a tope (Daniels y Gilbert). La mejora habitual sigue la pauta de Daniels de subir como mucho 1 punto cada 4 a 6 semanas; la tuya puede ser distinta.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

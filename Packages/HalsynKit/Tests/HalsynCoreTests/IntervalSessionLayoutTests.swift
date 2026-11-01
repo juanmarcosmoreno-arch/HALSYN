@@ -65,3 +65,37 @@ struct WorkoutRingColorTests {
         #expect(try JSONDecoder().decode(RunSettings.self, from: old).ringColor == .green)
     }
 }
+
+@Suite("Carrera libre con objetivo")
+struct GoalRunTests {
+    @Test func goalRunPlans() throws {
+        #expect(IntervalPlan.goalRun(distance: nil, pace: nil, name: "x") == nil)
+        let distance = try #require(IntervalPlan.goalRun(distance: 5000, pace: nil, name: "x"))
+        #expect(distance.isGoalRun && distance.steps.count == 1 && distance.steps[0].goal == .distance(5000) && distance.workPace == nil)
+        let pace = try #require(IntervalPlan.goalRun(distance: 0, pace: Pace(secondsPerKilometer: 300), name: "x"))
+        #expect(pace.steps[0].goal == .open && pace.steps[0].paceTarget == PaceRange(fastest: 295, slowest: 305))
+    }
+
+    @Test func paceStatus() {
+        let range = PaceRange(center: Pace(secondsPerKilometer: 300), tolerance: 5)
+        #expect(range.status(of: Pace(secondsPerKilometer: 310)) == .slower)
+        #expect(range.status(of: Pace(secondsPerKilometer: 302)) == .onPace)
+        #expect(range.status(of: Pace(secondsPerKilometer: 290)) == .faster)
+    }
+}
+
+@Suite("Carrera libre con objetivo · vueltas")
+struct GoalRunLapTests {
+    @Test func lapDoesNotEndThePaceGoal() throws {
+        let t0 = Date(timeIntervalSince1970: 1_800_000_000)
+        let plan = try #require(IntervalPlan.goalRun(distance: nil, pace: Pace(secondsPerKilometer: 300), name: "x"))
+        var tracker = RunSessionTracker(settings: RunSettings(), plan: plan)
+        tracker.handle(.start, at: t0)
+        tracker.handle(.began, at: t0)
+        tracker.updateDistance(total: 1000, at: t0.addingTimeInterval(300))
+        tracker.markLap(at: t0.addingTimeInterval(300))
+        let snapshot = tracker.snapshot(at: t0.addingTimeInterval(300))
+        #expect(snapshot.interval?.step.kind == .work)
+        #expect(snapshot.paceTarget == PaceRange(fastest: 295, slowest: 305))
+    }
+}

@@ -970,6 +970,23 @@
         }
       }
     },
+    "A ritmo de conversación: deberías poder hablar en frases. Es la base del plan: mejora tu resistencia aeróbica y te ayuda a recuperar de las sesiones duras. Si dudas, ve más lento.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At conversation pace: you should be able to talk in sentences. It's the base of the plan: it builds aerobic endurance and helps you recover from hard sessions. When in doubt, go slower."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I samtalstempo: du ska kunna prata i meningar. Det är planens grund: det bygger aerob uthållighet och hjälper dig återhämta dig från hårda pass. Är du osäker, spring långsammare."
+          }
+        }
+      }
+    },
     "Abre HÅLSYN para actualizar": {
       "extractionState": "manual",
       "localizations": {
@@ -3299,6 +3316,40 @@
         }
       }
     },
+    "Cambiar objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change goal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändra mål"
+          }
+        }
+      }
+    },
+    "Cambiar objetivo o fecha": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change goal or date"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändra mål eller datum"
+          }
+        }
+      }
+    },
     "Cambio": {
       "extractionState": "manual",
       "localizations": {
@@ -3805,6 +3856,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löpning utomhus"
+          }
+        }
+      }
+    },
+    "Carrera con objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run with a goal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpning med mål"
           }
         }
       }
@@ -4451,6 +4519,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med automatiskt varv varje kilometer pratar ”Var 5:e” vid kilometer 5, 10, 15 … På cykeln sägs tempot som hastighet."
+          }
+        }
+      }
+    },
+    "Con objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With a goal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med mål"
           }
         }
       }
@@ -5216,6 +5301,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Så beräknas den"
+          }
+        }
+      }
+    },
+    "Cómodamente duro: el ritmo que podrías sostener cerca de una hora en carrera. Sube el ritmo que aguantas sin acumular cansancio. Calienta antes y no lo conviertas en una carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comfortably hard: the pace you could hold for about an hour in a race. It raises the pace you can sustain without building up fatigue. Warm up first and don't turn it into a race."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekvämt hårt: tempot du kunde hålla i ungefär en timme i en tävling. Det höjer tempot du orkar hålla utan att trötthet byggs upp. Värm upp först och gör det inte till en tävling."
           }
         }
       }
@@ -6529,6 +6631,23 @@
         }
       }
     },
+    "El anillo marca lo que falta. Con ritmo: verde si vas en ritmo, rojo si vas más lento y amarillo si vas más rápido (± 5 s).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ring shows what's left. With a pace: green when on pace, red when slower and yellow when faster (± 5 s)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ringen visar vad som är kvar. Med tempo: grön när du ligger i tempo, röd när du är långsammare och gul när du är snabbare (± 5 s)."
+          }
+        }
+      }
+    },
     "El anillo que se va gastando en series, calentamiento y recuperación. Todos los colores se ven bien sobre el negro del reloj; «Según el tramo» usa rojo en las series, verde en la recuperación y amarillo al calentar y en la calma.": {
       "extractionState": "manual",
       "localizations": {
@@ -6593,6 +6712,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Non-HDL-kolesterol är totalkolesterol minus HDL. Om ditt provsvar är i mmol/L, multiplicera med 38,67."
+          }
+        }
+      }
+    },
+    "El cuerpo se adapta al entrenamiento mientras descansa. Puedes caminar o hacer movilidad suave.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your body adapts to training while it rests. You can walk or do gentle mobility."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kroppen anpassar sig till träningen när den vilar. Du kan gå eller göra lätt rörlighet."
           }
         }
       }
@@ -6678,6 +6814,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den nuvarande planen ersätts när du skapar den nya. Dina löprundor och testresultat sparas."
+          }
+        }
+      }
+    },
+    "El plan se rehace desde hoy con lo nuevo: semanas, volumen y ritmos. Los cambios a mano de esta semana se pierden; tus carreras y tus resultados de tests se conservan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The plan is rebuilt from today with the new settings: weeks, volume and paces. Manual changes to this week are lost; your runs and test results are kept."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen byggs om från i dag med det nya: veckor, volym och tempon. Manuella ändringar den här veckan försvinner; dina löppass och testresultat sparas."
           }
         }
       }
@@ -6818,6 +6971,23 @@
         }
       }
     },
+    "Elige una distancia, un ritmo o los dos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick a distance, a pace or both."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Välj en distans, ett tempo eller båda."
+          }
+        }
+      }
+    },
     "Elige uno de los sugeridos o crea el tuyo. El progreso se calcula con tus datos de Apple Health.": {
       "extractionState": "manual",
       "localizations": {
@@ -6954,6 +7124,23 @@
         }
       }
     },
+    "Empezar al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start outdoors"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta utomhus"
+          }
+        }
+      }
+    },
     "Empezar en": {
       "extractionState": "manual",
       "localizations": {
@@ -6967,6 +7154,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Börja på"
+          }
+        }
+      }
+    },
+    "Empezar en cinta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start on treadmill"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta på löpband"
           }
         }
       }
@@ -7141,19 +7345,19 @@
         }
       }
     },
-    "En el reloj: SPRING › Intervalos › la sesión de hoy.": {
+    "En cinta": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "On your watch: SPRING › Intervals › today's session."
+            "value": "On treadmill"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "På klockan: SPRING › Intervaller › dagens pass."
+            "value": "På löpband"
           }
         }
       }
@@ -7579,40 +7783,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löppass med avancerade mätvärden."
-          }
-        }
-      }
-    },
-    "Enviada al reloj": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sent to watch"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skickat till klockan"
-          }
-        }
-      }
-    },
-    "Enviar al reloj": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Send to watch"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skicka till klockan"
           }
         }
       }
@@ -10099,6 +10269,23 @@
         }
       }
     },
+    "Hoy no hay carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No run today"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen löpning i dag"
+          }
+        }
+      }
+    },
     "Hoy no hay carrera: día de gimnasio.": {
       "extractionState": "manual",
       "localizations": {
@@ -11064,6 +11251,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Slag per minut uppmätta av den optiska sensorn i Apple Watch under dagen."
+          }
+        }
+      }
+    },
+    "Leer menos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read less"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa mindre"
+          }
+        }
+      }
+    },
+    "Leer más": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read more"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läs mer"
           }
         }
       }
@@ -12751,6 +12972,23 @@
         }
       }
     },
+    "Muy suave y corta, para soltar las piernas después de un día duro. Más lenta que un rodaje suave; si te cuesta, camina.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very easy and short, to loosen your legs after a hard day. Slower than an easy run; if it's hard, walk."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mycket lugnt och kort, för att mjuka upp benen efter en hård dag. Långsammare än ett lugnt pass; går det tungt, gå."
+          }
+        }
+      }
+    },
     "MÁX.": {
       "extractionState": "manual",
       "localizations": {
@@ -13499,19 +13737,19 @@
         }
       }
     },
-    "No se graba: el entrenamiento empieza al terminar.": {
+    "No se graba": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Not recorded: the workout starts when it ends."
+            "value": "Not recorded"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spelas inte in: passet börjar när den är klar."
+            "value": "Spelas inte in"
           }
         }
       }
@@ -15199,6 +15437,23 @@
         }
       }
     },
+    "Plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan"
+          }
+        }
+      }
+    },
     "Plan de entrenamiento": {
       "extractionState": "manual",
       "localizations": {
@@ -15263,6 +15518,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Planen granskad: du ligger enligt plan och nästa vecka blir oförändrad."
+          }
+        }
+      }
+    },
+    "Plan · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan · %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan · %@"
+          }
+        }
+      }
+    },
+    "Plan · %@ · faltan %lld días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan · %@ · %lld days left"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan · %@ · %lld dagar kvar"
           }
         }
       }
@@ -15824,6 +16113,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Maximalt arbetsprov på löpband med gasanalys (uppmätt V̇O₂max)."
+          }
+        }
+      }
+    },
+    "Próximos días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coming days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kommande dagar"
           }
         }
       }
@@ -16780,19 +17086,19 @@
         }
       }
     },
-    "Referencias": {
+    "Referencias (%lld)": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "References"
+            "value": "References (%lld)"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Referenser"
+            "value": "Referenser (%lld)"
           }
         }
       }
@@ -18412,6 +18718,23 @@
         }
       }
     },
+    "Series rápidas, a ritmo de carrera de 3 a 5 km, con trote suave entre medio. Mejoran tu VO₂ máx. y tu economía de carrera. Todas iguales: la última no debería ser la peor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast repeats at 3–5 km race pace with easy jogging in between. They improve your VO₂ max and running economy. Keep them even: the last one shouldn't be the worst."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabba intervaller i tävlingsfart för 3–5 km med lugn jogg emellan. De förbättrar din VO₂-max och löpekonomi. Håll dem jämna: den sista ska inte vara sämst."
+          }
+        }
+      }
+    },
     "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.": {
       "extractionState": "manual",
       "localizations": {
@@ -19360,6 +19683,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lätt"
+          }
+        }
+      }
+    },
+    "Suave y constante, más larga que el resto. Entrena el cuerpo para aguantar más tiempo; importa el tiempo corriendo, no el ritmo. Lleva agua si dura más de una hora.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Easy and steady, longer than the rest. It trains your body to keep going longer; time on your feet matters, not pace. Bring water if it lasts over an hour."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lugnt och jämnt, längre än resten. Det tränar kroppen att orka längre; tiden du springer räknas, inte tempot. Ta med vatten om det varar över en timme."
           }
         }
       }
@@ -21761,6 +22101,23 @@
         }
       }
     },
+    "Un esfuerzo a tope y a ritmo parejo para medir tu forma. Con el resultado se ajustan los ritmos del plan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An all-out, evenly paced effort to measure your fitness. The result adjusts the plan's paces."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En maximal, jämn insats för att mäta din form. Resultatet justerar planens tempon."
+          }
+        }
+      }
+    },
     "Un minuto: el pulso bajó %lld pulsaciones": {
       "extractionState": "manual",
       "localizations": {
@@ -22845,6 +23202,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gå tillbaka till Löpinställningar."
+          }
+        }
+      }
+    },
+    "Ya está en el reloj: SPRING › Plan. Empieza desde ahí.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's already on the watch: SPRING › Plan. Start from there."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns redan på klockan: SPRING › Plan. Starta därifrån."
           }
         }
       }

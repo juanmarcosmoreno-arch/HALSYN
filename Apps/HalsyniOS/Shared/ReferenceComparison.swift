@@ -283,7 +283,7 @@ struct NoAgeReferenceNote: View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                 HalsynSectionHeader("Tu grupo de edad", eyebrow: HalsynLexicon.puls.rawValue)
-                Text("Para la HRV no mostramos percentiles por edad: las tablas publicadas usan registros de 5 minutos o de 24 horas, en condiciones controladas, y no son comparables con las lecturas sueltas del Apple Watch. Aquí la comparación útil es contigo mismo.")
+                ExpandableText("Para la HRV no mostramos percentiles por edad: las tablas publicadas usan registros de 5 minutos o de 24 horas, en condiciones controladas, y no son comparables con las lecturas sueltas del Apple Watch. Aquí la comparación útil es contigo mismo.")
                     .font(.halsynBody)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

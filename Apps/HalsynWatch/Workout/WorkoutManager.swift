@@ -510,6 +510,9 @@ final class WorkoutManager: NSObject {
                     detail = String(localized: "Mido tu recuperación")
                     spoken = cues.intervals ? String(localized: "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.") : nil
                     end(save: true, measureRecovery: true)
+                } else if plan?.isGoalRun == true {
+                    title = String(localized: "Objetivo cumplido")
+                    spoken = cues.intervals ? title : nil
                 } else {
                     title = String(localized: "Intervalos completados")
                     spoken = cues.intervals ? title : nil

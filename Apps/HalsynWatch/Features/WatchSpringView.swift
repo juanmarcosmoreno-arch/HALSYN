@@ -13,12 +13,22 @@ struct WatchSpringView: View {
             LocationPermissionHint()
                 .listRowBackground(Color.clear)
 
+            if let snapshot = settings.planSnapshot {
+                WatchPlanSection(snapshot: snapshot)
+            }
+
             Button {
                 Task { await workout.start(indoor: false) }
             } label: {
                 Label("Carrera al aire libre", systemImage: "figure.run")
             }
             .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(HalsynPalette.darkPrimary)))
+
+            NavigationLink {
+                WatchGoalRunView()
+            } label: {
+                Label("Carrera con objetivo", systemImage: "scope")
+            }
 
             Button {
                 Task { await workout.start(indoor: true) }

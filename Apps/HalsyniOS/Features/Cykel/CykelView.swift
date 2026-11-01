@@ -96,10 +96,10 @@ struct CykelView: View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                 HalsynSectionHeader("Sobre CYKEL", eyebrow: HalsynLexicon.rorelse.rawValue)
-                Text("En 263.450 adultos del UK Biobank, quienes iban al trabajo en bici tuvieron un 41 por ciento menos de mortalidad en unos 5 años que quienes no se desplazaban de forma activa (cociente de riesgos 0,59). Es una asociación observada, no prueba que la bici sea la causa.")
+                ExpandableText("En 263.450 adultos del UK Biobank, quienes iban al trabajo en bici tuvieron un 41 por ciento menos de mortalidad en unos 5 años que quienes no se desplazaban de forma activa (cociente de riesgos 0,59). Es una asociación observada, no prueba que la bici sea la causa.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynPrimaryText)
-                Text("En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: por eso puedes tener zonas propias en Ajustes de bici.")
+                ExpandableText("En bici la frecuencia cardíaca suele ser algo más baja que corriendo al mismo esfuerzo y los umbrales no se trasladan bien de un deporte a otro: por eso puedes tener zonas propias en Ajustes de bici.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
                 ReferenceLinks(references: [ScienceReferences.activeCommuting, ScienceReferences.heartRateTransfer])

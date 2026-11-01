@@ -329,7 +329,7 @@ struct ScaleWeighInView: View {
                         Text(verbatim: "≈ \(HalsynFormat.integer(estimate.percent)) % (\(lower)–\(upper))")
                             .monospacedDigit()
                     }
-                    Text("Estimación con la ecuación publicada de Jebb y colaboradores (2000), hecha con otra balanza de pies (Tanita) y no validada en Xiaomi: el error de una persona ronda ±8 puntos. Será distinta de la de Zepp Life, cuyo cálculo no es público. Mira la tendencia de semanas, no un día.")
+                    ExpandableText("Estimación con la ecuación publicada de Jebb y colaboradores (2000), hecha con otra balanza de pies (Tanita) y no validada en Xiaomi: el error de una persona ronda ±8 puntos. Será distinta de la de Zepp Life, cuyo cálculo no es público. Mira la tendencia de semanas, no un día.")
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                     Toggle("Guardar también la grasa estimada en Salud", isOn: $saveFat)
@@ -407,7 +407,7 @@ struct ScaleWeighInView: View {
     }
 
     private var help: some View {
-        Text("Funciona con la Mi Smart Scale 2 y la Mi Body Composition Scale 2 (las de Zepp Life). Las nuevas Xiaomi S400 y S200 cifran sus datos y solo se leen con la app de Xiaomi. Si no aparece nada, pisa la balanza para despertarla y deja el iPhone cerca.")
+        ExpandableText("Funciona con la Mi Smart Scale 2 y la Mi Body Composition Scale 2 (las de Zepp Life). Las nuevas Xiaomi S400 y S200 cifran sus datos y solo se leen con la app de Xiaomi. Si no aparece nada, pisa la balanza para despertarla y deja el iPhone cerca.")
             .font(.caption2)
             .foregroundStyle(.halsynSecondaryText)
     }

@@ -361,7 +361,7 @@ struct RunAnalysisCard: View {
             Label { Text(title) } icon: { Image(systemName: level == .caution ? "arrow.up.heart" : "heart") }
                 .font(.halsynCaption)
                 .foregroundStyle(level == .caution ? Color.halsynCaution : Color.halsynSecondaryText)
-            Text("Compara cuánto avanzas por latido en la primera y la segunda mitad (sin los primeros \(HalsynFormat.duration(insights.warmup)) de calentamiento). Por debajo del 5 por ciento suele indicar que el ritmo era sostenible para tu base aeróbica; el calor, el cansancio, la falta de agua o un ritmo exigente la suben. Solo tiene sentido en carreras de ritmo continuo.")
+            ExpandableText("Compara cuánto avanzas por latido en la primera y la segunda mitad (sin los primeros \(HalsynFormat.duration(insights.warmup)) de calentamiento). Por debajo del 5 por ciento suele indicar que el ritmo era sostenible para tu base aeróbica; el calor, el cansancio, la falta de agua o un ritmo exigente la suben. Solo tiene sentido en carreras de ritmo continuo.")
                 .font(.caption2)
                 .foregroundStyle(.halsynSecondaryText)
                 .fixedSize(horizontal: false, vertical: true)
@@ -457,7 +457,7 @@ struct SimilarRunsCard: View {
                     }
                     Spacer()
                 }
-                Text("Comparada con \(comparison.count) carreras tuyas de distancia parecida (±25 por ciento). La eficiencia son los metros por latido: tiene en cuenta que ir más rápido cuesta más pulso.")
+                ExpandableText("Comparada con \(comparison.count) carreras tuyas de distancia parecida (±25 por ciento). La eficiencia son los metros por latido: tiene en cuenta que ir más rápido cuesta más pulso.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

@@ -17,6 +17,17 @@ public struct PaceRange: Hashable, Codable, Sendable {
 
     public var center: Pace { Pace(secondsPerKilometer: (fastest + slowest) / 2) }
 
+    public enum Status: Hashable, Sendable {
+        case slower, onPace, faster
+    }
+
+    /// Si un ritmo va más lento, dentro o más rápido que el rango.
+    public func status(of pace: Pace) -> Status {
+        if pace.secondsPerKilometer > slowest { return .slower }
+        if pace.secondsPerKilometer < fastest { return .faster }
+        return .onPace
+    }
+
     /// "4:40–4:50" en la unidad elegida.
     public func formatted(in unit: UnitSystem = .metric) -> String {
         "\(Pace(secondsPerKilometer: fastest).formatted(in: unit))–\(Pace(secondsPerKilometer: slowest).formatted(in: unit))"
@@ -170,6 +181,25 @@ public struct IntervalPlan: Hashable, Codable, Identifiable, Sendable {
     }
 
     public var kind: WorkoutStyle { style ?? .intervals }
+
+    /// Id de la carrera libre con objetivo.
+    public static let goalRunID = "halsyn-goal-run"
+
+    /// Carrera libre con objetivo de distancia (el anillo dice cuánto falta)
+    /// y/o de ritmo (± 5 s/km; el anillo avisa si vas más lento o más rápido).
+    /// `nil` sin ningún objetivo.
+    public static func goalRun(distance: Double?, pace: Pace?, name: String) -> IntervalPlan? {
+        let meters = distance.flatMap { $0 > 0 ? $0 : nil }
+        guard meters != nil || pace != nil else { return nil }
+        return IntervalPlan(
+            id: goalRunID, name: name, warmup: nil,
+            work: meters.map(IntervalGoal.distance) ?? .open,
+            workPace: pace.map { PaceRange(center: $0, tolerance: 5) },
+            recovery: .open, repeats: 1, cooldown: nil, style: .long
+        )
+    }
+
+    public var isGoalRun: Bool { id == Self.goalRunID }
 
     public var steps: [IntervalStep] {
         var steps: [IntervalStep] = []

@@ -186,7 +186,7 @@ private struct RidePowerCard: View {
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                 }
-                Text("La ponderada da más peso a los tramos fuertes: refleja mejor el esfuerzo de una salida con cambios de ritmo que la media. Método de Coggan; potencia normalizada (NP), factor de intensidad (IF) y TSS son marcas de TrainingPeaks.")
+                ExpandableText("La ponderada da más peso a los tramos fuertes: refleja mejor el esfuerzo de una salida con cambios de ritmo que la media. Método de Coggan; potencia normalizada (NP), factor de intensidad (IF) y TSS son marcas de TrainingPeaks.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
             }

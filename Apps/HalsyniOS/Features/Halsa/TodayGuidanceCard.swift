@@ -65,7 +65,7 @@ struct TodayGuidanceCard: View {
                         .foregroundStyle(.halsynCaution)
                     }
                     if signals.isNotable {
-                        Text("Varias señales se apartan a la vez de tu rango habitual. Suele pasar con cansancio acumulado, alcohol, estrés, calor o al empezar un resfriado. No es un diagnóstico: si te encuentras mal, consulta a un profesional.")
+                        ExpandableText("Varias señales se apartan a la vez de tu rango habitual. Suele pasar con cansancio acumulado, alcohol, estrés, calor o al empezar un resfriado. No es un diagnóstico: si te encuentras mal, consulta a un profesional.")
                             .font(.caption2)
                             .foregroundStyle(.halsynSecondaryText)
                             .fixedSize(horizontal: false, vertical: true)

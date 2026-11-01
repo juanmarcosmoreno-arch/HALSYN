@@ -137,7 +137,7 @@ struct PowerCard: View {
                     .tint(.halsynAccent)
                 }
                 Divider().overlay(Color.halsynHairline)
-                Text("El FTP es la potencia más alta que puedes sostener cerca de una hora. Se estima como el 95 por ciento de tu mejor media de 20 minutos. En los estudios coincide de media con el umbral de lactato, pero en cada persona puede desviarse alrededor de un 9 por ciento y suele quedarse corto en ciclistas recreativos: es una referencia para entrenar, no una medida de laboratorio.")
+                ExpandableText("El FTP es la potencia más alta que puedes sostener cerca de una hora. Se estima como el 95 por ciento de tu mejor media de 20 minutos. En los estudios coincide de media con el umbral de lactato, pero en cada persona puede desviarse alrededor de un 9 por ciento y suele quedarse corto en ciclistas recreativos: es una referencia para entrenar, no una medida de laboratorio.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                 ReferenceLinks(references: [ScienceReferences.powerMeterTraining, ScienceReferences.powerLevels, ScienceReferences.ftpVersusMLSS, ScienceReferences.ftpRecreational])

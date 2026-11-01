@@ -292,11 +292,11 @@ struct SleepRegularityCard: View {
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                 }
-                Text("En 60.977 adultos de UK Biobank, dormir con horarios regulares se asoció a un riesgo de mortalidad entre un 20 y un 48 por ciento menor que en el grupo más irregular, y predijo mejor que la duración del sueño. La mediana fue 81 y la mitad central estuvo entre 74 y 86.")
+                ExpandableText("En 60.977 adultos de UK Biobank, dormir con horarios regulares se asoció a un riesgo de mortalidad entre un 20 y un 48 por ciento menor que en el grupo más irregular, y predijo mejor que la duración del sueño. La mediana fue 81 y la mitad central estuvo entre 74 y 86.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
-                Text("Aquí solo cuenta el sueño nocturno (sin siestas) y el resultado varía según el método de cálculo: úsalo para ver tu evolución. Es una asociación observada, no un diagnóstico.")
+                ExpandableText("Aquí solo cuenta el sueño nocturno (sin siestas) y el resultado varía según el método de cálculo: úsalo para ver tu evolución. Es una asociación observada, no un diagnóstico.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

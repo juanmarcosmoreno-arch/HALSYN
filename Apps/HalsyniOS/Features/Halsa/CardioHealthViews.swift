@@ -263,10 +263,10 @@ struct CardioHealthView: View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                 HalsynSectionHeader("Qué es y cómo se calcula")
-                Text("Life's Essential 8 es la medida de salud cardiovascular de la American Heart Association (2022). Cada uno de los ocho componentes vale de 0 a 100 según tablas publicadas, y la puntuación es su media simple. En estudios con cientos de miles de personas, una puntuación más alta se asocia a menos infartos, ictus y mortalidad.")
+                ExpandableText("Life's Essential 8 es la medida de salud cardiovascular de la American Heart Association (2022). Cada uno de los ocho componentes vale de 0 a 100 según tablas publicadas, y la puntuación es su media simple. En estudios con cientos de miles de personas, una puntuación más alta se asocia a menos infartos, ictus y mortalidad.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynPrimaryText)
-                Text("En HÅLSYN: la actividad usa los minutos de ejercicio del Apple Watch (la AHA cuenta doble los minutos vigorosos, así que la tuya puede estar algo infravalorada); el sueño, tu media de 2 semanas; el IMC, tu último peso y tu altura. La AHA admite dar 100 en IMC de 25 a 29,9 a personas con mucha masa muscular.")
+                ExpandableText("En HÅLSYN: la actividad usa los minutos de ejercicio del Apple Watch (la AHA cuenta doble los minutos vigorosos, así que la tuya puede estar algo infravalorada); el sueño, tu media de 2 semanas; el IMC, tu último peso y tu altura. La AHA admite dar 100 en IMC de 25 a 29,9 a personas con mucha masa muscular.")
                     .font(.halsynCaption)
                     .foregroundStyle(.halsynSecondaryText)
                 Text("No es un diagnóstico ni sustituye una valoración médica. Tus datos escritos se guardan solo en este iPhone.")
@@ -474,26 +474,33 @@ private struct CardioInputEditor: View {
 /// Lista de publicaciones con enlace.
 struct ReferenceLinks: View {
     let references: [ScienceReference]
+    /// Plegadas: se abren al tocar «Referencias» (no ocupan la tarjeta).
+    @State private var expanded = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
-            Text("Referencias")
-                .font(.halsynCaption.weight(.semibold))
-                .foregroundStyle(.halsynPrimaryText)
-            ForEach(references) { reference in
-                Link(destination: reference.url) {
-                    HStack(alignment: .top, spacing: 6) {
-                        Image(systemName: "book.closed")
-                            .accessibilityHidden(true)
-                        Text(verbatim: reference.citation)
-                            .multilineTextAlignment(.leading)
-                            .fixedSize(horizontal: false, vertical: true)
+        DisclosureGroup(isExpanded: $expanded) {
+            VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                ForEach(references) { reference in
+                    Link(destination: reference.url) {
+                        HStack(alignment: .top, spacing: 6) {
+                            Image(systemName: "book.closed")
+                                .accessibilityHidden(true)
+                            Text(verbatim: reference.citation)
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .font(.caption2)
+                        .foregroundStyle(.halsynAccentText)
                     }
-                    .font(.caption2)
-                    .foregroundStyle(.halsynAccentText)
                 }
             }
+            .padding(.top, HalsynSpacing.xs)
+        } label: {
+            Text("Referencias (\(references.count))")
+                .font(.halsynCaption.weight(.semibold))
+                .foregroundStyle(.halsynPrimaryText)
         }
+        .tint(.halsynAccentText)
     }
 }
 
