@@ -208,3 +208,9 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
   - Solo para 16–78 años e IMC 16–41.
   - Se muestra como rango de ±8 puntos y se avisa de que no está validada en Xiaomi. Las balanzas de consumo tienen errores de 7–8 puntos frente a 4C (Siedler MR, et al. *Br J Nutr.* 2023, doi:10.1017/S0007114522003749).
   - Guardarla en Salud es opcional; el peso sí se guarda.
+
+## Fuerza para corredores (`StrengthExercise`)
+
+- Guía de ejercicios para los días de gimnasio (piernas de a una, pantorrilla y tendón de Aquiles, cadera, zona media y pliometría), 2 sesiones por semana lejos de las series y del umbral. No es una prescripción: el peso y la técnica los ajusta quien entrena.
+- **Economía de carrera**: Blagrove RC, Howatson G, Hayes PR. *Sports Med.* 2018;48(5):1117–1149, doi:10.1007/s40279-017-0835-7. La fuerza con cargas altas y la pliometría mejoran la economía de carrera en corredores de medio fondo y fondo sin aumentar la masa corporal.
+- **Lesiones**: Lauersen JB, Bertelsen DM, Andersen LB. *Br J Sports Med.* 2014;48(11):871–877, doi:10.1136/bjsports-2013-092538. El entrenamiento de fuerza redujo las lesiones deportivas en los ensayos aleatorizados analizados.

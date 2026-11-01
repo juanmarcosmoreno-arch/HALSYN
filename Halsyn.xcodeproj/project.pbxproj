@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3971E7F6E6318AF74A495 /* ProfileView.swift */; };
 		0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D2E538F9012576AB97BCA /* RacePredictionCard.swift */; };
+		02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */; };
 		04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D02F9B2FC365CA043BC585 /* HalsynApp.swift */; };
 		097B08A01D304919CB7C3D8A /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */; };
 		09DEC27C21ACF8937112B3A9 /* PermissionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E2F10A3967F3786DBCD4F6 /* PermissionLog.swift */; };
@@ -264,6 +265,7 @@
 		9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceComparison.swift; sourceTree = "<group>"; };
 		9E15B74FBEEA0484B9658D8E /* WatchPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPermissionsView.swift; sourceTree = "<group>"; };
 		A102C2A0A397098A3444D807 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
+		A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerStrengthView.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceNarrator.swift; sourceTree = "<group>"; };
 		B41FC591F6F7EB869825F662 /* RideSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSettingsView.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				8D12E86A3843D802F7D50216 /* PlanSessionEditView.swift */,
 				689D2E538F9012576AB97BCA /* RacePredictionCard.swift */,
 				B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */,
+				A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */,
 				E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
 				2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */,
@@ -1035,6 +1038,7 @@
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
+				02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */,
 				770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */,
 				86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */,
 				C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */,
@@ -1180,7 +1184,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 65;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1365,7 +1369,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 64;
+				CURRENT_PROJECT_VERSION = 65;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

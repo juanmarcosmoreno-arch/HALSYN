@@ -766,6 +766,91 @@
         }
       }
     },
+    "2–3 × 15 pasos por lado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2–3 × 15 steps each side"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2–3 × 15 steg per sida"
+          }
+        }
+      }
+    },
+    "3 × 10 por pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 10 per leg"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 10 per ben"
+          }
+        }
+      }
+    },
+    "3 × 30–45 s": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 30–45 s"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 30–45 s"
+          }
+        }
+      }
+    },
+    "3 × 6–10 por pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 6–10 per leg"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 6–10 per ben"
+          }
+        }
+      }
+    },
+    "3 × 8 por pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 8 per leg"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 × 8 per ben"
+          }
+        }
+      }
+    },
     "30 d": {
       "extractionState": "manual",
       "localizations": {
@@ -1136,6 +1221,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Olivolja (även i sallader och till matlagning)"
+          }
+        }
+      }
+    },
+    "Acostado, empuja con el talón y sube la cadera sin arquear la espalda. Con peso, hip thrust.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lying down, push through your heel and lift your hips without arching your back. With weight, it's a hip thrust."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liggande, tryck genom hälen och lyft höften utan att svanka. Med vikt blir det hip thrust."
           }
         }
       }
@@ -2449,6 +2551,23 @@
         }
       }
     },
+    "Banda por encima de las rodillas o en los tobillos, rodillas un poco dobladas, pasos cortos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Band above the knees or at the ankles, knees slightly bent, short steps."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Band ovanför knäna eller vid anklarna, lätt böjda knän, korta steg."
+          }
+        }
+      }
+    },
     "Base": {
       "extractionState": "manual",
       "localizations": {
@@ -2564,6 +2683,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Block på %@"
+          }
+        }
+      }
+    },
+    "Boca arriba, estira brazo y pierna contrarios sin despegar la zona lumbar del suelo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On your back, extend the opposite arm and leg without lifting your lower back off the floor."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På rygg, sträck motsatt arm och ben utan att ländryggen lättar från golvet."
           }
         }
       }
@@ -3129,6 +3265,40 @@
         }
       }
     },
+    "Cadera y glúteo medio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hips and gluteus medius"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höft och gluteus medius"
+          }
+        }
+      }
+    },
+    "Cae suave y estable; descansa entre series. Mejor después de unas semanas de fuerza.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Land softly and steadily; rest between sets. Best after a few weeks of strength work."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Landa mjukt och stabilt; vila mellan seten. Bäst efter några veckors styrketräning."
+          }
+        }
+      }
+    },
     "Cafeína por la tarde": {
       "extractionState": "manual",
       "localizations": {
@@ -3533,6 +3703,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Promenad utomhus"
+          }
+        }
+      }
+    },
+    "Caminata lateral con banda": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Banded side walk"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sidogång med band"
           }
         }
       }
@@ -4693,6 +4880,23 @@
         }
       }
     },
+    "Con una mancuerna, inclínate desde la cadera con la espalda recta mientras la otra pierna va hacia atrás.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Holding a dumbbell, hinge at the hips with a straight back while the other leg goes back."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med en hantel, fäll från höften med rak rygg medan det andra benet går bakåt."
+          }
+        }
+      }
+    },
     "Condición excelente": {
       "extractionState": "manual",
       "localizations": {
@@ -5084,6 +5288,23 @@
         }
       }
     },
+    "Correr es apoyar una pierna por vez: fuerza y equilibrio en cada una.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running is landing on one leg at a time: strength and balance in each."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpning är att landa på ett ben i taget: styrka och balans i vart och ett."
+          }
+        }
+      }
+    },
     "Correr hoy (traer una sesión)": {
       "extractionState": "manual",
       "localizations": {
@@ -5199,6 +5420,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kropp"
+          }
+        }
+      }
+    },
+    "Cuerpo en línea recta, sin hundir ni levantar la cadera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body in a straight line, hips neither sagging nor raised."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kroppen i en rak linje, höften varken sjunker eller höjs."
           }
         }
       }
@@ -5522,6 +5760,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Från Apple Hälsa (%@). Ange den som din egen för att se din effektzon på klockan."
+          }
+        }
+      }
+    },
+    "Dead bug": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dead bug"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dead bug"
           }
         }
       }
@@ -6274,6 +6529,23 @@
         }
       }
     },
+    "Dos sesiones por semana de 30–40 min, lejos de las series y del umbral (el plan ya lo tiene en cuenta). Mejor pocas repeticiones con buena técnica y peso que muchas livianas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two 30–40 min sessions a week, away from intervals and threshold runs (the plan already accounts for it). Better few reps with good form and weight than many light ones."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Två pass i veckan på 30–40 min, långt från intervaller och tröskelpass (planen tar redan hänsyn till det). Hellre få repetitioner med bra teknik och vikt än många lätta."
+          }
+        }
+      }
+    },
     "Dulces industriales: golosinas, bollería, galletas o pasteles": {
       "extractionState": "manual",
       "localizations": {
@@ -6627,6 +6899,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Träning under veckan"
+          }
+        }
+      }
+    },
+    "Ejercicios de fuerza para corredores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strength exercises for runners"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Styrkeövningar för löpare"
           }
         }
       }
@@ -7018,6 +7307,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Välj bild"
+          }
+        }
+      }
+    },
+    "Elevación de talones de pie": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standing calf raise"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stående tåhävning"
+          }
+        }
+      }
+    },
+    "Elevación de talones sentado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seated calf raise"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sittande tåhävning"
           }
         }
       }
@@ -9385,6 +9708,23 @@
         }
       }
     },
+    "Fuerza para corredores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strength for runners"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Styrka för löpare"
+          }
+        }
+      }
+    },
     "Fumo": {
       "extractionState": "manual",
       "localizations": {
@@ -11017,6 +11357,23 @@
         }
       }
     },
+    "La fuerza con cargas y la pliometría mejoran la economía de carrera (gastas menos energía al mismo ritmo) sin aumentar el peso, y el trabajo de fuerza reduce las lesiones deportivas. El peso, las series y la técnica los ajusta quien te entrena; si algo duele, para.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heavy strength training and plyometrics improve running economy (you use less energy at the same pace) without adding body weight, and strength work reduces sports injuries. Your coach adjusts the weight, sets and technique; if something hurts, stop."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tung styrketräning och plyometri förbättrar löpekonomin (du gör av med mindre energi i samma tempo) utan att öka vikten, och styrketräning minskar idrottsskador. Din tränare justerar vikt, set och teknik; gör något ont, sluta."
+          }
+        }
+      }
+    },
     "La mayoría de las zapatillas de correr pierden amortiguación entre 500 y 800 km, según el peso, la pisada y el terreno.": {
       "extractionState": "manual",
       "localizations": {
@@ -11918,6 +12275,23 @@
         }
       }
     },
+    "Mantienen la rodilla y la pelvis alineadas al apoyar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They keep the knee and pelvis aligned when you land."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De håller knä och bäcken i linje när du landar."
+          }
+        }
+      }
+    },
     "Mapa de la ruta": {
       "extractionState": "manual",
       "localizations": {
@@ -12492,6 +12866,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Normal förbättring: högst 1 VDOT-poäng var 4:e till 6:e vecka med regelbunden träning (Daniels riktlinje). Ambitiöst är upp till dubbelt så snabbt. Den verkliga förbättringen varierar mycket mellan personer."
+          }
+        }
+      }
+    },
+    "Mejoran el rebote y la economía de carrera. Solo con base de fuerza.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They improve spring and running economy. Only with a strength base."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De förbättrar fjädringen och löpekonomin. Bara med en styrkebas."
           }
         }
       }
@@ -14740,6 +15131,23 @@
         }
       }
     },
+    "Pantorrilla y tendón de Aquiles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calves and Achilles tendon"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vader och hälsena"
+          }
+        }
+      }
+    },
     "Para calcular tus ritmos y si el objetivo es posible, primero hace falta medir tu forma: un test a tope o una carrera reciente.": {
       "extractionState": "manual",
       "localizations": {
@@ -15437,6 +15845,23 @@
         }
       }
     },
+    "Peso muerto a una pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Single-leg deadlift"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enbensmarklyft"
+          }
+        }
+      }
+    },
     "Peso: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -15505,6 +15930,23 @@
         }
       }
     },
+    "Pie de atrás apoyado en un banco; baja recto hasta que la rodilla de atrás casi toque el suelo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back foot on a bench; lower straight down until the back knee almost touches the floor."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bakre foten på en bänk; sänk dig rakt ner tills det bakre knät nästan nuddar golvet."
+          }
+        }
+      }
+    },
     "Piensa en una semana normal. Indica cuántas raciones tomas de cada cosa, al día o a la semana. Si no lo comes nunca, deja 0.": {
       "extractionState": "manual",
       "localizations": {
@@ -15518,6 +15960,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tänk på en vanlig vecka. Ange hur många portioner du äter av varje sak, per dag eller per vecka. Om du aldrig äter det, lämna 0."
+          }
+        }
+      }
+    },
+    "Piernas, de a una": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legs, one at a time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ben, ett i taget"
           }
         }
       }
@@ -15641,6 +16100,23 @@
         }
       }
     },
+    "Plancha frontal y lateral": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Front and side plank"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planka och sidoplanka"
+          }
+        }
+      }
+    },
     "Planificado para la fase %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -15654,6 +16130,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Planerat för fas %lld"
+          }
+        }
+      }
+    },
+    "Pliometría": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plyometrics"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plyometri"
           }
         }
       }
@@ -16232,6 +16725,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du kan träna som vanligt; spara det hårdaste till en annan dag om du känner dig trött."
+          }
+        }
+      }
+    },
+    "Puente de glúteo a una pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Single-leg glute bridge"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enbens höftlyft"
           }
         }
       }
@@ -17953,6 +18463,40 @@
         }
       }
     },
+    "Rodilla doblada (trabaja el sóleo), con peso sobre los muslos; baja lento.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knee bent (works the soleus), weight on your thighs; lower slowly."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Böjt knä (tränar soleus), vikt på låren; sänk långsamt."
+          }
+        }
+      }
+    },
+    "Rodilla estirada, con peso; sube rápido y baja lento, en un escalón si puedes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knee straight, with weight; rise fast and lower slowly, on a step if you can."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rakt knä, med vikt; upp snabbt och ner långsamt, på ett trappsteg om du kan."
+          }
+        }
+      }
+    },
     "Rosa": {
       "extractionState": "manual",
       "localizations": {
@@ -18255,6 +18799,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ut och cykla"
+          }
+        }
+      }
+    },
+    "Saltos al cajón o a una pierna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Box jumps or single-leg hops"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lådhopp eller enbenshopp"
+          }
+        }
+      }
+    },
+    "Saltos cortos y rápidos con los tobillos, casi sin doblar las rodillas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short, quick hops from the ankles, barely bending the knees."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korta, snabba hopp med fotlederna, nästan utan att böja knäna."
+          }
+        }
+      }
+    },
+    "Saltos suaves en el lugar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gentle pogo hops"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lätta hopp på stället"
           }
         }
       }
@@ -18748,6 +19343,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sensorer"
+          }
+        }
+      }
+    },
+    "Sentadilla búlgara": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulgarian split squat"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulgarisk utfallsböj"
           }
         }
       }
@@ -19738,6 +20350,23 @@
         }
       }
     },
+    "Son las que más trabajan en cada zancada; fuertes, cuidan el tendón.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They work hardest with every stride; strong calves protect the tendon."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De jobbar mest i varje steg; starka vader skyddar senan."
+          }
+        }
+      }
+    },
     "Son los mismos permisos en el iPhone y en el reloj. Si aquí no aparece la hoja, abre HÅLSYN en el iPhone y acéptala allí: vale para los dos.": {
       "extractionState": "manual",
       "localizations": {
@@ -19751,6 +20380,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Behörigheterna är desamma på iPhone och klockan. Om rutan inte visas här, öppna HÅLSYN på iPhone och godkänn den där: det gäller för båda."
+          }
+        }
+      }
+    },
+    "Step-up": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step-up"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step-up"
           }
         }
       }
@@ -19785,6 +20431,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lugnt och jämnt, längre än resten. Det tränar kroppen att orka längre; tiden du springer räknas, inte tempot. Ta med vatten om det varar över en timme."
+          }
+        }
+      }
+    },
+    "Sube a un cajón alto con peso, empujando con la pierna de arriba, sin impulsarte con la de abajo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step onto a high box with weight, pushing with the top leg without pushing off the bottom one."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kliv upp på en hög låda med vikt, tryck med det övre benet utan att ta fart med det nedre."
           }
         }
       }
@@ -22254,6 +22917,23 @@
         }
       }
     },
+    "Un tronco estable desperdicia menos energía, sobre todo cansado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A stable trunk wastes less energy, especially when tired."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En stabil bål slösar mindre energi, särskilt när du är trött."
+          }
+        }
+      }
+    },
     "Una FC en reposo más baja suele asociarse a mejor forma aeróbica, aunque también influyen la genética, el estrés, el sueño y la medicación.": {
       "extractionState": "manual",
       "localizations": {
@@ -23406,6 +24086,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulszon"
+          }
+        }
+      }
+    },
+    "Zona media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bål"
           }
         }
       }

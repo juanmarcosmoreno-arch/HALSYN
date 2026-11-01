@@ -99,3 +99,13 @@ struct GoalRunLapTests {
         #expect(snapshot.paceTarget == PaceRange(fastest: 295, slowest: 305))
     }
 }
+
+@Suite("Fuerza para corredores")
+struct RunnerStrengthTests {
+    @Test func everyGroupHasExercises() {
+        for group in StrengthExercise.Group.allCases {
+            #expect(!StrengthExercise.exercises(in: group).isEmpty, "\(group)")
+        }
+        #expect(Set(StrengthExercise.all.map(\.id)).count == StrengthExercise.all.count)
+    }
+}

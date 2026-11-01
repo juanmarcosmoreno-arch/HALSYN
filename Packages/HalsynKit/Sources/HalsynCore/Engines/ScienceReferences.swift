@@ -127,6 +127,15 @@ public enum ScienceReferences {
         url: "https://doi.org/10.1371/journal.pone.0139754"
     )
 
+    public static let strengthForRunners = ScienceReference(
+        citation: "Blagrove RC, Howatson G, Hayes PR. Effects of strength training on the physiological determinants of middle- and long-distance running performance: a systematic review. Sports Med. 2018;48(5):1117–1149.",
+        url: "https://doi.org/10.1007/s40279-017-0835-7"
+    )
+    public static let strengthInjuryPrevention = ScienceReference(
+        citation: "Lauersen JB, Bertelsen DM, Andersen LB. The effectiveness of exercise interventions to prevent sports injuries: a systematic review and meta-analysis of randomised controlled trials. Br J Sports Med. 2014;48(11):871–877.",
+        url: "https://doi.org/10.1136/bjsports-2013-092538"
+    )
+
     public static let trainingLoad = ScienceReference(
         citation: "Gabbett TJ. The training—injury prevention paradox: should athletes be training smarter and harder? Br J Sports Med. 2016;50(5):273–280.",
         url: "https://doi.org/10.1136/bjsports-2015-095788"

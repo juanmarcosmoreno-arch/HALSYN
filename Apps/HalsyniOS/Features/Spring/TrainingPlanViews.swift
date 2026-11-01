@@ -192,6 +192,12 @@ struct TrainingPlanCard: View {
             Label("Hoy no hay carrera: día de gimnasio.", systemImage: "dumbbell")
                 .font(.halsynBody)
                 .foregroundStyle(.halsynSecondaryText)
+            NavigationLink {
+                RunnerStrengthView()
+            } label: {
+                Label("Ejercicios de fuerza para corredores", systemImage: "figure.strengthtraining.functional")
+                    .font(.halsynCaption)
+            }
         } else {
             Label("Hoy no hay sesión: descanso.", systemImage: "bed.double")
                 .font(.halsynBody)
@@ -362,6 +368,9 @@ struct PlanSetupView: View {
 
                 Section {
                     GymWeekdayPicker(selection: $gymWeekdays)
+                    NavigationLink("Ejercicios de fuerza para corredores") {
+                        RunnerStrengthView()
+                    }
                 } header: {
                     Text("Días de gimnasio")
                 } footer: {
@@ -658,10 +667,17 @@ struct TrainingPlanView: View {
                         .font(.halsynCaption.monospacedDigit())
                 }
                 if let gym = store.plan?.goal.gymWeekdays, !gym.isEmpty {
-                    Label {
-                        Text(verbatim: GymWeekdayPicker.names(gym))
-                    } icon: {
-                        Image(systemName: "dumbbell")
+                    NavigationLink {
+                        RunnerStrengthView()
+                    } label: {
+                        Label {
+                            HStack(spacing: 4) {
+                                Text(verbatim: GymWeekdayPicker.names(gym))
+                                Image(systemName: "chevron.right")
+                            }
+                        } icon: {
+                            Image(systemName: "dumbbell")
+                        }
                     }
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
