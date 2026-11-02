@@ -16338,6 +16338,23 @@
         }
       }
     },
+    "Pesarme": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weigh in"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Väg mig"
+          }
+        }
+      }
+    },
     "Pesarme con la balanza Xiaomi": {
       "extractionState": "manual",
       "localizations": {

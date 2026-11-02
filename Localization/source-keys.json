@@ -967,6 +967,7 @@
  "Permisos": "Apps/HalsynWatch/Features/WatchHomeView.swift",
  "Permitir Salud": "Apps/HalsynWatch/Features/WatchPermissionsView.swift",
  "Permitir ubicación": "Apps/HalsynWatch/Features/WatchPermissionsView.swift",
+ "Pesarme": "Apps/HalsyniOS/Features/Halsa/HalsaView.swift",
  "Pesarme con la balanza Xiaomi": "Apps/HalsyniOS/Features/Halsa/BodyCard.swift",
  "Pescado o marisco (no frito)": "Packages/HalsynKit/Sources/HalsynCore/Engines/CardiovascularHealth.swift",
  "Peso": "Apps/HalsyniOS/Features/Halsa/BodyCard.swift",

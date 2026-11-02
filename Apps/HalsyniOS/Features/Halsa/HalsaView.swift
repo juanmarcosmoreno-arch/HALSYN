@@ -57,6 +57,7 @@ struct HalsaView: View {
     @AppStorage(AppPreferences.userNameKey) private var userName = ""
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var snapshot: HalsaSnapshot?
+    @State private var weighing = false
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -102,6 +103,10 @@ struct HalsaView: View {
                 snapshot = await HalsaSnapshot.load(from: model.provider, unitSystem: unitSystem, goals: GoalStore.shared.goals)
                 if let snapshot { WidgetBridge.publish(snapshot, isDemo: model.isDemo) }
             }
+            .sheet(isPresented: $weighing) {
+                ScaleWeighInView()
+                    .environment(model)
+            }
             .sheet(isPresented: Binding(get: { model.isShowingDailySummary }, set: { model.isShowingDailySummary = $0 })) {
                 DailySummaryView()
             }
@@ -120,6 +125,18 @@ struct HalsaView: View {
                 if model.isDemo {
                     HalsynDemoBadge()
                 }
+                // Pesarse a un toque: abre directo la balanza Xiaomi.
+                Button {
+                    weighing = true
+                } label: {
+                    Label("Pesarme", systemImage: "scalemass.fill")
+                        .font(.halsynCaption.weight(.semibold))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Capsule().fill(Color.halsynAccentSoft.opacity(0.7)))
+                        .foregroundStyle(.halsynAccentText)
+                }
+                .buttonStyle(.plain)
                 Button {
                     model.selectedTab = .profile
                 } label: {
