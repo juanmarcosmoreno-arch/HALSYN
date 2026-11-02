@@ -949,10 +949,13 @@ struct PaceArcView: View {
 
     /// Punto de la curva cuadrática para t ∈ 0…1.
     private func point(_ t: Double, _ p0: CGPoint, _ p1: CGPoint, _ p2: CGPoint) -> CGPoint {
-        let u = 1 - t
-        return CGPoint(
-            x: u * u * p0.x + 2 * u * t * p1.x + t * t * p2.x,
-            y: u * u * p0.y + 2 * u * t * p1.y + t * t * p2.y
-        )
+        let t = CGFloat(t)
+        let u: CGFloat = 1 - t
+        let a: CGFloat = u * u
+        let b: CGFloat = 2 * u * t
+        let c: CGFloat = t * t
+        let x: CGFloat = a * p0.x + b * p1.x + c * p2.x
+        let y: CGFloat = a * p0.y + b * p1.y + c * p2.y
+        return CGPoint(x: x, y: y)
     }
 }
