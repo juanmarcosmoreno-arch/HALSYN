@@ -1888,6 +1888,23 @@
         }
       }
     },
+    "Análisis y tendencias": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analysis and trends"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analys och trender"
+          }
+        }
+      }
+    },
     "Apariencia": {
       "extractionState": "manual",
       "localizations": {
@@ -8140,6 +8157,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Träningspass"
+          }
+        }
+      }
+    },
+    "Entrenamiento de hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's workout"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens pass"
           }
         }
       }
@@ -14957,6 +14991,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Observerat under %lld dagar. Det är ett samband i dina data, inte ett bevis för att det ena orsakar det andra."
+          }
+        }
+      }
+    },
+    "Ocultar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dölj"
           }
         }
       }
@@ -23695,6 +23746,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Medelhastighet %@ miles i timmen"
+          }
+        }
+      }
+    },
+    "Ver": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa"
           }
         }
       }

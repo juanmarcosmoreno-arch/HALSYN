@@ -16,17 +16,22 @@ struct TodayGuidanceCard: View {
     var body: some View {
         VStack(spacing: 0) {
             if loaded {
-                NavigationLink(value: HalsaDestination.vila) {
-                    card
+                HalsynCard {
+                    VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                        NavigationLink(value: HalsaDestination.vila) {
+                            card
+                        }
+                        .buttonStyle(.plain)
+                        planRow
+                    }
                 }
-                .buttonStyle(.plain)
             }
         }
         .task(id: model.reloadKey) { await load() }
     }
 
     private var card: some View {
-        HalsynCard {
+        Group {
             VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                 HStack(alignment: .center, spacing: HalsynSpacing.m) {
                     Image(systemName: icon)
@@ -76,6 +81,43 @@ struct TodayGuidanceCard: View {
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
+        }
+    }
+
+    /// La sesión del plan para hoy, ya adaptada a tu recuperación; lleva a SPRING.
+    @ViewBuilder
+    private var planRow: some View {
+        if let plan = TrainingPlanStore.shared.plan, let planned = plan.session(on: .now, calendar: .current) {
+            let session = PlanAdaptation.adapt(planned, guidance: guidance, paces: plan.paces).session
+            Divider().overlay(Color.halsynHairline)
+            Button {
+                model.selectedTab = .spring
+            } label: {
+                HStack(spacing: HalsynSpacing.m) {
+                    Image(systemName: session.kind.systemImage)
+                        .font(.title3)
+                        .foregroundStyle(session.kind.isHard ? Color.halsynHighlight : Color.halsynAccentText)
+                        .frame(width: 36)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Entrenamiento de hoy")
+                            .halsynEyebrowStyle()
+                        Text(LocalizedStringKey(session.kind.title))
+                            .font(.halsynHeadline)
+                            .foregroundStyle(.halsynPrimaryText)
+                        if session.kind != .rest {
+                            Text(verbatim: SessionText.detail(session, unit: unitSystem))
+                                .font(.caption2)
+                                .foregroundStyle(.halsynSecondaryText)
+                                .lineLimit(2)
+                        }
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
         }
     }
 

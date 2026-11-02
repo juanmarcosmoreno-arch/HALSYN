@@ -123,3 +123,40 @@ extension Date {
         formatted(.dateTime.weekday(.wide).day().month(.wide))
     }
 }
+
+/// Análisis y tendencias plegados al final de cada pantalla: arriba queda lo
+/// de hoy y lo que importa; lo demás, al tocar. Recuerda si lo dejaste abierto.
+struct AnalysisSection<Content: View>: View {
+    @AppStorage private var expanded: Bool
+    private let content: Content
+
+    init(_ key: String, @ViewBuilder content: () -> Content) {
+        _expanded = AppStorage(wrappedValue: false, "halsyn.analysis.\(key)")
+        self.content = content()
+    }
+
+    var body: some View {
+        Button {
+            withAnimation(.easeInOut(duration: 0.25)) { expanded.toggle() }
+        } label: {
+            HStack {
+                Label("Análisis y tendencias", systemImage: "chart.xyaxis.line")
+                    .font(.halsynHeadline)
+                    .foregroundStyle(.halsynPrimaryText)
+                Spacer()
+                Text(expanded ? LocalizedStringKey("Ocultar") : LocalizedStringKey("Ver"))
+                    .font(.halsynCaption)
+                    .foregroundStyle(.halsynAccentText)
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(expanded ? 180 : 0))
+                    .foregroundStyle(.halsynAccentText)
+            }
+            .padding(.vertical, HalsynSpacing.s)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        if expanded {
+            content
+        }
+    }
+}

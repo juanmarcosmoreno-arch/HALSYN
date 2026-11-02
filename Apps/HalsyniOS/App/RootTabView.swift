@@ -9,16 +9,16 @@ struct RootTabView: View {
         @Bindable var model = model
         TabView(selection: $model.selectedTab) {
             HalsaView()
-                .tabItem { Label(HalsynModule.halsa.brandName, systemImage: "heart.text.square") }
+                .tabItem { Label(LocalizedStringKey(HalsynModule.halsa.meaning), systemImage: "heart.text.square") }
                 .tag(AppTab.halsa)
             SpringView()
-                .tabItem { Label(HalsynModule.spring.brandName, systemImage: "figure.run") }
+                .tabItem { Label(LocalizedStringKey(HalsynModule.spring.meaning), systemImage: "figure.run") }
                 .tag(AppTab.spring)
             CykelView()
-                .tabItem { Label(HalsynModule.cykel.brandName, systemImage: "bicycle") }
+                .tabItem { Label(LocalizedStringKey(HalsynModule.cykel.meaning), systemImage: "bicycle") }
                 .tag(AppTab.cykel)
             InsiktView()
-                .tabItem { Label(HalsynModule.insikt.brandName, systemImage: "chart.xyaxis.line") }
+                .tabItem { Label(LocalizedStringKey(HalsynModule.insikt.meaning), systemImage: "chart.xyaxis.line") }
                 .tag(AppTab.insikt)
             ProfileView()
                 .tabItem { Label("Perfil", systemImage: "person.crop.circle") }

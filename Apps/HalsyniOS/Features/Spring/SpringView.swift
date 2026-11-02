@@ -22,12 +22,15 @@ struct SpringView: View {
                     .padding(.top, HalsynSpacing.s)
                 startCard
                 if let workouts {
-                    RunningStatsCard(workouts: allWorkouts)
-                    TrainingLoadCard()
-                    HeartRateRecoveryCard()
+                    // Arriba, lo de hoy: el plan y con qué zapatillas.
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
-                    RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
+                    AnalysisSection("spring") {
+                        RunningStatsCard(workouts: allWorkouts)
+                        TrainingLoadCard()
+                        HeartRateRecoveryCard()
+                        RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
+                    }
                     history(workouts)
                 } else {
                     HalsynLoadingState()

@@ -65,21 +65,24 @@ struct HalsaView: View {
             HalsynScreen {
                 header
                 if let snapshot {
-                    scoreCard(snapshot)
+                    // Arriba, lo de hoy: qué hacer y cómo estás.
                     TodayGuidanceCard()
-                    summaryCard(snapshot)
+                    scoreCard(snapshot)
                     if !model.isDemo && snapshot.metrics.contains(where: { $0.value == nil }) {
                         HealthAccessHint()
                     }
                     metricsGrid(snapshot)
-                    BodyCard()
-                    CardioHealthCard()
-                    recoveryCard(snapshot)
                     JournalQuickCard()
-                    trendCard(snapshot)
-                    springCard(snapshot)
-                    cykelCard(snapshot)
-                    goalCard(snapshot)
+                    AnalysisSection("halsa") {
+                        summaryCard(snapshot)
+                        recoveryCard(snapshot)
+                        trendCard(snapshot)
+                        BodyCard()
+                        CardioHealthCard()
+                        springCard(snapshot)
+                        cykelCard(snapshot)
+                        goalCard(snapshot)
+                    }
                     DataOriginFootnote(origin: model.isDemo ? .demo : nil, extra: "HÅLSYN ofrece estimaciones de bienestar. No es un dispositivo médico ni sustituye una evaluación profesional.")
                 } else {
                     HalsynLoadingState()

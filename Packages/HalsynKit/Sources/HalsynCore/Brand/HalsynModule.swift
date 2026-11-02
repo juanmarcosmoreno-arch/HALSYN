@@ -28,8 +28,8 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
     public var meaning: String {
         switch self {
         case .halsa: "Salud"
-        case .spring: "Running"
-        case .cykel: "Ciclismo"
+        case .spring: "Correr"
+        case .cykel: "Bici"
         case .vila: "Descanso"
         case .insikt: "Análisis"
         case .mal: "Objetivos"
