@@ -10,6 +10,7 @@ struct ProfileView: View {
     @AppStorage(AppPreferences.appearanceKey) private var appearance: AppearancePreference = .system
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @AppStorage(AppPreferences.introKey) private var intro: IntroPreference = .brief
+    @AppStorage(AppPreferences.cykelTabKey) private var showsCykelTab = false
     @AppStorage(AppPreferences.onboardingCompletedKey) private var onboardingCompleted = true
     @Environment(\.openURL) private var openURL
     @State private var isConnecting = false
@@ -125,6 +126,9 @@ struct ProfileView: View {
                             }
                         }
                         .accessibilityElement(children: .combine)
+                    }
+                    Toggle(isOn: $showsCykelTab) {
+                        Label("CYKEL como pestaña", systemImage: "bicycle")
                     }
                     NavigationLink("Vocabulario sueco") {
                         LexiconView()

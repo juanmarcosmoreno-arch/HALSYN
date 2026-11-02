@@ -323,18 +323,28 @@ struct ScaleWeighInView: View {
                     LabeledContent("IMC", value: HalsynFormat.decimal(bmi, fractionDigits: 1))
                 }
                 if let estimate {
-                    let lower = HalsynFormat.integer(estimate.lower)
-                    let upper = HalsynFormat.integer(estimate.upper)
-                    LabeledContent("Grasa estimada") {
-                        Text(verbatim: "≈ \(HalsynFormat.integer(estimate.percent)) % (\(lower)–\(upper))")
-                            .monospacedDigit()
+                    // Plegada: con ±8 puntos de error aporta poco; se abre si interesa.
+                    DisclosureGroup {
+                        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                            let lower = HalsynFormat.integer(estimate.lower)
+                            let upper = HalsynFormat.integer(estimate.upper)
+                            LabeledContent("Grasa estimada") {
+                                Text(verbatim: "≈ \(HalsynFormat.integer(estimate.percent)) % (\(lower)–\(upper))")
+                                    .monospacedDigit()
+                            }
+                            ExpandableText("Estimación con la ecuación publicada de Jebb y colaboradores (2000), hecha con otra balanza de pies (Tanita) y no validada en Xiaomi: el error de una persona ronda ±8 puntos. Será distinta de la de Zepp Life, cuyo cálculo no es público. Mira la tendencia de semanas, no un día.")
+                                .font(.caption2)
+                                .foregroundStyle(.halsynSecondaryText)
+                            Toggle("Guardar también la grasa estimada en Salud", isOn: $saveFat)
+                                .font(.halsynCaption)
+                            ReferenceLinks(references: [ScienceReferences.footToFootBodyFat])
+                        }
+                        .padding(.top, HalsynSpacing.xs)
+                    } label: {
+                        Text("Grasa estimada (poco precisa)")
+                            .font(.halsynCaption.weight(.semibold))
                     }
-                    ExpandableText("Estimación con la ecuación publicada de Jebb y colaboradores (2000), hecha con otra balanza de pies (Tanita) y no validada en Xiaomi: el error de una persona ronda ±8 puntos. Será distinta de la de Zepp Life, cuyo cálculo no es público. Mira la tendencia de semanas, no un día.")
-                        .font(.caption2)
-                        .foregroundStyle(.halsynSecondaryText)
-                    Toggle("Guardar también la grasa estimada en Salud", isOn: $saveFat)
-                        .font(.halsynCaption)
-                    ReferenceLinks(references: [ScienceReferences.footToFootBodyFat])
+                    .tint(.halsynAccentText)
                 } else if reading.model == .weightOnly {
                     Text("Esta balanza mide solo el peso (no tiene electrodos para la grasa).")
                         .font(.caption2)

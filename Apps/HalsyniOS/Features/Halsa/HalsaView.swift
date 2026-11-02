@@ -309,7 +309,7 @@ struct HalsaView: View {
             HalsynCard {
                 VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                     HalsynSectionHeader("Ciclismo", eyebrow: HalsynModule.cykel.brandName, actionTitle: "Ver CYKEL") {
-                        model.selectedTab = .cykel
+                        model.openCykel()
                     }
                     NavigationLink {
                         RideDetailView(ride: ride)

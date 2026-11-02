@@ -61,7 +61,7 @@ struct HalsynApp: App {
                 .onOpenURL { url in
                     switch url.host {
                     case "spring": model.selectedTab = .spring
-                    case "cykel": model.selectedTab = .cykel
+                    case "cykel": model.openCykel()
                     case "insikt": model.selectedTab = .insikt
                     case "profile": model.selectedTab = .profile
                     default: model.selectedTab = .halsa

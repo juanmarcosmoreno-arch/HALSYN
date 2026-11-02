@@ -3061,6 +3061,23 @@
         }
       }
     },
+    "CYKEL como pestaña": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CYKEL as a tab"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CYKEL som flik"
+          }
+        }
+      }
+    },
     "Cada": {
       "extractionState": "manual",
       "localizations": {
@@ -10010,6 +10027,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattat kroppsfett"
+          }
+        }
+      }
+    },
+    "Grasa estimada (poco precisa)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated body fat (rough)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattat fett (grovt)"
           }
         }
       }

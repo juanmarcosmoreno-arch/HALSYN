@@ -21,6 +21,17 @@ final class AppModel {
     var selectedTab: AppTab = .halsa
     /// Se activa al abrir la notificación del resumen nocturno.
     var isShowingDailySummary = false
+    /// CYKEL abierto como hoja (cuando no es pestaña).
+    var isShowingCykel = false
+
+    /// Abre CYKEL: su pestaña si está activada; si no, como hoja.
+    func openCykel() {
+        if UserDefaults.standard.bool(forKey: AppPreferences.cykelTabKey) {
+            selectedTab = .cykel
+        } else {
+            isShowingCykel = true
+        }
+    }
     private(set) var provider: any HealthDataProviding
     private(set) var authorizationState: HealthAuthorizationState = .notRequired
     /// Las vistas lo incluyen en `.task(id:)`: al cambiar, recargan sus datos.
@@ -153,4 +164,7 @@ enum AppPreferences {
     static let morningReadinessEnabledKey = "halsyn.morningReadiness.enabled"
     static let morningReadinessTimeKey = "halsyn.morningReadiness.minutes"
     static let defaultMorningReadinessMinutes = 7 * 60 + 30
+    /// CYKEL como pestaña (por defecto no: es un módulo secundario y se abre
+    /// desde HÄLSA). Se activa en Perfil › Módulos.
+    static let cykelTabKey = "halsyn.cykelTab"
 }
