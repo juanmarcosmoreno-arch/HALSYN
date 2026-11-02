@@ -47,6 +47,8 @@
 	<string>HÅLSYN lee tus datos de Apple Health (frecuencia cardíaca, HRV, sueño, actividad y entrenamientos) para mostrarte tu estado y tus tendencias. Los datos se procesan en tu dispositivo.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HÅLSYN guarda en Apple Health los entrenamientos que registras con la app y el peso de tu balanza.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>HÅLSYN guarda en Fotos la imagen de tu carrera cuando eliges guardarla al compartir.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

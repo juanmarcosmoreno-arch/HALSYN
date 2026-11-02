@@ -69,6 +69,29 @@
           }
         }
       }
+    },
+    "NSPhotoLibraryAddUsageDescription": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN guarda en Fotos la imagen de tu carrera cuando eliges guardarla al compartir."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN saves your run's image to Photos when you choose to save it while sharing."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN sparar bilden av ditt pass i Bilder när du väljer att spara den när du delar."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

@@ -13,7 +13,7 @@ struct WorkoutDetailView: View {
     @State private var detail: WorkoutDetailData?
     @State private var insights: RunInsights?
     @State private var comparison: SimilarRunComparison?
-    @State private var shareImage: Image?
+    @State private var sharing = false
     @State private var weather: RunWeather?
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
@@ -84,19 +84,23 @@ struct WorkoutDetailView: View {
         .navigationTitle(Text(LocalizedStringKey(workout.activity.title)))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if let shareImage {
+            if detail != nil {
                 ToolbarItem(placement: .topBarTrailing) {
-                    ShareLink(item: shareImage, preview: SharePreview(Text(LocalizedStringKey(workout.activity.title)), image: shareImage)) {
+                    Button {
+                        sharing = true
+                    } label: {
                         Image(systemName: "square.and.arrow.up")
                     }
                     .accessibilityLabel(Text("Compartir"))
                 }
             }
         }
+        .sheet(isPresented: $sharing) {
+            RunShareView(workout: workout, route: detail?.route ?? [], unitSystem: unitSystem)
+        }
         .task(id: workout.id) {
             let loaded = await model.provider.workoutDetail(for: workout)
             detail = loaded
-            shareImage = RunShareCard.image(workout: workout, route: loaded.route, unitSystem: unitSystem)
             // Clima: el de Salud si lo hay; si no, WeatherKit con el punto de salida.
             if let saved = workout.weather {
                 weather = saved

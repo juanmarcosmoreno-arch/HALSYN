@@ -9657,6 +9657,23 @@
         }
       }
     },
+    "Formato": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        }
+      }
+    },
     "Frecuencia": {
       "extractionState": "manual",
       "localizations": {
@@ -10809,6 +10826,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nattens hypnogram"
+          }
+        }
+      }
+    },
+    "Historia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Story"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Story"
           }
         }
       }
@@ -13176,6 +13210,23 @@
         }
       }
     },
+    "Mejor parcial": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best split"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa delsträcka"
+          }
+        }
+      }
+    },
     "Mejor ritmo (5 km o más)": {
       "extractionState": "manual",
       "localizations": {
@@ -13614,6 +13665,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demoläge"
+          }
+        }
+      }
+    },
+    "Mostrar el mapa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the map"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa kartan"
           }
         }
       }
@@ -17103,6 +17171,23 @@
         }
       }
     },
+    "Publicación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Post"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inlägg"
+          }
+        }
+      }
+    },
     "Puedes entrenar con normalidad; deja lo más intenso para otro día si notas cansancio.": {
       "extractionState": "manual",
       "localizations": {
@@ -19598,6 +19683,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den stoppades före en minut: det finns inget värde att spara."
+          }
+        }
+      }
+    },
+    "Se ve por dónde corriste. Sin mapa, solo la forma de la ruta.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows where you ran. Without the map, only the shape of the route."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visar var du sprang. Utan karta syns bara ruttens form."
           }
         }
       }
