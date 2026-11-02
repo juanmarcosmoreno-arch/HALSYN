@@ -106,6 +106,7 @@ struct TrainingPlanCard: View {
     @State private var testResult: PerformanceResult?
     @State private var editingToday = false
     @State private var editingGoal = false
+    @State private var editingDay: PlanDay?
     private var store: TrainingPlanStore { .shared }
 
     var body: some View {
@@ -139,6 +140,9 @@ struct TrainingPlanCard: View {
         }
         .sheet(isPresented: $editingGoal) {
             PlanSetupView(workouts: workouts, editing: store.plan?.goal)
+        }
+        .sheet(item: $editingDay) { day in
+            PlanSessionEditView(day: day.date)
         }
         .task(id: "\(model.reloadKey)|\(workouts.count)") {
             store.replanIfNeeded(runs: workouts)
@@ -211,6 +215,9 @@ struct TrainingPlanCard: View {
                     .font(.halsynCaption)
             }
         }
+        if let week = plan.week(containing: .now, calendar: calendar) {
+            weekChecklist(week, plan: plan)
+        }
         NavigationLink {
             TrainingPlanView()
         } label: {
@@ -247,6 +254,33 @@ struct TrainingPlanCard: View {
             Button("Cancelar", role: .cancel) {}
         } message: {
             Text("Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.")
+        }
+    }
+
+    /// Las sesiones de esta semana, con las hechas marcadas. Tocar un día de
+    /// hoy en adelante lo abre para cambiarlo.
+    private func weekChecklist(_ week: PlannedWeek, plan: TrainingPlan) -> some View {
+        let count = week.completion(runs: workouts, today: .now, calendar: .current)
+        return VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+            Divider().overlay(Color.halsynHairline)
+            HStack {
+                Text("Esta semana")
+                    .font(.halsynHeadline)
+                Spacer()
+                Text("\(count.done) de \(count.planned) hechas")
+                    .font(.halsynCaption.monospacedDigit())
+                    .foregroundStyle(count.done == count.planned && count.planned > 0 ? Color.halsynPositive : Color.halsynSecondaryText)
+            }
+            ForEach(week.sessions) { session in
+                let status = SessionCompletion.evaluate(session, runs: workouts, today: .now, calendar: .current)
+                Button {
+                    editingDay = PlanDay(date: session.date)
+                } label: {
+                    PlanSessionRow(session: session, status: status, unitSystem: unitSystem)
+                }
+                .buttonStyle(.plain)
+                .disabled(!plan.canEdit(session.date, today: .now, calendar: .current))
+            }
         }
     }
 
@@ -663,6 +697,16 @@ struct TrainingPlanView: View {
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                     Spacer()
+                    if week.start <= .now, let runs {
+                        let count = week.completion(runs: runs, today: .now, calendar: .current)
+                        Label {
+                            Text(verbatim: "\(count.done)/\(count.planned)")
+                        } icon: {
+                            Image(systemName: "checkmark.circle")
+                        }
+                        .font(.halsynCaption.monospacedDigit())
+                        .foregroundStyle(count.done == count.planned ? Color.halsynPositive : Color.halsynSecondaryText)
+                    }
                     Text(verbatim: SessionText.distance(week.distance, unit: unitSystem))
                         .font(.halsynCaption.monospacedDigit())
                 }
@@ -707,6 +751,17 @@ struct TrainingPlanView: View {
     }
 
     private func sessionRow(_ session: PlannedSession) -> some View {
+        PlanSessionRow(session: session, status: SessionCompletion.evaluate(session, runs: runs ?? [], today: .now, calendar: .current), unitSystem: unitSystem)
+    }
+}
+
+/// Una sesión del plan en una lista: día, tipo, detalle y si se hizo.
+struct PlanSessionRow: View {
+    let session: PlannedSession
+    let status: SessionCompletion
+    let unitSystem: UnitSystem
+
+    var body: some View {
         HStack(alignment: .top, spacing: HalsynSpacing.s) {
             Text(session.date, format: .dateTime.weekday(.abbreviated))
                 .font(.halsynCaption)
@@ -716,14 +771,66 @@ struct TrainingPlanView: View {
                 .foregroundStyle(session.kind.isHard ? Color.halsynHighlight : Color.halsynAccentText)
                 .frame(width: 20)
             VStack(alignment: .leading, spacing: 1) {
-                Text(LocalizedStringKey(session.kind.title)).font(.halsynCaption.weight(.semibold))
-                Text(verbatim: SessionText.detail(session, unit: unitSystem))
-                    .font(.caption2)
-                    .foregroundStyle(.halsynSecondaryText)
+                Text(LocalizedStringKey(session.kind.title))
+                    .font(.halsynCaption.weight(.semibold))
+                    .strikethrough(status == .missed, color: .halsynSecondaryText)
+                if session.kind != .rest {
+                    Text(verbatim: SessionText.detail(session, unit: unitSystem))
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+                if case let .partial(distance) = status {
+                    Text("Hiciste \(SessionText.distance(distance, unit: unitSystem))")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynCaution)
+                }
             }
             Spacer(minLength: 0)
+            SessionStatusIcon(status: status)
         }
         .contentShape(Rectangle())
+    }
+}
+
+/// ✓ hecha, ◐ parcial, ✕ no hecha, hoy o pendiente.
+struct SessionStatusIcon: View {
+    let status: SessionCompletion
+
+    var body: some View {
+        Group {
+            switch status {
+            case .done:
+                Image(systemName: "checkmark.circle.fill").foregroundStyle(.halsynPositive)
+            case .partial:
+                Image(systemName: "circle.lefthalf.filled").foregroundStyle(.halsynCaution)
+            case .missed:
+                Image(systemName: "xmark.circle").foregroundStyle(.halsynSecondaryText)
+            case .today:
+                Text("Hoy")
+                    .font(.caption2.weight(.bold))
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Capsule().fill(Color.halsynAccentSoft.opacity(0.6)))
+                    .foregroundStyle(.halsynAccentText)
+            case .upcoming:
+                Image(systemName: "circle").foregroundStyle(.halsynHairline)
+            case .rest:
+                EmptyView()
+            }
+        }
+        .font(.title3)
+        .accessibilityLabel(Text(label))
+    }
+
+    private var label: LocalizedStringKey {
+        switch status {
+        case .done: "Hecha"
+        case .partial: "Hecha en parte"
+        case .missed: "No hecha"
+        case .today: "Hoy"
+        case .upcoming: "Pendiente"
+        case .rest: "Descanso"
+        }
     }
 }
 
@@ -795,4 +902,10 @@ struct GymWeekdayPicker: View {
             }
         }
     }
+}
+
+/// Día del plan que se abre para editar.
+struct PlanDay: Identifiable {
+    let date: Date
+    var id: Date { date }
 }

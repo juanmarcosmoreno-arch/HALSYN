@@ -443,6 +443,23 @@
         }
       }
     },
+    "%lld de %lld hechas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld av %lld klara"
+          }
+        }
+      }
+    },
     "%lld de 8 componentes con dato": {
       "extractionState": "manual",
       "localizations": {
@@ -8722,6 +8739,23 @@
         }
       }
     },
+    "Esta semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här veckan"
+          }
+        }
+      }
+    },
     "Esta semana alcanzaste tu objetivo todas las noches registradas.": {
       "extractionState": "manual",
       "localizations": {
@@ -10762,6 +10796,40 @@
         }
       }
     },
+    "Hecha": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klar"
+          }
+        }
+      }
+    },
+    "Hecha en parte": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partly done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delvis klar"
+          }
+        }
+      }
+    },
     "Hecho": {
       "extractionState": "manual",
       "localizations": {
@@ -10775,6 +10843,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Klar"
+          }
+        }
+      }
+    },
+    "Hiciste %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You did %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gjorde %@"
           }
         }
       }
@@ -14553,6 +14638,23 @@
         }
       }
     },
+    "No hecha": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte gjord"
+          }
+        }
+      }
+    },
     "No hubo lecturas del pulso cerca del minuto (¿la correa estaba floja?): no hay valor para guardar.": {
       "extractionState": "manual",
       "localizations": {
@@ -16079,6 +16181,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cykla med Apple Watch"
+          }
+        }
+      }
+    },
+    "Pendiente": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvar"
           }
         }
       }

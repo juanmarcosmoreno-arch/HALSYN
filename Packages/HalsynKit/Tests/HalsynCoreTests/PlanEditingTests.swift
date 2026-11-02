@@ -98,3 +98,36 @@ struct PlanEditingTests {
         #expect(decoded.planSnapshot == snapshot)
     }
 }
+
+@Suite("SPRING · sesiones hechas")
+struct SessionCompletionTests {
+    private let calendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Europe/Madrid")!
+        return calendar
+    }()
+
+    private func run(_ day: Date, _ meters: Double) -> WorkoutSummary {
+        WorkoutSummary(activity: .outdoorRun, start: day.addingTimeInterval(7 * 3600), duration: meters / 3, distanceMeters: meters, averageHeartRate: nil, maxHeartRate: nil, activeEnergyKilocalories: nil, averageCadence: nil, origin: .healthKit(sourceName: "HÅLSYN"))
+    }
+
+    @Test func statuses() {
+        let monday = calendar.date(from: DateComponents(year: 2026, month: 11, day: 2))!
+        let tuesday = calendar.date(byAdding: .day, value: 1, to: monday)!
+        let wednesday = calendar.date(byAdding: .day, value: 2, to: monday)!
+        let thursday = calendar.date(byAdding: .day, value: 3, to: monday)!
+        let today = wednesday.addingTimeInterval(10 * 3600)
+        let easy = PlannedSession(date: monday, kind: .easy, distance: 8000)
+        let short = PlannedSession(date: tuesday, kind: .easy, distance: 10_000)
+        let intervals = PlannedSession(date: tuesday, kind: .intervals, distance: 9000, repeats: 6, repeatDistance: 800)
+        let runs = [run(monday, 7800), run(tuesday, 5000)]
+        #expect(SessionCompletion.evaluate(easy, runs: runs, today: today, calendar: calendar) == .done(distance: 7800))
+        #expect(SessionCompletion.evaluate(short, runs: runs, today: today, calendar: calendar) == .partial(distance: 5000))
+        #expect(SessionCompletion.evaluate(intervals, runs: runs, today: today, calendar: calendar).isDone)
+        #expect(SessionCompletion.evaluate(PlannedSession(date: monday, kind: .easy, distance: 8000), runs: [], today: today, calendar: calendar) == .missed)
+        #expect(SessionCompletion.evaluate(PlannedSession(date: wednesday, kind: .easy, distance: 8000), runs: [], today: today, calendar: calendar) == .today)
+        #expect(SessionCompletion.evaluate(PlannedSession(date: wednesday, kind: .easy, distance: 8000), runs: [run(wednesday, 3000)], today: today, calendar: calendar) == .today)
+        #expect(SessionCompletion.evaluate(PlannedSession(date: thursday, kind: .long, distance: 15_000), runs: [], today: today, calendar: calendar) == .upcoming)
+        #expect(SessionCompletion.evaluate(PlannedSession(date: monday, kind: .rest, distance: 0), runs: runs, today: today, calendar: calendar) == .rest)
+    }
+}
