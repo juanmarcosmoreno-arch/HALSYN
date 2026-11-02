@@ -13,6 +13,7 @@ struct WorkoutDetailView: View {
     @State private var detail: WorkoutDetailData?
     @State private var insights: RunInsights?
     @State private var comparison: SimilarRunComparison?
+    @State private var shareImage: Image?
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -77,9 +78,20 @@ struct WorkoutDetailView: View {
         }
         .navigationTitle(Text(LocalizedStringKey(workout.activity.title)))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if let shareImage {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(item: shareImage, preview: SharePreview(Text(LocalizedStringKey(workout.activity.title)), image: shareImage)) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .accessibilityLabel(Text("Compartir"))
+                }
+            }
+        }
         .task(id: workout.id) {
             let loaded = await model.provider.workoutDetail(for: workout)
             detail = loaded
+            shareImage = RunShareCard.image(workout: workout, route: loaded.route, unitSystem: unitSystem)
             insights = RunAnalyzer.analyze(route: loaded.route, heartRate: loaded.heartRate)
             comparison = RunAnalyzer.compare(workout, with: await model.provider.recentWorkouts(limit: 60))
         }

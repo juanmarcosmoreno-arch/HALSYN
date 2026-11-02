@@ -126,3 +126,30 @@ struct WidgetSessionTests {
         #expect(WidgetSnapshotStore.decode(old)?.session == nil)
     }
 }
+
+@Suite("Ruta para la tarjeta de compartir")
+struct RouteProjectionTests {
+    private func sample(_ latitude: Double, _ longitude: Double) -> LocationSample {
+        LocationSample(latitude: latitude, longitude: longitude, altitude: nil, horizontalAccuracy: 5, verticalAccuracy: nil, timestamp: .now)
+    }
+
+    @Test func fitsInTheUnitSquareKeepingNorthUp() {
+        // De sur a norte, en Buenos Aires.
+        let points = RouteProjection.normalized([sample(-34.60, -58.40), sample(-34.59, -58.40), sample(-34.58, -58.39)])
+        #expect(points.count == 3)
+        #expect(points.allSatisfy { (0...1).contains($0.x) && (0...1).contains($0.y) })
+        #expect(points[0].y > points[2].y, "el norte queda arriba")
+        #expect(points[2].x > points[0].x, "el este queda a la derecha")
+    }
+
+    @Test func tooShortOrStillHasNoShape() {
+        #expect(RouteProjection.normalized([sample(1, 1)]).isEmpty)
+        #expect(RouteProjection.normalized([sample(1, 1), sample(1, 1)]).isEmpty)
+    }
+
+    @Test func reducesLongRoutes() {
+        let route = (0..<5000).map { sample(-34.6 + Double($0) * 0.00001, -58.4) }
+        let points = RouteProjection.normalized(route, maximumPoints: 400)
+        #expect(points.count <= 402 && points.count > 300)
+    }
+}

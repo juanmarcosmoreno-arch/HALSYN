@@ -108,6 +108,7 @@
 		CD89E046AFDC8366E2A2D151 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = F8BC070349D54F9995A35913 /* HalsynCore */; };
 		CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE91FF6016BAB5F98966A /* GoalStore.swift */; };
 		CF6998DD9A86E124AF1C9E3B /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */; };
+		D0B1393FD1D047FF0B9D9E39 /* RunShareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D40AF557467B29E042975E2 /* RunShareCard.swift */; };
 		D0E2AA999EEF1E5ECA8CE41F /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = E9C32CF0013303F8BBAB96F9 /* HalsynDesign */; };
 		D3109D7BF800BE694DFF6E19 /* AppLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA50D1289F5E245BCB1F6DC /* AppLayerTests.swift */; };
 		D479EC711E40990AC3B0CAE6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DCACFEAFCA40B1F932E49923 /* PrivacyInfo.xcprivacy */; };
@@ -217,6 +218,7 @@
 		2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeViews.swift; sourceTree = "<group>"; };
 		290129784398211208980B11 /* HalsynWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWidgets.entitlements; sourceTree = "<group>"; };
 		2B84A152E1452ADF3D915CB7 /* TrainingLoadViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingLoadViews.swift; sourceTree = "<group>"; };
+		2D40AF557467B29E042975E2 /* RunShareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunShareCard.swift; sourceTree = "<group>"; };
 		2D806D8D04F0B24C3BDB9530 /* HalsynWatchWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatchWidgets.entitlements; sourceTree = "<group>"; };
 		30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HalsyniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32EF3402D469A56663EED082 /* WatchGoalRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalRunView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */,
 				E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
+				2D40AF557467B29E042975E2 /* RunShareCard.swift */,
 				2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */,
 				6683A16BF5216CF3290D7F7A /* SpringView.swift */,
 				C309410DCB678925A4740B86 /* TrainingPlanViews.swift */,
@@ -1046,6 +1049,7 @@
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
+				D0B1393FD1D047FF0B9D9E39 /* RunShareCard.swift in Sources */,
 				02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */,
 				770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */,
 				86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */,
@@ -1192,7 +1196,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 69;
+				CURRENT_PROJECT_VERSION = 70;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1377,7 +1381,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 69;
+				CURRENT_PROJECT_VERSION = 70;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

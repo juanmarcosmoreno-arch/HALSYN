@@ -4506,6 +4506,23 @@
         }
       }
     },
+    "Compartir": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dela"
+          }
+        }
+      }
+    },
     "Competición": {
       "extractionState": "manual",
       "localizations": {
@@ -5726,6 +5743,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demodata, inte riktiga mätningar"
+          }
+        }
+      }
+    },
+    "Datos de ejemplo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exempeldata"
           }
         }
       }
