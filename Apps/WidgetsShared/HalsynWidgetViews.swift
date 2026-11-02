@@ -307,10 +307,17 @@ struct HalsynRunWidgetView: View {
             }
         }
         .widgetAccentable()
-        .containerBackground(for: .widget) {
-            if family == .systemSmall { Color.halsynSurface } else { Color.clear }
-        }
+        .containerBackground(for: .widget) { background }
         .widgetURL(URL(string: "halsyn://spring"))
+    }
+
+    /// Fondo de la marca en la pantalla de inicio; transparente en las demás.
+    private var background: Color {
+        #if os(iOS)
+        family == .systemSmall ? Color.halsynSurface : Color.clear
+        #else
+        Color.clear
+        #endif
     }
 
     /// Pantalla de inicio: el entrenamiento de hoy.
