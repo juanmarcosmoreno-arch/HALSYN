@@ -171,3 +171,15 @@ struct RunWeatherTests {
         #expect(RunWeather(temperature: 20, humidity: 0.65, source: .weatherKit).humidity == 0.65)
     }
 }
+
+@Suite("Arco de ritmo del reloj")
+struct PaceDeviationTests {
+    @Test func deviationFromTarget() {
+        let target = PaceRange(center: Pace(secondsPerKilometer: 270), tolerance: 5)
+        #expect(target.deviation(of: Pace(secondsPerKilometer: 270)) == 0)
+        #expect(target.deviation(of: Pace(secondsPerKilometer: 285)) == 0.5, "más lento → a la derecha")
+        #expect(target.deviation(of: Pace(secondsPerKilometer: 255)) == -0.5)
+        #expect(target.deviation(of: Pace(secondsPerKilometer: 400)) == 1)
+        #expect(target.deviation(of: Pace(secondsPerKilometer: 100)) == -1)
+    }
+}

@@ -1113,7 +1113,7 @@
  "Ritmo": "Apps/HalsynWatch/Features/WatchGoalRunView.swift",
  "Ritmo %@": "Apps/Shared/CoachPhrases.swift",
  "Ritmo a lo largo de la carrera": "Apps/HalsyniOS/Features/Spring/RunAnalysisViews.swift",
- "Ritmo actual": "Packages/HalsynKit/Sources/HalsynCore/Models/WorkoutScreenProfile.swift",
+ "Ritmo actual": "Apps/HalsynWatch/Workout/WorkoutSessionView.swift",
  "Ritmo de la vuelta": "Apps/HalsyniOS/Features/Spring/VoiceCuesView.swift",
  "Ritmo de vuelta": "Packages/HalsynKit/Sources/HalsynCore/Models/WorkoutScreenProfile.swift",
  "Ritmo en rango": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/RunAlerts.swift",

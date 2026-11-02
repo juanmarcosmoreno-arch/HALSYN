@@ -441,6 +441,9 @@ private struct WorkoutIntervalRingView: View {
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         VStack(spacing: 2) {
             ringHeader(interval)
+            if let target = interval.step.paceTarget {
+                PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
+            }
             ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
             ringFooter(snapshot)
         }
@@ -520,13 +523,14 @@ private struct WorkoutIntervalRingView: View {
 
     private func ringFooter(_ snapshot: RunSnapshot) -> some View {
         HStack {
-            compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
-            Spacer()
+            // Con ritmo objetivo, el ritmo actual va en el arco de arriba.
             if let target = snapshot.paceTarget {
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
             } else {
-                compact(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) })
+                compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
             }
+            Spacer()
+            compact(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) })
         }
     }
 
@@ -883,5 +887,59 @@ private struct ZoneBarsView: View {
                 .accessibilityElement(children: .combine)
             }
         }
+    }
+}
+
+/// Arco sobre el anillo: la marca del centro es el ritmo objetivo y el punto,
+/// tu ritmo actual (a la derecha si vas más lento, a la izquierda si vas más
+/// rápido; ± 30 s/km en los extremos). Arriba, el ritmo actual en grande.
+struct PaceArcView: View {
+    let target: PaceRange
+    let current: Pace?
+    let unit: UnitSystem
+    let tint: Color
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(verbatim: current.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" } ?? "--")
+                .font(.system(size: 15, weight: .semibold, design: .rounded).monospacedDigit())
+                .foregroundStyle(current == nil ? Color(HalsynPalette.secondaryTextDark) : tint)
+            Canvas { context, size in
+                let left = CGPoint(x: 10, y: size.height - 3)
+                let right = CGPoint(x: size.width - 10, y: size.height - 3)
+                let control = CGPoint(x: size.width / 2, y: -size.height * 0.6)
+                var arc = Path()
+                arc.move(to: left)
+                arc.addQuadCurve(to: right, control: control)
+                context.stroke(arc, with: .color(Color.white.opacity(0.35)), style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
+                // Marca del objetivo.
+                let top = point(0.5, left, control, right)
+                var tick = Path()
+                tick.move(to: CGPoint(x: top.x, y: top.y - 5))
+                tick.addLine(to: CGPoint(x: top.x, y: top.y + 5))
+                context.stroke(tick, with: .color(.white), style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                // Ritmo actual.
+                if let current {
+                    let t = (target.deviation(of: current) + 1) / 2
+                    let spot = point(t, left, control, right)
+                    let dot = Path(ellipseIn: CGRect(x: spot.x - 5, y: spot.y - 5, width: 10, height: 10))
+                    context.fill(dot, with: .color(tint))
+                    context.stroke(dot, with: .color(.black), lineWidth: 1.5)
+                }
+            }
+            .frame(height: 16)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Ritmo actual"))
+        .accessibilityValue(Text(verbatim: current.map { $0.formatted(in: unit) } ?? "--"))
+    }
+
+    /// Punto de la curva cuadrática para t ∈ 0…1.
+    private func point(_ t: Double, _ p0: CGPoint, _ p1: CGPoint, _ p2: CGPoint) -> CGPoint {
+        let u = 1 - t
+        return CGPoint(
+            x: u * u * p0.x + 2 * u * t * p1.x + t * t * p2.x,
+            y: u * u * p0.y + 2 * u * t * p1.y + t * t * p2.y
+        )
     }
 }

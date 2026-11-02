@@ -21,6 +21,13 @@ public struct PaceRange: Hashable, Codable, Sendable {
         case slower, onPace, faster
     }
 
+    /// Desvío respecto al centro del rango, de −1 (`span` s/km más rápido o
+    /// más) a 1 (`span` s/km más lento o más); 0 = justo en el objetivo.
+    public func deviation(of pace: Pace, span: Double = 30) -> Double {
+        guard span > 0 else { return 0 }
+        return min(max((pace.secondsPerKilometer - center.secondsPerKilometer) / span, -1), 1)
+    }
+
     /// Si un ritmo va más lento, dentro o más rápido que el rango.
     public func status(of pace: Pace) -> Status {
         if pace.secondsPerKilometer > slowest { return .slower }
