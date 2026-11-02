@@ -15,6 +15,8 @@ struct WorkoutDetailView: View {
     @State private var comparison: SimilarRunComparison?
     @State private var sharing = false
     @State private var weather: RunWeather?
+    /// Carrera al aire libre sin clima: por qué no se pudo (`nil` mientras se busca).
+    @State private var weatherProblem: String??
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -55,6 +57,8 @@ struct WorkoutDetailView: View {
 
             if let weather {
                 RunWeatherCard(weather: weather, unitSystem: unitSystem)
+            } else if case let .some(reason) = weatherProblem {
+                RunWeatherUnavailableCard(reason: reason)
             }
 
             if workout.activity.isRun {
@@ -104,8 +108,15 @@ struct WorkoutDetailView: View {
             // Clima: el de Salud si lo hay; si no, WeatherKit con el punto de salida.
             if let saved = workout.weather {
                 weather = saved
-            } else if workout.activity == .outdoorRun, !loaded.origin.isDemo, let first = loaded.route.first {
-                weather = await RunWeatherLookup.weather(for: workout, start: first)
+            } else if workout.activity == .outdoorRun, !loaded.origin.isDemo {
+                if let first = loaded.route.first {
+                    switch await RunWeatherLookup.lookup(for: workout, start: first) {
+                    case let .found(found): weather = found
+                    case let .failed(reason): weatherProblem = .some(reason)
+                    }
+                } else {
+                    weatherProblem = .some(String(localized: "Esta carrera no tiene ruta GPS guardada."))
+                }
             }
             insights = RunAnalyzer.analyze(route: loaded.route, heartRate: loaded.heartRate)
             comparison = RunAnalyzer.compare(workout, with: await model.provider.recentWorkouts(limit: 60))

@@ -204,6 +204,7 @@ struct WorkoutRow: View {
                 Text(verbatim: "\(workout.averagePace?.formatted(in: unitSystem) ?? "—") \(unitSystem.paceUnitSymbol)")
                     .font(.halsynCaption.monospacedDigit())
                     .foregroundStyle(.halsynSecondaryText)
+                RunWeatherBadge(workout: workout, unitSystem: unitSystem)
             }
         }
         .padding(HalsynSpacing.m)

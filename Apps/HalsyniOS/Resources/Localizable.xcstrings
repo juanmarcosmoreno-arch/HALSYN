@@ -8705,6 +8705,23 @@
         }
       }
     },
+    "Esta carrera no tiene ruta GPS guardada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This run has no saved GPS route."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det här passet har ingen sparad GPS-rutt."
+          }
+        }
+      }
+    },
     "Esta fuente no registra fases del sueño.": {
       "extractionState": "manual",
       "localizations": {
@@ -14604,6 +14621,23 @@
         }
       }
     },
+    "No hay datos de esa hora.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There's no data for that hour."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns inga data för den timmen."
+          }
+        }
+      }
+    },
     "No hay informes. Si la app se traba o se cierra, iOS lo informa la próxima vez que la abres (a veces hasta un día después).": {
       "extractionState": "manual",
       "localizations": {
@@ -14923,6 +14957,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kunde inte mäta återhämtningen"
+          }
+        }
+      }
+    },
+    "No se pudo saber el clima de esta carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't get the weather for this run."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunde inte hämta vädret för det här passet."
           }
         }
       }
@@ -19717,6 +19768,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Den beräknas utifrån nattens sömn, HRV och vilopuls."
+          }
+        }
+      }
+    },
+    "Se consulta a  Weather con la hora y el punto de salida. Hace falta conexión y que WeatherKit esté activado para la app (en Xcode, Signing & Capabilities › WeatherKit, y en developer.apple.com › Identifiers › la app › Capabilities y App Services). Las carreras de la app Entreno traen el clima guardado en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's looked up in  Weather using the start time and place. It needs a connection and WeatherKit enabled for the app (in Xcode, Signing & Capabilities › WeatherKit, and at developer.apple.com › Identifiers › the app › Capabilities and App Services). Runs from the Workout app already have the weather saved in Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det hämtas från  Weather med starttid och startplats. Det kräver anslutning och att WeatherKit är aktiverat för appen (i Xcode, Signing & Capabilities › WeatherKit, och på developer.apple.com › Identifiers › appen › Capabilities och App Services). Pass från Träning-appen har redan vädret sparat i Hälsa."
           }
         }
       }
