@@ -890,9 +890,10 @@ private struct ZoneBarsView: View {
     }
 }
 
-/// Arco sobre el anillo: la marca del centro es el ritmo objetivo y el punto,
-/// tu ritmo actual (a la derecha si vas más lento, a la izquierda si vas más
-/// rápido; ± 30 s/km en los extremos). Arriba, el ritmo actual en grande.
+/// Arco sobre el anillo: la marca blanca del centro es el ritmo objetivo y la
+/// rayita, tu ritmo actual (a la derecha si vas más lento, a la izquierda si
+/// vas más rápido; ± 30 s/km en los extremos), con el tramo del desvío en
+/// verde, rojo o amarillo. Arriba, el ritmo actual en grande.
 struct PaceArcView: View {
     let target: PaceRange
     let current: Pace?
@@ -907,27 +908,39 @@ struct PaceArcView: View {
             Canvas { context, size in
                 let left = CGPoint(x: 10, y: size.height - 3)
                 let right = CGPoint(x: size.width - 10, y: size.height - 3)
-                let control = CGPoint(x: size.width / 2, y: -size.height * 0.6)
+                let control = CGPoint(x: size.width / 2, y: 0)
                 var arc = Path()
                 arc.move(to: left)
                 arc.addQuadCurve(to: right, control: control)
-                context.stroke(arc, with: .color(Color.white.opacity(0.35)), style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
-                // Marca del objetivo.
-                let top = point(0.5, left, control, right)
-                var tick = Path()
-                tick.move(to: CGPoint(x: top.x, y: top.y - 5))
-                tick.addLine(to: CGPoint(x: top.x, y: top.y + 5))
-                context.stroke(tick, with: .color(.white), style: StrokeStyle(lineWidth: 2, lineCap: .round))
-                // Ritmo actual.
+                context.stroke(arc, with: .color(Color.white.opacity(0.3)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                let center = point(0.5, left, control, right)
+                // Tramo del arco desde el objetivo hasta tu ritmo, en el color del estado.
+                if let current {
+                    let t = (target.deviation(of: current) + 1) / 2
+                    var stretch = Path()
+                    let steps = 24
+                    for step in 0...steps {
+                        let u = 0.5 + (t - 0.5) * Double(step) / Double(steps)
+                        let p = point(u, left, control, right)
+                        step == 0 ? stretch.move(to: p) : stretch.addLine(to: p)
+                    }
+                    context.stroke(stretch, with: .color(tint), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                }
+                // Objetivo: marca blanca fija en el centro.
+                let goal = Path(ellipseIn: CGRect(x: center.x - 3, y: center.y - 3, width: 6, height: 6))
+                context.fill(goal, with: .color(.white))
+                // Ritmo actual: rayita que se corre hacia el lado del desvío.
                 if let current {
                     let t = (target.deviation(of: current) + 1) / 2
                     let spot = point(t, left, control, right)
-                    let dot = Path(ellipseIn: CGRect(x: spot.x - 5, y: spot.y - 5, width: 10, height: 10))
-                    context.fill(dot, with: .color(tint))
-                    context.stroke(dot, with: .color(.black), lineWidth: 1.5)
+                    var line = Path()
+                    line.move(to: CGPoint(x: spot.x, y: spot.y - 8))
+                    line.addLine(to: CGPoint(x: spot.x, y: spot.y + 6))
+                    context.stroke(line, with: .color(.black), style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                    context.stroke(line, with: .color(tint), style: StrokeStyle(lineWidth: 3, lineCap: .round))
                 }
             }
-            .frame(height: 16)
+            .frame(height: 20)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Ritmo actual"))
