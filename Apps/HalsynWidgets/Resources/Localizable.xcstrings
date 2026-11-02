@@ -1106,23 +1106,6 @@
         }
       }
     },
-    "Abre SPRING para empezar a correr.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opens SPRING to start a run."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Öppnar SPRING för att börja springa."
-          }
-        }
-      }
-    },
     "Abre los ajustes de la app para cambiar el idioma": {
       "extractionState": "manual",
       "localizations": {
@@ -7120,6 +7103,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kroppen anpassar sig till träningen när den vilar. Du kan gå eller göra lätt rörlighet."
+          }
+        }
+      }
+    },
+    "El entrenamiento de hoy de tu plan; toca para abrir SPRING.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's workout from your plan; tap to open SPRING."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens pass från din plan; tryck för att öppna SPRING."
           }
         }
       }
@@ -20159,6 +20159,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utan valda dagar gäller alla dagar. Aviseringen nämner bara målet, aldrig dina data."
+          }
+        }
+      }
+    },
+    "Sin entrenamiento del plan hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No plan workout today"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget planerat pass i dag"
           }
         }
       }

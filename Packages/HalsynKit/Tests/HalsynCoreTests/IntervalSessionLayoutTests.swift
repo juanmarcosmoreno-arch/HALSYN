@@ -109,3 +109,20 @@ struct RunnerStrengthTests {
         #expect(Set(StrengthExercise.all.map(\.id)).count == StrengthExercise.all.count)
     }
 }
+
+@Suite("Widget · sesión de hoy")
+struct WidgetSessionTests {
+    @Test func sessionOnlyForItsDay() throws {
+        let calendar = Calendar(identifier: .gregorian)
+        let day = Date(timeIntervalSince1970: 1_800_000_000)
+        var snapshot = WidgetSnapshot(updatedAt: day, isDemo: false)
+        snapshot.session = .init(date: day, title: "Rodaje suave", detail: "8 km", symbol: "figure.run", isRest: false)
+        #expect(snapshot.session(on: day, calendar: calendar)?.title == "Rodaje suave")
+        #expect(snapshot.session(on: day.addingTimeInterval(86_400 * 2), calendar: calendar) == nil)
+        let data = try #require(WidgetSnapshotStore.encode(snapshot))
+        let decoded = try #require(WidgetSnapshotStore.decode(data))
+        #expect(decoded.session == snapshot.session)
+        let old = try #require(WidgetSnapshotStore.encode(WidgetSnapshot(updatedAt: day, isDemo: true)))
+        #expect(WidgetSnapshotStore.decode(old)?.session == nil)
+    }
+}

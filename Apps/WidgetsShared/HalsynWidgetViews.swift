@@ -260,47 +260,111 @@ struct HalsynRunWidgetView: View {
     @Environment(\.widgetFamily) private var family
     let entry: HalsynWidgetEntry
 
+    /// La sesión del plan para hoy, si la app la dejó.
+    private var session: WidgetSnapshot.SessionSummary? {
+        entry.snapshot?.session(on: entry.date, calendar: .current)
+    }
+
     var body: some View {
         Group {
             switch family {
             case .accessoryRectangular:
                 HStack {
-                    Image(systemName: "figure.run").font(.title2)
+                    Image(systemName: session?.symbol ?? "figure.run").font(.title2)
                     VStack(alignment: .leading) {
-                        Text(verbatim: HalsynModule.spring.brandName).font(.headline)
-                        Text("Empezar a correr").font(.caption2)
+                        if let session {
+                            Text("Hoy").font(.caption2.weight(.semibold))
+                            Text(verbatim: session.title).font(.headline).lineLimit(1)
+                            if let detail = session.detail {
+                                Text(verbatim: detail).font(.caption2).lineLimit(1)
+                            }
+                        } else {
+                            Text(verbatim: HalsynModule.spring.brandName).font(.headline)
+                            Text("Empezar a correr").font(.caption2)
+                        }
                     }
                 }
             case .accessoryInline:
                 Label {
-                    Text(verbatim: HalsynModule.spring.brandName)
+                    if let session {
+                        Text("Hoy: \(session.title)")
+                    } else {
+                        Text(verbatim: HalsynModule.spring.brandName)
+                    }
                 } icon: {
-                    Image(systemName: "figure.run")
+                    Image(systemName: session?.symbol ?? "figure.run")
                 }
+            #if os(iOS)
+            case .systemSmall:
+                small
+            #endif
             default:
                 ZStack {
                     AccessoryWidgetBackground()
-                    Image(systemName: "figure.run")
+                    Image(systemName: session?.symbol ?? "figure.run")
                         .font(.title2.weight(.semibold))
                 }
             }
         }
         .widgetAccentable()
-        .containerBackground(for: .widget) { Color.clear }
+        .containerBackground(for: .widget) {
+            if family == .systemSmall { Color.halsynSurface } else { Color.clear }
+        }
         .widgetURL(URL(string: "halsyn://spring"))
+    }
+
+    /// Pantalla de inicio: el entrenamiento de hoy.
+    private var small: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text(verbatim: HalsynModule.spring.brandName)
+                    .font(.caption2.weight(.semibold))
+                    .tracking(2)
+                    .foregroundStyle(.halsynAccentText)
+                Spacer()
+                Image(systemName: session?.symbol ?? "figure.run")
+                    .foregroundStyle(.halsynAccentText)
+            }
+            Spacer(minLength: 0)
+            if let session {
+                Text("Hoy")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                Text(verbatim: session.title)
+                    .font(.headline)
+                    .foregroundStyle(.halsynPrimaryText)
+                    .lineLimit(2)
+                if let detail = session.detail {
+                    Text(verbatim: detail)
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .lineLimit(3)
+                }
+            } else {
+                Text("Sin entrenamiento del plan hoy")
+                    .font(.caption)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+        }
     }
 }
 
 struct HalsynRunWidget: Widget {
     let kind = "HalsynRun"
 
+    #if os(iOS)
+    static let families: [WidgetFamily] = [.systemSmall, .accessoryCircular, .accessoryRectangular, .accessoryInline]
+    #else
+    static let families: [WidgetFamily] = [.accessoryCircular, .accessoryRectangular, .accessoryInline]
+    #endif
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: HalsynWidgetProvider()) { entry in
             HalsynRunWidgetView(entry: entry)
         }
         .configurationDisplayName(Text(verbatim: HalsynModule.spring.brandName))
-        .description(Text("Abre SPRING para empezar a correr."))
-        .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
+        .description(Text("El entrenamiento de hoy de tu plan; toca para abrir SPRING."))
+        .supportedFamilies(Self.families)
     }
 }
 

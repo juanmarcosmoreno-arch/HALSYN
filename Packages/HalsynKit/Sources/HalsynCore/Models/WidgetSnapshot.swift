@@ -18,6 +18,23 @@ public struct WidgetSnapshot: Hashable, Codable, Sendable {
         }
     }
 
+    /// Sesión del plan para un día (textos ya localizados por la app).
+    public struct SessionSummary: Hashable, Codable, Sendable {
+        public var date: Date
+        public var title: String
+        public var detail: String?
+        public var symbol: String
+        public var isRest: Bool
+
+        public init(date: Date, title: String, detail: String?, symbol: String, isRest: Bool) {
+            self.date = date
+            self.title = title
+            self.detail = detail
+            self.symbol = symbol
+            self.isRest = isRest
+        }
+    }
+
     public var updatedAt: Date
     public var score: Int?
     /// Texto ya localizado de la banda ("Buena condición").
@@ -27,6 +44,13 @@ public struct WidgetSnapshot: Hashable, Codable, Sendable {
     public var sleepHours: Double?
     public var goal: GoalSummary?
     public var isDemo: Bool
+    /// Entrenamiento del plan para hoy (`nil` sin plan o sin sesión).
+    public var session: SessionSummary?
+
+    /// La sesión, solo si es la de `date` (el widget no muestra la de ayer).
+    public func session(on date: Date, calendar: Calendar) -> SessionSummary? {
+        session.flatMap { calendar.isDate($0.date, inSameDayAs: date) ? $0 : nil }
+    }
 
     public init(updatedAt: Date, score: Int? = nil, scoreBand: String? = nil, recovery: Int? = nil, steps: Double? = nil, sleepHours: Double? = nil, goal: GoalSummary? = nil, isDemo: Bool) {
         self.updatedAt = updatedAt

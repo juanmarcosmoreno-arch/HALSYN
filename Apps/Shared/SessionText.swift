@@ -27,4 +27,15 @@ enum SessionText {
             return String(localized: "\(distance(session.distance, unit: unit)) a \(pace)")
         }
     }
+
+    /// Resumen para widgets y complicaciones (textos ya traducidos).
+    static func widgetSummary(_ session: PlannedSession, unit: UnitSystem) -> WidgetSnapshot.SessionSummary {
+        WidgetSnapshot.SessionSummary(
+            date: session.date,
+            title: Bundle.main.localizedString(forKey: session.kind.title, value: nil, table: nil),
+            detail: session.kind == .rest ? nil : detail(session, unit: unit),
+            symbol: session.kind.systemImage,
+            isRest: session.kind == .rest
+        )
+    }
 }

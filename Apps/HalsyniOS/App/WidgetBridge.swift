@@ -14,7 +14,7 @@ enum WidgetBridge {
                 isCompleted: item.progress.isCompleted
             )
         }
-        let widget = WidgetSnapshot(
+        var widget = WidgetSnapshot(
             updatedAt: now,
             score: snapshot.score?.value,
             scoreBand: snapshot.score.map { NSLocalizedString($0.band.title, comment: "") },
@@ -24,6 +24,10 @@ enum WidgetBridge {
             goal: goal,
             isDemo: isDemo
         )
+        // La sesión del plan para hoy (el widget de SPRING la muestra).
+        if let session = TrainingPlanStore.shared.plan?.session(on: now, calendar: .current) {
+            widget.session = SessionText.widgetSummary(session, unit: RunSettingsStore.shared.settings.unitSystem)
+        }
         WidgetSnapshotStore.save(widget, to: defaults)
         WidgetCenter.shared.reloadAllTimelines()
         // El reloj muestra esta misma puntuación (tiene menos historial para calcularla).

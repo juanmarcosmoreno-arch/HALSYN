@@ -170,13 +170,18 @@ extension WatchHomeView {
     /// Deja la puntuación y la recuperación para las complicaciones del reloj.
     fileprivate func publishForComplications() {
         guard let defaults = WidgetSnapshotStore.sharedDefaults() else { return }
-        let snapshot = WidgetSnapshot(
+        var snapshot = WidgetSnapshot(
             updatedAt: .now,
             score: score?.value,
             scoreBand: score.map { NSLocalizedString($0.band.title, comment: "") },
             recovery: recovery?.value,
             isDemo: model.isDemo
         )
+        // La sesión del plan para hoy, para la complicación de SPRING.
+        let settings = RunSettingsStore.shared.settings
+        if let today = settings.planSnapshot?.upcoming(from: .now, calendar: .current).first(where: { Calendar.current.isDateInToday($0.date) }) {
+            snapshot.session = SessionText.widgetSummary(today, unit: settings.unitSystem)
+        }
         WidgetSnapshotStore.save(snapshot, to: defaults)
         WidgetCenter.shared.reloadAllTimelines()
     }
