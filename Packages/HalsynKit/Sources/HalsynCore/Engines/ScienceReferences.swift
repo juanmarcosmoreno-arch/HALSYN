@@ -136,6 +136,11 @@ public enum ScienceReferences {
         url: "https://doi.org/10.1136/bjsports-2013-092538"
     )
 
+    public static let weatherMarathon = ScienceReference(
+        citation: "Ely MR, Cheuvront SN, Roberts WO, Montain SJ. Impact of weather on marathon-running performance. Med Sci Sports Exerc. 2007;39(3):487–493.",
+        url: "https://doi.org/10.1249/mss.0b013e31802d3aba"
+    )
+
     public static let trainingLoad = ScienceReference(
         citation: "Gabbett TJ. The training—injury prevention paradox: should athletes be training smarter and harder? Br J Sports Med. 2016;50(5):273–280.",
         url: "https://doi.org/10.1136/bjsports-2015-095788"

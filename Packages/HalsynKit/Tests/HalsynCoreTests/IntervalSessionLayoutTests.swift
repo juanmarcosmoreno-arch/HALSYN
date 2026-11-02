@@ -153,3 +153,21 @@ struct RouteProjectionTests {
         #expect(points.count <= 402 && points.count > 300)
     }
 }
+
+@Suite("Clima de la carrera")
+struct RunWeatherTests {
+    @Test func heatBands() {
+        #expect(HeatStress(temperature: 8, humidity: 0.9) == .cool)
+        #expect(HeatStress(temperature: 17, humidity: 0.5) == .mild)
+        #expect(HeatStress(temperature: 17, humidity: 0.85) == .warm)
+        #expect(HeatStress(temperature: 22, humidity: 0.5) == .warm)
+        #expect(HeatStress(temperature: 22, humidity: 0.8) == .hot)
+        #expect(HeatStress(temperature: 28, humidity: nil) == .hot)
+        #expect(HeatStress.warm > .mild)
+    }
+
+    @Test func humidityAsPercentOrFraction() {
+        #expect(RunWeather(temperature: 20, humidity: 65, source: .health).humidity == 0.65)
+        #expect(RunWeather(temperature: 20, humidity: 0.65, source: .weatherKit).humidity == 0.65)
+    }
+}

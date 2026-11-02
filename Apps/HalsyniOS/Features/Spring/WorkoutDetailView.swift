@@ -14,6 +14,7 @@ struct WorkoutDetailView: View {
     @State private var insights: RunInsights?
     @State private var comparison: SimilarRunComparison?
     @State private var shareImage: Image?
+    @State private var weather: RunWeather?
 
     private let columns = [GridItem(.flexible(), spacing: HalsynSpacing.s), GridItem(.flexible(), spacing: HalsynSpacing.s)]
 
@@ -51,6 +52,10 @@ struct WorkoutDetailView: View {
             }
 
             WorkoutShoePicker(workout: workout)
+
+            if let weather {
+                RunWeatherCard(weather: weather, unitSystem: unitSystem)
+            }
 
             if workout.activity.isRun {
                 PerformanceMarkCard(workout: workout)
@@ -92,6 +97,12 @@ struct WorkoutDetailView: View {
             let loaded = await model.provider.workoutDetail(for: workout)
             detail = loaded
             shareImage = RunShareCard.image(workout: workout, route: loaded.route, unitSystem: unitSystem)
+            // Clima: el de Salud si lo hay; si no, WeatherKit con el punto de salida.
+            if let saved = workout.weather {
+                weather = saved
+            } else if workout.activity == .outdoorRun, !loaded.origin.isDemo, let first = loaded.route.first {
+                weather = await RunWeatherLookup.weather(for: workout, start: first)
+            }
             insights = RunAnalyzer.analyze(route: loaded.route, heartRate: loaded.heartRate)
             comparison = RunAnalyzer.compare(workout, with: await model.provider.recentWorkouts(limit: 60))
         }

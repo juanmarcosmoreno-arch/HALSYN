@@ -389,7 +389,10 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
         let distanceType = HKQuantityType(isRide ? .distanceCycling : .distanceWalkingRunning)
         let elevation = (workout.metadata?[HKMetadataKeyElevationAscended] as? HKQuantity)?.doubleValue(for: .meter())
-        return WorkoutSummary(
+        // La app Entreno guarda la temperatura y la humedad de las salidas al aire libre.
+        let temperature = (workout.metadata?[HKMetadataKeyWeatherTemperature] as? HKQuantity)?.doubleValue(for: .degreeCelsius())
+        let humidity = (workout.metadata?[HKMetadataKeyWeatherHumidity] as? HKQuantity)?.doubleValue(for: .percent())
+        var summary = WorkoutSummary(
             id: workout.uuid,
             activity: activity,
             start: workout.startDate,
@@ -407,6 +410,10 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
             elevationGain: elevation,
             endDate: workout.endDate
         )
+        if let temperature, !isIndoor {
+            summary.weather = RunWeather(temperature: temperature, humidity: humidity, source: .health)
+        }
+        return summary
     }
 
     static func map(_ error: Error) -> HealthStoreError {

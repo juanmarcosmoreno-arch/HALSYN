@@ -214,3 +214,9 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - Guía de ejercicios para los días de gimnasio (piernas de a una, pantorrilla y tendón de Aquiles, cadera, zona media y pliometría), 2 sesiones por semana lejos de las series y del umbral. No es una prescripción: el peso y la técnica los ajusta quien entrena.
 - **Economía de carrera**: Blagrove RC, Howatson G, Hayes PR. *Sports Med.* 2018;48(5):1117–1149, doi:10.1007/s40279-017-0835-7. La fuerza con cargas altas y la pliometría mejoran la economía de carrera en corredores de medio fondo y fondo sin aumentar la masa corporal.
 - **Lesiones**: Lauersen JB, Bertelsen DM, Andersen LB. *Br J Sports Med.* 2014;48(11):871–877, doi:10.1136/bjsports-2013-092538. El entrenamiento de fuerza redujo las lesiones deportivas en los ensayos aleatorizados analizados.
+
+## Clima de la carrera (`RunWeather`, `HeatStress`)
+
+- **Fuente del dato**: la temperatura y la humedad que guarda la app Entreno con el entrenamiento en Salud; si no las hay, WeatherKit (Apple) para la hora de salida y el punto de salida redondeado a 0,01° (unos 1 km). Se guarda en el iPhone.
+- **Pauta**: Ely MR, Cheuvront SN, Roberts WO, Montain SJ. *Med Sci Sports Exerc.* 2007;39(3):487–493, doi:10.1249/mss.0b013e31802d3aba. En maratones, el rendimiento empeora de forma progresiva a medida que sube la temperatura por encima de unos 10 °C, y más en los corredores menos rápidos.
+- **Franjas de HÅLSYN (convención, no del artículo)**: fresco < 15 °C; templado 15–20 °C; calor 20–25 °C (o 15–20 °C con humedad ≥ 75 %); mucho calor ≥ 25 °C (o 20–25 °C con humedad ≥ 75 %). Solo se usan para explicar por qué el ritmo y el pulso cambian; no se corrige ningún valor.

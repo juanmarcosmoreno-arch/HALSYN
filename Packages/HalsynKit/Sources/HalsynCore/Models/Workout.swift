@@ -75,6 +75,8 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
     public let elevationGain: Double?
     /// Hora real de fin (con las pausas). `duration` es solo el tiempo activo.
     public let endDate: Date?
+    /// Tiempo que hacía, si el entrenamiento lo guardó en Salud.
+    public var weather: RunWeather?
 
     public init(
         id: UUID = UUID(),

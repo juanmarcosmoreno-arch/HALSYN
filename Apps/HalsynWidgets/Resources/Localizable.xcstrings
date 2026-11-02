@@ -3469,6 +3469,23 @@
         }
       }
     },
+    "Calor: cuenta en el ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm: it affects your pace"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varmt: det påverkar tempot"
+          }
+        }
+      }
+    },
     "Cambiar foto": {
       "extractionState": "manual",
       "localizations": {
@@ -4319,6 +4336,23 @@
         }
       }
     },
+    "Clima": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weather"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Väder"
+          }
+        }
+      }
+    },
     "Colesterol": {
       "extractionState": "manual",
       "localizations": {
@@ -4676,6 +4710,23 @@
         }
       }
     },
+    "Con calor el corazón trabaja más para enfriarte: el pulso sube y el ritmo baja aunque estés igual de en forma. Compáralo con días parecidos, no con uno fresco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the heat your heart works harder to cool you down: heart rate rises and pace drops even though your fitness is the same. Compare it with similar days, not a cool one."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I värme jobbar hjärtat hårdare för att kyla dig: pulsen stiger och tempot sjunker trots att formen är densamma. Jämför med liknande dagar, inte en sval."
+          }
+        }
+      }
+    },
     "Con cambios de ritmo": {
       "extractionState": "manual",
       "localizations": {
@@ -4744,6 +4795,23 @@
         }
       }
     },
+    "Con fresco el cuerpo se enfría bien: es cuando el ritmo y el pulso reflejan mejor tu forma.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When it's cool your body sheds heat easily: pace and heart rate best reflect your fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "När det är svalt kyls kroppen bra: då speglar tempo och puls bäst din form."
+          }
+        }
+      }
+    },
     "Con la mejora habitual hasta la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -4774,6 +4842,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med automatiskt varv varje kilometer pratar ”Var 5:e” vid kilometer 5, 10, 15 … På cykeln sägs tempot som hastighet."
+          }
+        }
+      }
+    },
+    "Con mucho calor o humedad, ir más lento y con el pulso más alto es lo normal. No lo tomes como una mala carrera, bebe y baja el ritmo; en días así lo mejor es correr por tiempo o por esfuerzo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In strong heat or humidity, running slower with a higher heart rate is normal. Don't take it as a bad run; drink and ease off. On days like this it's best to run by time or effort."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I stark värme eller fukt är det normalt att springa långsammare med högre puls. Se det inte som ett dåligt pass; drick och sänk tempot. Sådana dagar är det bäst att springa efter tid eller ansträngning."
           }
         }
       }
@@ -4927,6 +5012,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med en hantel, fäll från höften med rak rygg medan det andra benet går bakåt."
+          }
+        }
+      }
+    },
+    "Condiciones razonables. Si es una carrera larga o hay mucho sol, el pulso puede subir un poco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reasonable conditions. On a long run or in strong sun, heart rate may rise a little."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimliga förhållanden. På ett långt pass eller i starkt solsken kan pulsen stiga lite."
           }
         }
       }
@@ -5165,6 +5267,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Känn din kropp. Förstå din hälsa. Förbättra ditt liv."
+          }
+        }
+      }
+    },
+    "Consultado con la hora y el punto de salida aproximado (unos 1 km).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looked up using the start time and approximate start point (about 1 km)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hämtat med starttiden och ungefärlig startplats (cirka 1 km)."
           }
         }
       }
@@ -9640,6 +9759,23 @@
         }
       }
     },
+    "Fresco: buenas condiciones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cool: good conditions"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svalt: bra förhållanden"
+          }
+        }
+      }
+    },
     "Frescura al empezar hoy": {
       "extractionState": "manual",
       "localizations": {
@@ -9789,6 +9925,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Källa: %@"
+          }
+        }
+      }
+    },
+    "Fuentes de datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data sources"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datakällor"
           }
         }
       }
@@ -10112,6 +10265,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sparat i Apple Health"
+          }
+        }
+      }
+    },
+    "Guardado con el entrenamiento en Salud.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved with the workout in Health."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sparat med passet i Hälsa."
           }
         }
       }
@@ -13495,6 +13665,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rörelse"
+          }
+        }
+      }
+    },
+    "Mucho calor: no compares el ritmo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very hot: don't compare pace"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mycket varmt: jämför inte tempot"
           }
         }
       }
@@ -21400,6 +21587,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Handledstemperatur"
+          }
+        }
+      }
+    },
+    "Templado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mild"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milt"
           }
         }
       }

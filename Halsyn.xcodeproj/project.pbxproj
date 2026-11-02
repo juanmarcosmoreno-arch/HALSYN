@@ -127,6 +127,7 @@
 		F5CC535C6A6E38120A2325FC /* WatchPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15B74FBEEA0484B9658D8E /* WatchPermissionsView.swift */; };
 		F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F68D555D13942BB8FD46E /* DailySummaryView.swift */; };
 		FB0A0CE0FBD8B298F8C22C81 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
+		FB4CF95A4E3BB9C94B733084 /* RunWeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94E383EC169ABED0215031 /* RunWeatherCard.swift */; };
 		FE20766E37F805D3522CA719 /* HeartRateRecoveryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803B8CAD60DEA7494A7EE0 /* HeartRateRecoveryCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -234,6 +235,7 @@
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		572F68D555D13942BB8FD46E /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
 		5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailViews.swift; sourceTree = "<group>"; };
+		5C94E383EC169ABED0215031 /* RunWeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunWeatherCard.swift; sourceTree = "<group>"; };
 		5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		64A6208785D9C37B5AAD2808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
 				2D40AF557467B29E042975E2 /* RunShareCard.swift */,
+				5C94E383EC169ABED0215031 /* RunWeatherCard.swift */,
 				2669DAFE5DADD4AB15EC2EB1 /* ShoeViews.swift */,
 				6683A16BF5216CF3290D7F7A /* SpringView.swift */,
 				C309410DCB678925A4740B86 /* TrainingPlanViews.swift */,
@@ -1050,6 +1053,7 @@
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
 				D0B1393FD1D047FF0B9D9E39 /* RunShareCard.swift in Sources */,
+				FB4CF95A4E3BB9C94B733084 /* RunWeatherCard.swift in Sources */,
 				02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */,
 				770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */,
 				86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */,
@@ -1196,7 +1200,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1381,7 +1385,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
