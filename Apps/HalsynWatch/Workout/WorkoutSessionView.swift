@@ -441,11 +441,15 @@ private struct WorkoutIntervalRingView: View {
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         VStack(spacing: 2) {
             ringHeader(interval)
-            if let target = interval.step.paceTarget {
-                PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
-            }
             ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
-            ringFooter(snapshot)
+                .overlay {
+                    // El arco de ritmo acompaña al anillo por fuera, sin achicarlo.
+                    if let target = interval.step.paceTarget {
+                        PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
+                    }
+                }
+                .padding(.top, 6)
+            ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
         }
     }
 
@@ -521,27 +525,31 @@ private struct WorkoutIntervalRingView: View {
         }
     }
 
-    private func ringFooter(_ snapshot: RunSnapshot) -> some View {
-        HStack {
-            // Con ritmo objetivo, el ritmo actual va en el arco de arriba.
+    private func ringFooter(_ snapshot: RunSnapshot, tint: Color) -> some View {
+        HStack(alignment: .bottom) {
             if let target = snapshot.paceTarget {
+                // Con ritmo objetivo: tu ritmo en el color del anillo y el objetivo al lado.
+                compact(label: "RITMO", value: snapshot.currentPace.map { $0.formatted(in: unitSystem) }, tint: snapshot.currentPace == nil ? .white : tint)
+                Spacer(minLength: 4)
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
             } else {
                 compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
             }
-            Spacer()
+            Spacer(minLength: 4)
             compact(label: "PULS", value: snapshot.heartRate.map { HalsynFormat.integer($0) })
         }
     }
 
-    private func compact(label: LocalizedStringKey, value: String?) -> some View {
+    private func compact(label: LocalizedStringKey, value: String?, tint: Color = .white) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(label)
                 .font(.system(size: 10, weight: .semibold))
                 .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
             Text(verbatim: value ?? "--")
                 .font(.footnote.monospacedDigit().weight(.semibold))
-                .foregroundStyle(Color.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .foregroundStyle(tint)
         }
     }
 }
@@ -890,72 +898,73 @@ private struct ZoneBarsView: View {
     }
 }
 
-/// Arco sobre el anillo: la marca blanca del centro es el ritmo objetivo y la
-/// rayita, tu ritmo actual (a la derecha si vas más lento, a la izquierda si
-/// vas más rápido; ± 30 s/km en los extremos), con el tramo del desvío en
-/// verde, rojo o amarillo. Arriba, el ritmo actual en grande.
+/// Arco por fuera de la parte de arriba del anillo: el punto blanco del
+/// centro es el ritmo objetivo y la rayita, tu ritmo actual (hacia la derecha
+/// si vas más lento, hacia la izquierda si vas más rápido; ± 30 s/km en los
+/// extremos), con el tramo del desvío en verde, rojo o amarillo. Se dibuja en
+/// el mismo marco que el anillo, así que no le quita lugar.
 struct PaceArcView: View {
     let target: PaceRange
     let current: Pace?
     let unit: UnitSystem
     let tint: Color
 
+    /// Medio arco, en grados desde arriba.
+    static let halfSpan: Double = 55
+    /// Distancia del arco al borde del anillo (el anillo mide 9 de grosor).
+    static let gap: CGFloat = 10
+    /// Lo que el lienzo sobresale del anillo por cada lado.
+    static let inset: CGFloat = gap + 8
+
     var body: some View {
-        VStack(spacing: 0) {
-            Text(verbatim: current.map { "\($0.formatted(in: unit)) \(unit.paceUnitSymbol)" } ?? "--")
-                .font(.system(size: 15, weight: .semibold, design: .rounded).monospacedDigit())
-                .foregroundStyle(current == nil ? Color(HalsynPalette.secondaryTextDark) : tint)
-            Canvas { context, size in
-                let left = CGPoint(x: 10, y: size.height - 3)
-                let right = CGPoint(x: size.width - 10, y: size.height - 3)
-                let control = CGPoint(x: size.width / 2, y: 0)
-                var arc = Path()
-                arc.move(to: left)
-                arc.addQuadCurve(to: right, control: control)
-                context.stroke(arc, with: .color(Color.white.opacity(0.3)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                let center = point(0.5, left, control, right)
-                // Tramo del arco desde el objetivo hasta tu ritmo, en el color del estado.
-                if let current {
-                    let t = (target.deviation(of: current) + 1) / 2
-                    var stretch = Path()
-                    let steps = 24
-                    for step in 0...steps {
-                        let u = 0.5 + (t - 0.5) * Double(step) / Double(steps)
-                        let p = point(u, left, control, right)
-                        step == 0 ? stretch.move(to: p) : stretch.addLine(to: p)
-                    }
-                    context.stroke(stretch, with: .color(tint), style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                }
-                // Objetivo: marca blanca fija en el centro.
-                let goal = Path(ellipseIn: CGRect(x: center.x - 3, y: center.y - 3, width: 6, height: 6))
-                context.fill(goal, with: .color(.white))
-                // Ritmo actual: rayita que se corre hacia el lado del desvío.
-                if let current {
-                    let t = (target.deviation(of: current) + 1) / 2
-                    let spot = point(t, left, control, right)
-                    var line = Path()
-                    line.move(to: CGPoint(x: spot.x, y: spot.y - 8))
-                    line.addLine(to: CGPoint(x: spot.x, y: spot.y + 6))
-                    context.stroke(line, with: .color(.black), style: StrokeStyle(lineWidth: 5, lineCap: .round))
-                    context.stroke(line, with: .color(tint), style: StrokeStyle(lineWidth: 3, lineCap: .round))
-                }
+        Canvas { context, size in
+            let center = CGPoint(x: size.width / 2, y: size.height / 2)
+            let ringRadius: CGFloat = min(size.width, size.height) / 2 - Self.inset
+            let radius: CGFloat = ringRadius + Self.gap
+            var arc = Path()
+            let steps = 40
+            for step in 0...steps {
+                let angle = -Self.halfSpan + 2 * Self.halfSpan * Double(step) / Double(steps)
+                let p = point(angle, radius: radius, center: center)
+                step == 0 ? arc.move(to: p) : arc.addLine(to: p)
             }
-            .frame(height: 20)
+            context.stroke(arc, with: .color(Color.white.opacity(0.3)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+            if let current {
+                let angle = target.deviation(of: current) * Self.halfSpan
+                // Tramo desde el objetivo hasta tu ritmo, en el color del estado.
+                var stretch = Path()
+                for step in 0...20 {
+                    let p = point(angle * Double(step) / 20, radius: radius, center: center)
+                    step == 0 ? stretch.move(to: p) : stretch.addLine(to: p)
+                }
+                context.stroke(stretch, with: .color(tint), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+            }
+            // Objetivo: punto blanco fijo arriba.
+            let top = point(0, radius: radius, center: center)
+            context.fill(Path(ellipseIn: CGRect(x: top.x - 3, y: top.y - 3, width: 6, height: 6)), with: .color(.white))
+            // Ritmo actual: rayita que cruza el arco hacia el lado del desvío.
+            if let current {
+                let angle = target.deviation(of: current) * Self.halfSpan
+                var tick = Path()
+                tick.move(to: point(angle, radius: radius - 5, center: center))
+                tick.addLine(to: point(angle, radius: radius + 6, center: center))
+                context.stroke(tick, with: .color(.black), style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                context.stroke(tick, with: .color(tint), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+            }
         }
+        // El lienzo se agranda para que el arco quepa por fuera del anillo.
+        .padding(-Self.inset)
+        .allowsHitTesting(false)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Ritmo actual"))
         .accessibilityValue(Text(verbatim: current.map { $0.formatted(in: unit) } ?? "--"))
     }
 
-    /// Punto de la curva cuadrática para t ∈ 0…1.
-    private func point(_ t: Double, _ p0: CGPoint, _ p1: CGPoint, _ p2: CGPoint) -> CGPoint {
-        let t = CGFloat(t)
-        let u: CGFloat = 1 - t
-        let a: CGFloat = u * u
-        let b: CGFloat = 2 * u * t
-        let c: CGFloat = t * t
-        let x: CGFloat = a * p0.x + b * p1.x + c * p2.x
-        let y: CGFloat = a * p0.y + b * p1.y + c * p2.y
+    /// Punto a `degrees` desde arriba (positivo hacia la derecha) a `radius` del centro.
+    private func point(_ degrees: Double, radius: CGFloat, center: CGPoint) -> CGPoint {
+        let radians = CGFloat(degrees * .pi / 180)
+        let x: CGFloat = center.x + radius * sin(radians)
+        let y: CGFloat = center.y - radius * cos(radians)
         return CGPoint(x: x, y: y)
     }
 }
