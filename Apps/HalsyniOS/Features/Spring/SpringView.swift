@@ -25,6 +25,7 @@ struct SpringView: View {
                     // Arriba, lo de hoy: el plan y con qué zapatillas.
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
+                    StrengthCard()
                     AnalysisSection("spring") {
                         RunningStatsCard(workouts: allWorkouts)
                         TrainingLoadCard()
@@ -217,4 +218,38 @@ struct WorkoutRow: View {
 #Preview {
     SpringView()
         .environment(AppModel())
+}
+
+/// Acceso fijo a los ejercicios de gimnasio para corredores (antes solo
+/// aparecía los días de gimnasio del plan).
+struct StrengthCard: View {
+    var body: some View {
+        NavigationLink {
+            RunnerStrengthView()
+        } label: {
+            HalsynCard {
+                HStack(spacing: HalsynSpacing.m) {
+                    Image(systemName: "figure.strengthtraining.functional")
+                        .font(.title2)
+                        .foregroundStyle(.halsynAccentText)
+                        .frame(width: 36)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Gimnasio")
+                            .font(.halsynHeadline)
+                            .foregroundStyle(.halsynPrimaryText)
+                        Text("Ejercicios de fuerza para corredores")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.halsynSecondaryText)
+                        .accessibilityHidden(true)
+                }
+            }
+        }
+        .buttonStyle(.plain)
+    }
 }

@@ -631,6 +631,7 @@
  "Fórmula de Riegel con tus 3 mejores carreras recientes (de %lld). Supone que entrenas para esa distancia y vas a tope; si casi nunca corres fuerte, los tiempos reales pueden ser mejores. El rango refleja el error de la fórmula.": "Riegel formula using your 3 best recent runs (out of %lld). It assumes you train for that distance and go all out; if you rarely run hard, your real times may be better. The range reflects the formula's error.",
  "Galería del design system": "Design system gallery",
  "Gestionar permisos": "Manage permissions",
+ "Gimnasio": "Gym",
  "Gimnasio o fuerza": "Gym or strength",
  "Glucosa": "Glucose",
  "Glucosa en ayunas": "Fasting glucose",

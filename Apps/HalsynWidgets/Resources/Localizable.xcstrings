@@ -10133,6 +10133,23 @@
         }
       }
     },
+    "Gimnasio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gym"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gym"
+          }
+        }
+      }
+    },
     "Gimnasio o fuerza": {
       "extractionState": "manual",
       "localizations": {
