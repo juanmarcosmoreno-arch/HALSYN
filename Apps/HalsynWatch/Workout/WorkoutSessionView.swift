@@ -440,7 +440,7 @@ private struct WorkoutIntervalRingView: View {
 
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         VStack(spacing: 2) {
-            ringHeader(interval)
+            ringHeader(interval, snapshot: snapshot)
             ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
                 .overlay {
                     // El arco de ritmo acompaña al anillo por fuera, sin achicarlo.
@@ -448,7 +448,7 @@ private struct WorkoutIntervalRingView: View {
                         PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
                     }
                 }
-                .padding(.top, 6)
+                .padding(.top, 10)
             ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
         }
     }
@@ -466,7 +466,7 @@ private struct WorkoutIntervalRingView: View {
         }
     }
 
-    private func ringHeader(_ interval: IntervalProgress) -> some View {
+    private func ringHeader(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         HStack {
             Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
                 .font(.caption2.weight(.bold))
@@ -477,6 +477,14 @@ private struct WorkoutIntervalRingView: View {
                 Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
                     .font(.caption2.monospacedDigit())
                     .foregroundStyle(Color.white)
+            }
+        }
+        .overlay {
+            // Con ritmo objetivo, tu ritmo actual arriba al centro, en el color del estado.
+            if interval.step.paceTarget != nil {
+                Text(verbatim: snapshot.currentPace?.formatted(in: unitSystem) ?? "--")
+                    .font(.system(size: 17, weight: .semibold, design: .rounded).monospacedDigit())
+                    .foregroundStyle(snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot))
             }
         }
     }
@@ -528,9 +536,7 @@ private struct WorkoutIntervalRingView: View {
     private func ringFooter(_ snapshot: RunSnapshot, tint: Color) -> some View {
         HStack(alignment: .bottom) {
             if let target = snapshot.paceTarget {
-                // Con ritmo objetivo: tu ritmo en el color del anillo y el objetivo al lado.
-                compact(label: "RITMO", value: snapshot.currentPace.map { $0.formatted(in: unitSystem) }, tint: snapshot.currentPace == nil ? .white : tint)
-                Spacer(minLength: 4)
+                // Con ritmo objetivo, el ritmo actual va arriba al centro.
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
             } else {
                 compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
@@ -898,9 +904,9 @@ private struct ZoneBarsView: View {
     }
 }
 
-/// Arco por fuera de la parte de arriba del anillo: el punto blanco del
-/// centro es el ritmo objetivo y la rayita, tu ritmo actual (hacia la derecha
-/// si vas más lento, hacia la izquierda si vas más rápido; ± 30 s/km en los
+/// Arco por fuera del anillo, de más de media vuelta: el punto blanco de
+/// arriba es el ritmo objetivo y la rayita, tu ritmo actual (hacia la derecha
+/// si vas más rápido, hacia la izquierda si vas más lento; ± 30 s/km en los
 /// extremos), con el tramo del desvío en verde, rojo o amarillo. Se dibuja en
 /// el mismo marco que el anillo, así que no le quita lugar.
 struct PaceArcView: View {
@@ -909,8 +915,9 @@ struct PaceArcView: View {
     let unit: UnitSystem
     let tint: Color
 
-    /// Medio arco, en grados desde arriba.
-    static let halfSpan: Double = 55
+    /// Medio arco, en grados desde arriba (más de un cuarto de vuelta por lado
+    /// para que el recorrido se note).
+    static let halfSpan: Double = 105
     /// Distancia del arco al borde del anillo (el anillo mide 9 de grosor).
     static let gap: CGFloat = 10
     /// Lo que el lienzo sobresale del anillo por cada lado.
@@ -930,7 +937,7 @@ struct PaceArcView: View {
             }
             context.stroke(arc, with: .color(Color.white.opacity(0.3)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
             if let current {
-                let angle = target.deviation(of: current) * Self.halfSpan
+                let angle = -target.deviation(of: current) * Self.halfSpan
                 // Tramo desde el objetivo hasta tu ritmo, en el color del estado.
                 var stretch = Path()
                 for step in 0...20 {
@@ -944,7 +951,7 @@ struct PaceArcView: View {
             context.fill(Path(ellipseIn: CGRect(x: top.x - 3, y: top.y - 3, width: 6, height: 6)), with: .color(.white))
             // Ritmo actual: rayita que cruza el arco hacia el lado del desvío.
             if let current {
-                let angle = target.deviation(of: current) * Self.halfSpan
+                let angle = -target.deviation(of: current) * Self.halfSpan
                 var tick = Path()
                 tick.move(to: point(angle, radius: radius - 5, center: center))
                 tick.addLine(to: point(angle, radius: radius + 6, center: center))
@@ -960,7 +967,7 @@ struct PaceArcView: View {
         .accessibilityValue(Text(verbatim: current.map { $0.formatted(in: unit) } ?? "--"))
     }
 
-    /// Punto a `degrees` desde arriba (positivo hacia la derecha) a `radius` del centro.
+    /// Punto a `degrees` desde arriba (positivo hacia la derecha, que es más rápido) a `radius` del centro.
     private func point(_ degrees: Double, radius: CGFloat, center: CGPoint) -> CGPoint {
         let radians = CGFloat(degrees * .pi / 180)
         let x: CGFloat = center.x + radius * sin(radians)
