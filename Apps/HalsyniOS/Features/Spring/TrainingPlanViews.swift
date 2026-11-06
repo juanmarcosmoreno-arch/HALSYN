@@ -146,6 +146,11 @@ struct TrainingPlanCard: View {
         }
         .task(id: "\(model.reloadKey)|\(workouts.count)") {
             store.replanIfNeeded(runs: workouts)
+            // Un valor por día para ver cómo cambia la probabilidad.
+            if !model.isDemo, let plan = store.plan,
+               let probability = GoalProbability.evaluate(plan: plan, estimate: FitnessStore.shared.estimate(runs: workouts), runs: workouts, today: .now, calendar: .current) {
+                GoalProbabilityHistory.record(probability, goal: plan.goal)
+            }
             let today = Date.now
             let recovery = await model.provider.recoveryEstimates(endingOn: today, days: 1).last { Calendar.current.isDateInToday($0.day) }?.value
             let signals = await model.provider.unusualSignals(on: today, calendar: .current)
@@ -178,7 +183,15 @@ struct TrainingPlanCard: View {
                     .foregroundStyle(.halsynSecondaryText)
             }
         }
-        let progress = PlanProgress.evaluate(plan: plan, runs: workouts, estimate: FitnessStore.shared.estimate(runs: workouts), today: .now, calendar: calendar)
+        let estimate = FitnessStore.shared.estimate(runs: workouts)
+        if days >= 0 {
+            if let probability = GoalProbability.evaluate(plan: plan, estimate: estimate, runs: workouts, today: .now, calendar: calendar) {
+                GoalProbabilitySummary(probability: probability, goal: plan.goal)
+            } else {
+                GoalProbabilityMissing(hasGoalTime: plan.goal.goalTime != nil) { editingGoal = true }
+            }
+        }
+        let progress = PlanProgress.evaluate(plan: plan, runs: workouts, estimate: estimate, today: .now, calendar: calendar)
         if progress.status != .notStarted {
             let done = SessionText.distance(progress.actualDistance, unit: unitSystem)
             let planned = SessionText.distance(progress.plannedDistance, unit: unitSystem)

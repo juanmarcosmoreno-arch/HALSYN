@@ -342,7 +342,10 @@ struct GoalStatusCard: View {
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
                     timeRow("Con tu forma de hoy", assessment.predictedTime)
-                    if let projected = progress.projectedTime {
+                    if let probability = GoalProbability.evaluate(plan: plan, estimate: estimate, runs: runs, today: .now, calendar: .current) {
+                        Divider().overlay(Color.halsynHairline)
+                        GoalProbabilityDetail(probability: probability, estimate: estimate, goal: plan.goal)
+                    } else if let projected = progress.projectedTime {
                         timeRow("Previsto el día de la carrera", projected)
                     }
                 }

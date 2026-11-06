@@ -443,6 +443,23 @@
         }
       }
     },
+    "%lld de %lld en las últimas 4 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld of %lld in the last 4 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld av %lld de senaste 4 veckorna"
+          }
+        }
+      }
+    },
     "%lld de %lld hechas": {
       "extractionState": "manual",
       "localizations": {
@@ -2428,6 +2445,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga cykelturer med registrerad puls än."
+          }
+        }
+      }
+    },
+    "Aún no hay sesiones pasadas: se asume lo habitual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No past sessions yet: a typical rate is assumed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga tidigare pass ännu: ett normalt värde antas"
           }
         }
       }
@@ -5764,6 +5798,23 @@
         }
       }
     },
+    "Cómo se calcula: tu forma de hoy (VDOT) más la mejora habitual de Daniels (1 punto cada 6 semanas) por las semanas que quedan, ajustada por las sesiones del plan que cumpliste en las últimas 4 semanas. La forma sale de tu último test o carrera, o de tu mejor esfuerzo de 3 km o más de las últimas 6 semanas, aunque no estuviera en el plan. La probabilidad es la de que tu forma el día de la carrera llegue a la que pide el objetivo, con un margen de error que crece si no hay un test reciente y por lo que puede pasar ese día. Ni optimista ni pesimista: con el objetivo justo en lo previsto da 50 %. Nunca baja de 3 % ni pasa de 97 %. Es una estimación orientativa, no una predicción segura; un test cada 6 semanas la hace más precisa.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it's calculated: your current fitness (VDOT) plus Daniels' usual improvement (1 point every 6 weeks) for the weeks left, adjusted by the plan sessions you completed in the last 4 weeks. Fitness comes from your latest test or race, or from your best effort of 3 km or more in the last 6 weeks, even if it wasn't in the plan. The probability is that your race-day fitness reaches what the goal requires, with a margin of error that grows without a recent test and for what can happen on the day. Neither optimistic nor pessimistic: with the goal right on the projection it shows 50 %. It never goes below 3 % or above 97 %. It is a rough estimate, not a sure prediction; a test every 6 weeks makes it more accurate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Så räknas det: din form i dag (VDOT) plus Daniels vanliga förbättring (1 poäng var 6:e vecka) för de veckor som återstår, justerat efter hur många pass i planen du gjort de senaste 4 veckorna. Formen kommer från ditt senaste test eller lopp, eller från din bästa insats på 3 km eller mer de senaste 6 veckorna, även utanför planen. Sannolikheten är att din form på tävlingsdagen når det målet kräver, med en felmarginal som växer utan ett färskt test och för vad som kan hända den dagen. Varken optimistisk eller pessimistisk: med målet precis på prognosen blir det 50 %. Den går aldrig under 3 % eller över 97 %. Det är en ungefärlig uppskattning, ingen säker förutsägelse; ett test var 6:e vecka gör den mer exakt."
+          }
+        }
+      }
+    },
     "Cómodamente duro: el ritmo que podrías sostener cerca de una hora en carrera. Sube el ritmo que aguantas sin acumular cansancio. Calienta antes y no lo conviertas en una carrera.": {
       "extractionState": "manual",
       "localizations": {
@@ -5964,6 +6015,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Från Apple Hälsa (%@). Ange den som din egen för att se din effektzon på klockan."
+          }
+        }
+      }
+    },
+    "De tu último test o carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From your latest test or race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från ditt senaste test eller lopp"
+          }
+        }
+      }
+    },
+    "De tus mejores carreras recientes, en el plan o fuera de él": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From your best recent runs, in the plan or not"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från dina bästa senaste löppass, i planen eller inte"
           }
         }
       }
@@ -6440,6 +6525,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Diastoliskt (undertryck)"
+          }
+        }
+      }
+    },
+    "Difícil por ahora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard for now"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svårt just nu"
           }
         }
       }
@@ -7817,6 +7919,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Börja med dagboken i HÄLSA. Det behövs minst 5 dagar med och 5 utan varje sak för att jämföra."
+          }
+        }
+      }
+    },
+    "En %lld semanas de entrenamiento, según cuánto cumples": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over %lld training weeks, based on how much you follow the plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %lld träningsveckor, efter hur väl du följer planen"
           }
         }
       }
@@ -11408,6 +11527,23 @@
         }
       }
     },
+    "Igual que hace una semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same as a week ago"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Samma som för en vecka sedan"
+          }
+        }
+      }
+    },
     "Imperial (mi)": {
       "extractionState": "manual",
       "localizations": {
@@ -13359,6 +13495,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bästa tempo (5 km eller mer)"
+          }
+        }
+      }
+    },
+    "Mejora esperada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected improvement"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förväntad förbättring"
           }
         }
       }
@@ -15777,6 +15930,23 @@
         }
       }
     },
+    "Para calcular la probabilidad de llegar al objetivo hace falta un test, una carrera o un entrenamiento de 3 km o más en las últimas 6 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To calculate the chance of reaching your goal, a test, a race or a run of 3 km or more in the last 6 weeks is needed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att räkna ut chansen att nå målet behövs ett test, ett lopp eller ett pass på minst 3 km de senaste 6 veckorna."
+          }
+        }
+      }
+    },
     "Para calcular tus ritmos y si el objetivo es posible, primero hace falta medir tu forma: un test a tope o una carrera reciente.": {
       "extractionState": "manual",
       "localizations": {
@@ -16542,6 +16712,23 @@
         }
       }
     },
+    "Pide el objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal requires"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målet kräver"
+          }
+        }
+      }
+    },
     "Pide mejorar más rápido de lo habitual. Es posible, pero no lo des por hecho.": {
       "extractionState": "manual",
       "localizations": {
@@ -16848,6 +17035,23 @@
         }
       }
     },
+    "Pon un tiempo objetivo para ver la probabilidad de lograrlo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set a goal time to see your chance of reaching it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ange en måltid för att se chansen att nå den"
+          }
+        }
+      }
+    },
     "Ponderada (NP)": {
       "extractionState": "manual",
       "localizations": {
@@ -17052,6 +17256,23 @@
         }
       }
     },
+    "Posible, sin margen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Possible, no margin"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Möjligt, utan marginal"
+          }
+        }
+      }
+    },
     "Potencia": {
       "extractionState": "manual",
       "localizations": {
@@ -17205,6 +17426,23 @@
         }
       }
     },
+    "Prevista el día de la carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected on race day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognos på tävlingsdagen"
+          }
+        }
+      }
+    },
     "Previsto el día de la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -17218,6 +17456,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prognos på loppdagen"
+          }
+        }
+      }
+    },
+    "Previsto el día de la carrera: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected on race day: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognos på tävlingsdagen: %@"
           }
         }
       }
@@ -17286,6 +17541,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sannolikheten att sova eller vara vaken vid samma tid som dagen innan, från −100 till 100. Beräknat på %lld par av nätter i följd."
+          }
+        }
+      }
+    },
+    "Probabilidad de llegar al objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chance of reaching your goal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chans att nå målet"
+          }
+        }
+      }
+    },
+    "Probable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Likely"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troligt"
           }
         }
       }
@@ -20248,6 +20537,23 @@
         }
       }
     },
+    "Sesiones cumplidas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessions completed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomförda pass"
+          }
+        }
+      }
+    },
     "Sexo (tablas de referencia)": {
       "extractionState": "manual",
       "localizations": {
@@ -22900,6 +23206,23 @@
         }
       }
     },
+    "Tu forma hoy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fitness today"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din form i dag"
+          }
+        }
+      }
+    },
     "Tu forma sale de tus entrenamientos y probablemente se queda corta: el test de la primera semana la afina.": {
       "extractionState": "manual",
       "localizations": {
@@ -25093,6 +25416,23 @@
         }
       }
     },
+    "de correr %@ en %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of running %@ in %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "att springa %@ på %@"
+          }
+        }
+      }
+    },
     "frente a hace un mes": {
       "extractionState": "manual",
       "localizations": {
@@ -25871,6 +26211,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "≥150 min/vecka: 100 · 120–149: 90 · 90–119: 80 · 60–89: 60 · 30–59: 40 · 1–29: 20 · 0: 0"
+          }
+        }
+      }
+    },
+    "▲ %lld puntos en una semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "▲ %lld points in a week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "▲ %lld poäng på en vecka"
+          }
+        }
+      }
+    },
+    "▼ %lld puntos en una semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "▼ %lld points in a week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "▼ %lld poäng på en vecka"
           }
         }
       }

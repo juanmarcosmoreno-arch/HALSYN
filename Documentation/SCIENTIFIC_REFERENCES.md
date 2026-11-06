@@ -220,3 +220,11 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - **Fuente del dato**: la temperatura y la humedad que guarda la app Entreno con el entrenamiento en Salud; si no las hay, WeatherKit (Apple) para la hora de salida y el punto de salida redondeado a 0,01° (unos 1 km). Se guarda en el iPhone.
 - **Pauta**: Ely MR, Cheuvront SN, Roberts WO, Montain SJ. *Med Sci Sports Exerc.* 2007;39(3):487–493, doi:10.1249/mss.0b013e31802d3aba. En maratones, el rendimiento empeora de forma progresiva a medida que sube la temperatura por encima de unos 10 °C, y más en los corredores menos rápidos.
 - **Franjas de HÅLSYN (convención, no del artículo)**: fresco < 15 °C; templado 15–20 °C; calor 20–25 °C (o 15–20 °C con humedad ≥ 75 %); mucho calor ≥ 25 °C (o 20–25 °C con humedad ≥ 75 %). Solo se usan para explicar por qué el ritmo y el pulso cambian; no se corrige ningún valor.
+
+## Probabilidad de llegar al objetivo (`GoalProbability`)
+
+- **Base:** VDOT de Daniels y Gilbert para la forma actual y la que pide el tiempo objetivo; mejora esperada con la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas de entrenamiento constante), que es una pauta de entrenadores, no un resultado de estudios.
+- **Cumplimiento:** sesiones de carrera del plan de las últimas 4 semanas (hecha = 1, en parte = fracción corrida hasta 0,8, no hecha = 0). Con ≥ 90 % cuenta la mejora entera; con ≤ 40 %, ninguna. Sin sesiones pasadas se asume 85 %.
+- **Ritmos fuera del plan:** entran por la forma (`FitnessEstimator`): mejor esfuerzo de ≥ 3 km de las últimas 6 semanas, esté o no en el plan, o el último test o carrera.
+- **Incertidumbre (elección de HÅLSYN, no de un estudio):** forma de hoy 1 punto con test reciente, hasta 2 si es viejo o sale de entrenamientos; mejora ± 50 %; día de la carrera 0,7 puntos. Probabilidad = P(normal ≥ VDOT objetivo), acotada a 3–97 %. Simétrica a propósito: con el objetivo en la proyección da 50 %.
+- **Colores:** verde ≥ 70 %, amarillo 40–69 %, rojo < 40 %.

@@ -17,6 +17,7 @@ enum CloudBackup {
     static let keys: [String] = [
         "halsyn.trainingPlan",
         "halsyn.performanceResults",
+        GoalProbabilityHistory.key,
         ShoeStorage.key,
         RecoveryHistoryStore.key,
         RunSettings.storageKey,
