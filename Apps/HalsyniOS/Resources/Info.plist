@@ -49,6 +49,8 @@
 	<string>HÅLSYN guarda en Apple Health los entrenamientos que registras con la app y el peso de tu balanza.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>HÅLSYN guarda en Fotos la imagen de tu carrera cuando eliges guardarla al compartir.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

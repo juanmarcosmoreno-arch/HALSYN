@@ -4217,6 +4217,23 @@
         }
       }
     },
+    "Carrera en curso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run in progress"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löprunda pågår"
+          }
+        }
+      }
+    },
     "Carrera libre": {
       "extractionState": "manual",
       "localizations": {
@@ -15454,6 +15471,23 @@
         }
       }
     },
+    "Objetivo %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål %@"
+          }
+        }
+      }
+    },
     "Objetivo ambicioso": {
       "extractionState": "manual",
       "localizations": {
@@ -20741,6 +20775,23 @@
         }
       }
     },
+    "Sin conexión con el reloj": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No connection to the watch"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen anslutning till klockan"
+          }
+        }
+      }
+    },
     "Sin configurar": {
       "extractionState": "manual",
       "localizations": {
@@ -22743,6 +22794,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tryck för att hoppa över"
+          }
+        }
+      }
+    },
+    "Toca para verla en la pantalla bloqueada mientras corres.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to see it on the Lock Screen while you run."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck för att se den på låsskärmen medan du springer."
           }
         }
       }

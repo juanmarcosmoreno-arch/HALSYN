@@ -380,5 +380,8 @@ struct HalsynWidgetBundle: WidgetBundle {
     var body: some Widget {
         HalsynStatusWidget()
         HalsynRunWidget()
+        #if os(iOS)
+        RunLiveActivityWidget()
+        #endif
     }
 }

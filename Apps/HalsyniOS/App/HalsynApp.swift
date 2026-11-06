@@ -82,6 +82,7 @@ struct HalsynApp: App {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 model.refresh()
+                LiveRunActivity.shared.appBecameActive()
             } else if phase == .background {
                 CloudBackup.backUp()
             }

@@ -89,6 +89,8 @@ final class WorkoutManager: NSObject {
     @ObservationIgnored private var shouldSave = true
     @ObservationIgnored private var ticker: Task<Void, Never>?
     @ObservationIgnored private var lastRoutePoint: CLLocation?
+    /// Último envío al iPhone para la pantalla bloqueada.
+    @ObservationIgnored private var lastMirrorSend = Date.distantPast
 
     private override init() {
         recoveryMeter = RecoveryMeter(healthStore: healthStore)
@@ -251,6 +253,7 @@ final class WorkoutManager: NSObject {
             let start = Date()
             session.startActivity(with: start)
             try await builder.beginCollection(at: start)
+            startMirroring(session)
             startTicker()
         } catch {
             fail(error)
@@ -278,6 +281,7 @@ final class WorkoutManager: NSObject {
             isWalking = session.workoutConfiguration.activityType == .walking
             tracker.handle(.start, at: session.startDate ?? .now)
             tracker.handle(.began, at: session.startDate ?? .now)
+            startMirroring(session)
             if session.state == .paused {
                 tracker.handle(.pause, at: .now)
             }
@@ -388,11 +392,13 @@ final class WorkoutManager: NSObject {
                 pausedAt = nil
                 tracker.handle(.resume, at: date)
                 WKInterfaceDevice.current().play(.start)
+                sendLiveUpdate(force: true)
             }
         case .paused:
             pausedAt = date
             tracker.handle(.pause, at: date)
             WKInterfaceDevice.current().play(.stop)
+            sendLiveUpdate(force: true)
         case .stopped:
             tracker.handle(.end, at: date)
         case .ended:
@@ -462,8 +468,49 @@ final class WorkoutManager: NSObject {
                 guard let self, !Task.isCancelled else { return }
                 self.tracker.tick(at: .now)
                 self.handleCues()
+                self.sendLiveUpdate()
             }
         }
+    }
+
+    // MARK: Pantalla bloqueada del iPhone
+
+    /// La sesión se refleja en el iPhone: HealthKit abre HÅLSYN allí (en
+    /// segundo plano) y la app muestra la carrera en la pantalla bloqueada.
+    private func startMirroring(_ session: HKWorkoutSession) {
+        lastMirrorSend = .distantPast
+        session.startMirroringToCompanionDevice { _, _ in }
+    }
+
+    /// Cada 5 s (o al pausar) manda al iPhone tiempo, distancia, ritmo y pulso.
+    private func sendLiveUpdate(force: Bool = false) {
+        guard let session, force || Date.now.timeIntervalSince(lastMirrorSend) >= 5 else { return }
+        lastMirrorSend = .now
+        let snapshot = tracker.snapshot(at: .now)
+        var step: String?
+        if let interval = snapshot.interval {
+            let key = plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label
+            var text = Bundle.main.localizedString(forKey: key, value: nil, table: nil)
+            if let repetition = interval.step.repetition {
+                text += " \(repetition)/\(plan?.repeats ?? repetition)"
+            }
+            step = text
+        }
+        let target = snapshot.interval?.step.paceTarget
+        let update = RunLiveUpdate(
+            activity: isCycling ? .ride : (isWalking ? .walk : .run),
+            elapsed: snapshot.elapsed,
+            isPaused: snapshot.phase == .paused,
+            distance: snapshot.distance,
+            pace: snapshot.currentPace?.secondsPerKilometer,
+            heartRate: snapshot.heartRate,
+            step: step,
+            paceFastest: target?.fastest,
+            paceSlowest: target?.slowest,
+            metric: RunSettingsStore.shared.settings.unitSystem == .metric
+        )
+        guard let data = try? JSONEncoder().encode(update) else { return }
+        session.sendToRemoteWorkoutSession(data: data) { _, _ in }
     }
 
     /// Hápticos y aviso en pantalla para cada evento de la carrera.

@@ -18,7 +18,7 @@ settings:
   base:
     SWIFT_VERSION: "5.0"
     MARKETING_VERSION: "0.10.0"
-    CURRENT_PROJECT_VERSION: "83"
+    CURRENT_PROJECT_VERSION: "84"
     # Equipo de firma y bundle ID: en Config/Local.xcconfig (ver Config/Halsyn.xcconfig).
     CODE_SIGN_STYLE: Automatic
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
@@ -40,6 +40,7 @@ targets:
         excludes:
           - "Resources/Info.plist"
       - path: Apps/Shared
+      - path: Apps/LiveActivity
     dependencies:
       - package: HalsynKit
         product: HalsynCore
@@ -70,6 +71,8 @@ targets:
         # Avisos de voz de la carrera del reloj por los auriculares del iPhone.
         UIBackgroundModes:
           - audio
+        # Carrera del reloj en la pantalla bloqueada y la Dynamic Island.
+        NSSupportsLiveActivities: true
         CFBundleURLTypes:
           - CFBundleURLName: $(HALSYN_BUNDLE_ID)
             CFBundleURLSchemes: [halsyn]
@@ -94,6 +97,7 @@ targets:
         excludes:
           - "Resources/Info.plist"
       - path: Apps/Shared
+      - path: Apps/LiveActivity
     dependencies:
       - package: HalsynKit
         product: HalsynCore
@@ -146,6 +150,7 @@ targets:
         excludes:
           - "Info.plist"
       - path: Apps/WidgetsShared
+      - path: Apps/LiveActivity
     dependencies:
       - package: HalsynKit
         product: HalsynCore

@@ -483,7 +483,9 @@ private struct WorkoutIntervalRingView: View {
             // Con ritmo objetivo, tu ritmo actual arriba al centro, en el color del estado.
             if interval.step.paceTarget != nil {
                 Text(verbatim: snapshot.currentPace?.formatted(in: unitSystem) ?? "--")
-                    .font(.system(size: 17, weight: .semibold, design: .rounded).monospacedDigit())
+                    .font(.system(size: 22, weight: .semibold, design: .rounded).monospacedDigit())
+                    .minimumScaleFactor(0.8)
+                    .lineLimit(1)
                     .foregroundStyle(snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot))
             }
         }
@@ -515,7 +517,7 @@ private struct WorkoutIntervalRingView: View {
                 .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(tint)
             Text(verbatim: value.value ?? "--")
-                .font(.system(size: 34, weight: .semibold, design: .rounded).monospacedDigit())
+                .font(.system(size: 38, weight: .semibold, design: .rounded).monospacedDigit())
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
                 .foregroundStyle(Color.white)
@@ -549,12 +551,12 @@ private struct WorkoutIntervalRingView: View {
     private func compact(label: LocalizedStringKey, value: String?, tint: Color = .white) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(label)
-                .font(.system(size: 10, weight: .semibold))
+                .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
             Text(verbatim: value ?? "--")
-                .font(.footnote.monospacedDigit().weight(.semibold))
+                .font(.system(size: 18, weight: .semibold, design: .rounded).monospacedDigit())
                 .lineLimit(1)
-                .minimumScaleFactor(0.8)
+                .minimumScaleFactor(0.7)
                 .foregroundStyle(tint)
         }
     }
