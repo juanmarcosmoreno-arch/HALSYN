@@ -32,8 +32,27 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
     public let segments: [SleepSegment]
     public let sourceName: String?
     public let origin: DataOrigin
+    /// Sueño fuera del episodio principal (siestas), incluido en `asleep`.
+    public var napAsleep: TimeInterval = 0
+    /// Tramos de sueño separados por 90 min o más despierto.
+    public var episodes: Int = 1
+    /// Fuentes que registraron sueño esa noche (se fusionan sin dobles conteos).
+    public var sourceCount: Int = 1
 
     public var id: Date { day }
+
+    /// Sueño del episodio principal (sin siestas).
+    public var mainAsleep: TimeInterval { asleep - napAsleep }
+
+    /// Avisos de calidad del registro (no son un diagnóstico).
+    public var flags: [SleepNightFlag] {
+        var result: [SleepNightFlag] = []
+        if napAsleep >= 10 * 60 { result.append(.napIncluded) }
+        if sourceCount > 1 { result.append(.multipleSources) }
+        if mainAsleep < 3 * 3600 { result.append(.shortRecord) }
+        if sleepPeriod > 0, awake / sleepPeriod > 0.2 || episodes >= 3 { result.append(.fragmented) }
+        return result
+    }
 
     public init(day: Date, asleep: TimeInterval, sleepStart: Date, sleepEnd: Date, awake: TimeInterval, stages: [SleepSample.Stage: TimeInterval], segments: [SleepSegment] = [], sourceName: String?, origin: DataOrigin) {
         self.day = day
@@ -50,9 +69,9 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
     /// Tiempo entre dormirse y despertarse.
     public var sleepPeriod: TimeInterval { sleepEnd.timeIntervalSince(sleepStart) }
 
-    /// Fracción del periodo de sueño pasada dormido (0–1).
+    /// Fracción del periodo de sueño principal pasada dormido (0–1).
     public var efficiency: Double? {
-        sleepPeriod > 0 ? min(1, asleep / sleepPeriod) : nil
+        sleepPeriod > 0 ? min(1, mainAsleep / sleepPeriod) : nil
     }
 
     /// `true` si hay reparto en fases (núcleo, profundo, REM).
@@ -61,15 +80,46 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
     }
 }
 
+/// Algo a revisar en el registro de una noche.
+public enum SleepNightFlag: String, Hashable, Sendable {
+    /// Hubo siesta (o sueño suelto) además del sueño principal: se suma al
+    /// total, pero no mueve el horario de la noche.
+    case napIncluded
+    /// Varias fuentes registraron la noche (se fusionaron sin contar dos veces).
+    case multipleSources
+    /// Sueño principal de menos de 3 h: puede que el reloj no lo registrara entero.
+    case shortRecord
+    /// Mucho tiempo despierto o varios tramos separados.
+    case fragmented
+}
+
 public enum SleepAnalysis {
+    /// Separación mínima entre dos tramos de sueño para considerarlos episodios distintos.
+    public static let episodeGap: TimeInterval = 90 * 60
+
     /// Noche que termina la mañana de `day`, o `nil` si no hay sueño registrado.
     public static func night(_ samples: [SleepSample], endingOn day: Date, calendar: Calendar, origin: DataOrigin) -> SleepNight? {
         let window = SleepAggregator.nightWindow(endingOn: day, calendar: calendar)
         let merged = SleepAggregator.mergedAsleepIntervals(samples, in: window)
-        guard let first = merged.first, let last = merged.last else { return nil }
+        guard !merged.isEmpty else { return nil }
         let asleep = merged.reduce(0) { $0 + $1.duration }
         let source = SleepAggregator.dominantSource(samples, in: window)
+        // Episodios: tramos separados por 90 min o más; el principal es el de más sueño.
+        var episodes: [[DateInterval]] = []
+        for interval in merged {
+            if let last = episodes.last?.last, interval.start.timeIntervalSince(last.end) < episodeGap {
+                episodes[episodes.count - 1].append(interval)
+            } else {
+                episodes.append([interval])
+            }
+        }
+        let main = episodes.max { a, b in
+            a.reduce(0) { $0 + $1.duration } < b.reduce(0) { $0 + $1.duration }
+        } ?? merged
+        guard let first = main.first, let last = main.last else { return nil }
+        let mainAsleep = main.reduce(0) { $0 + $1.duration }
         let period = DateInterval(start: first.start, end: last.end)
+        let sources = Set(samples.filter(\.stage.isAsleep).filter { $0.end > window.start && $0.start < window.end }.compactMap(\.sourceName))
 
         // Fases de la fuente dominante, recortadas al periodo y sin solapes por fase.
         let own = samples.filter { source == nil || $0.sourceName == source }
@@ -88,7 +138,11 @@ public enum SleepAnalysis {
             }
             .sorted { $0.start < $1.start }
         let hasStages = segments.contains { [.asleepCore, .asleepDeep, .asleepREM].contains($0.stage) }
-        return SleepNight(day: calendar.startOfDay(for: day), asleep: asleep, sleepStart: first.start, sleepEnd: last.end, awake: awake, stages: stages, segments: hasStages ? segments : [], sourceName: source, origin: origin)
+        var night = SleepNight(day: calendar.startOfDay(for: day), asleep: asleep, sleepStart: first.start, sleepEnd: last.end, awake: awake, stages: stages, segments: hasStages ? segments : [], sourceName: source, origin: origin)
+        night.napAsleep = asleep - mainAsleep
+        night.episodes = episodes.count
+        night.sourceCount = max(sources.count, 1)
+        return night
     }
 
     /// Noches de los `days` días que terminan en `end` (solo las que tienen sueño).
@@ -175,5 +229,83 @@ public enum SleepTarget {
 
     public static func shortfall(_ nights: [SleepNight], targetHours: Double) -> TimeInterval {
         nights.reduce(0) { $0 + max(0, targetHours * 3600 - $1.asleep) }
+    }
+}
+
+/// Patrón de sueño de las últimas semanas: duración, regularidad, tendencia,
+/// noches cortas repetidas y registros a revisar.
+///
+/// Prudencia: las fases del Apple Watch son una estimación del sensor, no una
+/// polisomnografía; aquí solo se usan la duración y los horarios.
+public struct SleepPattern: Hashable, Sendable {
+    /// Horas por noche (con siestas) en las últimas 7 y 28 noches con dato.
+    public let average7: Double?
+    public let average28: Double?
+    /// Desviación típica (minutos) del punto medio del sueño principal.
+    public let midpointVariation: Double?
+    /// Pendiente (Theil–Sen) en horas por semana de las últimas 28 noches.
+    public let trendPerWeek: Double?
+    /// Noches de menos de 6 h entre las últimas 7 con dato.
+    public let shortNightsLast7: Int
+    /// 3 o más noches cortas en la última semana.
+    public var repeatedShortSleep: Bool { shortNightsLast7 >= Self.repeatedShortNights }
+    /// Noches con algo a revisar (siesta sumada, registro corto, fragmentado, varias fuentes).
+    public let flaggedNights: [(day: Date, flags: [SleepNightFlag])]
+    /// Noches cuyo punto medio se aparta más de 3 h de tu mediana.
+    public let unusualTimingDays: [Date]
+
+    public static let shortNightHours = 6.0
+    public static let repeatedShortNights = 3
+    public static let unusualTimingMinutes = 180.0
+
+    public static func == (lhs: SleepPattern, rhs: SleepPattern) -> Bool {
+        lhs.average7 == rhs.average7 && lhs.average28 == rhs.average28 && lhs.midpointVariation == rhs.midpointVariation
+            && lhs.trendPerWeek == rhs.trendPerWeek && lhs.shortNightsLast7 == rhs.shortNightsLast7
+            && lhs.flaggedNights.map(\.day) == rhs.flaggedNights.map(\.day) && lhs.unusualTimingDays == rhs.unusualTimingDays
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(average7)
+        hasher.combine(average28)
+        hasher.combine(shortNightsLast7)
+        hasher.combine(unusualTimingDays)
+    }
+
+    public static func analyze(_ nights: [SleepNight], calendar: Calendar) -> SleepPattern {
+        let sorted = nights.sorted { $0.day < $1.day }
+        let last28 = Array(sorted.suffix(28))
+        let last7 = Array(sorted.suffix(7))
+        func average(_ list: [SleepNight]) -> Double? {
+            list.isEmpty ? nil : list.map(\.asleep).reduce(0, +) / Double(list.count) / 3600
+        }
+        func midpoint(_ night: SleepNight) -> Double {
+            let noon = SleepAggregator.nightWindow(endingOn: night.day, calendar: calendar).start
+            return (night.sleepStart.timeIntervalSince(noon) + night.sleepEnd.timeIntervalSince(noon)) / 2 / 60
+        }
+        let midpoints = last28.map(midpoint)
+        var variation: Double?
+        if midpoints.count >= SleepRegularity.minimumNights {
+            variation = Statistics(midpoints).standardDeviation
+        }
+        var trend: Double?
+        if last28.count >= 7, let first = last28.first {
+            let points = last28.map { night in
+                (x: night.day.timeIntervalSince(first.day) / (7 * 86_400), y: night.asleep / 3600)
+            }
+            trend = RacePerformanceModel.theilSen(points)
+        }
+        var unusual: [Date] = []
+        if midpoints.count >= SleepRegularity.minimumNights, let median = RacePerformanceModel.median(midpoints) {
+            unusual = zip(last28, midpoints).filter { abs($0.1 - median) > unusualTimingMinutes }.map(\.0.day)
+        }
+        return SleepPattern(
+            average7: average(last7),
+            average28: average(last28),
+            midpointVariation: variation,
+            trendPerWeek: trend,
+            shortNightsLast7: last7.filter { $0.asleep / 3600 < shortNightHours }.count,
+            flaggedNights: last28.compactMap { night in night.flags.isEmpty ? nil : (night.day, night.flags) },
+            unusualTimingDays: unusual
+        )
     }
 }

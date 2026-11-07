@@ -58,9 +58,20 @@ struct MetricDetailView: View {
                             usualRange: isSum ? nil : usualRange(all.filter { $0.day < cutoff }.map(\.value)),
                             target: kind == .steps ? HealthScoreConfiguration.stepsReference(age: ReferenceProfileStore.shared.age) : nil,
                             unit: kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: kind, unit: unitSystem),
-                            format: { formatted($0) }
+                            format: { formatted($0) },
+                            events: HealthEventStore.shared.spans(from: shown.first?.day ?? .now, to: shown.last?.day ?? .now)
                         )
                         .frame(height: 230)
+                        let events = HealthEventStore.shared.events.overlapping(from: shown.first?.day ?? .now, to: shown.last?.day ?? .now, today: .now, calendar: .current)
+                        if !events.isEmpty {
+                            let list = events.map { event in
+                                (event.title.isEmpty ? String(localized: String.LocalizationValue(event.kind.title)) : event.title) + " (" + HealthEventText.period(event) + ")"
+                            }.joined(separator: "; ")
+                            Text("En este período registraste: \(list). Se marca como contexto: HÅLSYN no sabe si influyó en estos valores.")
+                                .font(.caption2)
+                                .foregroundStyle(.halsynSecondaryText)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                         if !shown.isEmpty {
                             let average = shown.map(\.value).reduce(0, +) / Double(shown.count)
                             HalsynMetric(title: "Tu media del periodo", value: formatted(average), unit: kind == .sleepDuration ? "" : HalsynFormat.unitSymbol(for: kind, unit: unitSystem))

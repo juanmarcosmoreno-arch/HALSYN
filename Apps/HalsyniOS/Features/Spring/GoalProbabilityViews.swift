@@ -1,3 +1,4 @@
+import Charts
 import HalsynCore
 import HalsynDesign
 import SwiftUI
@@ -17,6 +18,25 @@ enum GoalProbabilityHistory {
         var goal: String
         /// Valor del modelo sin calibrar (para la calibración posterior).
         var modelValue: Double?
+        /// Tiempo con la forma de ese día (desde 0.10.0 (100)).
+        var current: TimeInterval?
+    }
+
+    struct Point: Identifiable {
+        let day: Date
+        let series: String
+        let time: TimeInterval
+        var id: String { "\(day.timeIntervalSince1970)-\(series)" }
+    }
+
+    /// Hoy y proyectado de cada día guardado, para el gráfico de evolución.
+    static func points(goal: PlanGoal) -> [Point] {
+        let signature = signature(goal)
+        let today = String(localized: "Hoy")
+        let projected = String(localized: "Proyectado")
+        return load().filter { $0.goal == signature }.flatMap { entry in
+            [Point(day: entry.day, series: projected, time: entry.projected)] + (entry.current.map { [Point(day: entry.day, series: today, time: $0)] } ?? [])
+        }
     }
 
     private static var defaults: UserDefaults { .standard }
@@ -34,7 +54,7 @@ enum GoalProbabilityHistory {
         let signature = signature(goal)
         let day = calendar.startOfDay(for: today)
         var entries = load().filter { $0.goal == signature && $0.day != day }
-        entries.append(Entry(day: day, projected: probability.projectedTime, goal: signature, modelValue: probability.modelValue))
+        entries.append(Entry(day: day, projected: probability.projectedTime, goal: signature, modelValue: probability.modelValue, current: probability.currentTime))
         entries.sort { $0.day < $1.day }
         if let data = try? JSONEncoder().encode(Array(entries.suffix(limit))) {
             defaults.set(data, forKey: key)
@@ -284,6 +304,41 @@ struct GoalProbabilityDetail: View {
                         .font(.caption2)
                         .foregroundStyle(.halsynSecondaryText)
                 }
+            }
+            let points = GoalProbabilityHistory.points(goal: goal)
+            if Set(points.map(\.day)).count >= 2 {
+                Text("Evolución del objetivo")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.halsynSecondaryText)
+                Chart {
+                    if let goalTime = goal.goalTime {
+                        RuleMark(y: .value("Objetivo", goalTime / 60))
+                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
+                            .foregroundStyle(Color.halsynPrimaryText.opacity(0.5))
+                    }
+                    ForEach(points) { point in
+                        LineMark(x: .value("Día", point.day, unit: .day), y: .value("Minutos", point.time / 60))
+                            .foregroundStyle(by: .value("Serie", point.series))
+                    }
+                }
+                .chartYScale(domain: .automatic(includesZero: false))
+                .chartYAxis {
+                    AxisMarks(position: .trailing) { value in
+                        AxisGridLine()
+                        AxisValueLabel {
+                            if let minutes = value.as(Double.self) { Text(verbatim: HalsynFormat.duration(minutes * 60)) }
+                        }
+                    }
+                }
+                .chartForegroundStyleScale([
+                    String(localized: "Hoy"): Color.halsynChart.opacity(0.55),
+                    String(localized: "Proyectado"): Color.halsynChart,
+                ])
+                .frame(height: 150)
+                Text("Más abajo es más rápido. La línea discontinua es tu objetivo. «Hoy» es lo que podrías correr con tu forma de ese día; «Proyectado», lo esperado el día de la carrera.")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             factorList("A favor", effect: .favors, symbol: "arrow.up.circle.fill", tint: .halsynPositive)
             factorList("En contra", effect: .hinders, symbol: "arrow.down.circle.fill", tint: .halsynAlert)

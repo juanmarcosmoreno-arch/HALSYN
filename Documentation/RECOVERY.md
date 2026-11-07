@@ -40,3 +40,17 @@
 
 - Calibrar pesos y curvas con datos reales.
 - Considerar frecuencia respiratoria y temperatura de muñeca cuando se verifique su disponibilidad.
+
+## Explicación del puntaje y sueño (0.10.0 (100))
+
+- Cada componente guarda su valor reciente, su línea basal y los días de basal
+  (`RecoveryComponent.recentValue`, `baselineValue`, `baselineDays`) y, para la
+  HRV, la medición del día sin promediar. La pantalla «¿Por qué tengo este
+  puntaje?» los muestra con su efecto, los datos que faltan y la confianza.
+- Caso del 7 nov de 2026 (HRV 33,5 ms tras 49,8): la media de 3 días queda por
+  encima de la basal; una caída aislada no baja el puntaje, tres días bajos sí.
+- Sueño: episodios separados por ≥ 90 min; el principal fija el horario y las
+  siestas se suman aparte (`napAsleep`). Avisos `SleepNightFlag` y patrón de
+  28 noches (`SleepPattern`). Las fases del reloj no se usan para conclusiones.
+- Eventos de salud (`HealthEvent`) se muestran como contexto sobre las
+  tendencias, sin atribuir causas.

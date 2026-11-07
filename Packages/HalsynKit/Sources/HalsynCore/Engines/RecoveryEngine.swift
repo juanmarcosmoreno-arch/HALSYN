@@ -39,6 +39,15 @@ public struct RecoveryComponent: Hashable, Identifiable, Sendable {
     public let impact: ScoreImpact
     /// `true` si el valor es del día anterior (aún no hay medición de hoy).
     public let usesPreviousDay: Bool
+    /// Valor usado (HRV: media de 3 días; FC: la del día; sueño: horas;
+    /// carga: minutos diarios de los últimos 3 días).
+    public var recentValue: Double?
+    /// Tu línea basal (mediana de 28 días; carga: media diaria de 28 días).
+    public var baselineValue: Double?
+    /// Días con dato en la línea basal.
+    public var baselineDays: Int = 0
+    /// Solo HRV: la medición del día, sin promediar.
+    public var singleDayValue: Double?
 
     public var id: RecoveryComponentKind { kind }
 }
@@ -188,7 +197,12 @@ public struct RecoveryEngine: Sendable {
                 detail = value - robust.median
             }
             let impact: ScoreImpact = z <= -1 ? .negative : (z >= 0.5 ? .positive : .neutral)
-            return RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: z).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
+            var result = RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: z).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
+            result.recentValue = value
+            result.baselineValue = robust.median
+            result.baselineDays = baseline.count
+            if metric == .heartRateVariability { result.singleDayValue = history.value(metric, on: reference) }
+            return result
         case .sleep:
             guard let hours = history.value(.sleepDuration, on: day) else { return missing(.noData) }
             let range = configuration.recommendedSleep
@@ -201,7 +215,11 @@ public struct RecoveryEngine: Sendable {
                 score = min(score, personal)
             }
             let impact: ScoreImpact = range.contains(hours) && !belowHabit ? .positive : (hours < range.lowerBound - 1 || score < 60 ? .negative : .neutral)
-            return RecoveryComponent(kind: kind, score: Int(score.rounded()), weight: weight, missingReason: nil, detail: hours, impact: impact, usesPreviousDay: false)
+            var result = RecoveryComponent(kind: kind, score: Int(score.rounded()), weight: weight, missingReason: nil, detail: hours, impact: impact, usesPreviousDay: false)
+            result.recentValue = hours
+            if habitual.count >= configuration.minimumBaselineDays { result.baselineValue = RobustBaseline(habitual).median }
+            result.baselineDays = habitual.count
+            return result
         case .recentLoad:
             let chronicValues = history.values(.exerciseTime, daysBefore: day, count: configuration.baselineDays)
             guard !chronicValues.isEmpty else { return missing(.noData) }
@@ -212,7 +230,11 @@ public struct RecoveryEngine: Sendable {
             let acute = history.values(.exerciseTime, daysBefore: day, count: 3).reduce(0, +) / 3
             let ratio = acute / chronic
             let impact: ScoreImpact = ratio > 1.5 ? .negative : (ratio <= 1 ? .positive : .neutral)
-            return RecoveryComponent(kind: kind, score: Int(Self.recentLoadScore(ratio: ratio).rounded()), weight: weight, missingReason: nil, detail: ratio, impact: impact, usesPreviousDay: false)
+            var result = RecoveryComponent(kind: kind, score: Int(Self.recentLoadScore(ratio: ratio).rounded()), weight: weight, missingReason: nil, detail: ratio, impact: impact, usesPreviousDay: false)
+            result.recentValue = acute
+            result.baselineValue = chronic
+            result.baselineDays = chronicValues.count
+            return result
         }
     }
 

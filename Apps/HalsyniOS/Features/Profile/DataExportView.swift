@@ -57,7 +57,7 @@ struct DataExportView: View {
                 }
                 .disabled(isWorking)
             } footer: {
-                Text("Se arman tres archivos: tus entrenamientos (una fila por carrera, caminata o salida en bici), tus datos de cada día (pulso en reposo, HRV, sueño, pasos, peso, VO₂ máx. y más) y un resumen con tu plan, tu objetivo y tus tests. Todo se genera en el iPhone; nada se envía a ningún lado hasta que tú lo compartes.")
+                Text("Se arman tres archivos: tus entrenamientos (una fila por carrera, caminata o salida en bici), tus datos de cada día (pulso en reposo, HRV, sueño, pasos, peso, VO₂ máx. y más) y un resumen con tu plan, tu objetivo y tus tests. Si los hay, también las pruebas del modelo con sus pesos, tus eventos de salud y tus valores de laboratorio. Todo se genera en el iPhone; nada se envía a ningún lado hasta que tú lo compartes.")
             }
 
             if let export {
@@ -122,9 +122,35 @@ struct DataExportView: View {
             if let shoe = closet.shoe(for: workout) { shoes[workout.id] = shoe.name }
         }
 
-        let workoutsCSV = DataExport.workoutsCSV(workouts, marks: marks, shoes: shoes, calendar: calendar)
+        // Datos calculados por HÅLSYN para cada entrenamiento (sin muestras: la
+        // clasificación de series necesita el pulso segundo a segundo).
+        let quality = DataQuality.assess(workouts)
+        let intensities = IntensityContext.intensities(workouts)
+        let runs = workouts.filter(\.activity.isRun)
+        let performance = FitnessStore.shared.performance(runs: runs, today: end)
+        var evidenceByWorkout: [UUID: PerformanceEvidence] = [:]
+        for item in performance?.evidence ?? [] {
+            if let result = FitnessStore.shared.results.first(where: { $0.id == item.id }), let workoutID = result.workoutID {
+                evidenceByWorkout[workoutID] = item
+            } else {
+                evidenceByWorkout[item.id] = item
+            }
+        }
+        var extras: [UUID: DataExport.WorkoutExtra] = [:]
+        for workout in workouts {
+            let intensity = intensities[workout.id]
+            let evidence = evidenceByWorkout[workout.id]
+            extras[workout.id] = DataExport.WorkoutExtra(
+                intensity: intensity.map { DataExport.code($0.kind) } ?? "",
+                intensityBasis: intensity.map { $0.kind == .unknown ? "" : $0.basis.rawValue } ?? "",
+                qualityFlags: quality[workout.id]?.flags.map(DataExport.code) ?? [],
+                modelRole: evidence.map { DataExport.code($0.role) } ?? "",
+                modelWeight: evidence?.weight
+            )
+        }
+        let workoutsCSV = DataExport.workoutsCSV(workouts, marks: marks, shoes: shoes, extras: extras, calendar: calendar)
         let dailyCSV = DataExport.dailyCSV(series: series, healthScores: health, recoveryScores: recovery, sleep: sleep, days: days, calendar: calendar)
-        let summary = await summaryText(start: start, end: end, workouts: workouts)
+        let summary = await summaryText(start: start, end: end, workouts: workouts, sleep: sleep)
 
         let stamp = isoDay(end)
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("HALSYN-\(stamp)", isDirectory: true)  // nolocalize
@@ -135,8 +161,18 @@ struct DataExportView: View {
             (folder.appendingPathComponent("halsyn-entrenamientos-\(stamp).csv"), workoutsCSV),  // nolocalize
             (folder.appendingPathComponent("halsyn-diario-\(stamp).csv"), dailyCSV),  // nolocalize
         ]
+        var extraFiles: [(URL, String)] = []
+        if let performance {
+            extraFiles.append((folder.appendingPathComponent("halsyn-pruebas-\(stamp).csv"), DataExport.evidenceCSV(performance, calendar: calendar)))  // nolocalize
+        }
+        if !HealthEventStore.shared.events.isEmpty {
+            extraFiles.append((folder.appendingPathComponent("halsyn-eventos-\(stamp).csv"), DataExport.healthEventsCSV(HealthEventStore.shared.events, calendar: calendar)))  // nolocalize
+        }
+        if !LabResultStore.shared.results.isEmpty {
+            extraFiles.append((folder.appendingPathComponent("halsyn-laboratorio-\(stamp).csv"), DataExport.labResultsCSV(LabResultStore.shared.results, calendar: calendar)))  // nolocalize
+        }
         var written: [URL] = []
-        for (url, text) in files where (try? text.write(to: url, atomically: true, encoding: .utf8)) != nil {
+        for (url, text) in files + extraFiles where (try? text.write(to: url, atomically: true, encoding: .utf8)) != nil {
             written.append(url)
         }
         let text = summary
@@ -151,7 +187,7 @@ struct DataExportView: View {
     }
 
     /// Resumen en Markdown: perfil, objetivo, forma, tests y qué hay en cada archivo.
-    private func summaryText(start: Date, end: Date, workouts: [WorkoutSummary]) async -> String {
+    private func summaryText(start: Date, end: Date, workouts: [WorkoutSummary], sleep: [SleepNight]) async -> String {
         let calendar = Calendar.current
         var lines: [String] = []
         lines.append("# HÅLSYN")
@@ -159,6 +195,38 @@ struct DataExportView: View {
         if model.isDemo {
             lines.append("")
             lines.append(String(localized: "ATENCIÓN: son datos de demostración (sintéticos), no datos reales."))
+        }
+
+        lines.append("")
+        lines.append("## " + String(localized: "Cálculo"))
+        lines.append("- " + String(localized: "Calculado el \(end.formatted(date: .numeric, time: .standard)) en el iPhone, sin servicios externos."))
+        lines.append("- " + "RacePerformanceModel \(RacePerformanceModel.version) · RecoveryEngine \(RecoveryEngine.version) · HealthScoreEngine \(HealthScoreEngine.version) · " + String(localized: "formato de exportación") + " \(DataExport.formatVersion)")  // nolocalize
+        let workoutSources = Set(workouts.map { DataExport.source($0.origin) }).sorted().joined(separator: ", ")
+        let sleepSources = Set(sleep.compactMap(\.sourceName)).sorted().joined(separator: ", ")
+        let workoutSourcesText = workoutSources.isEmpty ? "—" : workoutSources
+        let sleepSourcesText = sleepSources.isEmpty ? "—" : sleepSources
+        lines.append("- " + String(localized: "Fuentes de los entrenamientos: \(workoutSourcesText)"))
+        lines.append("- " + String(localized: "Fuentes del sueño: \(sleepSourcesText)"))
+        let computedWorkouts = DataExport.computedWorkoutColumns.joined(separator: ", ")
+        let computedDaily = DataExport.computedDailyColumns.joined(separator: ", ")
+        lines.append("- " + String(localized: "Datos originales y calculados: las columnas vienen tal cual de Apple Health o de lo que cargaste, salvo las calculadas por HÅLSYN. Entrenamientos: \(computedWorkouts). Diario: \(computedDaily)."))
+        lines.append("- " + String(localized: "«record_id» es un código corto derivado del identificador del registro: sirve para ver duplicados sin exponer el identificador de Salud. Un dato ausente queda vacío; nunca se rellena con 0."))
+
+        let summary = DataExport.qualitySummary(workouts)
+        lines.append("")
+        lines.append("## " + String(localized: "Calidad de los datos"))
+        if summary.isEmpty {
+            lines.append("- " + String(localized: "Sin avisos en los entrenamientos del período."))
+        } else {
+            for item in summary {
+                lines.append("- \(item.code): \(String(item.count))")  // nolocalize
+            }
+            lines.append("- " + String(localized: "Nada se borra: los registros marcados siguen en el CSV con su aviso en «quality_flags». duplicate/overlaps no cuentan para nada; missing_distance, too_short e implausible_pace no cuentan para la forma; implausible_hr y las cadencias imposibles solo descartan ese valor."))
+        }
+        let flaggedNights = sleep.filter { !$0.flags.isEmpty }.count
+        if flaggedNights > 0 {
+            let nightsText = String(flaggedNights)
+            lines.append("- " + String(localized: "Noches con algo a revisar (siesta sumada, registro corto, fragmentado o varias fuentes): \(nightsText); ver «sleep_flags» en el diario."))
         }
 
         lines.append("")
@@ -246,10 +314,31 @@ struct DataExportView: View {
             }
         }
 
+        let events = HealthEventStore.shared.events
+        if !events.isEmpty {
+            lines.append("")
+            lines.append("## " + String(localized: "Eventos de salud registrados"))
+            for event in events.prefix(30) {
+                let name = event.title.isEmpty ? String(localized: String.LocalizationValue(event.kind.title)) : event.title
+                lines.append("- \(name) · \(HealthEventText.period(event))")  // nolocalize
+            }
+            lines.append("- " + String(localized: "Son contexto que registraste tú: HÅLSYN no diagnostica ni atribuye causas."))
+        }
+        let labs = LabResultStore.shared.results
+        if !labs.isEmpty {
+            lines.append("")
+            lines.append("## " + String(localized: "Valores cardiometabólicos"))
+            for result in labs.prefix(30) {
+                lines.append("- \(result.date.formatted(date: .abbreviated, time: .omitted)) · \(LabText.title(result)) · \(LabText.value(result))")  // nolocalize
+            }
+        }
         lines.append("")
         lines.append("## " + String(localized: "Archivos"))
         lines.append("- " + String(localized: "Entrenamientos: una fila por entrenamiento. Distancia en km, duración en minutos, ritmo en min/km y s/km, pulso en lpm, cadencia en pasos por minuto, desnivel en m, potencia en W, temperatura en °C y humedad en %. «marked_as» indica si lo marcaste como test o carrera."))
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
+        lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» (recovery, easy, moderate, tempo, intervals, max_effort, test, race) y «intensity_basis» (heartRate, pace, marked…); «model_role» y «model_weight», el papel y el peso en el modelo de rendimiento."))
+        lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
+        lines.append("- " + String(localized: "Pruebas (si hay): cada prueba del modelo con su VDOT, su papel, su peso y los factores (tipo × antigüedad × distancia × calidad × tope × coherencia). Eventos y laboratorio (si hay): lo que registraste."))
         return lines.joined(separator: "\n") + "\n"
     }
 }

@@ -36,8 +36,10 @@ struct VilaView: View {
                     }
                 }
                 if !data.nights.isEmpty {
-                    SleepScheduleCard(nights: data.nights, targetHours: $sleepTarget)
-                    SleepRegularityCard(nights: data.nights)
+                    let recentNights = Array(data.nights.suffix(14))
+                    SleepScheduleCard(nights: recentNights, targetHours: $sleepTarget)
+                    SleepRegularityCard(nights: recentNights)
+                    SleepPatternCard(pattern: SleepPattern.analyze(data.nights, calendar: .current))
                 }
                 NavigationLink {
                     MetricDetailView(kind: .heartRateVariability)
@@ -76,7 +78,7 @@ struct VilaView: View {
             let today = Date.now
             let provider = model.provider
             async let recovery = provider.recoveryEstimates(endingOn: today, days: 28)
-            async let nights = provider.sleepNights(endingOn: today, days: 14)
+            async let nights = provider.sleepNights(endingOn: today, days: 28)
             async let hrv = provider.dailySeries(.heartRateVariability, days: 56, endingOn: today)
             async let rhr = provider.dailySeries(.restingHeartRate, days: 56, endingOn: today)
             data = VilaData(recovery: await recovery, nights: await nights, hrv: await hrv, restingHeartRate: await rhr)
@@ -121,6 +123,12 @@ struct RecoveryCard: View {
                             RecoveryComponentRow(component: component)
                         }
                     }
+                    NavigationLink {
+                        RecoveryExplanationView(estimate: estimate)
+                    } label: {
+                        Label("¿Por qué tengo este puntaje?", systemImage: "questionmark.circle")
+                            .font(.halsynCaption.weight(.semibold))
+                    }
                 }
 
                 let values = history.compactMap { estimate in estimate.value.map { DailyValue(day: estimate.day, value: Double($0)) } }
@@ -129,7 +137,7 @@ struct RecoveryCard: View {
                     Text("Últimas 4 semanas")
                         .font(.halsynHeadline)
                         .foregroundStyle(.halsynPrimaryText)
-                    HalsynTrendChart(values: values, title: "Recuperación", yDomain: 0...100, usualRange: usualRange(values.map(\.value)))
+                    HalsynTrendChart(values: values, title: "Recuperación", yDomain: 0...100, usualRange: usualRange(values.map(\.value)), events: HealthEventStore.shared.spans(from: values.first?.day ?? .now, to: values.last?.day ?? .now))
                         .frame(height: 200)
                 }
 
@@ -396,7 +404,7 @@ struct BaselineTrendCard: View {
                 Text(title)
                     .font(.halsynHeadline)
                     .foregroundStyle(.halsynPrimaryText)
-                HalsynTrendChart(values: shown, title: series.kind.shortTitle, usualRange: usualRange(reference), unit: unit)
+                HalsynTrendChart(values: shown, title: series.kind.shortTitle, usualRange: usualRange(reference), unit: unit, events: HealthEventStore.shared.spans(from: shown.first?.day ?? .now, to: shown.last?.day ?? .now))
                     .frame(height: 220)
                 Text(explanation)
                     .font(.caption2)
@@ -410,4 +418,189 @@ struct BaselineTrendCard: View {
 #Preview {
     NavigationStack { VilaView() }
         .environment(AppModel())
+}
+
+// MARK: - ¿Por qué tengo este puntaje?
+
+/// Explicación de la recuperación de un día: variables, valores recientes y
+/// basales, qué sube o baja el resultado, qué falta y con qué confianza.
+struct RecoveryExplanationView: View {
+    let estimate: RecoveryEstimate
+
+    var body: some View {
+        Form {
+            Section {
+                LabeledContent("Recuperación estimada", value: estimate.value.map(String.init) ?? "—")
+                LabeledContent("Confianza", value: confidence)
+                LabeledContent("Datos disponibles", value: "\(Int((estimate.coverage * 100).rounded())) %")
+            } footer: {
+                Text("Es la media de los componentes con dato, cada uno con su peso. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15.")
+            }
+            Section("Variables") {
+                ForEach(estimate.components) { component in
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack {
+                            Label(LocalizedStringKey(component.kind.title), systemImage: component.kind.systemImage)
+                                .font(.halsynCaption.weight(.semibold))
+                            Spacer()
+                            Text(verbatim: component.score.map(String.init) ?? "—")
+                                .font(.halsynCaption.monospacedDigit().weight(.semibold))
+                        }
+                        Text(verbatim: String(localized: "Peso") + " \(Int((component.weight * 100).rounded())) %")
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                        if let line = RecoveryExplanationText.values(component) {
+                            Text(verbatim: line)
+                                .font(.caption2.monospacedDigit())
+                                .foregroundStyle(.halsynSecondaryText)
+                        }
+                        Text(RecoveryExplanationText.effect(component))
+                            .font(.caption2)
+                            .foregroundStyle(component.impact == .negative ? Color.halsynCaution : Color.halsynSecondaryText)
+                        if let note = RecoveryExplanationText.isolatedDrop(component) {
+                            Text(verbatim: note)
+                                .font(.caption2)
+                                .foregroundStyle(.halsynSecondaryText)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                }
+            }
+            let missing = estimate.components.filter { $0.score == nil }
+            if !missing.isEmpty {
+                Section("Datos que faltan") {
+                    ForEach(missing) { component in
+                        Text(verbatim: String(localized: String.LocalizationValue(component.kind.title)) + ": " + (component.missingReason == .insufficientHistory ? String(localized: "faltan días para conocer tu media") : String(localized: "sin datos")))
+                            .font(.halsynCaption)
+                    }
+                }
+            }
+            Section {
+                Text("Estimación orientativa del equilibrio entre esfuerzo y descanso, comparada solo contigo. No es una medida clínica validada ni un diagnóstico, y no dice si estás médicamente recuperado.")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                Text(verbatim: "RecoveryEngine \(estimate.engineVersion)")
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+        }
+        .navigationTitle("¿Por qué este puntaje?")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var confidence: String {
+        switch estimate.confidence {
+        case .high: String(localized: "Alta")
+        case .medium: String(localized: "Media")
+        case .low: String(localized: "Baja")
+        }
+    }
+}
+
+enum RecoveryExplanationText {
+    static func values(_ component: RecoveryComponent) -> String? {
+        guard let recent = component.recentValue else { return nil }
+        let daysText = String(component.baselineDays)
+        switch component.kind {
+        case .heartRateVariability:
+            let value = HalsynFormat.decimal(recent, fractionDigits: 1)
+            let base = component.baselineValue.map { HalsynFormat.decimal($0, fractionDigits: 1) } ?? "—"
+            return String(localized: "Media de 3 días: \(value) ms · tu línea basal: \(base) ms (mediana de \(daysText) días)")
+        case .restingHeartRate:
+            let value = HalsynFormat.integer(recent)
+            let base = component.baselineValue.map { HalsynFormat.integer($0) } ?? "—"
+            return String(localized: "Hoy: \(value) lpm · tu línea basal: \(base) lpm (mediana de \(daysText) días)")
+        case .sleep:
+            let value = HalsynFormat.decimal(recent, fractionDigits: 1)
+            let base = component.baselineValue.map { HalsynFormat.decimal($0, fractionDigits: 1) } ?? "—"
+            return String(localized: "Anoche: \(value) h · tu sueño habitual: \(base) h (recomendado 7–9 h)")
+        case .recentLoad:
+            let value = HalsynFormat.integer(recent)
+            let base = component.baselineValue.map { HalsynFormat.integer($0) } ?? "—"
+            return String(localized: "Últimos 3 días: \(value) min de ejercicio al día · tu media: \(base) min")
+        }
+    }
+
+    static func effect(_ component: RecoveryComponent) -> LocalizedStringKey {
+        if component.score == nil { return "No entra en el cálculo." }
+        switch component.impact {
+        case .positive: return "Sube el resultado: mejor que tu línea basal."
+        case .negative: return "Baja el resultado: peor que tu línea basal."
+        case .neutral: return "Neutral: cerca de tu línea basal."
+        }
+    }
+
+    /// Una caída de la HRV de un solo día que el promedio de 3 días suaviza.
+    static func isolatedDrop(_ component: RecoveryComponent) -> String? {
+        guard component.kind == .heartRateVariability, let day = component.singleDayValue, let mean = component.recentValue,
+              mean > 0, day < 0.85 * mean else { return nil }
+        let dayText = HalsynFormat.decimal(day, fractionDigits: 1)
+        return String(localized: "Hoy la HRV fue \(dayText) ms, más baja que los días anteriores. Una sola medición varía mucho (sueño, alcohol, hora de la medición): por eso se usa la media de 3 días y una caída aislada no baja el puntaje. Si sigue baja varios días, sí lo hará.")
+    }
+}
+
+// MARK: - Patrón de sueño
+
+/// Duración, regularidad y tendencia de 4 semanas, con noches a revisar.
+struct SleepPatternCard: View {
+    let pattern: SleepPattern
+
+    var body: some View {
+        HalsynCard {
+            VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                HalsynSectionHeader("Patrón de sueño", eyebrow: HalsynLexicon.somn.rawValue)
+                LabeledContent("Media de 7 noches", value: hours(pattern.average7))
+                    .font(.halsynCaption)
+                LabeledContent("Media de 28 noches", value: hours(pattern.average28))
+                    .font(.halsynCaption)
+                if let variation = pattern.midpointVariation {
+                    LabeledContent("Variación del horario", value: "± \(HalsynFormat.integer(variation)) min")
+                        .font(.halsynCaption)
+                }
+                if let trend = pattern.trendPerWeek {
+                    LabeledContent("Tendencia", value: (trend >= 0 ? "+" : "−") + "\(HalsynFormat.integer(abs(trend) * 60)) min / " + String(localized: "semana"))
+                        .font(.halsynCaption)
+                }
+                if pattern.repeatedShortSleep {
+                    let count = pattern.shortNightsLast7
+                    Label("Esta semana dormiste menos de 6 h en \(count) noches. Varias noches cortas seguidas suelen acompañar a una recuperación más baja; si se repite, conviene priorizar el descanso.", systemImage: "moon.zzz")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynCaution)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                if !pattern.flaggedNights.isEmpty || !pattern.unusualTimingDays.isEmpty {
+                    Text("Registros a revisar")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.halsynSecondaryText)
+                    ForEach(Array(pattern.flaggedNights.suffix(6).enumerated()), id: \.offset) { _, item in
+                        Text(verbatim: item.day.formatted(.dateTime.day().month(.abbreviated)) + ": " + item.flags.map(SleepFlagText.text).joined(separator: " · "))
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                    if !pattern.unusualTimingDays.isEmpty {
+                        let daysText = pattern.unusualTimingDays.suffix(6).map { $0.formatted(.dateTime.day().month(.abbreviated)) }.joined(separator: ", ")
+                        Text("Horario muy distinto del habitual: \(daysText)")
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                }
+                ExpandableText("La duración incluye las siestas, pero el horario de la noche usa solo el sueño principal (tramos separados por 90 min o más cuentan aparte). Las fases (profundo, REM) que estima el reloj no son una medición clínica: aquí no se usan para sacar conclusiones.")
+            }
+        }
+    }
+
+    private func hours(_ value: Double?) -> String {
+        value.map { sleepText($0 * 3600) } ?? "—"
+    }
+}
+
+enum SleepFlagText {
+    static func text(_ flag: SleepNightFlag) -> String {
+        switch flag {
+        case .napIncluded: String(localized: "siesta sumada al total")
+        case .multipleSources: String(localized: "varias fuentes (fusionadas)")
+        case .shortRecord: String(localized: "registro corto: quizá incompleto")
+        case .fragmented: String(localized: "sueño fragmentado")
+        }
+    }
 }

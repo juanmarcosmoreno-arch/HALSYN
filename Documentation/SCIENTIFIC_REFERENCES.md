@@ -244,3 +244,27 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - Dispersión robusta del error relativo: MAD × 1,4826 (equivalente a la desviación típica bajo normalidad).
 - Puntuación de Brier (Brier GW. Verification of forecasts expressed in terms of probability. Monthly Weather Review. 1950;78(1):1–3) para calibrar la factibilidad; referencia 0,25 = decir siempre 50 %.
 - Evaluación sin fuga de información: cada predicción usa solo datos anteriores al día evaluado.
+
+## Referencias cardiometabólicas (`LabReference`)
+
+Referencias **generales para adultos**, solo para ubicar un valor; los objetivos
+individuales dependen del riesgo cardiovascular y los define el médico.
+
+- **Presión arterial**: McEvoy JW et al. *2024 ESC Guidelines for the management
+  of elevated blood pressure and hypertension.* Eur Heart J 2024 (no elevada
+  < 120/70 mmHg). Whelton PK et al. *2017 ACC/AHA Guideline…* Hypertension 2018
+  (normal < 120/80 mmHg).
+- **Glucemia y HbA1c**: American Diabetes Association. *Standards of Care in
+  Diabetes—2025*, sección 2 (ayunas 70–99 mg/dL; HbA1c < 5,7 %).
+- **Lípidos**: Mach F et al. *2019 ESC/EAS Guidelines for the management of
+  dyslipidaemias.* Eur Heart J 2020 (colesterol total < 190 mg/dL; LDL < 116
+  mg/dL con riesgo bajo; HDL > 40 hombres / > 50 mujeres; triglicéridos < 150).
+- Conversión: glucosa mg/dL = mmol/L × 18,016; colesterol × 38,67; triglicéridos × 88,57.
+
+## Intensidad (`IntensityClassifier`)
+
+- Seiler S. *What is best practice for training intensity and duration
+  distribution in endurance athletes?* Int J Sports Physiol Perform 2010.
+  Por qué: base del reparto suave/moderado/intenso por tiempo.
+- Daniels J. *Daniels' Running Formula* (3.ª ed.). Por qué: ritmos de umbral
+  usados para clasificar sin pulso.

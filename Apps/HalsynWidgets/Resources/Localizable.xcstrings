@@ -2194,6 +2194,23 @@
         }
       }
     },
+    "Alta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hög"
+          }
+        }
+      }
+    },
     "Alta: 80–100 · Moderada: 50–79 · Baja: 0–49": {
       "extractionState": "manual",
       "localizations": {
@@ -2377,6 +2394,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I natt sov du %@, utanför det rekommenderade intervallet på 7–9 h."
+          }
+        }
+      }
+    },
+    "Anoche: %@ h · tu sueño habitual: %@ h (recomendado 7–9 h)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last night: %@ h · your usual sleep: %@ h (recommended 7–9 h)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I natt: %@ h · din vanliga sömn: %@ h (rekommenderat 7–9 h)"
           }
         }
       }
@@ -3057,6 +3091,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "NEDFÖR"
+          }
+        }
+      }
+    },
+    "Baja": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Låg"
+          }
+        }
+      }
+    },
+    "Baja el resultado: peor que tu línea basal.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lowers the result: worse than your baseline."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sänker resultatet: sämre än din baslinje."
           }
         }
       }
@@ -4077,6 +4145,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Beräknat utifrån GPS-höjden; kan avvika med några meter."
+          }
+        }
+      }
+    },
+    "Calculado el %@ en el iPhone, sin servicios externos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculated on %@ on the iPhone, with no external services."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräknat %@ på iPhonen, utan externa tjänster."
           }
         }
       }
@@ -7039,6 +7124,23 @@
         }
       }
     },
+    "Cálculo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculation"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beräkning"
+          }
+        }
+      }
+    },
     "Cómo fue": {
       "extractionState": "manual",
       "localizations": {
@@ -7311,6 +7413,23 @@
         }
       }
     },
+    "Datos disponibles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data available"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillgängliga data"
+          }
+        }
+      }
+    },
     "Datos disponibles: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -7324,6 +7443,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tillgängliga data: %@"
+          }
+        }
+      }
+    },
+    "Datos originales y calculados: las columnas vienen tal cual de Apple Health o de lo que cargaste, salvo las calculadas por HÅLSYN. Entrenamientos: %@. Diario: %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Original and calculated data: columns come as is from Apple Health or from what you entered, except those calculated by HÅLSYN. Workouts: %@. Daily: %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ursprungliga och beräknade data: kolumnerna kommer som de är från Apple Hälsa eller från det du matat in, utom de som HÅLSYN beräknar. Träningspass: %@. Dagligt: %@."
+          }
+        }
+      }
+    },
+    "Datos que faltan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data som saknas"
           }
         }
       }
@@ -7885,6 +8038,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dagligt: en rad per dag med det som finns i Hälsa (tomt = ingen data): vilopuls, HRV (SDNN, ms), andning, VO₂ max, SpO₂ i %, steg, sträcka, aktiv energi, träning, sömn i timmar och dess faser, vikt, fett, handledstemperatur (avvikelse) och dagsljus. ”health_score” och ”recovery_score” är HÅLSYN-poäng från 0 till 100, vägledande och inte kliniska."
+          }
+        }
+      }
+    },
+    "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily: “nap_h” is nap hours included in “sleep_h”; “sleep_start” and “sleep_end” belong to the main sleep."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagligt: ”nap_h” är timmar tupplur som ingår i ”sleep_h”; ”sleep_start” och ”sleep_end” gäller huvudsömnen."
           }
         }
       }
@@ -9776,6 +9946,23 @@
         }
       }
     },
+    "En este período registraste: %@. Se marca como contexto: HÅLSYN no sabe si influyó en estos valores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In this period you logged: %@. It's marked as context: HÅLSYN doesn't know whether it affected these values."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under den här perioden registrerade du: %@. Det markeras som sammanhang: HÅLSYN vet inte om det påverkade värdena."
+          }
+        }
+      }
+    },
     "En interior el reloj solo mide distancia con un sensor de velocidad o un rodillo que la envíe.": {
       "extractionState": "manual",
       "localizations": {
@@ -10320,6 +10507,23 @@
         }
       }
     },
+    "Entrenamientos, columnas calculadas: «intensity» (recovery, easy, moderate, tempo, intervals, max_effort, test, race) y «intensity_basis» (heartRate, pace, marked…); «model_role» y «model_weight», el papel y el peso en el modelo de rendimiento.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts, calculated columns: “intensity” (recovery, easy, moderate, tempo, intervals, max_effort, test, race) and “intensity_basis” (heartRate, pace, marked…); “model_role” and “model_weight”, the role and weight in the performance model."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningspass, beräknade kolumner: ”intensity” (recovery, easy, moderate, tempo, intervals, max_effort, test, race) och ”intensity_basis” (heartRate, pace, marked…); ”model_role” och ”model_weight”, rollen och vikten i prestationsmodellen."
+          }
+        }
+      }
+    },
     "Entrenamientos: una fila por entrenamiento. Distancia en km, duración en minutos, ritmo en min/km y s/km, pulso en lpm, cadencia en pasos por minuto, desnivel en m, potencia en W, temperatura en °C y humedad en %. «marked_as» indica si lo marcaste como test o carrera.": {
       "extractionState": "manual",
       "localizations": {
@@ -10486,6 +10690,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Typiskt fel som används i intervallen"
+          }
+        }
+      }
+    },
+    "Es la media de los componentes con dato, cada uno con su peso. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's the weighted mean of the components with data. At your baseline a component is worth 75; better than usual goes up to 100 and worse down to 15."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det är det viktade medelvärdet av komponenterna med data. Vid din baslinje är en komponent värd 75; bättre än vanligt går upp till 100 och sämre ned till 15."
           }
         }
       }
@@ -10847,6 +11068,23 @@
         }
       }
     },
+    "Esta semana dormiste menos de 6 h en %lld noches. Varias noches cortas seguidas suelen acompañar a una recuperación más baja; si se repite, conviene priorizar el descanso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week you slept under 6 h on %lld nights. Several short nights in a row often come with lower recovery; if it continues, prioritize rest."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här veckan sov du under 6 h %lld nätter. Flera korta nätter i rad brukar följas av lägre återhämtning; om det fortsätter, prioritera vila."
+          }
+        }
+      }
+    },
     "Esta semana te faltaron %@ respecto a tu objetivo.": {
       "extractionState": "manual",
       "localizations": {
@@ -11013,6 +11251,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vågens uppskattning via bioimpedans. Den varierar med vätskebalans och tid på dygnet; jämför alltid under samma förhållanden (till exempel när du har stigit upp)."
+          }
+        }
+      }
+    },
+    "Estimación orientativa del equilibrio entre esfuerzo y descanso, comparada solo contigo. No es una medida clínica validada ni un diagnóstico, y no dice si estás médicamente recuperado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An indicative estimate of the balance between effort and rest, compared only with yourself. It isn't a validated clinical measure or a diagnosis, and it doesn't say whether you're medically recovered."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En vägledande uppskattning av balansen mellan ansträngning och vila, jämförd bara med dig själv. Det är inget validerat kliniskt mått eller någon diagnos och säger inte om du är medicinskt återhämtad."
           }
         }
       }
@@ -11187,6 +11442,23 @@
         }
       }
     },
+    "Eventos de salud registrados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logged health events"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrerade hälsohändelser"
+          }
+        }
+      }
+    },
     "Evolución": {
       "extractionState": "manual",
       "localizations": {
@@ -11217,6 +11489,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Felets utveckling"
+          }
+        }
+      }
+    },
+    "Evolución del objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal over time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målets utveckling"
           }
         }
       }
@@ -12513,6 +12802,40 @@
         }
       }
     },
+    "Fuentes de los entrenamientos: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout sources: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Källor för träningspass: %@"
+          }
+        }
+      }
+    },
+    "Fuentes del sueño: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep sources: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Källor för sömn: %@"
+          }
+        }
+      }
+    },
     "Fuera de los cálculos": {
       "extractionState": "manual",
       "localizations": {
@@ -13737,6 +14060,23 @@
         }
       }
     },
+    "Horario muy distinto del habitual: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule very different from usual: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tider mycket olika de vanliga: %@"
+          }
+        }
+      }
+    },
     "Horarios · 30 días": {
       "extractionState": "manual",
       "localizations": {
@@ -13835,6 +14175,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I dag har du haft en utmärkt balans överlag."
+          }
+        }
+      }
+    },
+    "Hoy la HRV fue %@ ms, más baja que los días anteriores. Una sola medición varía mucho (sueño, alcohol, hora de la medición): por eso se usa la media de 3 días y una caída aislada no baja el puntaje. Si sigue baja varios días, sí lo hará.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today HRV was %@ ms, lower than the previous days. A single reading varies a lot (sleep, alcohol, time of measurement): that's why the 3-day mean is used and an isolated drop doesn't lower the score. If it stays low for several days, it will."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag var HRV %@ ms, lägre än de föregående dagarna. En enskild mätning varierar mycket (sömn, alkohol, tid för mätningen): därför används medelvärdet för 3 dagar och en enstaka nedgång sänker inte poängen. Om den förblir låg flera dagar gör den det."
           }
         }
       }
@@ -13954,6 +14311,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I dag: %@"
+          }
+        }
+      }
+    },
+    "Hoy: %@ lpm · tu línea basal: %@ lpm (mediana de %@ días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today: %@ bpm · your baseline: %@ bpm (median of %@ days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag: %@ slag/min · din baslinje: %@ slag/min (median av %@ dagar)"
           }
         }
       }
@@ -14719,6 +15093,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tillförlitligheten är måttlig: ett färskt test skulle göra den mer exakt."
+          }
+        }
+      }
+    },
+    "La duración incluye las siestas, pero el horario de la noche usa solo el sueño principal (tramos separados por 90 min o más cuentan aparte). Las fases (profundo, REM) que estima el reloj no son una medición clínica: aquí no se usan para sacar conclusiones.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration includes naps, but the night's schedule uses only the main sleep (stretches separated by 90 min or more count separately). The stages (deep, REM) the watch estimates aren't a clinical measurement: they aren't used here to draw conclusions."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längden inkluderar tupplurar, men nattens tider använder bara huvudsömnen (perioder åtskilda av 90 min eller mer räknas separat). Stadierna (djup, REM) som klockan uppskattar är ingen klinisk mätning: de används inte här för att dra slutsatser."
           }
         }
       }
@@ -16304,6 +16695,40 @@
         }
       }
     },
+    "Media de 28 noches": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "28-night average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt 28 nätter"
+          }
+        }
+      }
+    },
+    "Media de 3 días: %@ ms · tu línea basal: %@ ms (mediana de %@ días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3-day mean: %@ ms · your baseline: %@ ms (median of %@ days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medel 3 dagar: %@ ms · din baslinje: %@ ms (median av %@ dagar)"
+          }
+        }
+      }
+    },
     "Media de 4 semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -16334,6 +16759,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "7-dagarssnitt"
+          }
+        }
+      }
+    },
+    "Media de 7 noches": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-night average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt 7 nätter"
           }
         }
       }
@@ -17562,6 +18004,23 @@
         }
       }
     },
+    "Más abajo es más rápido. La línea discontinua es tu objetivo. «Hoy» es lo que podrías correr con tu forma de ese día; «Proyectado», lo esperado el día de la carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower is faster. The dashed line is your goal. “Today” is what you could run with that day's fitness; “Projected”, what's expected on race day."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägre är snabbare. Den streckade linjen är ditt mål. ”I dag” är vad du kunde springa med den dagens form; ”Prognos”, det förväntade på tävlingsdagen."
+          }
+        }
+      }
+    },
     "Más alta que tu rango habitual suele acompañar a un buen descanso; más baja, a cansancio, estrés o enfermedad. Compárala solo contigo.": {
       "extractionState": "manual",
       "localizations": {
@@ -18038,6 +18497,23 @@
         }
       }
     },
+    "Nada se borra: los registros marcados siguen en el CSV con su aviso en «quality_flags». duplicate/overlaps no cuentan para nada; missing_distance, too_short e implausible_pace no cuentan para la forma; implausible_hr y las cadencias imposibles solo descartan ese valor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing is deleted: flagged records stay in the CSV with their warning in “quality_flags”. duplicate/overlaps count for nothing; missing_distance, too_short and implausible_pace don't count for fitness; implausible_hr and impossible cadences only discard that value."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget raderas: markerade poster finns kvar i CSV-filen med sin varning i ”quality_flags”. duplicate/overlaps räknas inte alls; missing_distance, too_short och implausible_pace räknas inte för formen; implausible_hr och omöjliga kadenser kasserar bara det värdet."
+          }
+        }
+      }
+    },
     "Naranja": {
       "extractionState": "manual",
       "localizations": {
@@ -18102,6 +18578,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Neutralt"
+          }
+        }
+      }
+    },
+    "Neutral: cerca de tu línea basal.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutral: close to your baseline."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neutral: nära din baslinje."
           }
         }
       }
@@ -18204,6 +18697,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stämmer inte med dina andra ansträngningar: väger mindre."
+          }
+        }
+      }
+    },
+    "No entra en el cálculo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not included in the calculation."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingår inte i beräkningen."
           }
         }
       }
@@ -18816,6 +19326,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Natt för natt: tider och faser"
+          }
+        }
+      }
+    },
+    "Noches con algo a revisar (siesta sumada, registro corto, fragmentado o varias fuentes): %@; ver «sleep_flags» en el diario.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nights with something to check (nap added, short record, fragmented or several sources): %@; see “sleep_flags” in the daily file."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nätter med något att kontrollera (tupplur tillagd, kort registrering, fragmenterad eller flera källor): %@; se ”sleep_flags” i den dagliga filen."
           }
         }
       }
@@ -20278,6 +20805,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mönster mellan mätvärden: dagar med parade data"
+          }
+        }
+      }
+    },
+    "Patrón de sueño": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep pattern"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömnmönster"
           }
         }
       }
@@ -21778,6 +22322,23 @@
         }
       }
     },
+    "Proyectado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognos"
+          }
+        }
+      }
+    },
     "Prueba de esfuerzo máxima en cinta con análisis de gases (V̇O₂máx medido).": {
       "extractionState": "manual",
       "localizations": {
@@ -21808,6 +22369,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ansträngningar"
+          }
+        }
+      }
+    },
+    "Pruebas (si hay): cada prueba del modelo con su VDOT, su papel, su peso y los factores (tipo × antigüedad × distancia × calidad × tope × coherencia). Eventos y laboratorio (si hay): lo que registraste.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Results (if any): each model result with its VDOT, role, weight and factors (type × age × distance × quality × cap × consistency). Events and lab (if any): what you logged."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultat (om några): varje resultat i modellen med VDOT, roll, vikt och faktorer (typ × ålder × distans × kvalitet × tak × konsekvens). Händelser och labb (om några): det du registrerat."
           }
         }
       }
@@ -23325,6 +23903,23 @@
         }
       }
     },
+    "Registros a revisar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records to check"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poster att kontrollera"
+          }
+        }
+      }
+    },
     "Registros de salud": {
       "extractionState": "manual",
       "localizations": {
@@ -24753,19 +25348,19 @@
         }
       }
     },
-    "Se arman tres archivos: tus entrenamientos (una fila por carrera, caminata o salida en bici), tus datos de cada día (pulso en reposo, HRV, sueño, pasos, peso, VO₂ máx. y más) y un resumen con tu plan, tu objetivo y tus tests. Todo se genera en el iPhone; nada se envía a ningún lado hasta que tú lo compartes.": {
+    "Se arman tres archivos: tus entrenamientos (una fila por carrera, caminata o salida en bici), tus datos de cada día (pulso en reposo, HRV, sueño, pasos, peso, VO₂ máx. y más) y un resumen con tu plan, tu objetivo y tus tests. Si los hay, también las pruebas del modelo con sus pesos, tus eventos de salud y tus valores de laboratorio. Todo se genera en el iPhone; nada se envía a ningún lado hasta que tú lo compartes.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Three files are created: your workouts (one row per run, walk or ride), your daily data (resting heart rate, HRV, sleep, steps, weight, VO₂ max and more) and a summary with your plan, goal and tests. Everything is generated on your iPhone; nothing is sent anywhere until you share it."
+            "value": "Three files are built: your workouts (one row per run, walk or ride), your daily data (resting heart rate, HRV, sleep, steps, weight, VO₂ max and more) and a summary with your plan, goal and tests. If available, also the model's results with their weights, your health events and your lab values. Everything is generated on the iPhone; nothing is sent anywhere until you share it."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tre filer skapas: dina träningspass (en rad per löprunda, promenad eller cykeltur), dina dagliga data (vilopuls, HRV, sömn, steg, vikt, VO₂ max med mera) och en sammanfattning med din plan, ditt mål och dina test. Allt skapas på din iPhone; inget skickas någonstans förrän du delar det."
+            "value": "Tre filer skapas: dina träningspass (en rad per löppass, promenad eller cykeltur), dina dagliga data (vilopuls, HRV, sömn, steg, vikt, VO₂ max med mera) och en sammanfattning med din plan, ditt mål och dina tester. Om de finns, även modellens resultat med vikter, dina hälsohändelser och dina labbvärden. Allt skapas på iPhonen; inget skickas någonstans förrän du delar det."
           }
         }
       }
@@ -25637,6 +26232,23 @@
         }
       }
     },
+    "Sin avisos en los entrenamientos del período.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No warnings in the workouts of the period."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga varningar i periodens träningspass."
+          }
+        }
+      }
+    },
     "Sin carrera este día": {
       "extractionState": "manual",
       "localizations": {
@@ -26487,6 +27099,23 @@
         }
       }
     },
+    "Son contexto que registraste tú: HÅLSYN no diagnostica ni atribuye causas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "They're context you logged: HÅLSYN doesn't diagnose or attribute causes."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De är sammanhang som du registrerat: HÅLSYN ställer inga diagnoser och anger inga orsaker."
+          }
+        }
+      }
+    },
     "Son el tiempo y la distancia del entrenamiento completo: si seguiste grabando después del test, corrígelos.": {
       "extractionState": "manual",
       "localizations": {
@@ -26602,6 +27231,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kliv upp på en hög låda med vikt, tryck med det övre benet utan att ta fart med det nedre."
+          }
+        }
+      }
+    },
+    "Sube el resultado: mejor que tu línea basal.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raises the result: better than your baseline."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höjer resultatet: bättre än din baslinje."
           }
         }
       }
@@ -30227,6 +30873,23 @@
         }
       }
     },
+    "Valores cardiometabólicos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardiometabolic values"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kardiometabola värden"
+          }
+        }
+      }
+    },
     "Vapeo o cigarrillo electrónico": {
       "extractionState": "manual",
       "localizations": {
@@ -30257,6 +30920,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hjärtfrekvensvariabilitet (HRV)"
+          }
+        }
+      }
+    },
+    "Variables": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variables"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variabler"
+          }
+        }
+      }
+    },
+    "Variación del horario": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule variation"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variation i tider"
           }
         }
       }
@@ -31485,6 +32182,23 @@
         }
       }
     },
+    "faltan días para conocer tu media": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not enough days to know your average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "för få dagar för att känna ditt snitt"
+          }
+        }
+      }
+    },
     "frente a hace un mes": {
       "extractionState": "manual",
       "localizations": {
@@ -31842,6 +32556,23 @@
         }
       }
     },
+    "registro corto: quizá incompleto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "short record: maybe incomplete"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kort registrering: kanske ofullständig"
+          }
+        }
+      }
+    },
     "resp/min": {
       "extractionState": "manual",
       "localizations": {
@@ -31910,6 +32641,40 @@
         }
       }
     },
+    "siesta sumada al total": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nap added to the total"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tupplur tillagd i totalen"
+          }
+        }
+      }
+    },
+    "sin datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inga data"
+          }
+        }
+      }
+    },
     "sin decidir": {
       "extractionState": "manual",
       "localizations": {
@@ -31944,6 +32709,40 @@
         }
       }
     },
+    "sueño fragmentado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fragmented sleep"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fragmenterad sömn"
+          }
+        }
+      }
+    },
+    "varias fuentes (fusionadas)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "several sources (merged)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "flera källor (sammanslagna)"
+          }
+        }
+      }
+    },
     "«Tiempo dormido» es la parte del periodo entre dormirte y despertarte que pasaste dormido.": {
       "extractionState": "manual",
       "localizations": {
@@ -31957,6 +32756,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "«Sovtid» är den del av tiden mellan att du somnade och vaknade som du faktiskt sov."
+          }
+        }
+      }
+    },
+    "«record_id» es un código corto derivado del identificador del registro: sirve para ver duplicados sin exponer el identificador de Salud. Un dato ausente queda vacío; nunca se rellena con 0.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“record_id” is a short code derived from the record's identifier: it helps spot duplicates without exposing the Health identifier. A missing value stays empty; it's never filled with 0."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "”record_id” är en kort kod härledd från postens identifierare: den hjälper att se dubbletter utan att visa Hälsas identifierare. Ett saknat värde lämnas tomt; det fylls aldrig med 0."
           }
         }
       }
@@ -32110,6 +32926,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varför uppskattar HÅLSYN den här tiden?"
+          }
+        }
+      }
+    },
+    "¿Por qué este puntaje?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why this score?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varför den här poängen?"
+          }
+        }
+      }
+    },
+    "¿Por qué tengo este puntaje?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why do I have this score?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varför har jag den här poängen?"
           }
         }
       }
@@ -32450,6 +33300,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 3 åren"
+          }
+        }
+      }
+    },
+    "Últimos 3 días: %@ min de ejercicio al día · tu media: %@ min": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 3 days: %@ min of exercise a day · your average: %@ min"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 3 dagarna: %@ min träning per dag · ditt snitt: %@ min"
           }
         }
       }

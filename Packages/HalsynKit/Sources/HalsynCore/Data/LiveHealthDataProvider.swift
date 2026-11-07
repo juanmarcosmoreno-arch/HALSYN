@@ -188,7 +188,11 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         let window = SleepAnalysis.window(endingOn: last, days: days, calendar: calendar)
         guard let samples = try? await client.sleepSamples(in: window) else { return [] }
         return SleepAnalysis.nights(samples, endingOn: last, days: days, calendar: calendar, origin: .healthKit(sourceName: nil)).map { night in
-            SleepNight(day: night.day, asleep: night.asleep, sleepStart: night.sleepStart, sleepEnd: night.sleepEnd, awake: night.awake, stages: night.stages, segments: night.segments, sourceName: night.sourceName, origin: .healthKit(sourceName: night.sourceName))
+            var copy = SleepNight(day: night.day, asleep: night.asleep, sleepStart: night.sleepStart, sleepEnd: night.sleepEnd, awake: night.awake, stages: night.stages, segments: night.segments, sourceName: night.sourceName, origin: .healthKit(sourceName: night.sourceName))
+            copy.napAsleep = night.napAsleep
+            copy.episodes = night.episodes
+            copy.sourceCount = night.sourceCount
+            return copy
         }
     }
 

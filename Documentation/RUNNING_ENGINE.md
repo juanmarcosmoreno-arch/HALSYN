@@ -202,3 +202,21 @@ Cada ajuste lleva su motivo con los datos (p. ej. "Tu recuperación estuvo baja 
 - **Tendencias**: el cambio del 5 km previsto se compara con la variación normal del modelo (±1 σ); solo se llama "real" si la supera.
 - **Simulador** (`GoalSimulation`): distancia, fecha, tiempo y días por semana; escenarios con sus supuestos. La frecuencia aporta 0,4 / 0,6 / 0,85 / 1 de la mejora con 1 / 2 / 3 / 4+ días; más de 4 días no suma.
 - **Calidad**: cadencia fuera de 100–260 pasos/min se marca y se ignora.
+
+## Auditoría de noviembre (0.10.0 (100))
+
+Detalle y casos reales en `AUDITORIA_NOV_2026.md`.
+
+- **Pesos del VDOT** (`PerformanceEvidence.WeightFactors`): tipo × antigüedad ×
+  distancia × calidad × tope × coherencia. Los entrenamientos suman como mucho
+  la mitad del peso de los tests y competiciones. `countedEvidence` y
+  `valueUsed` reproducen exactamente el VDOT mostrado.
+- **Duplicados**: mismo identificador de Salud siempre; corrección manual con
+  `distinct`.
+- **Cumplimiento**: `SessionSkipReason` (enfermedad y lesión no cuentan) y días
+  con eventos de salud que impiden entrenar.
+- **Intensidad** (`IntensityClassifier`): reglas en el código. Sin pulso nunca
+  se clasifica como «a tope».
+- **Volumen** (`TrainingVolumeAnalysis`): 12 semanas completas, medias 4/8/12,
+  Theil–Sen, descanso, rachas y aumento brusco relativo a tu historial.
+- **Plan**: un evento de salud reciente quita la intensidad; nada compensa lo perdido.

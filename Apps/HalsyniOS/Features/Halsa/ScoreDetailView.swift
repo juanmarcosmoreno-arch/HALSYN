@@ -42,7 +42,7 @@ struct ScoreDetailView: View {
             if let breakdown = score.breakdown {
                 HalsynCard {
                     VStack(alignment: .leading, spacing: HalsynSpacing.m) {
-                        HalsynSectionHeader("Dimensiones")
+                        HalsynSectionHeader("¿Por qué tengo este puntaje?", eyebrow: String(localized: "Dimensiones"))
                         ForEach(breakdown.dimensions) { dimension in
                             dimensionRow(dimension)
                         }

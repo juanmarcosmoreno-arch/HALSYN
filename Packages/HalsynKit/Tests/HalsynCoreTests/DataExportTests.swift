@@ -38,7 +38,8 @@ struct DataExportTests {
         let lines = csv.split(separator: "\n").map(String.init)
         #expect(lines.count == 2)
         #expect(lines[1].hasPrefix("2026-11-03,07:00,run_outdoor,5.000,25.00,5:00,300,158,176,171,380,"))
-        #expect(lines[1].hasSuffix(",test,\"Pegasus, rojas\""))
+        #expect(lines[1].contains(",test,\"Pegasus, rojas\","))
+        #expect(lines[1].contains(DataExport.recordID(run.id)))
     }
 
     @Test func numbersAlwaysUseADot() {
