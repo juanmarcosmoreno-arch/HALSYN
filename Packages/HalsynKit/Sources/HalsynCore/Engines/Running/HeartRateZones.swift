@@ -113,7 +113,7 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
         effectiveMethod != .lactateThreshold && maxSource == .observed
     }
 
-    private var validThreshold: Double? {
+    public var validThreshold: Double? {
         thresholdHeartRate.flatMap { Self.plausibleThresholdRange.contains($0) ? $0 : nil }
     }
 

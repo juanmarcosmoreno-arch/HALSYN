@@ -380,7 +380,7 @@ struct EvolutionView: View {
     @ViewBuilder
     private var goalCard: some View {
         if let plan = TrainingPlanStore.shared.plan,
-           let probability = GoalProbability.evaluate(plan: plan, performance: fitness.performance(runs: runs), runs: runs, today: .now, calendar: .current) {
+           let probability = GoalProbability.evaluateInApp(plan: plan, performance: fitness.performance(runs: runs), runs: runs, today: .now, calendar: .current) {
             HalsynCard {
                 VStack(alignment: .leading, spacing: HalsynSpacing.s) {
                     HalsynSectionHeader("Proximidad al objetivo", eyebrow: HalsynModule.mal.brandName)

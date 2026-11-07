@@ -36,6 +36,7 @@ struct SpringView: View {
                     EvolutionCard(runs: allWorkouts)
                     AnalysisSection("spring") {
                         RunningStatsCard(workouts: allWorkouts)
+                        VolumeIntensityCard(runs: allWorkouts)
                         TrainingLoadCard()
                         HeartRateRecoveryCard()
                         RacePredictionCard(predictions: predictions, performance: performance, runs: allWorkouts, unitSystem: unitSystem)
@@ -88,6 +89,7 @@ struct SpringView: View {
         rawWorkouts = recent
         let clean = WorkoutQualityStore.shared.clean(recent)
         allWorkouts = clean
+        IntensityContext.history = clean.filter(\.activity.isRun)
         workouts = Array(recent.prefix(20))
         // Con pruebas (tests, competiciones o esfuerzos a tope), el modelo de
         // rendimiento; si no, Riegel con tus mejores carreras.

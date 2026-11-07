@@ -64,6 +64,8 @@ public struct PlanAdvice: Hashable, Sendable {
         case severeComplaint(area: Complaint.Area, pain: Int)
         /// Dos sesiones exigentes en días seguidos.
         case consecutiveHardDays
+        /// Enfermedad, fiebre o lesión registrada (en curso o terminada hace ≤ 3 días).
+        case healthEvent(kind: HealthEvent.Kind, title: String, ongoing: Bool)
     }
 
     public enum Change: Hashable, Sendable {
@@ -111,8 +113,14 @@ public struct PlanAdvice: Hashable, Sendable {
 ///   4–6: las sesiones exigentes de los próximos 7 días pasan a rodaje suave y
 ///   la tirada larga se acorta al 80 %; 7 o más: descanso los próximos 3 días y
 ///   rodajes suaves el resto de la semana (y se sugiere consultar a un profesional).
+/// - **Evento de salud** (enfermedad, fiebre o lesión registrada, en curso o
+///   terminada hace 3 días o menos): con fiebre o lesión en curso, descanso los
+///   próximos 2 días; en todos los casos, las sesiones exigentes de la semana
+///   pasan a rodaje suave y la tirada larga se acorta al 80 % (vuelta gradual).
 /// - **Seguridad, siempre**: nunca dos sesiones exigentes en días seguidos; la
 ///   segunda pasa a rodaje suave.
+/// - **Nunca se compensa**: ningún ajuste sube la distancia ni la intensidad
+///   para recuperar sesiones perdidas.
 /// - Solo cambia los próximos 7 días (desde hoy) y no toca el plan guardado:
 ///   se aplica al mostrarlo y se puede rechazar.
 public enum PlanAdvisor {
@@ -128,7 +136,8 @@ public enum PlanAdvisor {
         recovery: [(day: Date, value: Int?)],
         runs: [WorkoutSummary],
         maxHeartRate: Double?,
-        complaints: [Complaint]
+        complaints: [Complaint],
+        healthEvents: [HealthEvent] = []
     ) -> PlanAdvice {
         let todayStart = calendar.startOfDay(for: today)
         guard let horizonEnd = calendar.date(byAdding: .day, value: horizonDays, to: todayStart) else { return PlanAdvice(reasons: [], adjustments: []) }
@@ -172,6 +181,28 @@ public enum PlanAdvisor {
                 reasons.append(.complaint(area: worst.area, pain: worst.pain))
                 for index in sessions.indices {
                     if sessions[index].kind.isHard { soften(index) } else if sessions[index].kind == .long { shorten(index, to: 0.8) }
+                }
+            }
+        }
+
+        // 1b. Eventos de salud: vuelta gradual, sin penalizar.
+        let recentHealth = healthEvents.filter { event in
+            guard event.kind.affectsTraining, event.start <= today else { return false }
+            let since = calendar.dateComponents([.day], from: event.lastDay(today: today, calendar: calendar), to: todayStart).day ?? 99
+            return since <= 3
+        }
+        if let event = recentHealth.max(by: { ($0.isOngoing ? 1 : 0, $0.start) < ($1.isOngoing ? 1 : 0, $1.start) }) {
+            reasons.append(.healthEvent(kind: event.kind, title: event.title, ongoing: event.isOngoing))
+            let restNow = recentHealth.contains { $0.isOngoing && ($0.kind == .fever || $0.kind == .injury) }
+            for index in sessions.indices where sessions[index].kind != .rest {
+                if restNow, daysFromToday(sessions[index].date) < 2 {
+                    let session = sessions[index]
+                    sessions[index] = PlannedSession(date: session.date, kind: .rest, distance: 0)
+                    changes[session.date] = .rested
+                } else if sessions[index].kind.isHard {
+                    soften(index)
+                } else if sessions[index].kind == .long {
+                    shorten(index, to: 0.8)
                 }
             }
         }

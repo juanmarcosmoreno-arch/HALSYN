@@ -66,7 +66,8 @@ final class TrainingPlanStore {
             recovery: recovery.map { (day: $0.day, value: $0.value) },
             runs: runs,
             maxHeartRate: FitnessStore.shared.configuredMaxHeartRate,
-            complaints: ComplaintStore.shared.complaints
+            complaints: ComplaintStore.shared.complaints,
+            healthEvents: HealthEventStore.shared.events
         )
         syncToWatch()
     }
@@ -204,7 +205,7 @@ struct TrainingPlanCard: View {
             store.replanIfNeeded(runs: workouts)
             // Un valor por día para ver cómo cambia la probabilidad.
             if !model.isDemo, let plan = store.plan,
-               let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: .current) {
+               let probability = GoalProbability.evaluateInApp(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: .current) {
                 GoalProbabilityHistory.record(probability, goal: plan.goal)
             }
             let today = Date.now
@@ -245,7 +246,7 @@ struct TrainingPlanCard: View {
         }
         let estimate = FitnessStore.shared.estimate(runs: workouts)
         if days >= 0 {
-            if let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: calendar) {
+            if let probability = GoalProbability.evaluateInApp(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: calendar) {
                 GoalProbabilitySummary(probability: probability, goal: plan.goal)
             } else {
                 GoalProbabilityMissing(hasGoalTime: plan.goal.goalTime != nil) { editingGoal = true }
@@ -861,11 +862,39 @@ struct PlanSessionRow: View {
                         .font(.caption2)
                         .foregroundStyle(.halsynCaution)
                 }
+                if status == .missed {
+                    if let reason = SessionSkipStore.shared.reason(for: session.date) {
+                        Label(SessionSkipText.title(reason), systemImage: SessionSkipText.systemImage(reason))
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                    } else {
+                        Text("Mantén pulsado para anotar por qué no la hiciste")
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                }
             }
             Spacer(minLength: 0)
             SessionStatusIcon(status: status)
         }
         .contentShape(Rectangle())
+        .contextMenu {
+            if status == .missed {
+                ForEach(SessionSkipReason.allCases, id: \.self) { reason in
+                    Button {
+                        SessionSkipStore.shared.set(reason, for: session.date)
+                        TrainingPlanStore.shared.refreshAdvice()
+                    } label: {
+                        Label(SessionSkipText.title(reason), systemImage: SessionSkipText.systemImage(reason))
+                    }
+                }
+                if SessionSkipStore.shared.reason(for: session.date) != nil {
+                    Button("Quitar el motivo", systemImage: "xmark") {
+                        SessionSkipStore.shared.set(nil, for: session.date)
+                    }
+                }
+            }
+        }
     }
 }
 

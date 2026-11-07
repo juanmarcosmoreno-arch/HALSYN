@@ -1123,6 +1123,23 @@
         }
       }
     },
+    "70–99 mg/dL en ayunas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "70–99 mg/dL fasting"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "70–99 mg/dL fastande"
+          }
+        }
+      }
+    },
     "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h o ≥10 h: 40 · 4–5 h: 20 · <4 h: 0": {
       "extractionState": "manual",
       "localizations": {
@@ -1174,6 +1191,91 @@
         }
       }
     },
+    "< 116 mg/dL con riesgo bajo; el objetivo depende de tu riesgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 116 mg/dL at low risk; the target depends on your risk"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 116 mg/dL vid låg risk; målet beror på din risk"
+          }
+        }
+      }
+    },
+    "< 120 mmHg (no elevada)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 120 mmHg (not elevated)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 120 mmHg (inte förhöjt)"
+          }
+        }
+      }
+    },
+    "< 150 mg/dL en ayunas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 150 mg/dL fasting"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 150 mg/dL fastande"
+          }
+        }
+      }
+    },
+    "< 190 mg/dL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 190 mg/dL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 190 mg/dL"
+          }
+        }
+      }
+    },
+    "< 70 mmHg (no elevada, ESC); < 80 mmHg (AHA)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 70 mmHg (not elevated, ESC); < 80 mmHg (AHA)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "< 70 mmHg (inte förhöjt, ESC); < 80 mmHg (AHA)"
+          }
+        }
+      }
+    },
     "<120/<80: 100 · 120–129/<80: 75 · 130–139 o 80–89: 50 · 140–159 o 90–99: 25 · ≥160 o ≥100: 0 · Con medicación: −20": {
       "extractionState": "manual",
       "localizations": {
@@ -1204,6 +1306,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "> %@ W"
+          }
+        }
+      }
+    },
+    "> 40 mg/dL (hombres)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> 40 mg/dL (men)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> 40 mg/dL (män)"
+          }
+        }
+      }
+    },
+    "> 50 mg/dL (mujeres)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> 50 mg/dL (women)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "> 50 mg/dL (kvinnor)"
           }
         }
       }
@@ -1357,6 +1493,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I samtalstempo: du ska kunna prata i meningar. Det är planens grund: det bygger aerob uthållighet och hjälper dig återhämta dig från hårda pass. Är du osäker, spring långsammare."
+          }
+        }
+      }
+    },
+    "ADA Standards of Care 2025": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ADA Standards of Care 2025"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ADA Standards of Care 2025"
           }
         }
       }
@@ -1595,6 +1748,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nedtrappning"
+          }
+        }
+      }
+    },
+    "Agregar un resultado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a result"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lägg till ett resultat"
           }
         }
       }
@@ -3571,6 +3741,23 @@
         }
       }
     },
+    "Cada carrera se clasifica en recuperación, suave, moderado, tempo, series o a tope con su pulso medio frente a tu FC máxima (y las subidas y bajadas del pulso, para las series). Sin pulso se usa el ritmo frente a tu ritmo de umbral, y se marca como aproximado. Ir rápido no basta para contar como «a tope»: hace falta el pulso. Los días sin entrenar incluyen todas las actividades (bici y caminatas también). El aviso de aumento compara con tu propio historial, no con un umbral universal.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each run is classified as recovery, easy, moderate, tempo, intervals or all-out from its average heart rate versus your max HR (and the rises and falls in heart rate, for intervals). Without heart rate, pace versus your threshold pace is used and it's marked as approximate. Being fast isn't enough to count as “all-out”: heart rate is needed. Days without training include every activity (cycling and walks too). The increase warning compares with your own history, not a universal threshold."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje löppass klassas som återhämtning, lugnt, måttligt, tempo, intervaller eller max utifrån medelpulsen mot din maxpuls (och pulsens upp- och nedgångar, för intervaller). Utan puls används tempot mot ditt tröskeltempo, markerat som ungefärligt. Att vara snabb räcker inte för att räknas som ”max”: pulsen behövs. Vilodagar omfattar alla aktiviteter (cykel och promenader också). Varningen om ökning jämför med din egen historik, inte med en universell gräns."
+          }
+        }
+      }
+    },
     "Cada carrera se clasifica por su pulso medio frente a tu FC máxima: suave (< 80 %), moderado (80–87 %), fuerte (≥ 87 %). Las carreras sin pulso no entran. La mayoría de los planes de fondo recomiendan que la mayor parte del tiempo sea suave.": {
       "extractionState": "manual",
       "localizations": {
@@ -5148,6 +5335,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "HDL-kolesterol"
+          }
+        }
+      }
+    },
+    "Colesterol LDL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LDL cholesterol"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LDL-kolesterol"
           }
         }
       }
@@ -7192,6 +7396,23 @@
         }
       }
     },
+    "Dentro de la referencia general": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Within the general reference"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inom den allmänna referensen"
+          }
+        }
+      }
+    },
     "Dentro de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -7409,6 +7630,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Från"
+          }
+        }
+      }
+    },
+    "Desde el %@ · en curso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Since %@ · ongoing"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sedan %@ · pågår"
           }
         }
       }
@@ -8161,6 +8399,23 @@
         }
       }
     },
+    "Día de recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery day"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återhämtningsdag"
+          }
+        }
+      }
+    },
     "Día estresante": {
       "extractionState": "manual",
       "localizations": {
@@ -8280,6 +8535,40 @@
         }
       }
     },
+    "Días intensos seguidos (14 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard days in a row (14 days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hårda dagar i rad (14 dagar)"
+          }
+        }
+      }
+    },
+    "Días sin entrenar (14 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days without training (14 days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagar utan träning (14 dagar)"
+          }
+        }
+      }
+    },
     "Dónde suena": {
       "extractionState": "manual",
       "localizations": {
@@ -8293,6 +8582,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spelas på"
+          }
+        }
+      }
+    },
+    "ESC 2024 · AHA/ACC 2017": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ESC 2024 · AHA/ACC 2017"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ESC 2024 · AHA/ACC 2017"
+          }
+        }
+      }
+    },
+    "ESC/EAS 2019": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ESC/EAS 2019"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ESC/EAS 2019"
           }
         }
       }
@@ -9674,6 +9997,23 @@
         }
       }
     },
+    "Encadenaste varios días intensos seguidos: un día suave entre medio ayuda a asimilarlos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You strung together several hard days: an easy day in between helps you absorb them."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hade flera hårda dagar i rad: en lugn dag emellan hjälper dig att tillgodogöra dig dem."
+          }
+        }
+      }
+    },
     "Energía": {
       "extractionState": "manual",
       "localizations": {
@@ -9721,6 +10061,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattad energi som du förbrukar när du rör dig, utöver energin i vila."
+          }
+        }
+      }
+    },
+    "Enfermedad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sjukdom"
+          }
+        }
+      }
+    },
+    "Enfermedades, síntomas, fiebre, medicación, lesiones, vacunas, estrés fuera de lo común o días de recuperación. Se marcan en las gráficas como contexto. HÅLSYN no diagnostica ni dice que un evento causó un cambio: solo te ayuda a recordarlo al mirar tus tendencias. Con enfermedad, fiebre o lesión, las sesiones de esos días no cuentan como incumplidas y el plan baja la intensidad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illnesses, symptoms, fever, medication, injuries, vaccines, unusual stress or recovery days. They're marked on the charts as context. HÅLSYN doesn't diagnose or say that an event caused a change: it only helps you remember it when looking at your trends. With illness, fever or injury, sessions on those days don't count as missed and the plan lowers the intensity."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sjukdomar, symtom, feber, medicinering, skador, vaccinationer, ovanlig stress eller återhämtningsdagar. De markeras i diagrammen som sammanhang. HÅLSYN ställer inga diagnoser och säger inte att en händelse orsakade en förändring: det hjälper dig bara att minnas den när du tittar på dina trender. Vid sjukdom, feber eller skada räknas passen de dagarna inte som missade och planen sänker intensiteten."
           }
         }
       }
@@ -10286,6 +10660,23 @@
         }
       }
     },
+    "Esfuerzo a tope": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All-out effort"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maxansträngning"
+          }
+        }
+      }
+    },
     "Esfuerzo de los últimos 3 días": {
       "extractionState": "manual",
       "localizations": {
@@ -10728,6 +11119,23 @@
         }
       }
     },
+    "Estrés extraordinario": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unusual stress"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ovanlig stress"
+          }
+        }
+      }
+    },
     "Estás acumulando más entrenamiento intenso de lo recomendado: %@ % de tus minutos de las últimas 2 semanas (la referencia es cerca del 20 %).": {
       "extractionState": "manual",
       "localizations": {
@@ -10741,6 +11149,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du samlar på dig mer intensiv träning än rekommenderat: %@ % av dina minuter de senaste 2 veckorna (riktvärdet är ungefär 20 %)."
+          }
+        }
+      }
+    },
+    "Evento de salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health event"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsohändelse"
+          }
+        }
+      }
+    },
+    "Eventos de salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health events"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsohändelser"
           }
         }
       }
@@ -11221,6 +11663,23 @@
         }
       }
     },
+    "Falta de tiempo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lack of time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidsbrist"
+          }
+        }
+      }
+    },
     "Falta permitir Salud o ubicación": {
       "extractionState": "manual",
       "localizations": {
@@ -11540,6 +11999,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Datum och siffror följer din iPhones regionala inställningar."
+          }
+        }
+      }
+    },
+    "Fiebre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fever"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feber"
           }
         }
       }
@@ -12258,6 +12734,23 @@
         }
       }
     },
+    "Glucemia en ayunas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasting glucose"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasteglukos"
+          }
+        }
+      }
+    },
     "Glucosa": {
       "extractionState": "manual",
       "localizations": {
@@ -12734,6 +13227,23 @@
         }
       }
     },
+    "Hace poco registraste «%@»: el plan vuelve de a poco, sin sesiones exigentes esta semana y sin recuperar lo perdido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You recently logged “%@”: the plan eases back in, with no hard sessions this week and without making up what was missed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du registrerade nyligen ”%@”: planen trappar upp gradvis, utan hårda pass den här veckan och utan att ta igen det missade."
+          }
+        }
+      }
+    },
     "Hacen falta 10 mediciones que terminen con un pulso parecido para ver si tu recuperación cambia.": {
       "extractionState": "manual",
       "localizations": {
@@ -13036,6 +13546,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Klar"
+          }
+        }
+      }
+    },
+    "Hemoglobina glicada (HbA1c)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glycated hemoglobin (HbA1c)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glykerat hemoglobin (HbA1c)"
           }
         }
       }
@@ -13720,6 +14247,23 @@
         }
       }
     },
+    "Ingresar en %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter in %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ange i %@"
+          }
+        }
+      }
+    },
     "Inicia sesión en iCloud en Ajustes del iPhone para tener una copia de tus datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -13903,6 +14447,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intensitet (IF)"
+          }
+        }
+      }
+    },
+    "Intenso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hårt"
           }
         }
       }
@@ -14519,6 +15080,23 @@
         }
       }
     },
+    "La semana pasada corriste un %@ % más que tu media de las 4 anteriores, más de lo que sueles variar. No predice una lesión, pero conviene subir de a poco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last week you ran %@ % more than your average of the previous 4, more than you usually vary. It doesn't predict an injury, but it's wise to build up gradually."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förra veckan sprang du %@ % mer än ditt snitt för de 4 föregående, mer än du brukar variera. Det förutsäger ingen skada, men det är klokt att öka gradvis."
+          }
+        }
+      }
+    },
     "La tabla publicada no cubre tu edad (%lld años), así que no te comparamos.": {
       "extractionState": "manual",
       "localizations": {
@@ -14702,6 +15280,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Baljväxter: bönor, linser, soja som edamame eller tofu"
+          }
+        }
+      }
+    },
+    "Lesión": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Injury"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skada"
+          }
+        }
+      }
+    },
+    "Lesión o dolor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Injury or pain"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skada eller smärta"
           }
         }
       }
@@ -15403,6 +16015,23 @@
         }
       }
     },
+    "Mantén pulsado para anotar por qué no la hiciste": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touch and hold to note why you didn't do it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Håll intryckt för att anteckna varför du inte gjorde det"
+          }
+        }
+      }
+    },
     "Mapa de la ruta": {
       "extractionState": "manual",
       "localizations": {
@@ -15641,6 +16270,23 @@
         }
       }
     },
+    "Media de 12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12-week average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt 12 veckor"
+          }
+        }
+      }
+    },
     "Media de 28 días": {
       "extractionState": "manual",
       "localizations": {
@@ -15658,6 +16304,23 @@
         }
       }
     },
+    "Media de 4 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4-week average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt 4 veckor"
+          }
+        }
+      }
+    },
     "Media de 7 días": {
       "extractionState": "manual",
       "localizations": {
@@ -15671,6 +16334,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "7-dagarssnitt"
+          }
+        }
+      }
+    },
+    "Media de 8 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8-week average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snitt 8 veckor"
           }
         }
       }
@@ -15909,6 +16589,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gruppens median: %@ %@. Ditt senaste värde: %@ %@."
+          }
+        }
+      }
+    },
+    "Medicación o tratamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medication or treatment"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medicinering eller behandling"
           }
         }
       }
@@ -16351,6 +17048,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Minuter med en intensitet motsvarande en rask promenad eller högre, enligt Apple."
+          }
+        }
+      }
+    },
+    "Minutos de carrera por semana según la intensidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running minutes per week by intensity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpminuter per vecka efter intensitet"
           }
         }
       }
@@ -17086,6 +17800,23 @@
         }
       }
     },
+    "Máx.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max"
+          }
+        }
+      }
+    },
     "Máxima": {
       "extractionState": "manual",
       "localizations": {
@@ -17201,6 +17932,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Metriskt (km)"
+          }
+        }
+      }
+    },
+    "Mín.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Min"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Min"
           }
         }
       }
@@ -18106,6 +18854,57 @@
         }
       }
     },
+    "Nombre (p. ej. ferritina)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name (e.g. ferritin)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namn (t.ex. ferritin)"
+          }
+        }
+      }
+    },
+    "Nombre (p. ej. sinusitis)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name (e.g. sinusitis)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namn (t.ex. bihåleinflammation)"
+          }
+        }
+      }
+    },
+    "Nota": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anteckning"
+          }
+        }
+      }
+    },
     "Nota (opcional)": {
       "extractionState": "manual",
       "localizations": {
@@ -18599,6 +19398,40 @@
         }
       }
     },
+    "Opcional": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valfritt"
+          }
+        }
+      }
+    },
+    "Opcional (laboratorio, en ayunas…)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional (lab, fasting…)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valfritt (labb, fastande…)"
+          }
+        }
+      }
+    },
     "Opcional.": {
       "extractionState": "manual",
       "localizations": {
@@ -18612,6 +19445,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Valfritt."
+          }
+        }
+      }
+    },
+    "Opcionales y solo en este iPhone. Sirven de contexto en tus gráficas; HÅLSYN no hace diagnósticos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional and only on this iPhone. They give context to your charts; HÅLSYN doesn't make diagnoses."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valfria och bara på den här iPhonen. De ger sammanhang i dina diagram; HÅLSYN ställer inga diagnoser."
           }
         }
       }
@@ -18731,6 +19581,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Andra grönsaker"
+          }
+        }
+      }
+    },
+    "Otro motivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other reason"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annan orsak"
+          }
+        }
+      }
+    },
+    "Otro resultado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other result"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annat resultat"
           }
         }
       }
@@ -20129,6 +21013,23 @@
         }
       }
     },
+    "Por debajo de la referencia general": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Below the general reference"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under den allmänna referensen"
+          }
+        }
+      }
+    },
     "Por debajo de la zona": {
       "extractionState": "manual",
       "localizations": {
@@ -20227,6 +21128,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Över 0: modellen trodde att du var långsammare än du sprang."
+          }
+        }
+      }
+    },
+    "Por encima de la referencia general": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Above the general reference"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Över den allmänna referensen"
           }
         }
       }
@@ -20567,6 +21485,57 @@
           "stringUnit": {
             "state": "translated",
             "value": "Blodtryck"
+          }
+        }
+      }
+    },
+    "Presión arterial, glucemia, HbA1c, colesterol total, LDL, HDL, triglicéridos, peso u otro resultado de laboratorio. Se muestran con su unidad, su fecha y una referencia general para adultos con su fuente. No es un diagnóstico: los valores objetivo dependen de tu riesgo y los define tu médico. Estos datos no cambian ninguna puntuación de HÅLSYN.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blood pressure, glucose, HbA1c, total cholesterol, LDL, HDL, triglycerides, weight or another lab result. They're shown with their unit, date and a general adult reference with its source. It isn't a diagnosis: target values depend on your risk and are set by your doctor. These data don't change any HÅLSYN score."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blodtryck, glukos, HbA1c, totalkolesterol, LDL, HDL, triglycerider, vikt eller annat labbresultat. De visas med enhet, datum och en allmän referens för vuxna med källa. Det är ingen diagnos: målvärden beror på din risk och bestäms av din läkare. Dessa data ändrar inga poäng i HÅLSYN."
+          }
+        }
+      }
+    },
+    "Presión diastólica": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastolic pressure"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diastoliskt tryck"
+          }
+        }
+      }
+    },
+    "Presión sistólica": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systolic pressure"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systoliskt tryck"
           }
         }
       }
@@ -21387,6 +22356,23 @@
         }
       }
     },
+    "Quitar el motivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove the reason"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta bort orsaken"
+          }
+        }
+      }
+    },
     "Quitar foto": {
       "extractionState": "manual",
       "localizations": {
@@ -21672,6 +22658,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld i rad"
+          }
+        }
+      }
+    },
+    "Racha más larga entrenando (28 días)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest training streak (28 days)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längsta träningssvit (28 dagar)"
           }
         }
       }
@@ -22084,6 +23087,40 @@
         }
       }
     },
+    "Referencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reference"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referens"
+          }
+        }
+      }
+    },
+    "Referencia general: %@ · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General reference: %@ · %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allmän referens: %@ · %@"
+          }
+        }
+      }
+    },
     "Referencias (%lld)": {
       "extractionState": "manual",
       "localizations": {
@@ -22114,6 +23151,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Registrerad"
+          }
+        }
+      }
+    },
+    "Registrados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logged"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrerade"
           }
         }
       }
@@ -22165,6 +23219,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Registrera utan något"
+          }
+        }
+      }
+    },
+    "Registrar un evento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log an event"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrera en händelse"
           }
         }
       }
@@ -22233,6 +23304,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du registrerade besvär i %@ (%@/10): intensiteten tas bort så länge det varar."
+          }
+        }
+      }
+    },
+    "Registraste «%@» y sigue en curso: el plan baja la intensidad. No se recupera lo perdido: se vuelve de a poco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged “%@” and it's ongoing: the plan lowers the intensity. Missed sessions aren't made up: you ease back in."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du registrerade ”%@” och det pågår: planen sänker intensiteten. Missade pass tas inte igen: du trappar upp gradvis."
+          }
+        }
+      }
+    },
+    "Registros de salud": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health records"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsoregister"
           }
         }
       }
@@ -23019,6 +24124,23 @@
         }
       }
     },
+    "Rodaje moderado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate run"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måttligt pass"
+          }
+        }
+      }
+    },
     "Rodaje suave": {
       "extractionState": "manual",
       "localizations": {
@@ -23457,6 +24579,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hälsa"
+          }
+        }
+      }
+    },
+    "Salud cardiometabólica": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardiometabolic health"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kardiometabol hälsa"
           }
         }
       }
@@ -24528,6 +25667,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga löppass än"
+          }
+        }
+      }
+    },
+    "Sin clasificar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unclassified"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oklassificerat"
           }
         }
       }
@@ -25875,6 +27031,23 @@
         }
       }
     },
+    "Síntoma": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Symptom"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Symtom"
+          }
+        }
+      }
+    },
     "Súbete a la balanza descalzo. HÅLSYN la escucha por Bluetooth: no hace falta emparejarla ni abrir Zepp Life.": {
       "extractionState": "manual",
       "localizations": {
@@ -26181,6 +27354,23 @@
         }
       }
     },
+    "Tempo o umbral": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo or threshold"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo eller tröskel"
+          }
+        }
+      }
+    },
     "Tendencia": {
       "extractionState": "manual",
       "localizations": {
@@ -26194,6 +27384,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Trend"
+          }
+        }
+      }
+    },
+    "Tendencia (8 semanas)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trend (8 weeks)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trend (8 veckor)"
           }
         }
       }
@@ -27180,6 +28387,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Efter dagar med «%@» sov du i snitt %@; efter dagar utan %@."
+          }
+        }
+      }
+    },
+    "Triglicéridos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triglycerides"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triglycerider"
           }
         }
       }
@@ -28527,6 +29751,23 @@
         }
       }
     },
+    "Unidad (p. ej. ng/mL)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unit (e.g. ng/mL)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enhet (t.ex. ng/mL)"
+          }
+        }
+      }
+    },
     "Unidades": {
       "extractionState": "manual",
       "localizations": {
@@ -28918,6 +30159,23 @@
         }
       }
     },
+    "Vacuna": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaccine"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaccination"
+          }
+        }
+      }
+    },
     "Valor": {
       "extractionState": "manual",
       "localizations": {
@@ -28948,6 +30206,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gårdagens värde: ingen mätning i dag än"
+          }
+        }
+      }
+    },
+    "Valor fuera de lo posible: revisa la unidad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible value: check the unit."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omöjligt värde: kontrollera enheten."
           }
         }
       }
@@ -29513,6 +30788,23 @@
         }
       }
     },
+    "Volumen e intensidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume and intensity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volym och intensitet"
+          }
+        }
+      }
+    },
     "Volumen por semana": {
       "extractionState": "manual",
       "localizations": {
@@ -29781,6 +31073,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Redan sprungna"
+          }
+        }
+      }
+    },
+    "Ya terminó": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's over"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Har slutat"
           }
         }
       }
@@ -30057,6 +31366,40 @@
         }
       }
     },
+    "aproximado, por el esfuerzo percibido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "approximate, from perceived effort"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ungefärligt, utifrån upplevd ansträngning"
+          }
+        }
+      }
+    },
+    "aproximado, por el ritmo (sin pulso)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "approximate, from pace (no heart rate)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ungefärligt, utifrån tempo (ingen puls)"
+          }
+        }
+      }
+    },
     "cuenta (peso %@)": {
       "extractionState": "manual",
       "localizations": {
@@ -30261,6 +31604,23 @@
         }
       }
     },
+    "lo marcaste tú": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "you marked it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "du markerade det"
+          }
+        }
+      }
+    },
     "lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -30274,6 +31634,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "slag/min"
+          }
+        }
+      }
+    },
+    "mmol/L": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mmol/L"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mmol/L"
           }
         }
       }
@@ -30393,6 +31770,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "plan-%@"
+          }
+        }
+      }
+    },
+    "por tu pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "from your heart rate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "utifrån din puls"
           }
         }
       }
@@ -30529,6 +31923,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "inte bestämd"
+          }
+        }
+      }
+    },
+    "sin pulso ni ritmo para clasificarlo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no heart rate or pace to classify it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ingen puls eller tempo att klassa det med"
           }
         }
       }
@@ -30920,6 +32331,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 4 veckorna"
+          }
+        }
+      }
+    },
+    "Últimas 4 semanas: %@ suave · %@ moderado · %@ intenso (por tiempo de carrera).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 4 weeks: %@ easy · %@ moderate · %@ hard (by running time)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 4 veckorna: %@ lugnt · %@ måttligt · %@ hårt (efter löptid)."
           }
         }
       }

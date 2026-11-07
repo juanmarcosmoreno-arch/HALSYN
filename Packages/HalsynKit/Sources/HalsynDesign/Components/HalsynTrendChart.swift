@@ -18,6 +18,24 @@ import Accessibility
 ///   lo alcanzan se atenúan (énfasis, no colores de alarma).
 /// - Exploración con el dedo con respuesta háptica, curva monótona (sin picos
 ///   que no existen) y descripción para VoiceOver y Audiogramas.
+/// Un evento (de salud, por ejemplo) que se marca sobre un gráfico como contexto.
+public struct HalsynEventSpan: Hashable, Identifiable, Sendable {
+    public let id: UUID
+    public let title: String
+    /// Primer y último día (inclusive).
+    public let start: Date
+    public let end: Date
+    public let systemImage: String
+
+    public init(id: UUID = UUID(), title: String, start: Date, end: Date, systemImage: String) {
+        self.id = id
+        self.title = title
+        self.start = start
+        self.end = max(start, end)
+        self.systemImage = systemImage
+    }
+}
+
 public struct HalsynTrendChart: View {
     public enum Style: Sendable {
         case line
@@ -34,6 +52,7 @@ public struct HalsynTrendChart: View {
     private let unit: String
     private let format: (Double) -> String
     private let showsReadout: Bool
+    private let events: [HalsynEventSpan]
 
     @State private var selectedDate: Date?
 
@@ -53,7 +72,8 @@ public struct HalsynTrendChart: View {
         target: Double? = nil,
         unit: String = "",
         format: @escaping (Double) -> String = { HalsynFormat.integer($0) },
-        showsReadout: Bool = true
+        showsReadout: Bool = true,
+        events: [HalsynEventSpan] = []
     ) {
         self.values = values.sorted { $0.day < $1.day }
         self.title = title
@@ -65,6 +85,18 @@ public struct HalsynTrendChart: View {
         self.unit = unit
         self.format = format
         self.showsReadout = showsReadout
+        self.events = events
+    }
+
+    /// Eventos recortados al período del gráfico.
+    private var visibleEvents: [HalsynEventSpan] {
+        events.compactMap { event in
+            let end = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: event.end)) ?? event.end
+            let start = max(calendar.startOfDay(for: event.start), xDomain.lowerBound)
+            let clippedEnd = min(end, xDomain.upperBound)
+            guard clippedEnd > start else { return nil }
+            return HalsynEventSpan(id: event.id, title: event.title, start: start, end: clippedEnd, systemImage: event.systemImage)
+        }
     }
 
     // MARK: Datos derivados
@@ -154,7 +186,7 @@ public struct HalsynTrendChart: View {
                     .chartXSelection(value: $selectedDate)
                     .sensoryFeedback(.selection, trigger: selectedDay)
                     .chartAccessibility(values: values, title: title, unit: unit, format: format)
-                if usualRange != nil || target != nil {
+                if usualRange != nil || target != nil || !visibleEvents.isEmpty {
                     legend
                 }
             }
@@ -238,6 +270,12 @@ public struct HalsynTrendChart: View {
                     Text("Objetivo")
                 }
             }
+            if !visibleEvents.isEmpty {
+                HStack(spacing: 6) {
+                    RoundedRectangle(cornerRadius: 2).fill(Color.halsynCaution.opacity(0.22)).frame(width: 14, height: 10)
+                    Text("Evento de salud")
+                }
+            }
         }
         .font(.caption2)
         .foregroundStyle(.halsynSecondaryText)
@@ -248,6 +286,23 @@ public struct HalsynTrendChart: View {
 
     private var chart: some View {
         Chart {
+            ForEach(visibleEvents) { event in
+                RectangleMark(
+                    xStart: .value("Inicio", event.start),
+                    xEnd: .value("Fin", event.end),
+                    yStart: .value("Mín.", resolvedDomain.lowerBound),
+                    yEnd: .value("Máx.", resolvedDomain.upperBound)
+                )
+                .foregroundStyle(Color.halsynCaution.opacity(0.12))
+                .annotation(position: .overlay, alignment: .topLeading) {
+                    Label(event.title, systemImage: event.systemImage)
+                        .labelStyle(.iconOnly)
+                        .font(.caption2)
+                        .foregroundStyle(Color.halsynCaution)
+                        .padding(2)
+                        .accessibilityLabel(Text(verbatim: event.title))
+                }
+            }
             if let usualRange {
                 RectangleMark(
                     xStart: .value("Inicio", xDomain.lowerBound),

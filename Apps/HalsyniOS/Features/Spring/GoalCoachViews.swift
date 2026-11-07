@@ -428,7 +428,7 @@ struct GoalStatusCard: View {
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
                 } else if let performance = fitness.performance(runs: runs),
-                          let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
+                          let probability = GoalProbability.evaluateInApp(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
                     let calibrated = fitness.projectionBacktest(runs: runs).rangeIsCalibrated
                     GoalIndicatorsView(probability: probability, performance: performance, goal: plan.goal, rangeIsCalibrated: calibrated)
                     Divider().overlay(Color.halsynHairline)

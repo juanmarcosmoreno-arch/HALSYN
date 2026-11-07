@@ -191,7 +191,7 @@ struct DataExportView: View {
             }
             lines.append("- " + String(localized: "Carreras por semana: \(String(plan.goal.runsPerWeek))"))
             if let performance = FitnessStore.shared.performance(runs: runs, today: end),
-               let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: end, calendar: calendar) {
+               let probability = GoalProbability.evaluateInApp(plan: plan, performance: performance, runs: runs, today: end, calendar: calendar) {
                 let category = GoalProbabilityText.titleText(probability.category)
                 let projectedRange = GoalProbabilityText.range(probability.projectedRange)
                 lines.append("- " + String(localized: "Tiempo estimado hoy: \(HalsynFormat.duration(probability.currentTime))") + (probability.currentRange.map { " (" + String(localized: "rango orientativo") + " \(GoalProbabilityText.range($0)))" } ?? ""))

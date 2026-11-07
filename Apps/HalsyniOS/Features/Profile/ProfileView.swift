@@ -156,6 +156,23 @@ struct ProfileView: View {
 
                 Section {
                     NavigationLink {
+                        HealthEventListView()
+                    } label: {
+                        Label("Eventos de salud", systemImage: "cross.case")
+                    }
+                    NavigationLink {
+                        LabResultsView()
+                    } label: {
+                        Label("Salud cardiometabólica", systemImage: "drop")
+                    }
+                } header: {
+                    Text("Registros de salud")
+                } footer: {
+                    Text("Opcionales y solo en este iPhone. Sirven de contexto en tus gráficas; HÅLSYN no hace diagnósticos.")
+                }
+
+                Section {
+                    NavigationLink {
                         DataExportView()
                     } label: {
                         Label("Exportar mis datos (CSV)", systemImage: "tablecells")

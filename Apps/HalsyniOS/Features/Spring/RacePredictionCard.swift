@@ -227,6 +227,7 @@ struct PredictionDetailView: View {
 }
 
 /// Explicación en palabras del cálculo real (mismos números que el modelo).
+@MainActor
 enum PredictionExplanationText {
     static func paragraphs(_ performance: PerformanceAssessment, runs: [WorkoutSummary], unit: UnitSystem) -> [String] {
         var lines: [String] = []
@@ -255,7 +256,7 @@ enum PredictionExplanationText {
             lines.append(String(localized: "Pruebas que no cuentan: \(excludedText) (abajo, el motivo de cada una)."))
         }
         if let plan = TrainingPlanStore.shared.plan,
-           let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
+           let probability = GoalProbability.evaluateInApp(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
             let distance = String(localized: String.LocalizationValue(plan.goal.distance.title))
             let gain = HalsynFormat.decimal(probability.expectedGain, fractionDigits: 1)
             lines.append(String(localized: "\(distance) hoy: \(HalsynFormat.duration(probability.currentTime)). El día de la carrera, con la mejora esperada del escenario central (+\(gain) VDOT, según tu cumplimiento y el tiempo que falta): \(HalsynFormat.duration(probability.projectedTime))."))

@@ -64,6 +64,10 @@ enum PlanAdviceText {
             return String(localized: "Registraste dolor en \(zone) (\(String(pain))/10): descanso unos días. Si no mejora o empeora, consulta a un profesional.")
         case .consecutiveHardDays:
             return String(localized: "Había dos sesiones exigentes en días seguidos: la segunda pasa a suave para que puedas asimilar la primera.")
+        case let .healthEvent(_, title, ongoing):
+            return ongoing
+                ? String(localized: "Registraste «\(title)» y sigue en curso: el plan baja la intensidad. No se recupera lo perdido: se vuelve de a poco.")
+                : String(localized: "Hace poco registraste «\(title)»: el plan vuelve de a poco, sin sesiones exigentes esta semana y sin recuperar lo perdido.")
         }
     }
 

@@ -62,6 +62,24 @@ struct WorkoutDetailView: View {
             }
 
             if workout.activity.isRun {
+                let intensity = IntensityContext.intensities([workout], samples: detail.map { [workout.id: $0.heartRate] } ?? [:])[workout.id]
+                if let intensity, intensity.kind != .unknown {
+                    HalsynCard {
+                        HStack(spacing: HalsynSpacing.s) {
+                            Image(systemName: "gauge.with.dots.needle.50percent")
+                                .foregroundStyle(.halsynAccentText)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(verbatim: IntensityText.title(intensity.kind))
+                                    .font(.halsynCaption.weight(.semibold))
+                                    .foregroundStyle(.halsynPrimaryText)
+                                Text(verbatim: IntensityText.basis(intensity))
+                                    .font(.caption2)
+                                    .foregroundStyle(.halsynSecondaryText)
+                            }
+                            Spacer()
+                        }
+                    }
+                }
                 PerformanceMarkCard(workout: workout)
             }
 
