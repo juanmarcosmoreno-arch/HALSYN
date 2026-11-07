@@ -31,8 +31,10 @@ struct RunnerProgressTests {
         let progress = RunnerProgress.build(runs: runs, results: [], maxHeartRate: 186, weeks: 4, today: today, calendar: calendar)
         let total = progress.weeks.map(\.distance).reduce(0, +)
         #expect(abs(total - 24_000) < 0.1)
-        let minutes = progress.weeks.map { $0.easyMinutes + $0.moderateMinutes + $0.hardMinutes }.reduce(0, +)
-        #expect(abs(minutes - (10 * 330 + 6 * 270 + 8 * 320) / 60) < 0.01)
+        let perWeek: [Double] = progress.weeks.map { week in week.easyMinutes + week.moderateMinutes + week.hardMinutes }
+        let minutes: Double = perWeek.reduce(0, +)
+        let expected: Double = Double(10 * 330 + 6 * 270 + 8 * 320) / 60
+        #expect(abs(minutes - expected) < 0.01)
         #expect(progress.weeks.map(\.hardMinutes).reduce(0, +) == 27)
     }
 

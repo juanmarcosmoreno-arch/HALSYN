@@ -136,8 +136,12 @@ struct PerformanceModelTests {
             PerformanceResult(date: daysAgo(5), distance: 10_000, time: 2520, kind: .race),
         ]
         let model = try #require(RacePerformanceModel.assess(results: results, runs: [], today: today, calendar: calendar))
-        #expect(abs(try #require(model.personalExponent) - log(2520.0 / 1200) / log(2)) < 0.001)
-        #expect(RacePerformanceModel.riegel(time: 1200, from: 5000, to: 10_000, exponent: 1.06) - 1200 * pow(2, 1.06) < 0.001)
+        let exponent = try #require(model.personalExponent)
+        let expected: Double = log(2520.0 / 1200) / log(2)
+        #expect(abs(exponent - expected) < 0.001)
+        let riegel: Double = RacePerformanceModel.riegel(time: 1200, from: 5000, to: 10_000, exponent: 1.06)
+        let manual: Double = 1200 * pow(2, 1.06)
+        #expect(abs(riegel - manual) < 0.001)
     }
 
     @Test func noEvidenceNoModel() {

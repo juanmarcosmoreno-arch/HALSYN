@@ -53,7 +53,8 @@ struct LoadExtrasTests {
     @Test func paceLoadUsesThresholdRatio() throws {
         let atThreshold = try #require(BanisterTRIMP.load(duration: 3600, pace: 270, thresholdPace: 270, sex: .male))
         let easy = try #require(BanisterTRIMP.load(duration: 3600, pace: 360, thresholdPace: 270, sex: .male))
-        #expect(abs(atThreshold - 60 * 0.85 * exp(1.92 * 0.85)) < 0.01)
+        let expected: Double = 60 * 0.85 * exp(1.92 * 0.85)
+        #expect(abs(atThreshold - expected) < 0.01)
         #expect(easy < atThreshold)
     }
 

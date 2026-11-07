@@ -60,7 +60,9 @@ struct BacktestTests {
         let model = try #require(RacePerformanceModel.assess(results: [test(2, vdot: 45)], runs: [], today: today, calendar: calendar))
         let calibrated = model.predict(5000, calibratedRelativeError: error)
         let range = try #require(calibrated.range)
-        #expect(range.upperBound - range.lowerBound > 2 * 1.28 * error * calibrated.time - 0.01)
+        let width: Double = range.upperBound - range.lowerBound
+        let minimum: Double = 2 * 1.28 * error * calibrated.time
+        #expect(width > minimum - 0.01)
     }
 
     @Test func brierNeedsFiveOutcomes() {
