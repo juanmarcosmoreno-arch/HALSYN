@@ -231,3 +231,9 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - **Factibilidad**: mejora esperada = semanas × (½·1/6 + ½·tendencia observada acotada a 0–0,25) × factor de cumplimiento; incertidumbre total = √(σ modelo² + (½ mejora)² + 0,7²). Categoría por z: ≥ 1 muy probable, 0–1 alcanzable, −1–0 exigente, < −1 poco realista por ahora.
 - **Sin porcentaje**: no hay resultados reales con los que calibrar probabilidades; se muestra la categoría, el tiempo previsto y su rango. El valor del modelo se guarda para la evaluación retrospectiva (fase 5).
 - **Factores**: brecha de VDOT frente a la mejora habitual, cumplimiento (≥ 85 % a favor, < 60 % en contra), tendencia (±0,05 VDOT/semana), semanas frente a las recomendadas, volumen semanal frente al recomendado (≥ 100 % a favor, < 70 % en contra) y confianza de la estimación.
+
+## Zonas por FC umbral y monotonía (`HeartRateZoneConfiguration`, `TrainingMonotony`)
+
+- Zonas por FC umbral de lactato (Friel, *The Triathlete's Training Bible*): Z1 < 85 %, Z2 85–89 %, Z3 90–94 %, Z4 95–99 %, Z5 ≥ 100 %. Medición de campo: FC media de los últimos 20 min de 30 min a tope.
+- Monotonía = media / desviación de la carga diaria semanal; strain = carga × monotonía (Foster 1998, Med Sci Sports Exerc 30(7):1164–1168). Umbral orientativo de monotonía alta: 2.
+- Carga por ritmo sin FC: aproximación de HÅLSYN (intensidad relativa al ritmo umbral en la escala del TRIMP de Banister), no un método publicado; se marca como aproximada.

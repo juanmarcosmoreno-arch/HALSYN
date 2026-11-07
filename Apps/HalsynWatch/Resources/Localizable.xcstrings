@@ -18,6 +18,23 @@
         }
       }
     },
+    "%@ carreras sin pulso tienen una carga aproximada, estimada por su ritmo frente a tu ritmo umbral.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ runs without heart rate have an approximate load, estimated from their pace versus your threshold pace."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ löprundor utan puls har en ungefärlig belastning, uppskattad från tempot jämfört med ditt tröskeltempo."
+          }
+        }
+      }
+    },
     "%@ continuos a %@, con calentamiento y vuelta a la calma": {
       "extractionState": "manual",
       "localizations": {
@@ -337,6 +354,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ över ditt snitt"
+          }
+        }
+      }
+    },
+    "%@ sesiones de las últimas 4 semanas se calculan con todas sus lecturas de pulso (más preciso que la media).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sessions in the last 4 weeks are calculated from all their heart rate readings (more precise than the average)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ pass de senaste 4 veckorna beräknas med alla pulsavläsningar (mer exakt än medelvärdet)."
           }
         }
       }
@@ -4064,19 +4098,19 @@
         }
       }
     },
-    "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica.": {
+    "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC (tramo a tramo si hay lecturas; si no, la media) frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Load of each workout: Banister's TRIMP, from the duration and average heart rate relative to your resting and maximum heart rate. Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, their difference at the end of yesterday (how you arrive at today). These are training trends, not a medical measure."
+            "value": "Load of each workout: Banister's TRIMP, using duration and heart rate (segment by segment when readings exist; otherwise the average) relative to your resting and maximum heart rate. Fitness is the 42-day exponential average; fatigue, the 7-day one; freshness, their difference at the end of yesterday (how you arrive today). These are training trends, not a medical measure."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Belastning för varje pass: Banisters TRIMP, utifrån längd och medelpuls i förhållande till din vilopuls och maxpuls. Formen är det exponentiella medelvärdet över 42 dagar; tröttheten över 7; fräschheten skillnaden mellan dem vid slutet av gårdagen (hur du kommer in i dag). Det är träningstrender, inte ett medicinskt mått."
+            "value": "Belastning för varje pass: Banisters TRIMP, med tid och puls (avsnitt för avsnitt när avläsningar finns, annars medelvärdet) i förhållande till vilo- och maxpuls. Konditionen är det exponentiella 42-dagarsmedelvärdet; tröttheten 7-dagars; fräschören skillnaden vid slutet av gårdagen (hur du kommer in i dag). Det är träningstrender, inte ett medicinskt mått."
           }
         }
       }
@@ -10031,6 +10065,40 @@
         }
       }
     },
+    "FC umbral (lactato)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Threshold heart rate (lactate)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tröskelpuls (laktat)"
+          }
+        }
+      }
+    },
+    "FC umbral (lpm)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Threshold HR (bpm)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tröskelpuls (slag/min)"
+          }
+        }
+      }
+    },
     "FONDO": {
       "extractionState": "manual",
       "localizations": {
@@ -10129,6 +10197,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Giltig vilopuls saknas: procent av maxpulsen används i stället."
+          }
+        }
+      }
+    },
+    "Falta una FC umbral válida: se usa el porcentaje de la FC máxima.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No valid threshold heart rate: the percentage of maximum heart rate is used."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen giltig tröskelpuls: procent av maxpulsen används."
           }
         }
       }
@@ -14821,6 +14906,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demoläge"
+          }
+        }
+      }
+    },
+    "Monotonía de la semana: %@ (strain %@). Hay variedad entre días duros y suaves.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly monotony: %@ (strain %@). There's variety between hard and easy days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckans monotoni: %@ (strain %@). Det finns variation mellan hårda och lätta dagar."
+          }
+        }
+      }
+    },
+    "Monotonía de la semana: %@, alta (strain %@). Tus días se parecen mucho entre sí: alternar días duros y suaves ayuda a asimilar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly monotony: %@, high (strain %@). Your days are very similar: alternating hard and easy days helps you absorb training."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckans monotoni: %@, hög (strain %@). Dina dagar är väldigt lika: att växla mellan hårda och lätta dagar hjälper dig att tillgodogöra dig träningen."
           }
         }
       }
@@ -26895,6 +27014,23 @@
         }
       }
     },
+    "Zonas aproximadas: salen de la FC más alta registrada, y tu máxima real puede ser mayor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approximate zones: they come from your highest recorded heart rate, and your real maximum may be higher."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ungefärliga zoner: de bygger på din högsta registrerade puls, och din verkliga maxpuls kan vara högre."
+          }
+        }
+      }
+    },
     "Zonas cardíacas": {
       "extractionState": "manual",
       "localizations": {
@@ -26959,6 +27095,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cykelzoner"
+          }
+        }
+      }
+    },
+    "Zonas por FC umbral (Friel): Z2 desde el 85 %, Z3 desde el 90 %, Z4 desde el 95 % y Z5 desde el 100 % de tu FC umbral. Para medirla: corre 30 min a tope (solo, sin competir) y usa la FC media de los últimos 20 min. Es una convención de entrenamiento, no una indicación médica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Threshold heart rate zones (Friel): Z2 from 85 %, Z3 from 90 %, Z4 from 95 % and Z5 from 100 % of your threshold heart rate. To measure it: run 30 min all out (alone, not in a race) and use the average heart rate of the last 20 min. It's a training convention, not medical advice."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoner efter tröskelpuls (Friel): Z2 från 85 %, Z3 från 90 %, Z4 från 95 % och Z5 från 100 % av din tröskelpuls. Så mäter du den: spring 30 min för fullt (ensam, inte i tävling) och använd medelpulsen de sista 20 min. Det är en träningskonvention, inte medicinska råd."
           }
         }
       }

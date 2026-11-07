@@ -149,3 +149,11 @@ Se completará **solo con información verificada** en documentación oficial y 
 - `RacePrediction.from(_:)` alimenta la tarjeta de predicción; sin pruebas se usa el Riegel clásico de `RacePredictor`.
 - `GoalProbability.evaluate(plan:performance:…)` da la categoría de factibilidad, el tiempo previsto con su rango y los factores a favor y en contra. No se muestra porcentaje (sin calibrar).
 - `FitnessEstimator` sigue dando el VDOT con el que se generan los ritmos del plan (se unificará en la fase 3).
+
+## Zonas por FC umbral y carga (Fase 2b)
+
+- **Zonas por FC umbral** (`HeartRateZoneMethod.lactateThreshold`, Friel): Z1 desde el 65 %, Z2 85 %, Z3 90 %, Z4 95 %, Z5 100 % de la FC umbral; Z5 llega a la FC máxima (o 110 % del umbral). Sin FC umbral válida (110–210) se usa el % de la máxima. `isApproximate` = zonas que salen de la FC máxima *observada* (la real puede ser más alta).
+- **Carga por tramos**: `BanisterTRIMP.load(samples:)` suma el TRIMP de cada intervalo entre lecturas de FC (máximo 15 s por tramo, ≥ 10 lecturas). Se usa para las sesiones de las últimas 6 semanas; las anteriores, con la FC media.
+- **Carga por ritmo** (sin FC): intensidad = 0,85 × ritmo umbral / ritmo de la sesión (acotada 0,3–1), en la misma escala TRIMP, marcada como aproximada. El ritmo umbral sale del modelo de rendimiento (VDOT).
+- **Monotonía y strain** (Foster 1998): media / desviación de la carga diaria de 7 días (días sin entrenar = 0) y carga semanal × monotonía. ≥ 2 se describe como "alta". Se presenta como descripción del entrenamiento, no como predictor de lesiones.
+- Los duplicados y superposiciones (`DataQuality`) no suman carga.

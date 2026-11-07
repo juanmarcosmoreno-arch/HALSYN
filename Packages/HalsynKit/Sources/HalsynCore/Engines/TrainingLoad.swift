@@ -20,17 +20,36 @@ public enum LoadMetric: String, CaseIterable, Identifiable, Codable, Sendable {
 
 /// Carga de un entrenamiento terminado.
 public struct WorkoutLoad: Hashable, Sendable {
+    /// De dónde sale la carga (de más a menos precisa).
+    public enum Source: String, Hashable, Sendable {
+        /// Muestras de FC de toda la sesión.
+        case heartRateSamples
+        /// FC media de la sesión.
+        case averageHeartRate
+        /// Sin FC: estimada por el ritmo frente a tu ritmo umbral (aproximada).
+        case pace
+        /// Potencia (TSS).
+        case power
+    }
+
     public let workoutID: UUID
     public let date: Date
     public let sport: WorkoutSport
     public let value: Double
+    public let source: Source
+    /// Minutos de la sesión (para la intensidad media por semana).
+    public let minutes: Double
 
-    public init(workoutID: UUID, date: Date, sport: WorkoutSport, value: Double) {
+    public init(workoutID: UUID, date: Date, sport: WorkoutSport, value: Double, source: Source = .averageHeartRate, minutes: Double = 0) {
         self.workoutID = workoutID
         self.date = date
         self.sport = sport
         self.value = value
+        self.source = source
+        self.minutes = minutes
     }
+
+    public var isApproximate: Bool { source == .pace }
 }
 
 /// TRIMP de Banister con la FC media de la sesión (Banister, Morton y
@@ -58,6 +77,67 @@ public enum BanisterTRIMP {
         let ratio = min(max((average - restingHeartRate) / (maxHeartRate - restingHeartRate), 0), 1)
         return duration / 60 * ratio * weight(ratio, sex: sex)
     }
+
+    /// TRIMP sumando cada tramo entre lecturas de FC (más fiel que la media en
+    /// sesiones con cambios de ritmo). Cada lectura cuenta hasta la siguiente,
+    /// con un máximo de 15 s (si el sensor se calla no se extrapola).
+    /// `nil` con menos de 10 lecturas o con FC de referencia incoherentes.
+    public static func load(samples: [HeartRatePoint], restingHeartRate: Double, maxHeartRate: Double, sex: ReferenceSex?) -> Double? {
+        guard samples.count >= 10,
+              HeartRateZoneConfiguration.plausibleRestingRange.contains(restingHeartRate),
+              HeartRateZoneConfiguration.plausibleMaxRange.contains(maxHeartRate),
+              maxHeartRate - restingHeartRate >= 30 else { return nil }
+        let sorted = samples.sorted { $0.date < $1.date }
+        var total = 0.0
+        for (current, next) in zip(sorted, sorted.dropFirst()) {
+            let minutes = min(max(next.date.timeIntervalSince(current.date), 0), ZoneTimeAccumulator.maximumGap) / 60
+            let ratio = min(max((current.bpm - restingHeartRate) / (maxHeartRate - restingHeartRate), 0), 1)
+            total += minutes * ratio * weight(ratio, sex: sex)
+        }
+        return total
+    }
+
+    /// Carga aproximada sin FC, por el ritmo: la intensidad se estima como
+    /// 0,85 × (ritmo umbral / ritmo de la sesión), acotada a 0,3…1 (en el umbral
+    /// la FC suele rondar el 85 % de la reserva). Misma escala que el TRIMP,
+    /// pero menos precisa: se marca como aproximada.
+    public static func load(duration: TimeInterval, pace: Double, thresholdPace: Double, sex: ReferenceSex?) -> Double? {
+        guard duration > 0, pace > 0, thresholdPace > 0 else { return nil }
+        let ratio = min(max(0.85 * thresholdPace / pace, 0.3), 1)
+        return duration / 60 * ratio * weight(ratio, sex: sex)
+    }
+}
+
+/// Monotonía y strain de Foster (1998): con la carga de cada uno de los
+/// últimos 7 días (los días sin entrenar cuentan como 0),
+/// monotonía = media / desviación típica; strain = carga semanal × monotonía.
+/// Una monotonía alta indica días muy parecidos entre sí (poca alternancia de
+/// días duros y suaves). Es una descripción del entrenamiento, no un
+/// predictor validado de lesiones.
+public struct TrainingMonotony: Hashable, Sendable {
+    public let weeklyLoad: Double
+    public let monotony: Double
+    public let strain: Double
+
+    /// Por encima de esto, la semana tuvo poca variación (umbral orientativo de Foster).
+    public static let highMonotony = 2.0
+
+    public static func compute(loads: [WorkoutLoad], endingOn today: Date, calendar: Calendar) -> TrainingMonotony? {
+        let todayStart = calendar.startOfDay(for: today)
+        let daily: [Double] = (0..<7).map { offset in
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: todayStart),
+                  let next = calendar.date(byAdding: .day, value: 1, to: day) else { return 0 }
+            return loads.filter { $0.date >= day && $0.date < next }.map(\.value).reduce(0, +)
+        }
+        let total = daily.reduce(0, +)
+        guard total > 0, daily.filter({ $0 > 0 }).count >= 2 else { return nil }
+        let mean = total / 7
+        let variance = daily.map { pow($0 - mean, 2) }.reduce(0, +) / 7
+        let deviation = variance.squareRoot()
+        guard deviation > 0 else { return nil }
+        let monotony = mean / deviation
+        return TrainingMonotony(weeklyLoad: total, monotony: monotony, strain: total * monotony)
+    }
 }
 
 /// Datos personales para la carga por pulso.
@@ -82,17 +162,34 @@ public struct HeartRateLoadInputs: Hashable, Sendable {
 
 public enum TrainingLoadCalculator {
     /// TRIMP de cada entrenamiento con FC media. Los que no la tienen no suman (se cuentan aparte).
-    public static func heartRateLoads(_ workouts: [WorkoutSummary], inputs: HeartRateLoadInputs) -> (loads: [WorkoutLoad], skipped: Int) {
-        guard let resting = inputs.restingHeartRate else { return ([], workouts.count) }
+    /// - Con muestras de FC de la sesión: TRIMP por tramos.
+    /// - Si no, con FC media: TRIMP de la media.
+    /// - Carreras sin FC y con `thresholdPace`: carga aproximada por ritmo.
+    /// - El resto no suma (se cuenta aparte).
+    public static func heartRateLoads(_ workouts: [WorkoutSummary], inputs: HeartRateLoadInputs, samples: [UUID: [HeartRatePoint]] = [:], thresholdPace: Double? = nil) -> (loads: [WorkoutLoad], skipped: Int) {
         var loads: [WorkoutLoad] = []
         var skipped = 0
         for workout in workouts {
-            guard let max = inputs.max(for: workout.activity.sport),
-                  let value = BanisterTRIMP.load(duration: workout.duration, averageHeartRate: workout.averageHeartRate, restingHeartRate: resting, maxHeartRate: max, sex: inputs.sex) else {
-                skipped += 1
+            let minutes = workout.duration / 60
+            let sport = workout.activity.sport
+            if let resting = inputs.restingHeartRate, let max = inputs.max(for: sport) {
+                if let points = samples[workout.id],
+                   let value = BanisterTRIMP.load(samples: points, restingHeartRate: resting, maxHeartRate: max, sex: inputs.sex) {
+                    loads.append(WorkoutLoad(workoutID: workout.id, date: workout.start, sport: sport, value: value, source: .heartRateSamples, minutes: minutes))
+                    continue
+                }
+                if let value = BanisterTRIMP.load(duration: workout.duration, averageHeartRate: workout.averageHeartRate, restingHeartRate: resting, maxHeartRate: max, sex: inputs.sex) {
+                    loads.append(WorkoutLoad(workoutID: workout.id, date: workout.start, sport: sport, value: value, source: .averageHeartRate, minutes: minutes))
+                    continue
+                }
+            }
+            if workout.activity.isRun, workout.averageHeartRate == nil, let thresholdPace,
+               let pace = workout.averagePace?.secondsPerKilometer,
+               let value = BanisterTRIMP.load(duration: workout.duration, pace: pace, thresholdPace: thresholdPace, sex: inputs.sex) {
+                loads.append(WorkoutLoad(workoutID: workout.id, date: workout.start, sport: sport, value: value, source: .pace, minutes: minutes))
                 continue
             }
-            loads.append(WorkoutLoad(workoutID: workout.id, date: workout.start, sport: workout.activity.sport, value: value))
+            skipped += 1
         }
         return (loads, skipped)
     }
@@ -170,6 +267,12 @@ public struct TrainingLoadSummary: Hashable, Sendable {
     public let historyDays: Int
     /// Entrenamientos del periodo que no suman (sin FC media o sin potencia).
     public let skipped: Int
+    /// Monotonía y strain de los últimos 7 días (Foster).
+    public let monotony: TrainingMonotony?
+    /// Entrenamientos de los últimos 28 días con carga aproximada (por ritmo).
+    public let approximateCount: Int
+    /// Entrenamientos de los últimos 28 días con carga por muestras de FC.
+    public let sampledCount: Int
 
     public var today: FitnessFatiguePoint? { points.last }
     /// Días de historia para que la forma (media de 42 días que empieza en 0)
@@ -223,6 +326,14 @@ public enum TrainingLoadBuilder {
         } else {
             points = []
         }
-        return TrainingLoadSummary(metric: metric, weeks: weeks, last7Days: last7, previousWeeklyAverage: previousAverage, points: points, historyDays: historyDays, skipped: skipped)
+        let recentStart = calendar.date(byAdding: .day, value: -27, to: todayStart) ?? todayStart
+        let recent = loads.filter { $0.date >= recentStart }
+        return TrainingLoadSummary(
+            metric: metric, weeks: weeks, last7Days: last7, previousWeeklyAverage: previousAverage, points: points,
+            historyDays: historyDays, skipped: skipped,
+            monotony: TrainingMonotony.compute(loads: loads, endingOn: today, calendar: calendar),
+            approximateCount: recent.filter(\.isApproximate).count,
+            sampledCount: recent.filter { $0.source == .heartRateSamples }.count
+        )
     }
 }

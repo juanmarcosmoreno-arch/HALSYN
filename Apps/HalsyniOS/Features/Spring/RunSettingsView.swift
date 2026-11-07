@@ -428,6 +428,9 @@ struct ZoneSettingsView: View {
                 case .observed:
                     observedRow
                 }
+                if zones.method == .lactateThreshold {
+                    bpmField("FC umbral (lpm)", value: runSetting(path.appending(path: \.thresholdHeartRate)))
+                }
                 if zones.method == .heartRateReserve {
                     bpmField("FC en reposo (lpm)", value: runSetting(path.appending(path: \.restingHeartRate)))
                     if let latestResting, !model.isDemo {
@@ -462,11 +465,19 @@ struct ZoneSettingsView: View {
                     if zones.method == .heartRateReserve && zones.effectiveMethod == .percentOfMax {
                         HalsynStatusIndicator(.caution, text: "Falta una FC en reposo válida: se usa el porcentaje de la FC máxima.")
                     }
+                    if zones.method == .lactateThreshold && zones.effectiveMethod == .percentOfMax {
+                        HalsynStatusIndicator(.caution, text: String(localized: "Falta una FC umbral válida: se usa el porcentaje de la FC máxima."))
+                    }
+                    if zones.isApproximate {
+                        HalsynStatusIndicator(.neutral, text: String(localized: "Zonas aproximadas: salen de la FC más alta registrada, y tu máxima real puede ser mayor."))
+                    }
                 }
             } header: {
                 Text("Tus zonas")
             } footer: {
-                Text("Modelo de 5 zonas: empiezan al 50, 60, 70, 80 y 90 por ciento. Es una convención de entrenamiento, no una indicación médica. Si tienes una condición cardíaca, consulta a un profesional.")
+                Text(zones.effectiveMethod == .lactateThreshold
+                     ? LocalizedStringKey("Zonas por FC umbral (Friel): Z2 desde el 85 %, Z3 desde el 90 %, Z4 desde el 95 % y Z5 desde el 100 % de tu FC umbral. Para medirla: corre 30 min a tope (solo, sin competir) y usa la FC media de los últimos 20 min. Es una convención de entrenamiento, no una indicación médica.")
+                     : LocalizedStringKey("Modelo de 5 zonas: empiezan al 50, 60, 70, 80 y 90 por ciento. Es una convención de entrenamiento, no una indicación médica. Si tienes una condición cardíaca, consulta a un profesional."))
             }
         }
         .navigationTitle(isCycling ? LocalizedStringKey("Zonas de bici") : LocalizedStringKey("Zonas cardíacas"))

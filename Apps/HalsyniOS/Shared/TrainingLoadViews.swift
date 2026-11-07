@@ -31,7 +31,21 @@ final class TrainingLoadStore {
         switch metric {
         case .heartRate:
             let inputs = await heartRateInputs(provider: provider, settings: settings, runs: runs, rides: rides)
-            let result = TrainingLoadCalculator.heartRateLoads((runs + rides).filter { $0.start >= limit }, inputs: inputs)
+            // Sin duplicados ni superposiciones (no se cuenta dos veces la misma sesión).
+            let workouts = WorkoutQualityStore.shared.clean((runs + rides).filter { $0.start >= limit })
+            // Muestras de FC de las sesiones de las últimas 6 semanas (TRIMP por tramos).
+            let samplesStart = Calendar.current.date(byAdding: .day, value: -42, to: .now) ?? .now
+            var samples: [UUID: [HeartRatePoint]] = [:]
+            for workout in workouts.filter({ $0.start >= samplesStart && $0.averageHeartRate != nil }).prefix(60) {
+                guard !Task.isCancelled else { return }
+                let points = await provider.workoutDetail(for: workout).heartRate
+                if !points.isEmpty { samples[workout.id] = points }
+            }
+            // Ritmo umbral para estimar la carga de carreras sin pulso.
+            let thresholdPace = FitnessStore.shared.performance(runs: runs).map {
+                TrainingPaces.from(vdot: $0.currentVDOT, target: .tenK).tempo.center.secondsPerKilometer
+            }
+            let result = TrainingLoadCalculator.heartRateLoads(workouts, inputs: inputs, samples: samples, thresholdPace: thresholdPace)
             loads = result.loads
             skipped = result.skipped
             usedInputs = inputs
@@ -47,7 +61,7 @@ final class TrainingLoadStore {
                     skipped += 1
                     continue
                 }
-                loads.append(WorkoutLoad(workoutID: ride.id, date: ride.start, sport: .cycling, value: tss))
+                loads.append(WorkoutLoad(workoutID: ride.id, date: ride.start, sport: .cycling, value: tss, source: .power, minutes: ride.duration / 60))
             }
         }
         // Una carga cancelada (cambio de pestaña) puede venir incompleta: no se guarda.
@@ -332,15 +346,28 @@ private struct TrainingLoadContent: View {
             if let inputs {
                 Text(inputsText(inputs))
             }
+            if summary.sampledCount > 0 {
+                Text("\(String(summary.sampledCount)) sesiones de las últimas 4 semanas se calculan con todas sus lecturas de pulso (más preciso que la media).")
+            }
+            if summary.approximateCount > 0 {
+                Text("\(String(summary.approximateCount)) carreras sin pulso tienen una carga aproximada, estimada por su ritmo frente a tu ritmo umbral.")
+            }
+            if let monotony = summary.monotony {
+                let value = HalsynFormat.decimal(monotony.monotony, fractionDigits: 1)
+                let strain = HalsynFormat.integer(monotony.strain)
+                Text(monotony.monotony >= TrainingMonotony.highMonotony
+                     ? LocalizedStringKey("Monotonía de la semana: \(value), alta (strain \(strain)). Tus días se parecen mucho entre sí: alternar días duros y suaves ayuda a asimilar.")
+                     : LocalizedStringKey("Monotonía de la semana: \(value) (strain \(strain)). Hay variedad entre días duros y suaves."))
+            }
             Text(summary.metric == .power
                  ? LocalizedStringKey("Carga de cada salida con potencia: TSS (una hora a tu FTP = 100). La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy), como en el gráfico de rendimiento de Coggan.")
-                 : LocalizedStringKey("Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC media frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica."))
+                 : LocalizedStringKey("Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC (tramo a tramo si hay lecturas; si no, la media) frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica."))
             if let ratio = summary.ratio, ratio >= 1.5 {
                 Text("Subir mucho la carga de una semana a otra se asoció con más lesiones en algunos estudios, aunque ese cociente está discutido: tómalo como aviso, no como regla.")
             }
             ReferenceLinks(references: summary.metric == .power
                            ? [ScienceReferences.powerMeterTraining, ScienceReferences.performanceManager, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls]
-                           : [ScienceReferences.banisterTRIMP, ScienceReferences.trimpValidation, ScienceReferences.performanceManager, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls])
+                           : [ScienceReferences.banisterTRIMP, ScienceReferences.trimpValidation, ScienceReferences.fosterMonotony, ScienceReferences.performanceManager, ScienceReferences.fitnessFatigueModel, ScienceReferences.trainingLoad, ScienceReferences.workloadRatioPitfalls])
         }
         .font(.caption2)
         .foregroundStyle(.halsynSecondaryText)

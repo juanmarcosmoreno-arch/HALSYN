@@ -12,6 +12,10 @@ import Foundation
 public enum HeartRateZoneMethod: String, Codable, CaseIterable, Identifiable, Sendable {
     case percentOfMax
     case heartRateReserve
+    /// Porcentaje de la FC umbral (la media de los últimos 20 min de una prueba
+    /// a tope de 30 min, método de Friel): Z1 < 85 %, Z2 85–89 %, Z3 90–94 %,
+    /// Z4 95–99 %, Z5 ≥ 100 %.
+    case lactateThreshold
 
     public var id: String { rawValue }
 
@@ -19,6 +23,7 @@ public enum HeartRateZoneMethod: String, Codable, CaseIterable, Identifiable, Se
         switch self {
         case .percentOfMax: "Porcentaje de la FC máxima"
         case .heartRateReserve: "Reserva cardíaca (Karvonen)"
+        case .lactateThreshold: "FC umbral (lactato)"
         }
     }
 }
@@ -73,18 +78,43 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
     public var maxHeartRate: Double?
     /// FC en reposo para Karvonen. Si falta, se usa % de la máxima.
     public var restingHeartRate: Double?
+    /// FC umbral (lactato) para el método de Friel. Opcional.
+    public var thresholdHeartRate: Double?
 
-    public init(method: HeartRateZoneMethod = .percentOfMax, maxSource: MaxHeartRateSource = .manual, maxHeartRate: Double? = nil, restingHeartRate: Double? = nil) {
+    public static let plausibleThresholdRange: ClosedRange<Double> = 110...210
+    /// Inicio de cada zona como fracción de la FC umbral (Z1 desde el 65 %).
+    public static let thresholdBoundaries: [Double] = [0.65, 0.85, 0.90, 0.95, 1.0]
+
+    public init(method: HeartRateZoneMethod = .percentOfMax, maxSource: MaxHeartRateSource = .manual, maxHeartRate: Double? = nil, restingHeartRate: Double? = nil, thresholdHeartRate: Double? = nil) {
         self.method = method
         self.maxSource = maxSource
         self.maxHeartRate = maxHeartRate
         self.restingHeartRate = restingHeartRate
+        self.thresholdHeartRate = thresholdHeartRate
     }
 
-    /// Método que se aplica de verdad: Karvonen necesita una FC en reposo válida.
+    /// Método que se aplica de verdad: Karvonen necesita una FC en reposo
+    /// válida y el umbral una FC umbral válida; si no, % de la máxima.
     public var effectiveMethod: HeartRateZoneMethod {
-        guard method == .heartRateReserve, let resting = validResting, let max = validMax, resting < max else { return .percentOfMax }
-        return .heartRateReserve
+        switch method {
+        case .lactateThreshold:
+            return validThreshold != nil ? .lactateThreshold : .percentOfMax
+        case .heartRateReserve:
+            guard let resting = validResting, let max = validMax, resting < max else { return .percentOfMax }
+            return .heartRateReserve
+        case .percentOfMax:
+            return .percentOfMax
+        }
+    }
+
+    /// Las zonas son aproximadas: salen de la FC máxima registrada (la real
+    /// puede ser más alta) y no de una FC umbral medida.
+    public var isApproximate: Bool {
+        effectiveMethod != .lactateThreshold && maxSource == .observed
+    }
+
+    private var validThreshold: Double? {
+        thresholdHeartRate.flatMap { Self.plausibleThresholdRange.contains($0) ? $0 : nil }
     }
 
     private var validMax: Double? {
@@ -97,6 +127,13 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
 
     /// Las 5 zonas, o vacío si no hay FC máxima plausible.
     public var zones: [HeartRateZone] {
+        if effectiveMethod == .lactateThreshold, let threshold = validThreshold {
+            let top = Swift.max(validMax ?? threshold * 1.1, threshold * 1.02)
+            let starts = Self.thresholdBoundaries.map { (threshold * $0).rounded() }
+            return (0..<5).map { index in
+                HeartRateZone(index: index + 1, lowerBound: starts[index], upperBound: index < 4 ? starts[index + 1] : top.rounded())
+            }
+        }
         guard let max = validMax else { return [] }
         let bpm: (Double) -> Double
         if effectiveMethod == .heartRateReserve, let resting = validResting {

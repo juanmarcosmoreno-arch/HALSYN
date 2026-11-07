@@ -27,6 +27,22 @@ public enum ScienceReferences {
         citation: "Daniels J, Gilbert J. Oxygen Power: Performance Tables for Distance Runners. 1979; Daniels J. Daniels' Running Formula. Human Kinetics.",
         url: "https://search.worldcat.org/search?q=Daniels%27+Running+Formula"
     )
+    public static let riegel = ScienceReference(
+        citation: "Riegel PS. Athletic records and human endurance. American Scientist. 1981;69(3):285–290.",
+        url: "https://www.jstor.org/stable/27850427"
+    )
+    public static let theilSen = ScienceReference(
+        citation: "Sen PK. Estimates of the regression coefficient based on Kendall's tau. J Am Stat Assoc. 1968;63(324):1379–1389.",
+        url: "https://doi.org/10.1080/01621459.1968.10480934"
+    )
+    public static let fosterMonotony = ScienceReference(
+        citation: "Foster C. Monitoring training in athletes with reference to overtraining syndrome. Med Sci Sports Exerc. 1998;30(7):1164–1168.",
+        url: "https://doi.org/10.1097/00005768-199807000-00023"
+    )
+    public static let frielThreshold = ScienceReference(
+        citation: "Friel J. The Triathlete's Training Bible. VeloPress (zonas por FC umbral de lactato).",
+        url: "https://search.worldcat.org/search?q=Triathlete%27s+Training+Bible+Friel"
+    )
     public static let gradedTraining = ScienceReference(
         citation: "Buist I, et al. No effect of a graded training program on the number of running-related injuries in novice runners: a randomized controlled trial. Am J Sports Med. 2008;36(1):33–39.",
         url: "https://doi.org/10.1177/0363546507307505"
