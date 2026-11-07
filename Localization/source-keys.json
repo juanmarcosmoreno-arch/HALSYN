@@ -220,6 +220,7 @@
  "Cada vuelta": "Apps/HalsyniOS/Features/Spring/RunSettingsView.swift",
  "Cadencia": "Apps/HalsyniOS/Features/Cykel/RideDetailView.swift",
  "Cadencia 0: se ignora": "Apps/HalsyniOS/Features/Spring/DataQualityViews.swift",
+ "Cadencia imposible: se ignora": "Apps/HalsyniOS/Features/Spring/DataQualityViews.swift",
  "Cadera": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/PlanAdvisor.swift",
  "Cadera y glúteo medio": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/RunnerStrength.swift",
  "Cae suave y estable; descansa entre series. Mejor después de unas semanas de fuerza.": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/RunnerStrength.swift",

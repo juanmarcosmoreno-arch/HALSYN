@@ -55,6 +55,7 @@ enum DataQualityText {
         case .implausiblePace: "Ritmo imposible: probable error de GPS o de distancia"
         case .implausibleHeartRate: "Pulso imposible: no se usa su frecuencia cardíaca"
         case .zeroCadence: "Cadencia 0: se ignora"
+        case .implausibleCadence: "Cadencia imposible: se ignora"
         }
     }
 

@@ -3758,6 +3758,23 @@
         }
       }
     },
+    "Cadencia imposible: se ignora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible cadence: ignored"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omöjlig kadens: ignoreras"
+          }
+        }
+      }
+    },
     "Cadera": {
       "extractionState": "manual",
       "localizations": {
