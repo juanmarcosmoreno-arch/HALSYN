@@ -30,8 +30,14 @@ final class FitnessStore {
         persist()
     }
 
+    /// La FC máxima que pusiste a mano (Ajustes › Zonas); si no, se usa la observada.
+    var configuredMaxHeartRate: Double? {
+        let zones = RunSettingsStore.shared.settings.zones
+        return zones.maxSource == .manual ? zones.maxHeartRate : nil
+    }
+
     func estimate(runs: [WorkoutSummary], today: Date = .now) -> FitnessEstimate? {
-        FitnessEstimator.estimate(results: results, runs: runs, today: today, calendar: .current)
+        FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
     }
 
     private func persist() {

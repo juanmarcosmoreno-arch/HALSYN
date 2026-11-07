@@ -42,6 +42,8 @@ public struct RacePrediction: Hashable, Identifiable, Sendable {
 ///   esfuerzos) y da la mediana; el rango va de la más rápida a la más lenta
 ///   de esas 3, ampliado un 3 % (5 % si se extrapola mucho) por el error propio
 ///   de la fórmula.
+/// - Antes se descartan duplicados y registros con ritmo o distancia dudosos
+///   (`DataQuality`).
 /// - Los rodajes no son carreras a tope: si casi nunca corres fuerte, la
 ///   predicción será conservadora. Y supone que entrenas para esa distancia.
 public enum RacePredictor {
@@ -56,7 +58,8 @@ public enum RacePredictor {
 
     public static func predictions(from runs: [WorkoutSummary], endingOn end: Date, calendar: Calendar) -> [RacePrediction] {
         guard let start = calendar.date(byAdding: .day, value: -windowDays, to: end) else { return [] }
-        let recent = runs.filter { run in
+        // Solo registros que pasan el control de calidad (sin duplicados, GPS roto, etc.).
+        let recent = DataQuality.forPerformance(runs).filter { run in
             run.activity.isRun && run.start >= start && run.start <= end
                 && (run.distanceMeters ?? 0) >= minimumDistance && run.averagePace != nil
         }

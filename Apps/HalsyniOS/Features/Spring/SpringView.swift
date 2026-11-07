@@ -12,7 +12,11 @@ struct SpringView: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var workouts: [WorkoutSummary]?
     @State private var predictions: [RacePrediction] = []
+    /// Sin duplicados ni lo que excluiste (control de calidad).
     @State private var allWorkouts: [WorkoutSummary] = []
+    /// Todo lo que vino de Salud, para revisar la calidad.
+    @State private var rawWorkouts: [WorkoutSummary] = []
+    @State private var flaggedCount = 0
     @State private var showsStartInfo = false
 
     var body: some View {
@@ -32,6 +36,24 @@ struct SpringView: View {
                         HeartRateRecoveryCard()
                         RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
                     }
+                    if flaggedCount > 0 {
+                        NavigationLink {
+                            DataQualityView(workouts: rawWorkouts)
+                        } label: {
+                            HalsynCard {
+                                HStack {
+                                    Label("Calidad de los datos: \(String(flaggedCount)) para revisar", systemImage: "checkmark.shield")
+                                        .font(.halsynCaption.weight(.semibold))
+                                        .foregroundStyle(.halsynPrimaryText)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.footnote.weight(.semibold))
+                                        .foregroundStyle(.halsynSecondaryText)
+                                }
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
                     history(workouts)
                 } else {
                     HalsynLoadingState()
@@ -44,15 +66,26 @@ struct SpringView: View {
             .task(id: model.reloadKey) {
                 // Suficientes para las estadísticas del año y los récords.
                 let recent = await model.provider.recentWorkouts(limit: 400)
-                allWorkouts = recent
-                workouts = Array(recent.prefix(20))
-                predictions = RacePredictor.predictions(from: recent, endingOn: .now, calendar: .current)
+                refresh(recent)
             }
+            .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
+            .onChange(of: WorkoutQualityStore.shared.included) { _, _ in refresh(rawWorkouts) }
             .sheet(isPresented: $showsStartInfo) {
                 StartRunInfoSheet()
                     .presentationDetents([.medium])
             }
         }
+    }
+
+    /// Los cálculos (plan, forma, predicción, estadísticas) usan los datos
+    /// limpios; el historial muestra todo.
+    private func refresh(_ recent: [WorkoutSummary]) {
+        rawWorkouts = recent
+        let clean = WorkoutQualityStore.shared.clean(recent)
+        allWorkouts = clean
+        workouts = Array(recent.prefix(20))
+        predictions = RacePredictor.predictions(from: clean, endingOn: .now, calendar: .current)
+        flaggedCount = DataQuality.assess(recent).values.filter(\.needsReview).count
     }
 
     private var startCard: some View {

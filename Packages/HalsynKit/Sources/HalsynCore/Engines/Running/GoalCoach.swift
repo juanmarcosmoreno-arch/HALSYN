@@ -68,15 +68,38 @@ public struct FitnessEstimate: Hashable, Sendable {
 ///
 /// 1. Un test o carrera de las últimas 6 semanas (lo más fiable).
 /// 2. Si no, el mayor VDOT entre un resultado más antiguo (hasta 4 meses) y
-///    tus entrenamientos de 3 km o más de las últimas 6 semanas.
-/// 3. Sin nada de eso, no hay estimación: hace falta un test.
+///    tus **esfuerzos comparables a una prueba** de las últimas 6 semanas:
+///    carreras de 3 km o más que pasan el control de calidad (`DataQuality`)
+///    y con FC media ≥ 90 % de tu máxima sostenida 8–75 min
+///    (`EffortClassifier`). Un rodaje rápido sin pulso alto no cuenta.
+/// 3. Si el mejor esfuerzo supera al segundo en más de 5 puntos de VDOT, se
+///    toma el segundo (un único valor muy alto suele ser un error de GPS).
+/// 4. Sin nada de eso, no hay estimación: hace falta un test.
 public enum FitnessEstimator {
     public static let freshDays = 42
     public static let maximumResultAgeDays = 120
     public static let trainingWindowDays = 42
     public static let minimumRunDistance: Double = 3000
+    public static let outlierGap = 5.0
 
-    public static func estimate(results: [PerformanceResult], runs: [WorkoutSummary], today: Date, calendar: Calendar) -> FitnessEstimate? {
+    /// Esfuerzos de entrenamiento que se usan para la forma, con su VDOT (del más alto al más bajo).
+    public static func trainingEfforts(runs: [WorkoutSummary], maxHeartRate: Double? = nil, today: Date, calendar: Calendar) -> [(run: WorkoutSummary, vdot: Double)] {
+        let todayStart = calendar.startOfDay(for: today)
+        let windowStart = calendar.date(byAdding: .day, value: -trainingWindowDays, to: todayStart) ?? todayStart
+        let quality = DataQuality.assess(runs)
+        let reference = EffortClassifier.referenceMaxHeartRate(configured: maxHeartRate, runs: runs.filter { quality[$0.id]?.heartRateUsable != false })
+        return runs
+            .filter { $0.activity.isRun && $0.start >= windowStart && $0.start <= today && ($0.distanceMeters ?? 0) >= minimumRunDistance }
+            .filter { quality[$0.id]?.usableForPerformance != false }
+            .filter { EffortClassifier.classify($0, maxHeartRate: reference, quality: quality[$0.id]).isPerformanceEffort }
+            .compactMap { run in
+                guard let distance = run.distanceMeters, let vdot = VDOT.value(distance: distance, time: run.duration) else { return nil }
+                return (run, vdot)
+            }
+            .sorted { $0.vdot > $1.vdot }
+    }
+
+    public static func estimate(results: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, today: Date, calendar: Calendar) -> FitnessEstimate? {
         let todayStart = calendar.startOfDay(for: today)
         func age(_ date: Date) -> Int { calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: todayStart).day ?? .max }
 
@@ -87,19 +110,22 @@ public enum FitnessEstimator {
             return FitnessEstimate(vdot: vdot, date: latest.date, source: .result(latest))
         }
 
-        let windowStart = calendar.date(byAdding: .day, value: -trainingWindowDays, to: todayStart) ?? todayStart
-        let recent = runs.filter { $0.activity.isRun && $0.start >= windowStart && $0.start <= today && ($0.distanceMeters ?? 0) >= minimumRunDistance }
-        let best = recent.compactMap { run -> (Double, Date)? in
-            guard let distance = run.distanceMeters, let vdot = VDOT.value(distance: distance, time: run.duration) else { return nil }
-            return (vdot, run.start)
-        }.max { $0.0 < $1.0 }
+        let efforts = trainingEfforts(runs: runs, maxHeartRate: maxHeartRate, today: today, calendar: calendar)
+        var best: (Double, Date)?
+        if let first = efforts.first {
+            if efforts.count >= 2, first.vdot - efforts[1].vdot > outlierGap {
+                best = (efforts[1].vdot, efforts[1].run.start)
+            } else {
+                best = (first.vdot, first.run.start)
+            }
+        }
 
         let older = valid.first.flatMap { result in result.vdot.map { (result, $0) } }
         switch (older, best) {
         case let ((result, resultVDOT)?, (trainingVDOT, _)?) where resultVDOT >= trainingVDOT:
             return FitnessEstimate(vdot: resultVDOT, date: result.date, source: .result(result))
         case let (_, (trainingVDOT, date)?):
-            return FitnessEstimate(vdot: trainingVDOT, date: date, source: .training(runs: recent.count))
+            return FitnessEstimate(vdot: trainingVDOT, date: date, source: .training(runs: efforts.count))
         case let ((result, resultVDOT)?, nil):
             return FitnessEstimate(vdot: resultVDOT, date: result.date, source: .result(result))
         case (nil, nil):

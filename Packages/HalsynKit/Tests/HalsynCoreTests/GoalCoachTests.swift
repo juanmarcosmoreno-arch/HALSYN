@@ -13,8 +13,9 @@ private let today = calendar.date(from: DateComponents(year: 2026, month: 10, da
 
 private func daysAgo(_ days: Int) -> Date { calendar.date(byAdding: .day, value: -days, to: today)! }
 
-private func run(_ date: Date, km: Double, minutesPerKm: Double) -> WorkoutSummary {
-    WorkoutSummary(activity: .outdoorRun, start: date, duration: km * minutesPerKm * 60, distanceMeters: km * 1000, averageHeartRate: nil, maxHeartRate: nil, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
+/// Por defecto, un esfuerzo fuerte (FC media 172 de máxima 185, ≈ 93 %).
+private func run(_ date: Date, km: Double, minutesPerKm: Double, heartRate: Double? = 172, maxHeartRate: Double? = 185) -> WorkoutSummary {
+    WorkoutSummary(activity: .outdoorRun, start: date, duration: km * minutesPerKm * 60, distanceMeters: km * 1000, averageHeartRate: heartRate, maxHeartRate: maxHeartRate, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
 }
 
 @Suite("VDOT (Daniels y Gilbert)")
@@ -66,6 +67,27 @@ struct FitnessEstimatorTests {
         #expect(estimate.isFromTraining)
         #expect(estimate.needsTest(today: today, calendar: calendar))
         // El de hace 60 días no cuenta: el mejor reciente es 5 km a 5:00/km.
+        #expect(abs(estimate.vdot - (VDOT.value(distance: 5000, time: 1500) ?? 0)) < 0.01)
+    }
+
+    @Test func easyOrUnmeasuredRunsAreNotTreatedAsTests() {
+        // Rápido pero con pulso de rodaje (≈ 75 %), o sin pulso: no es una prueba.
+        let easy = [run(daysAgo(3), km: 8, minutesPerKm: 4.2, heartRate: 140), run(daysAgo(5), km: 6, minutesPerKm: 4.0, heartRate: nil, maxHeartRate: nil)]
+        #expect(FitnessEstimator.estimate(results: [], runs: easy, maxHeartRate: 185, today: today, calendar: calendar) == nil)
+    }
+
+    @Test func singleOutlierEffortIsIgnored() throws {
+        // Un 5 km a 3:00/km (GPS que acortó la distancia) frente a esfuerzos a ~5:00/km.
+        let runs = [run(daysAgo(2), km: 5, minutesPerKm: 3.0), run(daysAgo(6), km: 5, minutesPerKm: 5.0), run(daysAgo(12), km: 6, minutesPerKm: 5.1)]
+        let estimate = try #require(FitnessEstimator.estimate(results: [], runs: runs, maxHeartRate: 185, today: today, calendar: calendar))
+        #expect(abs(estimate.vdot - (VDOT.value(distance: 5000, time: 1500) ?? 0)) < 0.01)
+    }
+
+    @Test func duplicatedOrBrokenRunsDoNotCount() throws {
+        let good = run(daysAgo(6), km: 5, minutesPerKm: 5.0)
+        // Ritmo imposible (1:30/km): no cuenta aunque el pulso sea alto.
+        let broken = run(daysAgo(2), km: 10, minutesPerKm: 1.5)
+        let estimate = try #require(FitnessEstimator.estimate(results: [], runs: [good, broken], maxHeartRate: 185, today: today, calendar: calendar))
         #expect(abs(estimate.vdot - (VDOT.value(distance: 5000, time: 1500) ?? 0)) < 0.01)
     }
 

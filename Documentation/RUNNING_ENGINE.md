@@ -121,3 +121,23 @@ Se completará **solo con información verificada** en documentación oficial y 
 | Oscilación vertical | `.runningVerticalOscillation` | por verificar | por verificar | por verificar | ❌ |
 | Tiempo de contacto | `.runningGroundContactTime` | por verificar | por verificar | por verificar | ❌ |
 | Elevación / desnivel | CoreLocation / metadatos | por verificar | por verificar | por verificar | ❌ |
+
+## Control de calidad de datos y tipo de esfuerzo (Fase 1 del motor deportivo)
+
+`DataQuality` (HalsynCore/Engines/Running/DataQuality.swift) revisa cada entrenamiento de Apple Health antes de usarlo. **Nunca borra nada**: marca y decide qué cálculos lo usan; el usuario puede forzar usarlo o no (SPRING › Calidad de los datos).
+
+| Marca | Regla | Efecto |
+|---|---|---|
+| Duplicado | mismo deporte, inicio a ≤ 60 s, duración a ≤ 5 %, distancia a ≤ 3 % | se excluye el de menos datos |
+| Superposición | mismo deporte, se pisan > 50 % del más corto | se excluye el de menos datos (indica si es de otra app) |
+| Sin distancia | carrera sin distancia | no cuenta para forma ni predicción |
+| Muy corto | < 2 min o < 200 m | no cuenta para forma ni predicción |
+| Ritmo imposible | correr < 2:40 o > 20:00 min/km; caminar < 4:00 min/km; bici > 80 km/h | no cuenta para forma ni predicción |
+| Pulso imposible | media fuera de 35–225, máxima > 230 o media > máxima | se ignora su FC |
+| Cadencia 0 | cadencia = 0 | se ignora la cadencia |
+
+"Más datos" = distancia (4) + FC media (2) + FC máxima (1) + cadencia (1) + desnivel (1); a igualdad, el que empezó antes.
+
+`EffortClassifier` clasifica cada carrera por FC media / FC máxima de referencia (la configurada a mano o la segunda más alta observada, para ignorar un pico aislado): < 80 % suave, 80–87 % moderado, ≥ 87 % fuerte, ≥ 90 % sostenido 8–75 min y ≥ 3 km = esfuerzo comparable a una prueba. Sin FC fiable: "desconocido". Test y competición marcados por el usuario tienen prioridad.
+
+`FitnessEstimator` ahora solo usa como prueba de entrenamiento los esfuerzos comparables a una prueba que pasan el control de calidad; si el mejor supera al segundo en más de 5 puntos de VDOT, se toma el segundo. Un rodaje rápido sin pulso alto ya no se toma como esfuerzo máximo. `RacePredictor` también descarta los registros dudosos.

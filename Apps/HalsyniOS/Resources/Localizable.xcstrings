@@ -3384,6 +3384,23 @@
         }
       }
     },
+    "Cadencia 0: se ignora": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cadence 0: ignored"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kadens 0: ignoreras"
+          }
+        }
+      }
+    },
     "Cadera y glúteo medio": {
       "extractionState": "manual",
       "localizations": {
@@ -3550,6 +3567,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppvärmning klar"
+          }
+        }
+      }
+    },
+    "Calidad de los datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data quality"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datakvalitet"
+          }
+        }
+      }
+    },
+    "Calidad de los datos: %@ para revisar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data quality: %@ to review"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datakvalitet: %@ att granska"
           }
         }
       }
@@ -7056,6 +7107,23 @@
         }
       }
     },
+    "Dudoso: no cuenta para la forma ni las predicciones": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doubtful: not used for fitness or predictions"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tveksam: används inte för form eller prognoser"
+          }
+        }
+      }
+    },
     "Dulces industriales: golosinas, bollería, galletas o pasteles": {
       "extractionState": "manual",
       "localizations": {
@@ -7069,6 +7137,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Industrisötsaker: godis, bakverk, kakor eller tårtor"
+          }
+        }
+      }
+    },
+    "Duplicado: el mismo entrenamiento está dos veces": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate: the same workout appears twice"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dubblett: samma pass finns två gånger"
           }
         }
       }
@@ -10490,6 +10575,23 @@
         }
       }
     },
+    "Fuera de los cálculos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left out of calculations"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utanför beräkningarna"
+          }
+        }
+      }
+    },
     "Fuerza": {
       "extractionState": "manual",
       "localizations": {
@@ -11829,6 +11931,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "HÅLSYN ger uppskattningar av välmående. Appen är ingen medicinteknisk produkt och ersätter inte en professionell bedömning."
+          }
+        }
+      }
+    },
+    "HÅLSYN revisa tus entrenamientos antes de calcular tu forma, tus predicciones y tu plan. Los registros dudosos no se borran de Salud: solo dejan de contar donde podrían confundir. Puedes decidir tú si se usan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN checks your workouts before calculating your fitness, predictions and plan. Doubtful records are not deleted from Health: they just stop counting where they could mislead. You can decide whether they are used."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN kontrollerar dina pass innan form, prognoser och plan beräknas. Tveksamma poster raderas inte från Hälsa: de räknas bara inte där de kan vilseleda. Du kan själv välja om de ska användas."
           }
         }
       }
@@ -14553,6 +14672,23 @@
         }
       }
     },
+    "Muy corto (menos de 2 min o 200 m)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too short (under 2 min or 200 m)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För kort (under 2 min eller 200 m)"
+          }
+        }
+      }
+    },
     "Muy regular": {
       "extractionState": "manual",
       "localizations": {
@@ -15280,6 +15416,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga rapporter. Om appen låser sig eller kraschar rapporterar iOS det nästa gång du öppnar den (ibland upp till ett dygn senare)."
+          }
+        }
+      }
+    },
+    "No hay nada para revisar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing to review"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget att granska"
           }
         }
       }
@@ -16572,6 +16725,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "För att den inte ska fråga vid varje löprunda, välj ”Tillåt när appen används” och inte ”Tillåt en gång”. Det går också på klockan: Inställningar › Integritet och säkerhet › Platstjänster › HÅLSYN."
+          }
+        }
+      }
+    },
+    "Para revisar (%@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To review (%@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Att granska (%@)"
           }
         }
       }
@@ -18395,6 +18565,23 @@
         }
       }
     },
+    "Pulso imposible: no se usa su frecuencia cardíaca": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible heart rate: its heart rate is not used"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omöjlig puls: dess puls används inte"
+          }
+        }
+      }
+    },
     "Pulso más alto": {
       "extractionState": "manual",
       "localizations": {
@@ -19840,6 +20027,23 @@
         }
       }
     },
+    "Ritmo imposible: probable error de GPS o de distancia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible pace: likely a GPS or distance error"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omöjligt tempo: troligen GPS- eller distansfel"
+          }
+        }
+      }
+    },
     "Ritmo medio": {
       "extractionState": "manual",
       "localizations": {
@@ -20775,6 +20979,40 @@
         }
       }
     },
+    "Se superpone con otro registro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overlaps another record"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Överlappar en annan post"
+          }
+        }
+      }
+    },
+    "Se superpone con otro registro de otra app": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overlaps a record from another app"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Överlappar en post från en annan app"
+          }
+        }
+      }
+    },
     "Se ve por dónde corriste. Sin mapa, solo la forma de la ruta.": {
       "extractionState": "manual",
       "localizations": {
@@ -21655,6 +21893,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingen distans"
+          }
+        }
+      }
+    },
+    "Sin distancia: no sirve para ritmo ni forma": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No distance: not usable for pace or fitness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen distans: kan inte användas för tempo eller form"
           }
         }
       }
@@ -24957,6 +25212,23 @@
         }
       }
     },
+    "Usar en los cálculos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use in calculations"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd i beräkningar"
+          }
+        }
+      }
+    },
     "Usar la de Apple Health: %lld lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -25871,6 +26143,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gå tillbaka till Löpinställningar."
+          }
+        }
+      }
+    },
+    "Válido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valid"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giltig"
           }
         }
       }
