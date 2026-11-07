@@ -449,6 +449,8 @@ private struct WorkoutIntervalRingView: View {
                     }
                 }
                 .padding(.top, 10)
+                // Aire entre el anillo (y su arco) y OBJETIVO / PULS.
+                .padding(.bottom, 10)
             ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
         }
     }

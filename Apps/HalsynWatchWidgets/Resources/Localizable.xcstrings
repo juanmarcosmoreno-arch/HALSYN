@@ -1106,6 +1106,23 @@
         }
       }
     },
+    "ATENCIÓN: son datos de demostración (sintéticos), no datos reales.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NOTE: this is demo (synthetic) data, not real data."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OBS: detta är demodata (syntetiska), inte riktiga data."
+          }
+        }
+      }
+    },
     "Abre HÅLSYN para actualizar": {
       "extractionState": "manual",
       "localizations": {
@@ -1136,23 +1153,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Öppna HÅLSYN för att komma igång"
-          }
-        }
-      }
-    },
-    "Abre los ajustes de la app para cambiar el idioma": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open the app settings to change the language"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Öppna appens inställningar för att byta språk"
           }
         }
       }
@@ -1769,6 +1769,23 @@
         }
       }
     },
+    "Altura: %@ cm": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Height: %@ cm"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längd: %@ cm"
+          }
+        }
+      }
+    },
     "Amarillo": {
       "extractionState": "manual",
       "localizations": {
@@ -2003,6 +2020,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Här räknas bara nattsömn (inga tupplurar), och resultatet varierar med beräkningsmetoden: använd det för att följa din utveckling. Det är ett observerat samband, inte en diagnos."
+          }
+        }
+      }
+    },
+    "Archivos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Files"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filer"
           }
         }
       }
@@ -3299,6 +3333,23 @@
         }
       }
     },
+    "Cada tema tiene su versión clara y oscura (se elige en Apariencia). Los colores de estado, las zonas y el reloj no cambian.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each theme has a light and a dark version (chosen in Appearance). Status colors, zones and the watch don't change."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje tema har en ljus och en mörk version (väljs under Utseende). Statusfärger, zoner och klockan ändras inte."
+          }
+        }
+      }
+    },
     "Cada vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -4285,6 +4336,23 @@
         }
       }
     },
+    "Carrera: %@ el %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race: %@ on %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lopp: %@ den %@"
+          }
+        }
+      }
+    },
     "Carreras": {
       "extractionState": "manual",
       "localizations": {
@@ -4298,6 +4366,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löppass"
+          }
+        }
+      }
+    },
+    "Carreras por semana: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runs per week: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppass per vecka: %@"
           }
         }
       }
@@ -4366,6 +4451,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cykling"
+          }
+        }
+      }
+    },
+    "Cierra HÅLSYN (desliza hacia arriba en el selector de apps) y ábrela de nuevo para verla en el idioma nuevo. Los widgets y el reloj siguen el idioma del sistema.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close HÅLSYN (swipe it up in the app switcher) and open it again to see it in the new language. Widgets and the watch follow the system language."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stäng HÅLSYN (svep uppåt i appväxlaren) och öppna den igen för att se den på det nya språket. Widgetar och klockan följer systemspråket."
           }
         }
       }
@@ -4638,6 +4740,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dela"
+          }
+        }
+      }
+    },
+    "Compartir o guardar los archivos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share or save the files"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dela eller spara filerna"
           }
         }
       }
@@ -5458,6 +5577,40 @@
         }
       }
     },
+    "Copiado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopierat"
+          }
+        }
+      }
+    },
+    "Copiar todo como texto para una IA": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy everything as text for an AI"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopiera allt som text för en AI"
+          }
+        }
+      }
+    },
     "Corazón": {
       "extractionState": "manual",
       "localizations": {
@@ -6104,6 +6257,23 @@
         }
       }
     },
+    "Del iPhone": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone setting"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhones inställning"
+          }
+        }
+      }
+    },
     "Dentro de tu rango habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -6525,6 +6695,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dagens dagbok"
+          }
+        }
+      }
+    },
+    "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily: one row per day with what's in Health (empty = no data): resting heart rate, HRV (SDNN, ms), breathing, VO₂ max, SpO₂ in %, steps, distance, active energy, exercise, sleep in hours and its stages, weight, body fat, wrist temperature (deviation) and daylight. \"health_score\" and \"recovery_score\" are HÅLSYN scores from 0 to 100, indicative and not clinical."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagligt: en rad per dag med det som finns i Hälsa (tomt = ingen data): vilopuls, HRV (SDNN, ms), andning, VO₂ max, SpO₂ i %, steg, sträcka, aktiv energi, träning, sömn i timmar och dess faser, vikt, fett, handledstemperatur (avvikelse) och dagsljus. ”health_score” och ”recovery_score” är HÅLSYN-poäng från 0 till 100, vägledande och inte kliniska."
           }
         }
       }
@@ -7039,6 +7226,23 @@
         }
       }
     },
+    "Días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagar"
+          }
+        }
+      }
+    },
     "Días anteriores": {
       "extractionState": "manual",
       "localizations": {
@@ -7154,6 +7358,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ålder och biologiskt kön används bara för att jämföra dig med publicerade vetenskapliga tabeller (VO₂ max och vilopuls); längden för BMI. De sparas bara på den här iPhonen."
+          }
+        }
+      }
+    },
+    "Edad: %@ años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age: %@ years"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ålder: %@ år"
           }
         }
       }
@@ -8552,6 +8773,40 @@
         }
       }
     },
+    "Entrenamientos y signos vitales en crudo, para una hoja de cálculo o para pegar en una IA.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw workouts and vital signs, for a spreadsheet or to paste into an AI."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Råa träningspass och vitala värden, för ett kalkylark eller att klistra in i en AI."
+          }
+        }
+      }
+    },
+    "Entrenamientos: una fila por entrenamiento. Distancia en km, duración en minutos, ritmo en min/km y s/km, pulso en lpm, cadencia en pasos por minuto, desnivel en m, potencia en W, temperatura en °C y humedad en %. «marked_as» indica si lo marcaste como test o carrera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts: one row per workout. Distance in km, duration in minutes, pace in min/km and s/km, heart rate in bpm, cadence in steps per minute, elevation gain in m, power in W, temperature in °C and humidity in %. \"marked_as\" shows whether you marked it as a test or race."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningspass: en rad per pass. Sträcka i km, tid i minuter, tempo i min/km och s/km, puls i slag/min, kadens i steg per minut, stigning i m, effekt i W, temperatur i °C och luftfuktighet i %. ”marked_as” visar om du markerade det som test eller lopp."
+          }
+        }
+      }
+    },
     "Equilibrio": {
       "extractionState": "manual",
       "localizations": {
@@ -9198,6 +9453,57 @@
         }
       }
     },
+    "Exportado el %@. Período: %@ – %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exported on %@. Period: %@ – %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporterat %@. Period: %@ – %@."
+          }
+        }
+      }
+    },
+    "Exportar mis datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export my data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportera mina data"
+          }
+        }
+      }
+    },
+    "Exportar mis datos (CSV)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export my data (CSV)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportera mina data (CSV)"
+          }
+        }
+      }
+    },
     "FC": {
       "extractionState": "manual",
       "localizations": {
@@ -9776,6 +10082,23 @@
         }
       }
     },
+    "Fjord (azul)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fjord (blue)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fjord (blå)"
+          }
+        }
+      }
+    },
     "Fondo": {
       "extractionState": "manual",
       "localizations": {
@@ -9789,6 +10112,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Långpass"
+          }
+        }
+      }
+    },
+    "Forma actual": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current fitness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuvarande form"
           }
         }
       }
@@ -10350,6 +10690,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fasteglukos %@ mg/dL (%@)."
+          }
+        }
+      }
+    },
+    "Grafit (blanco y negro)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grafit (black and white)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grafit (svartvit)"
           }
         }
       }
@@ -11374,6 +11731,23 @@
         }
       }
     },
+    "HÅLSYN (turquesa)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN (turquoise)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN (turkos)"
+          }
+        }
+      }
+    },
     "HÅLSYN lee de Apple Health lo que miden tu iPhone y tu Apple Watch para mostrarte cómo está tu cuerpo y cómo evoluciona.": {
       "extractionState": "manual",
       "localizations": {
@@ -11540,6 +11914,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Språk"
+          }
+        }
+      }
+    },
+    "Idioma cambiado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language changed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Språket har ändrats"
           }
         }
       }
@@ -12309,6 +12700,23 @@
         }
       }
     },
+    "Lavendel (violeta)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lavendel (violet)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lavendel (lila)"
+          }
+        }
+      }
+    },
     "Leer menos": {
       "extractionState": "manual",
       "localizations": {
@@ -12441,6 +12849,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Begränsningar"
+          }
+        }
+      }
+    },
+    "Lingon (frambuesa)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lingon (raspberry)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lingon (hallonröd)"
           }
         }
       }
@@ -13733,6 +14158,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mäter … stå still tills siffran stannar."
+          }
+        }
+      }
+    },
+    "Midnattssol (ámbar)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Midnattssol (amber)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Midnattssol (bärnsten)"
           }
         }
       }
@@ -15607,6 +16049,23 @@
         }
       }
     },
+    "Objetivo y plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal and plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål och plan"
+          }
+        }
+      }
+    },
     "Objetivo: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -16117,6 +16576,23 @@
         }
       }
     },
+    "Para una IA: pega el texto (o adjunta los archivos) y pregúntale, por ejemplo, «¿Cómo vengo con mi preparación?» o «¿Qué relación ves entre mi sueño y mis ritmos?». Repite la exportación cada tanto para que vea tu progreso. La IA puede equivocarse: no reemplaza a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For an AI: paste the text (or attach the files) and ask, for example, \"How is my training going?\" or \"What link do you see between my sleep and my paces?\". Export again now and then so it can see your progress. AI can be wrong: it doesn't replace a professional."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För en AI: klistra in texten (eller bifoga filerna) och fråga till exempel ”Hur går min träning?” eller ”Vilket samband ser du mellan min sömn och mina tempon?”. Exportera igen då och då så att den ser dina framsteg. AI kan ha fel: den ersätter inte en expert."
+          }
+        }
+      }
+    },
     "Parciales": {
       "extractionState": "manual",
       "localizations": {
@@ -16606,6 +17082,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tillåt plats"
+          }
+        }
+      }
+    },
+    "Período": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period"
           }
         }
       }
@@ -17443,6 +17936,23 @@
         }
       }
     },
+    "Preparar los archivos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare the files"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förbered filerna"
+          }
+        }
+      }
+    },
     "Presión arterial": {
       "extractionState": "manual",
       "localizations": {
@@ -17592,6 +18102,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chans att nå målet"
+          }
+        }
+      }
+    },
+    "Probabilidad estimada por HÅLSYN de llegar al objetivo: %@ % (tiempo previsto %@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN's estimated chance of reaching the goal: %@ % (projected time %@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HÅLSYN:s uppskattade chans att nå målet: %@ % (prognostiserad tid %@)"
           }
         }
       }
@@ -20078,6 +20605,23 @@
         }
       }
     },
+    "Se arman tres archivos: tus entrenamientos (una fila por carrera, caminata o salida en bici), tus datos de cada día (pulso en reposo, HRV, sueño, pasos, peso, VO₂ máx. y más) y un resumen con tu plan, tu objetivo y tus tests. Todo se genera en el iPhone; nada se envía a ningún lado hasta que tú lo compartes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Three files are created: your workouts (one row per run, walk or ride), your daily data (resting heart rate, HRV, sleep, steps, weight, VO₂ max and more) and a summary with your plan, goal and tests. Everything is generated on your iPhone; nothing is sent anywhere until you share it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tre filer skapas: dina träningspass (en rad per löprunda, promenad eller cykeltur), dina dagliga data (vilopuls, HRV, sömn, steg, vikt, VO₂ max med mera) och en sammanfattning med din plan, ditt mål och dina test. Allt skapas på din iPhone; inget skickas någonstans förrän du delar det."
+          }
+        }
+      }
+    },
     "Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.": {
       "extractionState": "manual",
       "localizations": {
@@ -20588,6 +21132,23 @@
         }
       }
     },
+    "Sesiones del plan cumplidas en las últimas 4 semanas: %@ de %@ (%@ %)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan sessions completed in the last 4 weeks: %@ of %@ (%@ %)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomförda pass i planen de senaste 4 veckorna: %@ av %@ (%@ %)"
+          }
+        }
+      }
+    },
     "Sexo (tablas de referencia)": {
       "extractionState": "manual",
       "localizations": {
@@ -20601,6 +21162,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kön (referenstabeller)"
+          }
+        }
+      }
+    },
+    "Sexo: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kön: %@"
           }
         }
       }
@@ -21383,6 +21961,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Systoliskt (övertryck)"
+          }
+        }
+      }
+    },
+    "Skog (verde bosque)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skog (forest green)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skog (skogsgrön)"
           }
         }
       }
@@ -22526,6 +23121,23 @@
         }
       }
     },
+    "Tests y carreras registrados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorded tests and races"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrerade test och lopp"
+          }
+        }
+      }
+    },
     "Tiempo": {
       "extractionState": "manual",
       "localizations": {
@@ -22675,6 +23287,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tid i effektzoner"
+          }
+        }
+      }
+    },
+    "Tiempo objetivo: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal time: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måltid: %@"
           }
         }
       }
@@ -24396,6 +25025,23 @@
         }
       }
     },
+    "VDOT (Daniels): %@, %@ del %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT (Daniels): %@, %@ from %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT (Daniels): %@, %@ från %@"
+          }
+        }
+      }
+    },
     "VEL. MEDIA": {
       "extractionState": "manual",
       "localizations": {
@@ -25501,6 +26147,40 @@
         }
       }
     },
+    "de un test o carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "from a test or race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "från ett test eller lopp"
+          }
+        }
+      }
+    },
+    "estimado de entrenamientos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "estimated from training"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uppskattat från träning"
+          }
+        }
+      }
+    },
     "frente a hace un mes": {
       "extractionState": "manual",
       "localizations": {
@@ -26147,6 +26827,23 @@
         }
       }
     },
+    "Último año": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last year"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste året"
+          }
+        }
+      }
+    },
     "Último kilómetro a %@ kilómetros por hora": {
       "extractionState": "manual",
       "localizations": {
@@ -26215,6 +26912,23 @@
         }
       }
     },
+    "Últimos 3 años": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 3 years"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 3 åren"
+          }
+        }
+      }
+    },
     "Últimos 30 días": {
       "extractionState": "manual",
       "localizations": {
@@ -26245,6 +26959,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 7 dagarna"
+          }
+        }
+      }
+    },
+    "Últimos 90 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 90 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 90 dagarna"
           }
         }
       }

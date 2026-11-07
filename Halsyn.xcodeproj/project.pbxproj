@@ -10,6 +10,7 @@
 		0193A1C401A100BF0B130760 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3971E7F6E6318AF74A495 /* ProfileView.swift */; };
 		0288F531759365C4B67C1E6D /* RacePredictionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D2E538F9012576AB97BCA /* RacePredictionCard.swift */; };
 		02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */; };
+		0486237A3E764CD25399A843 /* DataExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CD71063E0A5341D69F8A97 /* DataExportView.swift */; };
 		04D4CD440123B5AE7B899EA9 /* HalsynApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D02F9B2FC365CA043BC585 /* HalsynApp.swift */; };
 		097B08A01D304919CB7C3D8A /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADAF7202A0FBD82092D995 /* WorkoutSessionView.swift */; };
 		09DEC27C21ACF8937112B3A9 /* PermissionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E2F10A3967F3786DBCD4F6 /* PermissionLog.swift */; };
@@ -30,6 +31,7 @@
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
 		29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */; };
 		2B32A9B3EC216486011653B7 /* RunActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A5701A083E54540706CF03 /* RunActivityAttributes.swift */; };
+		2BDE292B83CDEBCC7C660F99 /* ThemeAndLanguageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D791B9AFD443C30F9FE846 /* ThemeAndLanguageViews.swift */; };
 		2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */; };
 		30A0B3020C9F7F66E6D0F79D /* CoachPhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */; };
 		326B4EEA606A335FCD08E25A /* SessionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B24C04B11039002E2CD27 /* SessionText.swift */; };
@@ -230,12 +232,14 @@
 		30962FE07A474F75C72C8B6E /* HalsyniOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HalsyniOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32EF3402D469A56663EED082 /* WatchGoalRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalRunView.swift; sourceTree = "<group>"; };
 		343D34F06545512784831879 /* Halsyn.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Halsyn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36CD71063E0A5341D69F8A97 /* DataExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportView.swift; sourceTree = "<group>"; };
 		3A50B12EAAB493A54F5A80BF /* VilaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VilaView.swift; sourceTree = "<group>"; };
 		3BE3971E7F6E6318AF74A495 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3F17B6D6A0876C711FE13FDE /* InsiktView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsiktView.swift; sourceTree = "<group>"; };
 		42603E71F7291B7A86DA3A23 /* RunLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLiveActivityWidget.swift; sourceTree = "<group>"; };
 		449C9E6640D89A5E92944ADB /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
 		46B6B4A8AFE1E4ED92E09B12 /* VoiceCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCoach.swift; sourceTree = "<group>"; };
+		47D791B9AFD443C30F9FE846 /* ThemeAndLanguageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeAndLanguageViews.swift; sourceTree = "<group>"; };
 		4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionHint.swift; sourceTree = "<group>"; };
 		4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsView.swift; sourceTree = "<group>"; };
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
@@ -754,9 +758,11 @@
 			isa = PBXGroup;
 			children = (
 				ADAD59EF39E227D574B38EC1 /* CloudBackupSection.swift */,
+				36CD71063E0A5341D69F8A97 /* DataExportView.swift */,
 				CC3B7322C432FC4C14F6345A /* DesignSystemGalleryView.swift */,
 				A102C2A0A397098A3444D807 /* DiagnosticsView.swift */,
 				3BE3971E7F6E6318AF74A495 /* ProfileView.swift */,
+				47D791B9AFD443C30F9FE846 /* ThemeAndLanguageViews.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1043,6 +1049,7 @@
 				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
 				0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
+				0486237A3E764CD25399A843 /* DataExportView.swift in Sources */,
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
 				7A48279974C8DE43F4EE589B /* DiagnosticsStore.swift in Sources */,
 				8FD7D8FF09635A0C756E29AA /* DiagnosticsView.swift in Sources */,
@@ -1092,6 +1099,7 @@
 				C1D6EEB1C3F42240B68A59C5 /* ShoeViews.swift in Sources */,
 				29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */,
 				223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */,
+				2BDE292B83CDEBCC7C660F99 /* ThemeAndLanguageViews.swift in Sources */,
 				190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */,
 				840224E9A346CC33C8289CBF /* TrainingLoadViews.swift in Sources */,
 				B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */,
@@ -1228,7 +1236,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 84;
+				CURRENT_PROJECT_VERSION = 85;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1413,7 +1421,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 84;
+				CURRENT_PROJECT_VERSION = 85;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

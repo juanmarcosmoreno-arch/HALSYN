@@ -18,12 +18,15 @@ struct HalsynApp: App {
     /// Ajustes de SPRING; al crearse activa WatchConnectivity para enviarlos al reloj.
     @State private var runSettings = RunSettingsStore.shared
     @AppStorage(AppPreferences.introKey) private var intro: IntroPreference = .brief
+    /// Tema de colores (Perfil › Colores).
+    @AppStorage(HalsynTheme.storageKey) private var themeID = HalsynTheme.halsyn.id
     /// La intro solo se muestra en el arranque en frío, no al volver a primer plano.
     @State private var showsIntro = !UIAccessibility.isReduceMotionEnabled
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
+        HalsynTheme.current = HalsynTheme.named(UserDefaults.standard.string(forKey: HalsynTheme.storageKey))
     }
 
     /// La primera vez siempre se ve completa; después, según la preferencia.
@@ -34,7 +37,10 @@ struct HalsynApp: App {
 
     var body: some Scene {
         WindowGroup {
+            // El tema se fija antes de dibujar; cambiarlo rehace las pantallas.
+            let _ = HalsynTheme.current = HalsynTheme.named(themeID)
             RootTabView()
+                .id(themeID)
                 .environment(model)
                 .preferredColorScheme(appearance.colorScheme)
                 .tint(Color.halsynAccent)

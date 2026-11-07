@@ -90,17 +90,20 @@ public struct SemanticColor: Sendable {
 
 /// Tokens semánticos. Las vistas usan estos nombres, nunca hexadecimales.
 public enum HalsynColorTokens {
-    public static let background = SemanticColor("background", light: HalsynPalette.warmWhite, dark: HalsynPalette.darkBackground)
-    public static let surface = SemanticColor("surface", light: HalsynPalette.surfaceLight, dark: HalsynPalette.darkSurface)
-    public static let primaryText = SemanticColor("primaryText", light: HalsynPalette.deepGreen, dark: HalsynPalette.textLight)
-    public static let secondaryText = SemanticColor("secondaryText", light: HalsynPalette.secondaryTextLight, dark: HalsynPalette.secondaryTextDark)
+    private static var theme: HalsynTheme { HalsynTheme.current }
+
+    // Cambian con el tema elegido en Perfil (iPhone); el reloj usa siempre el de HÅLSYN.
+    public static var background: SemanticColor { SemanticColor("background", light: theme.light.background, dark: theme.dark.background) }
+    public static var surface: SemanticColor { SemanticColor("surface", light: theme.light.surface, dark: theme.dark.surface) }
+    public static var primaryText: SemanticColor { SemanticColor("primaryText", light: theme.light.primaryText, dark: theme.dark.primaryText) }
+    public static var secondaryText: SemanticColor { SemanticColor("secondaryText", light: theme.light.secondaryText, dark: theme.dark.secondaryText) }
     /// Acento para rellenos, anillos y gráficos.
-    public static let accent = SemanticColor("accent", light: HalsynPalette.turquoise, dark: HalsynPalette.darkSecondary)
+    public static var accent: SemanticColor { SemanticColor("accent", light: theme.light.accent, dark: theme.dark.accent) }
     /// Acento apto para texto.
-    public static let accentText = SemanticColor("accentText", light: HalsynPalette.turquoiseInk, dark: HalsynPalette.darkAccent)
-    public static let accentSoft = SemanticColor("accentSoft", light: HalsynPalette.mint, dark: HalsynPalette.darkPrimary)
-    public static let hairline = SemanticColor("hairline", light: HalsynPalette.hairlineLight, dark: HalsynPalette.hairlineDark)
-    public static let brandDeep = SemanticColor("brandDeep", light: HalsynPalette.deepGreen, dark: HalsynPalette.darkPrimary)
+    public static var accentText: SemanticColor { SemanticColor("accentText", light: theme.light.accentText, dark: theme.dark.accentText) }
+    public static var accentSoft: SemanticColor { SemanticColor("accentSoft", light: theme.light.accentSoft, dark: theme.dark.accentSoft) }
+    public static var hairline: SemanticColor { SemanticColor("hairline", light: theme.light.hairline, dark: theme.dark.hairline) }
+    public static var brandDeep: SemanticColor { SemanticColor("brandDeep", light: theme.light.brandDeep, dark: theme.dark.brandDeep) }
     public static let positive = SemanticColor("positive", light: HalsynPalette.positiveLight, dark: HalsynPalette.positiveDark)
     public static let caution = SemanticColor("caution", light: HalsynPalette.cautionLight, dark: HalsynPalette.cautionDark)
     public static let alert = SemanticColor("alert", light: HalsynPalette.alertLight, dark: HalsynPalette.alertDark)
@@ -109,7 +112,7 @@ public enum HalsynColorTokens {
 
     // Gráficos (validados con el validador de paletas de dataviz; ver DESIGN_SYSTEM.md).
     /// Línea y barras principales: ≥ 3:1 sobre la superficie en ambos modos.
-    public static let chartPrimary = SemanticColor("chartPrimary", light: HalsynRGBColor(hex: 0x14917A), dark: HalsynPalette.darkSecondary)
+    public static var chartPrimary: SemanticColor { SemanticColor("chartPrimary", light: theme.light.chart, dark: theme.dark.chart) }
     /// Fases del sueño: rampa ordinal de un solo tono (más profundo = más intenso).
     public static let sleepAwake = SemanticColor("sleepAwake", light: HalsynRGBColor(hex: 0x5BBFAA), dark: HalsynRGBColor(hex: 0x0F7A6A))
     public static let sleepREM = SemanticColor("sleepREM", light: HalsynRGBColor(hex: 0x1E9C83), dark: HalsynRGBColor(hex: 0x1ED1A6))
@@ -118,5 +121,5 @@ public enum HalsynColorTokens {
 
     /// Tokens que se usan como texto y deben cumplir WCAG AA (4,5:1) sobre
     /// `background` y `surface` en ambos modos. Verificado en tests.
-    public static let textTokens: [SemanticColor] = [primaryText, secondaryText, accentText, positive, caution, alert]
+    public static var textTokens: [SemanticColor] { [primaryText, secondaryText, accentText, positive, caution, alert] }
 }

@@ -93,7 +93,14 @@ struct ProfileView: View {
                             Text(option.title).tag(option)
                         }
                     }
-                    LanguageRow()
+                    NavigationLink {
+                        ThemePickerView()
+                    } label: {
+                        LabeledContent("Colores") {
+                            Text(LocalizedStringKey(HalsynTheme.current.title))
+                        }
+                    }
+                    LanguagePicker()
                     Picker("Animación de apertura", selection: $intro) {
                         ForEach(IntroPreference.allCases) { option in
                             Text(option.title).tag(option)
@@ -147,6 +154,16 @@ struct ProfileView: View {
 
                 CloudBackupSection()
 
+                Section {
+                    NavigationLink {
+                        DataExportView()
+                    } label: {
+                        Label("Exportar mis datos (CSV)", systemImage: "tablecells")
+                    }
+                } footer: {
+                    Text("Entrenamientos y signos vitales en crudo, para una hoja de cálculo o para pegar en una IA.")
+                }
+
                 Section("Desarrollo") {
                     Button("Ver la introducción de nuevo") {
                         onboardingCompleted = false
@@ -169,33 +186,6 @@ struct ProfileView: View {
 
 /// Idioma de la app. iOS gestiona el idioma por app en Ajustes › HÅLSYN ›
 /// Idioma; esta fila muestra el actual y abre esa pantalla.
-private struct LanguageRow: View {
-    @Environment(\.openURL) private var openURL
-
-    private var currentLanguage: String {
-        let code = Bundle.main.preferredLocalizations.first ?? "es"
-        return Locale.current.localizedString(forIdentifier: code)?.localizedCapitalized ?? code
-    }
-
-    var body: some View {
-        Button {
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                openURL(url)
-            }
-        } label: {
-            LabeledContent("Idioma") {
-                HStack(spacing: 4) {
-                    Text(verbatim: currentLanguage)
-                    Image(systemName: "arrow.up.forward.app")
-                        .accessibilityHidden(true)
-                }
-            }
-        }
-        .foregroundStyle(.halsynPrimaryText)
-        .accessibilityHint(Text("Abre los ajustes de la app para cambiar el idioma"))
-    }
-}
-
 /// Ajustes del resumen nocturno: activar y elegir la hora.
 private struct NightlySummarySection: View {
     @AppStorage(AppPreferences.nightlySummaryEnabledKey) private var enabled = false

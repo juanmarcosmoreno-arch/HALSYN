@@ -56,19 +56,26 @@ extension ShapeStyle where Self == Color {
 
 public enum HalsynGradients {
     /// Gradiente principal de anillos y énfasis.
-    public static let brand = LinearGradient(
-        colors: [Color(HalsynPalette.turquoise), Color(HalsynPalette.mint)],
-        startPoint: .bottomLeading,
-        endPoint: .topTrailing
-    )
+    /// Sigue el tema elegido (con el de HÅLSYN: turquesa a menta).
+    public static var brand: LinearGradient {
+        let colors = HalsynTheme.current.light
+        return LinearGradient(
+            colors: [Color(colors.accent), Color(colors.accentSoft)],
+            startPoint: .bottomLeading,
+            endPoint: .topTrailing
+        )
+    }
 
     /// Gradiente angular para anillos de puntuación.
-    public static let ring = AngularGradient(
-        colors: [Color(HalsynPalette.turquoiseInk), Color(HalsynPalette.turquoise), Color(HalsynPalette.mint), Color(HalsynPalette.turquoise)],
-        center: .center,
-        startAngle: .degrees(-90),
-        endAngle: .degrees(270)
-    )
+    public static var ring: AngularGradient {
+        let colors = HalsynTheme.current.light
+        return AngularGradient(
+            colors: [Color(colors.accentText), Color(colors.accent), Color(colors.accentSoft), Color(colors.accent)],
+            center: .center,
+            startAngle: .degrees(-90),
+            endAngle: .degrees(270)
+        )
+    }
 
     /// Acento cálido para lo extremo (puntuación baja, máxima intensidad).
     public static let ember = AngularGradient(

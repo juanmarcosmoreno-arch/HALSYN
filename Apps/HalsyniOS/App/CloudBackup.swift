@@ -31,6 +31,7 @@ enum CloudBackup {
         "halsyn.unitSystem",
         "halsyn.vila.sleepTarget",
         "halsyn.focusAreas",
+        HalsynTheme.storageKey,
     ]
     static let dateKey = "halsyn.backup.date"
     static let photoPrefix = "halsyn.backup.shoePhoto."

@@ -57,6 +57,36 @@ struct PaletteTests {
         }
     }
 
+    @Test(arguments: HalsynTheme.all.map(\.id))
+    func everyThemeMeetsWCAGAA(id: String) {
+        let theme = HalsynTheme.named(id)
+        for colors in [theme.light, theme.dark] {
+            for text in [colors.primaryText, colors.secondaryText, colors.accentText] {
+                for background in [colors.background, colors.surface] {
+                    #expect(text.contrastRatio(with: background) >= 4.5, "\(id): \(text.hexString) sobre \(background.hexString)")
+                }
+            }
+            for background in [colors.background, colors.surface] {
+                #expect(colors.chart.contrastRatio(with: background) >= 3, "\(id): gráfico sobre \(background.hexString)")
+            }
+        }
+        // Los colores de estado (fijos) se leen en todos los temas.
+        for state in [HalsynColorTokens.positive, HalsynColorTokens.caution, HalsynColorTokens.alert] {
+            for background in [theme.light.background, theme.light.surface] {
+                #expect(state.light.contrastRatio(with: background) >= 4.5, "\(id): \(state.name) claro")
+            }
+            for background in [theme.dark.background, theme.dark.surface] {
+                #expect(state.dark.contrastRatio(with: background) >= 4.5, "\(id): \(state.name) oscuro")
+            }
+        }
+    }
+
+    @Test func defaultThemeKeepsTheBrandColors() {
+        #expect(HalsynTheme.named(nil) == .halsyn)
+        #expect(HalsynTheme.halsyn.light.accent == HalsynPalette.turquoise)
+        #expect(HalsynTheme.halsyn.dark.accentText == HalsynPalette.darkAccent)
+    }
+
     @Test func brandTurquoiseIsNotUsedAsSmallText() {
         // Documenta por qué existe `accentText`: el turquesa de marca no llega a AA sobre blanco.
         #expect(HalsynPalette.turquoise.contrastRatio(with: HalsynPalette.warmWhite) < 4.5)
