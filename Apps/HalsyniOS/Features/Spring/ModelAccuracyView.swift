@@ -1,3 +1,4 @@
+import Charts
 import HalsynCore
 import HalsynDesign
 import SwiftUI
@@ -11,6 +12,7 @@ struct ModelAccuracyView: View {
 
     var body: some View {
         let backtest = fitness.backtest(runs: runs)
+        let projection = fitness.projectionBacktest(runs: runs)
         let outcomes = fitness.goalOutcomes
         Form {
             Section {
@@ -29,18 +31,56 @@ struct ModelAccuracyView: View {
                 if let bias = backtest.bias {
                     LabeledContent(String(localized: "Sesgo"), value: biasText(bias))
                 }
-                if let coverage = backtest.coverage {
+                if backtest.count >= PredictionBacktest.minimumCasesForCalibration, let coverage = backtest.coverage {
                     LabeledContent(String(localized: "Dentro del rango del 80 %"), value: "\(Int((coverage * 100).rounded())) %")
                 }
-                if let calibrated = backtest.calibratedRelativeError {
+                if backtest.count >= PredictionBacktest.minimumCasesForCalibration, let calibrated = backtest.calibratedRelativeError {
                     LabeledContent(String(localized: "Error típico usado en los rangos"), value: "± \(HalsynFormat.decimal(calibrated * 100, fractionDigits: 1)) %")
                 }
             } header: {
-                Text("Predicción de tiempos")
+                Text("Rendimiento de hoy")
             } footer: {
                 Text(backtest.count < PredictionBacktest.minimumCasesForCalibration
                      ? LocalizedStringKey("Con 5 pruebas evaluadas o más, los rangos de las predicciones se ajustan a tu error real. Cada test que registres suma.")
                      : LocalizedStringKey("Sesgo positivo: el modelo te ve más lento de lo que corres (pesimista); negativo: optimista. Un rango bien calibrado contiene cerca del 80 % de los tiempos reales."))
+            }
+            Section {
+                LabeledContent(String(localized: "Pruebas evaluadas"), value: String(projection.count))
+                if let mae = projection.meanAbsoluteError, let percent = projection.meanAbsolutePercentageError {
+                    LabeledContent(String(localized: "Error medio (MAE)"), value: "\(HalsynFormat.duration(mae)) · \(HalsynFormat.decimal(percent * 100, fractionDigits: 1)) %")
+                }
+                if let bias = projection.bias {
+                    LabeledContent(String(localized: "Sesgo"), value: biasText(bias))
+                }
+                if projection.count >= PredictionBacktest.minimumCasesForCalibration, let coverage = projection.coverage {
+                    LabeledContent(String(localized: "Dentro del rango del 80 %"), value: "\(Int((coverage * 100).rounded())) %")
+                }
+            } header: {
+                Text("Proyección a 4 semanas")
+            } footer: {
+                Text("Se proyecta cada test o competición desde 4 semanas antes, sin ver nada posterior. Valida la proyección por separado del rendimiento de hoy. La cobertura solo se muestra con 5 casos o más.")
+            }
+            if backtest.cases.count >= 2 {
+                Section("Evolución del error") {
+                    Chart {
+                        ForEach(backtest.cases) { item in
+                            PointMark(x: .value("Fecha", item.date), y: .value("Error %", item.relativeError * 100))
+                                .foregroundStyle(by: .value("Tipo", String(localized: "Hoy")))
+                        }
+                        ForEach(projection.cases) { item in
+                            PointMark(x: .value("Fecha", item.date), y: .value("Error %", item.relativeError * 100))
+                                .foregroundStyle(by: .value("Tipo", String(localized: "Proyección")))
+                                .symbol(.square)
+                        }
+                        RuleMark(y: .value("Cero", 0))
+                            .foregroundStyle(Color.halsynHairline)
+                    }
+                    .chartForegroundStyleScale([String(localized: "Hoy"): Color.halsynChart, String(localized: "Proyección"): Color.halsynHighlight])
+                    .frame(height: 160)
+                    Text("Por encima de 0: el modelo te veía más lento de lo que corriste.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
             }
             if !backtest.cases.isEmpty {
                 Section("Pruebas") {

@@ -65,6 +65,23 @@ struct BacktestTests {
         #expect(width > minimum - 0.01)
     }
 
+    @Test func projectionUsesOnlyDataFromBeforeTheHorizon() throws {
+        // Tests cada 5 semanas; con horizonte de 4 semanas, el del día 0 se proyecta desde el día −28.
+        let results = [test(105, vdot: 44), test(70, vdot: 45), test(35, vdot: 46), test(0, vdot: 47)]
+        let projection = PredictionBacktest.runProjection(results: results, runs: [], maxHeartRate: nil, horizonDays: 28, calendar: calendar)
+        #expect(projection.count == 3)
+        // Ninguna predicción puede ser igual al resultado real exacto: no vio el resultado.
+        #expect(projection.cases.allSatisfy { abs($0.error) > 0.5 })
+        #expect(!projection.rangeIsCalibrated)
+    }
+
+    @Test func duplicatedResultsAreEvaluatedOnce() {
+        let a = test(10, vdot: 45)
+        let copy = PerformanceResult(date: a.date, distance: 5010, time: a.time + 2, kind: .test)
+        let backtest = PredictionBacktest.run(results: [test(40, vdot: 45), a, copy], runs: [], maxHeartRate: nil, calendar: calendar)
+        #expect(backtest.count == 1)
+    }
+
     @Test func brierNeedsFiveOutcomes() {
         let good = (0..<5).map { GoalOutcome(raceDate: daysAgo($0 * 60), goalTime: 1300, actualTime: $0 < 4 ? 1290 : 1310, modelValue: $0 < 4 ? 0.85 : 0.3) }
         #expect(GoalCalibration.allowsPercentage(good))

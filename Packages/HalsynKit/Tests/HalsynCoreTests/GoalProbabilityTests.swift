@@ -49,7 +49,7 @@ struct GoalProbabilityTests {
         var plan = try makePlan(goalTime: 48 * 60)
         let weeks = GoalCoach.trainingWeeks(until: plan.goal.raceDate, distance: .tenK, today: today, calendar: calendar)
         let model = try #require(performance(44))
-        let projected = model.currentVDOT + Double(weeks) / 6 * GoalProbability.gainFactor(GoalProbability.assumedCompliance)
+        let projected = model.currentVDOT + GoalProjection.gain(weeks: weeks, rate: 1.0 / 6, factor: GoalProbability.gainFactor(GoalProjection.Scenario.central.assumedCompliance))
         plan.goal.goalTime = VDOT.raceTime(vdot: projected, distance: 10_000)
         let result = try #require(GoalProbability.evaluate(plan: plan, performance: model, runs: [], today: today, calendar: calendar))
         #expect(abs(result.modelValue - 0.5) < 0.03)
@@ -146,5 +146,74 @@ struct PerformanceModelTests {
 
     @Test func noEvidenceNoModel() {
         #expect(RacePerformanceModel.assess(results: [], runs: [], today: today, calendar: calendar) == nil)
+    }
+}
+
+@Suite("Proyección y adherencia")
+struct ProjectionAndAdherenceTests {
+    @Test func gainHasDiminishingReturns() {
+        let six = GoalProjection.gain(weeks: 6, rate: 1.0 / 6, factor: 1)
+        let twelve = GoalProjection.gain(weeks: 12, rate: 1.0 / 6, factor: 1)
+        let fortyEight = GoalProjection.gain(weeks: 48, rate: 1.0 / 6, factor: 1)
+        #expect(six > 0.85 && six < 1)          // casi lineal al principio
+        #expect(twelve < 2 * six)               // pero se aplana
+        #expect(fortyEight < GoalProjection.improvementCap)
+        #expect(GoalProjection.gain(weeks: 0, rate: 1.0 / 6, factor: 1) == 0)
+    }
+
+    @Test func scenariosAreOrderedAndUncertaintyGrowsWithTime() throws {
+        let model = try #require(performance(40))
+        let results = GoalProjection.Scenario.allCases.map { GoalProjection.project(performance: model, weeks: 10, compliance: nil, runsPerWeek: 4, scenario: $0) }
+        #expect(results[0].projectedVDOT < results[1].projectedVDOT)
+        #expect(results[1].projectedVDOT < results[2].projectedVDOT)
+        let near = GoalProjection.project(performance: model, weeks: 2, compliance: 1, runsPerWeek: 4, scenario: .central)
+        let far = GoalProjection.project(performance: model, weeks: 20, compliance: 1, runsPerWeek: 4, scenario: .central)
+        #expect(far.uncertainty > near.uncertainty)
+    }
+
+    @Test func moreDaysDoNotAlwaysHelp() {
+        #expect(GoalProjection.frequencyFactor(runsPerWeek: 4) == GoalProjection.frequencyFactor(runsPerWeek: 6))
+        #expect(GoalProjection.frequencyFactor(runsPerWeek: 2) < GoalProjection.frequencyFactor(runsPerWeek: 3))
+    }
+
+    @Test func fullAdherenceIsNotTheSameAsTargetFrequency() throws {
+        // Plan de 4 días; en 3 semanas solo se hicieron 3 sesiones programadas (todas) y nada más.
+        let plan = try makePlan(goalTime: 25 * 60)
+        let later = calendar.date(byAdding: .day, value: 21, to: today)!
+        let planned = plan.weeks.flatMap(\.sessions).filter { $0.kind != .rest && $0.date < calendar.startOfDay(for: later) }
+        let three = planned.prefix(3).map { session in
+            WorkoutSummary(activity: .outdoorRun, start: calendar.date(byAdding: .hour, value: 8, to: calendar.startOfDay(for: session.date))!, duration: max(session.distance, 3000) / 1000 * 330, distanceMeters: max(session.distance, 3000), averageHeartRate: 140, maxHeartRate: 160, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
+        }
+        let adherence = TrainingAdherence.evaluate(plan: plan, runs: Array(three), today: later, calendar: calendar)
+        #expect(adherence.done == 3)
+        #expect(adherence.planned > 3)
+        #expect(adherence.actualRunsPerWeek < Double(adherence.targetRunsPerWeek))
+        #expect(try #require(adherence.effective) < 1)
+    }
+}
+
+@Suite("Simulador de objetivos")
+struct GoalSimulationTests {
+    @Test func laterDatesAndEasierGoalsLookBetter() throws {
+        let model = try #require(performance(40))
+        let soon = try #require(GoalSimulation.run(performance: model, distance: .fiveK, goalTime: 23 * 60, raceDate: calendar.date(byAdding: .day, value: 30, to: today)!, runsPerWeek: 4, compliance: nil, today: today, calendar: calendar))
+        let later = try #require(GoalSimulation.run(performance: model, distance: .fiveK, goalTime: 23 * 60, raceDate: calendar.date(byAdding: .day, value: 150, to: today)!, runsPerWeek: 4, compliance: nil, today: today, calendar: calendar))
+        #expect(later.category >= soon.category)
+        let easy = try #require(GoalSimulation.run(performance: model, distance: .fiveK, goalTime: 28 * 60, raceDate: soon.raceDate, runsPerWeek: 4, compliance: nil, today: today, calendar: calendar))
+        #expect(easy.category == .veryLikely)
+        #expect(soon.currentTime == later.currentTime)
+    }
+
+    @Test func singleTestOnlyGivesTheCentralScenario() throws {
+        let model = try #require(PerformanceModelHelper.lowConfidence())
+        let simulation = try #require(GoalSimulation.run(performance: model, distance: .tenK, goalTime: 50 * 60, raceDate: calendar.date(byAdding: .day, value: 90, to: today)!, runsPerWeek: 3, compliance: nil, today: today, calendar: calendar))
+        #expect(simulation.scenarios.map(\.scenario) == [.central])
+    }
+}
+
+private enum PerformanceModelHelper {
+    /// Un test viejo (sin pruebas recientes): confianza baja.
+    static func lowConfidence() -> PerformanceAssessment? {
+        RacePerformanceModel.assess(results: [test(vdot: 42, on: daysAgo(100))], runs: [], today: today, calendar: calendar)
     }
 }

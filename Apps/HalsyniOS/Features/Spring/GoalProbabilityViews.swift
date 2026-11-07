@@ -219,7 +219,10 @@ struct GoalProbabilitySummary: View {
                             .foregroundStyle(.halsynSecondaryText)
                     }
                 }
-                Text("Previsto: \(HalsynFormat.duration(probability.projectedTime)) (\(GoalProbabilityText.range(probability.projectedRange)))")
+                Text("Hoy \(HalsynFormat.duration(probability.currentTime)) · día de la carrera \(HalsynFormat.duration(probability.projectedTime))")
+                    .font(.halsynCaption.monospacedDigit())
+                    .foregroundStyle(.halsynPrimaryText)
+                Text("Rango orientativo: \(GoalProbabilityText.range(probability.projectedRange))")
                     .font(.halsynCaption.monospacedDigit())
                     .foregroundStyle(.halsynPrimaryText)
                 if let seconds = GoalProbabilityHistory.weeklyChange(current: probability, goal: goal) {

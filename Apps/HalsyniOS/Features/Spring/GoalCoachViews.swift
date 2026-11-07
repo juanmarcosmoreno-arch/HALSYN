@@ -20,6 +20,14 @@ final class FitnessStore {
 
     func add(_ result: PerformanceResult) {
         results.removeAll { $0.id == result.id || ($0.workoutID != nil && $0.workoutID == result.workoutID) }
+        // Si el mismo esfuerzo ya estaba cargado a mano (mismo día, tiempo y
+        // distancia casi iguales), el que viene del entrenamiento lo reemplaza.
+        if result.workoutID != nil {
+            results.removeAll { other in
+                other.workoutID == nil
+                    && RacePerformanceModel.deduplicated([result, other], calendar: .current).kept.count == 1
+            }
+        }
         results.append(result)
         results.sort { $0.date > $1.date }
         persist()
@@ -42,6 +50,11 @@ final class FitnessStore {
     var riegelExponent: Double {
         let value = defaults.double(forKey: Self.riegelExponentKey)
         return RacePerformanceModel.plausibleExponent.contains(value) ? value : RacePerformanceModel.defaultRiegelExponent
+    }
+
+    /// Validación de la proyección (4 semanas antes de cada test o competición).
+    func projectionBacktest(runs: [WorkoutSummary]) -> PredictionBacktest {
+        PredictionBacktest.runProjection(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, calendar: .current)
     }
 
     /// Evaluación retrospectiva con tus tests y competiciones (solo datos anteriores a cada uno).
@@ -387,21 +400,25 @@ struct GoalStatusCard: View {
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
-                } else if let estimate {
-                    let assessment = GoalCoach.assess(goalTime: plan.goal.goalTime, distance: plan.goal.distance, raceDate: plan.goal.raceDate, estimate: estimate, weeklyDistance: plan.startingWeeklyDistance, today: .now, calendar: .current)
-                    if let verdict = assessment.verdict {
-                        HalsynStatusIndicator(RaceGoalText.verdictStatus(verdict), text: RaceGoalText.verdictTitle(verdict))
-                    }
-                    Text(RaceGoalText.verdictDetail(assessment))
-                        .font(.halsynCaption)
-                        .foregroundStyle(.halsynSecondaryText)
-                        .fixedSize(horizontal: false, vertical: true)
-                    timeRow("Con tu forma de hoy", assessment.predictedTime)
-                    if let performance = fitness.performance(runs: runs),
-                       let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
+                } else if let performance = fitness.performance(runs: runs),
+                          let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
+                    let calibrated = fitness.projectionBacktest(runs: runs).rangeIsCalibrated
+                    GoalIndicatorsView(probability: probability, performance: performance, goal: plan.goal, rangeIsCalibrated: calibrated)
+                    Divider().overlay(Color.halsynHairline)
+                    GoalProbabilityDetail(probability: probability, performance: performance, goal: plan.goal)
+                    if let adherence = probability.adherence {
                         Divider().overlay(Color.halsynHairline)
-                        GoalProbabilityDetail(probability: probability, performance: performance, goal: plan.goal)
-                    } else if let projected = progress.projectedTime {
+                        AdherenceView(adherence: adherence)
+                    }
+                    NavigationLink {
+                        GoalSimulatorView(runs: runs, goal: plan.goal, compliance: probability.adherence?.effective)
+                    } label: {
+                        Label("Simular otro objetivo", systemImage: "slider.horizontal.3")
+                            .font(.halsynCaption.weight(.semibold))
+                    }
+                } else if let estimate {
+                    timeRow("Con tu forma de hoy", VDOT.raceTime(vdot: estimate.vdot, distance: plan.goal.distance.rawValue))
+                    if let projected = progress.projectedTime {
                         timeRow("Previsto el día de la carrera", projected)
                     }
                 }
@@ -505,6 +522,12 @@ struct GoalStatusCard: View {
                 Text(result.date, format: .dateTime.day().month(.abbreviated).year())
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
+                if RacePerformanceModel.deduplicated(fitness.results, calendar: .current).duplicates.contains(where: { $0.0.id == result.id }) {
+                    Text("Duplicado de otro resultado del mismo día: cuenta una sola vez. Mantén pulsado para borrarlo.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynCaution)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
             Spacer()
             if let vdot = result.vdot {

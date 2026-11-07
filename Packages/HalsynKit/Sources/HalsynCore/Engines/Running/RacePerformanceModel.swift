@@ -17,6 +17,31 @@ public struct PerformanceEvidence: Hashable, Identifiable, Sendable {
     public let weight: Double
     /// Se aparta mucho de la tendencia de las demás (se le baja el peso).
     public let isInconsistent: Bool
+    /// Cómo se usó y por qué.
+    public let role: Role
+
+    public enum Role: Hashable, Sendable {
+        /// Cuenta en la estimación con su peso.
+        case counted
+        /// Entrenamiento por debajo de tu forma: no la baja (solo prueba un mínimo).
+        case belowEstimate
+        /// El mismo resultado registrado dos veces: cuenta una sola vez.
+        case duplicate(of: UUID)
+        /// No encaja con el resto: cuenta con un cuarto del peso.
+        case inconsistent
+    }
+
+    public init(id: UUID, date: Date, distance: Double, time: TimeInterval, kind: Kind, vdot: Double, weight: Double, isInconsistent: Bool, role: Role = .counted) {
+        self.id = id
+        self.date = date
+        self.distance = distance
+        self.time = time
+        self.kind = kind
+        self.vdot = vdot
+        self.weight = weight
+        self.isInconsistent = isInconsistent
+        self.role = role
+    }
 }
 
 /// Predicción de una distancia por los dos métodos y su combinación.
@@ -55,8 +80,15 @@ public struct PerformanceAssessment: Hashable, Sendable {
     public let riegelExponent: Double
     /// Exponente de Riegel ajustado a tus pruebas, si se pudo estimar.
     public let personalExponent: Double?
-    /// Hay datos suficientes para dar un intervalo.
+    /// Hay datos suficientes para dar un intervalo (orientativo hasta calibrarlo).
     public let hasInterval: Bool
+    /// Tests y competiciones que cuentan (sin duplicados ni incoherentes).
+    public var officialCount: Int = 0
+    /// Tamaño efectivo de la muestra (Kish).
+    public var effectiveSampleSize: Double = 1
+
+    /// Con menos de 3 resultados oficiales la tendencia es provisional.
+    public var trendIsProvisional: Bool { officialCount < 3 || weeklyTrend == nil }
 
     public func predict(_ distance: Double) -> DistancePrediction {
         let vdotTime = VDOT.raceTime(vdot: currentVDOT, distance: distance)
@@ -103,79 +135,154 @@ public enum RacePerformanceModel {
     public static let defaultRiegelExponent = 1.06
     public static let plausibleExponent: ClosedRange<Double> = 1.01...1.15
 
-    public static func assess(results: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, today: Date, calendar: Calendar) -> PerformanceAssessment? {
+    /// Tolerancias para considerar dos resultados como el mismo esfuerzo.
+    public static let duplicateTimeTolerance = 0.02
+    public static let duplicateDistanceTolerance = 0.03
+
+    /// Resultados sin duplicados: mismo día, tiempo a ≤ 2 % y distancia a ≤ 3 %
+    /// (p. ej. uno cargado a mano "3,00 km" y otro del entrenamiento "3,026 km").
+    /// Se queda el que viene de un entrenamiento de Salud (distancia exacta); si
+    /// ninguno, el más reciente en la lista. Devuelve también los descartados.
+    public static func deduplicated(_ results: [PerformanceResult], calendar: Calendar) -> (kept: [PerformanceResult], duplicates: [(PerformanceResult, keptID: UUID)]) {
+        var kept: [PerformanceResult] = []
+        var duplicates: [(PerformanceResult, keptID: UUID)] = []
+        // Primero los que tienen entrenamiento de origen.
+        for result in results.sorted(by: { ($0.workoutID != nil ? 0 : 1) < ($1.workoutID != nil ? 0 : 1) }) {
+            if let match = kept.first(where: { other in
+                calendar.isDate(other.date, inSameDayAs: result.date)
+                    && abs(other.time - result.time) / max(other.time, 1) <= duplicateTimeTolerance
+                    && abs(other.distance - result.distance) / max(other.distance, 1) <= duplicateDistanceTolerance
+            }) {
+                duplicates.append((result, match.id))
+            } else {
+                kept.append(result)
+            }
+        }
+        return (kept, duplicates)
+    }
+
+    public static func assess(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, today: Date, calendar: Calendar) -> PerformanceAssessment? {
         let todayStart = calendar.startOfDay(for: today)
         func ageDays(_ date: Date) -> Double {
             Double(calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: todayStart).day ?? 0)
         }
+        func decay(_ date: Date) -> Double { pow(0.5, ageDays(date) / halfLifeDays) }
 
-        // 1. Pruebas con su peso por tipo y antigüedad.
-        var raw: [(id: UUID, date: Date, distance: Double, time: TimeInterval, kind: PerformanceEvidence.Kind, vdot: Double, base: Double)] = []
-        let markedWorkouts = Set(results.compactMap(\.workoutID))
-        for result in results where result.date <= today && ageDays(result.date) <= Double(resultWindowDays) {
-            guard let vdot = result.vdot else { continue }
+        // 1. Resultados oficiales (tests y competiciones), sin duplicados.
+        let window = allResults.filter { $0.date <= today && ageDays($0.date) <= Double(resultWindowDays) && $0.vdot != nil }
+        let (results, duplicates) = deduplicated(window, calendar: calendar)
+        let markedWorkouts = Set(allResults.compactMap(\.workoutID))
+        var official: [(result: PerformanceResult, kind: PerformanceEvidence.Kind, vdot: Double, weight: Double)] = results.compactMap { result in
+            guard let vdot = result.vdot else { return nil }
             let kind: PerformanceEvidence.Kind = result.kind == .race ? .race : .test
-            raw.append((result.id, result.date, result.distance, result.time, kind, vdot, kind == .race ? 1 : 0.9))
+            return (result, kind, vdot, (kind == .race ? 1 : 0.9) * decay(result.date))
         }
-        for effort in FitnessEstimator.trainingEfforts(runs: runs, maxHeartRate: maxHeartRate, today: today, calendar: calendar)
-        where !markedWorkouts.contains(effort.run.id) {
-            raw.append((effort.run.id, effort.run.start, effort.run.distanceMeters ?? 0, effort.run.duration, .trainingEffort, effort.vdot, 0.5))
-        }
-        guard !raw.isEmpty else { return nil }
-        let weighted = raw.map { item in (item, item.base * pow(0.5, ageDays(item.date) / halfLifeDays)) }
 
-        // 2. Tendencia robusta (Theil–Sen) en VDOT por semana.
-        let points = weighted.map { (weeks: -ageDays($0.0.date) / 7, vdot: $0.0.vdot) }
-        let span = (points.map(\.weeks).max() ?? 0) - (points.map(\.weeks).min() ?? 0)
+        // 2. Tendencia solo con resultados oficiales (los entrenamientos no son
+        //    comparables entre sí): 3 o más en 21 días o más.
         var trend: Double?
-        if points.count >= 3, span >= 3 {
-            trend = theilSen(points.map { ($0.weeks, $0.vdot) }).map { min(max($0, -maximumWeeklyTrend), maximumWeeklyTrend) }
+        let officialPoints = official.map { (x: -ageDays($0.result.date) / 7, y: $0.vdot) }
+        let span = (officialPoints.map(\.x).max() ?? 0) - (officialPoints.map(\.x).min() ?? 0)
+        if officialPoints.count >= 3, span >= 3 {
+            trend = theilSen(officialPoints).map { min(max($0, -maximumWeeklyTrend), maximumWeeklyTrend) }
         }
         let slope = trend ?? 0
+        func projected(_ vdot: Double, _ date: Date) -> Double { vdot + slope * ageDays(date) / 7 }
 
-        // 3. Cada prueba llevada a hoy; coherencia frente a la mediana.
-        let projected = weighted.map { ($0.0, $0.1, $0.0.vdot + slope * ageDays($0.0.date) / 7) }
-        let center = weightedMedian(projected.map { ($0.2, $0.1) }) ?? projected[0].2
-        let evidence = projected.map { item, weight, value -> (PerformanceEvidence, Double) in
-            let inconsistent = projected.count >= 3 && abs(value - center) > inconsistencyLimit
-            let finalWeight = inconsistent ? weight * 0.25 : weight
-            return (PerformanceEvidence(id: item.id, date: item.date, distance: item.distance, time: item.time, kind: item.kind, vdot: item.vdot, weight: finalWeight, isInconsistent: inconsistent), value)
+        // 3. Coherencia entre oficiales (con 3 o más).
+        var inconsistentIDs = Set<UUID>()
+        if official.count >= 3, let center = weightedMedian(official.map { (projected($0.vdot, $0.result.date), $0.weight) }) {
+            for item in official where abs(projected(item.vdot, item.result.date) - center) > inconsistencyLimit {
+                inconsistentIDs.insert(item.result.id)
+            }
+            official = official.map { item in
+                inconsistentIDs.contains(item.result.id) ? (item.result, item.kind, item.vdot, item.weight * 0.25) : item
+            }
         }
-        let totalWeight = evidence.map(\.0.weight).reduce(0, +)
+        let officialWeight = official.map(\.weight).reduce(0, +)
+        let officialEstimate: Double? = officialWeight > 0
+            ? official.map { $0.weight * projected($0.vdot, $0.result.date) }.reduce(0, +) / officialWeight
+            : nil
+
+        // 4. Esfuerzos detectados en entrenamientos (solo al aire libre, sin
+        //    los ya marcados). Solo pueden SUBIR la estimación: un entrenamiento
+        //    más lento no demuestra que hayas perdido forma.
+        let efforts = FitnessEstimator.trainingEfforts(runs: runs.filter { $0.activity == .outdoorRun }, maxHeartRate: maxHeartRate, today: today, calendar: calendar)
+            .filter { !markedWorkouts.contains($0.run.id) }
+        var floor = officialEstimate
+        if floor == nil, let best = efforts.first {
+            // Sin resultados oficiales: el mejor esfuerzo (o el segundo, si el
+            // mejor está más de 5 puntos por encima: probable error de GPS).
+            floor = efforts.count >= 2 && best.vdot - efforts[1].vdot > FitnessEstimator.outlierGap ? efforts[1].vdot : best.vdot
+        }
+        guard let base = floor else { return nil }
+
+        var counted: [(id: UUID, value: Double, weight: Double)] = official.map { ($0.result.id, projected($0.vdot, $0.result.date), $0.weight) }
+        var evidence: [PerformanceEvidence] = official.map { item in
+            let inconsistent = inconsistentIDs.contains(item.result.id)
+            return PerformanceEvidence(id: item.result.id, date: item.result.date, distance: item.result.distance, time: item.result.time, kind: item.kind, vdot: item.vdot, weight: item.weight, isInconsistent: inconsistent, role: inconsistent ? .inconsistent : .counted)
+        }
+        for (pair, duplicateOf) in duplicates {
+            guard let vdot = pair.vdot else { continue }
+            evidence.append(PerformanceEvidence(id: pair.id, date: pair.date, distance: pair.distance, time: pair.time, kind: pair.kind == .race ? .race : .test, vdot: vdot, weight: 0, isInconsistent: false, role: .duplicate(of: duplicateOf)))
+        }
+        for effort in efforts {
+            let distance = effort.run.distanceMeters ?? 0
+            let isOutlier = efforts.count >= 2 && effort.run.id == efforts.first?.run.id && effort.vdot - efforts[1].vdot > FitnessEstimator.outlierGap
+            if effort.vdot > base + 0.05, !isOutlier {
+                let weight = 0.5 * decay(effort.run.start)
+                counted.append((effort.run.id, effort.vdot, weight))
+                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: weight, isInconsistent: false, role: .counted))
+            } else if officialEstimate == nil, abs(effort.vdot - base) < 0.05 {
+                counted.append((effort.run.id, effort.vdot, 0.5 * decay(effort.run.start)))
+                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0.5 * decay(effort.run.start), isInconsistent: false, role: .counted))
+            } else {
+                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0, isInconsistent: isOutlier, role: isOutlier ? .inconsistent : .belowEstimate))
+            }
+        }
+        let totalWeight = counted.map(\.weight).reduce(0, +)
         guard totalWeight > 0 else { return nil }
-        let current = evidence.map { $0.0.weight * $0.1 }.reduce(0, +) / totalWeight
+        let current = counted.map { $0.weight * $0.value }.reduce(0, +) / totalWeight
 
-        // 4. Incertidumbre.
-        var spread = minimumUncertainty
-        if evidence.count >= 2 {
-            let variance = evidence.map { $0.0.weight * pow($0.1 - current, 2) }.reduce(0, +) / totalWeight
-            spread = max(variance.squareRoot(), minimumUncertainty)
+        // 5. Incertidumbre: dispersión ponderada (mínimo 0,8) inflada por el
+        //    tamaño efectivo de la muestra (Kish: (Σw)²/Σw²), para que pocas
+        //    pruebas —o pruebas casi iguales— no den un rango falsamente estrecho.
+        var deviation = minimumUncertainty
+        if counted.count >= 2 {
+            let variance = counted.map { $0.weight * pow($0.value - current, 2) }.reduce(0, +) / totalWeight
+            deviation = max(variance.squareRoot(), minimumUncertainty)
         }
-        let newest = evidence.map(\.0).max { $0.date < $1.date }
-        let hasRecentOfficial = evidence.contains { $0.0.kind != .trainingEffort && ageDays($0.0.date) <= Double(FitnessEstimator.freshDays) }
-        if !hasRecentOfficial || (newest.map { ageDays($0.date) } ?? 999) > Double(FitnessEstimator.freshDays) {
+        let squares = counted.map { $0.weight * $0.weight }.reduce(0, +)
+        let effectiveSize = squares > 0 ? totalWeight * totalWeight / squares : 1
+        var spread = deviation * (1 + 1 / max(effectiveSize, 1)).squareRoot()
+        let newest = counted.compactMap { item in evidence.first { $0.id == item.id }?.date }.max()
+        let hasRecentOfficial = official.contains { ageDays($0.result.date) <= Double(FitnessEstimator.freshDays) }
+        if !hasRecentOfficial || (newest.map(ageDays) ?? 999) > Double(FitnessEstimator.freshDays) {
             spread += 0.5
         }
 
+        let countedOfficial = official.filter { !inconsistentIDs.contains($0.result.id) }.count
         let confidence: PerformanceAssessment.Confidence
-        if hasRecentOfficial && evidence.count >= 3 && spread <= 1.5 {
+        if hasRecentOfficial && countedOfficial >= 3 && spread <= 1.5 {
             confidence = .high
-        } else if evidence.count >= 2 || hasRecentOfficial {
+        } else if hasRecentOfficial || counted.count >= 2 {
             confidence = .medium
         } else {
             confidence = .low
         }
 
-        let official = evidence.map(\.0).filter { $0.kind != .trainingEffort && !$0.isInconsistent }
+        let officialEvidence = evidence.filter { $0.kind != .trainingEffort && $0.role == .counted }
         return PerformanceAssessment(
-            evidence: evidence.map(\.0).sorted { $0.date > $1.date },
+            evidence: evidence.sorted { $0.date > $1.date },
             currentVDOT: current,
             uncertainty: spread,
             weeklyTrend: trend,
             confidence: confidence,
             riegelExponent: riegelExponent,
-            personalExponent: personalExponent(official),
-            hasInterval: evidence.count >= 3
+            personalExponent: personalExponent(officialEvidence),
+            hasInterval: counted.count >= 2,
+            officialCount: countedOfficial,
+            effectiveSampleSize: effectiveSize
         )
     }
 

@@ -72,7 +72,9 @@ public struct PredictionBacktest: Hashable, Sendable {
         return max(1.4826 * mad, 0.005)
     }
 
-    public static func run(results: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double?, riegelExponent: Double = RacePerformanceModel.defaultRiegelExponent, calendar: Calendar) -> PredictionBacktest {
+    public static func run(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double?, riegelExponent: Double = RacePerformanceModel.defaultRiegelExponent, calendar: Calendar) -> PredictionBacktest {
+        // Un resultado duplicado no se evalúa dos veces.
+        let results = RacePerformanceModel.deduplicated(allResults, calendar: calendar).kept
         let cases = results.sorted { $0.date < $1.date }.compactMap { target -> Case? in
             let dayStart = calendar.startOfDay(for: target.date)
             // Solo lo anterior al día de la prueba (sin fuga de información).
@@ -83,6 +85,37 @@ public struct PredictionBacktest: Hashable, Sendable {
             return Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: prediction.time, range: prediction.range)
         }
         return PredictionBacktest(cases: cases)
+    }
+}
+
+extension PredictionBacktest {
+    /// Validación de la **proyección** (no del rendimiento de hoy): para cada
+    /// test o competición, se arma el modelo con los datos de `horizonDays`
+    /// días antes, se proyecta hasta ese día con el escenario central (con tu
+    /// frecuencia real de las 4 semanas previas) y se compara con el tiempo real.
+    public static func runProjection(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double?, riegelExponent: Double = RacePerformanceModel.defaultRiegelExponent, horizonDays: Int = 28, calendar: Calendar) -> PredictionBacktest {
+        let results = RacePerformanceModel.deduplicated(allResults, calendar: calendar).kept
+        let cases = results.sorted { $0.date < $1.date }.compactMap { target -> Case? in
+            let dayStart = calendar.startOfDay(for: target.date)
+            guard let origin = calendar.date(byAdding: .day, value: -horizonDays, to: dayStart) else { return nil }
+            let pastResults = results.filter { $0.date < origin }
+            let pastRuns = runs.filter { $0.start < origin }
+            guard let model = RacePerformanceModel.assess(results: pastResults, runs: pastRuns, maxHeartRate: maxHeartRate, riegelExponent: riegelExponent, today: origin.addingTimeInterval(-1), calendar: calendar) else { return nil }
+            let monthBefore = calendar.date(byAdding: .day, value: -28, to: origin) ?? origin
+            let frequency = Int((Double(pastRuns.filter { $0.activity.isRun && $0.start >= monthBefore }.count) / 4).rounded())
+            let projection = GoalProjection.project(performance: model, weeks: horizonDays / 7, compliance: nil, runsPerWeek: max(frequency, 1), scenario: .central)
+            let predicted = VDOT.raceTime(vdot: projection.projectedVDOT, distance: target.distance)
+            let range = VDOT.raceTime(vdot: projection.projectedVDOT + 1.28 * projection.uncertainty, distance: target.distance)...VDOT.raceTime(vdot: max(projection.projectedVDOT - 1.28 * projection.uncertainty, 15), distance: target.distance)
+            return Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: predicted, range: range)
+        }
+        return PredictionBacktest(cases: cases)
+    }
+
+    /// El rango solo puede llamarse "calibrado" con 5 casos o más y una
+    /// cobertura observada razonable (entre 65 y 95 %).
+    public var rangeIsCalibrated: Bool {
+        guard count >= Self.minimumCasesForCalibration, let coverage else { return false }
+        return (0.65...0.95).contains(coverage)
     }
 }
 

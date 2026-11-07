@@ -18,6 +18,8 @@ public enum WorkoutQualityFlag: Hashable, Sendable {
     case implausibleHeartRate
     /// Cadencia 0: el valor se ignora.
     case zeroCadence
+    /// Cadencia fuera de lo posible para correr (< 100 o > 260 pasos/min): se ignora.
+    case implausibleCadence
 
     /// Hace que el registro no cuente para nada (volumen incluido).
     public var removesWorkout: Bool {
@@ -31,7 +33,7 @@ public enum WorkoutQualityFlag: Hashable, Sendable {
     public var blocksPerformance: Bool {
         switch self {
         case .duplicate, .overlaps, .missingDistance, .tooShort, .implausiblePace: true
-        case .implausibleHeartRate, .zeroCadence: false
+        case .implausibleHeartRate, .zeroCadence, .implausibleCadence: false
         }
     }
 }
@@ -61,7 +63,7 @@ public struct WorkoutQuality: Hashable, Sendable {
     /// Su FC se puede usar (zonas, carga, esfuerzo).
     public var heartRateUsable: Bool { !flags.contains(.implausibleHeartRate) }
     /// Algo que mostrar al usuario (la cadencia 0 sola no merece aviso).
-    public var needsReview: Bool { flags.contains { $0 != .zeroCadence } }
+    public var needsReview: Bool { flags.contains { $0 != .zeroCadence && $0 != .implausibleCadence } }
 }
 
 /// Control de calidad de los entrenamientos de Apple Health.
@@ -156,7 +158,11 @@ public enum DataQuality {
         } else if let average, let maximum, average > maximum + 1 {
             flags.append(.implausibleHeartRate)
         }
-        if workout.averageCadence == 0 { flags.append(.zeroCadence) }
+        if workout.averageCadence == 0 {
+            flags.append(.zeroCadence)
+        } else if workout.activity.isRun, let cadence = workout.averageCadence, cadence < 100 || cadence > 260 {
+            flags.append(.implausibleCadence)
+        }
         return flags
     }
 

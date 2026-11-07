@@ -99,6 +99,7 @@
 		A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */; };
 		A767F3B4D0ABF1D71E85AC51 /* HalsynWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAA07137DCC3DF5F4770AFB1 /* HalsynWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B9279686B3614FAA157395 /* CardioHealthViews.swift */; };
+		A9227B874921CF02BD5E36B8 /* GoalIndicatorsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D869CB66267CF160362DA6 /* GoalIndicatorsViews.swift */; };
 		AC5B2F8616E283E9E74B70E7 /* VoiceCuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE3E5F07FDF32921E2F028E /* VoiceCuesView.swift */; };
 		ADCD14C6C56E2934FC455A2F /* DataQualityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C933D034DBBF7CD0507A6802 /* DataQualityViews.swift */; };
 		AEE14D74DE1E1111415219CC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8ACB727E30A37717E1A516 /* WidgetKit.framework */; };
@@ -249,6 +250,7 @@
 		4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionHint.swift; sourceTree = "<group>"; };
 		4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSettingsView.swift; sourceTree = "<group>"; };
 		5417FB0D23FE88CE1510BE10 /* HalsynWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HalsynWatch.entitlements; sourceTree = "<group>"; };
+		56D869CB66267CF160362DA6 /* GoalIndicatorsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalIndicatorsViews.swift; sourceTree = "<group>"; };
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		572F68D555D13942BB8FD46E /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
 		5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailViews.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				C933D034DBBF7CD0507A6802 /* DataQualityViews.swift */,
 				0160A341E443A5CD30809139 /* EvolutionView.swift */,
 				0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */,
+				56D869CB66267CF160362DA6 /* GoalIndicatorsViews.swift */,
 				939F34004CFB80BC6D63DB2E /* GoalProbabilityViews.swift */,
 				FB803B8CAD60DEA7494A7EE0 /* HeartRateRecoveryCard.swift */,
 				1DE2FDB7AC49DC40FD3CDDA3 /* ModelAccuracyView.swift */,
@@ -1070,6 +1073,7 @@
 				427EE4162AACE8049B7FE878 /* ExpandableText.swift in Sources */,
 				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
 				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
+				A9227B874921CF02BD5E36B8 /* GoalIndicatorsViews.swift in Sources */,
 				AF035BF3300CF680F9F1F138 /* GoalProbabilityViews.swift in Sources */,
 				CE479146B6419F7AFE6C7E73 /* GoalStore.swift in Sources */,
 				3A402181B1A49020E1995FB6 /* HabitJournalViews.swift in Sources */,
@@ -1252,7 +1256,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 94;
+				CURRENT_PROJECT_VERSION = 95;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1437,7 +1441,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 94;
+				CURRENT_PROJECT_VERSION = 95;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

@@ -78,6 +78,16 @@ public struct GoalProbability: Hashable, Sendable {
     public let uncertainty: Double
     public let confidence: PerformanceAssessment.Confidence
     public let factors: [Factor]
+    /// A. Rendimiento actual: tiempo para la distancia del objetivo hoy.
+    public var currentTime: TimeInterval = 0
+    /// Rango orientativo del tiempo de hoy (±1,28 σ de la forma actual).
+    public var currentRange: ClosedRange<TimeInterval>?
+    /// Segundos por km que te faltan hoy para el objetivo (negativo = ya lo tienes).
+    public var requiredPaceChange: Double = 0
+    /// Adherencia y frecuencia, separadas.
+    public var adherence: TrainingAdherence?
+    /// Escenarios con supuestos explícitos (con confianza media o alta).
+    public var scenarios: [GoalProjection.Result] = []
 
     public static let complianceWindowDays = 28
     public static let assumedCompliance = 0.85
@@ -92,28 +102,32 @@ public struct GoalProbability: Hashable, Sendable {
         else { return nil }
 
         let weeks = GoalCoach.trainingWeeks(until: plan.goal.raceDate, distance: plan.goal.distance, today: today, calendar: calendar)
-        let record = complianceRecord(plan: plan, runs: runs, today: today, calendar: calendar)
-        let compliance = record.planned > 0 ? record.score / Double(record.planned) : nil
-        let factor = gainFactor(compliance ?? assumedCompliance)
-        let ruleRate = 1 / GoalCoach.realisticWeeksPerPoint
-        let rate = performance.weeklyTrend.map { 0.5 * ruleRate + 0.5 * min(max($0, 0), RacePerformanceModel.maximumWeeklyTrend) } ?? ruleRate
-        let gain = Double(weeks) * rate * factor
-        let projected = performance.currentVDOT + gain
-
-        var gainSigma = gain * 0.5
-        if compliance == nil { gainSigma += 0.3 }
-        let sigma = (performance.uncertainty * performance.uncertainty + gainSigma * gainSigma + raceDayUncertainty * raceDayUncertainty).squareRoot()
+        let adherence = TrainingAdherence.evaluate(plan: plan, runs: runs, today: today, calendar: calendar)
+        let record = (score: adherence.score, done: adherence.done, planned: adherence.planned)
+        let compliance = adherence.effective
+        let central = GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: .central)
+        let gain = central.gain
+        let projected = central.projectedVDOT
+        let sigma = central.uncertainty
         let z = (projected - goalVDOT) / sigma
         let category: Category = z >= 1 ? .veryLikely : (z >= 0 ? .achievable : (z >= -1 ? .demanding : .unrealistic))
 
         let distance = plan.goal.distance.rawValue
         let fast = VDOT.raceTime(vdot: projected + 1.28 * sigma, distance: distance)
         let slow = VDOT.raceTime(vdot: max(projected - 1.28 * sigma, 15), distance: distance)
+        let currentTime = VDOT.raceTime(vdot: performance.currentVDOT, distance: distance)
+        let currentRange = performance.hasInterval
+            ? VDOT.raceTime(vdot: performance.currentVDOT + 1.28 * performance.uncertainty, distance: distance)...VDOT.raceTime(vdot: max(performance.currentVDOT - 1.28 * performance.uncertainty, 15), distance: distance)
+            : nil
+        let scenarios = performance.confidence >= .medium
+            ? GoalProjection.Scenario.allCases.map { GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: $0) }
+            : []
+        let ruleRate = 1 / GoalCoach.realisticWeeksPerPoint
 
         // Factores, con sus umbrales documentados.
         var factors: [Factor] = []
         let needed = goalVDOT - performance.currentVDOT
-        let fullGain = Double(weeks) * ruleRate
+        let fullGain = GoalProjection.gain(weeks: weeks, rate: ruleRate, factor: 1)
         factors.append(Factor(kind: .gap, effect: needed <= 0 ? .favors : (needed <= fullGain ? .neutral : .hinders), value: needed, reference: fullGain))
         if let compliance {
             factors.append(Factor(kind: .compliance, effect: compliance >= 0.85 ? .favors : (compliance >= 0.6 ? .neutral : .hinders), value: compliance, reference: 0.85))
@@ -145,7 +159,12 @@ public struct GoalProbability: Hashable, Sendable {
             trainingWeeks: weeks,
             uncertainty: sigma,
             confidence: performance.confidence,
-            factors: factors
+            factors: factors,
+            currentTime: currentTime,
+            currentRange: currentRange,
+            requiredPaceChange: (currentTime - goalTime) / (distance / 1000),
+            adherence: adherence,
+            scenarios: scenarios
         )
     }
 

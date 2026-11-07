@@ -41,7 +41,7 @@ public enum CoachInsight: Hashable, Identifiable, Sendable {
 ///
 /// | Observación | Regla |
 /// |---|---|
-/// | 5 km previsto | cambio ≥ 10 s en 4 semanas y confianza del modelo no baja |
+/// | 5 km previsto | cambio ≥ 10 s en 4 semanas, mayor que la variación normal del modelo (±1 σ) y confianza no baja |
 /// | FC a igual ritmo | cambio ≥ 3 lpm entre los últimos dos períodos de 4 semanas |
 /// | Demasiada intensidad | > 30 % de los minutos con pulso de las últimas 2 semanas en esfuerzo fuerte (la referencia es ~20 %) |
 /// | Volumen | km/semana de 4 semanas frente a las 4 anteriores: ≥ 1,3 o ≤ 0,6 (con ≥ 5 km/semana antes) |
@@ -61,7 +61,8 @@ public enum CoachInsights {
         var insights: [CoachInsight] = []
         let comparison = PeriodComparison.compare(progress, weeks: 4)
 
-        if let change = comparison.fiveKChange, abs(change) >= 10, performance?.confidence != .low {
+        if let change = comparison.fiveKChange, abs(change) >= 10, performance?.confidence != .low,
+           comparison.fiveKNoise == nil || comparison.fiveKChangeIsReal {
             insights.append(.fiveKChanged(seconds: change, weeks: 4))
         }
         if let change = comparison.heartRateChange, abs(change) >= 3, let pace = progress.referencePace {

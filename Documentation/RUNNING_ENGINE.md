@@ -185,3 +185,20 @@ Cada ajuste lleva su motivo con los datos (p. ej. "Tu recuperación estuvo baja 
 - `GoalOutcome` guarda, cuando registras como competición la carrera del plan (distancia ±2 %, fecha ±3 días), el valor que daba el modelo una semana antes. `GoalCalibration`: puntuación de Brier; el porcentaje de factibilidad solo se muestra con ≥ 5 objetivos y Brier < 0,25.
 - Pantalla **Precisión del modelo** (Predicción y Evolución) con todas las métricas y cada caso.
 - Tests: fórmulas (tablas de Daniels, Riegel, Theil–Sen, TRIMP, Foster), datos faltantes, duplicados, unidades, valores extremos, estabilidad (un rodaje suave no mueve el modelo), compatibilidad con datos guardados antes (zonas sin FC umbral) y ausencia de fuga de información futura.
+
+## Auditoría del motor de predicción (0.10.0 (95))
+
+**Problemas encontrados con datos reales** (exportación del usuario): VDOT 33,4 por debajo de sus dos tests (33,6 y 35,1) porque un rodaje (VDOT 30,5) detectado como esfuerzo entraba al promedio; test del 31/10 contado dos veces (uno cargado a mano con 3,00 km y otro marcado desde el entrenamiento con 3,026 km); proyección lineal; rango sin aclarar que no está calibrado; adherencia "3 de 3" con un plan recién empezado.
+
+**Cambios:**
+- **Selección de pruebas** (`RacePerformanceModel.assess`): competiciones (peso 1) y tests (0,9) son la base; los esfuerzos detectados en entrenamientos (solo al aire libre) **solo pueden subir** la estimación (peso 0,5); un entrenamiento por debajo se muestra como "no baja tu forma" con peso 0. Sin resultados oficiales, el mejor esfuerzo (con la regla de valor aislado).
+- **Duplicados de resultados** (`deduplicated`): mismo día, tiempo a ≤ 2 % y distancia a ≤ 3 % → el mismo esfuerzo; se queda el que viene del entrenamiento de Salud. Al marcar un entrenamiento como test, el resultado manual equivalente se reemplaza. Dos esfuerzos distintos del mismo día no se fusionan.
+- **Tendencia** solo con tests y competiciones (≥ 3 en ≥ 21 días); si no, provisional.
+- **Incertidumbre**: dispersión ponderada (mín. 0,8) × √(1 + 1/n efectivo de Kish) + 0,5 sin prueba oficial reciente: pocas pruebas, o pruebas casi iguales, no dan rangos estrechos.
+- **Rendimiento actual frente a proyección** (`GoalProjection`): mejora con rendimientos decrecientes 4 × (1 − e^(−semanas·ritmo·factor/4)); escenarios conservador (1 punto / 12 semanas), central (1/6, o mitad tendencia propia con 3+ tests) y optimista (1/4); incertidumbre √(hoy² + (½ mejora)² + (0,15·√semanas)² + 0,7²).
+- **Adherencia** (`TrainingAdherence`): sesiones del plan cumplidas, frecuencia real frente a la del objetivo, semanas con plan y carreras fuera del plan; para la proyección cuenta el menor entre adherencia y frecuencia.
+- **Rangos orientativos**: se dice explícitamente que no están calibrados hasta tener ≥ 5 casos con cobertura observada entre 65 y 95 % (`rangeIsCalibrated`).
+- **Validación de la proyección** (`PredictionBacktest.runProjection`): cada test o competición proyectado desde 4 semanas antes, por separado de la validación del rendimiento de hoy. Gráfico de evolución del error.
+- **Tendencias**: el cambio del 5 km previsto se compara con la variación normal del modelo (±1 σ); solo se llama "real" si la supera.
+- **Simulador** (`GoalSimulation`): distancia, fecha, tiempo y días por semana; escenarios con sus supuestos. La frecuencia aporta 0,4 / 0,6 / 0,85 / 1 de la mejora con 1 / 2 / 3 / 4+ días; más de 4 días no suma.
+- **Calidad**: cadencia fuera de 100–260 pasos/min se marca y se ignora.

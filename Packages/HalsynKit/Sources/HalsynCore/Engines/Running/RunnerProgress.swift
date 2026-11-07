@@ -9,6 +9,10 @@ public struct RunnerProgress: Hashable, Sendable {
         public let date: Date
         public let vdot: Double
         public let fiveK: TimeInterval
+        /// Incertidumbre del modelo ese día (puntos de VDOT).
+        public var uncertainty: Double = RacePerformanceModel.minimumUncertainty
+        /// Tests y competiciones que lo respaldan.
+        public var officialCount: Int = 0
         public var id: Date { date }
     }
 
@@ -79,7 +83,7 @@ public struct RunnerProgress: Hashable, Sendable {
             // Cada punto es el final de ese día.
             let endOfDay = end.addingTimeInterval(-1)
             guard let model = RacePerformanceModel.assess(results: visibleResults, runs: visibleRuns, maxHeartRate: maxHeartRate, riegelExponent: riegelExponent, today: endOfDay, calendar: calendar) else { continue }
-            modelPoints.append(ModelPoint(date: date, vdot: model.currentVDOT, fiveK: model.predict(5000).time))
+            modelPoints.append(ModelPoint(date: date, vdot: model.currentVDOT, fiveK: model.predict(5000).time, uncertainty: model.uncertainty, officialCount: model.officialCount))
         }
 
         // 2. Semanas de entrenamiento.
@@ -163,6 +167,17 @@ public struct PeriodComparison: Hashable, Sendable {
     public let fiveKChange: TimeInterval?
     /// Cambio de la FC a ritmo comparable (lpm; negativo = mejor).
     public let heartRateChange: Double?
+    /// Variación normal del modelo en el 5 km (s): lo que se mueve por la
+    /// incertidumbre de la forma, sin que cambie nada real.
+    public var fiveKNoise: TimeInterval?
+    /// Con menos de 3 tests o competiciones, la tendencia es provisional.
+    public var isProvisional: Bool = true
+
+    /// El cambio del 5 km supera la variación normal del modelo.
+    public var fiveKChangeIsReal: Bool {
+        guard let change = fiveKChange, let noise = fiveKNoise else { return false }
+        return abs(change) > noise
+    }
 
     public static func compare(_ progress: RunnerProgress, weeks: Int) -> PeriodComparison {
         let recent = Array(progress.weeks.suffix(weeks))
@@ -176,9 +191,13 @@ public struct PeriodComparison: Hashable, Sendable {
             return known > 0 ? hard / known : nil
         }
         var fiveK: TimeInterval?
+        var noise: TimeInterval?
         if let last = progress.modelPoints.last,
            let start = progress.modelPoints.dropLast().last(where: { $0.date <= last.date.addingTimeInterval(-Double(weeks) * 7 * 86_400 + 3600) }) {
             fiveK = last.fiveK - start.fiveK
+            // Ruido: lo que cambia el 5 km con ±1 σ (combinando los dos extremos).
+            let sigma = (last.uncertainty * last.uncertainty + start.uncertainty * start.uncertainty).squareRoot()
+            noise = abs(VDOT.raceTime(vdot: last.vdot - sigma, distance: 5000) - VDOT.raceTime(vdot: last.vdot, distance: 5000))
         }
         var heartRate: Double?
         let periods = max(1, weeks / 4)
@@ -194,7 +213,9 @@ public struct PeriodComparison: Hashable, Sendable {
             hardShare: share(recent),
             previousHardShare: share(previous),
             fiveKChange: fiveK,
-            heartRateChange: heartRate
+            heartRateChange: heartRate,
+            fiveKNoise: noise,
+            isProvisional: (progress.modelPoints.last?.officialCount ?? 0) < 3
         )
     }
 }

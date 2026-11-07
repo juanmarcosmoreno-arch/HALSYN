@@ -150,7 +150,7 @@ struct PredictionDetailView: View {
                 ForEach(performance.evidence) { item in
                     HStack {
                         Image(systemName: icon(item.kind))
-                            .foregroundStyle(item.isInconsistent ? Color.halsynCaution : Color.halsynAccentText)
+                            .foregroundStyle(item.role == .counted ? Color.halsynAccentText : Color.halsynSecondaryText)
                             .frame(width: 22)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(verbatim: "\(SessionText.distance(item.distance, unit: unitSystem)) · \(HalsynFormat.duration(item.time))")
@@ -158,11 +158,10 @@ struct PredictionDetailView: View {
                             Text(item.date, format: .dateTime.day().month(.abbreviated).year())
                                 .font(.caption2)
                                 .foregroundStyle(.halsynSecondaryText)
-                            if item.isInconsistent {
-                                Text("No encaja con tus otras pruebas: pesa menos")
-                                    .font(.caption2)
-                                    .foregroundStyle(.halsynCaution)
-                            }
+                            Text(verbatim: roleText(item))
+                                .font(.caption2)
+                                .foregroundStyle(item.role == .counted ? Color.halsynSecondaryText : Color.halsynCaution)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         Spacer()
                         VStack(alignment: .trailing, spacing: 2) {
@@ -177,11 +176,29 @@ struct PredictionDetailView: View {
             } header: {
                 Text("Pruebas usadas")
             } footer: {
-                Text("Competiciones y tests registrados (180 días) y entrenamientos a tope con pulso alto sostenido (42 días). El peso baja a la mitad cada 6 semanas; una competición pesa más que un entrenamiento.")
+                Text("Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Los entrenamientos solo pueden subir la estimación, nunca bajarla; la cinta no se compara. El peso baja a la mitad cada 6 semanas.")
             }
         }
         .navigationTitle("Predicción")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    /// Por qué cuenta (o no) cada prueba.
+    private func roleText(_ item: PerformanceEvidence) -> String {
+        switch item.role {
+        case .counted:
+            switch item.kind {
+            case .race: return String(localized: "Competición: prioridad alta.")
+            case .test: return String(localized: "Test: prioridad alta.")
+            case .trainingEffort: return String(localized: "Entrenamiento a tope (pulso alto sostenido) que supera tus tests: suma.")
+            }
+        case .belowEstimate:
+            return String(localized: "Entrenamiento por debajo de tu forma: no la baja (un rodaje más lento no significa que perdiste capacidad).")
+        case .duplicate:
+            return String(localized: "Mismo esfuerzo registrado dos veces: cuenta una sola vez.")
+        case .inconsistent:
+            return String(localized: "No encaja con tus otras pruebas: pesa menos.")
+        }
     }
 
     private func icon(_ kind: PerformanceEvidence.Kind) -> String {

@@ -185,6 +185,20 @@ struct EvolutionView: View {
                     .chartYScale(domain: .automatic(includesZero: false))
                     .frame(height: 170)
                 }
+                let comparison = PeriodComparison.compare(progress, weeks: period)
+                if comparison.isProvisional {
+                    Label("Tendencia provisional: menos de 3 tests o competiciones.", systemImage: "hourglass")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+                if let change = comparison.fiveKChange {
+                    Text(verbatim: comparison.fiveKChangeIsReal
+                         ? String(localized: "El cambio del 5 km previsto (\(HalsynFormat.duration(abs(change)))) supera la variación normal del modelo: es un cambio real.")
+                         : String(localized: "El cambio del 5 km previsto (\(HalsynFormat.duration(abs(change)))) está dentro de la variación normal del modelo: todavía no es un cambio claro."))
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
                 if !vo2.isEmpty {
                     Divider()
                     Text("VO₂ máx. estimado por el Apple Watch")
