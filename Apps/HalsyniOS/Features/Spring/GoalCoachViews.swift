@@ -48,8 +48,18 @@ final class FitnessStore {
         RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, today: today, calendar: .current)
     }
 
+    /// Forma para el plan y los ritmos: el VDOT del modelo de rendimiento (el
+    /// mismo que la predicción), con la fecha y el origen de su prueba más
+    /// reciente; sin modelo, el estimador simple.
     func estimate(runs: [WorkoutSummary], today: Date = .now) -> FitnessEstimate? {
-        FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
+        guard let model = performance(runs: runs, today: today), let newest = model.evidence.first else {
+            return FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
+        }
+        if let result = results.first(where: { $0.id == newest.id }) {
+            return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .result(result))
+        }
+        let efforts = model.evidence.filter { $0.kind == .trainingEffort }.count
+        return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .training(runs: efforts))
     }
 
     private func persist() {

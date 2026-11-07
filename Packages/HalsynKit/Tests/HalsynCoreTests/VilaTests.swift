@@ -100,7 +100,7 @@ struct RecoveryEngineTests {
     private let day = date(20, 0)
 
     /// Historial con 28 días de base estable y el valor de hoy indicado.
-    private func history(hrv: Double? = 60, rhr: Double? = 55, sleep: Double? = 8, recentExercise: Double = 30, baselineDays: Int = 28, includeYesterdayOnly: Bool = false) -> DailyHistory {
+    private func history(hrv: Double? = 60, rhr: Double? = 55, sleep: Double? = 8, recentExercise: Double = 30, baselineDays: Int = 28, includeYesterdayOnly: Bool = false, lowHRVDays: Int = 1) -> DailyHistory {
         func series(_ kind: MetricKind, base: Double, jitter: Double, today: Double?) -> MetricSeries {
             var values: [DailyValue] = (1...baselineDays).map { offset in
                 let value = base + (offset % 2 == 0 ? jitter : -jitter)
@@ -117,8 +117,19 @@ struct RecoveryEngineTests {
         for offset in 1...3 {
             exercise[offset - 1] = DailyValue(day: calendar.date(byAdding: .day, value: -offset, to: day)!, value: recentExercise)
         }
+        var hrvSeries = series(.heartRateVariability, base: 60, jitter: 5, today: hrv)
+        if let hrv, lowHRVDays > 1 {
+            // Los días previos con el mismo valor (bajada sostenida).
+            var values = hrvSeries.values
+            for offset in 1..<lowHRVDays {
+                let target = calendar.date(byAdding: .day, value: -offset, to: day)!
+                values.removeAll { calendar.isDate($0.day, inSameDayAs: target) }
+                values.append(DailyValue(day: target, value: hrv))
+            }
+            hrvSeries = MetricSeries(kind: .heartRateVariability, values: values, origin: .demo)
+        }
         return DailyHistory(series: [
-            series(.heartRateVariability, base: 60, jitter: 5, today: hrv),
+            hrvSeries,
             series(.restingHeartRate, base: 55, jitter: 2, today: rhr),
             MetricSeries(kind: .sleepDuration, values: sleep.map { [DailyValue(day: day, value: $0)] } ?? [], origin: .demo),
             MetricSeries(kind: .exerciseTime, values: exercise, origin: .demo),
@@ -136,12 +147,34 @@ struct RecoveryEngineTests {
         #expect(estimate.coverage == 1)
     }
 
-    @Test func lowHRVAndHighRestingHeartRateLowerRecovery() {
+    @Test func sustainedLowHRVAndHighRestingHeartRateLowerRecovery() {
         let good = engine.evaluate(day: day, history: history(), origin: .demo).value ?? 0
-        let bad = engine.evaluate(day: day, history: history(hrv: 42, rhr: 61), origin: .demo)
+        let bad = engine.evaluate(day: day, history: history(hrv: 42, rhr: 61, lowHRVDays: 3), origin: .demo)
         #expect((bad.value ?? 100) < good - 20)
         #expect(bad.components.first { $0.kind == .heartRateVariability }?.impact == .negative)
         #expect(bad.components.first { $0.kind == .restingHeartRate }?.impact == .negative)
+    }
+
+    @Test func aSingleLowHRVReadingIsSoftened() {
+        // Un solo día bajo se promedia con los dos anteriores: no hunde la recuperación.
+        let single = engine.evaluate(day: day, history: history(hrv: 42), origin: .demo)
+        let sustained = engine.evaluate(day: day, history: history(hrv: 42, lowHRVDays: 3), origin: .demo)
+        let singleScore = single.components.first { $0.kind == .heartRateVariability }?.score ?? 0
+        let sustainedScore = sustained.components.first { $0.kind == .heartRateVariability }?.score ?? 100
+        #expect(singleScore > sustainedScore)
+    }
+
+    @Test func robustBaselineIgnoresAnOutlier() {
+        let clean = RobustBaseline([60, 62, 58, 61, 59, 60, 63])
+        let withSpike = RobustBaseline([60, 62, 58, 61, 59, 60, 150])
+        #expect(abs(clean.median - withSpike.median) <= 0.5)
+        #expect(withSpike.scale < 5)
+    }
+
+    @Test func sleepBelowYourHabitCountsEvenInsideTheRange() {
+        #expect(RecoveryEngine.personalSleepScore(hours: 8.6, habitual: 8.5) == 100)
+        #expect(RecoveryEngine.personalSleepScore(hours: 7, habitual: 8.5) == 75)
+        #expect(RecoveryEngine.personalSleepScore(hours: 3, habitual: 8.5) == 30)
     }
 
     @Test func hardRecentDaysLowerRecovery() {

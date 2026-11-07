@@ -14,7 +14,62 @@ final class TrainingPlanStore {
     static let watchPlanID = "halsyn-plan-today"
 
     private(set) var plan: TrainingPlan?
+    /// Ajustes automáticos de los próximos días (molestias, fatiga, seguridad).
+    private(set) var advice: PlanAdvice?
+    static let rejectedAdviceKey = "halsyn.plan.rejectedAdvice"
     @ObservationIgnored private let defaults: UserDefaults
+
+    /// El plan que se muestra y se manda al reloj: con los ajustes, salvo que
+    /// los hayas rechazado. El plan guardado no cambia.
+    var displayPlan: TrainingPlan? {
+        guard let plan else { return nil }
+        guard let advice, !advice.isEmpty, !isRejected(advice) else { return plan }
+        return PlanAdvisor.apply(advice, to: plan)
+    }
+
+    func isRejected(_ advice: PlanAdvice) -> Bool {
+        defaults.string(forKey: Self.rejectedAdviceKey) == advice.signature
+    }
+
+    func setRejected(_ rejected: Bool) {
+        if rejected, let advice {
+            defaults.set(advice.signature, forKey: Self.rejectedAdviceKey)
+        } else {
+            defaults.removeObject(forKey: Self.rejectedAdviceKey)
+        }
+        // Fuerza el refresco de las vistas que leen `displayPlan`.
+        let current = advice
+        advice = nil
+        advice = current
+        syncToWatch()
+    }
+
+    @ObservationIgnored private var adviceInputs: (recovery: [RecoveryEstimate], runs: [WorkoutSummary])?
+
+    /// Al registrar o resolver una molestia: recalcula con los últimos datos.
+    func refreshAdvice() {
+        guard let adviceInputs else { return }
+        updateAdvice(recovery: adviceInputs.recovery, runs: adviceInputs.runs)
+    }
+
+    /// Recalcula los ajustes con la recuperación, las carreras y las molestias.
+    func updateAdvice(recovery: [RecoveryEstimate], runs: [WorkoutSummary]) {
+        adviceInputs = (recovery, runs)
+        guard let plan else {
+            advice = nil
+            return
+        }
+        advice = PlanAdvisor.advise(
+            plan: plan,
+            today: .now,
+            calendar: .current,
+            recovery: recovery.map { (day: $0.day, value: $0.value) },
+            runs: runs,
+            maxHeartRate: FitnessStore.shared.configuredMaxHeartRate,
+            complaints: ComplaintStore.shared.complaints
+        )
+        syncToWatch()
+    }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -41,9 +96,10 @@ final class TrainingPlanStore {
     func syncToWatch(original: PlannedSession? = nil, adapted: PlannedSession? = nil) {
         if let original, let adapted { adaptation = (original, adapted) }
         let calendar = Calendar.current
-        let current = plan?.session(on: .now, calendar: calendar)
+        let shown = displayPlan
+        let current = shown?.session(on: .now, calendar: calendar)
         let today = adaptation.flatMap { $0.original == current ? $0.adapted : nil }
-        let snapshot = plan.map { PlanSnapshot(plan: $0, today: .now, adaptedToday: today, calendar: calendar) }
+        let snapshot = shown.map { PlanSnapshot(plan: $0, today: .now, adaptedToday: today, calendar: calendar) }
         guard RunSettingsStore.shared.settings.planSnapshot != snapshot else { return }
         RunSettingsStore.shared.update { $0.planSnapshot = snapshot }
     }
@@ -113,7 +169,7 @@ struct TrainingPlanCard: View {
         HalsynCard {
             VStack(alignment: .leading, spacing: HalsynSpacing.m) {
                 HalsynSectionHeader("Plan de entrenamiento", eyebrow: HalsynModule.mal.brandName)
-                if let plan = store.plan {
+                if let plan = store.displayPlan {
                     planContent(plan)
                 } else {
                     Text("Elige una carrera y una fecha: HÅLSYN arma tus semanas a partir de tus carreras recientes y adapta la sesión de cada día a tu recuperación.")
@@ -152,11 +208,15 @@ struct TrainingPlanCard: View {
                 GoalProbabilityHistory.record(probability, goal: plan.goal)
             }
             let today = Date.now
-            let recovery = await model.provider.recoveryEstimates(endingOn: today, days: 1).last { Calendar.current.isDateInToday($0.day) }?.value
+            let recoveryHistory = await model.provider.recoveryEstimates(endingOn: today, days: 28)
+            if !model.isDemo {
+                store.updateAdvice(recovery: recoveryHistory, runs: workouts)
+            }
+            let recovery = recoveryHistory.last { Calendar.current.isDateInToday($0.day) }?.value
             let signals = await model.provider.unusualSignals(on: today, calendar: .current)
             guidance = ReadinessEngine.guidance(recovery: recovery, signals: signals)
             // El reloj recibe el plan con la sesión de hoy ya adaptada (con datos reales).
-            if !model.isDemo, let plan = store.plan, let planned = plan.session(on: today, calendar: .current) {
+            if !model.isDemo, let plan = store.displayPlan, let planned = plan.session(on: today, calendar: .current) {
                 store.syncToWatch(original: planned, adapted: PlanAdaptation.adapt(planned, guidance: guidance, paces: plan.paces).session)
             } else {
                 store.syncToWatch()
@@ -202,6 +262,10 @@ struct TrainingPlanCard: View {
                 .font(.halsynCaption)
                 .foregroundStyle(.halsynSecondaryText)
         }
+        if let advice = store.advice, !advice.isEmpty {
+            PlanAdviceView(advice: advice)
+        }
+        ComplaintRow()
         if let planned = plan.session(on: .now, calendar: calendar) {
             let adapted = PlanAdaptation.adapt(planned, guidance: guidance, paces: plan.paces)
             todaySession(adapted.session, original: planned, change: adapted.change)
@@ -613,7 +677,7 @@ struct TrainingPlanView: View {
 
     var body: some View {
         HalsynScreen {
-            if let plan = store.plan {
+            if let plan = store.displayPlan {
                 if let runs {
                     GoalStatusCard(plan: plan, runs: runs)
                 } else {

@@ -392,6 +392,40 @@
         }
       }
     },
+    "%@ → %@ de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ → %@ of %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ → %@ på %@"
+          }
+        }
+      }
+    },
+    "%@ → descanso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ → rest"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ → vila"
+          }
+        }
+      }
+    },
     "%@. Humo de otros en casa: −20.": {
       "extractionState": "manual",
       "localizations": {
@@ -1463,6 +1497,23 @@
         }
       }
     },
+    "Ajustes automáticos de estos días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic adjustments for the coming days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatiska justeringar för de närmaste dagarna"
+          }
+        }
+      }
+    },
     "Ajustes de bici": {
       "extractionState": "manual",
       "localizations": {
@@ -1493,6 +1544,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löpinställningar"
+          }
+        }
+      }
+    },
+    "Ajustes sugeridos (no aplicados)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggested adjustments (not applied)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Föreslagna justeringar (inte tillämpade)"
           }
         }
       }
@@ -2020,6 +2088,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utseende"
+          }
+        }
+      }
+    },
+    "Aplicar los ajustes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply the adjustments"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillämpa justeringarna"
           }
         }
       }
@@ -3448,6 +3533,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kadens 0: ignoreras"
+          }
+        }
+      }
+    },
+    "Cadera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hip"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Höft"
           }
         }
       }
@@ -4982,6 +5084,23 @@
         }
       }
     },
+    "Con 4 o más, el plan quita la intensidad mientras dure (hasta 14 días o hasta que marques que ya está bien). Con 7 o más, propone descanso. HÅLSYN no diagnostica: si el dolor es fuerte, aparece de golpe o no mejora, consulta a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With 4 or more, the plan removes intensity while it lasts (up to 14 days or until you mark it as fine). With 7 or more, it suggests rest. HÅLSYN doesn't diagnose: if the pain is strong, sudden or doesn't improve, see a professional."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid 4 eller mer tar planen bort intensiteten så länge det varar (upp till 14 dagar eller tills du markerar att det är bra). Vid 7 eller mer föreslås vila. HÅLSYN ställer inga diagnoser: om smärtan är stark, kommer plötsligt eller inte blir bättre, kontakta en expert."
+          }
+        }
+      }
+    },
     "Con FC en reposo %@, FC máx. %@ corriendo y %@ en bici.": {
       "extractionState": "manual",
       "localizations": {
@@ -5917,6 +6036,23 @@
         }
       }
     },
+    "Corriste un %@ % más kilómetros esta semana que tu media de las 4 anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You ran %@ % more kilometers this week than your average of the previous 4."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sprang %@ % fler kilometer den här veckan än ditt snitt för de 4 föregående."
+          }
+        }
+      }
+    },
     "Crear": {
       "extractionState": "manual",
       "localizations": {
@@ -6151,6 +6287,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulskurva under återhämtningen"
+          }
+        }
+      }
+    },
+    "Cuádriceps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quadriceps"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lårmuskel (framsida)"
           }
         }
       }
@@ -9351,6 +9504,23 @@
         }
       }
     },
+    "Espalda": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rygg"
+          }
+        }
+      }
+    },
     "Esperando la frecuencia cardíaca": {
       "extractionState": "manual",
       "localizations": {
@@ -11034,6 +11204,23 @@
         }
       }
     },
+    "Gemelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calf"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad"
+          }
+        }
+      }
+    },
     "Gestionar permisos": {
       "extractionState": "manual",
       "localizations": {
@@ -11510,6 +11697,23 @@
         }
       }
     },
+    "Había dos sesiones exigentes en días seguidos: la segunda pasa a suave para que puedas asimilar la primera.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There were two hard sessions on consecutive days: the second becomes easy so you can absorb the first."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det fanns två hårda pass i rad: det andra blir lätt så att du hinner tillgodogöra dig det första."
+          }
+        }
+      }
+    },
     "Hace falta tu peso en Salud y tu altura en Perfil.": {
       "extractionState": "manual",
       "localizations": {
@@ -11846,6 +12050,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du sprang %@ av %@ planerade, mer än tänkt. Öka inte snabbare: vila är också träning."
+          }
+        }
+      }
+    },
+    "Hiciste %@ sesiones exigentes (pulso alto) en los últimos 7 días.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You did %@ hard sessions (high heart rate) in the last 7 days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gjorde %@ hårda pass (hög puls) de senaste 7 dagarna."
           }
         }
       }
@@ -12598,6 +12819,23 @@
         }
       }
     },
+    "Intensidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensitet"
+          }
+        }
+      }
+    },
     "Intensidad (IF)": {
       "extractionState": "manual",
       "localizations": {
@@ -12696,6 +12934,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gå till SPRING"
+          }
+        }
+      }
+    },
+    "Isquiotibiales": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamstrings"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baksida lår"
           }
         }
       }
@@ -13856,6 +14111,23 @@
         }
       }
     },
+    "Mantener el plan original": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the original plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behåll den ursprungliga planen"
+          }
+        }
+      }
+    },
     "Mantequilla o nata": {
       "extractionState": "manual",
       "localizations": {
@@ -14906,6 +15178,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demoläge"
+          }
+        }
+      }
+    },
+    "Molestia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discomfort"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Besvär"
           }
         }
       }
@@ -16389,6 +16678,23 @@
         }
       }
     },
+    "Nota (opcional)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note (optional)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anteckning (valfritt)"
+          }
+        }
+      }
+    },
     "Nuevas zapatillas": {
       "extractionState": "manual",
       "localizations": {
@@ -16895,6 +17201,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Annan"
+          }
+        }
+      }
+    },
+    "Otra zona": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other area"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annat område"
           }
         }
       }
@@ -17966,6 +18289,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det kräver en normal förbättring under de veckor som återstår."
+          }
+        }
+      }
+    },
+    "Pie": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foot"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fot"
           }
         }
       }
@@ -20061,6 +20401,57 @@
         }
       }
     },
+    "Registrar una molestia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log a discomfort"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrera ett besvär"
+          }
+        }
+      }
+    },
+    "Registraste dolor en %@ (%@/10): descanso unos días. Si no mejora o empeora, consulta a un profesional.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged pain in %@ (%@/10): a few days of rest. If it doesn't improve or gets worse, see a professional."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du registrerade smärta i %@ (%@/10): några dagars vila. Om det inte blir bättre eller blir värre, kontakta en expert."
+          }
+        }
+      }
+    },
+    "Registraste una molestia en %@ (%@/10): se quita la intensidad mientras dure.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged discomfort in %@ (%@/10): intensity is removed while it lasts."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du registrerade besvär i %@ (%@/10): intensiteten tas bort så länge det varar."
+          }
+        }
+      }
+    },
     "Regular": {
       "extractionState": "manual",
       "localizations": {
@@ -20822,6 +21213,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lugnt pass"
+          }
+        }
+      }
+    },
+    "Rodilla": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knee"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Knä"
           }
         }
       }
@@ -23852,6 +24260,23 @@
         }
       }
     },
+    "Tendón de Aquiles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Achilles tendon"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hälsena"
+          }
+        }
+      }
+    },
     "Tengo diabetes": {
       "extractionState": "manual",
       "localizations": {
@@ -24018,6 +24443,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Registrerade test och lopp"
+          }
+        }
+      }
+    },
+    "Tibia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shin"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smalben"
           }
         }
       }
@@ -24273,6 +24715,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Långpass"
+          }
+        }
+      }
+    },
+    "Tobillo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ankle"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotled"
           }
         }
       }
@@ -25106,6 +25565,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Din återhämtning är god och inga signaler avviker från det normala. Lyssna ändå på kroppen."
+          }
+        }
+      }
+    },
+    "Tu recuperación estuvo baja %@ de los últimos 3 días (media %@; lo habitual en ti es %@).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your recovery was low on %@ of the last 3 days (average %@; your usual is %@)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din återhämtning var låg %@ av de senaste 3 dagarna (snitt %@; ditt vanliga är %@)."
           }
         }
       }
@@ -26891,6 +27367,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Giltig"
+          }
+        }
+      }
+    },
+    "Ya está bien": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's fine now"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu är det bra"
           }
         }
       }

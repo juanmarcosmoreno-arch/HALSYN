@@ -88,12 +88,19 @@ public struct RecoveryConfiguration: Sendable {
 
 /// Motor de recuperación estimada de VILA.
 ///
-/// Reglas (Documentation/RECOVERY.md):
-/// - **HRV** y **FC en reposo** del día frente a tu media de los 28 días
-///   anteriores (mínimo 7). En tu media = 75; mejor que tu media sube hasta 100
-///   (+2 desviaciones); peor baja hasta 15 (−3 desviaciones). Si aún no hay
-///   valor de hoy se usa el de ayer y se indica.
-/// - **Sueño** de la noche que termina ese día frente a 7–9 h (misma curva que HÄLSA).
+/// Reglas (Documentation/RECOVERY.md, versión 0.2):
+/// - **Línea basal robusta**: mediana y MAD × 1,4826 (equivalente a una
+///   desviación típica sin que un valor raro la mueva) de los 28 días
+///   anteriores (mínimo 7).
+/// - **HRV**: media de los últimos 3 días con dato (mínimo 2, si no el del día),
+///   para no interpretar una sola medición; frente a la línea basal de los 28
+///   días previos a esa ventana.
+/// - **FC en reposo**: la del día (o la de ayer, y se indica) frente a su línea basal.
+/// - En la línea basal = 75; mejor sube hasta 100 (+2); peor baja hasta 15 (−3).
+/// - **Sueño** de la noche que termina ese día: el menor entre la curva de
+///   7–9 h (la de HÄLSA) y la comparación con **tu sueño habitual** (mediana
+///   de 28 noches): sin penalización hasta 30 min por debajo, y 25 puntos
+///   menos por cada hora más.
 /// - **Esfuerzo reciente**: minutos de ejercicio de los 3 días anteriores frente
 ///   a tu media de 28 días. Igual o por debajo de lo habitual = 100; el doble y
 ///   medio o más = 40.
@@ -101,7 +108,7 @@ public struct RecoveryConfiguration: Sendable {
 /// - Es una estimación orientativa, no un diagnóstico: no dice si estás
 ///   médicamente recuperado.
 public struct RecoveryEngine: Sendable {
-    public static let version = "0.1-provisional"
+    public static let version = "0.2"
     public static let inputs: [MetricKind] = [.heartRateVariability, .restingHeartRate, .sleepDuration, .exerciseTime]
 
     public let configuration: RecoveryConfiguration
@@ -157,27 +164,44 @@ public struct RecoveryEngine: Sendable {
                 reference = yesterday
                 usesPrevious = value != nil
             }
-            guard let value else { return missing(.noData) }
-            let baseline = history.values(metric, daysBefore: reference, count: configuration.baselineDays)
+            guard var value else { return missing(.noData) }
+            var baselineEnd = reference
+            if metric == .heartRateVariability {
+                // Media móvil de 3 días: una sola medición de HRV es muy ruidosa.
+                let window = [0, 1, 2].compactMap { offset -> Double? in
+                    history.calendar.date(byAdding: .day, value: -offset, to: reference).flatMap { history.value(metric, on: $0) }
+                }
+                if window.count >= 2 { value = window.reduce(0, +) / Double(window.count) }
+                baselineEnd = history.calendar.date(byAdding: .day, value: -2, to: reference) ?? reference
+            }
+            let baseline = history.values(metric, daysBefore: baselineEnd, count: configuration.baselineDays)
             guard baseline.count >= configuration.minimumBaselineDays else { return missing(.insufficientHistory) }
-            let stats = Statistics(baseline)
+            let robust = RobustBaseline(baseline)
             let z: Double
             let detail: Double
             if metric == .heartRateVariability {
-                z = (value - stats.mean) / max(stats.standardDeviation, stats.mean * 0.05, 1)
-                detail = stats.mean > 0 ? (value - stats.mean) / stats.mean : 0
+                z = (value - robust.median) / max(robust.scale, robust.median * 0.05, 1)
+                detail = robust.median > 0 ? (value - robust.median) / robust.median : 0
             } else {
                 // FC en reposo más baja de lo habitual es favorable: se invierte el signo.
-                z = -(value - stats.mean) / max(stats.standardDeviation, 2)
-                detail = value - stats.mean
+                z = -(value - robust.median) / max(robust.scale, 2)
+                detail = value - robust.median
             }
             let impact: ScoreImpact = z <= -1 ? .negative : (z >= 0.5 ? .positive : .neutral)
             return RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: z).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
         case .sleep:
             guard let hours = history.value(.sleepDuration, on: day) else { return missing(.noData) }
             let range = configuration.recommendedSleep
-            let impact: ScoreImpact = range.contains(hours) ? .positive : (hours < range.lowerBound - 1 ? .negative : .neutral)
-            return RecoveryComponent(kind: kind, score: Int(HealthScoreEngine.sleepScore(hours: hours, recommended: range).rounded()), weight: weight, missingReason: nil, detail: hours, impact: impact, usesPreviousDay: false)
+            var score = HealthScoreEngine.sleepScore(hours: hours, recommended: range)
+            let habitual = history.values(.sleepDuration, daysBefore: day, count: configuration.baselineDays)
+            var belowHabit = false
+            if habitual.count >= configuration.minimumBaselineDays {
+                let personal = Self.personalSleepScore(hours: hours, habitual: RobustBaseline(habitual).median)
+                belowHabit = personal < 100
+                score = min(score, personal)
+            }
+            let impact: ScoreImpact = range.contains(hours) && !belowHabit ? .positive : (hours < range.lowerBound - 1 || score < 60 ? .negative : .neutral)
+            return RecoveryComponent(kind: kind, score: Int(score.rounded()), weight: weight, missingReason: nil, detail: hours, impact: impact, usesPreviousDay: false)
         case .recentLoad:
             let chronicValues = history.values(.exerciseTime, daysBefore: day, count: configuration.baselineDays)
             guard !chronicValues.isEmpty else { return missing(.noData) }
@@ -199,6 +223,14 @@ public struct RecoveryEngine: Sendable {
     public static func baselineScore(z: Double) -> Double {
         let clamped = min(max(z, -3), 2)
         return clamped >= 0 ? 75 + 12.5 * clamped : 75 + 20 * clamped
+    }
+
+    /// Sueño frente a tu sueño habitual: 100 hasta 30 min por debajo; luego
+    /// 25 puntos menos por hora, sin bajar de 30.
+    public static func personalSleepScore(hours: Double, habitual: Double) -> Double {
+        let shortfall = habitual - 0.5 - hours
+        guard shortfall > 0 else { return 100 }
+        return max(30, 100 - 25 * shortfall)
     }
 
     /// 100 hasta 1 (lo habitual o menos); baja lineal hasta 40 en 2,5.
@@ -230,5 +262,24 @@ extension HealthDataProviding {
         return (0..<days).reversed().compactMap { offset in
             calendar.date(byAdding: .day, value: -offset, to: lastDay).map { engine.evaluate(day: $0, history: history, origin: origin) }
         }
+    }
+}
+
+/// Línea basal robusta: mediana y MAD escalada (× 1,4826, equivalente a la
+/// desviación típica en una normal). Un valor aislado no la mueve.
+public struct RobustBaseline: Hashable, Sendable {
+    public let median: Double
+    public let scale: Double
+
+    public init(_ values: [Double]) {
+        let sorted = values.sorted()
+        func medianOf(_ items: [Double]) -> Double {
+            guard !items.isEmpty else { return 0 }
+            let middle = items.count / 2
+            return items.count.isMultiple(of: 2) ? (items[middle - 1] + items[middle]) / 2 : items[middle]
+        }
+        let center = medianOf(sorted)
+        median = center
+        scale = 1.4826 * medianOf(sorted.map { abs($0 - center) }.sorted())
     }
 }

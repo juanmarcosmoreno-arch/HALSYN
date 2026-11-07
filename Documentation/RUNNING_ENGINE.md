@@ -157,3 +157,16 @@ Se completará **solo con información verificada** en documentación oficial y 
 - **Carga por ritmo** (sin FC): intensidad = 0,85 × ritmo umbral / ritmo de la sesión (acotada 0,3–1), en la misma escala TRIMP, marcada como aproximada. El ritmo umbral sale del modelo de rendimiento (VDOT).
 - **Monotonía y strain** (Foster 1998): media / desviación de la carga diaria de 7 días (días sin entrenar = 0) y carga semanal × monotonía. ≥ 2 se describe como "alta". Se presenta como descripción del entrenamiento, no como predictor de lesiones.
 - Los duplicados y superposiciones (`DataQuality`) no suman carga.
+
+## Plan adaptativo y molestias (Fase 3)
+
+`PlanAdvisor` (HalsynCore/Engines/Running/PlanAdvisor.swift) ajusta **solo los próximos 7 días**, sin tocar el plan guardado: el ajuste se aplica al mostrarlo y al enviarlo al reloj (`TrainingPlanStore.displayPlan`) y el usuario puede rechazarlo ("Mantener el plan original").
+
+| Regla | Condición | Ajuste |
+|---|---|---|
+| Fatiga (2 de 3 señales) | recuperación baja 2 de 3 días; km de 7 días ≥ 1,5 × media semanal previa (≥ 10 km); ≥ 3 carreras "fuertes" en 7 días | la próxima exigente de 4 días → rodaje suave (80 %); tirada larga de esos días al 85 % (no en semana de carrera) |
+| Molestia 4–6 | activa (14 días, sin resolver) | exigentes de la semana → suave; tirada larga al 80 % |
+| Dolor ≥ 7 | activa | descanso 3 días, suave el resto; se sugiere consultar |
+| Seguridad | dos exigentes en días seguidos | la segunda → suave |
+
+Cada ajuste lleva su motivo con los datos (p. ej. "Tu recuperación estuvo baja 2 de los últimos 3 días (media 44; lo habitual en ti es 72)"). El reajuste semanal de volumen (`TrainingPlanGenerator.replan`), las semanas de asimilación y el afinamiento siguen como antes.
