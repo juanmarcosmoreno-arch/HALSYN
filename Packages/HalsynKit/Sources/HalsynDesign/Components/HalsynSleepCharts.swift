@@ -27,6 +27,8 @@ public func sleepText(_ seconds: TimeInterval) -> String {
 public struct HalsynHypnogram: View {
     private let night: SleepNight
     @State private var selected: Date?
+    /// Alto de cada carril (etiqueta y barras comparten la misma medida).
+    static let laneHeight: CGFloat = 30
 
     public init(night: SleepNight) {
         self.night = night
@@ -59,47 +61,54 @@ public struct HalsynHypnogram: View {
             .frame(minHeight: 22)
             .animation(.snappy(duration: 0.15), value: selectedSegment)
 
-            Chart {
-                ForEach(Array(night.segments.enumerated()), id: \.offset) { _, segment in
-                    RectangleMark(
-                        xStart: .value("Inicio", segment.start),
-                        xEnd: .value("Fin", segment.end),
-                        y: .value("Fase", segment.stage.title),
-                        height: .ratio(0.72)
-                    )
-                    .cornerRadius(3)
-                    .foregroundStyle(segment.stage.color.opacity(selectedSegment == nil || selectedSegment == segment ? 1 : 0.35))
-                }
-                if let selected {
-                    RuleMark(x: .value("Hora", selected))
-                        .lineStyle(StrokeStyle(lineWidth: 1))
-                        .foregroundStyle(Color.halsynSecondaryText.opacity(0.6))
-                }
-            }
-            .chartYScale(domain: SleepSample.Stage.hypnogramOrder.map(\.title))
-            .chartYAxis {
-                AxisMarks(position: .leading) { value in
-                    AxisValueLabel {
-                        if let title = value.as(String.self) {
-                            Text(LocalizedStringKey(title))
-                                .font(.caption2)
-                                .foregroundStyle(Color.halsynSecondaryText)
-                        }
+            // Etiquetas en su propia columna, cada una centrada en su carril
+            // (las del eje del gráfico se desalineaban y pisaban las barras).
+            HStack(alignment: .top, spacing: HalsynSpacing.s) {
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(SleepSample.Stage.hypnogramOrder, id: \.self) { stage in
+                        Text(LocalizedStringKey(stage.title))
+                            .font(.caption2)
+                            .foregroundStyle(Color.halsynSecondaryText)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                            .frame(height: Self.laneHeight, alignment: .center)
                     }
                 }
-            }
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .hour, count: 2)) { _ in
-                    AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
-                        .foregroundStyle(Color.halsynHairline)
-                    AxisValueLabel(format: .dateTime.hour())
-                        .foregroundStyle(Color.halsynSecondaryText)
+                .fixedSize(horizontal: true, vertical: false)
+                Chart {
+                    ForEach(Array(night.segments.enumerated()), id: \.offset) { _, segment in
+                        RectangleMark(
+                            xStart: .value("Inicio", segment.start),
+                            xEnd: .value("Fin", segment.end),
+                            y: .value("Fase", segment.stage.title),
+                            height: .ratio(0.72)
+                        )
+                        .cornerRadius(3)
+                        .foregroundStyle(segment.stage.color.opacity(selectedSegment == nil || selectedSegment == segment ? 1 : 0.35))
+                    }
+                    if let selected {
+                        RuleMark(x: .value("Hora", selected))
+                            .lineStyle(StrokeStyle(lineWidth: 1))
+                            .foregroundStyle(Color.halsynSecondaryText.opacity(0.6))
+                    }
                 }
+                .chartYScale(domain: SleepSample.Stage.hypnogramOrder.map(\.title))
+                .chartYAxis(.hidden)
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .hour, count: 2)) { _ in
+                        AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5))
+                            .foregroundStyle(Color.halsynHairline)
+                        AxisValueLabel(format: .dateTime.hour())
+                            .foregroundStyle(Color.halsynSecondaryText)
+                    }
+                }
+                .chartPlotStyle { plot in
+                    plot.frame(height: Self.laneHeight * CGFloat(SleepSample.Stage.hypnogramOrder.count))
+                }
+                .chartXScale(domain: night.sleepStart...night.sleepEnd)
+                .chartXSelection(value: $selected)
+                .sensoryFeedback(.selection, trigger: selectedSegment?.stage)
             }
-            .chartXScale(domain: night.sleepStart...night.sleepEnd)
-            .chartXSelection(value: $selected)
-            .sensoryFeedback(.selection, trigger: selectedSegment?.stage)
-            .frame(height: 150)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text("Hipnograma de la noche"))
         }
@@ -138,15 +147,18 @@ public struct HalsynSleepComposition: View {
             .frame(height: 12)
             .accessibilityHidden(true)
 
-            LazyVGrid(columns: [GridItem(.flexible(), alignment: .leading), GridItem(.flexible(), alignment: .leading)], spacing: HalsynSpacing.xs) {
+            // Una fase por renglón: en dos columnas el texto se partía.
+            VStack(alignment: .leading, spacing: HalsynSpacing.xs) {
                 ForEach(parts, id: \.stage) { part in
                     HStack(spacing: 6) {
                         RoundedRectangle(cornerRadius: 2).fill(part.stage.color).frame(width: 10, height: 10)
                         Text(LocalizedStringKey(part.stage.title))
                             .foregroundStyle(.halsynPrimaryText)
-                        Spacer(minLength: 4)
+                            .lineLimit(1)
+                        Spacer(minLength: 8)
                         Text(verbatim: "\(sleepText(part.seconds)) · \(Int((part.seconds / total * 100).rounded())) %")
                             .monospacedDigit()
+                            .lineLimit(1)
                             .foregroundStyle(.halsynSecondaryText)
                     }
                     .font(.caption)

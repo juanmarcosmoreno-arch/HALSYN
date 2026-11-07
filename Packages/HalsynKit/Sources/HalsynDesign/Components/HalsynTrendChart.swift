@@ -76,19 +76,10 @@ public struct HalsynTrendChart: View {
         return values.map(\.value).reduce(0, +) / Double(values.count)
     }
 
-    /// Tramos de días consecutivos: la línea no une días con huecos.
+    /// Una sola línea continua que une los días con dato: los días sin
+    /// medición no cortan el gráfico en trozos (solo no tienen punto).
     private var segments: [[DailyValue]] {
-        var result: [[DailyValue]] = []
-        for value in values {
-            if let last = result.last?.last,
-               let gap = calendar.dateComponents([.day], from: calendar.startOfDay(for: last.day), to: calendar.startOfDay(for: value.day)).day,
-               gap <= 1 {
-                result[result.count - 1].append(value)
-            } else {
-                result.append([value])
-            }
-        }
-        return result
+        values.isEmpty ? [] : [values]
     }
 
     private var resolvedDomain: ClosedRange<Double> {
