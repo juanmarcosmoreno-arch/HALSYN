@@ -26,6 +26,7 @@
 		1CD55B8B71C60F19D7BC6224 /* intro-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */; };
 		223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6683A16BF5216CF3290D7F7A /* SpringView.swift */; };
 		230640766D8EE53D010BF610 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F54E426C64C6E2183DE8 /* RootTabView.swift */; };
+		2634ACF724DD93CC043212F2 /* EvolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0160A341E443A5CD30809139 /* EvolutionView.swift */; };
 		2752AD2B26F7C1E205E6F3B0 /* HalsynHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = ABD986204A7438A2DF3C3486 /* HalsynHealthKit */; };
 		2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E2B3491782961A00596E7 /* WatchHomeView.swift */; };
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
@@ -209,6 +210,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0160A341E443A5CD30809139 /* EvolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionView.swift; sourceTree = "<group>"; };
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
 		06DE702C636A9F7D6B1B672D /* CloudBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackup.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				C933D034DBBF7CD0507A6802 /* DataQualityViews.swift */,
+				0160A341E443A5CD30809139 /* EvolutionView.swift */,
 				0CFC2C7EF9CD28060689CD46 /* GoalCoachViews.swift */,
 				939F34004CFB80BC6D63DB2E /* GoalProbabilityViews.swift */,
 				FB803B8CAD60DEA7494A7EE0 /* HeartRateRecoveryCard.swift */,
@@ -1060,6 +1063,7 @@
 				C6141FE4EE315CCA02649F79 /* DesignSystemGalleryView.swift in Sources */,
 				7A48279974C8DE43F4EE589B /* DiagnosticsStore.swift in Sources */,
 				8FD7D8FF09635A0C756E29AA /* DiagnosticsView.swift in Sources */,
+				2634ACF724DD93CC043212F2 /* EvolutionView.swift in Sources */,
 				427EE4162AACE8049B7FE878 /* ExpandableText.swift in Sources */,
 				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
 				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
@@ -1244,7 +1248,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 89;
+				CURRENT_PROJECT_VERSION = 90;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1429,7 +1433,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 89;
+				CURRENT_PROJECT_VERSION = 90;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

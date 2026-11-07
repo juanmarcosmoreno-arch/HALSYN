@@ -170,3 +170,10 @@ Se completará **solo con información verificada** en documentación oficial y 
 | Seguridad | dos exigentes en días seguidos | la segunda → suave |
 
 Cada ajuste lleva su motivo con los datos (p. ej. "Tu recuperación estuvo baja 2 de los últimos 3 días (media 44; lo habitual en ti es 72)"). El reajuste semanal de volumen (`TrainingPlanGenerator.replan`), las semanas de asimilación y el afinamiento siguen como antes.
+
+## Evolución y explicaciones (Fase 4)
+
+- `RunnerProgress.build` (sin fuga de futuro: cada punto semanal del modelo solo ve datos hasta ese día) da el VDOT y el 5 km previsto semana a semana, las semanas de entrenamiento (km, minutos, carreras y minutos suaves / moderados / fuertes por `EffortClassifier`), los mejores tiempos observados del último año (carreras entre −1 % y +6 % de la distancia, llevadas a la distancia exacta con Riegel) y el pulso a un ritmo de referencia (mediana de tus ritmos) por períodos de 4 semanas, con una recta de Theil–Sen ritmo → FC (≥ 4 carreras, sin extrapolar).
+- `PeriodComparison` compara 4, 8 o 12 semanas con el período anterior.
+- `CoachInsights` genera frases solo si se superan umbrales documentados (ver la tabla en el código): 5 km previsto ±10 s, FC a igual ritmo ±3 lpm, > 30 % de minutos fuertes, volumen ×1,3 o ×0,6, FC en reposo ≥ línea basal + max(3, 1,5 × MAD), recuperación ±8 puntos, regularidad y confianza baja.
+- La pantalla **Evolución** (SPRING) separa lo observado (tests, carreras, mejores tiempos) de lo estimado por el modelo, y el VDOT del VO₂ máx. del Apple Watch.

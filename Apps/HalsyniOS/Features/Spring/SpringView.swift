@@ -33,6 +33,7 @@ struct SpringView: View {
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
                     StrengthCard()
+                    EvolutionCard(runs: allWorkouts)
                     AnalysisSection("spring") {
                         RunningStatsCard(workouts: allWorkouts)
                         TrainingLoadCard()

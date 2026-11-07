@@ -800,6 +800,23 @@
         }
       }
     },
+    "12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 veckor"
+          }
+        }
+      }
+    },
     "150 min de actividad": {
       "extractionState": "manual",
       "localizations": {
@@ -970,6 +987,57 @@
         }
       }
     },
+    "4 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 veckor"
+          }
+        }
+      }
+    },
+    "5 km previsto: %@ más lento que hace %@ semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected 5K: %@ slower than %@ weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognos 5 km: %@ långsammare än för %@ veckor sedan."
+          }
+        }
+      }
+    },
+    "5 km previsto: %@ más rápido que hace %@ semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected 5K: %@ faster than %@ weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognos 5 km: %@ snabbare än för %@ veckor sedan."
+          }
+        }
+      }
+    },
     "7 d": {
       "extractionState": "manual",
       "localizations": {
@@ -1017,6 +1085,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "7–9 h: 100 · 9–10 h: 90 · 6–7 h: 70 · 5–6 h eller ≥10 h: 40 · 4–5 h: 20 · <4 h: 0"
+          }
+        }
+      }
+    },
+    "8 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8 veckor"
           }
         }
       }
@@ -1170,6 +1255,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Talar för"
+          }
+        }
+      }
+    },
+    "A igual ritmo (%@) tu pulso bajó %@ lpm: señal de mejor forma aeróbica.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the same pace (%@) your heart rate dropped %@ bpm: a sign of better aerobic fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I samma tempo (%@) sjönk din puls %@ slag/min: ett tecken på bättre aerob form."
+          }
+        }
+      }
+    },
+    "A igual ritmo (%@) tu pulso subió %@ lpm: puede ser cansancio, calor o menos forma.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the same pace (%@) your heart rate rose %@ bpm: it may be fatigue, heat or lower fitness."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I samma tempo (%@) steg din puls %@ slag/min: det kan vara trötthet, värme eller sämre form."
           }
         }
       }
@@ -3384,6 +3503,23 @@
         }
       }
     },
+    "Cada carrera se clasifica por su pulso medio frente a tu FC máxima: suave (< 80 %), moderado (80–87 %), fuerte (≥ 87 %). Las carreras sin pulso no entran. La mayoría de los planes de fondo recomiendan que la mayor parte del tiempo sea suave.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each run is classified by its average heart rate versus your maximum: easy (< 80 %), moderate (80–87 %), hard (≥ 87 %). Runs without heart rate are left out. Most endurance plans recommend spending most of the time easy."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje löprunda klassas efter medelpuls jämfört med din maxpuls: lätt (< 80 %), måttlig (80–87 %), hård (≥ 87 %). Rundor utan puls räknas inte. De flesta uthållighetsplaner rekommenderar att det mesta av tiden är lätt."
+          }
+        }
+      }
+    },
     "Cada día": {
       "extractionState": "manual",
       "localizations": {
@@ -3397,6 +3533,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varje dag"
+          }
+        }
+      }
+    },
+    "Cada frase sale de un cálculo con tus datos y solo aparece si el cambio supera un umbral (por ejemplo, 10 s en el 5 km previsto o 3 lpm a igual ritmo). Las reglas están documentadas en la app; no se usa inteligencia artificial.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each sentence comes from a calculation with your data and only appears if the change exceeds a threshold (for example, 10 s in the projected 5K or 3 bpm at the same pace). The rules are documented in the app; no artificial intelligence is used."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje mening kommer från en beräkning med dina data och visas bara om förändringen överstiger en tröskel (till exempel 10 s på prognosen för 5 km eller 3 slag/min i samma tempo). Reglerna är dokumenterade i appen; ingen artificiell intelligens används."
           }
         }
       }
@@ -4570,6 +4723,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Löppass"
+          }
+        }
+      }
+    },
+    "Carreras por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runs per week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löprundor per vecka"
           }
         }
       }
@@ -7345,6 +7515,23 @@
         }
       }
     },
+    "Distribución de intensidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensity distribution"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intensitetsfördelning"
+          }
+        }
+      }
+    },
     "Dormido": {
       "extractionState": "manual",
       "localizations": {
@@ -7957,6 +8144,23 @@
         }
       }
     },
+    "El VDOT es tu forma de carrera según tus esfuerzos a tope (Daniels). El VO₂ máx. lo estima el Apple Watch con otro método: están relacionados, pero no son lo mismo y no tienen por qué coincidir. Los puntos son pruebas reales; la línea, la estimación del modelo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT is your running fitness from your all-out efforts (Daniels). VO₂ max is estimated by Apple Watch with another method: they're related but not the same and needn't match. The dots are real efforts; the line is the model's estimate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT är din löpform utifrån dina maxansträngningar (Daniels). VO₂ max uppskattas av Apple Watch med en annan metod: de hänger ihop men är inte samma sak och behöver inte stämma överens. Punkterna är verkliga ansträngningar; linjen är modellens uppskattning."
+          }
+        }
+      }
+    },
     "El VO₂ máx. del Apple Watch es una estimación submáxima; la tabla se obtuvo con pruebas de laboratorio.": {
       "extractionState": "manual",
       "localizations": {
@@ -8276,6 +8480,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tempot är detsamma: bara längden ändras. En kortare dag tas inte igen; planen fortsätter utifrån det du gör."
+          }
+        }
+      }
+    },
+    "El volumen semanal bajó un %@ % respecto a tu promedio anterior (ahora %@ por semana).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly volume dropped %@ % from your previous average (now %@ a week)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckovolymen sjönk %@ % jämfört med ditt tidigare snitt (nu %@ i veckan)."
+          }
+        }
+      }
+    },
+    "El volumen semanal subió un %@ % respecto a tu promedio anterior (ahora %@ por semana). Conviene subir de a poco.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly volume rose %@ % from your previous average (now %@ a week). It's best to increase gradually."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckovolymen ökade %@ % jämfört med ditt tidigare snitt (nu %@ i veckan). Det är bäst att öka gradvis."
           }
         }
       }
@@ -9861,6 +10099,23 @@
         }
       }
     },
+    "Estimado por el modelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated by the model"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattat av modellen"
+          }
+        }
+      }
+    },
     "Estimado: 95 por ciento de tus mejores 20 minutos (%@ W, %@). Solo vale si esos 20 minutos fueron a tope.": {
       "extractionState": "manual",
       "localizations": {
@@ -9874,6 +10129,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattad: 95 procent av dina bästa 20 minuter (%@ W, %@). Gäller bara om de 20 minuterna kördes för fullt."
+          }
+        }
+      }
+    },
+    "Estimados por el modelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated by the model"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattade av modellen"
+          }
+        }
+      }
+    },
+    "Estás acumulando más entrenamiento intenso de lo recomendado: %@ % de tus minutos de las últimas 2 semanas (la referencia es cerca del 20 %).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're accumulating more intense training than recommended: %@ % of your minutes in the last 2 weeks (the reference is about 20 %)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du samlar på dig mer intensiv träning än rekommenderat: %@ % av dina minuter de senaste 2 veckorna (riktvärdet är ungefär 20 %)."
           }
         }
       }
@@ -10779,6 +11068,23 @@
         }
       }
     },
+    "Forma, tiempos, volumen, intensidad y lo que dicen tus datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness, times, volume, intensity and what your data says"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Form, tider, volym, intensitet och vad dina data säger"
+          }
+        }
+      }
+    },
     "Formato": {
       "extractionState": "manual",
       "localizations": {
@@ -11098,6 +11404,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utanför beräkningarna"
+          }
+        }
+      }
+    },
+    "Fuerte": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hård"
+          }
+        }
+      }
+    },
+    "Fuerte: %@ % de los minutos (referencia: cerca del 20 %).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard: %@ % of the minutes (reference: about 20 %)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hård: %@ % av minuterna (riktvärde: ungefär 20 %)."
           }
         }
       }
@@ -12649,6 +12989,23 @@
         }
       }
     },
+    "Indicador orientativo, no un diagnóstico.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An indicative measure, not a diagnosis."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En vägledande indikator, inte en diagnos."
+          }
+        }
+      }
+    },
     "Indicadores de hoy": {
       "extractionState": "manual",
       "localizations": {
@@ -13053,6 +13410,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Watch uppskattar den som om du hade avslutat på en standardintensitet: den går inte att jämföra direkt med dina mätningar."
+          }
+        }
+      }
+    },
+    "La estimación de tu forma tiene baja confianza porque faltan pruebas recientes: un test la hace más precisa.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your fitness estimate has low confidence because recent efforts are missing: a test makes it more precise."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattningen av din form har låg tillförlitlighet eftersom färska ansträngningar saknas: ett test gör den mer exakt."
           }
         }
       }
@@ -13873,6 +14247,23 @@
         }
       }
     },
+    "Lo que dicen tus datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What your data says"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vad dina data säger"
+          }
+        }
+      }
+    },
     "Local-first: tus datos se procesan en el dispositivo.": {
       "extractionState": "manual",
       "localizations": {
@@ -14400,6 +14791,40 @@
         }
       }
     },
+    "Media de 28 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "28-day average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "28-dagarssnitt"
+          }
+        }
+      }
+    },
+    "Media de 7 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-day average"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-dagarssnitt"
+          }
+        }
+      }
+    },
     "Media de las 4 semanas anteriores a esta noche.": {
       "extractionState": "manual",
       "localizations": {
@@ -14791,6 +15216,23 @@
         }
       }
     },
+    "Mejores tiempos observados (último año)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best observed times (last year)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa observerade tider (senaste året)"
+          }
+        }
+      }
+    },
     "Menos de %@": {
       "extractionState": "manual",
       "localizations": {
@@ -15080,6 +15522,23 @@
         }
       }
     },
+    "Minutos por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes per week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuter per vecka"
+          }
+        }
+      }
+    },
     "Minutos que el Apple Watch detecta luz natural (watchOS 10 o posterior). Pasar tiempo al aire libre, sobre todo por la mañana, se asocia a dormir mejor y a un reloj interno más estable.": {
       "extractionState": "manual",
       "localizations": {
@@ -15149,6 +15608,23 @@
       }
     },
     "Moderada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moderate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måttlig"
+          }
+        }
+      }
+    },
+    "Moderado": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -15909,6 +16385,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inget anmärkningsvärt just nu"
+          }
+        }
+      }
+    },
+    "Nada destacable: no hay cambios por encima de los umbrales que usa HÅLSYN para decir algo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing notable: no changes above the thresholds HÅLSYN uses to say something."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget att notera: inga förändringar över de trösklar HÅLSYN använder för att säga något."
           }
         }
       }
@@ -17099,6 +17592,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Observerat under %lld dagar. Det är ett samband i dina data, inte ett bevis för att det ena orsakar det andra."
+          }
+        }
+      }
+    },
+    "Observado en tests y carreras": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed in tests and races"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observerat i test och lopp"
           }
         }
       }
@@ -18769,6 +19279,23 @@
         }
       }
     },
+    "Por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per vecka"
+          }
+        }
+      }
+    },
     "Porcentaje de la FC máxima": {
       "extractionState": "manual",
       "localizations": {
@@ -19194,6 +19721,23 @@
         }
       }
     },
+    "Proximidad al objetivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Closeness to goal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Närhet till målet"
+          }
+        }
+      }
+    },
     "Prueba de esfuerzo máxima en cinta con análisis de gases (V̇O₂máx medido).": {
       "extractionState": "manual",
       "localizations": {
@@ -19398,6 +19942,23 @@
         }
       }
     },
+    "Pulso a ritmo comparable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate at comparable pace"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puls i jämförbart tempo"
+          }
+        }
+      }
+    },
     "Pulso estable de principio a fin": {
       "extractionState": "manual",
       "localizations": {
@@ -19411,6 +19972,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stabil puls från början till slut"
+          }
+        }
+      }
+    },
+    "Pulso estimado a %@ %@ en cada período de 4 semanas. Si baja, corres ese ritmo con menos esfuerzo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated heart rate at %@ %@ in each 4-week period. If it drops, you run that pace with less effort."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattad puls vid %@ %@ i varje 4-veckorsperiod. Om den sjunker springer du det tempot med mindre ansträngning."
           }
         }
       }
@@ -23036,6 +23614,23 @@
         }
       }
     },
+    "Sin pruebas suficientes para estimar tu forma en este período.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough efforts to estimate your fitness in this period."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte tillräckligt med ansträngningar för att uppskatta din form under perioden."
+          }
+        }
+      }
+    },
     "Sin publicidad ni venta de datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -24685,6 +25280,23 @@
         }
       }
     },
+    "Tiempos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Times"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tider"
+          }
+        }
+      }
+    },
     "Tipo": {
       "extractionState": "manual",
       "localizations": {
@@ -25072,6 +25684,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Efter dagar med «%@» sov du i snitt %@; efter dagar utan %@."
+          }
+        }
+      }
+    },
+    "Tu FC en reposo está %@ lpm por encima de tu línea basal estos días: puede ser cansancio, poco sueño o algo que se está incubando.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your resting heart rate is %@ bpm above your baseline these days: it may be fatigue, little sleep or something coming on."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din vilopuls är %@ slag/min över din baslinje de här dagarna: det kan vara trötthet, lite sömn eller något som är på gång."
           }
         }
       }
@@ -25501,6 +26130,40 @@
         }
       }
     },
+    "Tu predicción de 5 km empeoró %@ en las últimas %@ semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your 5K prediction got %@ slower in the last %@ weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din prognos för 5 km blev %@ långsammare de senaste %@ veckorna."
+          }
+        }
+      }
+    },
+    "Tu predicción de 5 km mejoró %@ en las últimas %@ semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your 5K prediction improved by %@ in the last %@ weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din prognos för 5 km förbättrades med %@ de senaste %@ veckorna."
+          }
+        }
+      }
+    },
     "Tu preparación de hoy está lista.": {
       "extractionState": "manual",
       "localizations": {
@@ -25548,6 +26211,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ditt vanliga intervall"
+          }
+        }
+      }
+    },
+    "Tu recuperación de la última semana está %@ puntos por debajo de tu media del mes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your recovery this past week is %@ points below your monthly average."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din återhämtning den senaste veckan ligger %@ poäng under ditt månadssnitt."
+          }
+        }
+      }
+    },
+    "Tu recuperación de la última semana está %@ puntos por encima de tu media del mes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your recovery this past week is %@ points above your monthly average."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din återhämtning den senaste veckan ligger %@ poäng över ditt månadssnitt."
           }
         }
       }
@@ -26453,6 +27150,23 @@
         }
       }
     },
+    "VDOT": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT"
+          }
+        }
+      }
+    },
     "VDOT ": {
       "extractionState": "manual",
       "localizations": {
@@ -26568,6 +27282,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattad VO₂ max"
+          }
+        }
+      }
+    },
+    "VO₂ máx. estimado por el Apple Watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max estimated by Apple Watch"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VO₂ max uppskattat av Apple Watch"
           }
         }
       }
@@ -27099,6 +27830,23 @@
         }
       }
     },
+    "Vienes con regularidad: %@ carreras por semana en las últimas %@ semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've been consistent: %@ runs per week over the last %@ weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du har varit regelbunden: %@ löprundor per vecka de senaste %@ veckorna."
+          }
+        }
+      }
+    },
     "Vista previa con valores de ejemplo": {
       "extractionState": "manual",
       "localizations": {
@@ -27197,6 +27945,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Volym per vecka"
+          }
+        }
+      }
+    },
+    "Volumen y regularidad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume and consistency"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volym och regelbundenhet"
           }
         }
       }
