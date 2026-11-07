@@ -34,8 +34,9 @@ struct NovemberAuditTests {
         let counted = model.countedEvidence
         #expect(counted.count == 2)
         // La media ponderada de los valores usados reproduce exactamente el VDOT.
-        let total = counted.map(\.weight).reduce(0, +)
-        let mean = counted.map { $0.weight * ($0.valueUsed ?? 0) }.reduce(0, +) / total
+        let total: Double = counted.map(\.weight).reduce(0, +)
+        let weighted: [Double] = counted.map { item in item.weight * (item.valueUsed ?? 0) }
+        let mean: Double = weighted.reduce(0, +) / total
         #expect(abs(mean - model.currentVDOT) < 1e-9)
         // El test del 2 nov tiene VDOT ≈ 33,7 y el combinado ≈ 34,4: no son el mismo número.
         let test2 = try #require(counted.first { $0.id == Fixture.marked2.id })
@@ -77,10 +78,13 @@ struct NovemberAuditTests {
             WorkoutSummary(activity: .outdoorRun, start: date(day, 11, hour: 7), duration: 1140, distanceMeters: 4000, averageHeartRate: 176, maxHeartRate: 184, activeEnergyKilocalories: nil, averageCadence: 170, origin: .demo)
         }
         let model = try #require(RacePerformanceModel.assess(results: [Fixture.marked2], runs: [Fixture.workout2] + efforts, maxHeartRate: 186, today: Fixture.today, calendar: calendar))
-        let training = model.evidence.filter { $0.kind == .trainingEffort && $0.weight > 0 }.map(\.weight).reduce(0, +)
-        let official = model.evidence.filter { $0.kind != .trainingEffort && $0.weight > 0 }.map(\.weight).reduce(0, +)
+        let trainingWeights: [Double] = model.evidence.filter { $0.kind == .trainingEffort && $0.weight > 0 }.map(\.weight)
+        let officialWeights: [Double] = model.evidence.filter { $0.kind != .trainingEffort && $0.weight > 0 }.map(\.weight)
+        let training: Double = trainingWeights.reduce(0, +)
+        let official: Double = officialWeights.reduce(0, +)
+        let limit: Double = RacePerformanceModel.trainingShareCap * official + 1e-9
         #expect(training > 0)
-        #expect(training <= RacePerformanceModel.trainingShareCap * official + 1e-9)
+        #expect(training <= limit)
         #expect(model.evidence.contains { ($0.factors?.cap ?? 1) < 1 })
     }
 
@@ -108,7 +112,8 @@ struct NovemberAuditTests {
         let sessions = [0, 2, 4, 6].map { offset in
             PlannedSession(date: calendar.date(byAdding: .day, value: offset, to: monday)!, kind: .easy, distance: 4000, pace: paces.easy)
         }
-        let goal = PlanGoal(distance: .fiveK, raceDate: date(18, 1, hour: 9).addingTimeInterval(365 * 86_400), runsPerWeek: 4, goalTime: 1500)
+        let raceDate = calendar.date(from: DateComponents(year: 2027, month: 1, day: 18, hour: 9))!
+        let goal = PlanGoal(distance: .fiveK, raceDate: raceDate, runsPerWeek: 4, goalTime: 1500)
         return TrainingPlan(goal: goal, paces: paces, weeks: [PlannedWeek(index: 0, start: monday, phase: .build, sessions: sessions, level: nil)], createdAt: monday, startingWeeklyDistance: 15_000, vdot: 34, lastAdjustment: nil)
     }
 

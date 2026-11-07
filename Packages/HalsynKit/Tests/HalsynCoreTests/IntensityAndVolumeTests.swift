@@ -15,7 +15,10 @@ private func day(_ offset: Int, hour: Int = 18) -> Date {
 }
 
 private func run(_ offset: Int, km: Double = 5, minutes: Double = 30, hr: Double? = 150, activity: WorkoutActivity = .outdoorRun) -> WorkoutSummary {
-    WorkoutSummary(activity: activity, start: day(offset), duration: minutes * 60, distanceMeters: km * 1000, averageHeartRate: hr, maxHeartRate: hr.map { $0 + 10 }, activeEnergyKilocalories: nil, averageCadence: 160, origin: .demo)
+    let duration: TimeInterval = minutes * 60
+    let distance: Double = km * 1000
+    let maximum: Double? = hr.map { $0 + 10 }
+    return WorkoutSummary(activity: activity, start: day(offset), duration: duration, distanceMeters: distance, averageHeartRate: hr, maxHeartRate: maximum, activeEnergyKilocalories: nil, averageCadence: 160, origin: .demo)
 }
 
 @Suite("Intensidad de los entrenamientos")
@@ -55,7 +58,12 @@ struct IntensityTests {
         let session = run(0, km: 6, minutes: 35, hr: 158)
         #expect(IntensityClassifier.classify(session, maxHeartRate: 186, samples: points).kind == .intervals)
         // Pulso estable: no son series.
-        let steady = (0..<100).map { HeartRatePoint(date: day(0) + Double($0) * 10, bpm: 150 + Double($0 % 3)) }
+        let start = day(0)
+        let steady: [HeartRatePoint] = (0..<100).map { index in
+            let offset: TimeInterval = Double(index) * 10
+            let bpm: Double = 150 + Double(index % 3)
+            return HeartRatePoint(date: start.addingTimeInterval(offset), bpm: bpm)
+        }
         #expect(!IntensityClassifier.isIntervalPattern(steady, maxHeartRate: 186))
     }
 
@@ -73,7 +81,10 @@ struct VolumeTests {
         // 3 carreras de 5 km por semana durante 12 semanas (lun, mié, vie).
         var runs: [WorkoutSummary] = []
         for week in 1...12 {
-            for weekday in [0, 2, 4] { runs.append(run(-7 * week - 5 + weekday)) }
+            for weekday in [0, 2, 4] {
+                let offset: Int = weekday - 7 * week - 5
+                runs.append(run(offset))
+            }
         }
         let intensities = Dictionary(uniqueKeysWithValues: runs.map { ($0.id, WorkoutIntensity(kind: .easy, basis: .heartRate)) })
         let analysis = TrainingVolumeAnalysis.compute(workouts: runs, intensities: intensities, today: today, calendar: calendar)
@@ -89,10 +100,16 @@ struct VolumeTests {
     @Test func suddenIncreaseIsRelativeToYourHistory() {
         var runs: [WorkoutSummary] = []
         for week in 2...10 {
-            for weekday in [0, 2, 4] { runs.append(run(-7 * week - 5 + weekday)) }
+            for weekday in [0, 2, 4] {
+                let offset: Int = weekday - 7 * week - 5
+                runs.append(run(offset))
+            }
         }
         // Semana pasada: 6 carreras de 8 km (48 km frente a 15).
-        for weekday in 0..<6 { runs.append(run(-12 + weekday, km: 8, minutes: 48)) }
+        for weekday in 0..<6 {
+            let offset: Int = weekday - 12
+            runs.append(run(offset, km: 8, minutes: 48))
+        }
         let analysis = TrainingVolumeAnalysis.compute(workouts: runs, intensities: [:], today: today, calendar: calendar)
         #expect(analysis.isUnusualIncrease)
         #expect((analysis.lastWeekChange ?? 0) > 1)
@@ -114,7 +131,8 @@ struct HealthEventPlanTests {
         let paces = TrainingPaces.from(vdot: 34, target: .fiveK)
         let kinds: [SessionKind] = [.intervals, .easy, .tempo, .rest, .easy, .rest, .long]
         let sessions = kinds.enumerated().map { index, kind in
-            PlannedSession(date: calendar.startOfDay(for: day(index)), kind: kind, distance: kind == .rest ? 0 : (kind == .long ? 10_000 : 5000), pace: paces.easy)
+            let distance: Double = kind == .rest ? 0 : (kind == .long ? 10_000 : 5000)
+            return PlannedSession(date: calendar.startOfDay(for: day(index)), kind: kind, distance: distance, pace: paces.easy)
         }
         let goal = PlanGoal(distance: .fiveK, raceDate: day(70), runsPerWeek: 4, goalTime: 1500)
         return TrainingPlan(goal: goal, paces: paces, weeks: [PlannedWeek(index: 0, start: calendar.startOfDay(for: day(0)), phase: .build, sessions: sessions, level: nil)], createdAt: day(-30), startingWeeklyDistance: 15_000, vdot: 34, lastAdjustment: nil)

@@ -39,7 +39,8 @@ struct HealthAuditTests {
         // La medición del día (33,5) está en la línea basal; la media de 3 días
         // (49,0 · 49,8 · 33,5 ≈ 44,1) queda por encima: no es un día negativo.
         #expect(hrv.singleDayValue == 33.5)
-        #expect(abs((hrv.recentValue ?? 0) - 44.1) < 0.05)
+        let recent: Double = hrv.recentValue ?? 0
+        #expect(abs(recent - 44.1) < 0.05)
         #expect((hrv.baselineValue ?? 99) < 35)
         #expect(hrv.impact != .negative)
         #expect(hrv.baselineDays >= 7)
@@ -82,8 +83,10 @@ struct HealthAuditTests {
         let night = try #require(SleepAnalysis.night(samples, endingOn: day(11, 3), calendar: calendar, origin: .demo))
         #expect(night.sleepStart == day(11, 2, hour: 23))
         #expect(night.episodes == 2)
-        #expect(abs(night.napAsleep - 90 * 60) < 1)
-        #expect(abs(night.asleep - (90 * 60 + 7 * 3600 + 42 * 60)) < 1)
+        let nap: TimeInterval = 5400
+        #expect(abs(night.napAsleep - nap) < 1)
+        let total: TimeInterval = 33_120
+        #expect(abs(night.asleep - total) < 1)
         #expect(night.flags.contains(.napIncluded))
     }
 
@@ -96,16 +99,18 @@ struct HealthAuditTests {
         #expect(night.flags.contains(.shortRecord))
         #expect(night.flags.contains(.multipleSources))
         // Fusionadas sin contar dos veces.
-        #expect(abs(night.asleep - (2 * 3600 + 30 * 60)) < 1)
+        let expected: TimeInterval = 9000
+        #expect(abs(night.asleep - expected) < 1)
     }
 
     @Test func repeatedShortSleepAndTiming() {
         let nights: [SleepNight] = (0..<14).map { offset in
             let date = calendar.date(byAdding: .day, value: -offset, to: day(11, 7))!
-            let hours = offset < 3 ? 5.0 : 7.5
-            let start = calendar.date(byAdding: .hour, value: offset == 5 ? -20 : -1, to: date)!
-            let end = start.addingTimeInterval(hours * 3600)
-            return SleepNight(day: date, asleep: hours * 3600, sleepStart: start, sleepEnd: end, awake: 0, stages: [:], sourceName: "Watch", origin: .demo)
+            let seconds: TimeInterval = offset < 3 ? 18_000 : 27_000
+            let shift: Int = offset == 5 ? -20 : -1
+            let start = calendar.date(byAdding: .hour, value: shift, to: date)!
+            let end = start.addingTimeInterval(seconds)
+            return SleepNight(day: date, asleep: seconds, sleepStart: start, sleepEnd: end, awake: 0, stages: [:], sourceName: "Watch", origin: .demo)
         }
         let pattern = SleepPattern.analyze(nights, calendar: calendar)
         #expect(pattern.shortNightsLast7 == 3)
@@ -118,7 +123,8 @@ struct HealthAuditTests {
 
     @Test func labUnitsAndReferences() throws {
         let factor = try #require(LabResult.Kind.ldl.alternative?.factor)
-        #expect(abs(3.0 * factor - 116.01) < 0.01)
+        let ldl: Double = 3.0 * factor
+        #expect(abs(ldl - 116.01) < 0.01)
         let reference = try #require(LabReference.general(.fastingGlucose))
         #expect(reference.position(92) == .within)
         #expect(reference.position(110) == .above)
