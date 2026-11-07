@@ -92,7 +92,9 @@ struct SpringView: View {
         // Con pruebas (tests, competiciones o esfuerzos a tope), el modelo de
         // rendimiento; si no, Riegel con tus mejores carreras.
         performance = FitnessStore.shared.performance(runs: clean)
-        predictions = performance.map(RacePrediction.from) ?? RacePredictor.predictions(from: clean, endingOn: .now, calendar: .current)
+        // Los rangos nunca más estrechos que tu error real medido (evaluación retrospectiva).
+        let calibration = FitnessStore.shared.backtest(runs: clean).calibratedRelativeError
+        predictions = performance.map { RacePrediction.from($0, calibratedRelativeError: calibration) } ?? RacePredictor.predictions(from: clean, endingOn: .now, calendar: .current)
         flaggedCount = DataQuality.assess(recent).values.filter(\.needsReview).count
     }
 

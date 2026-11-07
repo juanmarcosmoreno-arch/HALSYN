@@ -177,3 +177,11 @@ Cada ajuste lleva su motivo con los datos (p. ej. "Tu recuperación estuvo baja 
 - `PeriodComparison` compara 4, 8 o 12 semanas con el período anterior.
 - `CoachInsights` genera frases solo si se superan umbrales documentados (ver la tabla en el código): 5 km previsto ±10 s, FC a igual ritmo ±3 lpm, > 30 % de minutos fuertes, volumen ×1,3 o ×0,6, FC en reposo ≥ línea basal + max(3, 1,5 × MAD), recuperación ±8 puntos, regularidad y confianza baja.
 - La pantalla **Evolución** (SPRING) separa lo observado (tests, carreras, mejores tiempos) de lo estimado por el modelo, y el VDOT del VO₂ máx. del Apple Watch.
+
+## Validación: evaluación retrospectiva y calibración (Fase 5)
+
+- `PredictionBacktest.run` predice cada test o competición registrada con el modelo armado **solo con datos anteriores a ese día** (resultados y carreras previas; se excluye el propio entrenamiento del resultado) y mide MAE (s y %), RMSE, sesgo (positivo = pesimista), cobertura del rango del 80 % y el error relativo robusto (MAD × 1,4826).
+- Con 5 casos o más, ese error calibrado se usa para que los rangos de las predicciones nunca sean más estrechos que tu error real (`predict(_:calibratedRelativeError:)`).
+- `GoalOutcome` guarda, cuando registras como competición la carrera del plan (distancia ±2 %, fecha ±3 días), el valor que daba el modelo una semana antes. `GoalCalibration`: puntuación de Brier; el porcentaje de factibilidad solo se muestra con ≥ 5 objetivos y Brier < 0,25.
+- Pantalla **Precisión del modelo** (Predicción y Evolución) con todas las métricas y cada caso.
+- Tests: fórmulas (tablas de Daniels, Riegel, Theil–Sen, TRIMP, Foster), datos faltantes, duplicados, unidades, valores extremos, estabilidad (un rodaje suave no mueve el modelo), compatibilidad con datos guardados antes (zonas sin FC umbral) y ausencia de fuga de información futura.

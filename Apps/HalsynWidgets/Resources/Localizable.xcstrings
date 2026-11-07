@@ -3639,6 +3639,23 @@
         }
       }
     },
+    "Cada test o competición que registraste se predice con lo que HÅLSYN sabía antes de ese día, sin mirar el resultado, y se compara con tu tiempo real. Así se mide cuánto acierta el modelo contigo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each test or race you logged is predicted with what HÅLSYN knew before that day, without looking at the result, and compared with your real time. That measures how accurate the model is for you."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje test eller lopp du registrerat förutsägs med det HÅLSYN visste före den dagen, utan att titta på resultatet, och jämförs med din verkliga tid. Så mäts hur väl modellen träffar för dig."
+          }
+        }
+      }
+    },
     "Cada vuelta": {
       "extractionState": "manual",
       "localizations": {
@@ -5271,6 +5288,23 @@
         }
       }
     },
+    "Con 5 pruebas evaluadas o más, los rangos de las predicciones se ajustan a tu error real. Cada test que registres suma.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With 5 or more evaluated efforts, prediction ranges adjust to your real error. Every test you log helps."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med 5 eller fler utvärderade ansträngningar anpassas prognosintervallen till ditt verkliga fel. Varje test du registrerar hjälper."
+          }
+        }
+      }
+    },
     "Con FC en reposo %@, FC máx. %@ corriendo y %@ en bici.": {
       "extractionState": "manual",
       "localizations": {
@@ -6865,6 +6899,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inom ditt vanliga intervall"
+          }
+        }
+      }
+    },
+    "Dentro del rango del 80 %": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Within the 80 % range"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inom 80 %-intervallet"
           }
         }
       }
@@ -9555,6 +9606,23 @@
         }
       }
     },
+    "Error cuadrático (RMSE)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Root mean square error (RMSE)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvadratiskt medelfel (RMSE)"
+          }
+        }
+      }
+    },
     "Error de sincronización": {
       "extractionState": "manual",
       "localizations": {
@@ -9568,6 +9636,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Synkroniseringsfel"
+          }
+        }
+      }
+    },
+    "Error medio (MAE)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mean absolute error (MAE)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelabsolutfel (MAE)"
+          }
+        }
+      }
+    },
+    "Error típico usado en los rangos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typical error used in ranges"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typiskt fel som används i intervallen"
           }
         }
       }
@@ -13478,6 +13580,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppskattningen har låg tillförlitlighet: färska ansträngningar saknas. Ett test löser det."
+          }
+        }
+      }
+    },
+    "La factibilidad se muestra como categoría hasta tener al menos 5 objetivos corridos y una puntuación de Brier menor que 0,25 (0 es perfecto; 0,25 es lo que da decir siempre 50 %). Un objetivo cuenta cuando registras como competición la carrera del plan.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feasibility is shown as a category until there are at least 5 completed goals and a Brier score below 0.25 (0 is perfect; 0.25 is what always saying 50 % gives). A goal counts when you log the plan's race as a race."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomförbarheten visas som kategori tills det finns minst 5 genomförda mål och en Brier-poäng under 0,25 (0 är perfekt; 0,25 är vad man får av att alltid säga 50 %). Ett mål räknas när du registrerar planens lopp som tävling."
           }
         }
       }
@@ -17562,6 +17681,23 @@
         }
       }
     },
+    "Objetivos con resultado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goals with a result"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mål med resultat"
+          }
+        }
+      }
+    },
     "Objetivos de salud y de entrenamiento, paso a paso.": {
       "extractionState": "manual",
       "localizations": {
@@ -19398,6 +19534,40 @@
         }
       }
     },
+    "Precisión del modelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model accuracy"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modellens träffsäkerhet"
+          }
+        }
+      }
+    },
+    "Precisión del modelo contigo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How accurate the model is for you"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modellens träffsäkerhet för dig"
+          }
+        }
+      }
+    },
     "Predeterminadas": {
       "extractionState": "manual",
       "localizations": {
@@ -19428,6 +19598,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prognos"
+          }
+        }
+      }
+    },
+    "Predicción de tiempos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time prediction"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidsprognos"
           }
         }
       }
@@ -19755,6 +19942,40 @@
         }
       }
     },
+    "Pruebas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efforts"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ansträngningar"
+          }
+        }
+      }
+    },
+    "Pruebas evaluadas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evaluated efforts"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utvärderade ansträngningar"
+          }
+        }
+      }
+    },
     "Pruebas usadas": {
       "extractionState": "manual",
       "localizations": {
@@ -20074,6 +20295,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Poäng"
+          }
+        }
+      }
+    },
+    "Puntuación de Brier": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brier score"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brier-poäng"
           }
         }
       }
@@ -20686,6 +20924,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Troligt intervall på tävlingsdagen: %@"
+          }
+        }
+      }
+    },
+    "Real %@ · previsto %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actual %@ · predicted %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verklig %@ · prognos %@"
           }
         }
       }
@@ -22934,6 +23189,40 @@
         }
       }
     },
+    "Sesgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bias"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systematiskt fel"
+          }
+        }
+      }
+    },
+    "Sesgo positivo: el modelo te ve más lento de lo que corres (pesimista); negativo: optimista. Un rango bien calibrado contiene cerca del 80 % de los tiempos reales.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positive bias: the model sees you slower than you run (pessimistic); negative: optimistic. A well-calibrated range contains about 80 % of real times."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positivt systematiskt fel: modellen tror att du är långsammare än du springer (pessimistisk); negativt: optimistisk. Ett välkalibrerat intervall innehåller ungefär 80 % av de verkliga tiderna."
+          }
+        }
+      }
+    },
     "Sesiones del plan cumplidas en las últimas 4 semanas: %@ de %@ (%@ %)": {
       "extractionState": "manual",
       "localizations": {
@@ -23695,6 +23984,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingen sensor"
+          }
+        }
+      }
+    },
+    "Sin sesgo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No bias"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget systematiskt fel"
           }
         }
       }

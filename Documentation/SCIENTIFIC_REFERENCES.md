@@ -237,3 +237,10 @@ Arquitectura prevista, pero **sin fórmula** hasta disponer de un modelo validad
 - Zonas por FC umbral de lactato (Friel, *The Triathlete's Training Bible*): Z1 < 85 %, Z2 85–89 %, Z3 90–94 %, Z4 95–99 %, Z5 ≥ 100 %. Medición de campo: FC media de los últimos 20 min de 30 min a tope.
 - Monotonía = media / desviación de la carga diaria semanal; strain = carga × monotonía (Foster 1998, Med Sci Sports Exerc 30(7):1164–1168). Umbral orientativo de monotonía alta: 2.
 - Carga por ritmo sin FC: aproximación de HÅLSYN (intensidad relativa al ritmo umbral en la escala del TRIMP de Banister), no un método publicado; se marca como aproximada.
+
+## Validación (`PredictionBacktest`, `GoalCalibration`)
+
+- Métricas de error estándar: MAE, RMSE y sesgo (error medio con signo); cobertura empírica del intervalo del 80 %.
+- Dispersión robusta del error relativo: MAD × 1,4826 (equivalente a la desviación típica bajo normalidad).
+- Puntuación de Brier (Brier GW. Verification of forecasts expressed in terms of probability. Monthly Weather Review. 1950;78(1):1–3) para calibrar la factibilidad; referencia 0,25 = decir siempre 50 %.
+- Evaluación sin fuga de información: cada predicción usa solo datos anteriores al día evaluado.

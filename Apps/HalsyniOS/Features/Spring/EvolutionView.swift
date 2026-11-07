@@ -59,6 +59,13 @@ enum CoachInsightText {
     }
 }
 
+/// Test o competición en el gráfico de forma.
+private struct TestPoint: Identifiable {
+    let id: UUID
+    let date: Date
+    let vdot: Double
+}
+
 /// Panel de evolución del corredor: lo observado y lo estimado, separados.
 struct EvolutionView: View {
     let runs: [WorkoutSummary]
@@ -133,6 +140,12 @@ struct EvolutionView: View {
                         .font(.halsynCaption)
                     }
                 }
+                NavigationLink {
+                    ModelAccuracyView(runs: runs)
+                } label: {
+                    Label("Precisión del modelo contigo", systemImage: "scope")
+                        .font(.halsynCaption.weight(.semibold))
+                }
                 ExpandableText("Cada frase sale de un cálculo con tus datos y solo aparece si el cambio supera un umbral (por ejemplo, 10 s en el 5 km previsto o 3 lpm a igual ritmo). Las reglas están documentadas en la app; no se usa inteligencia artificial.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
@@ -145,7 +158,7 @@ struct EvolutionView: View {
     private func fitnessCard(_ progress: RunnerProgress) -> some View {
         let points = progress.modelPoints.filter { $0.date >= cutoff }
         let testPoints = fitness.results.filter { $0.date >= cutoff }.compactMap { result in
-            result.vdot.map { (id: result.id, date: result.date, vdot: $0) }
+            result.vdot.map { TestPoint(id: result.id, date: result.date, vdot: $0) }
         }
         let vo2 = vo2max.filter { $0.day >= cutoff }
         return HalsynCard {
@@ -162,7 +175,7 @@ struct EvolutionView: View {
                                 .foregroundStyle(by: .value("Serie", String(localized: "Estimado por el modelo")))
                                 .interpolationMethod(.monotone)
                         }
-                        ForEach(testPoints, id: \.id) { point in
+                        ForEach(testPoints) { point in
                             PointMark(x: .value("Fecha", point.date), y: .value("VDOT", point.vdot))
                                 .foregroundStyle(by: .value("Serie", String(localized: "Observado en tests y carreras")))
                                 .symbolSize(60)

@@ -23,6 +23,7 @@ final class FitnessStore {
         results.append(result)
         results.sort { $0.date > $1.date }
         persist()
+        recordOutcomeIfGoal(result)
     }
 
     func remove(_ id: UUID) {
@@ -41,6 +42,32 @@ final class FitnessStore {
     var riegelExponent: Double {
         let value = defaults.double(forKey: Self.riegelExponentKey)
         return RacePerformanceModel.plausibleExponent.contains(value) ? value : RacePerformanceModel.defaultRiegelExponent
+    }
+
+    /// Evaluación retrospectiva con tus tests y competiciones (solo datos anteriores a cada uno).
+    func backtest(runs: [WorkoutSummary]) -> PredictionBacktest {
+        PredictionBacktest.run(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, calendar: .current)
+    }
+
+    // MARK: Objetivos ya corridos (calibración de la factibilidad)
+
+    static let outcomesKey = "halsyn.goalOutcomes"
+
+    var goalOutcomes: [GoalOutcome] {
+        defaults.data(forKey: Self.outcomesKey).flatMap { try? JSONDecoder().decode([GoalOutcome].self, from: $0) } ?? []
+    }
+
+    /// Una competición registrada que coincide con el objetivo del plan
+    /// (distancia ±2 %, fecha ±3 días) se guarda con el valor que daba el modelo
+    /// una semana antes, para calibrar.
+    private func recordOutcomeIfGoal(_ result: PerformanceResult) {
+        guard result.kind == .race, let plan = TrainingPlanStore.shared.plan, let goalTime = plan.goal.goalTime,
+              abs(result.distance / plan.goal.distance.rawValue - 1) <= 0.02,
+              abs(result.date.timeIntervalSince(plan.goal.raceDate)) <= 3 * 86_400,
+              let modelValue = GoalProbabilityHistory.modelValue(before: plan.goal.raceDate, goal: plan.goal) else { return }
+        var outcomes = goalOutcomes.filter { abs($0.raceDate.timeIntervalSince(plan.goal.raceDate)) > 86_400 }
+        outcomes.append(GoalOutcome(raceDate: plan.goal.raceDate, goalTime: goalTime, actualTime: result.time, modelValue: modelValue))
+        if let data = try? JSONEncoder().encode(outcomes) { defaults.set(data, forKey: Self.outcomesKey) }
     }
 
     /// Modelo de rendimiento con todas tus pruebas (tests, competiciones y esfuerzos).

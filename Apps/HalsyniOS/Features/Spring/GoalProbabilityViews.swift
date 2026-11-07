@@ -15,6 +15,8 @@ enum GoalProbabilityHistory {
         var day: Date
         var projected: TimeInterval
         var goal: String
+        /// Valor del modelo sin calibrar (para la calibración posterior).
+        var modelValue: Double?
     }
 
     private static var defaults: UserDefaults { .standard }
@@ -32,11 +34,19 @@ enum GoalProbabilityHistory {
         let signature = signature(goal)
         let day = calendar.startOfDay(for: today)
         var entries = load().filter { $0.goal == signature && $0.day != day }
-        entries.append(Entry(day: day, projected: probability.projectedTime, goal: signature))
+        entries.append(Entry(day: day, projected: probability.projectedTime, goal: signature, modelValue: probability.modelValue))
         entries.sort { $0.day < $1.day }
         if let data = try? JSONEncoder().encode(Array(entries.suffix(limit))) {
             defaults.set(data, forKey: key)
         }
+    }
+
+    /// Valor del modelo de una semana antes de la carrera (o el más cercano anterior).
+    static func modelValue(before raceDate: Date, goal: PlanGoal, calendar: Calendar = .current) -> Double? {
+        let signature = signature(goal)
+        let limit = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: raceDate)) ?? raceDate
+        let entries = load().filter { $0.goal == signature && $0.modelValue != nil }
+        return (entries.last { $0.day <= limit } ?? entries.first)?.modelValue
     }
 
     /// Segundos que mejoró (negativo) o empeoró el tiempo previsto frente a hace al menos 7 días.
@@ -198,9 +208,17 @@ struct GoalProbabilitySummary: View {
                 Text("Objetivo")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
-                Text(verbatim: GoalProbabilityText.titleText(probability.category))
-                    .font(.halsynHeadline)
-                    .foregroundStyle(GoalProbabilityText.color(probability.category))
+                HStack(spacing: 6) {
+                    Text(verbatim: GoalProbabilityText.titleText(probability.category))
+                        .font(.halsynHeadline)
+                        .foregroundStyle(GoalProbabilityText.color(probability.category))
+                    // El porcentaje solo con calibración comprobada (5 objetivos o más).
+                    if GoalCalibration.allowsPercentage(FitnessStore.shared.goalOutcomes) {
+                        Text(verbatim: "\(Int((probability.modelValue * 100).rounded())) %")
+                            .font(.halsynCaption.monospacedDigit())
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                }
                 Text("Previsto: \(HalsynFormat.duration(probability.projectedTime)) (\(GoalProbabilityText.range(probability.projectedRange)))")
                     .font(.halsynCaption.monospacedDigit())
                     .foregroundStyle(.halsynPrimaryText)

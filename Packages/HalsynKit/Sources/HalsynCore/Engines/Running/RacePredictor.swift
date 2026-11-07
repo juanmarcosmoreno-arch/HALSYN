@@ -41,10 +41,10 @@ public struct RacePrediction: Hashable, Identifiable, Sendable {
 
     /// Predicciones del modelo de rendimiento (VDOT + Riegel con varias pruebas).
     /// Sin intervalo, el rango queda vacío (igual al tiempo).
-    public static func from(_ assessment: PerformanceAssessment) -> [RacePrediction] {
+    public static func from(_ assessment: PerformanceAssessment, calibratedRelativeError: Double? = nil) -> [RacePrediction] {
         let longest = assessment.evidence.map(\.distance).max() ?? 0
         return RaceDistance.allCases.map { distance in
-            let prediction = assessment.predict(distance.rawValue)
+            let prediction = assessment.predict(distance.rawValue, calibratedRelativeError: calibratedRelativeError)
             return RacePrediction(
                 distance: distance,
                 time: prediction.time,

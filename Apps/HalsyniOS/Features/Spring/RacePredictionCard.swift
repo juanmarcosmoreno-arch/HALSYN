@@ -139,6 +139,14 @@ struct PredictionDetailView: View {
             }
 
             Section {
+                NavigationLink {
+                    ModelAccuracyView(runs: runs)
+                } label: {
+                    Label("Precisión del modelo contigo", systemImage: "scope")
+                }
+            }
+
+            Section {
                 ForEach(performance.evidence) { item in
                     HStack {
                         Image(systemName: icon(item.kind))
