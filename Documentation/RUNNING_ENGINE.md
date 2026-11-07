@@ -141,3 +141,11 @@ Se completará **solo con información verificada** en documentación oficial y 
 `EffortClassifier` clasifica cada carrera por FC media / FC máxima de referencia (la configurada a mano o la segunda más alta observada, para ignorar un pico aislado): < 80 % suave, 80–87 % moderado, ≥ 87 % fuerte, ≥ 90 % sostenido 8–75 min y ≥ 3 km = esfuerzo comparable a una prueba. Sin FC fiable: "desconocido". Test y competición marcados por el usuario tienen prioridad.
 
 `FitnessEstimator` ahora solo usa como prueba de entrenamiento los esfuerzos comparables a una prueba que pasan el control de calidad; si el mejor supera al segundo en más de 5 puntos de VDOT, se toma el segundo. Un rodaje rápido sin pulso alto ya no se toma como esfuerzo máximo. `RacePredictor` también descarta los registros dudosos.
+
+## Modelo de rendimiento y factibilidad (Fase 2a)
+
+- `RacePerformanceModel.assess` reúne tests y competiciones (180 días) y esfuerzos de entrenamiento a tope (42 días, ya filtrados por calidad), los pondera por tipo y antigüedad, estima la tendencia con Theil–Sen, baja el peso de pruebas incoherentes y calcula el VDOT de hoy, su incertidumbre y la confianza (alta / media / baja).
+- `PerformanceAssessment.predict(d)` da el tiempo por Daniels y por Riegel (pruebas proyectadas, ponderadas por cercanía de distancia), la combinación (media geométrica) y un intervalo del 80 % con 3 pruebas o más.
+- `RacePrediction.from(_:)` alimenta la tarjeta de predicción; sin pruebas se usa el Riegel clásico de `RacePredictor`.
+- `GoalProbability.evaluate(plan:performance:…)` da la categoría de factibilidad, el tiempo previsto con su rango y los factores a favor y en contra. No se muestra porcentaje (sin calibrar).
+- `FitnessEstimator` sigue dando el VDOT con el que se generan los ritmos del plan (se unificará en la fase 3).

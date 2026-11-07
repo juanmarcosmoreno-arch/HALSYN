@@ -148,7 +148,7 @@ struct TrainingPlanCard: View {
             store.replanIfNeeded(runs: workouts)
             // Un valor por día para ver cómo cambia la probabilidad.
             if !model.isDemo, let plan = store.plan,
-               let probability = GoalProbability.evaluate(plan: plan, estimate: FitnessStore.shared.estimate(runs: workouts), runs: workouts, today: .now, calendar: .current) {
+               let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: .current) {
                 GoalProbabilityHistory.record(probability, goal: plan.goal)
             }
             let today = Date.now
@@ -185,7 +185,7 @@ struct TrainingPlanCard: View {
         }
         let estimate = FitnessStore.shared.estimate(runs: workouts)
         if days >= 0 {
-            if let probability = GoalProbability.evaluate(plan: plan, estimate: estimate, runs: workouts, today: .now, calendar: calendar) {
+            if let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: workouts), runs: workouts, today: .now, calendar: calendar) {
                 GoalProbabilitySummary(probability: probability, goal: plan.goal)
             } else {
                 GoalProbabilityMissing(hasGoalTime: plan.goal.goalTime != nil) { editingGoal = true }

@@ -12,11 +12,14 @@ struct SpringView: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var workouts: [WorkoutSummary]?
     @State private var predictions: [RacePrediction] = []
+    /// Modelo de rendimiento (si hay pruebas): forma, tendencia y confianza.
+    @State private var performance: PerformanceAssessment?
     /// Sin duplicados ni lo que excluiste (control de calidad).
     @State private var allWorkouts: [WorkoutSummary] = []
     /// Todo lo que vino de Salud, para revisar la calidad.
     @State private var rawWorkouts: [WorkoutSummary] = []
     @State private var flaggedCount = 0
+    @AppStorage(FitnessStore.riegelExponentKey) private var riegelExponent = RacePerformanceModel.defaultRiegelExponent
     @State private var showsStartInfo = false
 
     var body: some View {
@@ -34,7 +37,7 @@ struct SpringView: View {
                         RunningStatsCard(workouts: allWorkouts)
                         TrainingLoadCard()
                         HeartRateRecoveryCard()
-                        RacePredictionCard(predictions: predictions, unitSystem: unitSystem)
+                        RacePredictionCard(predictions: predictions, performance: performance, runs: allWorkouts, unitSystem: unitSystem)
                     }
                     if flaggedCount > 0 {
                         NavigationLink {
@@ -70,6 +73,7 @@ struct SpringView: View {
             }
             .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
             .onChange(of: WorkoutQualityStore.shared.included) { _, _ in refresh(rawWorkouts) }
+            .onChange(of: riegelExponent) { _, _ in refresh(rawWorkouts) }
             .sheet(isPresented: $showsStartInfo) {
                 StartRunInfoSheet()
                     .presentationDetents([.medium])
@@ -84,7 +88,10 @@ struct SpringView: View {
         let clean = WorkoutQualityStore.shared.clean(recent)
         allWorkouts = clean
         workouts = Array(recent.prefix(20))
-        predictions = RacePredictor.predictions(from: clean, endingOn: .now, calendar: .current)
+        // Con pruebas (tests, competiciones o esfuerzos a tope), el modelo de
+        // rendimiento; si no, Riegel con tus mejores carreras.
+        performance = FitnessStore.shared.performance(runs: clean)
+        predictions = performance.map(RacePrediction.from) ?? RacePredictor.predictions(from: clean, endingOn: .now, calendar: .current)
         flaggedCount = DataQuality.assess(recent).values.filter(\.needsReview).count
     }
 

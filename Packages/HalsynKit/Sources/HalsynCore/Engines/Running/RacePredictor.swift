@@ -30,6 +30,32 @@ public struct RacePrediction: Hashable, Identifiable, Sendable {
     /// `true` si se extrapola mucho (la carrera más larga es menos de un tercio de la distancia).
     public let isLongExtrapolation: Bool
 
+    public init(distance: RaceDistance, time: TimeInterval, fastest: TimeInterval, slowest: TimeInterval, basedOn: Int, isLongExtrapolation: Bool) {
+        self.distance = distance
+        self.time = time
+        self.fastest = fastest
+        self.slowest = slowest
+        self.basedOn = basedOn
+        self.isLongExtrapolation = isLongExtrapolation
+    }
+
+    /// Predicciones del modelo de rendimiento (VDOT + Riegel con varias pruebas).
+    /// Sin intervalo, el rango queda vacío (igual al tiempo).
+    public static func from(_ assessment: PerformanceAssessment) -> [RacePrediction] {
+        let longest = assessment.evidence.map(\.distance).max() ?? 0
+        return RaceDistance.allCases.map { distance in
+            let prediction = assessment.predict(distance.rawValue)
+            return RacePrediction(
+                distance: distance,
+                time: prediction.time,
+                fastest: prediction.range?.lowerBound ?? prediction.time,
+                slowest: prediction.range?.upperBound ?? prediction.time,
+                basedOn: assessment.evidence.count,
+                isLongExtrapolation: longest < distance.rawValue / 3
+            )
+        }
+    }
+
     public var id: Double { distance.rawValue }
     public var pace: Pace { Pace(secondsPerKilometer: time / (distance.rawValue / 1000)) }
 }

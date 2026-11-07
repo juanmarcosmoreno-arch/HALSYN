@@ -36,6 +36,18 @@ final class FitnessStore {
         return zones.maxSource == .manual ? zones.maxHeartRate : nil
     }
 
+    /// Exponente de Riegel elegido (Predicción › Cómo se calcula).
+    static let riegelExponentKey = "halsyn.riegelExponent"
+    var riegelExponent: Double {
+        let value = defaults.double(forKey: Self.riegelExponentKey)
+        return RacePerformanceModel.plausibleExponent.contains(value) ? value : RacePerformanceModel.defaultRiegelExponent
+    }
+
+    /// Modelo de rendimiento con todas tus pruebas (tests, competiciones y esfuerzos).
+    func performance(runs: [WorkoutSummary], today: Date = .now) -> PerformanceAssessment? {
+        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, today: today, calendar: .current)
+    }
+
     func estimate(runs: [WorkoutSummary], today: Date = .now) -> FitnessEstimate? {
         FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
     }
@@ -348,9 +360,10 @@ struct GoalStatusCard: View {
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
                     timeRow("Con tu forma de hoy", assessment.predictedTime)
-                    if let probability = GoalProbability.evaluate(plan: plan, estimate: estimate, runs: runs, today: .now, calendar: .current) {
+                    if let performance = fitness.performance(runs: runs),
+                       let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
                         Divider().overlay(Color.halsynHairline)
-                        GoalProbabilityDetail(probability: probability, estimate: estimate, goal: plan.goal)
+                        GoalProbabilityDetail(probability: probability, performance: performance, goal: plan.goal)
                     } else if let projected = progress.projectedTime {
                         timeRow("Previsto el día de la carrera", projected)
                     }

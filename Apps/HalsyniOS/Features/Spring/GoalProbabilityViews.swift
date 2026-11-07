@@ -4,16 +4,16 @@ import SwiftUI
 
 // MARK: - Historial
 
-/// Un valor por día para ver cómo cambia la probabilidad. Se reinicia si
-/// cambias la distancia, el tiempo objetivo o la fecha.
+/// Tiempo previsto el día de la carrera, uno por día, para ver cómo cambia.
+/// Se reinicia si cambias la distancia, el tiempo objetivo o la fecha.
 @MainActor
 enum GoalProbabilityHistory {
-    static let key = "halsyn.goalProbability.history"
+    static let key = "halsyn.goalProbability.history.v2"
     static let limit = 120
 
     private struct Entry: Codable {
         var day: Date
-        var percent: Int
+        var projected: TimeInterval
         var goal: String
     }
 
@@ -28,90 +28,165 @@ enum GoalProbabilityHistory {
         return (try? JSONDecoder().decode([Entry].self, from: data)) ?? []
     }
 
-    /// Guarda (o actualiza) el valor de hoy.
     static func record(_ probability: GoalProbability, goal: PlanGoal, today: Date = .now, calendar: Calendar = .current) {
         let signature = signature(goal)
         let day = calendar.startOfDay(for: today)
         var entries = load().filter { $0.goal == signature && $0.day != day }
-        entries.append(Entry(day: day, percent: probability.percent, goal: signature))
+        entries.append(Entry(day: day, projected: probability.projectedTime, goal: signature))
         entries.sort { $0.day < $1.day }
         if let data = try? JSONEncoder().encode(Array(entries.suffix(limit))) {
             defaults.set(data, forKey: key)
         }
     }
 
-    /// Cambio en puntos frente al valor de hace al menos 7 días.
-    static func weeklyChange(current: GoalProbability, goal: PlanGoal, today: Date = .now, calendar: Calendar = .current) -> Int? {
+    /// Segundos que mejoró (negativo) o empeoró el tiempo previsto frente a hace al menos 7 días.
+    static func weeklyChange(current: GoalProbability, goal: PlanGoal, today: Date = .now, calendar: Calendar = .current) -> TimeInterval? {
         let signature = signature(goal)
         let limitDay = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: today)) ?? today
         guard let previous = load().last(where: { $0.goal == signature && $0.day <= limitDay }) else { return nil }
-        return current.percent - previous.percent
+        return current.projectedTime - previous.projected
     }
 }
 
 // MARK: - Textos y colores
 
 enum GoalProbabilityText {
-    static func color(_ level: GoalProbability.Level) -> Color {
-        switch level {
-        case .likely: .halsynPositive
-        case .possible: .halsynCaution
-        case .unlikely: .halsynAlert
+    static func color(_ category: GoalProbability.Category) -> Color {
+        switch category {
+        case .veryLikely: .halsynPositive
+        case .achievable: .halsynAccentText
+        case .demanding: .halsynCaution
+        case .unrealistic: .halsynAlert
         }
     }
 
-    static func title(_ level: GoalProbability.Level) -> LocalizedStringKey {
-        switch level {
-        case .likely: "Probable"
-        case .possible: "Posible, sin margen"
-        case .unlikely: "Difícil por ahora"
+    static func titleText(_ category: GoalProbability.Category) -> String {
+        switch category {
+        case .veryLikely: String(localized: "Muy probable")
+        case .achievable: String(localized: "Alcanzable")
+        case .demanding: String(localized: "Exigente")
+        case .unrealistic: String(localized: "Poco realista por ahora")
         }
     }
 
-    static func change(_ points: Int) -> String? {
-        guard points != 0 else { return String(localized: "Igual que hace una semana") }
-        let delta = abs(points)
-        return points > 0
-            ? String(localized: "▲ \(delta) puntos en una semana")
-            : String(localized: "▼ \(delta) puntos en una semana")
+    static func symbol(_ category: GoalProbability.Category) -> String {
+        switch category {
+        case .veryLikely: "checkmark"
+        case .achievable: "flag.checkered"
+        case .demanding: "flame"
+        case .unrealistic: "exclamationmark"
+        }
+    }
+
+    /// Cuánto se llena la ruedita: es una escala de categorías, no un porcentaje.
+    static func fill(_ category: GoalProbability.Category) -> Double {
+        switch category {
+        case .veryLikely: 1
+        case .achievable: 0.75
+        case .demanding: 0.5
+        case .unrealistic: 0.25
+        }
+    }
+
+    static func change(_ seconds: TimeInterval) -> String {
+        let delta = Int(abs(seconds).rounded())
+        guard delta >= 5 else { return String(localized: "Previsto igual que hace una semana") }
+        let text = HalsynFormat.duration(TimeInterval(delta))
+        return seconds < 0
+            ? String(localized: "Previsto \(text) más rápido que hace una semana")
+            : String(localized: "Previsto \(text) más lento que hace una semana")
+    }
+
+    static func range(_ range: ClosedRange<TimeInterval>) -> String {
+        "\(HalsynFormat.duration(range.lowerBound))–\(HalsynFormat.duration(range.upperBound))"
+    }
+
+    static func confidence(_ confidence: PerformanceAssessment.Confidence) -> String {
+        switch confidence {
+        case .high: String(localized: "Confianza alta")
+        case .medium: String(localized: "Confianza media")
+        case .low: String(localized: "Confianza baja")
+        }
+    }
+
+    /// Frase de cada factor, con el dato que la respalda.
+    static func factor(_ factor: GoalProbability.Factor, unit: UnitSystem) -> String {
+        switch factor.kind {
+        case .gap:
+            let points = HalsynFormat.decimal(abs(factor.value), fractionDigits: 1)
+            if factor.value <= 0 { return String(localized: "Tu forma de hoy ya alcanza para el objetivo.") }
+            let usual = HalsynFormat.decimal(factor.reference ?? 0, fractionDigits: 1)
+            return factor.effect == .hinders
+                ? String(localized: "Te faltan \(points) puntos de VDOT; la mejora habitual en el tiempo que queda es de unos \(usual).")
+                : String(localized: "Te faltan \(points) puntos de VDOT, dentro de la mejora habitual (\(usual)) para el tiempo que queda.")
+        case .compliance:
+            let percent = "\(Int((factor.value * 100).rounded())) %"
+            switch factor.effect {
+            case .favors: return String(localized: "Cumpliste el \(percent) de las sesiones de las últimas 4 semanas.")
+            case .neutral: return String(localized: "Cumpliste el \(percent) de las sesiones de las últimas 4 semanas: algo menos de lo ideal.")
+            case .hinders: return String(localized: "Cumpliste solo el \(percent) de las sesiones de las últimas 4 semanas: la mejora esperada baja.")
+            }
+        case .trend:
+            let perWeek = HalsynFormat.decimal(abs(factor.value), fractionDigits: 2)
+            switch factor.effect {
+            case .favors: return String(localized: "Tu forma viene mejorando (+\(perWeek) VDOT por semana).")
+            case .hinders: return String(localized: "Tu forma viene bajando (−\(perWeek) VDOT por semana).")
+            case .neutral: return String(localized: "Tu forma está estable en las últimas semanas.")
+            }
+        case .time:
+            let weeksText = String(Int(factor.value))
+            let minimumText = String(Int(factor.reference ?? 0))
+            return factor.effect == .favors
+                ? String(localized: "Quedan \(weeksText) semanas: tiempo suficiente para esta distancia.")
+                : String(localized: "Quedan \(weeksText) semanas; para esta distancia se suelen recomendar \(minimumText) o más.")
+        case .volume:
+            let weekly = SessionText.distance(factor.value, unit: unit)
+            let minimum = SessionText.distance(factor.reference ?? 0, unit: unit)
+            switch factor.effect {
+            case .favors: return String(localized: "Corres \(weekly) por semana, suficiente para esta distancia.")
+            case .neutral: return String(localized: "Corres \(weekly) por semana; para esta distancia conviene acercarse a \(minimum).")
+            case .hinders: return String(localized: "Corres \(weekly) por semana, poco para esta distancia (se recomienda \(minimum) o más).")
+            }
+        case .confidence:
+            switch factor.effect {
+            case .favors: return String(localized: "La estimación es confiable: tienes pruebas recientes y coherentes.")
+            case .neutral: return String(localized: "La estimación es razonable, pero un test reciente la haría más precisa.")
+            case .hinders: return String(localized: "La estimación tiene baja confianza: faltan pruebas recientes. Un test lo resuelve.")
+            }
+        }
     }
 }
 
 // MARK: - Ruedita
 
-/// Anillo con el porcentaje: verde (70 % o más), amarillo (40–69 %) o rojo.
+/// Ruedita de la factibilidad: color y llenado por categoría (no es un porcentaje).
 struct GoalProbabilityRing: View {
     let probability: GoalProbability
     var diameter: CGFloat = 64
 
     var body: some View {
-        let tint = GoalProbabilityText.color(probability.level)
+        let tint = GoalProbabilityText.color(probability.category)
         let line = max(5, diameter / 10)
         ZStack {
             Circle()
                 .stroke(tint.opacity(0.18), lineWidth: line)
             Circle()
-                .trim(from: 0, to: probability.value)
+                .trim(from: 0, to: GoalProbabilityText.fill(probability.category))
                 .stroke(tint, style: StrokeStyle(lineWidth: line, lineCap: .round))
                 .rotationEffect(.degrees(-90))
-            Text(verbatim: "\(probability.percent) %")
-                .font(.system(size: diameter * 0.26, weight: .semibold, design: .rounded).monospacedDigit())
-                .foregroundStyle(.halsynPrimaryText)
-                .minimumScaleFactor(0.6)
-                .lineLimit(1)
-                .padding(line)
+            Image(systemName: GoalProbabilityText.symbol(probability.category))
+                .font(.system(size: diameter * 0.3, weight: .semibold))
+                .foregroundStyle(tint)
         }
         .frame(width: diameter, height: diameter)
-        .animation(.easeOut(duration: 0.4), value: probability.value)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Probabilidad de llegar al objetivo"))
-        .accessibilityValue(Text(verbatim: "\(probability.percent) %"))
+        .accessibilityLabel(Text("Factibilidad del objetivo"))
+        .accessibilityValue(Text(verbatim: GoalProbabilityText.titleText(probability.category)))
     }
 }
 
 // MARK: - Resumen (tarjeta del plan)
 
-/// Ruedita con el porcentaje y una línea de qué la mueve.
 struct GoalProbabilitySummary: View {
     let probability: GoalProbability
     let goal: PlanGoal
@@ -120,19 +195,19 @@ struct GoalProbabilitySummary: View {
         HStack(alignment: .center, spacing: HalsynSpacing.m) {
             GoalProbabilityRing(probability: probability)
             VStack(alignment: .leading, spacing: 2) {
-                Text("Probabilidad de llegar al objetivo")
+                Text("Objetivo")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
-                Text(GoalProbabilityText.title(probability.level))
+                Text(verbatim: GoalProbabilityText.titleText(probability.category))
                     .font(.halsynHeadline)
-                    .foregroundStyle(GoalProbabilityText.color(probability.level))
-                Text("Previsto el día de la carrera: \(HalsynFormat.duration(probability.projectedTime))")
+                    .foregroundStyle(GoalProbabilityText.color(probability.category))
+                Text("Previsto: \(HalsynFormat.duration(probability.projectedTime)) (\(GoalProbabilityText.range(probability.projectedRange)))")
                     .font(.halsynCaption.monospacedDigit())
                     .foregroundStyle(.halsynPrimaryText)
-                if let points = GoalProbabilityHistory.weeklyChange(current: probability, goal: goal), let text = GoalProbabilityText.change(points) {
-                    Text(verbatim: text)
+                if let seconds = GoalProbabilityHistory.weeklyChange(current: probability, goal: goal) {
+                    Text(verbatim: GoalProbabilityText.change(seconds))
                         .font(.caption2.monospacedDigit())
-                        .foregroundStyle(points > 0 ? Color.halsynPositive : (points < 0 ? Color.halsynAlert : Color.halsynSecondaryText))
+                        .foregroundStyle(seconds < -4 ? Color.halsynPositive : (seconds > 4 ? Color.halsynAlert : Color.halsynSecondaryText))
                 }
             }
             Spacer(minLength: 0)
@@ -140,20 +215,19 @@ struct GoalProbabilitySummary: View {
     }
 }
 
-/// Lo que se muestra cuando todavía no se puede calcular.
 struct GoalProbabilityMissing: View {
     let hasGoalTime: Bool
     let setGoal: () -> Void
 
     var body: some View {
         if hasGoalTime {
-            Label("Para calcular la probabilidad de llegar al objetivo hace falta un test, una carrera o un entrenamiento de 3 km o más en las últimas 6 semanas.", systemImage: "percent")
+            Label("Para estimar si llegas al objetivo hace falta un test, una competición o un entrenamiento a tope (pulso alto sostenido) de 3 km o más en las últimas 6 semanas.", systemImage: "stopwatch")
                 .font(.halsynCaption)
                 .foregroundStyle(.halsynSecondaryText)
                 .fixedSize(horizontal: false, vertical: true)
         } else {
             Button(action: setGoal) {
-                Label("Pon un tiempo objetivo para ver la probabilidad de lograrlo", systemImage: "percent")
+                Label("Pon un tiempo objetivo para ver si es alcanzable", systemImage: "flag.checkered")
                     .font(.halsynCaption.weight(.semibold))
             }
             .buttonStyle(.borderless)
@@ -163,69 +237,61 @@ struct GoalProbabilityMissing: View {
 
 // MARK: - Detalle (Tu objetivo)
 
-/// Ruedita grande y lo que entra en el cálculo.
+/// Factibilidad con lo que acerca y aleja el objetivo, y cómo se calcula.
 struct GoalProbabilityDetail: View {
     let probability: GoalProbability
-    let estimate: FitnessEstimate
+    let performance: PerformanceAssessment
     let goal: PlanGoal
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
 
     var body: some View {
         VStack(alignment: .leading, spacing: HalsynSpacing.m) {
             HStack(spacing: HalsynSpacing.m) {
-                GoalProbabilityRing(probability: probability, diameter: 88)
+                GoalProbabilityRing(probability: probability, diameter: 80)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(GoalProbabilityText.title(probability.level))
+                    Text(verbatim: GoalProbabilityText.titleText(probability.category))
                         .font(.halsynHeadline)
-                        .foregroundStyle(GoalProbabilityText.color(probability.level))
+                        .foregroundStyle(GoalProbabilityText.color(probability.category))
                     if let goalTime = goal.goalTime {
-                        Text("de correr \(String(localized: String.LocalizationValue(goal.distance.title))) en \(HalsynFormat.duration(goalTime))")
-                            .font(.halsynCaption)
-                            .foregroundStyle(.halsynSecondaryText)
+                        Text("Objetivo \(HalsynFormat.duration(goalTime)) · previsto \(HalsynFormat.duration(probability.projectedTime))")
+                            .font(.halsynCaption.monospacedDigit())
                     }
-                    if let points = GoalProbabilityHistory.weeklyChange(current: probability, goal: goal), let text = GoalProbabilityText.change(points) {
-                        Text(verbatim: text)
-                            .font(.caption2.monospacedDigit())
-                            .foregroundStyle(.halsynSecondaryText)
-                    }
+                    Text("Rango probable el día de la carrera: \(GoalProbabilityText.range(probability.projectedRange))")
+                        .font(.caption2.monospacedDigit())
+                        .foregroundStyle(.halsynSecondaryText)
+                    Text(verbatim: GoalProbabilityText.confidence(probability.confidence))
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
                 }
             }
-            row("Tu forma hoy", value: RaceGoalText.vdot(probability.currentVDOT), detail: estimate.isFromTraining
-                ? String(localized: "De tus mejores carreras recientes, en el plan o fuera de él")
-                : String(localized: "De tu último test o carrera"))
-            row("Sesiones cumplidas", value: complianceValue, detail: complianceDetail)
-            row("Mejora esperada", value: "+" + HalsynFormat.decimal(probability.expectedGain, fractionDigits: 1), detail: String(localized: "En \(probability.trainingWeeks) semanas de entrenamiento, según cuánto cumples"))
-            row("Prevista el día de la carrera", value: RaceGoalText.vdot(probability.projectedVDOT), detail: HalsynFormat.duration(probability.projectedTime))
-            row("Pide el objetivo", value: RaceGoalText.vdot(probability.goalVDOT), detail: nil)
-            ExpandableText("Cómo se calcula: tu forma de hoy (VDOT) más la mejora habitual de Daniels (1 punto cada 6 semanas) por las semanas que quedan, ajustada por las sesiones del plan que cumpliste en las últimas 4 semanas. La forma sale de tu último test o carrera, o de tu mejor esfuerzo de 3 km o más de las últimas 6 semanas, aunque no estuviera en el plan. La probabilidad es la de que tu forma el día de la carrera llegue a la que pide el objetivo, con un margen de error que crece si no hay un test reciente y por lo que puede pasar ese día. Ni optimista ni pesimista: con el objetivo justo en lo previsto da 50 %. Nunca baja de 3 % ni pasa de 97 %. Es una estimación orientativa, no una predicción segura; un test cada 6 semanas la hace más precisa.")
+            factorList("A favor", effect: .favors, symbol: "arrow.up.circle.fill", tint: .halsynPositive)
+            factorList("En contra", effect: .hinders, symbol: "arrow.down.circle.fill", tint: .halsynAlert)
+            factorList("Neutral", effect: .neutral, symbol: "minus.circle", tint: .halsynSecondaryText)
+            ExpandableText("Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango (80 %) suma la incertidumbre de tu forma, de la mejora y del día de la carrera. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.")
                 .font(.caption2)
                 .foregroundStyle(.halsynSecondaryText)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
 
-    private var complianceValue: String {
-        guard let compliance = probability.compliance else { return "—" }
-        return "\(Int((compliance * 100).rounded())) %"
-    }
-
-    private var complianceDetail: String {
-        guard probability.sessionsPlanned > 0 else { return String(localized: "Aún no hay sesiones pasadas: se asume lo habitual") }
-        return String(localized: "\(probability.sessionsDone) de \(probability.sessionsPlanned) en las últimas 4 semanas")
-    }
-
-    private func row(_ title: LocalizedStringKey, value: String, detail: String?) -> some View {
-        LabeledContent {
-            Text(verbatim: value).monospacedDigit()
-        } label: {
-            VStack(alignment: .leading, spacing: 1) {
+    @ViewBuilder
+    private func factorList(_ title: LocalizedStringKey, effect: GoalProbability.Factor.Effect, symbol: String, tint: Color) -> some View {
+        let factors = probability.factors.filter { $0.effect == effect }
+        if !factors.isEmpty {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(title)
-                if let detail {
-                    Text(verbatim: detail)
-                        .font(.caption2)
-                        .foregroundStyle(.halsynSecondaryText)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.halsynSecondaryText)
+                ForEach(factors) { factor in
+                    Label {
+                        Text(verbatim: GoalProbabilityText.factor(factor, unit: unitSystem))
+                            .fixedSize(horizontal: false, vertical: true)
+                    } icon: {
+                        Image(systemName: symbol).foregroundStyle(tint)
+                    }
+                    .font(.halsynCaption)
                 }
             }
         }
-        .font(.halsynCaption)
     }
 }

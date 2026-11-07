@@ -190,8 +190,10 @@ struct DataExportView: View {
                 lines.append("- " + String(localized: "Tiempo objetivo: \(HalsynFormat.duration(goal))"))
             }
             lines.append("- " + String(localized: "Carreras por semana: \(String(plan.goal.runsPerWeek))"))
-            if let probability = GoalProbability.evaluate(plan: plan, estimate: estimate, runs: runs, today: end, calendar: calendar) {
-                lines.append("- " + String(localized: "Probabilidad estimada por HÅLSYN de llegar al objetivo: \(String(probability.percent)) % (tiempo previsto \(HalsynFormat.duration(probability.projectedTime)))"))
+            if let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: runs, today: end), runs: runs, today: end, calendar: calendar) {
+                let category = GoalProbabilityText.titleText(probability.category)
+                let range = "\(HalsynFormat.duration(probability.projectedRange.lowerBound))–\(HalsynFormat.duration(probability.projectedRange.upperBound))"
+                lines.append("- " + String(localized: "Factibilidad estimada por HÅLSYN: \(category). Tiempo previsto el día de la carrera: \(HalsynFormat.duration(probability.projectedTime)) (rango del 80 %: \(range)). Es una estimación sin calibrar con resultados reales."))
                 if let compliance = probability.compliance {
                     lines.append("- " + String(localized: "Sesiones del plan cumplidas en las últimas 4 semanas: \(String(probability.sessionsDone)) de \(String(probability.sessionsPlanned)) (\(String(Int((compliance * 100).rounded()))) %)"))
                 }

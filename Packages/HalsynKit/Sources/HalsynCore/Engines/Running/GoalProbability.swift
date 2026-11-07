@@ -1,79 +1,93 @@
 import Foundation
 
-/// Probabilidad de llegar al tiempo objetivo del plan el día de la carrera.
+/// Qué tan factible es el objetivo del plan el día de la carrera.
 ///
-/// Cómo se calcula (se recalcula cada vez con los datos nuevos):
+/// Se muestra como **categoría** con el tiempo previsto y su rango, no como un
+/// porcentaje: un porcentaje solo sería defendible si estuviera calibrado con
+/// resultados reales, y eso aún no existe (`isCalibrated`). El valor
+/// numérico del modelo (`modelValue`) se conserva para la evaluación
+/// retrospectiva.
 ///
-/// 1. **Forma de hoy**: el VDOT de `FitnessEstimator`. Sale de tu último test
-///    o carrera, o del mejor esfuerzo de 3 km o más de las últimas 6 semanas,
-///    **esté o no en el plan**: así cuentan tus ritmos actuales.
-/// 2. **Mejora esperada**: la pauta prudente de Daniels (1 punto de VDOT cada
-///    6 semanas de entrenamiento constante) por las semanas que quedan antes
-///    del afinamiento, multiplicada por cuánto estás cumpliendo el plan.
-/// 3. **Cumplimiento**: las sesiones de carrera de las últimas 4 semanas del
-///    plan (hechas = 1; en parte = la fracción corrida, como mucho 0,8; no
-///    hechas = 0). Con el 90 % o más cuenta la mejora entera; con el 40 % o
-///    menos, ninguna. Sin sesiones pasadas se asume un 85 % (lo típico) y se
-///    suma incertidumbre.
-/// 4. **Incertidumbre** (desviación en puntos de VDOT), sumando:
-///    - la forma de hoy: 1 punto con un test reciente; hasta 2 si el test es
-///      viejo; 2 si sale de entrenamientos (que casi nunca son a tope);
-///    - la mejora: la mitad de la mejora esperada (varía mucho entre personas);
-///    - el día de la carrera (clima, recorrido, cómo amaneces): 0,7 puntos.
-/// 5. Probabilidad = P(forma el día de la carrera ≥ forma que pide el
-///    objetivo), con una distribución normal. Se acota entre 3 % y 97 %:
-///    nunca hay certeza.
-///
-/// No es optimista ni pesimista a propósito: el centro es la proyección y la
-/// incertidumbre es simétrica. Las cifras de incertidumbre son una elección
-/// de HÅLSYN para que el número sea razonable, no salen de un estudio.
+/// Cálculo (RUNNING_ENGINE.md, "Factibilidad del objetivo"):
+/// 1. **Forma de hoy** y su incertidumbre: `RacePerformanceModel` (varias pruebas
+///    ponderadas, tendencia robusta, coherencia entre pruebas).
+/// 2. **Mejora esperada** hasta el afinamiento: mitad pauta prudente de
+///    Daniels (1 punto de VDOT cada 6 semanas) y mitad tu tendencia observada
+///    (si la hay, entre 0 y +0,25 por semana), multiplicada por el
+///    cumplimiento del plan de las últimas 4 semanas (≥ 90 % cuenta entera,
+///    ≤ 40 % nada; sin sesiones pasadas se asume 85 %).
+/// 3. **Incertidumbre total**: la del modelo, la mitad de la mejora esperada
+///    (varía mucho entre personas) y 0,7 puntos por el día de la carrera.
+/// 4. **Categoría** según z = (forma prevista − forma que pide el objetivo) /
+///    incertidumbre: z ≥ 1 muy probable; 0…1 alcanzable; −1…0 exigente;
+///    < −1 poco realista por ahora. Con el objetivo justo en lo previsto,
+///    "alcanzable" en el límite con "exigente": ni optimista ni pesimista.
 public struct GoalProbability: Hashable, Sendable {
-    public enum Level: String, Hashable, Sendable {
-        /// 70 % o más.
-        case likely
-        /// Entre 40 y 70 %.
-        case possible
-        /// Menos del 40 %.
-        case unlikely
+    public enum Category: Int, Comparable, Hashable, Sendable {
+        case unrealistic, demanding, achievable, veryLikely
+        public static func < (lhs: Category, rhs: Category) -> Bool { lhs.rawValue < rhs.rawValue }
     }
 
-    /// 0,03…0,97.
-    public let value: Double
+    /// Factor que acerca o aleja el objetivo, con el dato que lo justifica.
+    public struct Factor: Hashable, Identifiable, Sendable {
+        public enum Kind: String, Hashable, Sendable {
+            /// Puntos de VDOT entre tu forma de hoy y la que pide el objetivo.
+            case gap
+            /// Sesiones cumplidas en las últimas 4 semanas (fracción).
+            case compliance
+            /// Tendencia de tu forma (VDOT por semana).
+            case trend
+            /// Semanas que quedan frente a las recomendadas para la distancia.
+            case time
+            /// Kilómetros por semana (últimas 4) frente a los recomendados.
+            case volume
+            /// Confianza de la estimación de la forma.
+            case confidence
+        }
+
+        public enum Effect: Int, Hashable, Sendable {
+            case hinders, neutral, favors
+        }
+
+        public let kind: Kind
+        public let effect: Effect
+        /// Valor principal (unidad según `kind`).
+        public let value: Double
+        /// Valor de referencia (lo recomendado o necesario), si aplica.
+        public let reference: Double?
+
+        public var id: Kind { kind }
+    }
+
+    public let category: Category
+    /// Probabilidad del modelo sin calibrar (0…1). No se muestra como porcentaje.
+    public let modelValue: Double
+    /// `false` hasta que haya resultados reales con los que calibrar.
+    public let isCalibrated: Bool
     public let goalVDOT: Double
     public let currentVDOT: Double
-    /// Forma prevista el día de la carrera.
     public let projectedVDOT: Double
     public let projectedTime: TimeInterval
-    /// Mejora esperada hasta la carrera (puntos de VDOT).
+    /// Rango del 80 % del tiempo previsto el día de la carrera.
+    public let projectedRange: ClosedRange<TimeInterval>
     public let expectedGain: Double
-    /// Fracción de las sesiones recientes cumplidas, si ya hay sesiones pasadas.
     public let compliance: Double?
     public let sessionsDone: Int
     public let sessionsPlanned: Int
     public let trainingWeeks: Int
-    /// Desviación total en puntos de VDOT.
     public let uncertainty: Double
+    public let confidence: PerformanceAssessment.Confidence
+    public let factors: [Factor]
 
-    public var level: Level {
-        if value >= 0.7 { return .likely }
-        if value >= 0.4 { return .possible }
-        return .unlikely
-    }
-
-    /// Porcentaje entero (3…97).
-    public var percent: Int { Int((value * 100).rounded()) }
-
-    public static let minimum = 0.03
-    public static let maximum = 0.97
     public static let complianceWindowDays = 28
     public static let assumedCompliance = 0.85
     public static let raceDayUncertainty = 0.7
 
     /// `nil` sin tiempo objetivo, sin estimación de forma o con la carrera ya pasada.
-    public static func evaluate(plan: TrainingPlan, estimate: FitnessEstimate?, runs: [WorkoutSummary], today: Date, calendar: Calendar) -> GoalProbability? {
+    public static func evaluate(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar) -> GoalProbability? {
         guard let goalTime = plan.goal.goalTime,
               let goalVDOT = VDOT.value(distance: plan.goal.distance.rawValue, time: goalTime),
-              let estimate,
+              let performance,
               calendar.startOfDay(for: today) <= calendar.startOfDay(for: plan.goal.raceDate)
         else { return nil }
 
@@ -81,43 +95,70 @@ public struct GoalProbability: Hashable, Sendable {
         let record = complianceRecord(plan: plan, runs: runs, today: today, calendar: calendar)
         let compliance = record.planned > 0 ? record.score / Double(record.planned) : nil
         let factor = gainFactor(compliance ?? assumedCompliance)
-        let fullGain = Double(weeks) / GoalCoach.realisticWeeksPerPoint
-        let gain = fullGain * factor
-        let projected = estimate.vdot + gain
+        let ruleRate = 1 / GoalCoach.realisticWeeksPerPoint
+        let rate = performance.weeklyTrend.map { 0.5 * ruleRate + 0.5 * min(max($0, 0), RacePerformanceModel.maximumWeeklyTrend) } ?? ruleRate
+        let gain = Double(weeks) * rate * factor
+        let projected = performance.currentVDOT + gain
 
-        let fitnessSigma = fitnessUncertainty(estimate, today: today, calendar: calendar)
         var gainSigma = gain * 0.5
         if compliance == nil { gainSigma += 0.3 }
-        let sigma = (fitnessSigma * fitnessSigma + gainSigma * gainSigma + raceDayUncertainty * raceDayUncertainty).squareRoot()
-
+        let sigma = (performance.uncertainty * performance.uncertainty + gainSigma * gainSigma + raceDayUncertainty * raceDayUncertainty).squareRoot()
         let z = (projected - goalVDOT) / sigma
-        let probability = min(max(normalCDF(z), minimum), maximum)
+        let category: Category = z >= 1 ? .veryLikely : (z >= 0 ? .achievable : (z >= -1 ? .demanding : .unrealistic))
+
+        let distance = plan.goal.distance.rawValue
+        let fast = VDOT.raceTime(vdot: projected + 1.28 * sigma, distance: distance)
+        let slow = VDOT.raceTime(vdot: max(projected - 1.28 * sigma, 15), distance: distance)
+
+        // Factores, con sus umbrales documentados.
+        var factors: [Factor] = []
+        let needed = goalVDOT - performance.currentVDOT
+        let fullGain = Double(weeks) * ruleRate
+        factors.append(Factor(kind: .gap, effect: needed <= 0 ? .favors : (needed <= fullGain ? .neutral : .hinders), value: needed, reference: fullGain))
+        if let compliance {
+            factors.append(Factor(kind: .compliance, effect: compliance >= 0.85 ? .favors : (compliance >= 0.6 ? .neutral : .hinders), value: compliance, reference: 0.85))
+        }
+        if let trend = performance.weeklyTrend {
+            factors.append(Factor(kind: .trend, effect: trend >= 0.05 ? .favors : (trend <= -0.05 ? .hinders : .neutral), value: trend, reference: nil))
+        }
+        let totalWeeks = (calendar.dateComponents([.day], from: calendar.startOfDay(for: today), to: calendar.startOfDay(for: plan.goal.raceDate)).day ?? 0) / 7
+        let minimumWeeks = GoalCoach.minimumWeeks(plan.goal.distance)
+        factors.append(Factor(kind: .time, effect: totalWeeks >= minimumWeeks ? .favors : .hinders, value: Double(totalWeeks), reference: Double(minimumWeeks)))
+        let weekly = weeklyDistance(runs: runs, today: today, calendar: calendar)
+        let minimumVolume = GoalCoach.minimumWeeklyDistance(plan.goal.distance)
+        factors.append(Factor(kind: .volume, effect: weekly >= minimumVolume ? .favors : (weekly >= minimumVolume * 0.7 ? .neutral : .hinders), value: weekly, reference: minimumVolume))
+        factors.append(Factor(kind: .confidence, effect: performance.confidence == .high ? .favors : (performance.confidence == .medium ? .neutral : .hinders), value: Double(performance.confidence.rawValue), reference: nil))
+
         return GoalProbability(
-            value: probability,
+            category: category,
+            modelValue: normalCDF(z),
+            isCalibrated: false,
             goalVDOT: goalVDOT,
-            currentVDOT: estimate.vdot,
+            currentVDOT: performance.currentVDOT,
             projectedVDOT: projected,
-            projectedTime: VDOT.raceTime(vdot: projected, distance: plan.goal.distance.rawValue),
+            projectedTime: VDOT.raceTime(vdot: projected, distance: distance),
+            projectedRange: fast...slow,
             expectedGain: gain,
             compliance: compliance,
             sessionsDone: record.done,
             sessionsPlanned: record.planned,
             trainingWeeks: weeks,
-            uncertainty: sigma
+            uncertainty: sigma,
+            confidence: performance.confidence,
+            factors: factors
         )
     }
 
-    /// Qué parte de la mejora habitual cuenta según el cumplimiento.
+    /// Qué parte de la mejora esperada cuenta según el cumplimiento.
     public static func gainFactor(_ compliance: Double) -> Double {
         min(max((compliance - 0.4) / 0.5, 0), 1)
     }
 
-    static func fitnessUncertainty(_ estimate: FitnessEstimate, today: Date, calendar: Calendar) -> Double {
-        if estimate.isFromTraining { return 2 }
-        let age = Double(estimate.ageInDays(today: today, calendar: calendar))
-        let fresh = Double(FitnessEstimator.freshDays)
-        guard age > fresh else { return 1 }
-        return min(1 + 0.5 * (age - fresh) / fresh, 2)
+    /// Kilómetros por semana (media de los últimos 28 días), en metros.
+    static func weeklyDistance(runs: [WorkoutSummary], today: Date, calendar: Calendar) -> Double {
+        let start = calendar.date(byAdding: .day, value: -28, to: calendar.startOfDay(for: today)) ?? today
+        let total = runs.filter { $0.activity.isRun && $0.start >= start && $0.start <= today }.compactMap(\.distanceMeters).reduce(0, +)
+        return total / 4
     }
 
     /// Sesiones de carrera de las últimas 4 semanas del plan, hasta ayer.
