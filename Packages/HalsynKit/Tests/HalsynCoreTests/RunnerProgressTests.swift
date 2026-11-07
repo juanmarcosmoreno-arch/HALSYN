@@ -33,7 +33,8 @@ struct RunnerProgressTests {
         #expect(abs(total - 24_000) < 0.1)
         let perWeek: [Double] = progress.weeks.map { week in week.easyMinutes + week.moderateMinutes + week.hardMinutes }
         let minutes: Double = perWeek.reduce(0, +)
-        let expected: Double = Double(10 * 330 + 6 * 270 + 8 * 320) / 60
+        // 10 km a 5:30 + 6 km a 4:30 + 8 km a 5:20 = 7480 s.
+        let expected: Double = 7480.0 / 60.0
         #expect(abs(minutes - expected) < 0.01)
         #expect(progress.weeks.map(\.hardMinutes).reduce(0, +) == 27)
     }
