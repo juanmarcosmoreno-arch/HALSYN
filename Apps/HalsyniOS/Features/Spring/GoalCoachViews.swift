@@ -92,13 +92,14 @@ final class FitnessStore {
     /// mismo que la predicción), con la fecha y el origen de su prueba más
     /// reciente; sin modelo, el estimador simple.
     func estimate(runs: [WorkoutSummary], today: Date = .now) -> FitnessEstimate? {
-        guard let model = performance(runs: runs, today: today), let newest = model.evidence.first else {
+        // La prueba más reciente que cuenta (no un rodaje por debajo ni un duplicado).
+        guard let model = performance(runs: runs, today: today), let newest = model.evidence.first(where: { $0.role == .counted }) else {
             return FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
         }
         if let result = results.first(where: { $0.id == newest.id }) {
             return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .result(result))
         }
-        let efforts = model.evidence.filter { $0.kind == .trainingEffort }.count
+        let efforts = model.evidence.filter { $0.kind == .trainingEffort && $0.role == .counted }.count
         return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .training(runs: efforts))
     }
 

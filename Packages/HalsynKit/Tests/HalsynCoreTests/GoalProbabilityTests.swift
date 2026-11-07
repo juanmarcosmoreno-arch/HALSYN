@@ -190,6 +190,17 @@ struct ProjectionAndAdherenceTests {
         #expect(adherence.actualRunsPerWeek < Double(adherence.targetRunsPerWeek))
         #expect(try #require(adherence.effective) < 1)
     }
+
+    @Test func aRunSplitInSeveralRecordsCountsAsOneDay() throws {
+        let plan = try makePlan(goalTime: 25 * 60)
+        let later = calendar.date(byAdding: .day, value: 14, to: today)!
+        let day = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 3, to: today)!)
+        let pieces = [0, 20, 40].map { minute in
+            WorkoutSummary(activity: .outdoorRun, start: calendar.date(byAdding: .minute, value: 18 * 60 + minute, to: day)!, duration: 600, distanceMeters: 1800, averageHeartRate: 150, maxHeartRate: 170, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
+        }
+        let adherence = TrainingAdherence.evaluate(plan: plan, runs: pieces, today: later, calendar: calendar)
+        #expect(abs(adherence.actualRunsPerWeek * adherence.windowWeeks - 1) < 0.01)
+    }
 }
 
 @Suite("Simulador de objetivos")

@@ -4914,6 +4914,23 @@
         }
       }
     },
+    "Carreras por semana: %@ reales frente a %@ del objetivo; %@ fuera del plan; %@ semanas con plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runs per week: %@ actual versus %@ target; %@ outside the plan; %@ weeks with a plan"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppass per vecka: %@ verkliga mot %@ i målet; %@ utanför planen; %@ veckor med plan"
+          }
+        }
+      }
+    },
     "Celeste": {
       "extractionState": "manual",
       "localizations": {
@@ -11153,19 +11170,19 @@
         }
       }
     },
-    "Factibilidad estimada por HÅLSYN: %@. Tiempo previsto el día de la carrera: %@ (rango del 80 %: %@). Es una estimación sin calibrar con resultados reales.": {
+    "Factibilidad: %@. %@.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN's estimated feasibility: %@. Projected time on race day: %@ (80 % range: %@). This estimate is not calibrated against real results."
+            "value": "Feasibility: %@. %@."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "HÅLSYN:s uppskattade genomförbarhet: %@. Prognostiserad tid på tävlingsdagen: %@ (80 %-intervall: %@). Uppskattningen är inte kalibrerad mot verkliga resultat."
+            "value": "Genomförbarhet: %@. %@."
           }
         }
       }
@@ -20690,6 +20707,23 @@
         }
       }
     },
+    "Pruebas que usa el modelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efforts used by the model"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ansträngningar som modellen använder"
+          }
+        }
+      }
+    },
     "Pruebas usadas": {
       "extractionState": "manual",
       "localizations": {
@@ -24056,19 +24090,19 @@
         }
       }
     },
-    "Sesiones del plan cumplidas en las últimas 4 semanas: %@ de %@ (%@ %)": {
+    "Sesiones del plan cumplidas (desde el inicio del plan, máx. 4 semanas): %@": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plan sessions completed in the last 4 weeks: %@ of %@ (%@ %)"
+            "value": "Plan sessions completed (since the plan started, max. 4 weeks): %@"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Genomförda pass i planen de senaste 4 veckorna: %@ av %@ (%@ %)"
+            "value": "Genomförda pass i planen (sedan planen började, max. 4 veckor): %@"
           }
         }
       }
@@ -26419,6 +26453,23 @@
         }
       }
     },
+    "Tiempo estimado hoy: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated time today: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppskattad tid i dag: %@"
+          }
+        }
+      }
+    },
     "Tiempo objetivo": {
       "extractionState": "manual",
       "localizations": {
@@ -26449,6 +26500,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Måltid: %@"
+          }
+        }
+      }
+    },
+    "Tiempo proyectado el día de la carrera: %@ (rango orientativo %@, sin calibrar con resultados reales)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projected time on race day: %@ (indicative range %@, not calibrated with real results)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prognostiserad tid på tävlingsdagen: %@ (vägledande intervall %@, inte kalibrerat med verkliga resultat)"
           }
         }
       }
@@ -29700,6 +29768,23 @@
         }
       }
     },
+    "cuenta (peso %@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "counts (weight %@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "räknas (vikt %@)"
+          }
+        }
+      }
+    },
     "de un test o carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -29713,6 +29798,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "från ett test eller lopp"
+          }
+        }
+      }
+    },
+    "duplicado: cuenta una sola vez": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "duplicate: counts once"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dubblett: räknas en gång"
           }
         }
       }
@@ -29904,6 +30006,40 @@
         }
       }
     },
+    "no cuenta: duplicado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "doesn't count: duplicate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "räknas inte: dubblett"
+          }
+        }
+      }
+    },
+    "no cuenta: por debajo de tu forma, no la baja": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "doesn't count: below your fitness, doesn't lower it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "räknas inte: under din form, sänker den inte"
+          }
+        }
+      }
+    },
     "no permitida": {
       "extractionState": "manual",
       "localizations": {
@@ -29917,6 +30053,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "inte tillåten"
+          }
+        }
+      }
+    },
+    "pesa menos: no encaja con el resto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "counts less: doesn't fit the rest"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "väger mindre: stämmer inte med resten"
           }
         }
       }
@@ -29951,6 +30104,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "steg/min"
+          }
+        }
+      }
+    },
+    "rango orientativo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "indicative range"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vägledande intervall"
           }
         }
       }

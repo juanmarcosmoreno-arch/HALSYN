@@ -401,10 +401,14 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
             averageHeartRate: heartRate?.averageQuantity()?.doubleValue(for: beatsPerMinute),
             maxHeartRate: heartRate?.maximumQuantity()?.doubleValue(for: beatsPerMinute),
             activeEnergyKilocalories: workout.statistics(for: HKQuantityType(.activeEnergyBurned))?.sumQuantity()?.doubleValue(for: HKUnit.kilocalorie()),
-            // Corriendo, la cadencia media no se deriva todavía (se calculará con
-            // los datos del propio entrenamiento, no con una estimación). En bici
-            // es la que guardó el sensor de cadencia o el medidor de potencia.
-            averageCadence: isRide ? workout.statistics(for: HKQuantityType(.cyclingCadence))?.averageQuantity()?.doubleValue(for: beatsPerMinute) : nil,
+            // En bici, la del sensor de cadencia o del medidor de potencia.
+            // Corriendo, pasos del propio entrenamiento / minutos (si el
+            // entrenamiento guardó pasos; si no, queda vacía, no se estima).
+            averageCadence: isRide
+                ? workout.statistics(for: HKQuantityType(.cyclingCadence))?.averageQuantity()?.doubleValue(for: beatsPerMinute)
+                : workout.statistics(for: HKQuantityType(.stepCount))?.sumQuantity().map { steps in
+                    workout.duration > 0 ? steps.doubleValue(for: .count()) / (workout.duration / 60) : 0
+                },
             origin: .healthKit(sourceName: workout.sourceRevision.source.name),
             averagePower: isRide ? workout.statistics(for: HKQuantityType(.cyclingPower))?.averageQuantity()?.doubleValue(for: .watt()) : nil,
             elevationGain: elevation,

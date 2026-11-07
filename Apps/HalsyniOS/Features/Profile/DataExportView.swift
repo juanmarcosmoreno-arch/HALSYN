@@ -190,12 +190,17 @@ struct DataExportView: View {
                 lines.append("- " + String(localized: "Tiempo objetivo: \(HalsynFormat.duration(goal))"))
             }
             lines.append("- " + String(localized: "Carreras por semana: \(String(plan.goal.runsPerWeek))"))
-            if let probability = GoalProbability.evaluate(plan: plan, performance: FitnessStore.shared.performance(runs: runs, today: end), runs: runs, today: end, calendar: calendar) {
+            if let performance = FitnessStore.shared.performance(runs: runs, today: end),
+               let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: end, calendar: calendar) {
                 let category = GoalProbabilityText.titleText(probability.category)
-                let range = "\(HalsynFormat.duration(probability.projectedRange.lowerBound))–\(HalsynFormat.duration(probability.projectedRange.upperBound))"
-                lines.append("- " + String(localized: "Factibilidad estimada por HÅLSYN: \(category). Tiempo previsto el día de la carrera: \(HalsynFormat.duration(probability.projectedTime)) (rango del 80 %: \(range)). Es una estimación sin calibrar con resultados reales."))
-                if let compliance = probability.compliance {
-                    lines.append("- " + String(localized: "Sesiones del plan cumplidas en las últimas 4 semanas: \(String(probability.sessionsDone)) de \(String(probability.sessionsPlanned)) (\(String(Int((compliance * 100).rounded()))) %)"))
+                let projectedRange = GoalProbabilityText.range(probability.projectedRange)
+                lines.append("- " + String(localized: "Tiempo estimado hoy: \(HalsynFormat.duration(probability.currentTime))") + (probability.currentRange.map { " (" + String(localized: "rango orientativo") + " \(GoalProbabilityText.range($0)))" } ?? ""))
+                lines.append("- " + String(localized: "Tiempo proyectado el día de la carrera: \(HalsynFormat.duration(probability.projectedTime)) (rango orientativo \(projectedRange), sin calibrar con resultados reales)"))
+                lines.append("- " + String(localized: "Factibilidad: \(category). \(GoalProbabilityText.confidence(probability.confidence))."))
+                if let adherence = probability.adherence {
+                    let sessions = adherence.planned > 0 ? "\(adherence.done) / \(adherence.planned)" : "—"
+                    lines.append("- " + String(localized: "Sesiones del plan cumplidas (desde el inicio del plan, máx. 4 semanas): \(sessions)"))
+                    lines.append("- " + String(localized: "Carreras por semana: \(HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1)) reales frente a \(String(adherence.targetRunsPerWeek)) del objetivo; \(String(adherence.runsOutsidePlan)) fuera del plan; \(String(adherence.weeksWithPlan)) semanas con plan"))
                 }
             }
         }
@@ -205,13 +210,29 @@ struct DataExportView: View {
             let sourceText = estimate.isFromTraining ? String(localized: "estimado de entrenamientos") : String(localized: "de un test o carrera")
             lines.append("- " + String(localized: "VDOT (Daniels): \(RaceGoalText.vdot(estimate.vdot)), \(sourceText) del \(estimate.date.formatted(date: .abbreviated, time: .omitted))"))
         }
+        if let performance = FitnessStore.shared.performance(runs: runs, today: end), !performance.evidence.isEmpty {
+            lines.append("")
+            lines.append("## " + String(localized: "Pruebas que usa el modelo"))
+            for item in performance.evidence.prefix(20) {
+                let role: String
+                switch item.role {
+                case .counted: role = String(localized: "cuenta (peso \(HalsynFormat.decimal(item.weight, fractionDigits: 2)))")
+                case .belowEstimate: role = String(localized: "no cuenta: por debajo de tu forma, no la baja")
+                case .duplicate: role = String(localized: "no cuenta: duplicado")
+                case .inconsistent: role = String(localized: "pesa menos: no encaja con el resto")
+                }
+                lines.append("- \(item.date.formatted(date: .abbreviated, time: .omitted)) · \(DataExport.number(item.distance / 1000, digits: 2)) km · \(HalsynFormat.duration(item.time)) · VDOT \(RaceGoalText.vdot(item.vdot)) · \(role)")  // nolocalize
+            }
+        }
         let results = FitnessStore.shared.results
         if !results.isEmpty {
             lines.append("")
             lines.append("## " + String(localized: "Tests y carreras registrados"))
+            let duplicateIDs = Set(RacePerformanceModel.deduplicated(results, calendar: calendar).duplicates.map(\.0.id))
             for result in results.prefix(20) {
                 let kind = result.kind == .test ? String(localized: "Test") : String(localized: "Carrera")
-                lines.append("- \(result.date.formatted(date: .abbreviated, time: .omitted)) · \(kind) · \(DataExport.number(result.distance / 1000, digits: 2)) km · \(HalsynFormat.duration(result.time))")  // nolocalize
+                let note = duplicateIDs.contains(result.id) ? " · " + String(localized: "duplicado: cuenta una sola vez") : ""
+                lines.append("- \(result.date.formatted(date: .abbreviated, time: .omitted)) · \(kind) · \(DataExport.number(result.distance / 1000, digits: 2)) km · \(HalsynFormat.duration(result.time))" + note)  // nolocalize
             }
         }
 

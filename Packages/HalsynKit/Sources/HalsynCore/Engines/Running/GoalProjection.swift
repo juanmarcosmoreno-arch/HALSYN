@@ -10,13 +10,14 @@ public struct TrainingAdherence: Hashable, Sendable {
     public let score: Double
     /// Carreras por semana del objetivo del plan.
     public let targetRunsPerWeek: Int
-    /// Carreras reales por semana en la ventana (dentro y fuera del plan).
+    /// Días con carrera por semana en la ventana (dentro y fuera del plan;
+    /// registros de menos de 1 km o del mismo día cuentan una vez).
     public let actualRunsPerWeek: Double
     /// Semanas que abarca la ventana (desde el inicio del plan, como mucho 4).
     public let windowWeeks: Double
     /// Semanas del plan ya empezadas.
     public let weeksWithPlan: Int
-    /// Carreras en días sin sesión de carrera en el plan.
+    /// Días con carrera sin sesión de carrera en el plan.
     public let runsOutsidePlan: Int
 
     /// Fracción de las sesiones programadas que hiciste (`nil` sin sesiones pasadas).
@@ -51,9 +52,11 @@ public struct TrainingAdherence: Hashable, Sendable {
                 break
             }
         }
-        let windowRuns = runs.filter { $0.activity.isRun && $0.start >= windowStart && $0.start < todayStart }
-        let runDays = Set(running.map { calendar.startOfDay(for: $0.date) })
-        let outside = windowRuns.filter { !runDays.contains(calendar.startOfDay(for: $0.start)) }.count
+        // Días con carrera (una carrera partida en varios registros cuenta una vez).
+        let windowRuns = runs.filter { $0.activity.isRun && $0.start >= windowStart && $0.start < todayStart && ($0.distanceMeters ?? 0) >= 1000 }
+        let runningDays = Set(windowRuns.map { calendar.startOfDay(for: $0.start) })
+        let planDays = Set(running.map { calendar.startOfDay(for: $0.date) })
+        let outside = runningDays.subtracting(planDays).count
         let weeks = Double(days) / 7
         let started = plan.weeks.filter { $0.start <= today }.count
         return TrainingAdherence(
@@ -61,7 +64,7 @@ public struct TrainingAdherence: Hashable, Sendable {
             done: done,
             score: score,
             targetRunsPerWeek: plan.goal.runsPerWeek,
-            actualRunsPerWeek: weeks >= 1 ? Double(windowRuns.count) / weeks : Double(windowRuns.count),
+            actualRunsPerWeek: weeks >= 1 ? Double(runningDays.count) / weeks : Double(runningDays.count),
             windowWeeks: weeks,
             weeksWithPlan: started,
             runsOutsidePlan: outside
