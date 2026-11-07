@@ -177,7 +177,23 @@ struct AdherenceView: View {
             Text("Adherencia y frecuencia")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.halsynSecondaryText)
-            row(String(localized: "Sesiones del plan cumplidas"), value: adherence.planned > 0 ? "\(adherence.done) / \(adherence.planned)" : "—")
+            Text("Sesiones programadas")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.halsynSecondaryText)
+            row(String(localized: "Cumplidas"), value: adherence.sessionsSummary ?? "—")
+            if adherence.partial > 0 {
+                row(String(localized: "Hechas en parte"), value: String(adherence.partial))
+            }
+            if adherence.missed > 0 {
+                row(String(localized: "No hechas"), value: String(adherence.missed))
+            }
+            if adherence.excused > 0 {
+                row(String(localized: "No hechas por enfermedad o lesión (no cuentan)"), value: String(adherence.excused))
+            }
+            Text("Frecuencia")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.halsynSecondaryText)
+                .padding(.top, 4)
             row(String(localized: "Carreras por semana (reales)"), value: HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1))
             row(String(localized: "Carreras por semana (objetivo)"), value: String(adherence.targetRunsPerWeek))
             row(String(localized: "Semanas con plan"), value: String(adherence.weeksWithPlan))

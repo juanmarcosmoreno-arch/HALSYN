@@ -18,6 +18,7 @@ enum CloudBackup {
         "halsyn.trainingPlan",
         "halsyn.performanceResults",
         FitnessStore.outcomesKey,
+        FitnessStore.distinctKey,
         ComplaintStore.key,
         WorkoutQualityStore.excludedKey,
         WorkoutQualityStore.includedKey,

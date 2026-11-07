@@ -88,6 +88,16 @@ struct PredictionDetailView: View {
         let performance = exponent > 0 ? (FitnessStore.shared.performance(runs: runs) ?? initial) : initial
         Form {
             Section {
+                ForEach(Array(PredictionExplanationText.paragraphs(performance, runs: runs, unit: unitSystem).enumerated()), id: \.offset) { _, paragraph in
+                    Text(verbatim: paragraph)
+                        .font(.halsynCaption)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            } header: {
+                Text("¿Por qué HÅLSYN estima este tiempo?")
+            }
+
+            Section {
                 LabeledContent("Forma (VDOT)", value: RaceGoalText.vdot(performance.currentVDOT))
                 LabeledContent("Incertidumbre", value: "± " + HalsynFormat.decimal(performance.uncertainty, fractionDigits: 1))
                 if let trend = performance.weeklyTrend {
@@ -162,6 +172,12 @@ struct PredictionDetailView: View {
                                 .font(.caption2)
                                 .foregroundStyle(item.role == .counted ? Color.halsynSecondaryText : Color.halsynCaution)
                                 .fixedSize(horizontal: false, vertical: true)
+                            if let factors = item.factors, item.weight > 0 {
+                                Text(verbatim: PredictionExplanationText.factors(factors))
+                                    .font(.caption2.monospacedDigit())
+                                    .foregroundStyle(.halsynSecondaryText)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                         Spacer()
                         VStack(alignment: .trailing, spacing: 2) {
@@ -176,7 +192,7 @@ struct PredictionDetailView: View {
             } header: {
                 Text("Pruebas usadas")
             } footer: {
-                Text("Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Los entrenamientos solo pueden subir la estimación, nunca bajarla; la cinta no se compara. El peso baja a la mitad cada 6 semanas.")
+                Text("Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Un test o una competición más lentos sí bajan la estimación; un entrenamiento, nunca. Peso = tipo (competición 1, test 0,9, entrenamiento 0,5) × antigüedad (la mitad cada 6 semanas) × distancia (menos de 1,5 km 0,6; de 1,5 a 3 km 0,85) × calidad (cinta 0,8; pulso bajo para un test 0,7). Los entrenamientos suman como mucho la mitad del peso de los tests.")
             }
         }
         .navigationTitle("Predicción")
@@ -207,5 +223,64 @@ struct PredictionDetailView: View {
         case .test: "stopwatch"
         case .trainingEffort: "figure.run"
         }
+    }
+}
+
+/// Explicación en palabras del cálculo real (mismos números que el modelo).
+enum PredictionExplanationText {
+    static func paragraphs(_ performance: PerformanceAssessment, runs: [WorkoutSummary], unit: UnitSystem) -> [String] {
+        var lines: [String] = []
+        let counted = performance.countedEvidence
+        let vdot = RaceGoalText.vdot(performance.currentVDOT)
+        if counted.count == 1, let only = counted.first {
+            let date = only.date.formatted(.dateTime.day().month(.abbreviated))
+            let distance = SessionText.distance(only.distance, unit: unit)
+            lines.append(String(localized: "Tu VDOT de \(vdot) sale de una sola prueba: \(distance) en \(HalsynFormat.duration(only.time)) el \(date)."))
+        } else if counted.count > 1 {
+            let terms = counted.map { item in
+                RaceGoalText.vdot(item.valueUsed ?? item.vdot) + " × " + HalsynFormat.decimal(item.weight, fractionDigits: 2)
+            }.joined(separator: " + ")
+            let totalText = HalsynFormat.decimal(counted.map(\.weight).reduce(0, +), fractionDigits: 2)
+            let count = counted.count
+            lines.append(String(localized: "Tu VDOT de \(vdot) es una media ponderada de \(count) pruebas: (\(terms)) ÷ \(totalText). Por eso no coincide con el VDOT de ninguna prueba en particular."))
+        }
+        if performance.weeklyTrend != nil, !performance.trendIsProvisional {
+            lines.append(String(localized: "Cada prueba se lleva a hoy con tu tendencia antes de promediar."))
+        } else {
+            lines.append(String(localized: "Sin tendencia: hacen falta 3 tests o competiciones en 3 semanas o más. Cada prueba entra con su VDOT tal cual."))
+        }
+        let excluded = performance.evidence.filter { $0.weight == 0 }.count
+        if excluded > 0 {
+            let excludedText = String(excluded)
+            lines.append(String(localized: "Pruebas que no cuentan: \(excludedText) (abajo, el motivo de cada una)."))
+        }
+        if let plan = TrainingPlanStore.shared.plan,
+           let probability = GoalProbability.evaluate(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
+            let distance = String(localized: String.LocalizationValue(plan.goal.distance.title))
+            let gain = HalsynFormat.decimal(probability.expectedGain, fractionDigits: 1)
+            lines.append(String(localized: "\(distance) hoy: \(HalsynFormat.duration(probability.currentTime)). El día de la carrera, con la mejora esperada del escenario central (+\(gain) VDOT, según tu cumplimiento y el tiempo que falta): \(HalsynFormat.duration(probability.projectedTime))."))
+        }
+        let confidence = GoalProbabilityText.confidence(performance.confidence)
+        lines.append(String(localized: "Límites: \(confidence). Los rangos son orientativos: no están calibrados con tus resultados reales. Daniels y Riegel son fórmulas de población; tu respuesta puede ser distinta."))
+        return lines
+    }
+
+    static func factors(_ f: PerformanceEvidence.WeightFactors) -> String {
+        var parts = [
+            String(localized: "tipo") + " " + HalsynFormat.decimal(f.kind, fractionDigits: 2),
+            String(localized: "antigüedad") + " " + HalsynFormat.decimal(f.age, fractionDigits: 2),
+            String(localized: "distancia") + " " + HalsynFormat.decimal(f.distance, fractionDigits: 2),
+            String(localized: "calidad") + " " + HalsynFormat.decimal(f.quality, fractionDigits: 2),
+        ]
+        if f.cap < 1 { parts.append(String(localized: "tope") + " " + HalsynFormat.decimal(f.cap, fractionDigits: 2)) }
+        if f.consistency < 1 { parts.append(String(localized: "coherencia") + " " + HalsynFormat.decimal(f.consistency, fractionDigits: 2)) }
+        var text = parts.joined(separator: " × ")
+        for note in f.qualityNotes {
+            switch note {
+            case .treadmill: text += " · " + String(localized: "en cinta: distancia estimada")
+            case .lowHeartRate: text += " · " + String(localized: "pulso bajo para un test: quizá no fue a tope")
+            }
+        }
+        return text
     }
 }

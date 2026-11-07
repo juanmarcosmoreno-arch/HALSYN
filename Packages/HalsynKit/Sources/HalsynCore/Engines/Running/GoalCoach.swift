@@ -42,11 +42,15 @@ public struct FitnessEstimate: Hashable, Sendable {
     public let vdot: Double
     public let date: Date
     public let source: Source
+    /// Pruebas que entran en la media ponderada (1 = sale de una sola prueba;
+    /// con más, `source` es la más reciente de ellas, no la única).
+    public var combinedFrom: Int = 1
 
-    public init(vdot: Double, date: Date, source: Source) {
+    public init(vdot: Double, date: Date, source: Source, combinedFrom: Int = 1) {
         self.vdot = vdot
         self.date = date
         self.source = source
+        self.combinedFrom = combinedFrom
     }
 
     public var isFromTraining: Bool {

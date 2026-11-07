@@ -198,17 +198,26 @@ struct DataExportView: View {
                 lines.append("- " + String(localized: "Tiempo proyectado el día de la carrera: \(HalsynFormat.duration(probability.projectedTime)) (rango orientativo \(projectedRange), sin calibrar con resultados reales)"))
                 lines.append("- " + String(localized: "Factibilidad: \(category). \(GoalProbabilityText.confidence(probability.confidence))."))
                 if let adherence = probability.adherence {
-                    let sessions = adherence.planned > 0 ? "\(adherence.done) / \(adherence.planned)" : "—"
-                    lines.append("- " + String(localized: "Sesiones del plan cumplidas (desde el inicio del plan, máx. 4 semanas): \(sessions)"))
-                    lines.append("- " + String(localized: "Carreras por semana: \(HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1)) reales frente a \(String(adherence.targetRunsPerWeek)) del objetivo; \(String(adherence.runsOutsidePlan)) fuera del plan; \(String(adherence.weeksWithPlan)) semanas con plan"))
+                    let sessions = adherence.sessionsSummary ?? "—"
+                    lines.append("- " + String(localized: "Sesiones programadas cumplidas (desde el inicio del plan, máx. 4 semanas): \(sessions)"))
+                    let partialText = String(adherence.partial), missedText = String(adherence.missed), excusedText = String(adherence.excused)
+                    lines.append("- " + String(localized: "Sesiones hechas en parte: \(partialText); no hechas: \(missedText); no hechas por enfermedad o lesión (no cuentan): \(excusedText)"))
+                    let weeksText = String(adherence.weeksWithPlan)
+                    lines.append("- " + String(localized: "Frecuencia: \(HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1)) carreras por semana reales frente a \(String(adherence.targetRunsPerWeek)) del objetivo; \(String(adherence.runsOutsidePlan)) fuera del plan; semanas con plan: \(weeksText)"))
                 }
             }
         }
         if let estimate {
             lines.append("")
             lines.append("## " + String(localized: "Forma actual"))
-            let sourceText = estimate.isFromTraining ? String(localized: "estimado de entrenamientos") : String(localized: "de un test o carrera")
-            lines.append("- " + String(localized: "VDOT (Daniels): \(RaceGoalText.vdot(estimate.vdot)), \(sourceText) del \(estimate.date.formatted(date: .abbreviated, time: .omitted))"))
+            let dateText = estimate.date.formatted(date: .abbreviated, time: .omitted)
+            if estimate.combinedFrom > 1 {
+                let count = estimate.combinedFrom
+                lines.append("- " + String(localized: "VDOT (Daniels): \(RaceGoalText.vdot(estimate.vdot)), media ponderada de \(count) pruebas (ver «Pruebas que usa el modelo»); la más reciente es del \(dateText). Cada prueba conserva su propio VDOT: el valor combinado no tiene por qué coincidir con ninguno."))
+            } else {
+                let sourceText = estimate.isFromTraining ? String(localized: "estimado de entrenamientos") : String(localized: "de un test o carrera")
+                lines.append("- " + String(localized: "VDOT (Daniels): \(RaceGoalText.vdot(estimate.vdot)), \(sourceText) del \(dateText)"))
+            }
         }
         if let performance = FitnessStore.shared.performance(runs: runs, today: end), !performance.evidence.isEmpty {
             lines.append("")
@@ -221,7 +230,8 @@ struct DataExportView: View {
                 case .duplicate: role = String(localized: "no cuenta: duplicado")
                 case .inconsistent: role = String(localized: "pesa menos: no encaja con el resto")
                 }
-                lines.append("- \(item.date.formatted(date: .abbreviated, time: .omitted)) · \(DataExport.number(item.distance / 1000, digits: 2)) km · \(HalsynFormat.duration(item.time)) · VDOT \(RaceGoalText.vdot(item.vdot)) · \(role)")  // nolocalize
+                let factorText = item.factors.map { item.weight > 0 ? " = " + PredictionExplanationText.factors($0) : "" } ?? ""
+                lines.append("- \(item.date.formatted(date: .abbreviated, time: .omitted)) · \(DataExport.number(item.distance / 1000, digits: 2)) km · \(HalsynFormat.duration(item.time)) · VDOT \(RaceGoalText.vdot(item.vdot)) · \(role)\(factorText)")  // nolocalize
             }
         }
         let results = FitnessStore.shared.results

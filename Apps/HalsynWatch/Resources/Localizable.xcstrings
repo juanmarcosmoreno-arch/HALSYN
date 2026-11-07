@@ -154,6 +154,23 @@
         }
       }
     },
+    "%@ hoy: %@. El día de la carrera, con la mejora esperada del escenario central (+%@ VDOT, según tu cumplimiento y el tiempo que falta): %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ today: %@. On race day, with the expected improvement of the central scenario (+%@ VDOT, based on your adherence and the time left): %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ i dag: %@. På tävlingsdagen, med den förväntade förbättringen i det centrala scenariot (+%@ VDOT, utifrån din följsamhet och tiden som återstår): %@."
+          }
+        }
+      }
+    },
     "%@ lpm": {
       "extractionState": "manual",
       "localizations": {
@@ -3639,6 +3656,23 @@
         }
       }
     },
+    "Cada prueba se lleva a hoy con tu tendencia antes de promediar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each result is brought to today with your trend before averaging."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje resultat räknas fram till i dag med din trend innan medelvärdet tas."
+          }
+        }
+      }
+    },
     "Cada punto es un tramo de 200 m, sin pausas. Arriba, más rápido.": {
       "extractionState": "manual",
       "localizations": {
@@ -4914,23 +4948,6 @@
         }
       }
     },
-    "Carreras por semana: %@ reales frente a %@ del objetivo; %@ fuera del plan; %@ semanas con plan": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Runs per week: %@ actual versus %@ target; %@ outside the plan; %@ weeks with a plan"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Löppass per vecka: %@ verkliga mot %@ i målet; %@ utanför planen; %@ veckor med plan"
-          }
-        }
-      }
-    },
     "Celeste": {
       "extractionState": "manual",
       "localizations": {
@@ -5339,19 +5356,19 @@
         }
       }
     },
-    "Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Los entrenamientos solo pueden subir la estimación, nunca bajarla; la cinta no se compara. El peso baja a la mitad cada 6 semanas.": {
+    "Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Un test o una competición más lentos sí bajan la estimación; un entrenamiento, nunca. Peso = tipo (competición 1, test 0,9, entrenamiento 0,5) × antigüedad (la mitad cada 6 semanas) × distancia (menos de 1,5 km 0,6; de 1,5 a 3 km 0,85) × calidad (cinta 0,8; pulso bajo para un test 0,7). Los entrenamientos suman como mucho la mitad del peso de los tests.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Recorded races and tests (180 days) and all-out outdoor runs with sustained high heart rate (42 days). Training runs can only raise the estimate, never lower it; treadmill runs aren't compared. The weight halves every 6 weeks."
+            "value": "Logged races and tests (180 days) and all-out outdoor runs with sustained high heart rate (42 days). A slower test or race does lower the estimate; a training run never does. Weight = type (race 1, test 0.9, training 0.5) × age (halves every 6 weeks) × distance (under 1.5 km 0.6; 1.5 to 3 km 0.85) × quality (treadmill 0.8; low heart rate for a test 0.7). Training runs add at most half the weight of the tests."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registrerade lopp och test (180 dagar) och maxansträngningar utomhus med hög puls över tid (42 dagar). Träningspass kan bara höja uppskattningen, aldrig sänka den; löpband jämförs inte. Vikten halveras var 6:e vecka."
+            "value": "Registrerade tävlingar och tester (180 dagar) och maxansträngningar utomhus med ihållande hög puls (42 dagar). Ett långsammare test eller en långsammare tävling sänker uppskattningen; ett träningspass gör det aldrig. Vikt = typ (tävling 1, test 0,9, träning 0,5) × ålder (halveras var 6:e vecka) × distans (under 1,5 km 0,6; 1,5–3 km 0,85) × kvalitet (löpband 0,8; låg puls för ett test 0,7). Träningspass väger högst hälften så mycket som testerna."
           }
         }
       }
@@ -6648,6 +6665,23 @@
         }
       }
     },
+    "Cumplidas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomförda"
+          }
+        }
+      }
+    },
     "Cumplido": {
       "extractionState": "manual",
       "localizations": {
@@ -6852,19 +6886,19 @@
         }
       }
     },
-    "Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango (80 %) suma la incertidumbre de tu forma, de la mejora y del día de la carrera. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.": {
+    "Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango orientativo suma la incertidumbre de tu forma, de la mejora, del tiempo que falta y del día de la carrera; está pensado para contener 8 de cada 10 resultados, pero eso aún no se comprobó con tus datos. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "How it's calculated: your current fitness comes from your tests, races and all-out training runs (recent ones count more; one that doesn't fit the others counts less). The expected improvement until race day is added: half from Daniels' cautious guideline (1 VDOT point every 6 weeks) and half from your actual trend, adjusted by how well you follow the plan. The range (80 %) combines the uncertainty of your fitness, the improvement and race day. A category is shown rather than a percentage because there are no real results of yours yet to check that such percentages are right. It is not a guarantee."
+            "value": "How it's calculated: your current fitness comes from your tests, races and all-out runs (recent ones weigh more; one that doesn't fit the others weighs less). The expected improvement until the race is added: half from Daniels' cautious guideline (1 VDOT point every 6 weeks) and half from your real trend, adjusted for how well you follow the plan. The indicative range adds the uncertainty of your fitness, the improvement, the time left and race day; it is meant to contain 8 out of 10 results, but that hasn't been checked with your data yet. A category is shown instead of a percentage because there are no real results of yours yet to check that those percentages are right. It is not a guarantee."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Så räknas det: din form i dag kommer från dina test, lopp och maxansträngningar på träning (nyare väger mer; en som inte stämmer med de andra väger mindre). Till det läggs den förväntade förbättringen fram till loppet: hälften enligt Daniels försiktiga riktlinje (1 VDOT-poäng var 6:e vecka) och hälften enligt din verkliga trend, justerat efter hur väl du följer planen. Intervallet (80 %) väger in osäkerheten i din form, förbättringen och tävlingsdagen. En kategori visas i stället för en procentsats eftersom det ännu inte finns riktiga resultat från dig att kontrollera procentsatserna mot. Det är ingen garanti."
+            "value": "Så beräknas det: din form i dag kommer från dina tester, tävlingar och maxpass (de senaste väger mer; ett som inte passar med de andra väger mindre). Till det läggs den förväntade förbättringen fram till loppet: hälften enligt Daniels försiktiga riktlinje (1 VDOT-poäng var 6:e vecka) och hälften enligt din verkliga trend, justerad efter hur väl du följer planen. Det vägledande intervallet lägger ihop osäkerheten i din form, förbättringen, tiden som återstår och tävlingsdagen; det är tänkt att rymma 8 av 10 resultat, men det har ännu inte kontrollerats med dina data. En kategori visas i stället för en procentsats eftersom det ännu inte finns verkliga resultat från dig att kontrollera procentsatserna mot. Det är ingen garanti."
           }
         }
       }
@@ -7991,19 +8025,19 @@
         }
       }
     },
-    "Duplicado de otro resultado del mismo día: cuenta una sola vez. Mantén pulsado para borrarlo.": {
+    "Duplicado de otro resultado del mismo día: cuenta una sola vez. Mantén pulsado para borrarlo o para marcar que no es un duplicado.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Duplicate of another result on the same day: it counts once. Press and hold to delete it."
+            "value": "Duplicate of another result on the same day: it counts once. Touch and hold to delete it or to mark that it isn't a duplicate."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dubblett av ett annat resultat samma dag: räknas en gång. Tryck länge för att radera."
+            "value": "Dubblett av ett annat resultat samma dag: räknas en gång. Håll intryckt för att radera det eller markera att det inte är en dubblett."
           }
         }
       }
@@ -11731,6 +11765,23 @@
         }
       }
     },
+    "Frecuencia: %@ carreras por semana reales frente a %@ del objetivo; %@ fuera del plan; semanas con plan: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequency: %@ actual runs per week versus %@ in the goal; %@ outside the plan; weeks with a plan: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frekvens: %@ faktiska löppass per vecka mot %@ i målet; %@ utanför planen; veckor med plan: %@"
+          }
+        }
+      }
+    },
     "Frente a la media de tus 4 semanas anteriores. Los cambios pequeños se muestran como parecidos.": {
       "extractionState": "manual",
       "localizations": {
@@ -12951,6 +13002,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delvis klar"
+          }
+        }
+      }
+    },
+    "Hechas en parte": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partly done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delvis genomförda"
           }
         }
       }
@@ -15216,6 +15284,23 @@
         }
       }
     },
+    "Límites: %@. Los rangos son orientativos: no están calibrados con tus resultados reales. Daniels y Riegel son fórmulas de población; tu respuesta puede ser distinta.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limits: %@. The ranges are indicative: they aren't calibrated with your real results. Daniels and Riegel are population formulas; your response may differ."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begränsningar: %@. Intervallen är vägledande: de är inte kalibrerade mot dina verkliga resultat. Daniels och Riegel är befolkningsformler; din respons kan skilja sig."
+          }
+        }
+      }
+    },
     "MEDIA": {
       "extractionState": "manual",
       "localizations": {
@@ -15722,6 +15807,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Halvmaraton"
+          }
+        }
+      }
+    },
+    "Media ponderada de %lld pruebas; la más reciente, del %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weighted mean of %lld results; the most recent from %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viktat medelvärde av %lld resultat; det senaste från %@"
           }
         }
       }
@@ -17375,6 +17477,23 @@
         }
       }
     },
+    "No es un duplicado: contar los dos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not a duplicate: count both"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inte en dubblett: räkna båda"
+          }
+        }
+      }
+    },
     "No guardar": {
       "extractionState": "manual",
       "localizations": {
@@ -17524,6 +17643,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inte gjord"
+          }
+        }
+      }
+    },
+    "No hechas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not done"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ej genomförda"
+          }
+        }
+      }
+    },
+    "No hechas por enfermedad o lesión (no cuentan)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not done due to illness or injury (don't count)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ej genomförda på grund av sjukdom eller skada (räknas inte)"
           }
         }
       }
@@ -20703,6 +20856,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Utvärderade ansträngningar"
+          }
+        }
+      }
+    },
+    "Pruebas que no cuentan: %@ (abajo, el motivo de cada una).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Results that don't count: %@ (the reason for each is below)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultat som inte räknas: %@ (orsaken för vart och ett finns nedan)."
           }
         }
       }
@@ -24073,36 +24243,53 @@
         }
       }
     },
-    "Sesiones del plan cumplidas": {
+    "Sesiones hechas en parte: %@; no hechas: %@; no hechas por enfermedad o lesión (no cuentan): %@": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plan sessions completed"
+            "value": "Sessions partly done: %@; not done: %@; not done due to illness or injury (don't count): %@"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Genomförda pass i planen"
+            "value": "Pass delvis genomförda: %@; ej genomförda: %@; ej genomförda på grund av sjukdom eller skada (räknas inte): %@"
           }
         }
       }
     },
-    "Sesiones del plan cumplidas (desde el inicio del plan, máx. 4 semanas): %@": {
+    "Sesiones programadas": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plan sessions completed (since the plan started, max. 4 weeks): %@"
+            "value": "Scheduled sessions"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Genomförda pass i planen (sedan planen började, max. 4 veckor): %@"
+            "value": "Schemalagda pass"
+          }
+        }
+      }
+    },
+    "Sesiones programadas cumplidas (desde el inicio del plan, máx. 4 semanas): %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scheduled sessions completed (since the plan started, max. 4 weeks): %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schemalagda pass genomförda (sedan planen startade, max. 4 veckor): %@"
           }
         }
       }
@@ -24919,6 +25106,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ingen sömn registrerad"
+          }
+        }
+      }
+    },
+    "Sin tendencia: hacen falta 3 tests o competiciones en 3 semanas o más. Cada prueba entra con su VDOT tal cual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No trend: it takes 3 tests or races over 3 weeks or more. Each result enters with its VDOT as is."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen trend: det krävs 3 tester eller tävlingar under 3 veckor eller mer. Varje resultat räknas med sitt VDOT som det är."
           }
         }
       }
@@ -27014,6 +27218,40 @@
         }
       }
     },
+    "Tu VDOT de %@ es una media ponderada de %lld pruebas: (%@) ÷ %@. Por eso no coincide con el VDOT de ninguna prueba en particular.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your VDOT of %@ is a weighted mean of %lld results: (%@) ÷ %@. That's why it doesn't match the VDOT of any single result."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt VDOT på %@ är ett viktat medelvärde av %lld resultat: (%@) ÷ %@. Därför stämmer det inte med VDOT för något enskilt resultat."
+          }
+        }
+      }
+    },
+    "Tu VDOT de %@ sale de una sola prueba: %@ en %@ el %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your VDOT of %@ comes from a single result: %@ in %@ on %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ditt VDOT på %@ kommer från ett enda resultat: %@ på %@ den %@."
+          }
+        }
+      }
+    },
     "Tu actividad de hoy ha estado dentro de tu promedio.": {
       "extractionState": "manual",
       "localizations": {
@@ -28561,6 +28799,23 @@
         }
       }
     },
+    "VDOT (Daniels): %@, media ponderada de %lld pruebas (ver «Pruebas que usa el modelo»); la más reciente es del %@. Cada prueba conserva su propio VDOT: el valor combinado no tiene por qué coincidir con ninguno.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT (Daniels): %@, weighted mean of %lld results (see “Results the model uses”); the most recent is from %@. Each result keeps its own VDOT: the combined value need not match any of them."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT (Daniels): %@, viktat medelvärde av %lld resultat (se ”Resultat som modellen använder”); det senaste är från %@. Varje resultat behåller sitt eget VDOT: det sammanvägda värdet behöver inte stämma med något av dem."
+          }
+        }
+      }
+    },
     "VEL. MEDIA": {
       "extractionState": "manual",
       "localizations": {
@@ -29292,6 +29547,23 @@
         }
       }
     },
+    "Volver a detectar duplicados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detect duplicates again"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upptäck dubbletter igen"
+          }
+        }
+      }
+    },
     "Volver a pesar": {
       "extractionState": "manual",
       "localizations": {
@@ -29768,6 +30040,23 @@
         }
       }
     },
+    "antigüedad": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "age"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ålder"
+          }
+        }
+      }
+    },
     "cuenta (peso %@)": {
       "extractionState": "manual",
       "localizations": {
@@ -29815,6 +30104,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "dubblett: räknas en gång"
+          }
+        }
+      }
+    },
+    "en cinta: distancia estimada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "treadmill: estimated distance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "löpband: uppskattad distans"
           }
         }
       }
@@ -30108,6 +30414,23 @@
         }
       }
     },
+    "pulso bajo para un test: quizá no fue a tope": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "low heart rate for a test: maybe not all-out"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "låg puls för ett test: kanske inte maxat"
+          }
+        }
+      }
+    },
     "rango orientativo": {
       "extractionState": "manual",
       "localizations": {
@@ -30359,6 +30682,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Var det ett test eller en tävling för fullt? Markera det så använder HÅLSYN tiden och distansen för din form, dina tempon och din plan."
+          }
+        }
+      }
+    },
+    "¿Por qué HÅLSYN estima este tiempo?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why does HÅLSYN estimate this time?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varför uppskattar HÅLSYN den här tiden?"
           }
         }
       }

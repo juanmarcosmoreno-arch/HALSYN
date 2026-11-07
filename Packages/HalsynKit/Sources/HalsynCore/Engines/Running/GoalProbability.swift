@@ -94,7 +94,7 @@ public struct GoalProbability: Hashable, Sendable {
     public static let raceDayUncertainty = 0.7
 
     /// `nil` sin tiempo objetivo, sin estimación de forma o con la carrera ya pasada.
-    public static func evaluate(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar) -> GoalProbability? {
+    public static func evaluate(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar, skips: [Date: SessionSkipReason] = [:], healthDays: Set<Date> = []) -> GoalProbability? {
         guard let goalTime = plan.goal.goalTime,
               let goalVDOT = VDOT.value(distance: plan.goal.distance.rawValue, time: goalTime),
               let performance,
@@ -102,7 +102,7 @@ public struct GoalProbability: Hashable, Sendable {
         else { return nil }
 
         let weeks = GoalCoach.trainingWeeks(until: plan.goal.raceDate, distance: plan.goal.distance, today: today, calendar: calendar)
-        let adherence = TrainingAdherence.evaluate(plan: plan, runs: runs, today: today, calendar: calendar)
+        let adherence = TrainingAdherence.evaluate(plan: plan, runs: runs, today: today, calendar: calendar, skips: skips, healthDays: healthDays)
         let record = (score: adherence.score, done: adherence.done, planned: adherence.planned)
         let compliance = adherence.effective
         let central = GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: .central)

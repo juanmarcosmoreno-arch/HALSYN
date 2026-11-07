@@ -39,6 +39,27 @@ final class FitnessStore {
         persist()
     }
 
+    // MARK: Duplicados corregidos a mano
+
+    static let distinctKey = "halsyn.performanceResults.distinct"
+
+    /// Resultados que marcaste como «no es un duplicado».
+    var distinct: Set<UUID> {
+        Set((defaults.array(forKey: Self.distinctKey) as? [String] ?? []).compactMap(UUID.init(uuidString:)))
+    }
+
+    func setDistinct(_ id: UUID, _ isDistinct: Bool) {
+        var ids = distinct
+        if isDistinct { ids.insert(id) } else { ids.remove(id) }
+        defaults.set(ids.map(\.uuidString).sorted(), forKey: Self.distinctKey)
+        results = results  // avisa a las vistas
+    }
+
+    /// Duplicados según el modelo (con tus correcciones).
+    var duplicates: [(PerformanceResult, keptID: UUID)] {
+        RacePerformanceModel.deduplicated(results, distinct: distinct, calendar: .current).duplicates
+    }
+
     /// La FC máxima que pusiste a mano (Ajustes › Zonas); si no, se usa la observada.
     var configuredMaxHeartRate: Double? {
         let zones = RunSettingsStore.shared.settings.zones
@@ -85,7 +106,7 @@ final class FitnessStore {
 
     /// Modelo de rendimiento con todas tus pruebas (tests, competiciones y esfuerzos).
     func performance(runs: [WorkoutSummary], today: Date = .now) -> PerformanceAssessment? {
-        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, today: today, calendar: .current)
+        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, distinct: distinct, today: today, calendar: .current)
     }
 
     /// Forma para el plan y los ritmos: el VDOT del modelo de rendimiento (el
@@ -96,11 +117,12 @@ final class FitnessStore {
         guard let model = performance(runs: runs, today: today), let newest = model.evidence.first(where: { $0.role == .counted }) else {
             return FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
         }
+        let combined = model.countedEvidence.count
         if let result = results.first(where: { $0.id == newest.id }) {
-            return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .result(result))
+            return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .result(result), combinedFrom: combined)
         }
         let efforts = model.evidence.filter { $0.kind == .trainingEffort && $0.role == .counted }.count
-        return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .training(runs: efforts))
+        return FitnessEstimate(vdot: model.currentVDOT, date: newest.date, source: .training(runs: efforts), combinedFrom: combined)
     }
 
     private func persist() {
@@ -162,6 +184,10 @@ enum RaceGoalText {
         case .result(let result):
             let distance = SessionText.distance(result.distance, unit: unit)
             let date = result.date.formatted(.dateTime.day().month(.abbreviated))
+            if estimate.combinedFrom > 1 {
+                let count = estimate.combinedFrom
+                return String(localized: "Media ponderada de \(count) pruebas; la más reciente, del \(date)")
+            }
             return result.kind == .test
                 ? String(localized: "Test de \(distance) del \(date)")
                 : String(localized: "Carrera de \(distance) del \(date)")
@@ -523,8 +549,8 @@ struct GoalStatusCard: View {
                 Text(result.date, format: .dateTime.day().month(.abbreviated).year())
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
-                if RacePerformanceModel.deduplicated(fitness.results, calendar: .current).duplicates.contains(where: { $0.0.id == result.id }) {
-                    Text("Duplicado de otro resultado del mismo día: cuenta una sola vez. Mantén pulsado para borrarlo.")
+                if fitness.duplicates.contains(where: { $0.0.id == result.id }) {
+                    Text("Duplicado de otro resultado del mismo día: cuenta una sola vez. Mantén pulsado para borrarlo o para marcar que no es un duplicado.")
                         .font(.caption2)
                         .foregroundStyle(.halsynCaution)
                         .fixedSize(horizontal: false, vertical: true)
@@ -540,6 +566,17 @@ struct GoalStatusCard: View {
         .contentShape(Rectangle())
         .onTapGesture { entering = result }
         .contextMenu {
+            if fitness.distinct.contains(result.id) {
+                Button("Volver a detectar duplicados", systemImage: "arrow.uturn.backward") {
+                    FitnessStore.shared.setDistinct(result.id, false)
+                    TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+                }
+            } else if fitness.duplicates.contains(where: { $0.0.id == result.id || $0.keptID == result.id }) {
+                Button("No es un duplicado: contar los dos", systemImage: "square.on.square") {
+                    FitnessStore.shared.setDistinct(result.id, true)
+                    TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+                }
+            }
             Button("Borrar", role: .destructive) {
                 FitnessStore.shared.remove(result.id)
                 TrainingPlanStore.shared.applyLatestFitness(runs: runs)

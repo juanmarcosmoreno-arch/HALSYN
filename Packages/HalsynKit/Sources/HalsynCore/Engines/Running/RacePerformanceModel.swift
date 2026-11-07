@@ -19,6 +19,35 @@ public struct PerformanceEvidence: Hashable, Identifiable, Sendable {
     public let isInconsistent: Bool
     /// Cómo se usó y por qué.
     public let role: Role
+    /// De dónde sale el peso (`nil` si no cuenta).
+    public var factors: WeightFactors?
+    /// VDOT que entra en la media (el de la prueba llevado a hoy con la
+    /// tendencia, si la hay); `nil` si no cuenta.
+    public var valueUsed: Double?
+
+    /// Desglose del peso: peso = tipo × antigüedad × distancia × calidad × tope.
+    public struct WeightFactors: Hashable, Sendable {
+        /// Competición 1, test 0,9, entrenamiento 0,5.
+        public let kind: Double
+        /// Se reduce a la mitad cada 42 días.
+        public let age: Double
+        /// Menos de 1,5 km 0,6; de 1,5 a 3 km 0,85; 3 km o más 1.
+        public let distance: Double
+        /// En cinta 0,8 (la distancia es estimada); FC media < 85 % de la máxima 0,7 (quizá no fue a tope).
+        public let quality: Double
+        /// Reparto para que los entrenamientos no pesen más que la mitad de los tests (1 si no aplica).
+        public let cap: Double
+        public let qualityNotes: [QualityNote]
+        /// 0,25 si no encaja con el resto de pruebas; 1 si encaja.
+        public var consistency: Double = 1
+
+        public var product: Double { kind * age * distance * quality * cap * consistency }
+    }
+
+    public enum QualityNote: String, Hashable, Sendable {
+        case treadmill
+        case lowHeartRate
+    }
 
     public enum Role: Hashable, Sendable {
         /// Cuenta en la estimación con su peso.
@@ -42,6 +71,11 @@ public struct PerformanceEvidence: Hashable, Identifiable, Sendable {
         self.isInconsistent = isInconsistent
         self.role = role
     }
+
+    public init(id: UUID, date: Date, distance: Double, time: TimeInterval, kind: Kind, vdot: Double, weight: Double, isInconsistent: Bool, role: Role, factors: WeightFactors?) {
+        self.init(id: id, date: date, distance: distance, time: time, kind: kind, vdot: vdot, weight: weight, isInconsistent: isInconsistent, role: role)
+        self.factors = factors
+    }
 }
 
 /// Predicción de una distancia por los dos métodos y su combinación.
@@ -53,7 +87,7 @@ public struct DistancePrediction: Hashable, Identifiable, Sendable {
     public let vdotTime: TimeInterval
     /// Riegel: cada prueba proyectada a esta distancia, ponderada.
     public let riegelTime: TimeInterval
-    /// Intervalo del 80 % (solo con datos suficientes).
+    /// Rango orientativo (±1,28 σ, pensado como 80 %; sin validar hasta tener resultados).
     public let range: ClosedRange<TimeInterval>?
 
     public var id: Double { distance }
@@ -87,6 +121,14 @@ public struct PerformanceAssessment: Hashable, Sendable {
     /// Tamaño efectivo de la muestra (Kish).
     public var effectiveSampleSize: Double = 1
 
+    /// Pruebas que entran en la media (con peso > 0).
+    public var countedEvidence: [PerformanceEvidence] {
+        evidence.filter { ($0.role == .counted || $0.role == .inconsistent) && $0.weight > 0 }
+    }
+
+    /// El VDOT sale de una sola prueba o de una media ponderada de varias.
+    public var isWeightedCombination: Bool { countedEvidence.count > 1 }
+
     /// Con menos de 3 resultados oficiales la tendencia es provisional.
     public var trendIsProvisional: Bool { officialCount < 3 || weeklyTrend == nil }
 
@@ -113,7 +155,11 @@ public struct PerformanceAssessment: Hashable, Sendable {
 ///   esfuerzos de entrenamiento comparables a una prueba (`FitnessEstimator.
 ///   trainingEfforts`, últimos 42 días, ya filtrados por calidad).
 /// - **Peso**: tipo (competición 1, test 0,9, entrenamiento 0,5) ×
-///   antigüedad (se reduce a la mitad cada 42 días).
+///   antigüedad (se reduce a la mitad cada 42 días) × distancia (< 1,5 km
+///   0,6; 1,5–3 km 0,85) × calidad (cinta 0,8; FC media < 85 % de la máxima
+///   0,7). Los entrenamientos suman como mucho la mitad del peso de los tests.
+/// - **Duplicados**: mismo entrenamiento de Salud (id), o mismo día con tiempo
+///   a ≤ 2 % y distancia a ≤ 3 %; se puede marcar «no es duplicado».
 /// - **Tendencia**: pendiente de Theil–Sen del VDOT en el tiempo (mediana de
 ///   las pendientes entre pares, robusta a un dato raro), con ≥ 3 pruebas en
 ///   ≥ 21 días; acotada a ±0,25 VDOT/semana.
@@ -127,6 +173,8 @@ public struct PerformanceAssessment: Hashable, Sendable {
 ///   (mediana de los pares, solo si queda entre 1,01 y 1,15).
 /// - **Intervalo** (80 %): solo con 3 pruebas o más.
 public enum RacePerformanceModel {
+    /// Versión del algoritmo (se exporta junto a los resultados).
+    public static let version = "1.3"
     public static let resultWindowDays = 180
     public static let halfLifeDays = 42.0
     public static let maximumWeeklyTrend = 0.25
@@ -134,6 +182,18 @@ public enum RacePerformanceModel {
     public static let minimumUncertainty = 0.8
     public static let defaultRiegelExponent = 1.06
     public static let plausibleExponent: ClosedRange<Double> = 1.01...1.15
+
+    /// Fiabilidad por distancia: las pruebas muy cortas dependen mucho de la
+    /// capacidad anaeróbica y de errores de cronometraje; el VDOT de Daniels
+    /// está pensado para pruebas de ≈ 1,5 km en adelante.
+    public static func distanceFactor(_ meters: Double) -> Double {
+        meters < 1500 ? 0.6 : (meters < 3000 ? 0.85 : 1)
+    }
+
+    /// Los entrenamientos no pueden sumar más de la mitad del peso de los tests.
+    public static let trainingShareCap = 0.5
+    /// FC media por debajo de esta fracción de la máxima: el test quizá no fue a tope.
+    public static let lowTestHeartRate = 0.85
 
     /// Tolerancias para considerar dos resultados como el mismo esfuerzo.
     public static let duplicateTimeTolerance = 0.02
@@ -143,13 +203,17 @@ public enum RacePerformanceModel {
     /// (p. ej. uno cargado a mano "3,00 km" y otro del entrenamiento "3,026 km").
     /// Se queda el que viene de un entrenamiento de Salud (distancia exacta); si
     /// ninguno, el más reciente en la lista. Devuelve también los descartados.
-    public static func deduplicated(_ results: [PerformanceResult], calendar: Calendar) -> (kept: [PerformanceResult], duplicates: [(PerformanceResult, keptID: UUID)]) {
+    /// `distinct`: ids que marcaste como «no es un duplicado» (no se fusionan).
+    public static func deduplicated(_ results: [PerformanceResult], distinct: Set<UUID> = [], calendar: Calendar) -> (kept: [PerformanceResult], duplicates: [(PerformanceResult, keptID: UUID)]) {
         var kept: [PerformanceResult] = []
         var duplicates: [(PerformanceResult, keptID: UUID)] = []
         // Primero los que tienen entrenamiento de origen.
         for result in results.sorted(by: { ($0.workoutID != nil ? 0 : 1) < ($1.workoutID != nil ? 0 : 1) }) {
             if let match = kept.first(where: { other in
-                calendar.isDate(other.date, inSameDayAs: result.date)
+                // Mismo entrenamiento de Salud (identificador único): siempre duplicado.
+                if let id = result.workoutID, id == other.workoutID { return true }
+                if distinct.contains(result.id) || distinct.contains(other.id) { return false }
+                return calendar.isDate(other.date, inSameDayAs: result.date)
                     && abs(other.time - result.time) / max(other.time, 1) <= duplicateTimeTolerance
                     && abs(other.distance - result.distance) / max(other.distance, 1) <= duplicateDistanceTolerance
             }) {
@@ -161,7 +225,7 @@ public enum RacePerformanceModel {
         return (kept, duplicates)
     }
 
-    public static func assess(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, today: Date, calendar: Calendar) -> PerformanceAssessment? {
+    public static func assess(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, distinct: Set<UUID> = [], today: Date, calendar: Calendar) -> PerformanceAssessment? {
         let todayStart = calendar.startOfDay(for: today)
         func ageDays(_ date: Date) -> Double {
             Double(calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: todayStart).day ?? 0)
@@ -170,12 +234,32 @@ public enum RacePerformanceModel {
 
         // 1. Resultados oficiales (tests y competiciones), sin duplicados.
         let window = allResults.filter { $0.date <= today && ageDays($0.date) <= Double(resultWindowDays) && $0.vdot != nil }
-        let (results, duplicates) = deduplicated(window, calendar: calendar)
+        let (results, duplicates) = deduplicated(window, distinct: distinct, calendar: calendar)
         let markedWorkouts = Set(allResults.compactMap(\.workoutID))
+        let quality = DataQuality.assess(runs)
+        let referenceMax = EffortClassifier.referenceMaxHeartRate(configured: maxHeartRate, runs: runs.filter { quality[$0.id]?.heartRateUsable != false })
+        let runsByID = Dictionary(runs.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        var factorsByID: [UUID: PerformanceEvidence.WeightFactors] = [:]
         var official: [(result: PerformanceResult, kind: PerformanceEvidence.Kind, vdot: Double, weight: Double)] = results.compactMap { result in
             guard let vdot = result.vdot else { return nil }
             let kind: PerformanceEvidence.Kind = result.kind == .race ? .race : .test
-            return (result, kind, vdot, (kind == .race ? 1 : 0.9) * decay(result.date))
+            // Calidad: solo con el entrenamiento de Salud del que sale.
+            var qualityFactor = 1.0
+            var notes: [PerformanceEvidence.QualityNote] = []
+            if let id = result.workoutID, let workout = runsByID[id] {
+                if workout.activity == .indoorRun {
+                    qualityFactor *= 0.8
+                    notes.append(.treadmill)
+                }
+                if let average = workout.averageHeartRate, let referenceMax, quality[id]?.heartRateUsable != false,
+                   average / referenceMax < lowTestHeartRate {
+                    qualityFactor *= 0.7
+                    notes.append(.lowHeartRate)
+                }
+            }
+            let factors = PerformanceEvidence.WeightFactors(kind: kind == .race ? 1 : 0.9, age: decay(result.date), distance: distanceFactor(result.distance), quality: qualityFactor, cap: 1, qualityNotes: notes)
+            factorsByID[result.id] = factors
+            return (result, kind, vdot, factors.product)
         }
 
         // 2. Tendencia solo con resultados oficiales (los entrenamientos no son
@@ -220,7 +304,9 @@ public enum RacePerformanceModel {
         var counted: [(id: UUID, value: Double, weight: Double)] = official.map { ($0.result.id, projected($0.vdot, $0.result.date), $0.weight) }
         var evidence: [PerformanceEvidence] = official.map { item in
             let inconsistent = inconsistentIDs.contains(item.result.id)
-            return PerformanceEvidence(id: item.result.id, date: item.result.date, distance: item.result.distance, time: item.result.time, kind: item.kind, vdot: item.vdot, weight: item.weight, isInconsistent: inconsistent, role: inconsistent ? .inconsistent : .counted)
+            var factors = factorsByID[item.result.id]
+            if inconsistent { factors?.consistency = 0.25 }
+            return PerformanceEvidence(id: item.result.id, date: item.result.date, distance: item.result.distance, time: item.result.time, kind: item.kind, vdot: item.vdot, weight: item.weight, isInconsistent: inconsistent, role: inconsistent ? .inconsistent : .counted, factors: factors)
         }
         for (pair, duplicateOf) in duplicates {
             guard let vdot = pair.vdot else { continue }
@@ -229,19 +315,40 @@ public enum RacePerformanceModel {
         for effort in efforts {
             let distance = effort.run.distanceMeters ?? 0
             let isOutlier = efforts.count >= 2 && effort.run.id == efforts.first?.run.id && effort.vdot - efforts[1].vdot > FitnessEstimator.outlierGap
-            if effort.vdot > base + 0.05, !isOutlier {
-                let weight = 0.5 * decay(effort.run.start)
+            let trainingFactors = PerformanceEvidence.WeightFactors(kind: 0.5, age: decay(effort.run.start), distance: distanceFactor(distance), quality: 1, cap: 1, qualityNotes: [])
+            if (effort.vdot > base + 0.05 && !isOutlier) || (officialEstimate == nil && abs(effort.vdot - base) < 0.05) {
+                let weight = trainingFactors.product
                 counted.append((effort.run.id, effort.vdot, weight))
-                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: weight, isInconsistent: false, role: .counted))
-            } else if officialEstimate == nil, abs(effort.vdot - base) < 0.05 {
-                counted.append((effort.run.id, effort.vdot, 0.5 * decay(effort.run.start)))
-                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0.5 * decay(effort.run.start), isInconsistent: false, role: .counted))
+                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: weight, isInconsistent: false, role: .counted, factors: trainingFactors))
             } else {
                 evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0, isInconsistent: isOutlier, role: isOutlier ? .inconsistent : .belowEstimate))
             }
         }
+        // Tope: con tests o competiciones, los entrenamientos suman como mucho
+        // la mitad de su peso (un único entrenamiento no decide tu forma).
+        if officialWeight > 0 {
+            let trainingIDs = Set(evidence.filter { $0.kind == .trainingEffort && $0.role == .counted }.map(\.id))
+            let trainingWeight = counted.filter { trainingIDs.contains($0.id) }.map(\.weight).reduce(0, +)
+            let limit = trainingShareCap * officialWeight
+            if trainingWeight > limit, trainingWeight > 0 {
+                let scale = limit / trainingWeight
+                counted = counted.map { trainingIDs.contains($0.id) ? ($0.id, $0.value, $0.weight * scale) : $0 }
+                evidence = evidence.map { item in
+                    guard trainingIDs.contains(item.id), let f = item.factors else { return item }
+                    var capped = PerformanceEvidence.WeightFactors(kind: f.kind, age: f.age, distance: f.distance, quality: f.quality, cap: scale, qualityNotes: f.qualityNotes)
+                    capped.consistency = f.consistency
+                    return PerformanceEvidence(id: item.id, date: item.date, distance: item.distance, time: item.time, kind: item.kind, vdot: item.vdot, weight: capped.product, isInconsistent: item.isInconsistent, role: item.role, factors: capped)
+                }
+            }
+        }
         let totalWeight = counted.map(\.weight).reduce(0, +)
         guard totalWeight > 0 else { return nil }
+        let usedValues = Dictionary(counted.map { ($0.id, $0.value) }, uniquingKeysWith: { first, _ in first })
+        evidence = evidence.map { item in
+            var item = item
+            item.valueUsed = item.weight > 0 ? usedValues[item.id] : nil
+            return item
+        }
         let current = counted.map { $0.weight * $0.value }.reduce(0, +) / totalWeight
 
         // 5. Incertidumbre: dispersión ponderada (mínimo 0,8) inflada por el

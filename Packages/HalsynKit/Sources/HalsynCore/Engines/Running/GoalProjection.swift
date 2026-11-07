@@ -1,5 +1,15 @@
 import Foundation
 
+/// Por qué no se hizo una sesión del plan. Enfermedad y lesión no cuentan
+/// como incumplimiento (no se penaliza estar enfermo); viaje, falta de tiempo
+/// u otro motivo sí cuentan como sesión no hecha, pero quedan registrados.
+public enum SessionSkipReason: String, Codable, CaseIterable, Hashable, Sendable {
+    case illness, injury, travel, time, other
+
+    /// No cuenta en la adherencia.
+    public var isExcused: Bool { self == .illness || self == .injury }
+}
+
 /// Adherencia y frecuencia de entrenamiento, separadas (no es lo mismo cumplir
 /// el 100 % de 3 sesiones que correr las 4 veces por semana del objetivo).
 public struct TrainingAdherence: Hashable, Sendable {
@@ -19,6 +29,21 @@ public struct TrainingAdherence: Hashable, Sendable {
     public let weeksWithPlan: Int
     /// Días con carrera sin sesión de carrera en el plan.
     public let runsOutsidePlan: Int
+    /// Sesiones hechas en parte (cuentan una fracción).
+    public var partial: Int = 0
+    /// Sesiones no hechas que sí cuentan (sin motivo, viaje, tiempo u otro).
+    public var missed: Int = 0
+    /// Sesiones no hechas por enfermedad o lesión (no cuentan).
+    public var excused: Int = 0
+    /// Motivos registrados de las sesiones no hechas.
+    public var skipReasons: [SessionSkipReason: Int] = [:]
+
+    /// «3 / 3 · 100 %» (hechas / programadas que cuentan · cumplimiento con las
+    /// parciales), o `nil` sin sesiones pasadas.
+    public var sessionsSummary: String? {
+        guard planned > 0, let fraction = planAdherence else { return nil }
+        return "\(done) / \(planned) · \(Int((fraction * 100).rounded())) %"
+    }
 
     /// Fracción de las sesiones programadas que hiciste (`nil` sin sesiones pasadas).
     public var planAdherence: Double? { planned > 0 ? score / Double(planned) : nil }
@@ -31,35 +56,51 @@ public struct TrainingAdherence: Hashable, Sendable {
 
     public static let windowDays = 28
 
-    public static func evaluate(plan: TrainingPlan, runs: [WorkoutSummary], today: Date, calendar: Calendar) -> TrainingAdherence {
+    /// - `skips`: motivo por día de sesión (inicio del día).
+    /// - `healthDays`: días con un evento de salud que impide entrenar
+    ///   (enfermedad, fiebre, lesión): sus sesiones no hechas no cuentan.
+    public static func evaluate(plan: TrainingPlan, runs: [WorkoutSummary], today: Date, calendar: Calendar, skips: [Date: SessionSkipReason] = [:], healthDays: Set<Date> = []) -> TrainingAdherence {
         let todayStart = calendar.startOfDay(for: today)
         let planStart = plan.weeks.first.map { calendar.startOfDay(for: $0.start) } ?? todayStart
         let fourWeeksAgo = calendar.date(byAdding: .day, value: -windowDays, to: todayStart) ?? todayStart
         let windowStart = max(planStart, fourWeeksAgo)
         let days = max(calendar.dateComponents([.day], from: windowStart, to: todayStart).day ?? 0, 0)
         let sessions = plan.weeks.flatMap(\.sessions).filter { $0.date >= windowStart && calendar.startOfDay(for: $0.date) < todayStart }
-        let running = sessions.filter { $0.kind != .rest }
+        let allRunning = sessions.filter { $0.kind != .rest }
+        var running: [PlannedSession] = []
         var score = 0.0
-        var done = 0
-        for session in running {
+        var done = 0, partial = 0, missed = 0, excused = 0
+        var reasons: [SessionSkipReason: Int] = [:]
+        for session in allRunning {
+            let day = calendar.startOfDay(for: session.date)
             switch SessionCompletion.evaluate(session, runs: runs, today: today, calendar: calendar) {
             case .done:
                 score += 1
                 done += 1
+                running.append(session)
             case let .partial(distance):
                 score += session.distance > 0 ? min(distance / session.distance, 0.8) : 0.5
+                partial += 1
+                running.append(session)
             default:
-                break
+                let reason = skips[day]
+                if let reason { reasons[reason, default: 0] += 1 }
+                if reason?.isExcused == true || (reason == nil && healthDays.contains(day)) {
+                    excused += 1
+                } else {
+                    missed += 1
+                    running.append(session)
+                }
             }
         }
         // Días con carrera (una carrera partida en varios registros cuenta una vez).
         let windowRuns = runs.filter { $0.activity.isRun && $0.start >= windowStart && $0.start < todayStart && ($0.distanceMeters ?? 0) >= 1000 }
         let runningDays = Set(windowRuns.map { calendar.startOfDay(for: $0.start) })
-        let planDays = Set(running.map { calendar.startOfDay(for: $0.date) })
+        let planDays = Set(allRunning.map { calendar.startOfDay(for: $0.date) })
         let outside = runningDays.subtracting(planDays).count
         let weeks = Double(days) / 7
         let started = plan.weeks.filter { $0.start <= today }.count
-        return TrainingAdherence(
+        var result = TrainingAdherence(
             planned: running.count,
             done: done,
             score: score,
@@ -69,6 +110,11 @@ public struct TrainingAdherence: Hashable, Sendable {
             weeksWithPlan: started,
             runsOutsidePlan: outside
         )
+        result.partial = partial
+        result.missed = missed
+        result.excused = excused
+        result.skipReasons = reasons
+        return result
     }
 }
 
