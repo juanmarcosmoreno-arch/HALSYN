@@ -206,6 +206,16 @@ struct DataExportView: View {
         lines.append("## " + String(localized: "Cálculo"))
         lines.append("- " + String(localized: "Calculado el \(end.formatted(date: .numeric, time: .standard)) en el iPhone, sin servicios externos."))
         lines.append("- " + "RacePerformanceModel \(RacePerformanceModel.version) · RecoveryEngine \(RecoveryEngine.version) · HealthScoreEngine \(HealthScoreEngine.version) · " + String(localized: "formato de exportación") + " \(DataExport.formatVersion)")  // nolocalize
+        let exportRuns = workouts.filter(\.activity.isRun)
+        let observedMax = HeartRateZoneConfiguration.observedMax(in: exportRuns)
+        if let configured = FitnessStore.shared.configuredMaxHeartRate {
+            let configuredText = String(Int(configured))
+            let observedText = observedMax.map { String(Int($0)) } ?? "—"
+            lines.append("- " + String(localized: "FC máxima de referencia: \(configuredText) lpm, configurada a mano (la más alta registrada en el período: \(observedText) lpm). Las intensidades y la elegibilidad para el VDOT se calculan con la configurada."))
+        } else if let reference = EffortClassifier.referenceMaxHeartRate(configured: nil, runs: exportRuns) {
+            let referenceText = String(Int(reference))
+            lines.append("- " + String(localized: "FC máxima de referencia: \(referenceText) lpm, observada (la segunda más alta de tus carreras, para no tomar un pico del sensor)."))
+        }
         let workoutSources = Set(workouts.map { DataExport.source($0.origin) }).sorted().joined(separator: ", ")
         let sleepSources = Set(sleep.compactMap(\.sourceName)).sorted().joined(separator: ", ")
         let workoutSourcesText = workoutSources.isEmpty ? "—" : workoutSources

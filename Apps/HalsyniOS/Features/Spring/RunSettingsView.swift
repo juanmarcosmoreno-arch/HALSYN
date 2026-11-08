@@ -425,6 +425,18 @@ struct ZoneSettingsView: View {
                 switch zones.maxSource {
                 case .manual:
                     bpmField("FC máxima (lpm)", value: runSetting(path.appending(path: \.maxHeartRate)))
+                    if let observedMax, let manual = zones.maxHeartRate, observedMax > manual + 2, !model.isDemo {
+                        let observedText = String(Int(observedMax))
+                        let manualText = String(Int(manual))
+                        Label("Registraste \(observedText) lpm, más que tu FC máxima configurada (\(manualText)). Con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron. Revísala o usa la observada.", systemImage: "exclamationmark.triangle")
+                            .font(.caption)
+                            .foregroundStyle(.halsynCaution)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Button("Usar la observada") {
+                            let path = path
+                            store.update { $0[keyPath: path].maxSource = .observed }
+                        }
+                    }
                 case .observed:
                     observedRow
                 }

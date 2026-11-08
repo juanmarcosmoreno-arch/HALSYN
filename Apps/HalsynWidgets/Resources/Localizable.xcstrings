@@ -11867,6 +11867,40 @@
         }
       }
     },
+    "FC máxima de referencia: %@ lpm, configurada a mano (la más alta registrada en el período: %@ lpm). Las intensidades y la elegibilidad para el VDOT se calculan con la configurada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reference max heart rate: %@ bpm, set manually (the highest recorded in the period: %@ bpm). Intensities and VDOT eligibility are calculated with the configured one."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referensmaxpuls: %@ slag/min, inställd manuellt (den högsta registrerade under perioden: %@ slag/min). Intensiteter och VDOT-behörighet beräknas med den inställda."
+          }
+        }
+      }
+    },
+    "FC máxima de referencia: %@ lpm, observada (la segunda más alta de tus carreras, para no tomar un pico del sensor).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reference max heart rate: %@ bpm, observed (the second highest of your runs, to avoid a sensor spike)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referensmaxpuls: %@ slag/min, observerad (den näst högsta av dina löppass, för att undvika en sensortopp)."
+          }
+        }
+      }
+    },
     "FC reposo": {
       "extractionState": "manual",
       "localizations": {
@@ -24158,6 +24192,23 @@
         }
       }
     },
+    "Registraste %@ lpm, más que tu FC máxima configurada (%@). Con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron. Revísala o usa la observada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You recorded %@ bpm, more than your configured max heart rate (%@). With a max lower than your real one, runs look harder than they were. Check it or use the observed one."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du registrerade %@ slag/min, mer än din inställda maxpuls (%@). Med en lägre maxpuls än den verkliga ser passen hårdare ut än de var. Kontrollera den eller använd den observerade."
+          }
+        }
+      }
+    },
     "Registraste dolor en %@ (%@/10): descanso unos días. Si no mejora o empeora, consulta a un profesional.": {
       "extractionState": "manual",
       "localizations": {
@@ -30937,6 +30988,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Använd den från Apple Health: %lld slag/min"
+          }
+        }
+      }
+    },
+    "Usar la observada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the observed one"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd den observerade"
           }
         }
       }
