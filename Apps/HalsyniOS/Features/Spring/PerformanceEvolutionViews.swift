@@ -68,7 +68,10 @@ struct PerformanceEvolutionChart: View {
     }
 
     private var points: [Point] {
-        performance.evidence.filter { $0.role != .duplicate && ($0.kind != .trainingEffort || $0.role == .counted) }.map {
+        performance.evidence.filter { item in
+            if case .duplicate = item.role { return false }
+            return item.kind != .trainingEffort || item.role == .counted
+        }.map {
             Point(date: $0.date, vdot: $0.vdot, counted: $0.role == .counted || $0.role == .inconsistent)
         }
     }
