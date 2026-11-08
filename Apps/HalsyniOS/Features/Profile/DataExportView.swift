@@ -125,7 +125,15 @@ struct DataExportView: View {
         // Datos calculados por HÅLSYN para cada entrenamiento (sin muestras: la
         // clasificación de series necesita el pulso segundo a segundo).
         let quality = DataQuality.assess(workouts)
-        let intensities = IntensityContext.intensities(workouts)
+        // Pulso segundo a segundo de las carreras de las últimas 6 semanas, para
+        // detectar series igual que en la pantalla del entrenamiento.
+        let samplesStart = calendar.date(byAdding: .day, value: -42, to: end) ?? end
+        var samples: [UUID: [HeartRatePoint]] = [:]
+        for run in workouts.filter({ $0.activity.isRun && $0.start >= samplesStart && $0.averageHeartRate != nil }).prefix(60) {
+            let points = await provider.workoutDetail(for: run).heartRate
+            if !points.isEmpty { samples[run.id] = points }
+        }
+        let intensities = IntensityContext.intensities(workouts, samples: samples)
         let runs = workouts.filter(\.activity.isRun)
         let performance = FitnessStore.shared.performance(runs: runs, today: end)
         var evidenceByWorkout: [UUID: PerformanceEvidence] = [:]
@@ -140,7 +148,7 @@ struct DataExportView: View {
         for workout in workouts {
             let intensity = intensities[workout.id]
             let evidence = evidenceByWorkout[workout.id]
-            extras[workout.id] = DataExport.WorkoutExtra(
+            var extra = DataExport.WorkoutExtra(
                 intensity: intensity.map { DataExport.code($0.kind) } ?? "",
                 intensityBasis: intensity.map { $0.kind == .unknown ? "" : $0.basis.rawValue } ?? "",
                 qualityFlags: quality[workout.id]?.flags.map(DataExport.code) ?? [],
@@ -149,6 +157,8 @@ struct DataExportView: View {
                 sessionType: intensity?.sessionType?.rawValue ?? "",
                 vdotEligibility: workout.activity.isRun ? DataExport.code(IntensityContext.eligibility(workout)) : ""
             )
+            extra.harderThanPlanned = intensity?.harderThanPlanned == true
+            extras[workout.id] = extra
         }
         let workoutsCSV = DataExport.workoutsCSV(workouts, marks: marks, shoes: shoes, extras: extras, calendar: calendar)
         let dailyCSV = DataExport.dailyCSV(series: series, healthScores: health, recoveryScores: recovery, sleep: sleep, days: days, calendar: calendar)
@@ -208,7 +218,11 @@ struct DataExportView: View {
         lines.append("- " + "RacePerformanceModel \(RacePerformanceModel.version) · RecoveryEngine \(RecoveryEngine.version) · HealthScoreEngine \(HealthScoreEngine.version) · " + String(localized: "formato de exportación") + " \(DataExport.formatVersion)")  // nolocalize
         let exportRuns = workouts.filter(\.activity.isRun)
         let observedMax = HeartRateZoneConfiguration.observedMax(in: exportRuns)
-        if let configured = FitnessStore.shared.configuredMaxHeartRate {
+        let effectiveMax = FitnessStore.shared.maxHeartRate(for: exportRuns)
+        if let configured = FitnessStore.shared.configuredMaxHeartRate, effectiveMax.overridden, let used = effectiveMax.value {
+            let configuredText = String(Int(configured)), usedText = String(Int(used))
+            lines.append("- " + String(localized: "FC máxima de referencia: \(usedText) lpm, observada. La configurada a mano (\(configuredText) lpm) queda por debajo de lo que registraste y haría parecer muy intensos los rodajes: se usa la observada hasta que la revises."))
+        } else if let configured = FitnessStore.shared.configuredMaxHeartRate {
             let configuredText = String(Int(configured))
             let observedText = observedMax.map { String(Int($0)) } ?? "—"
             lines.append("- " + String(localized: "FC máxima de referencia: \(configuredText) lpm, configurada a mano (la más alta registrada en el período: \(observedText) lpm). Las intensidades y la elegibilidad para el VDOT se calculan con la configurada."))
@@ -290,6 +304,9 @@ struct DataExportView: View {
                     lines.append("- " + String(localized: "Sesiones hechas en parte: \(partialText); no hechas: \(missedText); no hechas por enfermedad o lesión (no cuentan): \(excusedText)"))
                     let weeksText = String(adherence.weeksWithPlan)
                     lines.append("- " + String(localized: "Frecuencia: \(HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1)) carreras por semana reales frente a \(String(adherence.targetRunsPerWeek)) del objetivo; \(String(adherence.runsOutsidePlan)) fuera del plan; semanas con plan: \(weeksText)"))
+                    for line in AdherenceText.lines(adherence) {
+                        lines.append("  - " + line)  // nolocalize
+                    }
                 }
             }
         }
@@ -357,7 +374,7 @@ struct DataExportView: View {
         lines.append("## " + String(localized: "Archivos"))
         lines.append("- " + String(localized: "Entrenamientos: una fila por entrenamiento. Distancia en km, duración en minutos, ritmo en min/km y s/km, pulso en lpm, cadencia en pasos por minuto, desnivel en m, potencia en W, temperatura en °C y humedad en %. «marked_as» indica si lo marcaste como test o carrera."))
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
-        lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo. Un pulso alto (very_hard) no significa esfuerzo máximo."))
+        lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo."))
         lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
         lines.append("- " + String(localized: "Pruebas (si hay): cada prueba del modelo con su VDOT, su papel, su peso y los factores (tipo × antigüedad × distancia × calidad × tope × coherencia). Eventos y laboratorio (si hay): lo que registraste."))
         return lines.joined(separator: "\n") + "\n"

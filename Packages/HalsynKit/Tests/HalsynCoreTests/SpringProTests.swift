@@ -47,8 +47,9 @@ struct HeartRateZoneTests {
     }
 
     @Test func observedMaxIgnoresSensorSpikes() {
-        let workouts = [150.0, 182, 245].map {
-            WorkoutSummary(activity: .outdoorRun, start: t0, duration: 1800, distanceMeters: 5000, averageHeartRate: 140, maxHeartRate: $0, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
+        // Carreras de días distintos (con la misma hora serían el mismo entrenamiento importado tres veces).
+        let workouts = [150.0, 182, 245].enumerated().map { index, maximum in
+            WorkoutSummary(activity: .outdoorRun, start: t0.addingTimeInterval(Double(index) * 86_400), duration: 1800, distanceMeters: 5000, averageHeartRate: 140, maxHeartRate: maximum, activeEnergyKilocalories: nil, averageCadence: nil, origin: .demo)
         }
         #expect(HeartRateZoneConfiguration.observedMax(in: workouts) == 182)
         #expect(HeartRateZoneConfiguration.observedMax(in: []) == nil)

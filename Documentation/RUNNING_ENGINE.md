@@ -230,3 +230,14 @@ Detalle y casos reales en `AUDITORIA_NOV_2026.md`.
 - Rol `notMaximal`: candidato más de 3 puntos por debajo de los tests.
 - Confirmar o descartar esfuerzos a mano (`FitnessStore.rejected`).
 - Detalle en `AUDITORIA_RPM_1_3.md`.
+
+## RacePerformanceModel 1.5 (0.10.0 (106))
+
+- «Hoy» = Daniels con el VDOT actual (una sola definición); Riegel ensancha el rango.
+- Cumplimiento frente a las sesiones programadas en los días transcurridos y
+  mezcla con el supuesto central cuando hay pocas sesiones (`projectionCompliance`).
+- Referencia de FC máxima sin duplicados; `effectiveMax` cuando la configurada
+  queda por debajo de lo registrado.
+- Deduplicación determinista (±12 h); sesiones de umbral o series planificadas
+  no elegibles; semanas restadas por eventos de salud con fin conocido.
+- Detalle en `AUDITORIA_MOTORES_FASE_B.md`.

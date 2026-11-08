@@ -62,6 +62,13 @@ public enum IntensityBucket: Int, CaseIterable, Comparable, Hashable, Sendable {
 
 /// Clasificación de un entrenamiento y con qué se decidió.
 public struct WorkoutIntensity: Hashable, Sendable {
+    /// La sesión del plan era suave (suave, larga o recuperación) y se hizo con
+    /// intensidad alta (tempo, series o muy intenso). No cambia el objetivo de la sesión.
+    public var harderThanPlanned: Bool {
+        guard let sessionType, [.easy, .long, .recovery].contains(sessionType) else { return false }
+        return kind == .tempo || kind == .intervals || kind == .veryHard
+    }
+
     public enum Basis: String, Hashable, Sendable {
         /// Lo marcaste tú (test o competición).
         case marked
@@ -109,7 +116,10 @@ public struct WorkoutIntensity: Hashable, Sendable {
 ///    Nunca «a tope» ni «series». Marcado como aproximado.
 /// 4. Sin pulso ni ritmo, esfuerzo percibido (1–10): ≤ 2 recuperación, ≤ 4
 ///    suave, ≤ 6 moderado, más tempo. Aproximado.
-/// Son umbrales prácticos (Seiler; Daniels), no un diagnóstico.
+/// 5. Si tus zonas son por FC de umbral (y la configuraste): zonas de Friel
+///    en % de esa FC (< 85 % recuperación o suave, 85–89 suave, 90–94
+///    moderado, 95–99 tempo, ≥ 100 muy intenso), en lugar del % de la máxima.
+/// Son umbrales prácticos (Seiler; Daniels; Friel), no un diagnóstico.
 public enum IntensityClassifier {
     public static let recoveryLimit = 0.70
     public static let recoveryMaxDuration: TimeInterval = 45 * 60
@@ -127,9 +137,10 @@ public enum IntensityClassifier {
         perceivedEffort: Double? = nil,
         marked: PerformanceResult.Kind? = nil,
         plannedKind: SessionKind? = nil,
-        quality: WorkoutQuality? = nil
+        quality: WorkoutQuality? = nil,
+        lactateThreshold: Double? = nil
     ) -> WorkoutIntensity {
-        var result = physiological(workout, maxHeartRate: maxHeartRate, thresholdHeartRate: thresholdHeartRate, thresholdPace: thresholdPace, samples: samples, perceivedEffort: perceivedEffort, marked: marked, plannedKind: plannedKind, quality: quality)
+        var result = physiological(workout, maxHeartRate: maxHeartRate, thresholdHeartRate: thresholdHeartRate, thresholdPace: thresholdPace, samples: samples, perceivedEffort: perceivedEffort, marked: marked, plannedKind: plannedKind, quality: quality, lactateThreshold: lactateThreshold)
         if result.kind == .intervals {
             result.sessionType = .intervals
         } else if let marked {
@@ -149,12 +160,29 @@ public enum IntensityClassifier {
         perceivedEffort: Double?,
         marked: PerformanceResult.Kind?,
         plannedKind: SessionKind?,
-        quality: WorkoutQuality?
+        quality: WorkoutQuality?,
+        lactateThreshold: Double? = nil
     ) -> WorkoutIntensity {
         switch marked {
         case .test?: return WorkoutIntensity(kind: .test, basis: .marked)
         case .race?: return WorkoutIntensity(kind: .race, basis: .marked)
         case nil: break
+        }
+        // Zonas por FC de umbral (si elegiste ese método): zonas de Friel para
+        // correr, en % de la FC de umbral. < 85 % Z1, 85–89 Z2, 90–94 Z3,
+        // 95–99 Z4, ≥ 100 Z5.
+        if let lactateThreshold, lactateThreshold > 0, let average = workout.averageHeartRate, average > 0,
+           quality?.heartRateUsable != false {
+            let fraction = average / lactateThreshold
+            if let samples, let maxHeartRate, isIntervalPattern(samples, maxHeartRate: maxHeartRate), workout.duration >= tempoMinimumDuration {
+                return WorkoutIntensity(kind: .intervals, basis: .heartRate)
+            }
+            if plannedKind == .intervals, fraction >= 0.85 { return WorkoutIntensity(kind: .intervals, basis: .heartRate) }
+            if fraction >= 1.0, workout.duration >= EffortClassifier.maximalDuration.lowerBound { return WorkoutIntensity(kind: .veryHard, basis: .heartRate) }
+            if fraction >= 0.95, workout.duration >= tempoMinimumDuration { return WorkoutIntensity(kind: .tempo, basis: .heartRate) }
+            if fraction >= 0.90 { return WorkoutIntensity(kind: .moderate, basis: .heartRate) }
+            if fraction < 0.85, workout.duration <= recoveryMaxDuration { return WorkoutIntensity(kind: .recovery, basis: .heartRate) }
+            return WorkoutIntensity(kind: .easy, basis: .heartRate)
         }
         if let average = workout.averageHeartRate, average > 0, let maxHeartRate, maxHeartRate > 0,
            quality?.heartRateUsable != false {

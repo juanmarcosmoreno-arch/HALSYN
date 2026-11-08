@@ -130,7 +130,7 @@ struct PredictionDetailView: View {
             } header: {
                 Text("Métodos")
             } footer: {
-                Text("Daniels proyecta tu VDOT de hoy a cada distancia. Riegel proyecta cada prueba con T₂ = T₁ × (D₂/D₁)^k; las pruebas de distancia parecida pesan más. El tiempo mostrado combina los dos.")
+                Text("El tiempo mostrado es el de Daniels con tu VDOT de hoy: el mismo en el objetivo, la proyección y la exportación. Riegel (T₂ = T₁ × (D₂/D₁)^k, con más peso a las pruebas de distancia parecida) sirve de comprobación: si los dos difieren, el rango se ensancha hasta incluirlo.")
             }
 
             Section {
@@ -310,7 +310,11 @@ enum PredictionExplanationText {
         } else {
             lines.append(String(localized: "Es la pauta de Daniels (1 punto cada 6 semanas): con menos de 3 tests en 3 semanas tu tendencia todavía no se usa."))
         }
-        lines.append(String(localized: "Cumplimiento efectivo (el menor entre sesiones hechas y frecuencia real): \(complianceText) → factor \(complianceFactor). Frecuencia del plan → factor \(frequencyFactor)."))
+        lines.append(String(localized: "Cumplimiento usado (sesiones y frecuencia frente a lo programado; con pocas sesiones, mezclado con el supuesto del 85 %): \(complianceText) → factor \(complianceFactor). Frecuencia del plan → factor \(frequencyFactor)."))
+        if probability.blockedWeeks > 0 {
+            let blocked = String(probability.blockedWeeks)
+            lines.append(String(localized: "Se restaron \(blocked) semanas por enfermedad o lesión registradas por delante."))
+        }
         lines.append(String(localized: "Mejora = 4 × (1 − e^(−semanas × ritmo × factores ÷ 4)) = \(gainText) VDOT. VDOT el día de la carrera: \(projectedText) → \(HalsynFormat.duration(probability.projectedTime))."))
         let sigma = HalsynFormat.decimal(central.uncertainty, fractionDigits: 2)
         let range = GoalProbabilityText.range(probability.projectedRange)

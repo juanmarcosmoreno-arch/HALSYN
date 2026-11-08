@@ -19,15 +19,10 @@ final class FitnessStore {
     }
 
     func add(_ result: PerformanceResult) {
+        // Editar el mismo resultado (o la marca del mismo entrenamiento) lo
+        // reemplaza. Un resultado cargado a mano equivalente NO se borra: se
+        // conserva para la trazabilidad y la deduplicación lo deja fuera del cálculo.
         results.removeAll { $0.id == result.id || ($0.workoutID != nil && $0.workoutID == result.workoutID) }
-        // Si el mismo esfuerzo ya estaba cargado a mano (mismo día, tiempo y
-        // distancia casi iguales), el que viene del entrenamiento lo reemplaza.
-        if result.workoutID != nil {
-            results.removeAll { other in
-                other.workoutID == nil
-                    && RacePerformanceModel.deduplicated([result, other], calendar: .current).kept.count == 1
-            }
-        }
         results.append(result)
         results.sort { $0.date > $1.date }
         persist()
@@ -91,6 +86,18 @@ final class FitnessStore {
         return zones.maxSource == .manual ? zones.maxHeartRate : nil
     }
 
+    /// FC máxima que usan el modelo y la intensidad: la configurada, salvo que
+    /// quede por debajo de lo registrado (entonces la observada).
+    func maxHeartRate(for runs: [WorkoutSummary]) -> (value: Double?, overridden: Bool) {
+        HeartRateZoneConfiguration.effectiveMax(configured: configuredMaxHeartRate, runs: WorkoutQualityStore.shared.clean(runs))
+    }
+
+    /// Solo carreras, sin duplicados ni lo que excluiste: el modelo recibe lo
+    /// mismo desde cualquier pantalla (y la exportación).
+    private func cleanRuns(_ runs: [WorkoutSummary]) -> [WorkoutSummary] {
+        WorkoutQualityStore.shared.clean(runs.filter(\.activity.isRun))
+    }
+
     /// Exponente de Riegel elegido (Predicción › Cómo se calcula).
     static let riegelExponentKey = "halsyn.riegelExponent"
     var riegelExponent: Double {
@@ -100,12 +107,14 @@ final class FitnessStore {
 
     /// Validación de la proyección (4 semanas antes de cada test o competición).
     func projectionBacktest(runs: [WorkoutSummary]) -> PredictionBacktest {
-        PredictionBacktest.runProjection(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, calendar: .current)
+        let clean = cleanRuns(runs)
+        return PredictionBacktest.runProjection(results: results, runs: clean, maxHeartRate: maxHeartRate(for: clean).value, riegelExponent: riegelExponent, distinct: distinct, rejected: rejected, plannedKinds: plannedKinds, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, calendar: .current)
     }
 
     /// Evaluación retrospectiva con tus tests y competiciones (solo datos anteriores a cada uno).
     func backtest(runs: [WorkoutSummary]) -> PredictionBacktest {
-        PredictionBacktest.run(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, calendar: .current)
+        let clean = cleanRuns(runs)
+        return PredictionBacktest.run(results: results, runs: clean, maxHeartRate: maxHeartRate(for: clean).value, riegelExponent: riegelExponent, distinct: distinct, rejected: rejected, plannedKinds: plannedKinds, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, calendar: .current)
     }
 
     // MARK: Objetivos ya corridos (calibración de la factibilidad)
@@ -131,7 +140,8 @@ final class FitnessStore {
 
     /// Modelo de rendimiento con todas tus pruebas (tests, competiciones y esfuerzos).
     func performance(runs: [WorkoutSummary], today: Date = .now) -> PerformanceAssessment? {
-        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, distinct: distinct, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, plannedKinds: plannedKinds, rejected: rejected, today: today, calendar: .current)
+        let clean = cleanRuns(runs)
+        return RacePerformanceModel.assess(results: results, runs: clean, maxHeartRate: maxHeartRate(for: clean).value, riegelExponent: riegelExponent, distinct: distinct, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, plannedKinds: plannedKinds, rejected: rejected, today: today, calendar: .current)
     }
 
     /// Forma para el plan y los ritmos: el VDOT del modelo de rendimiento (el
@@ -140,7 +150,8 @@ final class FitnessStore {
     func estimate(runs: [WorkoutSummary], today: Date = .now) -> FitnessEstimate? {
         // La prueba más reciente que cuenta (no un rodaje por debajo ni un duplicado).
         guard let model = performance(runs: runs, today: today), let newest = model.evidence.first(where: { $0.role == .counted }) else {
-            return FitnessEstimator.estimate(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, today: today, calendar: .current)
+            let clean = cleanRuns(runs)
+            return FitnessEstimator.estimate(results: results, runs: clean, maxHeartRate: maxHeartRate(for: clean).value, today: today, calendar: .current)
         }
         let combined = model.countedEvidence.count
         if let result = results.first(where: { $0.id == newest.id }) {
@@ -463,7 +474,7 @@ struct GoalStatusCard: View {
                         AdherenceView(adherence: adherence)
                     }
                     NavigationLink {
-                        GoalSimulatorView(runs: runs, goal: plan.goal, compliance: probability.adherence?.effective)
+                        GoalSimulatorView(runs: runs, goal: plan.goal, compliance: probability.adherence?.projectionCompliance)
                     } label: {
                         Label("Simular otro objetivo", systemImage: "slider.horizontal.3")
                             .font(.halsynCaption.weight(.semibold))

@@ -91,6 +91,25 @@ extension Array where Element == HealthEvent {
         Set(filter(\.kind.affectsTraining).flatMap { $0.days(today: today, calendar: calendar) })
     }
 
+    /// Días entre mañana y `end` que cubre un evento que impide entrenar con
+    /// fecha de fin conocida (los que siguen en curso sin fin no se adivinan).
+    public func blockedFutureDays(today: Date, until end: Date, calendar: Calendar) -> Int {
+        let first = calendar.startOfDay(for: today)
+        let last = calendar.startOfDay(for: end)
+        var days = Set<Date>()
+        for event in self where event.kind.affectsTraining {
+            guard let eventEnd = event.end else { continue }
+            var day = Swift.max(calendar.startOfDay(for: event.start), calendar.date(byAdding: .day, value: 1, to: first) ?? first)
+            let stop = Swift.min(calendar.startOfDay(for: eventEnd), last)
+            while day <= stop, days.count < 3660 {
+                days.insert(day)
+                guard let next = calendar.date(byAdding: .day, value: 1, to: day) else { break }
+                day = next
+            }
+        }
+        return days.count
+    }
+
     /// Eventos que se cruzan con un intervalo de días (para las gráficas).
     public func overlapping(from start: Date, to end: Date, today: Date, calendar: Calendar) -> [HealthEvent] {
         filter { event in

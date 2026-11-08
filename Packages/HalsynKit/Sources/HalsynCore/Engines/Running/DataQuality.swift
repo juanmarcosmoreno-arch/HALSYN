@@ -236,7 +236,7 @@ public enum VDOTEligibility: Hashable, Sendable {
     case notEligible(Reason)
 
     public enum Reason: String, Hashable, Sendable {
-        case noHeartRate, lowHeartRate, belowThreshold, duration, distance, treadmill, hilly, plannedEasy, rejected, quality
+        case noHeartRate, lowHeartRate, belowThreshold, duration, distance, treadmill, hilly, plannedEasy, plannedWorkout, rejected, quality
     }
 
     public var isCandidate: Bool { self == .candidate }
@@ -283,7 +283,8 @@ public enum EffortClassifier {
     /// ¿Sirve para estimar el VDOT? Criterios de candidato (todos):
     /// FC media ≥ 90 % de la máxima de referencia (y ≥ tu FC de umbral si la
     /// pusiste), 8–75 min, ≥ 3 km, al aire libre, ≤ 10 m de desnivel por km,
-    /// sin una sesión suave, larga o de recuperación planificada ese día, datos
+    /// sin una sesión suave, larga, de recuperación, de umbral o de series
+    /// planificada ese día, datos
     /// válidos y no descartado por ti.
     public static func eligibility(_ workout: WorkoutSummary, maxHeartRate: Double?, thresholdHeartRate: Double? = nil, plannedKind: SessionKind? = nil, marked: PerformanceResult.Kind? = nil, rejected: Bool = false, quality: WorkoutQuality? = nil) -> VDOTEligibility {
         if marked != nil { return .confirmed }
@@ -299,14 +300,22 @@ public enum EffortClassifier {
         if let thresholdHeartRate, average < thresholdHeartRate { return .notEligible(.belowThreshold) }
         if let climb = workout.elevationGain, climb / (distance / 1000) > maximumClimbPerKilometer { return .notEligible(.hilly) }
         if let plannedKind, plannedKind == .easy || plannedKind == .long || plannedKind == .recovery { return .notEligible(.plannedEasy) }
+        // Un umbral o unas series planificadas tampoco son una prueba a tope:
+        // solo cuentan si las confirmas.
+        if let plannedKind, plannedKind == .tempo || plannedKind == .intervals { return .notEligible(.plannedWorkout) }
         return .candidate
     }
 
     /// FC máxima de referencia: la tuya o la más alta observada, descartando
     /// el pico aislado (se usa la segunda más alta si hay 5 o más carreras).
+    /// Sin duplicados ni superposiciones y sin pulso inválido, para que una
+    /// reimportación no cambie la referencia (con el pico repetido, la
+    /// «segunda más alta» pasaba a ser el mismo pico).
     public static func referenceMaxHeartRate(configured: Double?, runs: [WorkoutSummary]) -> Double? {
         if let configured, HeartRateZoneConfiguration.plausibleMaxRange.contains(configured) { return configured }
-        let values = runs.compactMap(\.maxHeartRate)
+        let quality = DataQuality.assess(runs)
+        let values = runs.filter { quality[$0.id]?.level != .excluded && quality[$0.id]?.heartRateUsable != false }
+            .compactMap(\.maxHeartRate)
             .filter { HeartRateZoneConfiguration.plausibleMaxRange.contains($0) }
             .sorted(by: >)
         guard let first = values.first else { return nil }

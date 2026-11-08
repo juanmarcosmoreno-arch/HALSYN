@@ -90,23 +90,28 @@ public struct GoalProbability: Hashable, Sendable {
     public var scenarios: [GoalProjection.Result] = []
     /// El escenario central con todos sus términos (para explicar la cuenta).
     public var central: GoalProjection.Result?
+    /// Semanas restadas por eventos de salud por delante.
+    public var blockedWeeks: Int = 0
 
     public static let complianceWindowDays = 28
     public static let assumedCompliance = 0.85
     public static let raceDayUncertainty = 0.7
 
     /// `nil` sin tiempo objetivo, sin estimación de forma o con la carrera ya pasada.
-    public static func evaluate(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar, skips: [Date: SessionSkipReason] = [:], healthDays: Set<Date> = []) -> GoalProbability? {
+    public static func evaluate(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar, skips: [Date: SessionSkipReason] = [:], healthDays: Set<Date> = [], blockedFutureDays: Int = 0) -> GoalProbability? {
         guard let goalTime = plan.goal.goalTime,
               let goalVDOT = VDOT.value(distance: plan.goal.distance.rawValue, time: goalTime),
               let performance,
               calendar.startOfDay(for: today) <= calendar.startOfDay(for: plan.goal.raceDate)
         else { return nil }
 
-        let weeks = GoalCoach.trainingWeeks(until: plan.goal.raceDate, distance: plan.goal.distance, today: today, calendar: calendar)
+        // Días por delante con un evento que impide entrenar (enfermedad o
+        // lesión con fecha de fin): no suman semanas de entrenamiento.
+        let blockedWeeks = Int((Double(max(blockedFutureDays, 0)) / 7).rounded())
+        let weeks = max(0, GoalCoach.trainingWeeks(until: plan.goal.raceDate, distance: plan.goal.distance, today: today, calendar: calendar) - blockedWeeks)
         let adherence = TrainingAdherence.evaluate(plan: plan, runs: runs, today: today, calendar: calendar, skips: skips, healthDays: healthDays)
         let record = (score: adherence.score, done: adherence.done, planned: adherence.planned)
-        let compliance = adherence.effective
+        let compliance = adherence.projectionCompliance
         let central = GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: .central)
         let gain = central.gain
         let projected = central.projectedVDOT
@@ -167,7 +172,8 @@ public struct GoalProbability: Hashable, Sendable {
             requiredPaceChange: (currentTime - goalTime) / (distance / 1000),
             adherence: adherence,
             scenarios: scenarios,
-            central: central
+            central: central,
+            blockedWeeks: blockedWeeks
         )
     }
 

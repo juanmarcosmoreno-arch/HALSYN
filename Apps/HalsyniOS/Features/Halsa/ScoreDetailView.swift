@@ -75,7 +75,7 @@ struct ScoreDetailView: View {
                     Text("Si faltan datos, solo se calcula con al menos el 60 % del peso disponible.")
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
-                    Text("Es una estimación de bienestar, no una valoración clínica, y no está validada en estudios.")
+                    Text("Es una estimación de bienestar y hábitos, no una valoración clínica, y no está validada en estudios. Una puntuación alta no descarta una enfermedad.")
                         .font(.halsynCaption.weight(.semibold))
                         .foregroundStyle(.halsynSecondaryText)
                     ReferenceLinks(references: [ScienceReferences.sleepDuration, ScienceReferences.dailySteps, ScienceReferences.physicalActivity, ScienceReferences.trainingLoad])

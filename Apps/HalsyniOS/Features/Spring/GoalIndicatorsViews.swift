@@ -171,6 +171,34 @@ struct ScenariosView: View {
 
 // MARK: - Adherencia
 
+/// Por qué se aplica cada factor de cumplimiento, con sus números.
+enum AdherenceText {
+    static func lines(_ adherence: TrainingAdherence) -> [String] {
+        var lines: [String] = []
+        let expected = adherence.scheduledInWindow - adherence.excused
+        if expected > 0 {
+            let runDaysText = String(adherence.runDays), sessions = String(expected)
+            lines.append(String(localized: "Frecuencia: \(runDaysText) días con carrera frente a \(sessions) sesiones programadas en los días que ya pasaron (no frente a semanas enteras)."))
+        }
+        guard let effective = adherence.effective else {
+            lines.append(String(localized: "Todavía no hay sesiones pasadas: la proyección usa el supuesto de cada escenario."))
+            return lines
+        }
+        let effectiveText = "\(Int((effective * 100).rounded())) %"
+        lines.append(String(localized: "Observado: el menor entre cumplir las sesiones y la frecuencia = \(effectiveText)."))
+        if adherence.isLimited, let used = adherence.projectionCompliance {
+            let usedText = "\(Int((used * 100).rounded())) %"
+            let count = adherence.planned
+            lines.append(String(localized: "Con \(count) sesiones todavía es poco dato: para la proyección se mezcla con el supuesto del 85 % según cuántas hay, (sesiones × observado + 4 × 85 %) ÷ (sesiones + 4) = \(usedText)."))
+        }
+        if let used = adherence.projectionCompliance {
+            let factor = HalsynFormat.decimal(GoalProbability.gainFactor(used), fractionDigits: 2)
+            lines.append(String(localized: "Factor de mejora: (cumplimiento − 40 %) ÷ 50 %, entre 0 y 1 = \(factor). Es un supuesto de HÅLSYN: 90 % o más cuenta entero, 40 % o menos nada."))
+        }
+        return lines
+    }
+}
+
 struct AdherenceView: View {
     let adherence: TrainingAdherence
 
@@ -207,8 +235,8 @@ struct AdherenceView: View {
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            if let effective = adherence.effective {
-                Text(verbatim: String(localized: "Para la proyección cuenta el menor entre cumplir las sesiones y correr las veces del objetivo: \(String(Int((effective * 100).rounded()))) %."))
+            ForEach(Array(AdherenceText.lines(adherence).enumerated()), id: \.offset) { _, line in
+                Text(verbatim: line)
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

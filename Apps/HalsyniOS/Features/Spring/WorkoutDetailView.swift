@@ -75,6 +75,21 @@ struct WorkoutDetailView: View {
                                 Text(verbatim: IntensityText.basis(intensity))
                                     .font(.caption2)
                                     .foregroundStyle(.halsynSecondaryText)
+                                if intensity.harderThanPlanned, let planned = intensity.sessionType {
+                                    let plannedText = String(localized: String.LocalizationValue(planned.title))
+                                    let doneText = IntensityText.title(intensity.kind)
+                                    Label("Planificada como «\(plannedText)», hecha como «\(doneText)». El objetivo de la sesión no cambia; si se repite, conviene bajar el ritmo en los días suaves.", systemImage: "arrow.up.forward.circle")
+                                        .font(.caption2)
+                                        .foregroundStyle(.halsynCaution)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                    if let climb = workout.elevationGain, let distance = workout.distanceMeters, distance > 0, climb / (distance / 1000) > EffortClassifier.maximumClimbPerKilometer {
+                                        let climbText = String(Int(climb))
+                                        Text("Con \(climbText) m de desnivel el pulso sube aunque el esfuerzo de piernas sea moderado.")
+                                            .font(.caption2)
+                                            .foregroundStyle(.halsynSecondaryText)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                    }
+                                }
                                 let eligibility = IntensityContext.eligibility(workout)
                                 Text(verbatim: IntensityText.eligibility(eligibility))
                                     .font(.caption2)

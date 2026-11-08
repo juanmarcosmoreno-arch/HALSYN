@@ -29,12 +29,14 @@ extension HealthDataProviding {
             series.append(await dailySeries(kind, days: fetchDays, endingOn: lastDay))
         }
         let history = DailyHistory(series: series, calendar: calendar)
+        let nightList = await sleepNights(endingOn: lastDay, days: fetchDays)
+        let nights = Dictionary(nightList.map { (calendar.startOfDay(for: $0.day), $0) }, uniquingKeysWith: { _, last in last })
 
         var results: [Date: HealthScoreEngine.Result] = [:]
         var ordered: [Date] = []
         for offset in stride(from: evaluatedDays - 1, through: 0, by: -1) {
             guard let day = calendar.date(byAdding: .day, value: -offset, to: lastDay) else { continue }
-            results[day] = engine.evaluate(day: day, history: history)
+            results[day] = engine.evaluate(day: day, history: history, nights: nights)
             ordered.append(day)
         }
 

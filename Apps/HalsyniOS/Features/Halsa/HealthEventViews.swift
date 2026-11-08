@@ -87,7 +87,8 @@ extension GoalProbability {
     /// Con los motivos de las sesiones no hechas y tus eventos de salud.
     @MainActor
     static func evaluateInApp(plan: TrainingPlan, performance: PerformanceAssessment?, runs: [WorkoutSummary], today: Date, calendar: Calendar) -> GoalProbability? {
-        evaluate(plan: plan, performance: performance, runs: runs, today: today, calendar: calendar, skips: SessionSkipStore.shared.skips, healthDays: HealthEventStore.shared.trainingAffectedDays(today: today))
+        let blocked = HealthEventStore.shared.events.blockedFutureDays(today: today, until: plan.goal.raceDate, calendar: calendar)
+        return evaluate(plan: plan, performance: performance, runs: runs, today: today, calendar: calendar, skips: SessionSkipStore.shared.skips, healthDays: HealthEventStore.shared.trainingAffectedDays(today: today), blockedFutureDays: blocked)
     }
 }
 

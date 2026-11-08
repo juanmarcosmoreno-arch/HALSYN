@@ -67,7 +67,10 @@ final class TrainingPlanStore {
             runs: runs,
             maxHeartRate: FitnessStore.shared.configuredMaxHeartRate,
             complaints: ComplaintStore.shared.complaints,
-            healthEvents: HealthEventStore.shared.events
+            healthEvents: HealthEventStore.shared.events,
+            physiologicalLowDays: Set(recovery.filter { estimate in
+                estimate.components.contains { ($0.kind == .heartRateVariability || $0.kind == .restingHeartRate) && $0.impact == .negative }
+            }.map { Calendar.current.startOfDay(for: $0.day) })
         )
         syncToWatch()
     }

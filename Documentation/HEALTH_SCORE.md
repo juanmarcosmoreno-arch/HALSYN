@@ -57,3 +57,11 @@ La notificación nocturna es opcional (Perfil › Resumen nocturno), a la hora q
 - La regularidad del sueño y las fases no se valoran todavía (Fase 6, VILA).
 - La FC en reposo y la HRV del Apple Watch son estimaciones del dispositivo; su precisión depende del modelo y del ajuste del reloj.
 - No hay ajuste por edad, sexo, enfermedad, medicación, altitud, alcohol o ciclo menstrual.
+
+## HealthScoreEngine 0.2-provisional (0.10.0 (106))
+
+- Sueño principal (sin siestas); una noche incompleta (< 3 h o que termina
+  antes de medianoche, con lo habitual ≥ 5 h) no se usa.
+- Basal robusta (mediana y MAD × 1,4826) para FC en reposo y HRV; HRV como
+  media de 7 días de ln frente a la basal de los 28 días previos a la ventana.
+- Una puntuación alta no descarta una enfermedad: es bienestar y hábitos.

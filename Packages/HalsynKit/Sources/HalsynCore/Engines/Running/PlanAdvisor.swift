@@ -137,7 +137,8 @@ public enum PlanAdvisor {
         runs: [WorkoutSummary],
         maxHeartRate: Double?,
         complaints: [Complaint],
-        healthEvents: [HealthEvent] = []
+        healthEvents: [HealthEvent] = [],
+        physiologicalLowDays: Set<Date>? = nil
     ) -> PlanAdvice {
         let todayStart = calendar.startOfDay(for: today)
         guard let horizonEnd = calendar.date(byAdding: .day, value: horizonDays, to: todayStart) else { return PlanAdvice(reasons: [], adjustments: []) }
@@ -209,7 +210,7 @@ public enum PlanAdvisor {
 
         // 2. Señales de fatiga (2 de 3).
         var fatigue: [PlanAdvice.Reason] = []
-        if let low = lowRecovery(recovery, today: today, calendar: calendar) { fatigue.append(low) }
+        if let low = lowRecovery(recovery, today: today, calendar: calendar, physiologicalLowDays: physiologicalLowDays) { fatigue.append(low) }
         if let ratio = volumeRatio(runs, today: today, calendar: calendar), ratio >= 1.5 { fatigue.append(.volumeSpike(ratio: ratio)) }
         let hard = hardSessions(runs, maxHeartRate: maxHeartRate, today: today, calendar: calendar)
         if hard >= 3 { fatigue.append(.manyHardSessions(count: hard)) }
@@ -261,7 +262,10 @@ public enum PlanAdvisor {
 
     // MARK: Señales
 
-    static func lowRecovery(_ recovery: [(day: Date, value: Int?)], today: Date, calendar: Calendar) -> PlanAdvice.Reason? {
+    /// - `physiologicalLowDays`: días con HRV o FC en reposo peor que tu basal.
+    ///   Si se pasa, un día solo cuenta como bajo si además su HRV o su FC lo
+    ///   están (el puntaje agregado solo no decide; puede bajar por el sueño o la carga).
+    static func lowRecovery(_ recovery: [(day: Date, value: Int?)], today: Date, calendar: Calendar, physiologicalLowDays: Set<Date>? = nil) -> PlanAdvice.Reason? {
         let todayStart = calendar.startOfDay(for: today)
         let values = recovery.compactMap { item in item.value.map { (calendar.startOfDay(for: item.day), $0) } }
         guard let recentStart = calendar.date(byAdding: .day, value: -2, to: todayStart) else { return nil }
@@ -270,7 +274,8 @@ public enum PlanAdvisor {
         guard recent.count >= 2 else { return nil }
         let usual = previous.count >= 7 ? RobustBaseline(previous).median : 70
         let threshold = max(50, usual - 15)
-        let lowDays = recent.filter { Double($0) < threshold }.count
+        let recentDays = values.filter { $0.0 >= recentStart && $0.0 <= todayStart }
+        let lowDays = recentDays.filter { Double($0.1) < threshold && (physiologicalLowDays?.contains($0.0) ?? true) }.count
         guard lowDays >= 2 else { return nil }
         let average = recent.reduce(0, +) / recent.count
         return .lowRecovery(lowDays: lowDays, recent: average, usual: Int(usual.rounded()))

@@ -749,6 +749,23 @@
         }
       }
     },
+    "0.2-provisional": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0.2-provisional"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0.2-provisional"
+          }
+        }
+      }
+    },
     "1 año": {
       "extractionState": "manual",
       "localizations": {
@@ -5798,6 +5815,40 @@
         }
       }
     },
+    "Con %@ m de desnivel el pulso sube aunque el esfuerzo de piernas sea moderado.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With %@ m of climbing, heart rate rises even if the leg effort is moderate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med %@ m stigning stiger pulsen även om ansträngningen för benen är måttlig."
+          }
+        }
+      }
+    },
+    "Con %lld sesiones todavía es poco dato: para la proyección se mezcla con el supuesto del 85 % según cuántas hay, (sesiones × observado + 4 × 85 %) ÷ (sesiones + 4) = %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With %lld sessions there's still little data: for the projection it's blended with the 85 % assumption according to how many there are, (sessions × observed + 4 × 85 %) ÷ (sessions + 4) = %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med %lld pass finns det fortfarande lite data: för prognosen blandas det med antagandet 85 % efter hur många det är, (pass × observerat + 4 × 85 %) ÷ (pass + 4) = %@."
+          }
+        }
+      }
+    },
     "Con 3 carreras de 3 km o más en los últimos 90 días, HÅLSYN estima tus tiempos para 5 km, 10 km, media maratón y maratón.": {
       "extractionState": "manual",
       "localizations": {
@@ -7022,19 +7073,19 @@
         }
       }
     },
-    "Cumplimiento efectivo (el menor entre sesiones hechas y frecuencia real): %@ → factor %@. Frecuencia del plan → factor %@.": {
+    "Cumplimiento usado (sesiones y frecuencia frente a lo programado; con pocas sesiones, mezclado con el supuesto del 85 %): %@ → factor %@. Frecuencia del plan → factor %@.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effective adherence (the lower of sessions done and actual frequency): %@ → factor %@. Plan frequency → factor %@."
+            "value": "Adherence used (sessions and frequency versus what was scheduled; with few sessions, blended with the 85 % assumption): %@ → factor %@. Plan frequency → factor %@."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effektiv följsamhet (det lägsta av genomförda pass och faktisk frekvens): %@ → faktor %@. Planens frekvens → faktor %@."
+            "value": "Följsamhet som används (pass och frekvens mot det schemalagda; med få pass blandat med antagandet 85 %): %@ → faktor %@. Planens frekvens → faktor %@."
           }
         }
       }
@@ -7307,23 +7358,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Daniels %@ · Riegel %@"
-          }
-        }
-      }
-    },
-    "Daniels proyecta tu VDOT de hoy a cada distancia. Riegel proyecta cada prueba con T₂ = T₁ × (D₂/D₁)^k; las pruebas de distancia parecida pesan más. El tiempo mostrado combina los dos.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daniels projects today's VDOT to each distance. Riegel projects each effort with T₂ = T₁ × (D₂/D₁)^k; efforts at similar distances count more. The time shown combines both."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daniels räknar om dagens VDOT till varje distans. Riegel räknar om varje ansträngning med T₂ = T₁ × (D₂/D₁)^k; ansträngningar på liknande distans väger mer. Tiden som visas kombinerar båda."
           }
         }
       }
@@ -9453,6 +9487,23 @@
         }
       }
     },
+    "El tiempo mostrado es el de Daniels con tu VDOT de hoy: el mismo en el objetivo, la proyección y la exportación. Riegel (T₂ = T₁ × (D₂/D₁)^k, con más peso a las pruebas de distancia parecida) sirve de comprobación: si los dos difieren, el rango se ensancha hasta incluirlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The time shown is Daniels' with your current VDOT: the same in the goal, the projection and the export. Riegel (T₂ = T₁ × (D₂/D₁)^k, weighting results of similar distance more) is a cross-check: if the two differ, the range widens to include it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiden som visas är Daniels med ditt VDOT i dag: samma i målet, prognosen och exporten. Riegel (T₂ = T₁ × (D₂/D₁)^k, med mer vikt åt resultat på liknande distans) är en kontroll: om de skiljer sig vidgas intervallet för att inkludera den."
+          }
+        }
+      }
+    },
     "El volumen semanal bajó un %@ % respecto a tu promedio anterior (ahora %@ por semana).": {
       "extractionState": "manual",
       "localizations": {
@@ -10524,19 +10575,19 @@
         }
       }
     },
-    "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo. Un pulso alto (very_hard) no significa esfuerzo máximo.": {
+    "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Workouts, calculated columns: “intensity” is the physiological intensity (recovery, easy, moderate, tempo, intervals, very_hard, test, race) and “intensity_basis” what decided it; “session_type”, the session type (plan or structure); “vdot_eligibility”, whether it's usable for VDOT (confirmed, candidate or not_eligible and the reason); “model_role” and “model_weight”, the role and weight in the model. A high heart rate (very_hard) doesn't mean an all-out effort."
+            "value": "Workouts, calculated columns: “intensity” is the physiological intensity (recovery, easy, moderate, tempo, intervals, very_hard, test, race) and “intensity_basis” what decided it; “session_type”, the session type (plan or structure); “vdot_eligibility”, whether it's usable for VDOT (confirmed, candidate or not_eligible and the reason); “model_role” and “model_weight”, the role and weight in the model; “harder_than_planned”, an easy plan session done at high intensity. A high heart rate (very_hard) doesn't mean an all-out effort."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Träningspass, beräknade kolumner: ”intensity” är den fysiologiska intensiteten (recovery, easy, moderate, tempo, intervals, very_hard, test, race) och ”intensity_basis” vad som avgjorde den; ”session_type”, typ av pass (plan eller struktur); ”vdot_eligibility”, om det kan användas för VDOT (confirmed, candidate eller not_eligible och orsaken); ”model_role” och ”model_weight”, rollen och vikten i modellen. Hög puls (very_hard) betyder inte maxansträngning."
+            "value": "Träningspass, beräknade kolumner: ”intensity” är den fysiologiska intensiteten (recovery, easy, moderate, tempo, intervals, very_hard, test, race) och ”intensity_basis” vad som avgjorde den; ”session_type”, typ av pass (plan eller struktur); ”vdot_eligibility”, om det kan användas för VDOT (confirmed, candidate eller not_eligible och orsaken); ”model_role” och ”model_weight”, rollen och vikten i modellen; ”harder_than_planned”, ett lugnt planpass gjort med hög intensitet. Hög puls (very_hard) betyder inte maxansträngning."
           }
         }
       }
@@ -10745,19 +10796,19 @@
         }
       }
     },
-    "Es una estimación de bienestar, no una valoración clínica, y no está validada en estudios.": {
+    "Es una estimación de bienestar y hábitos, no una valoración clínica, y no está validada en estudios. Una puntuación alta no descarta una enfermedad.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "It's a wellbeing estimate, not a clinical assessment, and it hasn't been validated in studies."
+            "value": "It's an estimate of wellbeing and habits, not a clinical assessment, and it isn't validated in studies. A high score doesn't rule out an illness."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Det är en uppskattning av välmående, inte en klinisk bedömning, och den är inte validerad i studier."
+            "value": "Det är en uppskattning av välbefinnande och vanor, ingen klinisk bedömning, och den är inte validerad i studier. En hög poäng utesluter inte en sjukdom."
           }
         }
       }
@@ -11901,6 +11952,23 @@
         }
       }
     },
+    "FC máxima de referencia: %@ lpm, observada. La configurada a mano (%@ lpm) queda por debajo de lo que registraste y haría parecer muy intensos los rodajes: se usa la observada hasta que la revises.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reference max heart rate: %@ bpm, observed. The one you set manually (%@ bpm) is below what you recorded and would make easy runs look very hard: the observed one is used until you review it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referensmaxpuls: %@ slag/min, observerad. Den du ställt in manuellt (%@ slag/min) är lägre än det du registrerat och skulle få lugna pass att se mycket hårda ut: den observerade används tills du ser över den."
+          }
+        }
+      }
+    },
     "FC reposo": {
       "extractionState": "manual",
       "localizations": {
@@ -12016,6 +12084,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Genomförbarhet: %@. %@."
+          }
+        }
+      }
+    },
+    "Factor de mejora: (cumplimiento − 40 %) ÷ 50 %, entre 0 y 1 = %@. Es un supuesto de HÅLSYN: 90 % o más cuenta entero, 40 % o menos nada.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Improvement factor: (adherence − 40 %) ÷ 50 %, between 0 and 1 = %@. It's a HÅLSYN assumption: 90 % or more counts fully, 40 % or less not at all."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Förbättringsfaktor: (följsamhet − 40 %) ÷ 50 %, mellan 0 och 1 = %@. Det är ett antagande i HÅLSYN: 90 % eller mer räknas helt, 40 % eller mindre inte alls."
           }
         }
       }
@@ -12628,6 +12713,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Frekvens: %@ faktiska löppass per vecka mot %@ i målet; %@ utanför planen; veckor med plan: %@"
+          }
+        }
+      }
+    },
+    "Frecuencia: %@ días con carrera frente a %@ sesiones programadas en los días que ya pasaron (no frente a semanas enteras).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequency: %@ running days versus %@ sessions scheduled in the days that have passed (not versus whole weeks)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frekvens: %@ löpdagar mot %@ schemalagda pass under de dagar som har gått (inte mot hela veckor)."
           }
         }
       }
@@ -20112,6 +20214,23 @@
         }
       }
     },
+    "Observado: el menor entre cumplir las sesiones y la frecuencia = %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed: the lower of completing sessions and frequency = %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observerat: det lägsta av genomförda pass och frekvens = %@."
+          }
+        }
+      }
+    },
     "Ocultar": {
       "extractionState": "manual",
       "localizations": {
@@ -20686,23 +20805,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "För HRV visar vi inga ålderspercentiler: publicerade tabeller bygger på 5-minuters- eller 24-timmarsregistreringar under kontrollerade förhållanden och går inte att jämföra med enstaka mätningar från Apple Watch. Här är den användbara jämförelsen den med dig själv."
-          }
-        }
-      }
-    },
-    "Para la proyección cuenta el menor entre cumplir las sesiones y correr las veces del objetivo: %@ %.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For the projection, the lower of completing sessions and running the target number of times counts: %@ %."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "För prognosen räknas det lägsta av att genomföra passen och att springa målantalet gånger: %@ %."
           }
         }
       }
@@ -21706,6 +21808,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Planka och sidoplanka"
+          }
+        }
+      }
+    },
+    "Planificada como «%@», hecha como «%@». El objetivo de la sesión no cambia; si se repite, conviene bajar el ritmo en los días suaves.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned as “%@”, done as “%@”. The session's goal doesn't change; if it keeps happening, slow down on easy days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planerat som ”%@”, gjort som ”%@”. Passets mål ändras inte; om det upprepas, sänk tempot på lugna dagar."
           }
         }
       }
@@ -24192,19 +24311,19 @@
         }
       }
     },
-    "Registraste %@ lpm, más que tu FC máxima configurada (%@). Con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron. Revísala o usa la observada.": {
+    "Registraste %@ lpm, más que tu FC máxima configurada (%@). Con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron: mientras tanto, la intensidad y el VDOT usan la observada (sin duplicados ni picos). Revísala o usa la observada.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You recorded %@ bpm, more than your configured max heart rate (%@). With a max lower than your real one, runs look harder than they were. Check it or use the observed one."
+            "value": "You recorded %@ bpm, more than your configured max heart rate (%@). With a max lower than your real one, runs look harder than they were: meanwhile, intensity and VDOT use the observed one (without duplicates or spikes). Check it or use the observed one."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du registrerade %@ slag/min, mer än din inställda maxpuls (%@). Med en lägre maxpuls än den verkliga ser passen hårdare ut än de var. Kontrollera den eller använd den observerade."
+            "value": "Du registrerade %@ slag/min, mer än din inställda maxpuls (%@). Med en lägre maxpuls än den verkliga ser passen hårdare ut än de var: under tiden använder intensitet och VDOT den observerade (utan dubbletter eller toppar). Kontrollera den eller använd den observerade."
           }
         }
       }
@@ -25888,6 +26007,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varje test eller lopp förutsägs från 4 veckor tidigare, utan att se något senare. Det validerar prognosen separat från dagens prestation. Täckningen visas först med 5 fall eller fler."
+          }
+        }
+      }
+    },
+    "Se restaron %@ semanas por enfermedad o lesión registradas por delante.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ weeks were subtracted for illness or injury logged ahead."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ veckor drogs av för sjukdom eller skada registrerad framåt."
           }
         }
       }
@@ -29309,6 +29445,23 @@
         }
       }
     },
+    "Todavía no hay sesiones pasadas: la proyección usa el supuesto de cada escenario.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No past sessions yet: the projection uses each scenario's assumption."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga tidigare pass ännu: prognosen använder varje scenarios antagande."
+          }
+        }
+      }
+    },
     "Todo lo que no es grasa: músculo, huesos, órganos y agua. La calcula la balanza a partir de la bioimpedancia.": {
       "extractionState": "manual",
       "localizations": {
@@ -32539,6 +32692,23 @@
         }
       }
     },
+    "aporte %@ puntos frente a la base de 75": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "contributes %@ points versus the baseline of 75"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bidrar med %@ poäng mot basen 75"
+          }
+        }
+      }
+    },
     "aproximado, por el esfuerzo percibido": {
       "extractionState": "manual",
       "localizations": {
@@ -32739,6 +32909,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "löpband: uppskattad distans"
+          }
+        }
+      }
+    },
+    "era una sesión de umbral o de series del plan; si fue a tope, confírmala como test": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "it was a threshold or interval session in the plan; if it was all-out, confirm it as a test"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "det var ett tröskel- eller intervallpass i planen; om det var max, bekräfta det som test"
           }
         }
       }

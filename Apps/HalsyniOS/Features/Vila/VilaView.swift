@@ -446,7 +446,7 @@ struct RecoveryExplanationView: View {
                             Text(verbatim: component.score.map(String.init) ?? "—")
                                 .font(.halsynCaption.monospacedDigit().weight(.semibold))
                         }
-                        Text(verbatim: String(localized: "Peso") + " \(Int((component.weight * 100).rounded())) %")
+                        Text(verbatim: String(localized: "Peso") + " \(Int((component.weight * 100).rounded())) %" + RecoveryExplanationText.contribution(component, in: estimate))
                             .font(.caption2)
                             .foregroundStyle(.halsynSecondaryText)
                         if let line = RecoveryExplanationText.values(component) {
@@ -498,6 +498,16 @@ struct RecoveryExplanationView: View {
 }
 
 enum RecoveryExplanationText {
+    /// Aporte en puntos frente a la base de 75: peso relativo × (puntos − 75).
+    static func contribution(_ component: RecoveryComponent, in estimate: RecoveryEstimate) -> String {
+        guard let score = component.score, estimate.value != nil else { return "" }
+        let total = estimate.components.filter { $0.score != nil }.map(\.weight).reduce(0, +)
+        guard total > 0 else { return "" }
+        let points = component.weight / total * Double(score - 75)
+        let text = (points >= 0 ? "+" : "−") + HalsynFormat.decimal(abs(points), fractionDigits: 1)
+        return " · " + String(localized: "aporte \(text) puntos frente a la base de 75")
+    }
+
     static func values(_ component: RecoveryComponent) -> String? {
         guard let recent = component.recentValue else { return nil }
         let daysText = String(component.baselineDays)

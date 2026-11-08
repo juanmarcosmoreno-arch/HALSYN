@@ -87,11 +87,15 @@ public struct PerformanceEvidence: Hashable, Identifiable, Sendable {
 /// Predicción de una distancia por los dos métodos y su combinación.
 public struct DistancePrediction: Hashable, Identifiable, Sendable {
     public let distance: Double
-    /// Combinación de los dos métodos (media geométrica).
+    /// Tiempo previsto hoy: el de Daniels con tu VDOT actual. Es la única
+    /// definición de «hoy» en toda la app (objetivo, predicción, exportación) y
+    /// la misma escala en que se proyecta la mejora. Hasta 1.4 era la media
+    /// geométrica con Riegel, y no coincidía con el «hoy» del objetivo.
     public let time: TimeInterval
     /// Daniels: VDOT actual (con tendencia) → tiempo.
     public let vdotTime: TimeInterval
-    /// Riegel: cada prueba proyectada a esta distancia, ponderada.
+    /// Riegel: cada prueba proyectada a esta distancia, ponderada. Se usa como
+    /// comprobación: si difiere de Daniels, el rango se ensancha.
     public let riegelTime: TimeInterval
     /// Rango orientativo (±1,28 σ, pensado como 80 %; sin validar hasta tener resultados).
     public let range: ClosedRange<TimeInterval>?
@@ -141,16 +145,14 @@ public struct PerformanceAssessment: Hashable, Sendable {
     public func predict(_ distance: Double) -> DistancePrediction {
         let vdotTime = VDOT.raceTime(vdot: currentVDOT, distance: distance)
         let riegelTime = RacePerformanceModel.riegelTime(evidence: evidence, to: distance, exponent: personalExponent ?? riegelExponent) ?? vdotTime
-        let combined = (vdotTime * riegelTime).squareRoot()
         var range: ClosedRange<TimeInterval>?
         if hasInterval {
-            // ±1,28 σ (80 %) en VDOT, más la mitad del desacuerdo entre métodos.
+            // Orientativo: ±1,28 σ en VDOT, ensanchado hasta incluir el tiempo de Riegel.
             let fast = VDOT.raceTime(vdot: currentVDOT + 1.28 * uncertainty, distance: distance)
             let slow = VDOT.raceTime(vdot: max(currentVDOT - 1.28 * uncertainty, 15), distance: distance)
-            let spread = abs(vdotTime - riegelTime) / 2
-            range = min(fast, combined - spread)...max(slow, combined + spread)
+            range = min(fast, riegelTime)...max(slow, riegelTime)
         }
-        return DistancePrediction(distance: distance, time: combined, vdotTime: vdotTime, riegelTime: riegelTime, range: range)
+        return DistancePrediction(distance: distance, time: vdotTime, vdotTime: vdotTime, riegelTime: riegelTime, range: range)
     }
 }
 
@@ -180,7 +182,7 @@ public struct PerformanceAssessment: Hashable, Sendable {
 /// - **Intervalo** (80 %): solo con 3 pruebas o más.
 public enum RacePerformanceModel {
     /// Versión del algoritmo (se exporta junto a los resultados).
-    public static let version = "1.4"
+    public static let version = "1.5"
     public static let resultWindowDays = 180
     public static let halfLifeDays = 42.0
     public static let maximumWeeklyTrend = 0.25
@@ -203,6 +205,8 @@ public enum RacePerformanceModel {
 
     /// Tolerancias para considerar dos resultados como el mismo esfuerzo.
     public static let duplicateTimeTolerance = 0.02
+    /// Además del mismo día: a ±12 h (un test a las 23:50 cargado a mano «al día siguiente»).
+    public static let duplicateWindow: TimeInterval = 12 * 3600
     public static let duplicateDistanceTolerance = 0.03
 
     /// Resultados sin duplicados: mismo día, tiempo a ≤ 2 % y distancia a ≤ 3 %
@@ -214,12 +218,21 @@ public enum RacePerformanceModel {
         var kept: [PerformanceResult] = []
         var duplicates: [(PerformanceResult, keptID: UUID)] = []
         // Primero los que tienen entrenamiento de origen.
-        for result in results.sorted(by: { ($0.workoutID != nil ? 0 : 1) < ($1.workoutID != nil ? 0 : 1) }) {
+        // Orden total (independiente del orden de entrada): primero los que
+        // vienen de un entrenamiento, luego el más antiguo, luego por id.
+        let ordered = results.sorted { a, b in
+            let rankA = a.workoutID != nil ? 0 : 1, rankB = b.workoutID != nil ? 0 : 1
+            if rankA != rankB { return rankA < rankB }
+            if a.date != b.date { return a.date < b.date }
+            return a.id.uuidString < b.id.uuidString
+        }
+        for result in ordered {
             if let match = kept.first(where: { other in
                 // Mismo entrenamiento de Salud (identificador único): siempre duplicado.
                 if let id = result.workoutID, id == other.workoutID { return true }
                 if distinct.contains(result.id) || distinct.contains(other.id) { return false }
-                return calendar.isDate(other.date, inSameDayAs: result.date)
+                let close = calendar.isDate(other.date, inSameDayAs: result.date) || abs(other.date.timeIntervalSince(result.date)) <= duplicateWindow
+                return close
                     && abs(other.time - result.time) / max(other.time, 1) <= duplicateTimeTolerance
                     && abs(other.distance - result.distance) / max(other.distance, 1) <= duplicateDistanceTolerance
             }) {
@@ -297,8 +310,14 @@ public enum RacePerformanceModel {
         // 4. Esfuerzos detectados en entrenamientos (solo al aire libre, sin
         //    los ya marcados). Solo pueden SUBIR la estimación: un entrenamiento
         //    más lento no demuestra que hayas perdido forma.
+        // Sin los ya marcados ni los equivalentes a un resultado registrado (p. ej.
+        // la copia de un entrenamiento marcado que quedó tras deduplicar).
         let efforts = FitnessEstimator.trainingEfforts(runs: runs.filter { $0.activity == .outdoorRun }, maxHeartRate: maxHeartRate, referenceRuns: runs, thresholdHeartRate: thresholdHeartRate, plannedKinds: plannedKinds, rejected: rejected, today: today, calendar: calendar)
             .filter { !markedWorkouts.contains($0.run.id) }
+            .filter { effort in
+                let asResult = PerformanceResult(id: effort.run.id, date: effort.run.start, distance: effort.run.distanceMeters ?? 0, time: effort.run.duration, kind: .test)
+                return !window.contains { deduplicated([$0, asResult], calendar: calendar).kept.count == 1 }
+            }
         var floor = officialEstimate
         if floor == nil, let best = efforts.first {
             // Sin resultados oficiales: el mejor esfuerzo (o el segundo, si el

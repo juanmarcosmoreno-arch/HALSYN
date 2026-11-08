@@ -158,8 +158,22 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
 
     /// FC máxima observada: la más alta entre las carreras. Ignora valores no
     /// plausibles (picos de sensor).
+    /// Sin duplicados ni entrenamientos con pulso inválido.
     public static func observedMax(in workouts: [WorkoutSummary]) -> Double? {
-        workouts.compactMap(\.maxHeartRate).filter { plausibleMaxRange.contains($0) }.max()
+        let quality = DataQuality.assess(workouts)
+        return workouts.filter { quality[$0.id]?.level != .excluded && quality[$0.id]?.heartRateUsable != false }
+            .compactMap(\.maxHeartRate).filter { plausibleMaxRange.contains($0) }.max()
+    }
+
+    /// FC máxima que usan la intensidad y el modelo: la configurada a mano,
+    /// salvo que quede más de 2 lpm por debajo de la referencia observada
+    /// (2.ª más alta, sin duplicados): entonces la observada, y se avisa. Una
+    /// máxima demasiado baja hace que los rodajes parezcan muy intensos.
+    public static func effectiveMax(configured: Double?, runs: [WorkoutSummary]) -> (value: Double?, overridden: Bool) {
+        let observed = EffortClassifier.referenceMaxHeartRate(configured: nil, runs: runs)
+        guard let configured, plausibleMaxRange.contains(configured) else { return (observed, false) }
+        if let observed, configured < observed - 2 { return (observed, true) }
+        return (configured, false)
     }
 }
 

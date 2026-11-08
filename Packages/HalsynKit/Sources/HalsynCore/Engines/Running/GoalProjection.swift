@@ -47,12 +47,43 @@ public struct TrainingAdherence: Hashable, Sendable {
 
     /// Fracción de las sesiones programadas que hiciste (`nil` sin sesiones pasadas).
     public var planAdherence: Double? { planned > 0 ? score / Double(planned) : nil }
-    /// Frecuencia real frente a la del objetivo (máx. 1).
-    public var frequencyRatio: Double { targetRunsPerWeek > 0 ? min(actualRunsPerWeek / Double(targetRunsPerWeek), 1) : 1 }
-    /// Lo que se usa para la mejora esperada: el menor entre adherencia y frecuencia.
+    /// Días con carrera en la ventana (dentro y fuera del plan).
+    public var runDays: Int = 0
+    /// Sesiones de carrera programadas en los días ya transcurridos, incluidas
+    /// las excusadas por enfermedad o lesión (que no cuentan).
+    public var scheduledInWindow: Int = 0
+
+    /// Frecuencia real frente a la programada **en los días transcurridos**
+    /// (máx. 1): días con carrera ÷ sesiones programadas hasta ayer, sin las
+    /// excusadas. Así una semana a medias no se compara con una semana entera
+    /// (antes de 0.10.0 (106): carreras de la ventana ÷ objetivo semanal, sin
+    /// normalizar cuando la ventana era de menos de 7 días). Sin sesiones
+    /// programadas, se compara con el objetivo semanal por semana transcurrida.
+    public var frequencyRatio: Double {
+        let expected = scheduledInWindow - excused
+        if expected > 0 { return min(Double(runDays) / Double(expected), 1) }
+        return targetRunsPerWeek > 0 ? min(actualRunsPerWeek / Double(targetRunsPerWeek), 1) : 1
+    }
+    /// El menor entre adherencia y frecuencia, tal como se observa.
     public var effective: Double? { planAdherence.map { min($0, frequencyRatio) } }
     /// Menos de 2 semanas o menos de 4 sesiones: dato todavía limitado.
     public var isLimited: Bool { windowWeeks < 2 || planned < 4 }
+
+    /// Sesiones equivalentes del supuesto con el que se mezcla un dato limitado.
+    public static let priorSessions = 4.0
+
+    /// Cumplimiento para la proyección. Con pocos datos (`isLimited`) se acerca
+    /// al supuesto del escenario central (85 %) según cuántas sesiones hay:
+    /// (n × observado + 4 × 0,85) ÷ (n + 4). Con 4 sesiones pesan igual el
+    /// observado y el supuesto; con más, manda lo observado. Sin sesiones: `nil`
+    /// (se usa el supuesto de cada escenario).
+    public var projectionCompliance: Double? {
+        guard let observed = effective else { return nil }
+        guard isLimited else { return observed }
+        let n = Double(planned)
+        let prior = GoalProjection.Scenario.central.assumedCompliance
+        return (n * observed + Self.priorSessions * prior) / (n + Self.priorSessions)
+    }
 
     public static let windowDays = 28
 
@@ -114,6 +145,8 @@ public struct TrainingAdherence: Hashable, Sendable {
         result.missed = missed
         result.excused = excused
         result.skipReasons = reasons
+        result.runDays = runningDays.count
+        result.scheduledInWindow = allRunning.count
         return result
     }
 }

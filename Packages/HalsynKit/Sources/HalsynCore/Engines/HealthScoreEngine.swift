@@ -101,7 +101,7 @@ public struct HealthScoreConfiguration: Sendable {
 ///   puntuación de hoy no baja por ir a media jornada.
 /// - Sin cobertura suficiente (60 % del peso) no hay puntuación global.
 public struct HealthScoreEngine: Sendable {
-    public static let version = "0.1-provisional"
+    public static let version = "0.2-provisional"
 
     public let configuration: HealthScoreConfiguration
 
@@ -120,7 +120,9 @@ public struct HealthScoreEngine: Sendable {
         public let breakdown: HealthScoreBreakdown
     }
 
-    public func evaluate(day: Date, history: DailyHistory) -> Result {
+    /// - `nights`: noches por día (opcional). Con ellas, el sueño es el principal
+    ///   (sin siestas) y una noche incompleta no se usa, igual que en la recuperación.
+    public func evaluate(day: Date, history: DailyHistory, nights: [Date: SleepNight] = [:]) -> Result {
         var dimensions: [DimensionScore] = []
         var factors: [ScoreFactor] = []
         var baselineDepth = 0
@@ -129,7 +131,7 @@ public struct HealthScoreEngine: Sendable {
             let weight = configuration.weights.weight(for: dimension)
             let outcome: (score: Double?, missing: DimensionScore.MissingReason?, factors: [ScoreFactor])
             switch dimension {
-            case .sleep: outcome = sleep(day: day, history: history)
+            case .sleep: outcome = sleep(day: day, history: history, nights: nights)
             case .cardiovascular:
                 let result = cardiovascular(day: day, history: history)
                 baselineDepth = result.baselineDays
@@ -178,8 +180,18 @@ public struct HealthScoreEngine: Sendable {
 
     // MARK: Dimensiones
 
-    func sleep(day: Date, history: DailyHistory) -> (Double?, DimensionScore.MissingReason?, [ScoreFactor]) {
-        guard let hours = history.value(.sleepDuration, on: day) else { return (nil, .noData, []) }
+    func sleep(day: Date, history: DailyHistory, nights: [Date: SleepNight] = [:]) -> (Double?, DimensionScore.MissingReason?, [ScoreFactor]) {
+        var value = history.value(.sleepDuration, on: day)
+        if let night = nights[history.calendar.startOfDay(for: day)] {
+            // Registro corto (< 3 h o que termina antes de medianoche) cuando lo
+            // habitual son 5 h o más: probablemente incompleto, no se usa.
+            let habitual = history.values(.sleepDuration, daysBefore: day, count: configuration.baselineDays)
+            if night.flags.contains(.shortRecord), habitual.count >= configuration.minimumBaselineDays, RobustBaseline(habitual).median >= 5 {
+                return (nil, .noData, [])
+            }
+            value = night.mainAsleep / 3600
+        }
+        guard let hours = value else { return (nil, .noData, []) }
         let range = configuration.recommendedSleep
         let impact: ScoreImpact = range.contains(hours) ? .positive : (hours < range.lowerBound - 1 ? .negative : .neutral)
         return (Self.sleepScore(hours: hours, recommended: range), nil, [ScoreFactor(kind: .sleepDuration(hours: hours), dimension: .sleep, impact: impact)])
@@ -196,23 +208,30 @@ public struct HealthScoreEngine: Sendable {
             let baseline = history.values(.restingHeartRate, daysBefore: day, count: configuration.baselineDays)
             depth = max(depth, baseline.count)
             if baseline.count >= configuration.minimumBaselineDays {
-                let stats = Statistics(baseline)
-                let delta = today - stats.mean
-                let z = delta / max(stats.standardDeviation, 2)
+                // Basal robusta (mediana y MAD), la misma definición que la recuperación.
+                let robust = RobustBaseline(baseline)
+                let delta = today - robust.median
+                let z = delta / max(robust.scale, 2)
                 scores.append(Self.unfavourableDeviationScore(z: z))
                 factors.append(ScoreFactor(kind: .restingHeartRate(deltaFromBaseline: delta), dimension: .cardiovascular, impact: z > 1 ? .negative : .positive))
             }
         }
-        if let today = history.value(.heartRateVariability, on: day) {
+        if history.value(.heartRateVariability, on: day) != nil {
             sawData = true
-            let baseline = history.values(.heartRateVariability, daysBefore: day, count: configuration.baselineDays)
+            // Media de 7 días de ln(HRV) frente a la basal (ln) de los 28 días
+            // previos a la ventana, como en la recuperación: un valor diario es muy ruidoso.
+            let windowDays = RecoveryEngine.hrvWindowDays
+            let window = history.values(.heartRateVariability, daysBefore: history.calendar.date(byAdding: .day, value: 1, to: day) ?? day, count: windowDays).filter { $0 > 0 }.map { Foundation.log($0) }
+            let baselineEnd = history.calendar.date(byAdding: .day, value: -(windowDays - 1), to: day) ?? day
+            let baseline = history.values(.heartRateVariability, daysBefore: baselineEnd, count: configuration.baselineDays).filter { $0 > 0 }.map { Foundation.log($0) }
             depth = max(depth, baseline.count)
-            if baseline.count >= configuration.minimumBaselineDays {
-                let stats = Statistics(baseline)
-                let z = (today - stats.mean) / max(stats.standardDeviation, stats.mean * 0.05, 1)
+            if baseline.count >= configuration.minimumBaselineDays, !window.isEmpty {
+                let robust = RobustBaseline(baseline)
+                let mean = window.reduce(0, +) / Double(window.count)
+                let z = (mean - robust.median) / max(robust.scale, 0.05)
                 // Para la HRV, lo desfavorable es estar por debajo: se invierte el signo.
                 scores.append(Self.unfavourableDeviationScore(z: -z))
-                let relative = stats.mean > 0 ? (today - stats.mean) / stats.mean : 0
+                let relative = Foundation.exp(mean - robust.median) - 1
                 factors.append(ScoreFactor(kind: .heartRateVariability(relativeDeltaFromBaseline: relative), dimension: .cardiovascular, impact: z < -1 ? .negative : .positive))
             }
         }

@@ -15,7 +15,7 @@ enum IntensityContext {
     static func eligibility(_ workout: WorkoutSummary) -> VDOTEligibility {
         let marked = FitnessStore.shared.results.first { $0.workoutID == workout.id }?.kind
         let quality = DataQuality.assess([workout])[workout.id]
-        let reference = lastReference ?? EffortClassifier.referenceMaxHeartRate(configured: FitnessStore.shared.configuredMaxHeartRate, runs: history)
+        let reference = lastReference ?? FitnessStore.shared.maxHeartRate(for: history).value
         return EffortClassifier.eligibility(workout, maxHeartRate: reference, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, plannedKind: FitnessStore.shared.plannedKinds[Calendar.current.startOfDay(for: workout.start)], marked: marked, rejected: FitnessStore.shared.rejected.contains(workout.id), quality: quality)
     }
 
@@ -24,9 +24,12 @@ enum IntensityContext {
         let quality = DataQuality.assess(workouts)
         var runs = workouts.filter(\.activity.isRun)
         if runs.count >= 5 { history = runs } else { runs = history.isEmpty ? runs : history }
-        let historyQuality = DataQuality.assess(runs)
-        let maxHeartRate = EffortClassifier.referenceMaxHeartRate(configured: FitnessStore.shared.configuredMaxHeartRate, runs: runs.filter { historyQuality[$0.id]?.heartRateUsable != false })
-        let threshold = RunSettingsStore.shared.settings.zones.validThreshold
+        // Configurada, salvo que quede por debajo de lo registrado (sin duplicados).
+        let maxHeartRate = FitnessStore.shared.maxHeartRate(for: runs).value
+        let zones = RunSettingsStore.shared.settings.zones
+        let threshold = zones.validThreshold
+        // Zonas por umbral: la intensidad se mide frente a tu FC de umbral (Friel).
+        let lactateThreshold = zones.method == .lactateThreshold ? threshold : nil
         let thresholdPace = FitnessStore.shared.performance(runs: runs).map {
             TrainingPaces.from(vdot: $0.currentVDOT, target: .tenK).tempo.center.secondsPerKilometer
         }
@@ -49,7 +52,8 @@ enum IntensityContext {
                 samples: samples[workout.id],
                 marked: marks[workout.id],
                 plannedKind: workout.activity.isRun ? planned[Calendar.current.startOfDay(for: workout.start)] : nil,
-                quality: quality[workout.id]
+                quality: quality[workout.id],
+                lactateThreshold: workout.activity.isRun ? lactateThreshold : nil
             )
         }
         return result
@@ -86,6 +90,7 @@ enum IntensityText {
             case .treadmill: text = String(localized: "en cinta (distancia estimada)")
             case .hilly: text = String(localized: "mucho desnivel (más de 10 m por km)")
             case .plannedEasy: text = String(localized: "había un rodaje suave o largo planificado")
+            case .plannedWorkout: text = String(localized: "era una sesión de umbral o de series del plan; si fue a tope, confírmala como test")
             case .rejected: text = String(localized: "lo descartaste tú")
             case .quality: text = String(localized: "datos dudosos (distancia o ritmo)")
             }

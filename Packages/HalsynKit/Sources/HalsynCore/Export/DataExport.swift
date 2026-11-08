@@ -8,7 +8,7 @@ public enum DataExport {
     public static let formatVersion = "3"
 
     /// Columnas que calcula HÅLSYN (el resto viene tal cual de Apple Health o de lo que cargaste).
-    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility"]
+    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility", "harder_than_planned"]
     public static let computedDailyColumns = ["health_score", "recovery_score", "nap_h", "sleep_flags"]
 
     /// Identificador corto y estable para auditar duplicados sin exponer el
@@ -34,6 +34,8 @@ public enum DataExport {
         public var sessionType: String
         /// confirmed, candidate o not_eligible:<motivo>.
         public var vdotEligibility: String
+        /// Sesión suave del plan hecha con intensidad alta.
+        public var harderThanPlanned = false
 
         public init(intensity: String = "", intensityBasis: String = "", qualityFlags: [String] = [], modelRole: String = "", modelWeight: Double? = nil, sessionType: String = "", vdotEligibility: String = "") {
             self.intensity = intensity
@@ -194,7 +196,7 @@ public enum DataExport {
         "avg_hr_bpm", "max_hr_bpm", "cadence_spm", "active_energy_kcal", "elevation_gain_m",
         "avg_power_w", "temperature_c", "humidity_pct", "marked_as", "shoe",
         "record_id", "source", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight",
-        "session_type", "vdot_eligibility",
+        "session_type", "vdot_eligibility", "harder_than_planned",
     ]
 
     /// Una fila por entrenamiento, del más antiguo al más nuevo.
@@ -232,6 +234,7 @@ public enum DataExport {
                 extras[workout.id]?.modelWeight.map { number($0, digits: 3) } ?? "",
                 extras[workout.id]?.sessionType ?? "",
                 extras[workout.id]?.vdotEligibility ?? "",
+                extras[workout.id]?.harderThanPlanned == true ? "yes" : "",
             ]
             rows.append(cells.joined(separator: ","))
         }
