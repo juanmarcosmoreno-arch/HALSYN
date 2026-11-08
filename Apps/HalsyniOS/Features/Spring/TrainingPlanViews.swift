@@ -173,7 +173,7 @@ struct TrainingPlanCard: View {
                 if let plan = store.displayPlan {
                     planContent(plan)
                 } else {
-                    Text("Elige una carrera y una fecha: HÅLSYN arma tus semanas a partir de tus carreras recientes y adapta la sesión de cada día a tu recuperación.")
+                    ExpandableText("Elige una carrera y una fecha: HÅLSYN arma tus semanas a partir de tus carreras recientes y adapta la sesión de cada día a tu recuperación.")
                         .font(.halsynBody)
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)
@@ -486,13 +486,13 @@ struct PlanSetupView: View {
                 } header: {
                     Text("Días de gimnasio")
                 } footer: {
-                    Text("Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.")
+                    ExpandableText("Las series y el umbral se ponen lejos del gimnasio: ni el mismo día ni el siguiente, que las piernas también se cansan con la fuerza.")
                 }
 
                 if editing != nil {
                     Section {
                     } footer: {
-                        Text("El plan se rehace desde hoy con lo nuevo: semanas, volumen y ritmos. Los cambios a mano de esta semana se pierden; tus carreras y tus resultados de tests se conservan.")
+                        ExpandableText("El plan se rehace desde hoy con lo nuevo: semanas, volumen y ritmos. Los cambios a mano de esta semana se pierden; tus carreras y tus resultados de tests se conservan.")
                             .foregroundStyle(.halsynCaution)
                     }
                 } else if TrainingPlanStore.shared.plan != nil {
@@ -505,7 +505,7 @@ struct PlanSetupView: View {
 
                 Section {
                 } footer: {
-                    Text("Partimos de tu volumen de las últimas 4 semanas y lo subimos poco a poco, con una semana más suave cada cuatro. Cada sesión tiene una distancia mínima, así que si corres poco, las primeras semanas pueden sumar algo más que tu media. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
+                    ExpandableText("Partimos de tu volumen de las últimas 4 semanas y lo subimos poco a poco, con una semana más suave cada cuatro. Cada sesión tiene una distancia mínima, así que si corres poco, las primeras semanas pueden sumar algo más que tu media. Cada semana el plan se reajusta con lo que corriste de verdad, y cada 6 semanas hay un test para actualizar tus ritmos.")
                 }
             }
             .navigationTitle(editing == nil ? LocalizedStringKey("Nuevo plan") : LocalizedStringKey("Cambiar objetivo"))
@@ -584,7 +584,7 @@ struct PlanSetupView: View {
                     }
                 }
             } else {
-                Text("Para calcular tus ritmos y si el objetivo es posible, primero hace falta medir tu forma: un test a tope o una carrera reciente.")
+                ExpandableText("Para calcular tus ritmos y si el objetivo es posible, primero hace falta medir tu forma: un test a tope o una carrera reciente.")
                     .foregroundStyle(.secondary)
             }
             Button {
@@ -602,7 +602,7 @@ struct PlanSetupView: View {
                 }
                 if testSent {
                     let length = SessionText.distance(testDistance, unit: unitSystem)
-                    Text("Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.")
+                    ExpandableText("Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre \(length) a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -621,7 +621,7 @@ struct PlanSetupView: View {
             Text("Tu forma actual")
         } footer: {
             if estimate?.isFromTraining == true {
-                Text("Estimada con tu mejor entrenamiento reciente: probablemente se queda corta. Si creas el plan así, la primera semana empieza con un test.")
+                ExpandableText("Estimada con tu mejor entrenamiento reciente: probablemente se queda corta. Si creas el plan así, la primera semana empieza con un test.")
             }
         }
     }
@@ -653,7 +653,7 @@ struct PlanSetupView: View {
         } header: {
             Text("¿Es posible?")
         } footer: {
-            Text("Mejora habitual: como mucho 1 punto de VDOT cada 4 a 6 semanas de entrenamiento constante (pauta de Daniels). Ambicioso es hasta el doble de rápido. La mejora real varía mucho entre personas.")
+            ExpandableText("Mejora habitual: como mucho 1 punto de VDOT cada 4 a 6 semanas de entrenamiento constante (pauta de Daniels). Ambicioso es hasta el doble de rápido. La mejora real varía mucho entre personas.")
         }
     }
 }
@@ -708,7 +708,7 @@ struct TrainingPlanView: View {
                     } message: {
                         Text("Se borran las semanas del plan y la sesión del día enviada al reloj. Tus carreras y tus resultados de tests se conservan.")
                     }
-                Text("Pautas habituales de entrenamiento, no una prescripción. Si tienes dolor o una lesión, para y consulta a un profesional.")
+                ExpandableText("Pautas habituales de entrenamiento, no una prescripción. Si tienes dolor o una lesión, para y consulta a un profesional.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
             }

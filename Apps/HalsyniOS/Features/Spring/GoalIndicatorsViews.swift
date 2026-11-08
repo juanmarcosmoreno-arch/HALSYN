@@ -79,16 +79,18 @@ struct GoalIndicatorsView: View {
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
             }
-            VStack(alignment: .leading, spacing: 6) {
-                ForEach(Array(GoalExplanation.paragraphs(probability, performance: performance, goal: goal, rangeIsCalibrated: rangeIsCalibrated, unit: unitSystem).enumerated()), id: \.offset) { _, line in
-                    Text(verbatim: line)
-                        .font(.halsynCaption)
-                        .foregroundStyle(.halsynPrimaryText)
-                        .fixedSize(horizontal: false, vertical: true)
+            CollapsibleDetails("Por qué estos tiempos") {
+                VStack(alignment: .leading, spacing: 6) {
+                    ForEach(Array(GoalExplanation.paragraphs(probability, performance: performance, goal: goal, rangeIsCalibrated: rangeIsCalibrated, unit: unitSystem).enumerated()), id: \.offset) { _, line in
+                        Text(verbatim: line)
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynPrimaryText)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
-            }
-            if !probability.scenarios.isEmpty {
-                ScenariosView(scenarios: probability.scenarios, distance: goal.distance.rawValue)
+                if !probability.scenarios.isEmpty {
+                    ScenariosView(scenarios: probability.scenarios, distance: goal.distance.rawValue)
+                }
             }
         }
     }
@@ -173,10 +175,11 @@ struct AdherenceView: View {
     let adherence: TrainingAdherence
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Adherencia y frecuencia")
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(.halsynSecondaryText)
+        let sessions = adherence.sessionsSummary ?? "—"
+        let frequency = HalsynFormat.decimal(adherence.actualRunsPerWeek, fractionDigits: 1)
+        let target = String(adherence.targetRunsPerWeek)
+        CollapsibleDetails("Adherencia y frecuencia", summary: String(localized: "Sesiones \(sessions) · \(frequency) de \(target) carreras por semana")) {
+          VStack(alignment: .leading, spacing: 4) {
             Text("Sesiones programadas")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.halsynSecondaryText)
@@ -210,6 +213,7 @@ struct AdherenceView: View {
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
+          }
         }
     }
 

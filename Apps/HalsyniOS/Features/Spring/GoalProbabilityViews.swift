@@ -308,48 +308,50 @@ struct GoalProbabilityDetail: View {
                         .foregroundStyle(.halsynSecondaryText)
                 }
             }
-            let points = GoalProbabilityHistory.points(goal: goal)
-            if Set(points.map(\.day)).count >= 2 {
-                Text("Evolución del objetivo")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.halsynSecondaryText)
-                Chart {
-                    if let goalTime = goal.goalTime {
-                        RuleMark(y: .value("Objetivo", goalTime / 60))
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
-                            .foregroundStyle(Color.halsynPrimaryText.opacity(0.5))
-                    }
-                    ForEach(points) { point in
-                        LineMark(x: .value("Día", point.day, unit: .day), y: .value("Minutos", point.time / 60))
-                            .foregroundStyle(by: .value("Serie", point.series))
-                    }
-                }
-                .chartYScale(domain: .automatic(includesZero: false))
-                .chartYAxis {
-                    AxisMarks(position: .trailing) { value in
-                        AxisGridLine()
-                        AxisValueLabel {
-                            if let minutes = value.as(Double.self) { Text(verbatim: HalsynFormat.duration(minutes * 60)) }
+            CollapsibleDetails("Factores y evolución") {
+                let points = GoalProbabilityHistory.points(goal: goal)
+                if Set(points.map(\.day)).count >= 2 {
+                    Text("Evolución del objetivo")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.halsynSecondaryText)
+                    Chart {
+                        if let goalTime = goal.goalTime {
+                            RuleMark(y: .value("Objetivo", goalTime / 60))
+                                .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
+                                .foregroundStyle(Color.halsynPrimaryText.opacity(0.5))
+                        }
+                        ForEach(points) { point in
+                            LineMark(x: .value("Día", point.day, unit: .day), y: .value("Minutos", point.time / 60))
+                                .foregroundStyle(by: .value("Serie", point.series))
                         }
                     }
+                    .chartYScale(domain: .automatic(includesZero: false))
+                    .chartYAxis {
+                        AxisMarks(position: .trailing) { value in
+                            AxisGridLine()
+                            AxisValueLabel {
+                                if let minutes = value.as(Double.self) { Text(verbatim: HalsynFormat.duration(minutes * 60)) }
+                            }
+                        }
+                    }
+                    .chartForegroundStyleScale([
+                        String(localized: "Hoy"): Color.halsynChart.opacity(0.55),
+                        String(localized: "Proyectado"): Color.halsynChart,
+                    ])
+                    .frame(height: 150)
+                    ExpandableText("Más abajo es más rápido. La línea discontinua es tu objetivo. «Hoy» es lo que podrías correr con tu forma de ese día; «Proyectado», lo esperado el día de la carrera.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .chartForegroundStyleScale([
-                    String(localized: "Hoy"): Color.halsynChart.opacity(0.55),
-                    String(localized: "Proyectado"): Color.halsynChart,
-                ])
-                .frame(height: 150)
-                Text("Más abajo es más rápido. La línea discontinua es tu objetivo. «Hoy» es lo que podrías correr con tu forma de ese día; «Proyectado», lo esperado el día de la carrera.")
+                factorList("A favor", effect: .favors, symbol: "arrow.up.circle.fill", tint: .halsynPositive)
+                factorList("En contra", effect: .hinders, symbol: "arrow.down.circle.fill", tint: .halsynAlert)
+                factorList("Neutral", effect: .neutral, symbol: "minus.circle", tint: .halsynSecondaryText)
+                ExpandableText("Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango orientativo suma la incertidumbre de tu forma, de la mejora, del tiempo que falta y del día de la carrera; está pensado para contener 8 de cada 10 resultados, pero eso aún no se comprobó con tus datos. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            factorList("A favor", effect: .favors, symbol: "arrow.up.circle.fill", tint: .halsynPositive)
-            factorList("En contra", effect: .hinders, symbol: "arrow.down.circle.fill", tint: .halsynAlert)
-            factorList("Neutral", effect: .neutral, symbol: "minus.circle", tint: .halsynSecondaryText)
-            ExpandableText("Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango orientativo suma la incertidumbre de tu forma, de la mejora, del tiempo que falta y del día de la carrera; está pensado para contener 8 de cada 10 resultados, pero eso aún no se comprobó con tus datos. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.")
-                .font(.caption2)
-                .foregroundStyle(.halsynSecondaryText)
-                .fixedSize(horizontal: false, vertical: true)
         }
     }
 

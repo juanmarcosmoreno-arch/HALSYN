@@ -186,7 +186,7 @@ struct ComplaintEntryView: View {
                     }
                     TextField("Nota (opcional)", text: $note, axis: .vertical)
                 } footer: {
-                    Text("Con 4 o más, el plan quita la intensidad mientras dure (hasta 14 días o hasta que marques que ya está bien). Con 7 o más, propone descanso. HÅLSYN no diagnostica: si el dolor es fuerte, aparece de golpe o no mejora, consulta a un profesional.")
+                    ExpandableText("Con 4 o más, el plan quita la intensidad mientras dure (hasta 14 días o hasta que marques que ya está bien). Con 7 o más, propone descanso. HÅLSYN no diagnostica: si el dolor es fuerte, aparece de golpe o no mejora, consulta a un profesional.")
                 }
             }
             .navigationTitle("Molestia")

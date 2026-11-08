@@ -642,7 +642,7 @@ struct PerformanceMarkCard: View {
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                 } else {
-                    Text("¿Fue un test o una competición, a tope? Márcalo y HÅLSYN usa este tiempo y esta distancia para tu forma, tus ritmos y tu plan.")
+                    ExpandableText("¿Fue un test o una competición, a tope? Márcalo y HÅLSYN usa este tiempo y esta distancia para tu forma, tus ritmos y tu plan.")
                         .font(.halsynCaption)
                         .foregroundStyle(.halsynSecondaryText)
                         .fixedSize(horizontal: false, vertical: true)

@@ -11986,6 +11986,23 @@
         }
       }
     },
+    "Factores y evolución": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Factors and trend"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faktorer och utveckling"
+          }
+        }
+      }
+    },
     "Falta de tiempo": {
       "extractionState": "manual",
       "localizations": {
@@ -21982,6 +21999,23 @@
         }
       }
     },
+    "Por qué estos tiempos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why these times"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varför de här tiderna"
+          }
+        }
+      }
+    },
     "Por semana": {
       "extractionState": "manual",
       "localizations": {
@@ -26266,6 +26300,23 @@
         }
       }
     },
+    "Sesiones %@ · %@ de %@ carreras por semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessions %@ · %@ of %@ runs per week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pass %@ · %@ av %@ löppass per vecka"
+          }
+        }
+      }
+    },
     "Sesiones hechas en parte: %@; no hechas: %@; no hechas por enfermedad o lesión (no cuentan): %@": {
       "extractionState": "manual",
       "localizations": {
@@ -29003,6 +29054,23 @@
         }
       }
     },
+    "Toca para ocultar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to hide"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck för att dölja"
+          }
+        }
+      }
+    },
     "Toca para saltar": {
       "extractionState": "manual",
       "localizations": {
@@ -29016,6 +29084,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tryck för att hoppa över"
+          }
+        }
+      }
+    },
+    "Toca para ver los detalles": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to see the details"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryck för att se detaljerna"
           }
         }
       }
