@@ -91,6 +91,7 @@
 		959A8FEF71AAB902243374B0 /* WarmupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EC0BB3192419160DABBD46 /* WarmupView.swift */; };
 		96EA43C7BCE036CD2E4E73AE /* LocationPermissionHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877123ABB8D9F3F685D315A /* LocationPermissionHint.swift */; };
 		973020AF056E7847765B4CE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6B3366BB14DC530B81E35B1E /* Localizable.xcstrings */; };
+		987E8ECD1520CA57DB08A769 /* RunRecordViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A830B1919E2425FE6EE47AAB /* RunRecordViews.swift */; };
 		9A1F7AB3292515A2F04EB288 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C8BD3FE07531D3895C95838A /* HalsynDesign */; };
 		9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C047BDEBFD597D75D57B03 /* BodyCard.swift */; };
 		9DD747038E6B9E495EA01525 /* LiveRunActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF11E97F4F82190DCEE59F45 /* LiveRunActivity.swift */; };
@@ -304,6 +305,7 @@
 		A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerStrengthView.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
 		A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceNarrator.swift; sourceTree = "<group>"; };
+		A830B1919E2425FE6EE47AAB /* RunRecordViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunRecordViews.swift; sourceTree = "<group>"; };
 		ADAD59EF39E227D574B38EC1 /* CloudBackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackupSection.swift; sourceTree = "<group>"; };
 		B41FC591F6F7EB869825F662 /* RideSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSettingsView.swift; sourceTree = "<group>"; };
 		B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAnalysisViews.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */,
 				A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */,
 				E1488455E9DAF36C1732A6EF /* RunningStatsCard.swift */,
+				A830B1919E2425FE6EE47AAB /* RunRecordViews.swift */,
 				4CD9372020D3E0154417D1F8 /* RunSettingsView.swift */,
 				2D40AF557467B29E042975E2 /* RunShareCard.swift */,
 				5C94E383EC169ABED0215031 /* RunWeatherCard.swift */,
@@ -1124,6 +1127,7 @@
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
 				1A5A85413363B1815DD2DA43 /* RunActivityAttributes.swift in Sources */,
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
+				987E8ECD1520CA57DB08A769 /* RunRecordViews.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
 				D0B1393FD1D047FF0B9D9E39 /* RunShareCard.swift in Sources */,
@@ -1276,7 +1280,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 109;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1461,7 +1465,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 108;
+				CURRENT_PROJECT_VERSION = 109;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

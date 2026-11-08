@@ -53,6 +53,10 @@ struct WorkoutDetailView: View {
                 HalsynMetricTile(title: "Energía activa", systemImage: "flame", value: workout.activeEnergyKilocalories.map { String(Int($0)) }, unit: "kcal")
             }
 
+            if workout.activity.isRun {
+                RunRecordCard(workout: workout, unitSystem: unitSystem)
+            }
+
             WorkoutShoePicker(workout: workout)
 
             if let weather {

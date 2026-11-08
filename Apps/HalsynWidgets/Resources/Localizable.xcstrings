@@ -851,6 +851,23 @@
         }
       }
     },
+    "10 km más rápidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest 10 km"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste 10 km"
+          }
+        }
+      }
+    },
     "100 entre 7 y 9 h, la recomendación de la AASM y la SRS para adultos. Baja hasta 0 a las 4 h; dormir más de 9 h casi no resta (mínimo 70).": {
       "extractionState": "manual",
       "localizations": {
@@ -949,6 +966,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "180 d"
+          }
+        }
+      }
+    },
+    "2.ª mejor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2nd best"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Näst bästa"
           }
         }
       }
@@ -1055,6 +1089,23 @@
         }
       }
     },
+    "3.ª mejor": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3rd best"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tredje bästa"
+          }
+        }
+      }
+    },
     "30 d": {
       "extractionState": "manual",
       "localizations": {
@@ -1085,6 +1136,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "4 veckor"
+          }
+        }
+      }
+    },
+    "5 km más rápidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest 5 km"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste 5 km"
           }
         }
       }
@@ -5288,6 +5356,23 @@
         }
       }
     },
+    "Carrera más larga en tiempo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest run by time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längsta löppasset i tid"
+          }
+        }
+      }
+    },
     "Carrera terminada: registra tu resultado para ver tu forma nueva.": {
       "extractionState": "manual",
       "localizations": {
@@ -5811,6 +5896,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämfört med %lld av dina löppass med liknande distans (±25 procent). Effektiviteten är meter per hjärtslag: den tar hänsyn till att högre fart kräver högre puls."
+          }
+        }
+      }
+    },
+    "Comparada con tus carreras anteriores a esta. Los tiempos son la mejor suma de kilómetros completos seguidos, con GPS (sin cinta).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared with your runs before this one. Times are the best sum of consecutive full kilometres, with GPS (no treadmill)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med dina löppass före detta. Tiderna är den bästa summan av hela kilometrar i följd, med GPS (inte löpband)."
           }
         }
       }
@@ -8569,6 +8671,23 @@
         }
       }
     },
+    "Distancia más larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest distance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längsta distans"
+          }
+        }
+      }
+    },
     "Distancia por mes": {
       "extractionState": "manual",
       "localizations": {
@@ -10826,6 +10945,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bland de cykelturer som sparats i Hälsa och som HÅLSYN läser in."
+          }
+        }
+      }
+    },
+    "Entre tus mejores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Among your best"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bland dina bästa"
           }
         }
       }
@@ -15705,6 +15841,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kilometer %lld"
+          }
+        }
+      }
+    },
+    "Kilómetro más rápido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest kilometre"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste kilometer"
+          }
+        }
+      }
+    },
+    "Kilómetro, 5 km y 10 km: la mejor suma de kilómetros completos seguidos de cada carrera al aire libre con GPS (las de cinta no cuentan para los tiempos; un kilómetro por debajo de 2:30 se toma como salto del GPS). Distancia y duración: de la carrera entera. Sin duplicados ni carreras que excluiste. El reloj te avisa al terminar si una carrera queda 1.ª, 2.ª o 3.ª.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometre, 5 km and 10 km: the best sum of consecutive full kilometres of each outdoor run with GPS (treadmill runs do not count for times; a kilometre under 2:30 is treated as a GPS jump). Distance and duration: of the whole run. No duplicates or runs you excluded. The watch tells you when you finish if a run ranks 1st, 2nd or 3rd."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer, 5 km och 10 km: den bästa summan av hela kilometrar i följd från varje utomhuspass med GPS (löpband räknas inte för tider; en kilometer under 2:30 räknas som ett GPS-hopp). Distans och tid: för hela passet. Utan dubbletter eller pass du uteslutit. Klockan säger till när du är klar om ett pass hamnar på 1:a, 2:a eller 3:e plats."
           }
         }
       }
@@ -26436,6 +26606,23 @@
         }
       }
     },
+    "Récord": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rekord"
+          }
+        }
+      }
+    },
     "Récords": {
       "extractionState": "manual",
       "localizations": {
@@ -30584,6 +30771,23 @@
         }
       }
     },
+    "Todavía no hay récords: aparecen cuando tengas al menos dos carreras para comparar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No records yet: they appear when you have at least two runs to compare."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga rekord ännu: de visas när du har minst två löppass att jämföra."
+          }
+        }
+      }
+    },
     "Todavía no hay salidas con potencia y FTP para calcular la carga.": {
       "extractionState": "manual",
       "localizations": {
@@ -30631,6 +30835,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allt som inte är fett: muskler, skelett, organ och vatten. Vågen beräknar den utifrån bioimpedans."
+          }
+        }
+      }
+    },
+    "Todos tus récords": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All your records"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla dina rekord"
           }
         }
       }
@@ -35204,6 +35425,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "flera källor (sammanslagna)"
+          }
+        }
+      }
+    },
+    "¡Récord personal!": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal record!"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personbästa!"
           }
         }
       }

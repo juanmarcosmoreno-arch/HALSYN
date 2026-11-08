@@ -766,6 +766,9 @@ private struct WorkoutSummaryView: View {
         ScrollView {
             VStack(spacing: 10) {
                 outcome
+                if !workout.records.isEmpty {
+                    RecordsSummary(records: workout.records, unit: unitSystem)
+                }
                 Label(activityTitle, systemImage: workout.isCycling ? (workout.isIndoor ? "figure.indoor.cycle" : "figure.outdoor.cycle") : (workout.isWalking ? "figure.walk" : "figure.run"))
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
@@ -879,6 +882,55 @@ private struct WorkoutSummaryView: View {
 }
 
 /// Tiempo en cada zona (Z1–Z5) como barras horizontales.
+/// Récords de la carrera que terminó: 1.ª, 2.ª o 3.ª mejor de cada categoría.
+private struct RecordsSummary: View {
+    let records: [RunRecordPlacement]
+    let unit: UnitSystem
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label(records.contains(where: \.isRecord) ? LocalizedStringKey("¡Récord personal!") : LocalizedStringKey("Entre tus mejores"), systemImage: "trophy.fill")
+                .font(.headline)
+                .foregroundStyle(Color(red: 0.85, green: 0.65, blue: 0.13))
+            ForEach(records) { record in
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(verbatim: RunRecordWatchText.rank(record.rank) + " · " + String(localized: String.LocalizationValue(record.category.title)))  // nolocalize
+                        .font(.caption2.weight(.semibold))
+                    Text(verbatim: RunRecordWatchText.detail(record, unit: unit))
+                        .font(.caption2.monospacedDigit())
+                        .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(8)
+        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.08)))
+    }
+}
+
+enum RunRecordWatchText {
+    static func rank(_ rank: Int) -> String {
+        switch rank {
+        case 1: String(localized: "Récord")
+        case 2: String(localized: "2.ª mejor")
+        default: String(localized: "3.ª mejor")
+        }
+    }
+
+    static func value(_ category: RunRecordCategory, _ value: Double, unit: UnitSystem) -> String {
+        category == .longestDistance
+            ? HalsynFormat.distance(meters: value, unit: unit) + " " + unit.distanceUnitSymbol  // nolocalize
+            : HalsynFormat.duration(value)
+    }
+
+    static func detail(_ record: RunRecordPlacement, unit: UnitSystem) -> String {
+        let valueText = value(record.category, record.value, unit: unit)
+        guard record.isRecord, let previous = record.previousBest else { return valueText }
+        let previousText = value(record.category, previous, unit: unit)
+        return String(localized: "\(valueText) (antes \(previousText))")
+    }
+}
+
 private struct ZoneBarsView: View {
     let seconds: [TimeInterval]
 

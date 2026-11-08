@@ -61,6 +61,10 @@ final class WorkoutManager: NSObject {
     private(set) var errorMessage: String?
     /// Resumen congelado al terminar (para la pantalla final).
     private(set) var finalSnapshot: RunSnapshot?
+    /// Récords de la carrera que terminó (1.º, 2.º o 3.º), frente a la tabla del iPhone.
+    private(set) var records: [RunRecordPlacement] = []
+    /// Kilómetros completos de esta carrera (para los récords; independiente de las vueltas configuradas).
+    @ObservationIgnored private var kilometerLaps = LapTracker(autoLapDistance: 1000)
 
     var phase: WorkoutPhase { tracker.phase }
     var isActive: Bool { warmup.isActive || phase == .preparing || phase == .running || phase == .paused || phase == .stopping }
@@ -361,6 +365,8 @@ final class WorkoutManager: NSObject {
         outcome = nil
         errorMessage = nil
         finalSnapshot = nil
+        records = []
+        kilometerLaps = LapTracker(autoLapDistance: 1000)
         shouldSave = true
         measuresRecovery = false
         cooldownRecoveryMinutes = nil
@@ -430,6 +436,7 @@ final class WorkoutManager: NSObject {
                     _ = try await routeBuilder.finishRoute(with: workout, metadata: nil)
                 }
                 outcome = .saved
+                evaluateRecords(id: workout?.uuid ?? UUID(), start: workout?.startDate, date: date)
                 // La sesión de la carrera ya terminó: ahora la de recuperación. El
                 // ejercicio terminó al pausar (si se pausó) o al terminar; el pulso
                 // que llegó después de ese momento ya es parte de la recuperación.
@@ -456,6 +463,28 @@ final class WorkoutManager: NSObject {
         } catch {
             fail(error)
             finalSnapshot = tracker.snapshot(at: date)
+        }
+    }
+
+    // MARK: Récords
+
+    private func recordKilometers(at date: Date) {
+        guard !isCycling, !isWalking, tracker.phase == .running else { return }
+        let snapshot = tracker.snapshot(at: date)
+        kilometerLaps.update(distance: snapshot.distance, elapsed: snapshot.elapsed)
+    }
+
+    /// Compara la carrera con tus mejores marcas y avisa si queda 1.ª, 2.ª o 3.ª.
+    private func evaluateRecords(id: UUID, start: Date?, date: Date) {
+        guard !isCycling, !isWalking else { return }
+        let snapshot = tracker.snapshot(at: date)
+        let entry = RunRecords.entry(id: id, date: start ?? date.addingTimeInterval(-snapshot.elapsed), distance: snapshot.distance, duration: snapshot.elapsed, kilometerSplits: RunRecords.kilometerDurations(kilometerLaps.laps), usesGPS: !isIndoor)
+        let store = RunSettingsStore.shared
+        records = store.recordBoard.placements(for: entry).sorted { $0.rank < $1.rank }
+        store.addRecord(entry)
+        if !records.isEmpty {
+            // El resumen los muestra arriba; una vibración distinta para que lo notes.
+            WKInterfaceDevice.current().play(.notification)
         }
     }
 
@@ -607,6 +636,7 @@ final class WorkoutManager: NSObject {
     fileprivate func collected(_ values: CollectedValues, at date: Date) {
         if let distance = isCycling ? values.cyclingDistance : values.distance {
             tracker.updateDistance(total: distance, at: date)
+            recordKilometers(at: date)
         }
         if let heartRate = values.heartRate {
             tracker.addHeartRate(heartRate, at: date)
@@ -644,6 +674,7 @@ final class WorkoutManager: NSObject {
                 reliable.append(location)
             }
         }
+        recordKilometers(at: .now)
         handleCues()
         for location in reliable where lastRoutePoint.map({ location.distance(from: $0) >= 10 }) ?? true {
             routeCoordinates.append(location.coordinate)

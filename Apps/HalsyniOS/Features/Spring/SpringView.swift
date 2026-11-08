@@ -72,6 +72,10 @@ struct SpringView: View {
                 // Suficientes para las estadísticas del año y los récords.
                 let recent = await model.provider.recentWorkouts(limit: 400)
                 refresh(recent)
+                // Récords (no en demo: los datos de ejemplo no son tuyos).
+                if !model.isDemo {
+                    await RunRecordStore.shared.refresh(runs: recent, provider: model.provider)
+                }
             }
             .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
             .onChange(of: WorkoutQualityStore.shared.included) { _, _ in refresh(rawWorkouts) }
@@ -130,6 +134,15 @@ struct SpringView: View {
     @ViewBuilder
     private func history(_ workouts: [WorkoutSummary]) -> some View {
         HalsynSectionHeader("Historial", eyebrow: HalsynLexicon.tid.rawValue)
+        if !RunRecordStore.shared.podium.isEmpty {
+            NavigationLink {
+                RunRecordsView()
+            } label: {
+                Label("Tus récords", systemImage: "trophy")
+                    .font(.halsynCaption.weight(.semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
         if workouts.isEmpty {
             HalsynEmptyState(systemImage: "figure.run", title: "Sin carreras todavía", message: "Tus entrenamientos aparecerán aquí.")
         } else {
@@ -237,6 +250,7 @@ struct WorkoutRow: View {
                         .font(.halsynHeadline)
                         .foregroundStyle(.halsynPrimaryText)
                     PerformanceMarkBadge(workoutID: workout.id)
+                    if workout.activity.isRun { RunRecordBadge(workoutID: workout.id) }
                 }
                 Text(workout.start, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
                     .font(.halsynCaption)

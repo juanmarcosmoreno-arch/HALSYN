@@ -26,6 +26,9 @@ final class RunSettingsStore: NSObject {
     /// historial de Salud). El reloj las muestra en lugar de calcular las suyas
     /// con menos datos, para que ambos digan lo mismo.
     private(set) var phoneSnapshot: WidgetSnapshot?
+    /// Las 3 mejores marcas de cada récord de carrera (las calcula el iPhone
+    /// con todo el historial; el reloj suma las suyas al terminar).
+    private(set) var recordBoard: RunRecordBoard
 
     static let snapshotContextKey = "dailySnapshot"
     /// Mensaje del reloj al iPhone con un aviso de voz, y su respuesta.
@@ -34,6 +37,8 @@ final class RunSettingsStore: NSObject {
     /// Medición de recuperación del pulso que el reloj envía al iPhone (`transferUserInfo`).
     nonisolated static let recoveryInfoKey = "recovery"
     private static let snapshotStorageKey = "halsyn.phoneSnapshot"
+    static let recordBoardContextKey = "recordBoard"
+    static let recordBoardStorageKey = "halsyn.recordBoard"
 
     enum LinkState: Equatable {
         case unknown
@@ -50,6 +55,7 @@ final class RunSettingsStore: NSObject {
         self.defaults = defaults
         settings = RunSettings.load(from: defaults)
         phoneSnapshot = WidgetSnapshotStore.load(from: defaults, key: Self.snapshotStorageKey)
+        recordBoard = defaults.data(forKey: Self.recordBoardStorageKey).flatMap { try? JSONDecoder().decode(RunRecordBoard.self, from: $0) } ?? RunRecordBoard()
         session = connect && WCSession.isSupported() ? WCSession.default : nil
         super.init()
         if let session {
@@ -79,6 +85,25 @@ final class RunSettingsStore: NSObject {
         send()
     }
 
+    /// iPhone: comparte con el reloj la tabla de récords.
+    func shareRecords(_ board: RunRecordBoard) {
+        guard board.top != recordBoard.top || board.counts != recordBoard.counts else { return }
+        saveRecords(board)
+        send()
+    }
+
+    /// Reloj: suma la carrera que acaba de terminar (hasta que llegue la del iPhone).
+    func addRecord(_ entry: RunRecordEntry) {
+        var board = recordBoard
+        board.add(entry)
+        saveRecords(board)
+    }
+
+    private func saveRecords(_ board: RunRecordBoard) {
+        recordBoard = board
+        if let data = try? JSONEncoder().encode(board) { defaults.set(data, forKey: Self.recordBoardStorageKey) }
+    }
+
     private func send() {
         guard let session, session.activationState == .activated, let data = try? settings.encoded() else { return }
         #if os(iOS)
@@ -88,6 +113,9 @@ final class RunSettingsStore: NSObject {
         var context: [String: Any] = [RunSettings.contextKey: data]
         if let snapshot = phoneSnapshot, let encoded = WidgetSnapshotStore.encode(snapshot) {
             context[Self.snapshotContextKey] = encoded
+        }
+        if !recordBoard.top.isEmpty, let encoded = try? JSONEncoder().encode(recordBoard) {
+            context[Self.recordBoardContextKey] = encoded
         }
         try? session.updateApplicationContext(context)
     }
@@ -104,6 +132,11 @@ final class RunSettingsStore: NSObject {
                 WidgetCenter.shared.reloadAllTimelines()
             }
             #endif
+        }
+        if let data = context[Self.recordBoardContextKey] as? Data,
+           let board = try? JSONDecoder().decode(RunRecordBoard.self, from: data),
+           board.updatedAt > recordBoard.updatedAt {
+            saveRecords(board)
         }
         guard let data = context[RunSettings.contextKey] as? Data,
               let incoming = try? RunSettings.decoded(from: data),

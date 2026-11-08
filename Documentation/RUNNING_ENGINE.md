@@ -285,3 +285,25 @@ Desde la 1.6 la configurada **no se reemplaza en silencio**: con la fuente manua
 - El factor de cumplimiento es una rampa continua: (c − 0,4) ÷ 0,6 entre 0 y 1. Antes llegaba a 1 en el 90 %; ahora la proyección puede ser algo más lenta, y eso es intencional.
 
 **Validación.** El backtest guarda el horizonte de cada caso y muestra el error por horizonte (≤ 14 d, 15–42 d, > 42 d). Con menos de 5 casos muestra «Datos insuficientes para validar».
+
+## Récords personales (`RunRecords` 1.0, 0.10.0 (109))
+
+**Categorías**
+- Kilómetro más rápido, 5 km más rápidos y 10 km más rápidos.
+- Distancia más larga y carrera más larga en tiempo.
+
+**Cómo se mide**
+- **Tiempos**: la mejor suma de kilómetros completos y seguidos. Los parciales de 1 km se interpolan con `LapTracker`, en el reloj y en el iPhone por igual.
+  - Solo carreras al aire libre con GPS: en cinta la distancia es estimada.
+  - Si algún kilómetro está por debajo de 2:30 o por encima de 20:00, la carrera no cuenta para los tiempos (salto del GPS o pausa).
+- **Distancia y duración**: de la carrera entera, también en cinta, con 1 km como mínimo.
+
+**Puestos**
+- Puesto = 1 + carreras anteriores estrictamente mejores.
+- Se marcan el 1.º, el 2.º y el 3.º, solo si hay al menos tantas carreras anteriores como el puesto. Así, la primera carrera no es un récord y ser 2.ª de dos no cuenta.
+
+**Reparto entre iPhone y reloj**
+- El iPhone calcula cada carrera una vez (lee su ruta de Salud), sin duplicados ni carreras excluidas.
+- Le pasa al reloj una tabla con las 3 mejores de cada categoría y cuántas carreras hay.
+- Al terminar, el reloj compara la carrera con esa tabla, vibra y muestra el puesto en el resumen. Después suma la carrera a su tabla hasta que llegue la nueva del iPhone.
+- En el iPhone, cada carrera muestra los puestos que obtuvo el día que se corrió, y hay una pantalla con los 3 mejores de cada récord.
