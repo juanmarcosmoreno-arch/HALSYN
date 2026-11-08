@@ -107,13 +107,14 @@ enum RunRecordText {
     }
 }
 
-/// Medalla en la fila del historial (el mejor puesto de esa carrera).
+/// Medallita en la fila del historial: oro si fue récord, plata si fue la
+/// 2.ª mejor (el 3.er puesto se ve en el detalle, no en la lista).
 struct RunRecordBadge: View {
     let workoutID: UUID
 
     var body: some View {
-        if let best = RunRecordStore.shared.placements(for: workoutID).map(\.rank).min() {
-            Image(systemName: best == 1 ? "trophy.fill" : "medal.fill")
+        if let best = RunRecordStore.shared.placements(for: workoutID).map(\.rank).min(), best <= 2 {
+            Image(systemName: "medal.fill")
                 .font(.caption)
                 .foregroundStyle(RunRecordText.medal(best))
                 .accessibilityLabel(Text(verbatim: RunRecordText.rank(best)))
