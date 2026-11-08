@@ -163,9 +163,9 @@ struct ScenariosView: View {
     }
 
     private func assumption(_ result: GoalProjection.Result) -> String {
-        let weeksText = HalsynFormat.decimal(result.scenario.weeksPerPoint, fractionDigits: 0)
-        let compliance = String(Int((result.complianceFactor * 100).rounded()))
-        return String(localized: "1 punto de VDOT cada \(weeksText) semanas, \(compliance) % de la mejora por cumplimiento")
+        let percentileText = String(result.scenario.percentile)
+        let rate = AdaptationText.rate(result.rate)
+        return String(localized: "Percentil \(percentileText) de la distribución predictiva (mejora esperada \(rate) VDOT por semana)")
     }
 }
 
@@ -193,7 +193,7 @@ enum AdherenceText {
         }
         if let used = adherence.projectionCompliance {
             let factor = HalsynFormat.decimal(GoalProbability.gainFactor(used), fractionDigits: 2)
-            lines.append(String(localized: "Factor de mejora: (cumplimiento − 40 %) ÷ 50 %, entre 0 y 1 = \(factor). Es un supuesto de HÅLSYN: 90 % o más cuenta entero, 40 % o menos nada."))
+            lines.append(String(localized: "Factor de mejora de la referencia: (cumplimiento − 40 %) ÷ 60 %, entre 0 y 1 = \(factor). Es un supuesto de HÅLSYN: sube de forma continua, sin saltos; solo el 100 % cuenta entero y el 40 % o menos nada."))
         }
         return lines
     }

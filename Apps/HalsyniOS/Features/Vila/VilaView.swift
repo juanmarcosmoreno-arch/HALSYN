@@ -434,7 +434,23 @@ struct RecoveryExplanationView: View {
                 LabeledContent("Confianza", value: confidence)
                 LabeledContent("Datos disponibles", value: "\(Int((estimate.coverage * 100).rounded())) %")
             } footer: {
-                Text("Es la media de los componentes con dato, cada uno con su peso: HRV 35 %, FC en reposo 25 %, sueño 25 % y esfuerzo reciente 15 %. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15. Si falta un componente, se reparte su peso entre los demás (con al menos el 60 % del peso y una señal del corazón).")
+                Text("Primero la media de los componentes con dato, cada uno con su peso: HRV 35 %, FC en reposo 25 %, sueño 25 % y esfuerzo reciente 15 %. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15. Si falta un componente, se reparte su peso entre los demás (con al menos el 60 % del peso y una señal del corazón). Después, para que una señal mala no quede tapada por las buenas: 75 % la media y 25 % el componente más bajo. Con una enfermedad, fiebre o lesión registradas, como mucho 50.")
+            }
+            Section("Resumen") {
+                ForEach(RecoveryExplanationText.lines(estimate), id: \.self) { line in
+                    Text(verbatim: line)
+                        .font(.halsynCaption)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            if !estimate.warnings.isEmpty {
+                Section("Avisos") {
+                    ForEach(estimate.warnings, id: \.self) { warning in
+                        Label(RecoveryExplanationText.warning(warning), systemImage: "exclamationmark.triangle")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynCaution)
+                    }
+                }
             }
             Section("Variables") {
                 ForEach(estimate.components) { component in
@@ -498,6 +514,61 @@ struct RecoveryExplanationView: View {
 }
 
 enum RecoveryExplanationText {
+    /// Resumen, factores a favor y en contra, agregación, calidad y confianza.
+    static func lines(_ estimate: RecoveryEstimate) -> [String] {
+        guard let value = estimate.value else {
+            return [String(localized: "Sin estimación: hacen falta tu HRV o tu FC en reposo y unos días de historial.")]
+        }
+        var lines: [String] = []
+        let scored = estimate.components.filter { $0.score != nil }
+        let up = scored.filter { $0.impact == .positive }.map { String(localized: String.LocalizationValue($0.kind.title)) }
+        let down = scored.filter { $0.impact == .negative }.map { String(localized: String.LocalizationValue($0.kind.title)) }
+        let valueText = String(value)
+        if down.isEmpty && up.isEmpty {
+            lines.append(String(localized: "Recuperación \(valueText): todo cerca de tu línea basal."))
+        } else if down.isEmpty {
+            lines.append(String(localized: "Recuperación \(valueText): mejor que tu línea basal, sin señales en contra."))
+        } else {
+            let downText = down.joined(separator: ", ")
+            lines.append(String(localized: "Recuperación \(valueText): la baja sobre todo \(downText)."))
+        }
+        let upText = up.joined(separator: ", "), againstText = down.joined(separator: ", ")
+        if !up.isEmpty { lines.append(String(localized: "A favor: \(upText)")) }
+        if !down.isEmpty { lines.append(String(localized: "En contra: \(againstText)")) }
+        if let mean = estimate.weightedMean, let lowest = scored.compactMap(\.score).min() {
+            let meanText = HalsynFormat.decimal(mean, fractionDigits: 1), lowestText = String(lowest)
+            lines.append(String(localized: "Cálculo: 75 % de la media ponderada (\(meanText)) + 25 % del componente más bajo (\(lowestText)) = \(valueText). Así una señal mala no queda compensada del todo por las buenas."))
+        }
+        let coverageText = "\(Int((estimate.coverage * 100).rounded())) %"  // nolocalize
+        let confidenceText: String
+        switch estimate.confidence {
+        case .high: confidenceText = String(localized: "alta")
+        case .medium: confidenceText = String(localized: "media")
+        case .low: confidenceText = String(localized: "baja")
+        }
+        lines.append(String(localized: "Comparado solo contigo (tu línea basal de 28 días). Datos disponibles: \(coverageText) del peso; confianza \(confidenceText)."))
+        for item in estimate.warnings { lines.append(Self.warning(item)) }
+        return lines
+    }
+
+    static func warning(_ warning: RecoveryWarning) -> String {
+        switch warning {
+        case .hrvUnusuallyHigh:
+            return String(localized: "HRV muy por encima de lo habitual. Puede ser buena señal, pero a veces acompaña a cansancio acumulado: por eso no suma más que un valor algo alto.")
+        case .illness:
+            return String(localized: "Registraste enfermedad, fiebre o lesión: la recuperación se limita a 50, aunque las señales parezcan buenas.")
+        case let .recentHardSession(hours):
+            let hoursText = String(hours)
+            return String(localized: "Sesión intensa hace unas \(hoursText) h: el cuerpo puede seguir recuperándose aunque las señales de la mañana sean buenas.")
+        case .incompleteSleep:
+            return String(localized: "La noche parece incompleta (registro muy corto): el sueño no entra en el cálculo.")
+        case .shortHRVWindow:
+            return String(localized: "Menos de 4 días con HRV en la última semana: la media es menos fiable.")
+        case .usesYesterday:
+            return String(localized: "Algún valor es de ayer: todavía no hay medición de hoy.")
+        }
+    }
+
     /// Aporte en puntos frente a la base de 75: peso relativo × (puntos − 75).
     static func contribution(_ component: RecoveryComponent, in estimate: RecoveryEstimate) -> String {
         guard let score = component.score, estimate.value != nil else { return "" }

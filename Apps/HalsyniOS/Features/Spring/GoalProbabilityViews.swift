@@ -308,6 +308,7 @@ struct GoalProbabilityDetail: View {
                         .foregroundStyle(.halsynSecondaryText)
                 }
             }
+            PerformanceEvolutionChart(performance: performance, probability: probability, goal: goal)
             CollapsibleDetails("Factores y evolución") {
                 let points = GoalProbabilityHistory.points(goal: goal)
                 if Set(points.map(\.day)).count >= 2 {
@@ -347,7 +348,7 @@ struct GoalProbabilityDetail: View {
                 factorList("A favor", effect: .favors, symbol: "arrow.up.circle.fill", tint: .halsynPositive)
                 factorList("En contra", effect: .hinders, symbol: "arrow.down.circle.fill", tint: .halsynAlert)
                 factorList("Neutral", effect: .neutral, symbol: "minus.circle", tint: .halsynSecondaryText)
-                ExpandableText("Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: la mitad según la pauta prudente de Daniels (1 punto de VDOT cada 6 semanas) y la mitad según tu tendencia real, ajustada por cuánto cumples el plan. El rango orientativo suma la incertidumbre de tu forma, de la mejora, del tiempo que falta y del día de la carrera; está pensado para contener 8 de cada 10 resultados, pero eso aún no se comprobó con tus datos. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.")
+                ExpandableText("Cómo se calcula: tu forma de hoy sale de tus tests, competiciones y entrenamientos a tope (los más recientes pesan más; uno que no encaja con los demás pesa menos). Se le suma la mejora esperada hasta la carrera: una referencia prudente (la pauta de Daniels, 1 punto de VDOT cada 6 semanas, ajustada por cuánto cumples el plan y cuántos días corres) combinada con tu propia tendencia según cuánta información aportan tus tests; con pocos tests manda la referencia (ver «¿Cómo aprende HÅLSYN?»). El rango orientativo va del percentil 10 al 90 de la distribución predictiva, que suma la incertidumbre de tu forma, de la mejora, del cumplimiento, del tiempo que falta y del día de la carrera; aún no se comprobó con tus resultados. Se muestra una categoría y no un porcentaje porque todavía no hay resultados reales tuyos para comprobar que esos porcentajes acierten. No es una garantía.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
                     .fixedSize(horizontal: false, vertical: true)

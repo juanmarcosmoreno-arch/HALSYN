@@ -158,10 +158,18 @@ struct DataExportView: View {
                 vdotEligibility: workout.activity.isRun ? DataExport.code(IntensityContext.eligibility(workout)) : ""
             )
             extra.harderThanPlanned = intensity?.harderThanPlanned == true
+            extra.rpe = intensity?.rpe
+            extra.perceivedIntensity = intensity?.perceived.map(DataExport.code) ?? ""
+            extra.planCompliance = intensity.map { $0.planCompliance == .notApplicable ? "" : $0.planCompliance.rawValue } ?? ""
             extras[workout.id] = extra
         }
         let workoutsCSV = DataExport.workoutsCSV(workouts, marks: marks, shoes: shoes, extras: extras, calendar: calendar)
-        let dailyCSV = DataExport.dailyCSV(series: series, healthScores: health, recoveryScores: recovery, sleep: sleep, days: days, calendar: calendar)
+        var estimatesByDay: [Date: RecoveryEstimate] = [:]
+        for estimate in recoveryEstimates { estimatesByDay[estimate.day] = estimate }
+        // Sueño por episodios con la hora de la exportación: un episodio
+        // posterior no existe todavía para la recuperación de esa mañana.
+        let attribution = SleepAttribution.days(sleep, now: end, calendar: calendar)
+        let dailyCSV = DataExport.dailyCSV(series: series, healthScores: health, recoveryScores: recovery, sleep: sleep, days: days, recovery: estimatesByDay, attribution: attribution, calendar: calendar)
         let summary = await summaryText(start: start, end: end, workouts: workouts, sleep: sleep)
 
         let stamp = isoDay(end)
@@ -174,6 +182,9 @@ struct DataExportView: View {
             (folder.appendingPathComponent("halsyn-diario-\(stamp).csv"), dailyCSV),  // nolocalize
         ]
         var extraFiles: [(URL, String)] = []
+        if !attribution.isEmpty {
+            extraFiles.append((folder.appendingPathComponent("halsyn-sueno-episodios-\(stamp).csv"), DataExport.sleepEpisodesCSV(attribution, calendar: calendar)))  // nolocalize
+        }
         if let performance {
             extraFiles.append((folder.appendingPathComponent("halsyn-pruebas-\(stamp).csv"), DataExport.evidenceCSV(performance, results: FitnessStore.shared.results, calendar: calendar)))  // nolocalize
         }
@@ -217,18 +228,30 @@ struct DataExportView: View {
         lines.append("- " + String(localized: "Calculado el \(end.formatted(date: .numeric, time: .standard)) en el iPhone, sin servicios externos."))
         lines.append("- " + "RacePerformanceModel \(RacePerformanceModel.version) · RecoveryEngine \(RecoveryEngine.version) · HealthScoreEngine \(HealthScoreEngine.version) · " + String(localized: "formato de exportación") + " \(DataExport.formatVersion)")  // nolocalize
         let exportRuns = workouts.filter(\.activity.isRun)
-        let observedMax = HeartRateZoneConfiguration.observedMax(in: exportRuns)
-        let effectiveMax = FitnessStore.shared.maxHeartRate(for: exportRuns)
-        if let configured = FitnessStore.shared.configuredMaxHeartRate, effectiveMax.overridden, let used = effectiveMax.value {
-            let configuredText = String(Int(configured)), usedText = String(Int(used))
-            lines.append("- " + String(localized: "FC máxima de referencia: \(usedText) lpm, observada. La configurada a mano (\(configuredText) lpm) queda por debajo de lo que registraste y haría parecer muy intensos los rodajes: se usa la observada hasta que la revises."))
-        } else if let configured = FitnessStore.shared.configuredMaxHeartRate {
-            let configuredText = String(Int(configured))
-            let observedText = observedMax.map { String(Int($0)) } ?? "—"
-            lines.append("- " + String(localized: "FC máxima de referencia: \(configuredText) lpm, configurada a mano (la más alta registrada en el período: \(observedText) lpm). Las intensidades y la elegibilidad para el VDOT se calculan con la configurada."))
-        } else if let reference = EffortClassifier.referenceMaxHeartRate(configured: nil, runs: exportRuns) {
-            let referenceText = String(Int(reference))
-            lines.append("- " + String(localized: "FC máxima de referencia: \(referenceText) lpm, observada (la segunda más alta de tus carreras, para no tomar un pico del sensor)."))
+        let resolution = FitnessStore.shared.maxHeartRate(for: exportRuns)
+        func bpm(_ value: Double?) -> String { value.map { String(Int($0)) + " lpm" } ?? "—" }  // nolocalize
+        let usedText = bpm(resolution.value), configuredText = bpm(resolution.configured), recordedText = bpm(resolution.recorded), validatedText = bpm(resolution.validated)
+        let sourceText = String(localized: String.LocalizationValue(resolution.source.title))
+        lines.append("- " + String(localized: "FC máxima en uso: \(usedText) (fuente: \(sourceText)). Configurada: \(configuredText) · registrada: \(recordedText) · validada: \(validatedText)."))
+        let supportingDates = resolution.assessment.supporting.map { $0.date.formatted(date: .numeric, time: .omitted) }.joined(separator: ", ")
+        if resolution.validated != nil {
+            let supportText = supportingDates.isEmpty ? "—" : supportingDates
+            lines.append("  " + String(localized: "Validada: el valor más alto alcanzado (±1 lpm) en al menos dos sesiones distintas (\(supportText)). Un pico aislado, un valor que no se sostiene 15 s o uno muy por encima de la media de la sesión no cuentan."))
+        }
+        if resolution.assessment.isProvisional {
+            lines.append("  " + String(localized: "Solo una sesión utilizable: la validada es provisional."))
+        }
+        let isolated = resolution.assessment.peaks.filter { $0.status != .supported && $0.status != .below && $0.status != .old }
+        for peak in isolated.prefix(5) {
+            let peakText = bpm(peak.reported), dateText = peak.date.formatted(date: .numeric, time: .omitted)
+            let reason = String(localized: String.LocalizationValue(DataExport.peakReason(peak.status)))
+            lines.append("  " + String(localized: "No cuenta: \(peakText) del \(dateText) (\(reason))."))
+        }
+        if resolution.configuredBelowValidated {
+            lines.append("  " + String(localized: "Aviso: la configurada queda por debajo de la validada. No se cambia sola: los rodajes pueden parecer más intensos de lo que fueron. Puedes elegir «Validada» en Ajustes › Zonas cardíacas."))
+        }
+        if resolution.usesValidatedFallback {
+            lines.append("  " + String(localized: "No hay una FC máxima introducida válida: se usa la validada."))
         }
         let workoutSources = Set(workouts.map { DataExport.source($0.origin) }).sorted().joined(separator: ", ")
         let sleepSources = Set(sleep.compactMap(\.sourceName)).sorted().joined(separator: ", ")
@@ -308,6 +331,19 @@ struct DataExportView: View {
                         lines.append("  - " + line)  // nolocalize
                     }
                 }
+                if let central = probability.central, let adaptation = central.adaptation {
+                    lines.append("- " + AdaptationText.state(adaptation) + " (IndividualAdaptationModel \(IndividualAdaptationModel.version))")  // nolocalize
+                    for line in AdaptationText.lines(adaptation) {
+                        lines.append("  - " + line)  // nolocalize
+                    }
+                    let parts = HowHalsynLearnsView.parts(central).map { "\($0.0) ± \(HalsynFormat.decimal($0.1.squareRoot(), fractionDigits: 2))" }.joined(separator: "; ")  // nolocalize
+                    let sigmaText = HalsynFormat.decimal(central.uncertainty, fractionDigits: 2)
+                    lines.append("- " + String(localized: "Incertidumbre de la proyección (VDOT, 1 desviación): \(sigmaText) = raíz de la suma de varianzas: \(parts)."))
+                    let scenarioText = probability.scenarios.map { "P\($0.scenario.percentile) \(HalsynFormat.duration(VDOT.raceTime(vdot: $0.projectedVDOT, distance: plan.goal.distance.rawValue)))" }.joined(separator: " · ")  // nolocalize
+                    if !scenarioText.isEmpty {
+                        lines.append("- " + String(localized: "Escenarios (percentiles de la distribución predictiva): \(scenarioText)"))
+                    }
+                }
             }
         }
         if let estimate {
@@ -370,12 +406,39 @@ struct DataExportView: View {
                 lines.append("- \(result.date.formatted(date: .abbreviated, time: .omitted)) · \(LabText.title(result)) · \(LabText.value(result))")  // nolocalize
             }
         }
+        let projectionBacktest = FitnessStore.shared.projectionBacktest(runs: runs)
+        let todayBacktest = FitnessStore.shared.backtest(runs: runs)
+        lines.append("")
+        lines.append("## " + String(localized: "Validación del modelo (sin datos futuros)"))
+        for (name, backtest) in [(String(localized: "Rendimiento de hoy"), todayBacktest), (String(localized: "Proyección a 4 semanas"), projectionBacktest)] {
+            let countText = String(backtest.count)
+            let maeText = backtest.meanAbsoluteError.map { HalsynFormat.duration($0) } ?? "—"
+            let biasText = backtest.bias.map { ($0 >= 0 ? "+" : "−") + HalsynFormat.duration(abs($0)) } ?? "—"  // nolocalize
+            let coverageText = backtest.hasEnoughData ? (backtest.coverage.map { "\(Int(($0 * 100).rounded())) %" } ?? "—") : "—"  // nolocalize
+            lines.append("- " + String(localized: "\(name): n = \(countText) · MAE \(maeText) · sesgo \(biasText) · cobertura del rango del 80 %: \(coverageText)"))
+            if !backtest.hasEnoughData {
+                lines.append("  - " + String(localized: "Datos insuficientes para validar"))
+            }
+        }
+        let horizonText = projectionBacktest.errorByHorizon.map { "\($0.label): n = \($0.count), MAE \($0.meanAbsoluteError.map { HalsynFormat.duration($0) } ?? "—")" }.joined(separator: " · ")  // nolocalize
+        lines.append("- " + String(localized: "Error de la proyección por horizonte: \(horizonText)"))
+
+        if let latest = await model.provider.recoveryEstimates(endingOn: end, days: 1).last, latest.value != nil {
+            lines.append("")
+            lines.append("## " + String(localized: "Recuperación de hoy explicada") + " (RecoveryEngine \(RecoveryEngine.version))")  // nolocalize
+            for line in RecoveryExplanationText.lines(latest) {
+                lines.append("- " + line)  // nolocalize
+            }
+        }
+
         lines.append("")
         lines.append("## " + String(localized: "Archivos"))
         lines.append("- " + String(localized: "Entrenamientos: una fila por entrenamiento. Distancia en km, duración en minutos, ritmo en min/km y s/km, pulso en lpm, cadencia en pasos por minuto, desnivel en m, potencia en W, temperatura en °C y humedad en %. «marked_as» indica si lo marcaste como test o carrera."))
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
         lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo."))
         lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
+        lines.append("- " + String(localized: "Formato 4 (columnas nuevas al final): entrenamientos con «rpe» (esfuerzo percibido 1–10 que anotaste), «perceived_intensity» (según el RPE) y «plan_compliance» (as_planned, harder, easier); diario con «main_sleep_attributed_h» y «naps_attributed_h» (sueño principal al día en que te despiertas, siestas al día en que empiezan), «recovery_mean» (media ponderada antes de la agregación prudente), la puntuación de cada factor y «recovery_warnings». «sleep_h» mantiene su significado anterior."))
+        lines.append("- " + String(localized: "Episodios de sueño (si hay): cada episodio con su hora real de inicio y fin, horas dormidas, tipo (main o nap) y el día al que se atribuye."))
         lines.append("- " + String(localized: "Pruebas (si hay): cada prueba del modelo con su VDOT, su papel, su peso y los factores (tipo × antigüedad × distancia × calidad × tope × coherencia). Eventos y laboratorio (si hay): lo que registraste."))
         return lines.joined(separator: "\n") + "\n"
     }

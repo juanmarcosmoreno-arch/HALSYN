@@ -56,8 +56,71 @@ public struct RecoveryComponent: Hashable, Identifiable, Sendable {
     public var possiblyIncomplete = false
     /// Solo sueño: siesta del día anterior que no cuenta como sueño de la noche (horas).
     public var napHours: Double?
+    /// Desviación favorable estandarizada (HRV y FC en reposo).
+    public var detailZ: Double?
 
     public var id: RecoveryComponentKind { kind }
+}
+
+/// Aviso que acompaña a la recuperación (no cambia el cálculo salvo la enfermedad).
+public enum RecoveryWarning: Hashable, Sendable {
+    /// HRV muy por encima de tu basal (z > 2): puede ser normal o cansancio
+    /// acumulado (saturación parasimpática); no suma más que +1 desviación.
+    case hrvUnusuallyHigh
+    /// Enfermedad, fiebre o lesión en curso: la recuperación se limita a 50.
+    case illness
+    /// Sesión intensa hace menos de 24 h.
+    case recentHardSession(hours: Int)
+    /// La noche parece incompleta: el sueño no entra.
+    case incompleteSleep
+    /// HRV con menos de 4 días en la ventana de 7.
+    case shortHRVWindow
+    /// Algún valor es de ayer (aún no hay medición de hoy).
+    case usesYesterday
+}
+
+/// Contexto opcional que no viene de las series diarias.
+public struct RecoveryContext: Hashable, Sendable {
+    public var activeIllness: Bool
+    public var hoursSinceHardSession: Double?
+
+    public init(activeIllness: Bool = false, hoursSinceHardSession: Double? = nil) {
+        self.activeIllness = activeIllness
+        self.hoursSinceHardSession = hoursSinceHardSession
+    }
+}
+
+/// Contexto por día que registra la app (eventos de salud, sesiones intensas).
+/// Lo consultan todos los cálculos de recuperación, también los de los
+/// proveedores de datos, para que el valor sea el mismo en cada pantalla.
+public struct RecoveryContextSource: Hashable, Sendable {
+    /// Días con enfermedad, fiebre o lesión registradas.
+    public var illnessDays: Set<Date>
+    /// Fin de las sesiones intensas (tempo o más) recientes.
+    public var hardSessionEnds: [Date]
+
+    public init(illnessDays: Set<Date> = [], hardSessionEnds: [Date] = []) {
+        self.illnessDays = illnessDays
+        self.hardSessionEnds = hardSessionEnds
+    }
+
+    /// Las horas desde la sesión intensa se cuentan hasta las 8:00 de ese día
+    /// (la recuperación es la de la mañana).
+    public func context(for day: Date, calendar: Calendar) -> RecoveryContext {
+        let start = calendar.startOfDay(for: day)
+        let morning = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: start) ?? start
+        let last = hardSessionEnds.filter { $0 <= morning }.max()
+        return RecoveryContext(activeIllness: illnessDays.contains(start), hoursSinceHardSession: last.map { morning.timeIntervalSince($0) / 3600 })
+    }
+
+    private static let lock = NSLock()
+    nonisolated(unsafe) private static var stored = RecoveryContextSource()
+
+    /// El contexto vigente (vacío salvo que la app lo actualice).
+    public static var current: RecoveryContextSource {
+        get { lock.lock(); defer { lock.unlock() }; return stored }
+        set { lock.lock(); stored = newValue; lock.unlock() }
+    }
 }
 
 /// Recuperación estimada (0–100) de un día, con su desglose.
@@ -69,6 +132,9 @@ public struct RecoveryEstimate: Hashable, Identifiable, Sendable {
     public let confidence: ScoreConfidence
     public let origin: DataOrigin
     public let engineVersion: String
+    public var warnings: [RecoveryWarning] = []
+    /// Media ponderada antes de la agregación prudente y del límite por enfermedad.
+    public var weightedMean: Double?
 
     public var id: Date { day }
 
@@ -105,7 +171,13 @@ public struct RecoveryConfiguration: Sendable {
 
 /// Motor de recuperación estimada de VILA.
 ///
-/// Reglas (Documentation/RECOVERY.md, versión 0.3):
+/// Reglas (Documentation/RECOVERY.md, versión 0.4):
+/// - **0.4**: una HRV por encima de tu basal suma como mucho +1 desviación (87,5
+///   puntos); por encima de +2 se avisa. El total es 0,75 × media ponderada +
+///   0,25 × el componente más bajo, para que una señal adversa no quede
+///   compensada del todo por las favorables. Con enfermedad, fiebre o lesión en
+///   curso, como mucho 50. Avisos explícitos (sesión intensa reciente, noche
+///   incompleta, ventana de HRV corta, valores de ayer).
 /// - **Línea basal robusta**: mediana y MAD × 1,4826 (equivalente a una
 ///   desviación típica sin que un valor raro la mueva) de los 28 días
 ///   anteriores (mínimo 7).
@@ -129,7 +201,10 @@ public struct RecoveryConfiguration: Sendable {
 /// - Es una estimación orientativa, no un diagnóstico: no dice si estás
 ///   médicamente recuperado.
 public struct RecoveryEngine: Sendable {
-    public static let version = "0.3"
+    public static let version = "0.4"
+    /// Peso del componente más bajo en la agregación prudente.
+    public static let limitingWeight = 0.25
+    public static let illnessCap = 50
     public static let hrvWindowDays = 7
     public static let hrvMinimumWindowDays = 4
     public static let inputs: [MetricKind] = [.heartRateVariability, .restingHeartRate, .sleepDuration, .exerciseTime]
@@ -144,8 +219,10 @@ public struct RecoveryEngine: Sendable {
     public var historyDaysNeeded: Int { configuration.baselineDays + Self.hrvWindowDays }
 
     /// - `nights`: noches por día (opcional) para separar siestas y registros incompletos.
-    public func evaluate(day: Date, history: DailyHistory, origin: DataOrigin, nights: [Date: SleepNight] = [:]) -> RecoveryEstimate {
+    /// - `context`: si falta, el de `RecoveryContextSource.current` para ese día.
+    public func evaluate(day: Date, history: DailyHistory, origin: DataOrigin, nights: [Date: SleepNight] = [:], context explicitContext: RecoveryContext? = nil) -> RecoveryEstimate {
         let start = history.calendar.startOfDay(for: day)
+        let context = explicitContext ?? RecoveryContextSource.current.context(for: start, calendar: history.calendar)
         let components = RecoveryComponentKind.allCases.map { component($0, day: start, history: history, nights: nights) }
         let totalWeight = components.reduce(0) { $0 + $1.weight }
         let available = components.filter { $0.score != nil && $0.weight > 0 }
@@ -154,8 +231,14 @@ public struct RecoveryEngine: Sendable {
         let hasPhysiology = available.contains { $0.kind == .heartRateVariability || $0.kind == .restingHeartRate }
 
         var value: Int?
+        var weightedMean: Double?
         if hasPhysiology, coverage >= configuration.minimumCoverage, availableWeight > 0 {
-            value = Int((available.reduce(0.0) { $0 + Double($1.score ?? 0) * $1.weight } / availableWeight).rounded())
+            let mean = available.reduce(0.0) { $0 + Double($1.score ?? 0) * $1.weight } / availableWeight
+            weightedMean = mean
+            let lowest = Double(available.compactMap(\.score).min() ?? 0)
+            var combined = (1 - Self.limitingWeight) * mean + Self.limitingWeight * lowest
+            if context.activeIllness { combined = min(combined, Double(Self.illnessCap)) }
+            value = Int(combined.rounded())
         }
 
         let depth = [MetricKind.heartRateVariability, .restingHeartRate]
@@ -171,7 +254,17 @@ public struct RecoveryEngine: Sendable {
         } else {
             confidence = .low
         }
-        return RecoveryEstimate(day: start, value: value, components: components, coverage: coverage, confidence: confidence, origin: origin, engineVersion: Self.version)
+        var estimate = RecoveryEstimate(day: start, value: value, components: components, coverage: coverage, confidence: confidence, origin: origin, engineVersion: Self.version)
+        estimate.weightedMean = weightedMean
+        var warnings: [RecoveryWarning] = []
+        if components.contains(where: { $0.kind == .heartRateVariability && ($0.detailZ ?? 0) > 2 }) { warnings.append(.hrvUnusuallyHigh) }
+        if context.activeIllness { warnings.append(.illness) }
+        if let hours = context.hoursSinceHardSession, hours < 24 { warnings.append(.recentHardSession(hours: Int(hours.rounded()))) }
+        if components.contains(where: \.possiblyIncomplete) { warnings.append(.incompleteSleep) }
+        if shortHRVWindow { warnings.append(.shortHRVWindow) }
+        if usesYesterday { warnings.append(.usesYesterday) }
+        estimate.warnings = warnings
+        return estimate
     }
 
     private func component(_ kind: RecoveryComponentKind, day: Date, history: DailyHistory, nights: [Date: SleepNight]) -> RecoveryComponent {
@@ -236,7 +329,10 @@ public struct RecoveryEngine: Sendable {
                 detail = value - robust.median
             }
             let impact: ScoreImpact = z <= -1 ? .negative : (z >= 0.5 ? .positive : .neutral)
-            var result = RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: z).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
+            // Una HRV muy alta no es necesariamente mejor (Plews et al.): suma como mucho +1 desviación.
+            let scored = metric == .heartRateVariability ? min(z, 1) : z
+            var result = RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: scored).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
+            result.detailZ = z
             if metric == .heartRateVariability {
                 result.recentValue = Foundation.exp(value)
                 result.baselineValue = Foundation.exp(robust.median)

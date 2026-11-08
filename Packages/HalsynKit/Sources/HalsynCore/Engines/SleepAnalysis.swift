@@ -38,6 +38,14 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
     public var episodes: Int = 1
     /// Fuentes que registraron sueño esa noche (se fusionan sin dobles conteos).
     public var sourceCount: Int = 1
+    /// Episodios de la ventana con su hora real (ya fusionadas las fuentes).
+    public var episodeList: [SleepEpisode] = []
+
+    /// Siestas que empezaron el día anterior (antes del sueño principal): se
+    /// atribuyen a ese día, no a esta noche.
+    public func naps(startingOn day: Date, calendar: Calendar) -> [SleepEpisode] {
+        episodeList.filter { !$0.isMain && calendar.isDate($0.start, inSameDayAs: day) }
+    }
 
     public var id: Date { day }
 
@@ -79,6 +87,57 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
     /// `true` si hay reparto en fases (núcleo, profundo, REM).
     public var hasStages: Bool {
         [.asleepCore, .asleepDeep, .asleepREM].contains { (stages[$0] ?? 0) > 0 }
+    }
+}
+
+/// Un episodio de sueño (tramo separado de otros por 90 min o más).
+public struct SleepEpisode: Hashable, Sendable {
+    public let start: Date
+    public let end: Date
+    /// Tiempo dormido dentro del episodio.
+    public let asleep: TimeInterval
+    /// El de más sueño de la ventana: el sueño principal.
+    public let isMain: Bool
+
+    /// Día al que se atribuye: el principal, al día en que te despiertas; una
+    /// siesta, al día en que empieza.
+    public func attributedDay(calendar: Calendar) -> Date {
+        calendar.startOfDay(for: isMain ? end : start)
+    }
+}
+
+/// Sueño por día con la atribución explícita de cada episodio.
+///
+/// - **Principal**: el episodio con más sueño de la ventana de mediodía a
+///   mediodía que termina ese día; se atribuye al día en que te despiertas.
+/// - **Siestas**: el resto de episodios; cada una al día en que empieza. Una
+///   siesta de la tarde del 7 cuenta para el día 7, no para la noche del 8.
+/// - La recuperación usa solo el sueño principal; las siestas se muestran
+///   aparte (no se suman a la noche).
+/// - Nada posterior al instante del cálculo: un episodio que empieza después
+///   de `now` no se tiene en cuenta.
+public enum SleepAttribution {
+    public struct Day: Hashable, Sendable {
+        public let day: Date
+        public var main: TimeInterval = 0
+        public var naps: TimeInterval = 0
+        public var episodes: [SleepEpisode] = []
+        public var total: TimeInterval { main + naps }
+    }
+
+    public static func days(_ nights: [SleepNight], now: Date, calendar: Calendar) -> [Date: Day] {
+        var result: [Date: Day] = [:]
+        var seen = Set<SleepEpisode>()
+        for night in nights {
+            for episode in night.episodeList where episode.start <= now && seen.insert(episode).inserted {
+                let day = episode.attributedDay(calendar: calendar)
+                var entry = result[day] ?? Day(day: day)
+                if episode.isMain { entry.main += episode.asleep } else { entry.naps += episode.asleep }
+                entry.episodes.append(episode)
+                result[day] = entry
+            }
+        }
+        return result
     }
 }
 
@@ -144,6 +203,11 @@ public enum SleepAnalysis {
         var night = SleepNight(day: calendar.startOfDay(for: day), asleep: asleep, sleepStart: first.start, sleepEnd: last.end, awake: awake, stages: stages, segments: hasStages ? segments : [], sourceName: source, origin: origin)
         night.napAsleep = asleep - mainAsleep
         night.episodes = episodes.count
+        night.episodeList = episodes.compactMap { episode -> SleepEpisode? in
+            guard let start = episode.first?.start, let end = episode.last?.end else { return nil }
+            let isMain = start == first.start && end == last.end
+            return SleepEpisode(start: start, end: end, asleep: episode.reduce(0) { $0 + $1.duration }, isMain: isMain)
+        }
         night.sourceCount = max(sources.count, 1)
         return night
     }

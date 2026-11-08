@@ -111,6 +111,7 @@ struct WorkoutDetailView: View {
                         }
                     }
                 }
+                PerceivedEffortCard(workout: workout, intensity: intensity)
                 PerformanceMarkCard(workout: workout)
             }
 

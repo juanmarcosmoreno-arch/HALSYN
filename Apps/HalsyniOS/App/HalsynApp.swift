@@ -27,6 +27,8 @@ struct HalsynApp: App {
     init() {
         UNUserNotificationCenter.current().delegate = NotificationRouter.shared
         HalsynTheme.current = HalsynTheme.named(UserDefaults.standard.string(forKey: HalsynTheme.storageKey))
+        // Enfermedad o lesión registradas: la recuperación las tiene en cuenta desde el inicio.
+        IntensityContext.updateRecoveryContext()
     }
 
     /// La primera vez siempre se ve completa; después, según la preferencia.

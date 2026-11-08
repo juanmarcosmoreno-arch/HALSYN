@@ -313,6 +313,10 @@ public enum EffortClassifier {
     /// «segunda más alta» pasaba a ser el mismo pico).
     public static func referenceMaxHeartRate(configured: Double?, runs: [WorkoutSummary]) -> Double? {
         if let configured, HeartRateZoneConfiguration.plausibleMaxRange.contains(configured) { return configured }
+        // La validada (repetida en al menos dos sesiones); sin ventana de
+        // fecha, para que el resultado no dependa del día en que se calcula.
+        let assessment = MaxHeartRateValidator.assess(runs: runs, today: .now, calendar: Calendar(identifier: .gregorian), usesWindow: false)
+        if let validated = assessment.validated { return validated }
         let quality = DataQuality.assess(runs)
         let values = runs.filter { quality[$0.id]?.level != .excluded && quality[$0.id]?.heartRateUsable != false }
             .compactMap(\.maxHeartRate)

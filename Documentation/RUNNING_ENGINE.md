@@ -241,3 +241,47 @@ Detalle y casos reales en `AUDITORIA_NOV_2026.md`.
 - Deduplicación determinista (±12 h); sesiones de umbral o series planificadas
   no elegibles; semanas restadas por eventos de salud con fin conocido.
 - Detalle en `AUDITORIA_MOTORES_FASE_B.md`.
+
+## RacePerformanceModel 1.6 (0.10.0 (107))
+
+**FC máxima: tres valores separados.**
+- **Configurada**: la que introdujiste. Se conserva en `configuredMaxHeartRate`, aunque elijas otra fuente.
+- **Registrada**: la más alta presente en Salud, sin duplicados ni pulso inválido.
+- **Validada** (`MaxHeartRateValidator`): el valor más alto alcanzado (±1 lpm) en al menos dos sesiones distintas de los últimos 12 meses. Se descartan:
+  - un máximo de Salud que supera en más de 3 lpm al pico sostenido 15 s en las muestras;
+  - un máximo más de 50 lpm por encima de la media, en una carrera de 10 min o más y sin muestras que lo confirmen.
+  - Con una sola sesión utilizable, la validada es provisional.
+
+Desde la 1.6 la configurada **no se reemplaza en silencio**: con la fuente manual se usa la tuya. Si queda más de 2 lpm por debajo de la validada, se avisa y se ofrece «Usar la validada». En el caso real eso significa 182 hasta que elijas otra fuente (validada 186, registrada 189).
+
+**Intensidad.**
+- Jerarquía de evidencia:
+  1. FC umbral (Friel);
+  2. zonas por reserva (Karvonen);
+  3. % de la máxima;
+  4. ritmo;
+  5. RPE;
+  6. desconocida.
+- El RPE (1–10, Borg CR-10) se anota por entrenamiento. Se guarda aparte: la intensidad percibida no reemplaza a la fisiológica, y se marca cuando difieren 2 niveles o más.
+- `planCompliance` puede ser `as_planned`, `harder` o `easier`.
+
+**Adaptación individual** (`IndividualAdaptationModel` 1.0).
+- Pendiente del VDOT de tus tests y competiciones por mínimos cuadrados ponderados:
+  - σᵢ = 0,7 ÷ √(tipo × distancia × calidad);
+  - antigüedad con vida media de 12 semanas;
+  - Huber con c = 1,5, en 3 iteraciones;
+  - sobredispersión χ²/(n − 2).
+- Se combina con una referencia N(1/6 × f_cumplimiento × f_frecuencia, 0,10²) por precisiones, de modo que el peso de tu evidencia sale de la información disponible.
+- Estados:
+  - referencia: menos de 3 pruebas o menos de 21 días;
+  - aprendiendo;
+  - personalizada: peso ≥ 50 %, 4 pruebas o más y 42 días o más.
+- Acotada a ±0,25 VDOT por semana. No usa la carga como predictor.
+
+**Proyección.**
+- Media = VDOT actual + ganancia acotada con la tasa combinada.
+- σ² = forma actual² + (pendiente × σ_tasa)² + (pendiente × σ_adherencia)² + horizonte² + día de carrera².
+- Los escenarios son los percentiles 10, 50 y 90 de esa distribución, no tasas fijas.
+- El factor de cumplimiento es una rampa continua: (c − 0,4) ÷ 0,6 entre 0 y 1. Antes llegaba a 1 en el 90 %; ahora la proyección puede ser algo más lenta, y eso es intencional.
+
+**Validación.** El backtest guarda el horizonte de cada caso y muestra el error por horizonte (≤ 14 d, 15–42 d, > 42 d). Con menos de 5 casos muestra «Datos insuficientes para validar».

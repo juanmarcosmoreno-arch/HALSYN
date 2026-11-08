@@ -62,11 +62,47 @@ public enum IntensityBucket: Int, CaseIterable, Comparable, Hashable, Sendable {
 
 /// Clasificación de un entrenamiento y con qué se decidió.
 public struct WorkoutIntensity: Hashable, Sendable {
+    /// Cumplimiento de la intensidad prevista por el plan.
+    public enum PlanCompliance: String, Hashable, Sendable {
+        /// Sin sesión del plan ese día, o sin datos para comparar.
+        case notApplicable
+        case asPlanned
+        /// Sesión suave (suave, larga o recuperación) hecha a tempo o más.
+        case harder
+        /// Sesión de calidad (umbral o series) hecha a ritmo suave.
+        case easier
+    }
+
+    public var planCompliance: PlanCompliance {
+        guard let sessionType, kind != .unknown else { return .notApplicable }
+        switch sessionType {
+        case .easy, .long, .recovery:
+            return (kind == .tempo || kind == .intervals || kind == .veryHard) ? .harder : .asPlanned
+        case .tempo, .intervals:
+            return kind <= .easy ? .easier : .asPlanned
+        case .test, .rest:
+            return .notApplicable
+        }
+    }
+
     /// La sesión del plan era suave (suave, larga o recuperación) y se hizo con
     /// intensidad alta (tempo, series o muy intenso). No cambia el objetivo de la sesión.
-    public var harderThanPlanned: Bool {
-        guard let sessionType, [.easy, .long, .recovery].contains(sessionType) else { return false }
-        return kind == .tempo || kind == .intervals || kind == .veryHard
+    public var harderThanPlanned: Bool { planCompliance == .harder }
+
+    /// Esfuerzo percibido (RPE 1–10) que registraste, si lo hay.
+    public var rpe: Int?
+    /// Intensidad según tu RPE, aparte de la fisiológica.
+    public var perceived: IntensityClass? {
+        rpe.map { IntensityClassifier.perceivedClass(Double($0)) }
+    }
+    /// El pulso y tu percepción difieren en dos niveles o más (calor, cansancio,
+    /// sensor…). Se muestran las dos; no se elige una.
+    public var perceptionDiffers: Bool {
+        guard let perceived, kind != .unknown, ![.test, .race].contains(kind) else { return false }
+        let order: [IntensityClass] = [.recovery, .easy, .moderate, .tempo, .veryHard]
+        let physiological = kind == .intervals ? IntensityClass.tempo : kind
+        guard let a = order.firstIndex(of: physiological), let b = order.firstIndex(of: perceived) else { return false }
+        return abs(a - b) >= 2
     }
 
     public enum Basis: String, Hashable, Sendable {
@@ -74,6 +110,8 @@ public struct WorkoutIntensity: Hashable, Sendable {
         case marked
         /// Pulso medio frente a tu FC máxima (y muestras, para las series).
         case heartRate
+        /// Tus zonas personales (reserva cardíaca con tu FC en reposo).
+        case personalZones
         /// Ritmo frente a tu ritmo de umbral (sin pulso: aproximado).
         case pace
         /// Esfuerzo percibido (sin pulso).
@@ -138,9 +176,11 @@ public enum IntensityClassifier {
         marked: PerformanceResult.Kind? = nil,
         plannedKind: SessionKind? = nil,
         quality: WorkoutQuality? = nil,
-        lactateThreshold: Double? = nil
+        lactateThreshold: Double? = nil,
+        zones: HeartRateZoneConfiguration? = nil
     ) -> WorkoutIntensity {
-        var result = physiological(workout, maxHeartRate: maxHeartRate, thresholdHeartRate: thresholdHeartRate, thresholdPace: thresholdPace, samples: samples, perceivedEffort: perceivedEffort, marked: marked, plannedKind: plannedKind, quality: quality, lactateThreshold: lactateThreshold)
+        var result = physiological(workout, maxHeartRate: maxHeartRate, thresholdHeartRate: thresholdHeartRate, thresholdPace: thresholdPace, samples: samples, perceivedEffort: perceivedEffort, marked: marked, plannedKind: plannedKind, quality: quality, lactateThreshold: lactateThreshold, zones: zones)
+        result.rpe = perceivedEffort.map { Int($0.rounded()) }
         if result.kind == .intervals {
             result.sessionType = .intervals
         } else if let marked {
@@ -161,7 +201,8 @@ public enum IntensityClassifier {
         marked: PerformanceResult.Kind?,
         plannedKind: SessionKind?,
         quality: WorkoutQuality?,
-        lactateThreshold: Double? = nil
+        lactateThreshold: Double? = nil,
+        zones: HeartRateZoneConfiguration? = nil
     ) -> WorkoutIntensity {
         switch marked {
         case .test?: return WorkoutIntensity(kind: .test, basis: .marked)
@@ -183,6 +224,28 @@ public enum IntensityClassifier {
             if fraction >= 0.90 { return WorkoutIntensity(kind: .moderate, basis: .heartRate) }
             if fraction < 0.85, workout.duration <= recoveryMaxDuration { return WorkoutIntensity(kind: .recovery, basis: .heartRate) }
             return WorkoutIntensity(kind: .easy, basis: .heartRate)
+        }
+        // 2. Zonas personales por reserva cardíaca (Karvonen con tu FC en
+        //    reposo), si elegiste ese método: Z1 recuperación, Z2 suave,
+        //    Z3 moderado, Z4 tempo, Z5 muy intenso.
+        if let zones, zones.effectiveMethod == .heartRateReserve, let maxHeartRate, maxHeartRate > 0,
+           let average = workout.averageHeartRate, average > 0, quality?.heartRateUsable != false {
+            var personal = zones
+            personal.maxHeartRate = maxHeartRate
+            if let zone = personal.zone(for: average) {
+                if let samples, isIntervalPattern(samples, maxHeartRate: maxHeartRate), workout.duration >= tempoMinimumDuration {
+                    return WorkoutIntensity(kind: .intervals, basis: .personalZones)
+                }
+                let kind: IntensityClass
+                switch zone {
+                case ...1: kind = workout.duration <= recoveryMaxDuration ? .recovery : .easy
+                case 2: kind = .easy
+                case 3: kind = .moderate
+                case 4: kind = workout.duration >= tempoMinimumDuration ? .tempo : .moderate
+                default: kind = workout.duration >= EffortClassifier.maximalDuration.lowerBound ? .veryHard : .tempo
+                }
+                return WorkoutIntensity(kind: kind, basis: .personalZones)
+            }
         }
         if let average = workout.averageHeartRate, average > 0, let maxHeartRate, maxHeartRate > 0,
            quality?.heartRateUsable != false {
@@ -215,10 +278,15 @@ public enum IntensityClassifier {
             return WorkoutIntensity(kind: kind, basis: .pace)
         }
         if let perceivedEffort {
-            let kind: IntensityClass = perceivedEffort <= 2 ? .recovery : (perceivedEffort <= 4 ? .easy : (perceivedEffort <= 6 ? .moderate : .tempo))
-            return WorkoutIntensity(kind: kind, basis: .perceivedEffort)
+            return WorkoutIntensity(kind: perceivedClass(perceivedEffort), basis: .perceivedEffort)
         }
         return WorkoutIntensity(kind: .unknown, basis: .none)
+    }
+
+    /// RPE 1–10 (escala de Borg CR-10): ≤ 2 recuperación, ≤ 4 suave, ≤ 6
+    /// moderado, ≤ 8 tempo, 9–10 muy intenso.
+    public static func perceivedClass(_ rpe: Double) -> IntensityClass {
+        rpe <= 2 ? .recovery : (rpe <= 4 ? .easy : (rpe <= 6 ? .moderate : (rpe <= 8 ? .tempo : .veryHard)))
     }
 
     /// Subidas y bajadas del pulso: ciclos alto→bajo con histéresis alrededor de la mediana.

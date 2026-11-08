@@ -151,61 +151,76 @@ public struct TrainingAdherence: Hashable, Sendable {
     }
 }
 
-/// Proyección de la forma hasta una fecha, con supuestos explícitos.
+/// Proyección de la forma hasta una fecha: una distribución predictiva.
 ///
-/// Supuestos (RUNNING_ENGINE.md, "Proyección"):
-/// - **Ritmo de mejora** (puntos de VDOT por semana de entrenamiento constante),
-///   según la pauta de Daniels de 1 punto cada 4–6 semanas:
-///   conservador 1/12 (la mitad de la prudente), central 1/6, optimista 1/4.
-///   En el central, con 3 tests o más y tendencia no provisional, la mitad
-///   del ritmo sale de tu tendencia real (acotada a 0–0,25).
-/// - **Rendimientos decrecientes**: mejora = 4 × (1 − e^(−semanas × ritmo × factor / 4)).
-///   Cerca del principio es casi lineal; luego se aplana (tope de 4 puntos en
-///   un bloque de preparación). Es un supuesto de HÅLSYN, no una ley.
-/// - **Factor de cumplimiento**: adherencia efectiva (menor entre sesiones
-///   cumplidas y frecuencia real); ≥ 90 % cuenta entera, ≤ 40 % nada. Sin
-///   datos: 70 % (conservador), 85 % (central), 95 % (optimista).
+/// Reglas (RUNNING_ENGINE.md, "Proyección", versión 1.6):
+/// - **Tasa de adaptación** r ~ N(media, σ²) de `IndividualAdaptationModel`:
+///   la referencia (1/6 VDOT/semana × factor de cumplimiento × frecuencia)
+///   combinada con tu tendencia observada según la información que haya.
+/// - **Rendimientos decrecientes**, simétricos: mejora = signo(r) × 4 × (1 −
+///   e^(−semanas × |r| / 4)). Casi lineal al principio, se aplana; también un
+///   deterioro se acota. Es un supuesto de HÅLSYN, no una ley.
+/// - **Factor de cumplimiento**: rampa continua (c − 40 %) ÷ 60 % entre 0 y 1
+///   (sin corte en 90 %). Sin datos: 85 %.
+/// - **Incertidumbre de adherencia**: con n sesiones, sd(c) = √(c(1−c)/(n+5));
+///   pocas sesiones no dan una confianza desproporcionada.
 /// - **Frecuencia** (simulador): 1 día/semana 0,4; 2 → 0,6; 3 → 0,85; 4 o más → 1.
-///   Más días no suman por encima de 4: no se promete que entrenar más sea mejor.
-/// - **Incertidumbre** de la proyección = √(forma hoy² + (½ mejora)² +
-///   (0,15 × √semanas)² + 0,7² del día de la carrera): crece con el tiempo
-///   que falta aunque la mejora esperada sea pequeña.
+/// - **Varianza total** = forma hoy² + (∂mejora/∂r)² × (σ_r² + σ_adherencia²) +
+///   (0,15 × √semanas)² + 0,7² (día de la carrera).
+/// - **Escenarios**: percentiles 10, 50 y 90 de esa distribución (±1,2816 σ).
+///   Orientativos: no están calibrados hasta comprobar su cobertura.
 public enum GoalProjection {
     public enum Scenario: Int, CaseIterable, Hashable, Sendable {
         case conservative, central, optimistic
 
-        public var weeksPerPoint: Double {
+        /// Cuantil normal del escenario (P10, P50, P90).
+        public var quantile: Double {
             switch self {
-            case .conservative: 12
-            case .central: 6
-            case .optimistic: 4
+            case .conservative: -1.2816
+            case .central: 0
+            case .optimistic: 1.2816
             }
         }
 
-        public var assumedCompliance: Double {
+        /// Percentil que representa.
+        public var percentile: Int {
             switch self {
-            case .conservative: 0.7
-            case .central: 0.85
-            case .optimistic: 0.95
+            case .conservative: 10
+            case .central: 50
+            case .optimistic: 90
             }
         }
+
+        /// Cumplimiento supuesto sin datos (el mismo para los tres: la
+        /// diferencia entre escenarios sale de la incertidumbre, no de supuestos distintos).
+        public var assumedCompliance: Double { 0.85 }
     }
 
     public struct Result: Hashable, Sendable {
         public let scenario: Scenario
         public let weeks: Int
+        /// Tasa media usada (VDOT/semana).
         public let rate: Double
         public let complianceFactor: Double
         public let frequencyFactor: Double
+        /// Mejora de este escenario (VDOT; puede ser negativa).
         public let gain: Double
         public let projectedVDOT: Double
+        /// Desviación de la distribución predictiva (VDOT).
         public let uncertainty: Double
         public let usesPersonalTrend: Bool
+        /// Estado y desglose de la adaptación individual.
+        public var adaptation: AdaptationEstimate?
+        /// Componentes de la varianza (VDOT²): forma hoy, tasa, adherencia, horizonte, día de la carrera.
+        public var varianceParts: [String: Double] = [:]
+        /// Media de la distribución (escenario central).
+        public var meanVDOT: Double = 0
     }
 
     public static let improvementCap = 4.0
     public static let horizonUncertaintyPerRootWeek = 0.15
     public static let raceDayUncertainty = 0.7
+    public static let priorComplianceSessions = 5.0
 
     public static func frequencyFactor(runsPerWeek: Int) -> Double {
         switch runsPerWeek {
@@ -217,26 +232,57 @@ public enum GoalProjection {
         }
     }
 
-    public static func gain(weeks: Int, rate: Double, factor: Double) -> Double {
-        guard weeks > 0, rate > 0, factor > 0 else { return 0 }
-        return improvementCap * (1 - exp(-Double(weeks) * rate * factor / improvementCap))
+    /// Mejora acotada y simétrica para una tasa (positiva o negativa).
+    public static func gain(weeks: Int, rate: Double) -> Double {
+        guard weeks > 0, rate != 0 else { return 0 }
+        let magnitude = improvementCap * (1 - exp(-Double(weeks) * abs(rate) / improvementCap))
+        return rate > 0 ? magnitude : -magnitude
     }
 
-    public static func project(performance: PerformanceAssessment, weeks: Int, compliance: Double?, runsPerWeek: Int, scenario: Scenario) -> Result {
-        var rate = 1 / scenario.weeksPerPoint
-        var personal = false
-        if scenario == .central, !performance.trendIsProvisional, let trend = performance.weeklyTrend {
-            rate = 0.5 * rate + 0.5 * min(max(trend, 0), RacePerformanceModel.maximumWeeklyTrend)
-            personal = true
-        }
-        let complianceFactor = GoalProbability.gainFactor(compliance ?? scenario.assumedCompliance)
+    /// Compatibilidad: mejora con tasa × factor (factor ≤ 0 → 0).
+    public static func gain(weeks: Int, rate: Double, factor: Double) -> Double {
+        guard factor > 0 else { return 0 }
+        return gain(weeks: weeks, rate: rate * factor)
+    }
+
+    /// Derivada de la mejora respecto de la tasa (para propagar la incertidumbre).
+    static func gainSlope(weeks: Int, rate: Double) -> Double {
+        guard weeks > 0 else { return 0 }
+        return Double(weeks) * exp(-Double(weeks) * abs(rate) / improvementCap)
+    }
+
+    /// - `complianceSessions`: sesiones en que se basa `compliance` (para su incertidumbre).
+    public static func project(performance: PerformanceAssessment, weeks: Int, compliance: Double?, runsPerWeek: Int, scenario: Scenario, complianceSessions: Int? = nil, today: Date = .now, calendar: Calendar = .current) -> Result {
+        let used = compliance ?? scenario.assumedCompliance
+        let complianceFactor = GoalProbability.gainFactor(used)
         let frequency = frequencyFactor(runsPerWeek: runsPerWeek)
-        let gain = gain(weeks: weeks, rate: rate, factor: complianceFactor * frequency)
-        var gainSigma = 0.5 * gain
-        if compliance == nil { gainSigma += 0.3 }
-        let horizon = horizonUncertaintyPerRootWeek * Double(max(weeks, 0)).squareRoot()
-        let sigma = (performance.uncertainty * performance.uncertainty + gainSigma * gainSigma + horizon * horizon + raceDayUncertainty * raceDayUncertainty).squareRoot()
-        return Result(scenario: scenario, weeks: weeks, rate: rate, complianceFactor: complianceFactor, frequencyFactor: frequency, gain: gain, projectedVDOT: performance.currentVDOT + gain, uncertainty: sigma, usesPersonalTrend: personal)
+        let referenceRate = IndividualAdaptationModel.baseRate * complianceFactor * frequency
+        let adaptation = IndividualAdaptationModel.estimate(evidence: performance.evidence, referenceRate: referenceRate, today: today, calendar: calendar)
+        let rate = adaptation.rate
+
+        // Incertidumbre de la adherencia: solo afecta a la parte de referencia.
+        let sessions = Double(complianceSessions ?? 0)
+        let complianceSD = compliance == nil ? 0.15 : (used * (1 - used) / (sessions + priorComplianceSessions)).squareRoot()
+        let factorSD = used > 0.4 && used < 1 ? complianceSD / 0.6 : 0
+        let adherenceRateSD = IndividualAdaptationModel.baseRate * frequency * factorSD * adaptation.referenceWeight
+
+        let slope = gainSlope(weeks: weeks, rate: rate)
+        let parts: [String: Double] = [
+            "current": performance.uncertainty * performance.uncertainty,
+            "rate": pow(slope * adaptation.rateSD, 2),
+            "adherence": pow(slope * adherenceRateSD, 2),
+            "horizon": pow(horizonUncertaintyPerRootWeek * Double(max(weeks, 0)).squareRoot(), 2),
+            "raceDay": raceDayUncertainty * raceDayUncertainty,
+        ]
+        let sigma = parts.values.reduce(0, +).squareRoot()
+        let meanGain = gain(weeks: weeks, rate: rate)
+        let mean = performance.currentVDOT + meanGain
+        let projected = mean + scenario.quantile * sigma
+        var result = Result(scenario: scenario, weeks: weeks, rate: rate, complianceFactor: complianceFactor, frequencyFactor: frequency, gain: projected - performance.currentVDOT, projectedVDOT: projected, uncertainty: sigma, usesPersonalTrend: adaptation.state != .reference)
+        result.adaptation = adaptation
+        result.varianceParts = parts
+        result.meanVDOT = mean
+        return result
     }
 }
 
@@ -266,7 +312,7 @@ public struct GoalSimulation: Hashable, Sendable {
         guard let goalVDOT = VDOT.value(distance: distance.rawValue, time: goalTime) else { return nil }
         let weeks = GoalCoach.trainingWeeks(until: raceDate, distance: distance, today: today, calendar: calendar)
         let wanted: [GoalProjection.Scenario] = performance.confidence >= .medium ? GoalProjection.Scenario.allCases : [.central]
-        let scenarios = wanted.map { GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: runsPerWeek, scenario: $0) }
+        let scenarios = wanted.map { GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: runsPerWeek, scenario: $0, today: today, calendar: calendar) }
         guard let central = scenarios.first(where: { $0.scenario == .central }) else { return nil }
         let z = (central.projectedVDOT - goalVDOT) / central.uncertainty
         let category: GoalProbability.Category = z >= 1 ? .veryLikely : (z >= 0 ? .achievable : (z >= -1 ? .demanding : .unrealistic))

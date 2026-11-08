@@ -5,11 +5,11 @@ import Foundation
 /// fechas ISO, para que cualquier herramienta las lea sin ambigüedad.
 public enum DataExport {
     /// Versión del formato de exportación (columnas nuevas siempre al final).
-    public static let formatVersion = "3"
+    public static let formatVersion = "4"
 
     /// Columnas que calcula HÅLSYN (el resto viene tal cual de Apple Health o de lo que cargaste).
-    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility", "harder_than_planned"]
-    public static let computedDailyColumns = ["health_score", "recovery_score", "nap_h", "sleep_flags"]
+    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility", "harder_than_planned", "rpe", "perceived_intensity", "plan_compliance"]
+    public static let computedDailyColumns = ["health_score", "recovery_score", "nap_h", "sleep_flags", "main_sleep_attributed_h", "naps_attributed_h", "recovery_mean", "recovery_hrv", "recovery_rhr", "recovery_sleep", "recovery_load", "recovery_warnings"]
 
     /// Identificador corto y estable para auditar duplicados sin exponer el
     /// identificador interno de Salud (FNV-1a de 32 bits del UUID).
@@ -36,6 +36,12 @@ public enum DataExport {
         public var vdotEligibility: String
         /// Sesión suave del plan hecha con intensidad alta.
         public var harderThanPlanned = false
+        /// Esfuerzo percibido 1–10 que anotaste.
+        public var rpe: Int?
+        /// Intensidad percibida según tu RPE (Borg CR-10).
+        public var perceivedIntensity = ""
+        /// as_planned, harder, easier o vacío.
+        public var planCompliance = ""
 
         public init(intensity: String = "", intensityBasis: String = "", qualityFlags: [String] = [], modelRole: String = "", modelWeight: Double? = nil, sessionType: String = "", vdotEligibility: String = "") {
             self.intensity = intensity
@@ -151,9 +157,14 @@ public enum DataExport {
 
     /// Una fila por día (de más antiguo a más nuevo), con las puntuaciones de
     /// HÅLSYN y los detalles del sueño. Celdas vacías = sin dato.
-    public static func dailyCSV(series: [MetricSeries], healthScores: [DailyScore], recoveryScores: [Date: Int], sleep: [SleepNight], days: [Date], calendar: Calendar) -> String {
+    /// - `recovery`: estimaciones completas para las columnas de factores (formato 4).
+    /// - `attribution`: sueño atribuido por día (principal al despertar, siestas al empezar).
+    public static func dailyCSV(series: [MetricSeries], healthScores: [DailyScore], recoveryScores: [Date: Int], sleep: [SleepNight], days: [Date], recovery estimates: [Date: RecoveryEstimate] = [:], attribution: [Date: SleepAttribution.Day] = [:], calendar: Calendar) -> String {
         var header = ["date"] + dailyKinds.map(column)
         header += ["sleep_start", "sleep_end", "sleep_deep_h", "sleep_rem_h", "sleep_core_h", "sleep_awake_h", "health_score", "recovery_score", "nap_h", "sleep_flags"]
+        header += ["main_sleep_attributed_h", "naps_attributed_h", "recovery_mean", "recovery_hrv", "recovery_rhr", "recovery_sleep", "recovery_load", "recovery_warnings"]
+        let estimatesByDay = Dictionary(estimates.map { (calendar.startOfDay(for: $0.key), $0.value) }, uniquingKeysWith: { $1 })
+        let attributed = Dictionary(attribution.map { (calendar.startOfDay(for: $0.key), $0.value) }, uniquingKeysWith: { $1 })
         var rows = [header.joined(separator: ",")]
 
         func key(_ date: Date) -> Date { calendar.startOfDay(for: date) }
@@ -184,6 +195,14 @@ public enum DataExport {
             cells.append(recovery[day].map(String.init) ?? "")
             cells.append(nights[day].map { number($0.napAsleep / 3600, digits: 2) } ?? "")
             cells.append(nights[day].map { $0.flags.map(code).joined(separator: "|") } ?? "")
+            cells.append(attributed[day].map { number($0.main / 3600, digits: 2) } ?? "")
+            cells.append(attributed[day].map { number($0.naps / 3600, digits: 2) } ?? "")
+            let estimate = estimatesByDay[day]
+            cells.append(estimate?.weightedMean.map { number($0, digits: 1) } ?? "")
+            for kind in [RecoveryComponentKind.heartRateVariability, .restingHeartRate, .sleep, .recentLoad] {
+                cells.append(estimate?.components.first { $0.kind == kind }?.score.map(String.init) ?? "")
+            }
+            cells.append(estimate?.warnings.map(code).joined(separator: "|") ?? "")
             rows.append(cells.joined(separator: ","))
         }
         return rows.joined(separator: "\n") + "\n"
@@ -197,6 +216,7 @@ public enum DataExport {
         "avg_power_w", "temperature_c", "humidity_pct", "marked_as", "shoe",
         "record_id", "source", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight",
         "session_type", "vdot_eligibility", "harder_than_planned",
+        "rpe", "perceived_intensity", "plan_compliance",
     ]
 
     /// Una fila por entrenamiento, del más antiguo al más nuevo.
@@ -235,6 +255,9 @@ public enum DataExport {
                 extras[workout.id]?.sessionType ?? "",
                 extras[workout.id]?.vdotEligibility ?? "",
                 extras[workout.id]?.harderThanPlanned == true ? "yes" : "",
+                extras[workout.id]?.rpe.map(String.init) ?? "",
+                extras[workout.id]?.perceivedIntensity ?? "",
+                extras[workout.id]?.planCompliance ?? "",
             ]
             rows.append(cells.joined(separator: ","))
         }
@@ -247,6 +270,47 @@ public enum DataExport {
         case let .healthKit(name): name ?? "Apple Health"
         case let .derived(engine): "halsyn:" + engine  // nolocalize
         }
+    }
+
+    public static func code(_ warning: RecoveryWarning) -> String {
+        switch warning {
+        case .hrvUnusuallyHigh: "hrv_unusually_high"
+        case .illness: "illness"
+        case let .recentHardSession(hours): "hard_session_\(hours)h"  // nolocalize
+        case .incompleteSleep: "incomplete_sleep"
+        case .shortHRVWindow: "short_hrv_window"
+        case .usesYesterday: "uses_yesterday"
+        }
+    }
+
+    /// Motivo por el que un pico de FC no fija la máxima validada.
+    public static func peakReason(_ status: MaxHeartRatePeak.Status) -> String {
+        switch status {
+        case .supported: "repetido en otra sesión"
+        case .isolated: "pico aislado, no se repite en otra sesión"
+        case .transient: "no se sostiene 15 s en las muestras"
+        case .implausibleGap: "muy por encima de la FC media de la sesión"
+        case .old: "de hace más de 12 meses"
+        case .below: "por debajo de la validada"
+        }
+    }
+
+    // MARK: Sueño por episodios
+
+    /// Un episodio por fila con su hora real y el día al que se atribuye.
+    public static func sleepEpisodesCSV(_ days: [Date: SleepAttribution.Day], calendar: Calendar) -> String {
+        var rows = ["start,end,asleep_h,type,attributed_date"]  // nolocalize
+        let episodes = days.values.flatMap(\.episodes).sorted { $0.start < $1.start }
+        for episode in episodes {
+            rows.append([
+                isoDateTime(episode.start, calendar: calendar),
+                isoDateTime(episode.end, calendar: calendar),
+                number(episode.asleep / 3600, digits: 2),
+                episode.isMain ? "main" : "nap",
+                isoDate(episode.attributedDay(calendar: calendar), calendar: calendar),
+            ].joined(separator: ","))
+        }
+        return rows.joined(separator: "\n") + "\n"
     }
 
     // MARK: Pruebas, eventos y laboratorio

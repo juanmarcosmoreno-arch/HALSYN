@@ -22,6 +22,7 @@ enum CloudBackup {
         FitnessStore.rejectedKey,
         HealthEventStore.key,
         SessionSkipStore.key,
+        PerceivedEffortStore.key,
         LabResultStore.key,
         ComplaintStore.key,
         WorkoutQualityStore.excludedKey,

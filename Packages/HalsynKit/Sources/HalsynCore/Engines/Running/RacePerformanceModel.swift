@@ -182,7 +182,7 @@ public struct PerformanceAssessment: Hashable, Sendable {
 /// - **Intervalo** (80 %): solo con 3 pruebas o más.
 public enum RacePerformanceModel {
     /// Versión del algoritmo (se exporta junto a los resultados).
-    public static let version = "1.5"
+    public static let version = "1.6"
     public static let resultWindowDays = 180
     public static let halfLifeDays = 42.0
     public static let maximumWeeklyTrend = 0.25

@@ -402,6 +402,8 @@ struct ZoneSettingsView: View {
     var sport: WorkoutSport = .running
     @Environment(AppModel.self) private var model
     @State private var observedMax: Double?
+    /// Validación con tus carreras (solo corriendo: en bici no se valida).
+    @State private var assessment: MaxHeartRateAssessment?
     @State private var latestResting: Double?
     @State private var loaded = false
     private var store: RunSettingsStore { .shared }
@@ -418,27 +420,36 @@ struct ZoneSettingsView: View {
                     }
                 }
                 Picker("FC máxima", selection: runSetting(path.appending(path: \.maxSource))) {
-                    ForEach(MaxHeartRateSource.allCases) { source in
+                    ForEach(MaxHeartRateSource.allCases.filter { !isCycling || $0 != .validated }) { source in
                         Text(sourceTitle(source)).tag(source)
                     }
                 }
                 switch zones.maxSource {
                 case .manual:
-                    bpmField("FC máxima (lpm)", value: runSetting(path.appending(path: \.maxHeartRate)))
-                    if let observedMax, let manual = zones.maxHeartRate, observedMax > manual + 2, !model.isDemo {
-                        let observedText = String(Int(observedMax))
+                    bpmField("FC máxima (lpm)", value: configuredBinding)
+                    if let validated = assessment?.validated, let manual = zones.configuredMax, manual < validated - 2, !model.isDemo, !isCycling {
+                        let validatedText = String(Int(validated))
                         let manualText = String(Int(manual))
-                        Label("Registraste \(observedText) lpm, más que tu FC máxima configurada (\(manualText)). Con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron: mientras tanto, la intensidad y el VDOT usan la observada (sin duplicados ni picos). Revísala o usa la observada.", systemImage: "exclamationmark.triangle")
+                        Label("HÅLSYN validó \(validatedText) lpm (alcanzada en al menos dos sesiones), más que tu FC máxima configurada (\(manualText)). Se sigue usando la tuya, porque es tu configuración; pero con una máxima más baja que la real, los rodajes parecen más intensos de lo que fueron.", systemImage: "exclamationmark.triangle")
                             .font(.caption)
                             .foregroundStyle(.halsynCaution)
                             .fixedSize(horizontal: false, vertical: true)
-                        Button("Usar la observada") {
+                        Button("Usar la validada") {
                             let path = path
-                            store.update { $0[keyPath: path].maxSource = .observed }
+                            store.update { $0[keyPath: path].maxSource = .validated }
                         }
                     }
                 case .observed:
                     observedRow
+                case .validated:
+                    validatedRows
+                }
+                if !isCycling, !model.isDemo, let configured = zones.configuredMax, zones.maxSource != .manual {
+                    LabeledContent("Tu FC máxima configurada") {
+                        Text(verbatim: "\(Int(configured)) lpm").monospacedDigit()
+                    }
+                    .font(.halsynCaption)
+                    .foregroundStyle(.halsynSecondaryText)
                 }
                 if zones.method == .lactateThreshold {
                     bpmField("FC umbral (lpm)", value: runSetting(path.appending(path: \.thresholdHeartRate)))
@@ -455,7 +466,7 @@ struct ZoneSettingsView: View {
             } footer: {
                 Text(isCycling
                      ? LocalizedStringKey("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo en bici) o usa la más alta registrada en tus salidas en bici. Suele ser algo más baja que corriendo.")
-                     : LocalizedStringKey("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo) o usa la más alta registrada en tus carreras."))
+                     : LocalizedStringKey("No se estima la FC máxima por la edad: introdúcela (por ejemplo, de una prueba de esfuerzo), usa la más alta registrada o la validada por HÅLSYN (repetida en al menos dos carreras). Tu valor se conserva aunque elijas otra fuente, y HÅLSYN nunca lo cambia sin que lo elijas."))
             }
 
             Section {
@@ -481,7 +492,9 @@ struct ZoneSettingsView: View {
                         HalsynStatusIndicator(.caution, text: String(localized: "Falta una FC umbral válida: se usa el porcentaje de la FC máxima."))
                     }
                     if zones.isApproximate {
-                        HalsynStatusIndicator(.neutral, text: String(localized: "Zonas aproximadas: salen de la FC más alta registrada, y tu máxima real puede ser mayor."))
+                        HalsynStatusIndicator(.neutral, text: zones.maxSource == .validated
+                                              ? String(localized: "Zonas aproximadas: salen de la FC más alta repetida en tus carreras, y tu máxima real puede ser mayor.")
+                                              : String(localized: "Zonas aproximadas: salen de la FC más alta registrada, y tu máxima real puede ser mayor."))
                     }
                 }
             } header: {
@@ -504,14 +517,28 @@ struct ZoneSettingsView: View {
                 return
             }
             let workouts = isCycling ? await model.provider.recentRides(limit: 60) : await model.provider.recentWorkouts(limit: 60)
-            observedMax = HeartRateZoneConfiguration.observedMax(in: workouts)
+            if isCycling {
+                observedMax = HeartRateZoneConfiguration.observedMax(in: workouts)
+            } else {
+                let validation = MaxHeartRateValidator.assess(runs: WorkoutQualityStore.shared.clean(workouts), today: .now, calendar: .current)
+                assessment = validation
+                observedMax = validation.recorded
+            }
+            preserveConfigured()
             if case let .available(reading) = await model.provider.latest(.restingHeartRate, on: .now) {
                 latestResting = reading.value
             }
             loaded = true
             applyObserved()
         }
-        .onChange(of: zones.maxSource) { _, _ in applyObserved() }
+        .onChange(of: zones.maxSource) { _, source in
+            if source == .manual, let configured = zones.configuredMax {
+                // Al volver a «Introducida por ti», se recupera tu valor.
+                let path = path
+                store.update { $0[keyPath: path].maxHeartRate = configured }
+            }
+            applyObserved()
+        }
     }
 
     private func sourceTitle(_ source: MaxHeartRateSource) -> LocalizedStringKey {
@@ -538,10 +565,83 @@ struct ZoneSettingsView: View {
         }
     }
 
-    private func applyObserved() {
-        guard zones.maxSource == .observed, !model.isDemo, let observedMax else { return }
+    /// Fuente manual: lo que escribes se guarda también como tu configurada.
+    private var configuredBinding: Binding<Double?> {
         let path = path
-        store.update { $0[keyPath: path].maxHeartRate = observedMax.rounded() }
+        return Binding(
+            get: { store.settings[keyPath: path].configuredMax },
+            set: { value in
+                store.update {
+                    $0[keyPath: path].configuredMaxHeartRate = value
+                    $0[keyPath: path].maxHeartRate = value
+                }
+            }
+        )
+    }
+
+    /// Ajustes anteriores a 0.10.0 (107): la máxima manual pasa a ser la configurada.
+    private func preserveConfigured() {
+        guard zones.configuredMaxHeartRate == nil, zones.maxSource == .manual, let manual = zones.maxHeartRate else { return }
+        let path = path
+        store.update { $0[keyPath: path].configuredMaxHeartRate = manual }
+    }
+
+    /// Registrada o validada: se guarda como la que está en uso (la tuya se conserva aparte).
+    private func applyObserved() {
+        guard !model.isDemo else { return }
+        let value: Double?
+        switch zones.maxSource {
+        case .manual: return
+        case .observed: value = observedMax
+        case .validated: value = assessment?.validated
+        }
+        guard let value else { return }
+        let path = path
+        store.update { $0[keyPath: path].maxHeartRate = value.rounded() }
+    }
+
+    @ViewBuilder
+    private var validatedRows: some View {
+        if model.isDemo {
+            Text("Disponible al conectar Apple Health: en modo demo no se guardan valores de ejemplo como tuyos.")
+                .font(.halsynCaption)
+                .foregroundStyle(.halsynSecondaryText)
+        } else if let assessment, let validated = assessment.validated {
+            LabeledContent(assessment.isProvisional ? LocalizedStringKey("Validada (provisional)") : LocalizedStringKey("Validada")) {
+                Text(verbatim: "\(Int(validated)) lpm").monospacedDigit()
+            }
+            if let recorded = assessment.recorded {
+                LabeledContent("Más alta registrada") {
+                    Text(verbatim: "\(Int(recorded)) lpm").monospacedDigit()
+                }
+                .font(.halsynCaption)
+            }
+            let support = assessment.supporting.map { $0.date.formatted(date: .abbreviated, time: .omitted) }.joined(separator: ", ")
+            if !support.isEmpty {
+                Text("La sustentan: \(support).")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+            ForEach(assessment.peaks.filter { $0.status == .isolated || $0.status == .transient || $0.status == .implausibleGap }.prefix(4)) { peak in
+                let peakText = String(Int(peak.reported)), dateText = peak.date.formatted(date: .abbreviated, time: .omitted)
+                let reason = String(localized: String.LocalizationValue(DataExport.peakReason(peak.status)))
+                Text("No cuenta \(peakText) lpm del \(dateText): \(reason).")
+                    .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+            }
+            Text(assessment.isProvisional
+                 ? LocalizedStringKey("Solo hay una sesión utilizable: el valor es provisional hasta que se repita en otra.")
+                 : LocalizedStringKey("El valor más alto alcanzado (±1 lpm) en al menos dos sesiones distintas. Un pico aislado puede ser real, pero no basta para fijar tus zonas; los valores que no se sostienen 15 s o muy por encima de la media de la sesión se descartan."))
+                .font(.caption2)
+                .foregroundStyle(.halsynSecondaryText)
+                .fixedSize(horizontal: false, vertical: true)
+        } else if loaded {
+            Text("Aún no hay carreras con FC registrada.")
+                .font(.halsynCaption)
+                .foregroundStyle(.halsynSecondaryText)
+        } else {
+            ProgressView()
+        }
     }
 
     private func bpmField(_ title: LocalizedStringKey, value: Binding<Double?>) -> some View {

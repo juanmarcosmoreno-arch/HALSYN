@@ -133,7 +133,11 @@ public struct RunSettings: Hashable, Codable, Sendable {
             }
             guard rideZones == nil else { return }
             var copy = zones
-            if copy.maxSource == .observed { copy.maxHeartRate = nil }
+            if copy.maxSource != .manual {
+                // En bici no se valida: la registrada en tus salidas.
+                copy.maxSource = .observed
+                copy.maxHeartRate = nil
+            }
             rideZones = copy
         }
     }

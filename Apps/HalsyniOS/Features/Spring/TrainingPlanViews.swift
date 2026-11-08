@@ -65,7 +65,7 @@ final class TrainingPlanStore {
             calendar: .current,
             recovery: recovery.map { (day: $0.day, value: $0.value) },
             runs: runs,
-            maxHeartRate: FitnessStore.shared.configuredMaxHeartRate,
+            maxHeartRate: FitnessStore.shared.maxHeartRate(for: runs).value,
             complaints: ComplaintStore.shared.complaints,
             healthEvents: HealthEventStore.shared.events,
             physiologicalLowDays: Set(recovery.filter { estimate in

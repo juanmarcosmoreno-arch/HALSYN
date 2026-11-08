@@ -47,8 +47,11 @@ struct HealthAuditTests {
         #expect(abs(baseline - 32.9) < 0.1)
         #expect(hrv.impact == .neutral)
         let value = try #require(estimate.value)
-        // 0,35 × 78 + 0,25 × 83 + 0,25 × 96 + 0,15 × 72 ≈ 83.
-        #expect(value == 83)
+        // Media ponderada 0,35 × 78 + 0,25 × 83 + 0,25 × 96 + 0,15 × 72 ≈ 83;
+        // 0.4 no compensa del todo el componente más bajo:
+        // 0,75 × 82,85 + 0,25 × 72 ≈ 80.
+        #expect(abs((estimate.weightedMean ?? 0) - 82.85) < 0.5)
+        #expect(value == 80)
         // Todos los componentes explican sus valores.
         for component in estimate.components where component.score != nil {
             #expect(component.recentValue != nil)
@@ -65,7 +68,10 @@ struct HealthAuditTests {
         let history = DailyHistory(series: [November.series(.heartRateVariability, hrv), November.series(.restingHeartRate, resting), November.series(.sleepDuration, November.sleep), November.series(.exerciseTime, November.exercise)], calendar: calendar)
         let estimate = RecoveryEngine().evaluate(day: day(11, 7), history: history, origin: .demo)
         let value = try #require(estimate.value)
-        #expect(value >= 83 && value <= 86)
+        // 0.3: 83–86. 0.4: 0,75 × media (≈ 84) + 0,25 × el más bajo (72) ≈ 81.
+        let mean = try #require(estimate.weightedMean)
+        #expect(mean >= 83 && mean <= 86)
+        #expect(value >= 80 && value <= 82)
         #expect(estimate.components.first { $0.kind == .heartRateVariability }?.impact == .neutral)
     }
 

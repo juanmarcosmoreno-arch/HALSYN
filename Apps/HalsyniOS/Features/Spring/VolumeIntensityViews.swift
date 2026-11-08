@@ -24,7 +24,7 @@ enum IntensityContext {
         let quality = DataQuality.assess(workouts)
         var runs = workouts.filter(\.activity.isRun)
         if runs.count >= 5 { history = runs } else { runs = history.isEmpty ? runs : history }
-        // Configurada, salvo que quede por debajo de lo registrado (sin duplicados).
+        // Según la fuente elegida en Ajustes › Zonas (no se cambia en silencio).
         let maxHeartRate = FitnessStore.shared.maxHeartRate(for: runs).value
         let zones = RunSettingsStore.shared.settings.zones
         let threshold = zones.validThreshold
@@ -50,13 +50,41 @@ enum IntensityContext {
                 thresholdHeartRate: threshold,
                 thresholdPace: workout.activity.isRun ? thresholdPace : nil,
                 samples: samples[workout.id],
+                perceivedEffort: PerceivedEffortStore.shared.rpe(for: workout.id).map(Double.init),
                 marked: marks[workout.id],
                 plannedKind: workout.activity.isRun ? planned[Calendar.current.startOfDay(for: workout.start)] : nil,
                 quality: quality[workout.id],
-                lactateThreshold: workout.activity.isRun ? lactateThreshold : nil
+                lactateThreshold: workout.activity.isRun ? lactateThreshold : nil,
+                zones: workout.activity.isRun && zones.method == .heartRateReserve ? personalZones(zones, max: maxHeartRate) : nil
             )
         }
+        updateRecoveryContext(workouts, intensities: result)
         return result
+    }
+
+    /// Sesiones intensas vistas (id → fin), para el aviso de la recuperación.
+    private static var hardSessions: [UUID: Date] = [:]
+
+    /// Pasa a la recuperación las sesiones intensas recientes y los días con
+    /// enfermedad, fiebre o lesión registrados.
+    static func updateRecoveryContext(_ workouts: [WorkoutSummary] = [], intensities: [UUID: WorkoutIntensity] = [:]) {
+        for workout in workouts {
+            if let kind = intensities[workout.id]?.kind, kind >= .tempo {
+                hardSessions[workout.id] = workout.end
+            } else if intensities[workout.id] != nil {
+                hardSessions[workout.id] = nil
+            }
+        }
+        let cutoff = Date.now.addingTimeInterval(-28 * 86_400)
+        hardSessions = hardSessions.filter { $0.value >= cutoff }
+        RecoveryContextSource.current = RecoveryContextSource(illnessDays: HealthEventStore.shared.trainingAffectedDays(), hardSessionEnds: Array(hardSessions.values))
+    }
+
+    /// Zonas por reserva con la FC máxima en uso (Karvonen necesita la FC en reposo).
+    private static func personalZones(_ zones: HeartRateZoneConfiguration, max: Double?) -> HeartRateZoneConfiguration? {
+        var copy = zones
+        copy.maxHeartRate = max
+        return copy.effectiveMethod == .heartRateReserve ? copy : nil
     }
 }
 
@@ -69,6 +97,7 @@ enum IntensityText {
         switch intensity.basis {
         case .marked: String(localized: "lo marcaste tú")
         case .heartRate: String(localized: "por tu pulso")
+        case .personalZones: String(localized: "por tu pulso, con tus zonas por reserva cardíaca")
         case .pace: String(localized: "aproximado, por el ritmo (sin pulso)")
         case .perceivedEffort: String(localized: "aproximado, por el esfuerzo percibido")
         case .none: String(localized: "sin pulso ni ritmo para clasificarlo")

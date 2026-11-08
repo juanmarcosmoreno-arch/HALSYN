@@ -60,6 +60,26 @@ struct ModelAccuracyView: View {
             } footer: {
                 Text("Se proyecta cada test o competición desde 4 semanas antes, sin ver nada posterior. Valida la proyección por separado del rendimiento de hoy. La cobertura solo se muestra con 5 casos o más.")
             }
+            Section {
+                if !projection.hasEnoughData {
+                    Text("Datos insuficientes para validar")
+                        .font(.halsynCaption.weight(.semibold))
+                }
+                ForEach(projection.errorByHorizon, id: \.label) { group in
+                    LabeledContent {
+                        Text(verbatim: group.meanAbsoluteError.map { HalsynFormat.duration($0) } ?? "—")
+                            .monospacedDigit()
+                    } label: {
+                        let label = group.label
+                        let casesText = String(group.count)
+                        Text("Horizonte \(label) · \(casesText) casos")
+                    }
+                }
+            } header: {
+                Text("Error por horizonte")
+            } footer: {
+                Text("Días entre el último resultado que veía el modelo y la prueba predicha. Con menos de 5 casos no se habla de precisión: cada número puede cambiar mucho con la próxima prueba.")
+            }
             if backtest.cases.count >= 2 {
                 Section("Evolución del error") {
                     Chart {

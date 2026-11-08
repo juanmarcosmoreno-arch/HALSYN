@@ -34,6 +34,9 @@ public enum MaxHeartRateSource: String, Codable, CaseIterable, Identifiable, Sen
     case manual
     /// La más alta registrada en sus carreras recientes en Apple Health.
     case observed
+    /// Validada por HÅLSYN: la más alta repetida en al menos dos sesiones
+    /// (`MaxHeartRateValidator`). Un pico aislado no basta.
+    case validated
 
     public var id: String { rawValue }
 
@@ -41,6 +44,7 @@ public enum MaxHeartRateSource: String, Codable, CaseIterable, Identifiable, Sen
         switch self {
         case .manual: "Introducida por ti"
         case .observed: "Máxima registrada en tus carreras"
+        case .validated: "Validada por HÅLSYN (repetida en varias sesiones)"
         }
     }
 }
@@ -80,6 +84,15 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
     public var restingHeartRate: Double?
     /// FC umbral (lactato) para el método de Friel. Opcional.
     public var thresholdHeartRate: Double?
+    /// La FC máxima que introdujiste tú. Se conserva aunque elijas otra
+    /// fuente (`maxHeartRate` guarda la que está en uso). `nil` en ajustes
+    /// anteriores a 0.10.0 (107): entonces es `maxHeartRate` si la fuente es manual.
+    public var configuredMaxHeartRate: Double?
+
+    /// La FC máxima introducida por ti, si la hay.
+    public var configuredMax: Double? {
+        configuredMaxHeartRate ?? (maxSource == .manual ? maxHeartRate : nil)
+    }
 
     public static let plausibleThresholdRange: ClosedRange<Double> = 110...210
     /// Inicio de cada zona como fracción de la FC umbral (Z1 desde el 65 %).
@@ -110,7 +123,7 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
     /// Las zonas son aproximadas: salen de la FC máxima registrada (la real
     /// puede ser más alta) y no de una FC umbral medida.
     public var isApproximate: Bool {
-        effectiveMethod != .lactateThreshold && maxSource == .observed
+        effectiveMethod != .lactateThreshold && maxSource != .manual
     }
 
     public var validThreshold: Double? {
@@ -165,15 +178,27 @@ public struct HeartRateZoneConfiguration: Hashable, Codable, Sendable {
             .compactMap(\.maxHeartRate).filter { plausibleMaxRange.contains($0) }.max()
     }
 
-    /// FC máxima que usan la intensidad y el modelo: la configurada a mano,
-    /// salvo que quede más de 2 lpm por debajo de la referencia observada
-    /// (2.ª más alta, sin duplicados): entonces la observada, y se avisa. Una
-    /// máxima demasiado baja hace que los rodajes parezcan muy intensos.
-    public static func effectiveMax(configured: Double?, runs: [WorkoutSummary]) -> (value: Double?, overridden: Bool) {
-        let observed = EffortClassifier.referenceMaxHeartRate(configured: nil, runs: runs)
-        guard let configured, plausibleMaxRange.contains(configured) else { return (observed, false) }
-        if let observed, configured < observed - 2 { return (observed, true) }
-        return (configured, false)
+    /// FC máxima que usan la intensidad y el modelo, según la fuente que
+    /// elegiste (desde 0.10.0 (107) no se cambia en silencio):
+    /// - **Introducida por ti**: la tuya, aunque quede por debajo de la
+    ///   validada (entonces se avisa). Si no hay una válida, la validada.
+    /// - **Registrada**: la más alta presente en Salud.
+    /// - **Validada**: la más alta repetida en dos sesiones o más.
+    public static func resolveMax(_ configuration: HeartRateZoneConfiguration, runs: [WorkoutSummary], samples: [UUID: [HeartRatePoint]] = [:], today: Date, calendar: Calendar) -> MaxHeartRateResolution {
+        let assessment = MaxHeartRateValidator.assess(runs: runs, samples: samples, today: today, calendar: calendar)
+        let configured = configuration.configuredMax.flatMap { plausibleMaxRange.contains($0) ? $0 : nil }
+        let value: Double?
+        var fallback = false
+        switch configuration.maxSource {
+        case .manual:
+            value = configured ?? assessment.validated
+            fallback = configured == nil && assessment.validated != nil
+        case .observed:
+            value = assessment.recorded
+        case .validated:
+            value = assessment.validated
+        }
+        return MaxHeartRateResolution(source: configuration.maxSource, value: value, configured: configured, assessment: assessment, usesValidatedFallback: fallback)
     }
 }
 
@@ -206,4 +231,25 @@ public struct ZoneTimeAccumulator: Sendable {
     }
 
     public var total: TimeInterval { seconds.reduce(0, +) }
+}
+
+/// La FC máxima en uso y las tres que se conservan por separado.
+public struct MaxHeartRateResolution: Hashable, Sendable {
+    public let source: MaxHeartRateSource
+    /// La que usan zonas, intensidad y modelo.
+    public let value: Double?
+    /// La que introdujiste (se conserva aunque elijas otra fuente).
+    public let configured: Double?
+    public let assessment: MaxHeartRateAssessment
+    /// Fuente manual sin un valor válido: se usa la validada.
+    public let usesValidatedFallback: Bool
+
+    public var recorded: Double? { assessment.recorded }
+    public var validated: Double? { assessment.validated }
+    /// La configurada queda más de 2 lpm por debajo de la validada: no se
+    /// cambia, pero se avisa (los rodajes parecerán más intensos).
+    public var configuredBelowValidated: Bool {
+        guard source == .manual, let configured, let validated else { return false }
+        return configured < validated - 2
+    }
 }

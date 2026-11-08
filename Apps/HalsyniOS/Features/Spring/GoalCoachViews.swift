@@ -80,16 +80,15 @@ final class FitnessStore {
         RacePerformanceModel.deduplicated(results, distinct: distinct, calendar: .current).duplicates
     }
 
-    /// La FC máxima que pusiste a mano (Ajustes › Zonas); si no, se usa la observada.
+    /// La FC máxima que pusiste a mano (Ajustes › Zonas), aunque hayas elegido otra fuente.
     var configuredMaxHeartRate: Double? {
-        let zones = RunSettingsStore.shared.settings.zones
-        return zones.maxSource == .manual ? zones.maxHeartRate : nil
+        RunSettingsStore.shared.settings.zones.configuredMax
     }
 
-    /// FC máxima que usan el modelo y la intensidad: la configurada, salvo que
-    /// quede por debajo de lo registrado (entonces la observada).
-    func maxHeartRate(for runs: [WorkoutSummary]) -> (value: Double?, overridden: Bool) {
-        HeartRateZoneConfiguration.effectiveMax(configured: configuredMaxHeartRate, runs: WorkoutQualityStore.shared.clean(runs))
+    /// FC máxima que usan el modelo y la intensidad, según la fuente elegida
+    /// (la configurada no se reemplaza en silencio: se avisa).
+    func maxHeartRate(for runs: [WorkoutSummary]) -> MaxHeartRateResolution {
+        HeartRateZoneConfiguration.resolveMax(RunSettingsStore.shared.settings.zones, runs: WorkoutQualityStore.shared.clean(runs), today: .now, calendar: .current)
     }
 
     /// Solo carreras, sin duplicados ni lo que excluiste: el modelo recibe lo

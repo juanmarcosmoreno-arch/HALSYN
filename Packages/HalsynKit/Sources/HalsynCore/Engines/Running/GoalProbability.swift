@@ -112,7 +112,7 @@ public struct GoalProbability: Hashable, Sendable {
         let adherence = TrainingAdherence.evaluate(plan: plan, runs: runs, today: today, calendar: calendar, skips: skips, healthDays: healthDays)
         let record = (score: adherence.score, done: adherence.done, planned: adherence.planned)
         let compliance = adherence.projectionCompliance
-        let central = GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: .central)
+        let central = GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: .central, complianceSessions: adherence.planned, today: today, calendar: calendar)
         let gain = central.gain
         let projected = central.projectedVDOT
         let sigma = central.uncertainty
@@ -127,7 +127,7 @@ public struct GoalProbability: Hashable, Sendable {
             ? VDOT.raceTime(vdot: performance.currentVDOT + 1.28 * performance.uncertainty, distance: distance)...VDOT.raceTime(vdot: max(performance.currentVDOT - 1.28 * performance.uncertainty, 15), distance: distance)
             : nil
         let scenarios = performance.confidence >= .medium
-            ? GoalProjection.Scenario.allCases.map { GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: $0) }
+            ? GoalProjection.Scenario.allCases.map { GoalProjection.project(performance: performance, weeks: weeks, compliance: compliance, runsPerWeek: plan.goal.runsPerWeek, scenario: $0, complianceSessions: adherence.planned, today: today, calendar: calendar) }
             : []
         let ruleRate = 1 / GoalCoach.realisticWeeksPerPoint
 
@@ -178,8 +178,10 @@ public struct GoalProbability: Hashable, Sendable {
     }
 
     /// Qué parte de la mejora esperada cuenta según el cumplimiento.
+    /// Rampa continua: 40 % o menos → 0; 100 % → 1 (sin corte en 90 %, para
+    /// que una pequeña variación no dé un salto). Hasta 1.5 era (c − 0,4) ÷ 0,5.
     public static func gainFactor(_ compliance: Double) -> Double {
-        min(max((compliance - 0.4) / 0.5, 0), 1)
+        min(max((compliance - 0.4) / 0.6, 0), 1)
     }
 
     /// Kilómetros por semana (media de los últimos 28 días), en metros.

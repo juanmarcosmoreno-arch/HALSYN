@@ -192,6 +192,7 @@ public struct LiveHealthDataProvider: HealthDataProviding {
             copy.napAsleep = night.napAsleep
             copy.episodes = night.episodes
             copy.sourceCount = night.sourceCount
+            copy.episodeList = night.episodeList
             return copy
         }
     }

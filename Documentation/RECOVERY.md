@@ -63,3 +63,26 @@
 - Sueño: solo el sueño principal (siestas aparte); un registro < 3 h cuando lo
   habitual son ≥ 5 h se considera incompleto y no se usa.
 - Detalle y caso del 7/11 en `AUDITORIA_RPM_1_3.md`.
+
+## RecoveryEngine 0.4 (0.10.0 (107))
+
+- **Sin compensación total.** Valor = 0,75 × media ponderada + 0,25 × el componente más bajo. Una FC en reposo muy alta ya no queda tapada por un buen sueño. Por eso, en la línea basal con sueño y carga perfectos se obtiene 83 en lugar de 85, y en el caso real del 7/11, 80–81 en lugar de 83–84. Es intencional: una estimación prudente.
+- **HRV alta no es automáticamente excelente.** El componente usa como mucho z = +1. Con z > 2 se avisa: puede ser normal o acompañar a cansancio acumulado (saturación parasimpática; Plews et al. 2012).
+- **Enfermedad.** Con enfermedad, fiebre o lesión registradas para ese día, como mucho 50.
+- **Sesión intensa reciente** (tempo o más, contada hasta las 8:00 del día). Es solo un aviso: no cambia el valor.
+- **Avisos**: HRV inusualmente alta, enfermedad, sesión intensa, sueño incompleto, ventana de HRV corta, valor de ayer.
+- **Explicación.** Incluye:
+  - resumen;
+  - factores a favor y en contra;
+  - el cálculo con la media y el más bajo;
+  - la comparación solo contigo;
+  - la cobertura y la confianza;
+  - los avisos.
+- No es una medida clínica ni un diagnóstico.
+
+### Sueño por episodios
+
+- El sueño principal se atribuye al día en que te despiertas, y cada siesta al día en que empieza. La siesta del 7/11 (14:05–15:36, 1,52 h) cuenta para el 7, no para el 8.
+- Los episodios posteriores a la hora del cálculo se ignoran: la recuperación de la mañana no usa una siesta de la tarde.
+- Los duplicados entre fuentes se fusionan.
+- La ventana de mediodía a mediodía se fija con el calendario, así que el cambio de hora no la desplaza.

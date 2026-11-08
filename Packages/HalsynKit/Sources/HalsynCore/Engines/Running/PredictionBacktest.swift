@@ -23,6 +23,8 @@ public struct PredictionBacktest: Hashable, Sendable {
         public let actual: TimeInterval
         public let predicted: TimeInterval
         public let range: ClosedRange<TimeInterval>?
+        /// Días entre la última prueba disponible y la predicha (horizonte real de información).
+        public var horizonDays: Int = 0
 
         /// Segundos (positivo = el modelo esperaba más lento).
         public var error: TimeInterval { predicted - actual }
@@ -33,6 +35,25 @@ public struct PredictionBacktest: Hashable, Sendable {
     public let cases: [Case]
 
     public static let minimumCasesForCalibration = 5
+
+    /// Error absoluto medio por horizonte (≤ 2 semanas, 2–6, más de 6).
+    public struct HorizonError: Hashable, Sendable {
+        public let label: String
+        public let count: Int
+        public let meanAbsoluteError: TimeInterval?
+    }
+
+    public var errorByHorizon: [HorizonError] {
+        let buckets: [(String, ClosedRange<Int>)] = [("≤ 14 d", 0...14), ("15–42 d", 15...42), ("> 42 d", 43...100_000)]
+        return buckets.map { label, range in
+            let items = cases.filter { range.contains($0.horizonDays) }
+            let mae = items.isEmpty ? nil : items.map { abs($0.error) }.reduce(0, +) / Double(items.count)
+            return HorizonError(label: label, count: items.count, meanAbsoluteError: mae)
+        }
+    }
+
+    /// Hay casos suficientes para hablar de precisión (si no: «Datos insuficientes para validar»).
+    public var hasEnoughData: Bool { count >= Self.minimumCasesForCalibration }
 
     public var count: Int { cases.count }
 
@@ -84,7 +105,11 @@ public struct PredictionBacktest: Hashable, Sendable {
             let pastRuns = runs.filter { $0.start < dayStart && $0.id != target.workoutID }
             guard let model = RacePerformanceModel.assess(results: pastResults, runs: pastRuns, maxHeartRate: maxHeartRate, riegelExponent: riegelExponent, distinct: distinct, thresholdHeartRate: thresholdHeartRate, plannedKinds: plannedKinds, rejected: rejected, today: dayStart.addingTimeInterval(-1), calendar: calendar) else { return nil }
             let prediction = model.predict(target.distance)
-            return Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: prediction.time, range: prediction.range)
+            var item = Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: prediction.time, range: prediction.range)
+            if let last = pastResults.map(\.date).max() {
+                item.horizonDays = calendar.dateComponents([.day], from: calendar.startOfDay(for: last), to: dayStart).day ?? 0
+            }
+            return item
         }
         return PredictionBacktest(cases: cases)
     }
@@ -105,10 +130,14 @@ extension PredictionBacktest {
             guard let model = RacePerformanceModel.assess(results: pastResults, runs: pastRuns, maxHeartRate: maxHeartRate, riegelExponent: riegelExponent, distinct: distinct, thresholdHeartRate: thresholdHeartRate, plannedKinds: plannedKinds, rejected: rejected, today: origin.addingTimeInterval(-1), calendar: calendar) else { return nil }
             let monthBefore = calendar.date(byAdding: .day, value: -28, to: origin) ?? origin
             let frequency = Int((Double(pastRuns.filter { $0.activity.isRun && $0.start >= monthBefore }.count) / 4).rounded())
-            let projection = GoalProjection.project(performance: model, weeks: horizonDays / 7, compliance: nil, runsPerWeek: max(frequency, 1), scenario: .central)
+            let projection = GoalProjection.project(performance: model, weeks: horizonDays / 7, compliance: nil, runsPerWeek: max(frequency, 1), scenario: .central, today: origin.addingTimeInterval(-1), calendar: calendar)
             let predicted = VDOT.raceTime(vdot: projection.projectedVDOT, distance: target.distance)
             let range = VDOT.raceTime(vdot: projection.projectedVDOT + 1.28 * projection.uncertainty, distance: target.distance)...VDOT.raceTime(vdot: max(projection.projectedVDOT - 1.28 * projection.uncertainty, 15), distance: target.distance)
-            return Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: predicted, range: range)
+            var item = Case(id: target.id, date: target.date, distance: target.distance, actual: target.time, predicted: predicted, range: range)
+            if let last = pastResults.map(\.date).max() {
+                item.horizonDays = calendar.dateComponents([.day], from: calendar.startOfDay(for: last), to: dayStart).day ?? 0
+            }
+            return item
         }
         return PredictionBacktest(cases: cases)
     }

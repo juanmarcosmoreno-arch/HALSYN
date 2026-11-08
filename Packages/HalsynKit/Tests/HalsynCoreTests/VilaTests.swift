@@ -141,8 +141,10 @@ struct RecoveryEngineTests {
     @Test func atBaselineIsAroundSeventyFive() {
         let estimate = engine.evaluate(day: day, history: history(), origin: .demo)
         // HRV y FC reposo en la media (75), sueño 100, carga habitual 100.
-        // 75 × 0,35 + 75 × 0,25 + 100 × 0,25 + 100 × 0,15 = 85
-        #expect(estimate.value == 85)
+        // Media: 75 × 0,35 + 75 × 0,25 + 100 × 0,25 + 100 × 0,15 = 85.
+        // 0.4: 0,75 × 85 + 0,25 × 75 (el más bajo) = 82,5 → 83.
+        #expect(abs((estimate.weightedMean ?? 0) - 85) < 0.5)
+        #expect(estimate.value == 83)
         #expect(estimate.confidence == .high)
         #expect(estimate.coverage == 1)
     }
@@ -249,5 +251,87 @@ struct HypnogramTests {
         let samples = [SleepSample(start: date(9, 23), end: date(10, 6), stage: .asleepUnspecified, sourceName: "iPhone")]
         let night = try #require(SleepAnalysis.night(samples, endingOn: date(10, 0), calendar: calendar, origin: .demo))
         #expect(night.segments.isEmpty)
+    }
+}
+
+// MARK: RecoveryEngine 0.4
+
+extension RecoveryEngineTests {
+    @Test func veryHighHRVIsNotExtraExcellent() {
+        // HRV sostenida muy alta (100 ms con basal 60): no suma más que +1 desviación.
+        let high = engine.evaluate(day: day, history: history(hrv: 100, lowHRVDays: 7), origin: .demo)
+        let moderate = engine.evaluate(day: day, history: history(hrv: 72, lowHRVDays: 7), origin: .demo)
+        let highScore = high.components.first { $0.kind == .heartRateVariability }?.score
+        let moderateScore = moderate.components.first { $0.kind == .heartRateVariability }?.score
+        #expect(highScore == moderateScore)
+        #expect(high.warnings.contains(.hrvUnusuallyHigh))
+        #expect(!engine.evaluate(day: day, history: history(), origin: .demo).warnings.contains(.hrvUnusuallyHigh))
+    }
+
+    @Test func oneAdverseSignalIsNotFullyCompensated() throws {
+        // Pulso en reposo muy alto con el resto bien: la media lo tapa, 0.4 no del todo.
+        let estimate = engine.evaluate(day: day, history: history(rhr: 68), origin: .demo)
+        let value = try #require(estimate.value)
+        let mean = try #require(estimate.weightedMean)
+        let lowest = try #require(estimate.components.compactMap(\.score).min())
+        #expect(Double(value) < mean - 3)
+        let expected: Double = 0.75 * mean + 0.25 * Double(lowest)
+        #expect(abs(Double(value) - expected) <= 0.5)
+    }
+
+    @Test func illnessCapsRecoveryAndWarns() throws {
+        let estimate = engine.evaluate(day: day, history: history(), origin: .demo, context: RecoveryContext(activeIllness: true))
+        #expect(try #require(estimate.value) <= RecoveryEngine.illnessCap)
+        #expect(estimate.warnings.contains(.illness))
+    }
+
+    @Test func recentHardSessionIsAWarningOnly() {
+        let plain = engine.evaluate(day: day, history: history(), origin: .demo)
+        let recent = engine.evaluate(day: day, history: history(), origin: .demo, context: RecoveryContext(hoursSinceHardSession: 14))
+        #expect(recent.value == plain.value)
+        #expect(recent.warnings.contains(.recentHardSession(hours: 14)))
+        let old = engine.evaluate(day: day, history: history(), origin: .demo, context: RecoveryContext(hoursSinceHardSession: 40))
+        #expect(!old.warnings.contains { if case .recentHardSession = $0 { return true } else { return false } })
+    }
+
+    @Test func singleHRVOutlierBarelyMovesTheWeek() throws {
+        // Un solo día con 120 ms entre días normales: la media de 7 días en ln lo amortigua.
+        let spike = engine.evaluate(day: day, history: history(hrv: 120), origin: .demo)
+        let normal = engine.evaluate(day: day, history: history(), origin: .demo)
+        let difference = try #require(spike.value) - (try #require(normal.value))
+        #expect(difference <= 5)
+    }
+}
+
+@Suite("Evolución · Fase 3: backtest por horizonte")
+struct EvolutionPhase3BacktestTests {
+    private func makeCase(days: Int, error: TimeInterval) -> PredictionBacktest.Case {
+        var item = PredictionBacktest.Case(id: UUID(), date: date(1, 10), distance: 5000, actual: 1500, predicted: 1500 + error, range: nil)
+        item.horizonDays = days
+        return item
+    }
+
+    @Test func errorsAreGroupedByHorizon() {
+        let backtest = PredictionBacktest(cases: [makeCase(days: 7, error: 20), makeCase(days: 10, error: -40), makeCase(days: 30, error: 60), makeCase(days: 70, error: 90)])
+        let groups = backtest.errorByHorizon
+        #expect(groups.map(\.count) == [2, 1, 1])
+        #expect(groups[0].meanAbsoluteError == 30)
+        #expect(groups[2].meanAbsoluteError == 90)
+        // Cuatro casos no bastan: «Datos insuficientes para validar».
+        #expect(!backtest.hasEnoughData)
+        #expect(PredictionBacktest(cases: []).errorByHorizon.allSatisfy { $0.meanAbsoluteError == nil })
+    }
+}
+
+@Suite("Evolución · Fase 3: contexto de la recuperación")
+struct RecoveryContextSourceTests {
+    @Test func contextIsTakenAtEightInTheMorning() {
+        let day = date(20, 0)
+        let source = RecoveryContextSource(illnessDays: [calendar.startOfDay(for: day)], hardSessionEnds: [date(19, 18), date(20, 18)])
+        let context = source.context(for: day, calendar: calendar)
+        #expect(context.activeIllness)
+        // 19/3 18:00 → 20/3 08:00 = 14 h; la sesión de la tarde del 20 todavía no existía.
+        #expect(context.hoursSinceHardSession == 14)
+        #expect(!source.context(for: date(21, 0), calendar: calendar).activeIllness)
     }
 }

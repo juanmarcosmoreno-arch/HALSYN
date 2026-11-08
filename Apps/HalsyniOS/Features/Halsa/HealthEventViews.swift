@@ -45,6 +45,7 @@ final class HealthEventStore {
 
     private func persist() {
         if let data = try? JSONEncoder().encode(events) { defaults.set(data, forKey: Self.key) }
+        IntensityContext.updateRecoveryContext()
     }
 }
 

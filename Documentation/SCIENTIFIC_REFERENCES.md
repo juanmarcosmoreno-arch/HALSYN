@@ -278,3 +278,43 @@ individuales dependen del riesgo cardiovascular y los define el médico.
 - Por qué: un valor diario de HRV es muy ruidoso; la media de 7 días del
   logaritmo frente a la basal personal es la práctica recomendada. Apple Health
   da SDNN y no RMSSD: se adopta la ventana por su lógica estadística.
+
+## Adaptación individual (`IndividualAdaptationModel` 1.0)
+
+- **Gelman A, Carlin JB, Stern HS et al.** *Bayesian Data Analysis* (3.ª ed.). CRC, 2013, caps. 2 y 14.
+  - Qué se toma: la combinación de una referencia (la previa) con la pendiente de tus datos, ponderadas por su precisión.
+  - Por qué: el peso de tu evidencia sale de cuánta información aporta, no de un 50/50 fijo.
+- **Huber PJ.** *Robust Statistics*. Wiley, 1981.
+  - Qué se toma: la reponderación con c = 1,5.
+  - Por qué: una prueba anómala no arrastra la tendencia.
+- **Kish L.** *Survey Sampling*. Wiley, 1965.
+  - Qué se toma: el tamaño efectivo de muestra, (Σw)² ÷ Σw².
+  - Por qué: indica cuánta información real queda después de ponderar.
+- **Daniels J.** *Daniels' Running Formula* (3.ª ed.), 2014.
+  - Qué se toma: la referencia prudente de 1 punto de VDOT cada 6 semanas.
+  - Por qué: es la base de la previa, con una desviación de 0,10 VDOT por semana. Esa desviación es un supuesto de HÅLSYN para cubrir desde casi sin mejora hasta un punto cada 4 semanas.
+
+## FC máxima validada (`MaxHeartRateValidator`)
+
+- **Tanaka H, Monahan KD, Seals DR.** *Age-predicted maximal heart rate revisited.* J Am Coll Cardiol 2001.
+  - Qué se toma: el error de las fórmulas por edad, de unos ±10 lpm.
+  - Por qué: por eso la máxima no se estima por la edad.
+- **Gillinov S et al.** *Variable accuracy of wearable heart rate monitors during aerobic exercise.* Med Sci Sports Exerc 2017.
+  - Qué se toma: que los sensores ópticos producen picos espurios.
+  - Por qué: por eso un pico aislado o no sostenido no fija la máxima.
+
+## Esfuerzo percibido (RPE)
+
+- **Borg G.** *Psychophysical bases of perceived exertion.* Med Sci Sports Exerc 1982.
+  - Qué se toma: la escala CR-10.
+- **Foster C et al.** *A new approach to monitoring exercise training.* J Strength Cond Res 2001.
+  - Qué se toma: el RPE de la sesión como medida válida de la intensidad interna.
+  - Por qué: se guarda aparte de la fisiológica y se usa solo cuando falta el pulso.
+
+## Recuperación sin compensación total (`RecoveryEngine` 0.4)
+
+- **Plews DJ et al.**, 2012 (arriba).
+  - Qué se toma: que una HRV muy por encima de la basal puede acompañar a cansancio acumulado (saturación parasimpática).
+  - Por qué: por eso el componente se limita a z = +1.
+- **Agregación 0,75 × media + 0,25 × mínimo.** Es un supuesto de HÅLSYN, no un valor validado en la literatura.
+  - Por qué: una señal adversa no debe quedar tapada por completo, así que la estimación es deliberadamente prudente.

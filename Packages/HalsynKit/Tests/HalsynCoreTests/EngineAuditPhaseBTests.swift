@@ -46,7 +46,9 @@ struct EngineAuditPhaseBTests {
         let expected: Double = (3 + 4 * 0.85) / 7
         let used = try #require(adherence.projectionCompliance)
         #expect(abs(used - expected) < 1e-12)
-        #expect(GoalProbability.gainFactor(used) == 1)
+        // 1.6: rampa continua (c − 0,4) ÷ 0,6 = 0,857 (en 1.5 se cortaba en 90 % y daba 1).
+        let factor: Double = (expected - 0.4) / 0.6
+        #expect(abs(GoalProbability.gainFactor(used) - factor) < 1e-12)
     }
 
     @Test func missingSessionStillCounts() {
@@ -76,10 +78,14 @@ struct EngineAuditPhaseBTests {
         let probability = try #require(GoalProbability.evaluate(plan: plan(), performance: model, runs: [run(2), run(4), run(6)], today: NovemberFixture.today, calendar: calendar))
         let central = try #require(probability.central)
         #expect(central.weeks == 9)
-        #expect(central.complianceFactor == 1)
-        // 4 × (1 − e^(−9 × 1/6 ÷ 4)) = 1,2508 VDOT (antes 0,9235 con el factor 0,70).
-        let exponent: Double = -9.0 / 6.0 / 4.0
+        let compliance: Double = (3 + 4 * 0.85) / 7
+        let factor: Double = (compliance - 0.4) / 0.6
+        #expect(abs(central.complianceFactor - factor) < 1e-12)
+        // Sin tendencia estimable: tasa = 1/6 × factor; mejora = 4 × (1 − e^(−9 × tasa ÷ 4)).
+        let rate: Double = factor / 6
+        let exponent: Double = -9.0 * rate / 4.0
         let expected: Double = 4 * (1 - Foundation.exp(exponent))
+        #expect(central.adaptation?.state == .reference)
         #expect(abs(central.gain - expected) < 1e-9)
         #expect(probability.projectedTime < VDOT.raceTime(vdot: model.currentVDOT + 0.9235, distance: 5000))
     }
@@ -151,14 +157,28 @@ struct EngineAuditPhaseBTests {
         #expect(EffortClassifier.eligibility(effort, maxHeartRate: 186, plannedKind: .intervals, marked: .test) == .confirmed)
     }
 
-    @Test func configuredMaxBelowRecordedUsesObserved() {
-        let low = HeartRateZoneConfiguration.effectiveMax(configured: 180, runs: runs)
-        #expect(low.value == 186)
-        #expect(low.overridden)
-        let close = HeartRateZoneConfiguration.effectiveMax(configured: 185, runs: runs)
+    @Test func configuredMaxIsRespectedAndWarned() {
+        // 0.10.0 (107): la configurada no se reemplaza en silencio.
+        let today = NovemberFixture.today
+        let cal = NovemberFixture.calendar
+        let manual = HeartRateZoneConfiguration(maxSource: .manual, maxHeartRate: 180)
+        let low = HeartRateZoneConfiguration.resolveMax(manual, runs: runs, today: today, calendar: cal)
+        #expect(low.value == 180)
+        #expect(low.configuredBelowValidated)
+        let close = HeartRateZoneConfiguration.resolveMax(HeartRateZoneConfiguration(maxSource: .manual, maxHeartRate: 185), runs: runs, today: today, calendar: cal)
         #expect(close.value == 185)
-        #expect(!close.overridden)
-        #expect(HeartRateZoneConfiguration.effectiveMax(configured: nil, runs: runs).value == 186)
+        #expect(!close.configuredBelowValidated)
+        let empty = HeartRateZoneConfiguration.resolveMax(HeartRateZoneConfiguration(maxSource: .manual), runs: runs, today: today, calendar: cal)
+        #expect(empty.value == empty.validated)
+        #expect(empty.usesValidatedFallback)
+        var validated = manual
+        validated.configuredMaxHeartRate = 180
+        validated.maxSource = .validated
+        let chosen = HeartRateZoneConfiguration.resolveMax(validated, runs: runs, today: today, calendar: cal)
+        #expect(chosen.value == chosen.validated)
+        #expect(chosen.configured == 180)
+        validated.maxSource = .observed
+        #expect(HeartRateZoneConfiguration.resolveMax(validated, runs: runs, today: today, calendar: cal).value == chosen.recorded)
     }
 
     @Test func lactateThresholdZones() {
@@ -275,6 +295,6 @@ struct EngineAuditPhaseBTests {
         let total = model.countedEvidence.map(\.weight).reduce(0, +)
         let weighted = model.countedEvidence.map { $0.weight * ($0.valueUsed ?? 0) }.reduce(0, +)
         #expect(abs(weighted / total - model.currentVDOT) < 1e-9)
-        #expect(RacePerformanceModel.version == "1.5")
+        #expect(RacePerformanceModel.version == "1.6")
     }
 }

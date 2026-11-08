@@ -45,9 +45,12 @@ public struct SleepSample: Hashable, Sendable {
 ///   fusionan antes de sumar, para no contar dos veces el mismo tiempo.
 public enum SleepAggregator {
     public static func nightWindow(endingOn day: Date, calendar: Calendar) -> DateInterval {
+        // Mediodía local con componentes de fecha (en un cambio de horario,
+        // «inicio del día + 12 h» caería a las 11 o a las 13).
         let start = calendar.startOfDay(for: day)
-        let noon = calendar.date(byAdding: .hour, value: 12, to: start) ?? start
-        let previousNoon = calendar.date(byAdding: .day, value: -1, to: noon) ?? noon
+        let noon = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: start) ?? start
+        let previousDay = calendar.date(byAdding: .day, value: -1, to: start) ?? start
+        let previousNoon = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: previousDay) ?? noon
         return DateInterval(start: previousNoon, end: noon)
     }
 
