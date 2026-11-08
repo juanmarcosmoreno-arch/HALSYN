@@ -49,7 +49,9 @@ public struct SleepNight: Hashable, Identifiable, Sendable {
         var result: [SleepNightFlag] = []
         if napAsleep >= 10 * 60 { result.append(.napIncluded) }
         if sourceCount > 1 { result.append(.multipleSources) }
-        if mainAsleep < 3 * 3600 { result.append(.shortRecord) }
+        // Registro corto: menos de 3 h, o un «sueño de la noche» que termina antes
+        // de la medianoche (p. ej. 19:00–22:12): falta el resto de la noche.
+        if mainAsleep < 3 * 3600 || sleepEnd <= day { result.append(.shortRecord) }
         if sleepPeriod > 0, awake / sleepPeriod > 0.2 || episodes >= 3 { result.append(.fragmented) }
         return result
     }
@@ -87,7 +89,8 @@ public enum SleepNightFlag: String, Hashable, Sendable {
     case napIncluded
     /// Varias fuentes registraron la noche (se fusionaron sin contar dos veces).
     case multipleSources
-    /// Sueño principal de menos de 3 h: puede que el reloj no lo registrara entero.
+    /// Sueño principal de menos de 3 h, o que termina antes de la medianoche:
+    /// puede que el reloj no lo registrara entero.
     case shortRecord
     /// Mucho tiempo despierto o varios tramos separados.
     case fragmented

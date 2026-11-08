@@ -55,6 +55,29 @@ struct HealthAuditTests {
         }
     }
 
+    @Test func exportAt2121() throws {
+        // Exportación de las 21:21: HRV del 7/11 = 35,5 ms y pulso en reposo 60
+        // (con 0.2 daba 92). Con 0.3: HRV en la línea basal, neutral.
+        var hrv = November.hrv
+        var resting = November.resting
+        hrv[hrv.count - 1] = 35.5
+        resting[resting.count - 1] = 60
+        let history = DailyHistory(series: [November.series(.heartRateVariability, hrv), November.series(.restingHeartRate, resting), November.series(.sleepDuration, November.sleep), November.series(.exerciseTime, November.exercise)], calendar: calendar)
+        let estimate = RecoveryEngine().evaluate(day: day(11, 7), history: history, origin: .demo)
+        let value = try #require(estimate.value)
+        #expect(value >= 83 && value <= 86)
+        #expect(estimate.components.first { $0.kind == .heartRateVariability }?.impact == .neutral)
+    }
+
+    @Test func eveningOnlyNightIsIncomplete() throws {
+        // 23/10: el único sueño registrado fue 19:00–22:12 del día anterior (3,03 h).
+        let samples = [SleepSample(start: day(10, 22, hour: 19), end: day(10, 22, hour: 22, minute: 12), stage: .asleepCore, sourceName: "Watch")]
+        let night = try #require(SleepAnalysis.night(samples, endingOn: day(10, 23), calendar: calendar, origin: .demo))
+        let threeHours: TimeInterval = 10_800
+        #expect(night.mainAsleep > threeHours)
+        #expect(night.flags.contains(.shortRecord))
+    }
+
     @Test func sustainedHRVDropDoesLowerIt() throws {
         var hrv = November.hrv
         hrv[hrv.count - 3] = 20

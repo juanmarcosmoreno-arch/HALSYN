@@ -6,10 +6,9 @@ y reproducible. Los casos se reprodujeron con las carreras y los datos diarios
 de la exportación del 7/11/2026, ya incorporados como fixture en las pruebas
 (`NovemberFixture`, `HealthAuditTests`, `ModelAuditTests`).
 
-> La exportación de las 21:01 no estaba disponible en el entorno de trabajo;
-> se usó la de las 19:07 del mismo día (mismas carreras y tests). Cuando una
-> cifra depende de un dato que cambió entre ambas (pulso en reposo 60 frente a
-> 62), se calculan las dos.
+> Casos reproducidos con la exportación de las 19:07 y comprobados con la de
+> las 21:21 (generada todavía con 1.3 y 0.2): en esta última el 7/11 tiene HRV
+> 35,5 ms y pulso en reposo 60, y la recuperación exportada es 92.
 
 ## 1. Criterio «below_estimate»
 
@@ -95,7 +94,10 @@ días del logaritmo** de la HRV frente a la línea basal personal.
   basal con la ventana de 7 (`historyDaysNeeded` = 35).
 - Sueño: ver el punto 10.
 
-**Resultado 0.3 para el 7/11:** HRV 34,2 ms (media geométrica de 7 días)
+**Con los datos de las 21:21** (HRV 35,5, FC 60): **84** con 0.3, frente a 92
+con 0.2 (prueba `exportAt2121`).
+
+**Resultado 0.3 para el 7/11 (datos de las 19:07):** HRV 34,2 ms (media geométrica de 7 días)
 frente a 32,9 ms → neutral, 78 puntos; FC 83 (89 con 60 lpm); sueño 96;
 esfuerzo 72. **Recuperación 83 (84 con 60 lpm)**, confianza alta. Una caída
 mantenida de 3 días sigue bajándola (prueba `sustainedHRVDropDoesLowerIt`).
@@ -146,9 +148,12 @@ intensidad, con qué se decidió y si sirve para el VDOT (con el motivo).
 - Siestas: el sueño principal es el tramo con más sueño (separación de 90 min
   o más); la siesta se suma al total del día pero **no** al «sueño de anoche»
   de la recuperación (3/11: 7,2 h de noche, 1,5 h de siesta aparte).
-- Noches incompletas: un registro de menos de 3 h cuando lo habitual son 5 h o
-  más (23/10: 3,0 h, 19:00–22:12) se marca y **no** entra en la recuperación
-  (antes la hundía a 48); la confianza baja por el dato que falta.
+- Noches incompletas: un registro de menos de 3 h, o un «sueño de la noche»
+  que termina antes de la medianoche, cuando lo habitual son 5 h o más, se
+  marca y **no** entra en la recuperación. El 23/10 (19:00–22:12, 3,03 h) no
+  se marcaba en la exportación de las 21:21 por superar las 3 h por 2 minutos;
+  ahora se marca por terminar antes de la medianoche (antes hundía la
+  recuperación a 48).
 - Fragmentación: más del 20 % despierto en el sueño principal o 3 tramos o más.
 
 ## 9. Pruebas
