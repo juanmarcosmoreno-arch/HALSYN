@@ -75,6 +75,22 @@ struct WorkoutDetailView: View {
                                 Text(verbatim: IntensityText.basis(intensity))
                                     .font(.caption2)
                                     .foregroundStyle(.halsynSecondaryText)
+                                let eligibility = IntensityContext.eligibility(workout)
+                                Text(verbatim: IntensityText.eligibility(eligibility))
+                                    .font(.caption2)
+                                    .foregroundStyle(.halsynSecondaryText)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                if eligibility.isCandidate {
+                                    Button("No fue a tope: no usarlo para el VDOT") {
+                                        FitnessStore.shared.setRejected(workout.id, true)
+                                    }
+                                    .font(.caption2.weight(.semibold))
+                                } else if eligibility == .notEligible(.rejected) {
+                                    Button("Volver a considerarlo para el VDOT") {
+                                        FitnessStore.shared.setRejected(workout.id, false)
+                                    }
+                                    .font(.caption2.weight(.semibold))
+                                }
                             }
                             Spacer()
                         }

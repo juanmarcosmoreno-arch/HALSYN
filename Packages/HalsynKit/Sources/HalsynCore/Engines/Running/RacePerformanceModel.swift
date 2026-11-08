@@ -52,8 +52,14 @@ public struct PerformanceEvidence: Hashable, Identifiable, Sendable {
     public enum Role: Hashable, Sendable {
         /// Cuenta en la estimación con su peso.
         case counted
-        /// Entrenamiento por debajo de tu forma: no la baja (solo prueba un mínimo).
+        /// Esfuerzo candidato **no confirmado** por debajo de tu forma: no la baja
+        /// (un entrenamiento más lento no prueba que perdiste forma). Si fue a
+        /// tope, confírmalo como test y contará, aunque sea más lento.
         case belowEstimate
+        /// Candidato más de 3 puntos por debajo de tus tests: si hubiera sido a
+        /// tope implicaría perder un 10 % de forma en días; es mucho más probable
+        /// que no fuera un esfuerzo máximo. No cuenta (puedes confirmarlo).
+        case notMaximal
         /// El mismo resultado registrado dos veces: cuenta una sola vez.
         case duplicate(of: UUID)
         /// No encaja con el resto: cuenta con un cuarto del peso.
@@ -174,7 +180,7 @@ public struct PerformanceAssessment: Hashable, Sendable {
 /// - **Intervalo** (80 %): solo con 3 pruebas o más.
 public enum RacePerformanceModel {
     /// Versión del algoritmo (se exporta junto a los resultados).
-    public static let version = "1.3"
+    public static let version = "1.4"
     public static let resultWindowDays = 180
     public static let halfLifeDays = 42.0
     public static let maximumWeeklyTrend = 0.25
@@ -225,7 +231,7 @@ public enum RacePerformanceModel {
         return (kept, duplicates)
     }
 
-    public static func assess(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, distinct: Set<UUID> = [], today: Date, calendar: Calendar) -> PerformanceAssessment? {
+    public static func assess(results allResults: [PerformanceResult], runs: [WorkoutSummary], maxHeartRate: Double? = nil, riegelExponent: Double = defaultRiegelExponent, distinct: Set<UUID> = [], thresholdHeartRate: Double? = nil, plannedKinds: [Date: SessionKind] = [:], rejected: Set<UUID> = [], today: Date, calendar: Calendar) -> PerformanceAssessment? {
         let todayStart = calendar.startOfDay(for: today)
         func ageDays(_ date: Date) -> Double {
             Double(calendar.dateComponents([.day], from: calendar.startOfDay(for: date), to: todayStart).day ?? 0)
@@ -291,7 +297,7 @@ public enum RacePerformanceModel {
         // 4. Esfuerzos detectados en entrenamientos (solo al aire libre, sin
         //    los ya marcados). Solo pueden SUBIR la estimación: un entrenamiento
         //    más lento no demuestra que hayas perdido forma.
-        let efforts = FitnessEstimator.trainingEfforts(runs: runs.filter { $0.activity == .outdoorRun }, maxHeartRate: maxHeartRate, today: today, calendar: calendar)
+        let efforts = FitnessEstimator.trainingEfforts(runs: runs.filter { $0.activity == .outdoorRun }, maxHeartRate: maxHeartRate, referenceRuns: runs, thresholdHeartRate: thresholdHeartRate, plannedKinds: plannedKinds, rejected: rejected, today: today, calendar: calendar)
             .filter { !markedWorkouts.contains($0.run.id) }
         var floor = officialEstimate
         if floor == nil, let best = efforts.first {
@@ -321,7 +327,8 @@ public enum RacePerformanceModel {
                 counted.append((effort.run.id, effort.vdot, weight))
                 evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: weight, isInconsistent: false, role: .counted, factors: trainingFactors))
             } else {
-                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0, isInconsistent: isOutlier, role: isOutlier ? .inconsistent : .belowEstimate))
+                let role: PerformanceEvidence.Role = isOutlier ? .inconsistent : (effort.vdot < base - inconsistencyLimit ? .notMaximal : .belowEstimate)
+                evidence.append(PerformanceEvidence(id: effort.run.id, date: effort.run.start, distance: distance, time: effort.run.duration, kind: .trainingEffort, vdot: effort.vdot, weight: 0, isInconsistent: isOutlier, role: role))
             }
         }
         // Tope: con tests o competiciones, los entrenamientos suman como mucho

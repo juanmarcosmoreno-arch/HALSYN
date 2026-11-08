@@ -268,3 +268,13 @@ individuales dependen del riesgo cardiovascular y los define el médico.
   Por qué: base del reparto suave/moderado/intenso por tiempo.
 - Daniels J. *Daniels' Running Formula* (3.ª ed.). Por qué: ritmos de umbral
   usados para clasificar sin pulso.
+
+## HRV: media móvil de 7 días (`RecoveryEngine` 0.3)
+
+- Plews DJ et al. *Heart rate variability in elite triathletes: is variation in
+  variability the key to effective training?* Eur J Appl Physiol 2012.
+- Plews DJ et al. *Training adaptation and heart rate variability in elite
+  endurance athletes: opening the door to effective monitoring.* Sports Med 2013.
+- Por qué: un valor diario de HRV es muy ruidoso; la media de 7 días del
+  logaritmo frente a la basal personal es la práctica recomendada. Apple Health
+  da SDNN y no RMSSD: se adopta la ventana por su lógica estadística.

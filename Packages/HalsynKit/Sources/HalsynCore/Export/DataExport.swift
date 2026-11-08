@@ -8,7 +8,7 @@ public enum DataExport {
     public static let formatVersion = "3"
 
     /// Columnas que calcula HÅLSYN (el resto viene tal cual de Apple Health o de lo que cargaste).
-    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight"]
+    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility"]
     public static let computedDailyColumns = ["health_score", "recovery_score", "nap_h", "sleep_flags"]
 
     /// Identificador corto y estable para auditar duplicados sin exponer el
@@ -30,13 +30,19 @@ public enum DataExport {
         /// counted, below_estimate, duplicate, inconsistent o vacío si no es una prueba.
         public var modelRole: String
         public var modelWeight: Double?
+        /// Tipo de sesión (plan o estructura): easy, long, tempo, intervals…
+        public var sessionType: String
+        /// confirmed, candidate o not_eligible:<motivo>.
+        public var vdotEligibility: String
 
-        public init(intensity: String = "", intensityBasis: String = "", qualityFlags: [String] = [], modelRole: String = "", modelWeight: Double? = nil) {
+        public init(intensity: String = "", intensityBasis: String = "", qualityFlags: [String] = [], modelRole: String = "", modelWeight: Double? = nil, sessionType: String = "", vdotEligibility: String = "") {
             self.intensity = intensity
             self.intensityBasis = intensityBasis
             self.qualityFlags = qualityFlags
             self.modelRole = modelRole
             self.modelWeight = modelWeight
+            self.sessionType = sessionType
+            self.vdotEligibility = vdotEligibility
         }
     }
 
@@ -48,7 +54,7 @@ public enum DataExport {
         case .moderate: "moderate"
         case .tempo: "tempo"
         case .intervals: "intervals"
-        case .maxEffort: "max_effort"
+        case .veryHard: "very_hard"
         case .test: "test"
         case .race: "race"
         }
@@ -67,6 +73,14 @@ public enum DataExport {
         }
     }
 
+    public static func code(_ eligibility: VDOTEligibility) -> String {
+        switch eligibility {
+        case .confirmed: "confirmed"
+        case .candidate: "candidate"
+        case let .notEligible(reason): "not_eligible:" + reason.rawValue  // nolocalize
+        }
+    }
+
     public static func code(_ flag: SleepNightFlag) -> String {
         switch flag {
         case .napIncluded: "nap_included"
@@ -79,7 +93,8 @@ public enum DataExport {
     public static func code(_ role: PerformanceEvidence.Role) -> String {
         switch role {
         case .counted: "counted"
-        case .belowEstimate: "below_estimate"
+        case .belowEstimate: "unconfirmed_below_estimate"
+        case .notMaximal: "not_maximal"
         case .duplicate: "duplicate"
         case .inconsistent: "inconsistent"
         }
@@ -179,6 +194,7 @@ public enum DataExport {
         "avg_hr_bpm", "max_hr_bpm", "cadence_spm", "active_energy_kcal", "elevation_gain_m",
         "avg_power_w", "temperature_c", "humidity_pct", "marked_as", "shoe",
         "record_id", "source", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight",
+        "session_type", "vdot_eligibility",
     ]
 
     /// Una fila por entrenamiento, del más antiguo al más nuevo.
@@ -214,6 +230,8 @@ public enum DataExport {
                 extras[workout.id]?.qualityFlags.joined(separator: "|") ?? "",
                 extras[workout.id]?.modelRole ?? "",
                 extras[workout.id]?.modelWeight.map { number($0, digits: 3) } ?? "",
+                extras[workout.id]?.sessionType ?? "",
+                extras[workout.id]?.vdotEligibility ?? "",
             ]
             rows.append(cells.joined(separator: ","))
         }
@@ -231,8 +249,9 @@ public enum DataExport {
     // MARK: Pruebas, eventos y laboratorio
 
     /// Pruebas del modelo de rendimiento con su peso y sus factores.
-    public static func evidenceCSV(_ assessment: PerformanceAssessment, calendar: Calendar) -> String {
-        var rows = ["date,kind,distance_km,time_s,vdot,role,weight,factor_kind,factor_age,factor_distance,factor_quality,factor_cap,factor_consistency,value_used,record_id"]  // nolocalize
+    public static func evidenceCSV(_ assessment: PerformanceAssessment, results: [PerformanceResult] = [], calendar: Calendar) -> String {
+        let byID = Dictionary(results.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        var rows = ["date,kind,distance_km,time_s,vdot,role,weight,factor_kind,factor_age,factor_distance,factor_quality,factor_cap,factor_consistency,value_used,record_id,workout_record_id,duplicate_of"]  // nolocalize
         for item in assessment.evidence.sorted(by: { $0.date < $1.date }) {
             let kind: String
             switch item.kind {
@@ -241,6 +260,9 @@ public enum DataExport {
             case .trainingEffort: kind = "training_effort"
             }
             let f = item.factors
+            var duplicateOfText = ""
+            if case let .duplicate(of: kept) = item.role { duplicateOfText = recordID(kept) }
+            let workoutText: String = item.kind == .trainingEffort ? recordID(item.id) : (byID[item.id]?.workoutID.map(recordID) ?? "")
             rows.append([
                 isoDate(item.date, calendar: calendar), kind, number(item.distance / 1000, digits: 3), number(item.time, digits: 0),
                 number(item.vdot, digits: 2), code(item.role), number(item.weight, digits: 3),
@@ -248,6 +270,28 @@ public enum DataExport {
                 f.map { number($0.distance, digits: 2) } ?? "", f.map { number($0.quality, digits: 2) } ?? "",
                 f.map { number($0.cap, digits: 3) } ?? "", f.map { number($0.consistency, digits: 2) } ?? "",
                 item.valueUsed.map { number($0, digits: 2) } ?? "", recordID(item.id),
+                workoutText,
+                duplicateOfText,
+            ].joined(separator: ","))
+        }
+        return rows.joined(separator: "\n") + "\n"
+    }
+
+    /// Todos los tests y competiciones registrados (también los duplicados), con
+    /// su origen y a cuál duplican: trazabilidad completa entre el resumen, las
+    /// pruebas del modelo y los entrenamientos (`workout_record_id` = `record_id`
+    /// del entrenamiento en el CSV de entrenamientos).
+    public static func resultsCSV(_ results: [PerformanceResult], distinct: Set<UUID> = [], calendar: Calendar) -> String {
+        let duplicates = RacePerformanceModel.deduplicated(results, distinct: distinct, calendar: calendar).duplicates
+        let duplicateOf = Dictionary(duplicates.map { ($0.0.id, $0.keptID) }, uniquingKeysWith: { first, _ in first })
+        var rows = ["date,kind,distance_km,time_s,vdot,origin,record_id,workout_record_id,status,duplicate_of,marked_distinct"]  // nolocalize
+        for result in results.sorted(by: { $0.date < $1.date }) {
+            let status = duplicateOf[result.id] == nil ? "used" : "duplicate"
+            rows.append([
+                isoDate(result.date, calendar: calendar), result.kind.rawValue, number(result.distance / 1000, digits: 3), number(result.time, digits: 0),
+                result.vdot.map { number($0, digits: 2) } ?? "", result.workoutID == nil ? "manual" : "workout",
+                recordID(result.id), result.workoutID.map(recordID) ?? "", status,
+                duplicateOf[result.id].map(recordID) ?? "", distinct.contains(result.id) ? "yes" : "",
             ].joined(separator: ","))
         }
         return rows.joined(separator: "\n") + "\n"

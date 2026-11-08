@@ -48,6 +48,14 @@ public struct RecoveryComponent: Hashable, Identifiable, Sendable {
     public var baselineDays: Int = 0
     /// Solo HRV: la medición del día, sin promediar.
     public var singleDayValue: Double?
+    /// Solo HRV: días con dato en la ventana de 7.
+    public var windowDays: Int = 0
+    /// Solo HRV: media de 7 días frente a la de los 7 anteriores (fracción).
+    public var weeklyTrend: Double?
+    /// Solo sueño: la noche tiene un registro corto que parece incompleto y no se usó.
+    public var possiblyIncomplete = false
+    /// Solo sueño: siesta del día anterior que no cuenta como sueño de la noche (horas).
+    public var napHours: Double?
 
     public var id: RecoveryComponentKind { kind }
 }
@@ -97,16 +105,20 @@ public struct RecoveryConfiguration: Sendable {
 
 /// Motor de recuperación estimada de VILA.
 ///
-/// Reglas (Documentation/RECOVERY.md, versión 0.2):
+/// Reglas (Documentation/RECOVERY.md, versión 0.3):
 /// - **Línea basal robusta**: mediana y MAD × 1,4826 (equivalente a una
 ///   desviación típica sin que un valor raro la mueva) de los 28 días
 ///   anteriores (mínimo 7).
-/// - **HRV**: media de los últimos 3 días con dato (mínimo 2, si no el del día),
-///   para no interpretar una sola medición; frente a la línea basal de los 28
-///   días previos a esa ventana.
+/// - **HRV**: media móvil de 7 días del logaritmo (ln SDNN; mínimo 4 días con
+///   dato, si no los que haya y baja la confianza), como recomiendan Plews et al.
+///   (2012, 2013) para no interpretar una sola medición; frente a la línea basal
+///   (ln) de los 28 días previos a esa ventana. Hasta la 0.2 era la media
+///   aritmética de 3 días, que dejaba que dos días altos taparan uno normal.
 /// - **FC en reposo**: la del día (o la de ayer, y se indica) frente a su línea basal.
 /// - En la línea basal = 75; mejor sube hasta 100 (+2); peor baja hasta 15 (−3).
-/// - **Sueño** de la noche que termina ese día: el menor entre la curva de
+/// - **Sueño** principal de la noche que termina ese día (sin siestas, si se
+///   conocen las noches; una noche con registro de menos de 3 h cuando lo
+///   habitual son 5 h o más se trata como dato incompleto y no se usa): el menor entre la curva de
 ///   7–9 h (la de HÄLSA) y la comparación con **tu sueño habitual** (mediana
 ///   de 28 noches): sin penalización hasta 30 min por debajo, y 25 puntos
 ///   menos por cada hora más.
@@ -117,7 +129,9 @@ public struct RecoveryConfiguration: Sendable {
 /// - Es una estimación orientativa, no un diagnóstico: no dice si estás
 ///   médicamente recuperado.
 public struct RecoveryEngine: Sendable {
-    public static let version = "0.2"
+    public static let version = "0.3"
+    public static let hrvWindowDays = 7
+    public static let hrvMinimumWindowDays = 4
     public static let inputs: [MetricKind] = [.heartRateVariability, .restingHeartRate, .sleepDuration, .exerciseTime]
 
     public let configuration: RecoveryConfiguration
@@ -126,11 +140,13 @@ public struct RecoveryEngine: Sendable {
         self.configuration = configuration
     }
 
-    public var historyDaysNeeded: Int { configuration.baselineDays + 2 }
+    /// Línea basal de 28 días antes de la ventana de 7 de la HRV.
+    public var historyDaysNeeded: Int { configuration.baselineDays + Self.hrvWindowDays }
 
-    public func evaluate(day: Date, history: DailyHistory, origin: DataOrigin) -> RecoveryEstimate {
+    /// - `nights`: noches por día (opcional) para separar siestas y registros incompletos.
+    public func evaluate(day: Date, history: DailyHistory, origin: DataOrigin, nights: [Date: SleepNight] = [:]) -> RecoveryEstimate {
         let start = history.calendar.startOfDay(for: day)
-        let components = RecoveryComponentKind.allCases.map { component($0, day: start, history: history) }
+        let components = RecoveryComponentKind.allCases.map { component($0, day: start, history: history, nights: nights) }
         let totalWeight = components.reduce(0) { $0 + $1.weight }
         let available = components.filter { $0.score != nil && $0.weight > 0 }
         let availableWeight = available.reduce(0) { $0 + $1.weight }
@@ -147,7 +163,8 @@ public struct RecoveryEngine: Sendable {
             .max() ?? 0
         let usesYesterday = available.contains(where: \.usesPreviousDay)
         let confidence: ScoreConfidence
-        if coverage >= 0.9 && depth >= 14 && !usesYesterday {
+        let shortHRVWindow = available.contains { $0.kind == .heartRateVariability && $0.windowDays < Self.hrvMinimumWindowDays }
+        if coverage >= 0.9 && depth >= 14 && !usesYesterday && !shortHRVWindow {
             confidence = .high
         } else if coverage >= 0.75 {
             confidence = .medium
@@ -157,7 +174,7 @@ public struct RecoveryEngine: Sendable {
         return RecoveryEstimate(day: start, value: value, components: components, coverage: coverage, confidence: confidence, origin: origin, engineVersion: Self.version)
     }
 
-    private func component(_ kind: RecoveryComponentKind, day: Date, history: DailyHistory) -> RecoveryComponent {
+    private func component(_ kind: RecoveryComponentKind, day: Date, history: DailyHistory, nights: [Date: SleepNight]) -> RecoveryComponent {
         let weight = configuration.weight(kind)
         func missing(_ reason: DimensionScore.MissingReason) -> RecoveryComponent {
             RecoveryComponent(kind: kind, score: nil, weight: weight, missingReason: reason, detail: nil, impact: .neutral, usesPreviousDay: false)
@@ -175,22 +192,44 @@ public struct RecoveryEngine: Sendable {
             }
             guard var value else { return missing(.noData) }
             var baselineEnd = reference
+            var windowCount = 1
+            var trend: Double?
+            var baselineValues: [Double]
             if metric == .heartRateVariability {
-                // Media móvil de 3 días: una sola medición de HRV es muy ruidosa.
-                let window = [0, 1, 2].compactMap { offset -> Double? in
-                    history.calendar.date(byAdding: .day, value: -offset, to: reference).flatMap { history.value(metric, on: $0) }
+                // Media móvil de 7 días en escala logarítmica (Plews et al.).
+                func lnValues(endingOn end: Date, count: Int) -> [Double] {
+                    let raw: [Double] = (0..<count).compactMap { offset -> Double? in
+                        history.calendar.date(byAdding: .day, value: -offset, to: end).flatMap { history.value(metric, on: $0) }
+                    }
+                    return raw.filter { $0 > 0 }.map { Foundation.log($0) }
                 }
-                if window.count >= 2 { value = window.reduce(0, +) / Double(window.count) }
-                baselineEnd = history.calendar.date(byAdding: .day, value: -2, to: reference) ?? reference
+                let window = lnValues(endingOn: reference, count: Self.hrvWindowDays)
+                windowCount = window.count
+                if window.isEmpty {
+                    value = Foundation.log(max(value, 1))
+                } else {
+                    value = window.reduce(0, +) / Double(window.count)
+                }
+                if let previousEnd = history.calendar.date(byAdding: .day, value: -Self.hrvWindowDays, to: reference) {
+                    let previous = lnValues(endingOn: previousEnd, count: Self.hrvWindowDays)
+                    if previous.count >= Self.hrvMinimumWindowDays, window.count >= Self.hrvMinimumWindowDays {
+                        let previousMean = previous.reduce(0, +) / Double(previous.count)
+                        trend = Foundation.exp(value - previousMean) - 1
+                    }
+                }
+                baselineEnd = history.calendar.date(byAdding: .day, value: -(Self.hrvWindowDays - 1), to: reference) ?? reference
+                baselineValues = history.values(metric, daysBefore: baselineEnd, count: configuration.baselineDays).filter { $0 > 0 }.map { Foundation.log($0) }
+            } else {
+                baselineValues = history.values(metric, daysBefore: baselineEnd, count: configuration.baselineDays)
             }
-            let baseline = history.values(metric, daysBefore: baselineEnd, count: configuration.baselineDays)
-            guard baseline.count >= configuration.minimumBaselineDays else { return missing(.insufficientHistory) }
-            let robust = RobustBaseline(baseline)
+            guard baselineValues.count >= configuration.minimumBaselineDays else { return missing(.insufficientHistory) }
+            let robust = RobustBaseline(baselineValues)
             let z: Double
             let detail: Double
             if metric == .heartRateVariability {
-                z = (value - robust.median) / max(robust.scale, robust.median * 0.05, 1)
-                detail = robust.median > 0 ? (value - robust.median) / robust.median : 0
+                // En ln: la escala mínima equivale a un 5 % de variación.
+                z = (value - robust.median) / max(robust.scale, 0.05)
+                detail = Foundation.exp(value - robust.median) - 1
             } else {
                 // FC en reposo más baja de lo habitual es favorable: se invierte el signo.
                 z = -(value - robust.median) / max(robust.scale, 2)
@@ -198,27 +237,57 @@ public struct RecoveryEngine: Sendable {
             }
             let impact: ScoreImpact = z <= -1 ? .negative : (z >= 0.5 ? .positive : .neutral)
             var result = RecoveryComponent(kind: kind, score: Int(Self.baselineScore(z: z).rounded()), weight: weight, missingReason: nil, detail: detail, impact: impact, usesPreviousDay: usesPrevious)
-            result.recentValue = value
-            result.baselineValue = robust.median
-            result.baselineDays = baseline.count
-            if metric == .heartRateVariability { result.singleDayValue = history.value(metric, on: reference) }
+            if metric == .heartRateVariability {
+                result.recentValue = Foundation.exp(value)
+                result.baselineValue = Foundation.exp(robust.median)
+                result.singleDayValue = history.value(metric, on: reference)
+                result.windowDays = windowCount
+                result.weeklyTrend = trend
+            } else {
+                result.recentValue = value
+                result.baselineValue = robust.median
+            }
+            result.baselineDays = baselineValues.count
             return result
         case .sleep:
-            guard let hours = history.value(.sleepDuration, on: day) else { return missing(.noData) }
             let range = configuration.recommendedSleep
+            // Con las noches: solo el sueño principal (las siestas aparte).
+            var hours = history.value(.sleepDuration, on: day)
+            var napHours: Double?
+            var habitual = history.values(.sleepDuration, daysBefore: day, count: configuration.baselineDays)
+            if let night = nights[day] {
+                hours = night.mainAsleep / 3600
+                if night.napAsleep >= 600 { napHours = night.napAsleep / 3600 }
+                let previousNights: [SleepNight] = (1...configuration.baselineDays).compactMap { offset in
+                    history.calendar.date(byAdding: .day, value: -offset, to: day).flatMap { nights[$0] }
+                }
+                let previous = previousNights.filter { !$0.flags.contains(.shortRecord) }.map { $0.mainAsleep / 3600 }
+                if previous.count >= configuration.minimumBaselineDays { habitual = previous }
+                // Registro corto (< 3 h) cuando lo habitual son 5 h o más: probablemente incompleto.
+                if night.flags.contains(.shortRecord), habitual.count >= configuration.minimumBaselineDays, RobustBaseline(habitual).median >= 5 {
+                    var incomplete = missing(.noData)
+                    incomplete.possiblyIncomplete = true
+                    incomplete.recentValue = night.mainAsleep / 3600
+                    return incomplete
+                }
+            }
+            guard let hours else { return missing(.noData) }
             var score = HealthScoreEngine.sleepScore(hours: hours, recommended: range)
-            let habitual = history.values(.sleepDuration, daysBefore: day, count: configuration.baselineDays)
             var belowHabit = false
+            var habitualMedian: Double?
             if habitual.count >= configuration.minimumBaselineDays {
-                let personal = Self.personalSleepScore(hours: hours, habitual: RobustBaseline(habitual).median)
+                let median = RobustBaseline(habitual).median
+                habitualMedian = median
+                let personal = Self.personalSleepScore(hours: hours, habitual: median)
                 belowHabit = personal < 100
                 score = min(score, personal)
             }
             let impact: ScoreImpact = range.contains(hours) && !belowHabit ? .positive : (hours < range.lowerBound - 1 || score < 60 ? .negative : .neutral)
             var result = RecoveryComponent(kind: kind, score: Int(score.rounded()), weight: weight, missingReason: nil, detail: hours, impact: impact, usesPreviousDay: false)
             result.recentValue = hours
-            if habitual.count >= configuration.minimumBaselineDays { result.baselineValue = RobustBaseline(habitual).median }
+            result.baselineValue = habitualMedian
             result.baselineDays = habitual.count
+            result.napHours = napHours
             return result
         case .recentLoad:
             let chronicValues = history.values(.exerciseTime, daysBefore: day, count: configuration.baselineDays)
@@ -281,8 +350,10 @@ extension HealthDataProviding {
             series.append(await dailySeries(kind, days: fetchDays, endingOn: lastDay))
         }
         let history = DailyHistory(series: series, calendar: calendar)
+        let nightList = await sleepNights(endingOn: lastDay, days: fetchDays)
+        let nights = Dictionary(nightList.map { (calendar.startOfDay(for: $0.day), $0) }, uniquingKeysWith: { _, last in last })
         return (0..<days).reversed().compactMap { offset in
-            calendar.date(byAdding: .day, value: -offset, to: lastDay).map { engine.evaluate(day: $0, history: history, origin: origin) }
+            calendar.date(byAdding: .day, value: -offset, to: lastDay).map { engine.evaluate(day: $0, history: history, origin: origin, nights: nights) }
         }
     }
 }

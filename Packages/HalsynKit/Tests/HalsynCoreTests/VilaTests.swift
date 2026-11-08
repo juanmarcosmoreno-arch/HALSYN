@@ -150,7 +150,8 @@ struct RecoveryEngineTests {
     @Test func sustainedLowHRVAndHighRestingHeartRateLowerRecovery() {
         let good = engine.evaluate(day: day, history: history(), origin: .demo).value ?? 0
         let bad = engine.evaluate(day: day, history: history(hrv: 42, rhr: 61, lowHRVDays: 3), origin: .demo)
-        #expect((bad.value ?? 100) < good - 20)
+        // Con la media de 7 días (0.3) tres días bajos pesan algo menos que con la de 3.
+        #expect((bad.value ?? 100) < good - 15)
         #expect(bad.components.first { $0.kind == .heartRateVariability }?.impact == .negative)
         #expect(bad.components.first { $0.kind == .restingHeartRate }?.impact == .negative)
     }

@@ -11,8 +11,10 @@ public enum IntensityClass: Int, CaseIterable, Comparable, Hashable, Sendable {
     case tempo
     /// Series: el pulso sube y baja varias veces.
     case intervals
-    /// Esfuerzo comparable a una prueba (pulso muy alto sostenido).
-    case maxEffort
+    /// Muy intenso: pulso medio ≥ 90 % de la máxima sostenido. Es intensidad
+    /// fisiológica, **no** significa que fuera un esfuerzo a tope ni que sirva
+    /// para el VDOT (eso lo decide `EffortClassifier.eligibility`).
+    case veryHard
     /// Marcado por ti como test.
     case test
     /// Marcado por ti como competición.
@@ -26,7 +28,7 @@ public enum IntensityClass: Int, CaseIterable, Comparable, Hashable, Sendable {
         case .unknown: nil
         case .recovery, .easy: .low
         case .moderate: .moderate
-        case .tempo, .intervals, .maxEffort, .test, .race: .high
+        case .tempo, .intervals, .veryHard, .test, .race: .high
         }
     }
 
@@ -38,7 +40,7 @@ public enum IntensityClass: Int, CaseIterable, Comparable, Hashable, Sendable {
         case .moderate: "Rodaje moderado"
         case .tempo: "Tempo o umbral"
         case .intervals: "Series"
-        case .maxEffort: "Esfuerzo a tope"
+        case .veryHard: "Muy intenso"
         case .test: "Test"
         case .race: "Competición"
         }
@@ -75,10 +77,13 @@ public struct WorkoutIntensity: Hashable, Sendable {
 
     public let kind: IntensityClass
     public let basis: Basis
+    /// Tipo de sesión: la del plan ese día o la estructura detectada (series).
+    public var sessionType: SessionKind?
 
-    public init(kind: IntensityClass, basis: Basis) {
+    public init(kind: IntensityClass, basis: Basis, sessionType: SessionKind? = nil) {
         self.kind = kind
         self.basis = basis
+        self.sessionType = sessionType
     }
 
     /// Sin pulso la clasificación es aproximada.
@@ -90,8 +95,9 @@ public struct WorkoutIntensity: Hashable, Sendable {
 /// Reglas (RUNNING_ENGINE.md, "Intensidad"):
 /// 1. Test o competición: lo que marcaste tú.
 /// 2. Con pulso fiable (fracción f = FC media / FC máxima):
-///    - **Esfuerzo a tope**: f ≥ 0,90 sostenido 8–75 min y ≥ 3 km (igual que
-///      el modelo de rendimiento). Ser rápido NO basta: hace falta el pulso.
+///    - **Muy intenso**: f ≥ 0,90 sostenido 8 min o más. Es solo intensidad:
+///      si además sirve para el VDOT lo decide `EffortClassifier.eligibility`
+///      (desnivel, sesión planificada, confirmación…).
 ///    - **Series**: con muestras de pulso, 3 o más subidas y bajadas de al
 ///      menos ±4 % de la FC máxima alrededor de la mediana y picos ≥ 85 %; o
 ///      una sesión de series del plan ese día con f ≥ 0,75.
@@ -123,6 +129,28 @@ public enum IntensityClassifier {
         plannedKind: SessionKind? = nil,
         quality: WorkoutQuality? = nil
     ) -> WorkoutIntensity {
+        var result = physiological(workout, maxHeartRate: maxHeartRate, thresholdHeartRate: thresholdHeartRate, thresholdPace: thresholdPace, samples: samples, perceivedEffort: perceivedEffort, marked: marked, plannedKind: plannedKind, quality: quality)
+        if result.kind == .intervals {
+            result.sessionType = .intervals
+        } else if let marked {
+            result.sessionType = marked == .test ? .test : nil
+        } else {
+            result.sessionType = plannedKind == .rest ? nil : plannedKind
+        }
+        return result
+    }
+
+    static func physiological(
+        _ workout: WorkoutSummary,
+        maxHeartRate: Double?,
+        thresholdHeartRate: Double?,
+        thresholdPace: Double?,
+        samples: [HeartRatePoint]?,
+        perceivedEffort: Double?,
+        marked: PerformanceResult.Kind?,
+        plannedKind: SessionKind?,
+        quality: WorkoutQuality?
+    ) -> WorkoutIntensity {
         switch marked {
         case .test?: return WorkoutIntensity(kind: .test, basis: .marked)
         case .race?: return WorkoutIntensity(kind: .race, basis: .marked)
@@ -131,14 +159,14 @@ public enum IntensityClassifier {
         if let average = workout.averageHeartRate, average > 0, let maxHeartRate, maxHeartRate > 0,
            quality?.heartRateUsable != false {
             let fraction = average / maxHeartRate
-            if EffortClassifier.classify(workout, maxHeartRate: maxHeartRate, quality: quality) == .maximal {
-                return WorkoutIntensity(kind: .maxEffort, basis: .heartRate)
-            }
             if let samples, isIntervalPattern(samples, maxHeartRate: maxHeartRate), workout.duration >= tempoMinimumDuration {
                 return WorkoutIntensity(kind: .intervals, basis: .heartRate)
             }
             if plannedKind == .intervals, fraction >= 0.75 {
                 return WorkoutIntensity(kind: .intervals, basis: .heartRate)
+            }
+            if fraction >= EffortClassifier.maximalLimit, workout.duration >= EffortClassifier.maximalDuration.lowerBound {
+                return WorkoutIntensity(kind: .veryHard, basis: .heartRate)
             }
             let aboveThreshold = thresholdHeartRate.map { average >= 0.97 * $0 } ?? false
             if (fraction >= EffortClassifier.hardLimit || aboveThreshold), workout.duration >= tempoMinimumDuration {

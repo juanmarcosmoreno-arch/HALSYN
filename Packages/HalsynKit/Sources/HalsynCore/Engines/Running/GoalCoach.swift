@@ -86,16 +86,24 @@ public enum FitnessEstimator {
     public static let minimumRunDistance: Double = 3000
     public static let outlierGap = 5.0
 
-    /// Esfuerzos de entrenamiento que se usan para la forma, con su VDOT (del más alto al más bajo).
-    public static func trainingEfforts(runs: [WorkoutSummary], maxHeartRate: Double? = nil, today: Date, calendar: Calendar) -> [(run: WorkoutSummary, vdot: Double)] {
+    /// Esfuerzos de entrenamiento candidatos a prueba, con su VDOT (del más alto al más bajo).
+    ///
+    /// - `referenceRuns`: carreras para la FC máxima de referencia (todas, cinta
+    ///   incluida; antes de 0.10.0 (102) se usaban solo las de aire libre, lo que
+    ///   bajaba la referencia y hacía pasar rodajes por esfuerzos a tope).
+    /// - `plannedKinds`: sesión del plan por día; `rejected`: los que descartaste.
+    public static func trainingEfforts(runs: [WorkoutSummary], maxHeartRate: Double? = nil, referenceRuns: [WorkoutSummary]? = nil, thresholdHeartRate: Double? = nil, plannedKinds: [Date: SessionKind] = [:], rejected: Set<UUID> = [], today: Date, calendar: Calendar) -> [(run: WorkoutSummary, vdot: Double)] {
         let todayStart = calendar.startOfDay(for: today)
         let windowStart = calendar.date(byAdding: .day, value: -trainingWindowDays, to: todayStart) ?? todayStart
         let quality = DataQuality.assess(runs)
-        let reference = EffortClassifier.referenceMaxHeartRate(configured: maxHeartRate, runs: runs.filter { quality[$0.id]?.heartRateUsable != false })
+        let pool = (referenceRuns ?? runs).filter(\.activity.isRun)
+        let poolQuality = DataQuality.assess(pool)
+        let reference = EffortClassifier.referenceMaxHeartRate(configured: maxHeartRate, runs: pool.filter { poolQuality[$0.id]?.heartRateUsable != false })
         return runs
-            .filter { $0.activity.isRun && $0.start >= windowStart && $0.start <= today && ($0.distanceMeters ?? 0) >= minimumRunDistance }
-            .filter { quality[$0.id]?.usableForPerformance != false }
-            .filter { EffortClassifier.classify($0, maxHeartRate: reference, quality: quality[$0.id]).isPerformanceEffort }
+            .filter { $0.activity.isRun && $0.start >= windowStart && $0.start <= today }
+            .filter { run in
+                EffortClassifier.eligibility(run, maxHeartRate: reference, thresholdHeartRate: thresholdHeartRate, plannedKind: plannedKinds[calendar.startOfDay(for: run.start)], rejected: rejected.contains(run.id), quality: quality[run.id]).isCandidate
+            }
             .compactMap { run in
                 guard let distance = run.distanceMeters, let vdot = VDOT.value(distance: distance, time: run.duration) else { return nil }
                 return (run, vdot)

@@ -297,7 +297,10 @@ struct GoalProbabilityDetail: View {
                         Text("Objetivo \(HalsynFormat.duration(goalTime)) · previsto \(HalsynFormat.duration(probability.projectedTime))")
                             .font(.halsynCaption.monospacedDigit())
                     }
-                    Text("Rango probable el día de la carrera: \(GoalProbabilityText.range(probability.projectedRange))")
+                    let rangeText = GoalProbabilityText.range(probability.projectedRange)
+                    Text(probability.isCalibrated
+                         ? LocalizedStringKey("Rango el día de la carrera: \(rangeText)")
+                         : LocalizedStringKey("Rango orientativo el día de la carrera (sin calibrar): \(rangeText)"))
                         .font(.caption2.monospacedDigit())
                         .foregroundStyle(.halsynSecondaryText)
                     Text(verbatim: GoalProbabilityText.confidence(probability.confidence))

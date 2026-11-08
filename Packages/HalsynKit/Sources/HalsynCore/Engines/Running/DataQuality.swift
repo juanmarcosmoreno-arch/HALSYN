@@ -224,6 +224,24 @@ public enum EffortKind: Int, Comparable, Hashable, Sendable {
     public var isPerformanceEffort: Bool { self >= .maximal }
 }
 
+/// Si un entrenamiento sirve para estimar el VDOT. Es independiente de la
+/// intensidad fisiológica (un pulso alto no basta) y del tipo de sesión.
+public enum VDOTEligibility: Hashable, Sendable {
+    /// Marcado por ti como test o competición: cuenta siempre, también si es más lento.
+    case confirmed
+    /// Cumple todos los criterios de un esfuerzo a tope, pero no lo confirmaste:
+    /// solo puede subir la estimación (un entrenamiento más lento no demuestra
+    /// que perdiste forma). Puedes confirmarlo o descartarlo.
+    case candidate
+    case notEligible(Reason)
+
+    public enum Reason: String, Hashable, Sendable {
+        case noHeartRate, lowHeartRate, belowThreshold, duration, distance, treadmill, hilly, plannedEasy, rejected, quality
+    }
+
+    public var isCandidate: Bool { self == .candidate }
+}
+
 /// Clasifica el esfuerzo con la FC media relativa a tu FC máxima.
 ///
 /// - test / carrera: lo que marcaste tú.
@@ -256,6 +274,32 @@ public enum EffortClassifier {
         if fraction >= hardLimit { return .hard }
         if fraction >= easyLimit { return .moderate }
         return .easy
+    }
+
+    /// Desnivel máximo (m por km) para usar un entrenamiento como prueba: en
+    /// subida el pulso sube sin que el ritmo lo refleje.
+    public static let maximumClimbPerKilometer = 10.0
+
+    /// ¿Sirve para estimar el VDOT? Criterios de candidato (todos):
+    /// FC media ≥ 90 % de la máxima de referencia (y ≥ tu FC de umbral si la
+    /// pusiste), 8–75 min, ≥ 3 km, al aire libre, ≤ 10 m de desnivel por km,
+    /// sin una sesión suave, larga o de recuperación planificada ese día, datos
+    /// válidos y no descartado por ti.
+    public static func eligibility(_ workout: WorkoutSummary, maxHeartRate: Double?, thresholdHeartRate: Double? = nil, plannedKind: SessionKind? = nil, marked: PerformanceResult.Kind? = nil, rejected: Bool = false, quality: WorkoutQuality? = nil) -> VDOTEligibility {
+        if marked != nil { return .confirmed }
+        if rejected { return .notEligible(.rejected) }
+        if quality?.usableForPerformance == false { return .notEligible(.quality) }
+        if workout.activity != .outdoorRun { return .notEligible(.treadmill) }
+        let distance = workout.distanceMeters ?? 0
+        if distance < maximalMinimumDistance { return .notEligible(.distance) }
+        if !maximalDuration.contains(workout.duration) { return .notEligible(.duration) }
+        guard let average = workout.averageHeartRate, average > 0, let maxHeartRate, maxHeartRate > 0,
+              quality?.heartRateUsable != false else { return .notEligible(.noHeartRate) }
+        if average / maxHeartRate < maximalLimit { return .notEligible(.lowHeartRate) }
+        if let thresholdHeartRate, average < thresholdHeartRate { return .notEligible(.belowThreshold) }
+        if let climb = workout.elevationGain, climb / (distance / 1000) > maximumClimbPerKilometer { return .notEligible(.hilly) }
+        if let plannedKind, plannedKind == .easy || plannedKind == .long || plannedKind == .recovery { return .notEligible(.plannedEasy) }
+        return .candidate
     }
 
     /// FC máxima de referencia: la tuya o la más alta observada, descartando

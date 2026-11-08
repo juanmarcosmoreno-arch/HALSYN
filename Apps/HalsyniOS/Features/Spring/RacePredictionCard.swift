@@ -188,11 +188,36 @@ struct PredictionDetailView: View {
                                 .foregroundStyle(.halsynSecondaryText)
                         }
                     }
+                    .contextMenu {
+                        if item.kind == .trainingEffort, let run = runs.first(where: { $0.id == item.id }) {
+                            Button("Fue a tope: usarlo como test", systemImage: "checkmark.seal") {
+                                FitnessStore.shared.add(PerformanceResult(testWorkout: run))
+                                TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+                            }
+                            Button("No fue a tope: no usarlo", systemImage: "xmark.seal") {
+                                FitnessStore.shared.setRejected(run.id, true)
+                                TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+                            }
+                        }
+                    }
+                }
+                let rejected = runs.filter { FitnessStore.shared.rejected.contains($0.id) }
+                ForEach(rejected) { run in
+                    HStack {
+                        Text(verbatim: "\(SessionText.distance(run.distanceMeters ?? 0, unit: unitSystem)) · \(HalsynFormat.duration(run.duration)) · " + run.start.formatted(.dateTime.day().month(.abbreviated)))
+                            .font(.halsynCaption.monospacedDigit())
+                        Spacer()
+                        Button("Volver a considerarlo") {
+                            FitnessStore.shared.setRejected(run.id, false)
+                            TrainingPlanStore.shared.applyLatestFitness(runs: runs)
+                        }
+                        .font(.caption2)
+                    }
                 }
             } header: {
                 Text("Pruebas usadas")
             } footer: {
-                Text("Competiciones y tests registrados (180 días) y entrenamientos al aire libre a tope con pulso alto sostenido (42 días). Un test o una competición más lentos sí bajan la estimación; un entrenamiento, nunca. Peso = tipo (competición 1, test 0,9, entrenamiento 0,5) × antigüedad (la mitad cada 6 semanas) × distancia (menos de 1,5 km 0,6; de 1,5 a 3 km 0,85) × calidad (cinta 0,8; pulso bajo para un test 0,7). Los entrenamientos suman como mucho la mitad del peso de los tests.")
+                Text("Competiciones y tests registrados (180 días) y entrenamientos al aire libre candidatos a esfuerzo máximo (42 días): pulso medio ≥ 90 % de tu máxima, 8–75 min, 3 km o más, ≤ 10 m de desnivel por km y sin una sesión suave planificada ese día. Un pulso alto no basta. Un test o una competición más lentos sí bajan la estimación; un candidato no confirmado, nunca: mantenlo pulsado para confirmarlo como test o descartarlo. Peso = tipo (competición 1, test 0,9, entrenamiento 0,5) × antigüedad (la mitad cada 6 semanas) × distancia (menos de 1,5 km 0,6; de 1,5 a 3 km 0,85) × calidad (cinta 0,8; pulso bajo para un test 0,7). Los entrenamientos suman como mucho la mitad del peso de los tests.")
             }
         }
         .navigationTitle("Predicción")
@@ -209,7 +234,9 @@ struct PredictionDetailView: View {
             case .trainingEffort: return String(localized: "Entrenamiento a tope (pulso alto sostenido) que supera tus tests: suma.")
             }
         case .belowEstimate:
-            return String(localized: "Entrenamiento por debajo de tu forma: no la baja (un rodaje más lento no significa que perdiste capacidad).")
+            return String(localized: "Esfuerzo detectado por el pulso, no confirmado, por debajo de tu forma: no la baja. Si fue a tope, mantén pulsado y confírmalo: contará como test aunque sea más lento.")
+        case .notMaximal:
+            return String(localized: "Más de 3 puntos por debajo de tus tests: si hubiera sido a tope implicaría perder un 10 % de forma en días, así que probablemente no lo fue. No cuenta; puedes confirmarlo si de verdad fue a tope.")
         case .duplicate:
             return String(localized: "Mismo esfuerzo registrado dos veces: cuenta una sola vez.")
         case .inconsistent:
@@ -257,12 +284,39 @@ enum PredictionExplanationText {
         }
         if let plan = TrainingPlanStore.shared.plan,
            let probability = GoalProbability.evaluateInApp(plan: plan, performance: performance, runs: runs, today: .now, calendar: .current) {
-            let distance = String(localized: String.LocalizationValue(plan.goal.distance.title))
-            let gain = HalsynFormat.decimal(probability.expectedGain, fractionDigits: 1)
-            lines.append(String(localized: "\(distance) hoy: \(HalsynFormat.duration(probability.currentTime)). El día de la carrera, con la mejora esperada del escenario central (+\(gain) VDOT, según tu cumplimiento y el tiempo que falta): \(HalsynFormat.duration(probability.projectedTime))."))
+            lines += projection(probability, goal: plan.goal)
         }
         let confidence = GoalProbabilityText.confidence(performance.confidence)
         lines.append(String(localized: "Límites: \(confidence). Los rangos son orientativos: no están calibrados con tus resultados reales. Daniels y Riegel son fórmulas de población; tu respuesta puede ser distinta."))
+        return lines
+    }
+
+    /// La proyección paso a paso, con los números reales del escenario central.
+    static func projection(_ probability: GoalProbability, goal: PlanGoal) -> [String] {
+        let distance = String(localized: String.LocalizationValue(goal.distance.title))
+        var lines = [String(localized: "\(distance) hoy: \(HalsynFormat.duration(probability.currentTime)) (VDOT \(RaceGoalText.vdot(probability.currentVDOT))).")]
+        guard let central = probability.central else { return lines }
+        let weeksText = String(central.weeks)
+        let rateText = HalsynFormat.decimal(central.rate, fractionDigits: 3)
+        let pointWeeks = HalsynFormat.decimal(1 / max(central.rate, 0.001), fractionDigits: 1)
+        let complianceText = probability.compliance.map { "\(Int(($0 * 100).rounded())) %" } ?? String(localized: "sin datos (se supone 85 %)")
+        let complianceFactor = HalsynFormat.decimal(central.complianceFactor, fractionDigits: 2)
+        let frequencyFactor = HalsynFormat.decimal(central.frequencyFactor, fractionDigits: 2)
+        let gainText = HalsynFormat.decimal(central.gain, fractionDigits: 2)
+        let projectedText = RaceGoalText.vdot(central.projectedVDOT)
+        lines.append(String(localized: "Semanas de entrenamiento hasta la carrera (sin el afinamiento): \(weeksText). Ritmo de mejora: \(rateText) VDOT por semana (1 punto cada \(pointWeeks) semanas)."))
+        if central.usesPersonalTrend {
+            lines.append(String(localized: "La mitad de ese ritmo sale de la pauta de Daniels y la otra mitad de tu tendencia real."))
+        } else {
+            lines.append(String(localized: "Es la pauta de Daniels (1 punto cada 6 semanas): con menos de 3 tests en 3 semanas tu tendencia todavía no se usa."))
+        }
+        lines.append(String(localized: "Cumplimiento efectivo (el menor entre sesiones hechas y frecuencia real): \(complianceText) → factor \(complianceFactor). Frecuencia del plan → factor \(frequencyFactor)."))
+        lines.append(String(localized: "Mejora = 4 × (1 − e^(−semanas × ritmo × factores ÷ 4)) = \(gainText) VDOT. VDOT el día de la carrera: \(projectedText) → \(HalsynFormat.duration(probability.projectedTime))."))
+        let sigma = HalsynFormat.decimal(central.uncertainty, fractionDigits: 2)
+        let range = GoalProbabilityText.range(probability.projectedRange)
+        lines.append(probability.isCalibrated
+            ? String(localized: "Rango (±1,28 σ, σ = \(sigma) VDOT): \(range), calibrado con tus resultados.")
+            : String(localized: "Rango orientativo (±1,28 σ, σ = \(sigma) VDOT): \(range). No está calibrado: hacen falta resultados reales tuyos para comprobar cuántas veces acierta."))
         return lines
     }
 

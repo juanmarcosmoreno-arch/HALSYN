@@ -36,16 +36,19 @@ struct HealthAuditTests {
     @Test func isolatedHRVDropDoesNotSinkRecovery() throws {
         let estimate = RecoveryEngine().evaluate(day: day(11, 7), history: November.history, origin: .demo)
         let hrv = try #require(estimate.components.first { $0.kind == .heartRateVariability })
-        // La medición del día (33,5) está en la línea basal; la media de 3 días
-        // (49,0 · 49,8 · 33,5 ≈ 44,1) queda por encima: no es un día negativo.
+        // RecoveryEngine 0.3: media geométrica de 7 días (27,1 · 31,0 · 29,6 ·
+        // 27,0 · 49,0 · 49,8 · 33,5) ≈ 34,2 ms frente a una basal ≈ 32,9 ms:
+        // neutral. Con la media de 3 días (0.2) daba ≈ 44,1 y sumaba de más.
         #expect(hrv.singleDayValue == 33.5)
+        #expect(hrv.windowDays == 7)
         let recent: Double = hrv.recentValue ?? 0
-        #expect(abs(recent - 44.1) < 0.05)
-        #expect((hrv.baselineValue ?? 99) < 35)
-        #expect(hrv.impact != .negative)
-        #expect(hrv.baselineDays >= 7)
+        #expect(abs(recent - 34.21) < 0.05)
+        let baseline: Double = hrv.baselineValue ?? 0
+        #expect(abs(baseline - 32.9) < 0.1)
+        #expect(hrv.impact == .neutral)
         let value = try #require(estimate.value)
-        #expect(value >= 80)
+        // 0,35 × 78 + 0,25 × 83 + 0,25 × 96 + 0,15 × 72 ≈ 83.
+        #expect(value == 83)
         // Todos los componentes explican sus valores.
         for component in estimate.components where component.score != nil {
             #expect(component.recentValue != nil)

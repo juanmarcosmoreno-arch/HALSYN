@@ -434,7 +434,7 @@ struct RecoveryExplanationView: View {
                 LabeledContent("Confianza", value: confidence)
                 LabeledContent("Datos disponibles", value: "\(Int((estimate.coverage * 100).rounded())) %")
             } footer: {
-                Text("Es la media de los componentes con dato, cada uno con su peso. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15.")
+                Text("Es la media de los componentes con dato, cada uno con su peso: HRV 35 %, FC en reposo 25 %, sueño 25 % y esfuerzo reciente 15 %. En tu línea basal un componente vale 75; mejor que lo habitual sube hasta 100 y peor baja hasta 15. Si falta un componente, se reparte su peso entre los demás (con al menos el 60 % del peso y una señal del corazón).")
             }
             Section("Variables") {
                 ForEach(estimate.components) { component in
@@ -505,7 +505,13 @@ enum RecoveryExplanationText {
         case .heartRateVariability:
             let value = HalsynFormat.decimal(recent, fractionDigits: 1)
             let base = component.baselineValue.map { HalsynFormat.decimal($0, fractionDigits: 1) } ?? "—"
-            return String(localized: "Media de 3 días: \(value) ms · tu línea basal: \(base) ms (mediana de \(daysText) días)")
+            let windowText = String(component.windowDays)
+            var line = String(localized: "Media de 7 días (\(windowText) con dato): \(value) ms · tu línea basal: \(base) ms (mediana de \(daysText) días)")
+            if let trend = component.weeklyTrend {
+                let trendText = (trend >= 0 ? "+" : "−") + HalsynFormat.integer(abs(trend * 100)) + " %"
+                line += " · " + String(localized: "frente a la semana anterior: \(trendText)")
+            }
+            return line
         case .restingHeartRate:
             let value = HalsynFormat.integer(recent)
             let base = component.baselineValue.map { HalsynFormat.integer($0) } ?? "—"
@@ -513,7 +519,12 @@ enum RecoveryExplanationText {
         case .sleep:
             let value = HalsynFormat.decimal(recent, fractionDigits: 1)
             let base = component.baselineValue.map { HalsynFormat.decimal($0, fractionDigits: 1) } ?? "—"
-            return String(localized: "Anoche: \(value) h · tu sueño habitual: \(base) h (recomendado 7–9 h)")
+            var line = String(localized: "Anoche: \(value) h · tu sueño habitual: \(base) h (recomendado 7–9 h)")
+            if let nap = component.napHours {
+                let napText = HalsynFormat.decimal(nap, fractionDigits: 1)
+                line += " · " + String(localized: "siesta de \(napText) h aparte")
+            }
+            return line
         case .recentLoad:
             let value = HalsynFormat.integer(recent)
             let base = component.baselineValue.map { HalsynFormat.integer($0) } ?? "—"
@@ -522,6 +533,7 @@ enum RecoveryExplanationText {
     }
 
     static func effect(_ component: RecoveryComponent) -> LocalizedStringKey {
+        if component.possiblyIncomplete { return "No entra en el cálculo: el registro de anoche es muy corto frente a lo habitual y parece incompleto (por ejemplo, el reloj sin batería)." }
         if component.score == nil { return "No entra en el cálculo." }
         switch component.impact {
         case .positive: return "Sube el resultado: mejor que tu línea basal."
@@ -535,7 +547,7 @@ enum RecoveryExplanationText {
         guard component.kind == .heartRateVariability, let day = component.singleDayValue, let mean = component.recentValue,
               mean > 0, day < 0.85 * mean else { return nil }
         let dayText = HalsynFormat.decimal(day, fractionDigits: 1)
-        return String(localized: "Hoy la HRV fue \(dayText) ms, más baja que los días anteriores. Una sola medición varía mucho (sueño, alcohol, hora de la medición): por eso se usa la media de 3 días y una caída aislada no baja el puntaje. Si sigue baja varios días, sí lo hará.")
+        return String(localized: "Hoy la HRV fue \(dayText) ms, más baja que la media de la semana. Una sola medición varía mucho (sueño, alcohol, hora de la medición): por eso se usa la media de 7 días en escala logarítmica (Plews et al.) y una caída aislada pesa poco. Si sigue baja varios días, el puntaje bajará.")
     }
 }
 

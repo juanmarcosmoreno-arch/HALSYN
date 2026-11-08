@@ -88,6 +88,8 @@ public struct GoalProbability: Hashable, Sendable {
     public var adherence: TrainingAdherence?
     /// Escenarios con supuestos explícitos (con confianza media o alta).
     public var scenarios: [GoalProjection.Result] = []
+    /// El escenario central con todos sus términos (para explicar la cuenta).
+    public var central: GoalProjection.Result?
 
     public static let complianceWindowDays = 28
     public static let assumedCompliance = 0.85
@@ -164,7 +166,8 @@ public struct GoalProbability: Hashable, Sendable {
             currentRange: currentRange,
             requiredPaceChange: (currentTime - goalTime) / (distance / 1000),
             adherence: adherence,
-            scenarios: scenarios
+            scenarios: scenarios,
+            central: central
         )
     }
 

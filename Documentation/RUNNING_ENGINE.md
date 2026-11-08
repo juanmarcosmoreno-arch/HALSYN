@@ -220,3 +220,13 @@ Detalle y casos reales en `AUDITORIA_NOV_2026.md`.
 - **Volumen** (`TrainingVolumeAnalysis`): 12 semanas completas, medias 4/8/12,
   Theil–Sen, descanso, rachas y aumento brusco relativo a tu historial.
 - **Plan**: un evento de salud reciente quita la intensidad; nada compensa lo perdido.
+
+## RacePerformanceModel 1.4 (0.10.0 (102))
+
+- FC máxima de referencia con **todas** las carreras (antes solo aire libre).
+- `VDOTEligibility`: confirmado / candidato / no elegible (motivo). Criterios en
+  `EffortClassifier.eligibility`. La intensidad fisiológica `veryHard` no implica
+  elegibilidad.
+- Rol `notMaximal`: candidato más de 3 puntos por debajo de los tests.
+- Confirmar o descartar esfuerzos a mano (`FitnessStore.rejected`).
+- Detalle en `AUDITORIA_RPM_1_3.md`.

@@ -31,7 +31,8 @@ struct PredictionAuditTests {
         #expect(model.currentVDOT >= (Export.test4k.vdot ?? 0) - 0.01)
         #expect(model.currentVDOT <= (Export.duplicateMarked.vdot ?? 99))
         let run = try #require(model.evidence.first { $0.id == Export.easyRun.id })
-        #expect(run.role == .belowEstimate)
+        // VDOT 30,5 frente a 34,3: más de 3 puntos por debajo → «no fue a tope».
+        #expect(run.role == .notMaximal)
         #expect(run.weight == 0)
     }
 

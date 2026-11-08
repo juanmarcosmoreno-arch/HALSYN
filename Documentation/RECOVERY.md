@@ -54,3 +54,12 @@
   28 noches (`SleepPattern`). Las fases del reloj no se usan para conclusiones.
 - Eventos de salud (`HealthEvent`) se muestran como contexto sobre las
   tendencias, sin atribuir causas.
+
+## RecoveryEngine 0.3 (0.10.0 (102))
+
+- HRV: media móvil de 7 días de ln(SDNN) (mínimo 4 días; Plews et al. 2012,
+  2013) frente a la línea basal en ln de los 28 días previos a la ventana.
+  Sustituye a la media aritmética de 3 días de la 0.2. Historial necesario: 35 días.
+- Sueño: solo el sueño principal (siestas aparte); un registro < 3 h cuando lo
+  habitual son ≥ 5 h se considera incompleto y no se usa.
+- Detalle y caso del 7/11 en `AUDITORIA_RPM_1_3.md`.

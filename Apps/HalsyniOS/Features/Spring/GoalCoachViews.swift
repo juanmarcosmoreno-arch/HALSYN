@@ -55,6 +55,31 @@ final class FitnessStore {
         results = results  // avisa a las vistas
     }
 
+    // MARK: Esfuerzos descartados a mano
+
+    static let rejectedKey = "halsyn.performanceEfforts.rejected"
+
+    /// Entrenamientos que marcaste como «no fue a tope».
+    var rejected: Set<UUID> {
+        Set((defaults.array(forKey: Self.rejectedKey) as? [String] ?? []).compactMap(UUID.init(uuidString:)))
+    }
+
+    func setRejected(_ id: UUID, _ isRejected: Bool) {
+        var ids = rejected
+        if isRejected { ids.insert(id) } else { ids.remove(id) }
+        defaults.set(ids.map(\.uuidString).sorted(), forKey: Self.rejectedKey)
+        results = results  // avisa a las vistas
+    }
+
+    /// Sesión del plan por día (para no tomar un rodaje planificado como prueba).
+    var plannedKinds: [Date: SessionKind] {
+        var kinds: [Date: SessionKind] = [:]
+        for session in TrainingPlanStore.shared.plan?.weeks.flatMap(\.sessions) ?? [] {
+            kinds[Calendar.current.startOfDay(for: session.date)] = session.kind
+        }
+        return kinds
+    }
+
     /// Duplicados según el modelo (con tus correcciones).
     var duplicates: [(PerformanceResult, keptID: UUID)] {
         RacePerformanceModel.deduplicated(results, distinct: distinct, calendar: .current).duplicates
@@ -106,7 +131,7 @@ final class FitnessStore {
 
     /// Modelo de rendimiento con todas tus pruebas (tests, competiciones y esfuerzos).
     func performance(runs: [WorkoutSummary], today: Date = .now) -> PerformanceAssessment? {
-        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, distinct: distinct, today: today, calendar: .current)
+        RacePerformanceModel.assess(results: results, runs: runs, maxHeartRate: configuredMaxHeartRate, riegelExponent: riegelExponent, distinct: distinct, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, plannedKinds: plannedKinds, rejected: rejected, today: today, calendar: .current)
     }
 
     /// Forma para el plan y los ritmos: el VDOT del modelo de rendimiento (el

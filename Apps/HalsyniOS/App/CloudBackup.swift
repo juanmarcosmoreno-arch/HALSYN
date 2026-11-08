@@ -19,6 +19,7 @@ enum CloudBackup {
         "halsyn.performanceResults",
         FitnessStore.outcomesKey,
         FitnessStore.distinctKey,
+        FitnessStore.rejectedKey,
         HealthEventStore.key,
         SessionSkipStore.key,
         LabResultStore.key,

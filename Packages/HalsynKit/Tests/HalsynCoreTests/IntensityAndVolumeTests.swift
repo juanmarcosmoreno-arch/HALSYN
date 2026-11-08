@@ -29,7 +29,7 @@ struct IntensityTests {
         #expect(IntensityClassifier.classify(run(0, minutes: 40, hr: 140), maxHeartRate: 186).kind == .easy)
         #expect(IntensityClassifier.classify(run(0, minutes: 40, hr: 155), maxHeartRate: 186).kind == .moderate)
         #expect(IntensityClassifier.classify(run(0, km: 12, minutes: 80, hr: 164), maxHeartRate: 186).kind == .tempo)
-        #expect(IntensityClassifier.classify(run(0, km: 4, minutes: 22, hr: 171), maxHeartRate: 186).kind == .maxEffort)
+        #expect(IntensityClassifier.classify(run(0, km: 4, minutes: 22, hr: 171), maxHeartRate: 186).kind == .veryHard)
     }
 
     @Test func fastWithoutHeartRateIsNeverMaxEffort() {

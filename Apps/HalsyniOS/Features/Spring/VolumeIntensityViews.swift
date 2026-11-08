@@ -8,6 +8,16 @@ import SwiftUI
 enum IntensityContext {
     /// Últimas carreras vistas (para la FC máxima de referencia al clasificar una sola).
     static var history: [WorkoutSummary] = []
+    /// FC máxima de referencia usada en la última clasificación.
+    static var lastReference: Double?
+
+    /// ¿Sirve para el VDOT? (mismos criterios que el modelo de rendimiento).
+    static func eligibility(_ workout: WorkoutSummary) -> VDOTEligibility {
+        let marked = FitnessStore.shared.results.first { $0.workoutID == workout.id }?.kind
+        let quality = DataQuality.assess([workout])[workout.id]
+        let reference = lastReference ?? EffortClassifier.referenceMaxHeartRate(configured: FitnessStore.shared.configuredMaxHeartRate, runs: history)
+        return EffortClassifier.eligibility(workout, maxHeartRate: reference, thresholdHeartRate: RunSettingsStore.shared.settings.zones.validThreshold, plannedKind: FitnessStore.shared.plannedKinds[Calendar.current.startOfDay(for: workout.start)], marked: marked, rejected: FitnessStore.shared.rejected.contains(workout.id), quality: quality)
+    }
 
     /// Clasificación de cada entrenamiento (con muestras de pulso si las hay).
     static func intensities(_ workouts: [WorkoutSummary], samples: [UUID: [HeartRatePoint]] = [:]) -> [UUID: WorkoutIntensity] {
@@ -28,6 +38,7 @@ enum IntensityContext {
         for session in TrainingPlanStore.shared.plan?.weeks.flatMap(\.sessions) ?? [] {
             planned[Calendar.current.startOfDay(for: session.date)] = session.kind
         }
+        lastReference = maxHeartRate
         var result: [UUID: WorkoutIntensity] = [:]
         for workout in workouts {
             result[workout.id] = IntensityClassifier.classify(
@@ -57,6 +68,28 @@ enum IntensityText {
         case .pace: String(localized: "aproximado, por el ritmo (sin pulso)")
         case .perceivedEffort: String(localized: "aproximado, por el esfuerzo percibido")
         case .none: String(localized: "sin pulso ni ritmo para clasificarlo")
+        }
+    }
+
+    static func eligibility(_ eligibility: VDOTEligibility) -> String {
+        switch eligibility {
+        case .confirmed: return String(localized: "Para el VDOT: confirmado por ti (test o competición).")
+        case .candidate: return String(localized: "Para el VDOT: candidato a esfuerzo máximo, no confirmado. Solo puede subir tu estimación.")
+        case let .notEligible(reason):
+            let text: String
+            switch reason {
+            case .noHeartRate: text = String(localized: "sin pulso fiable")
+            case .lowHeartRate: text = String(localized: "pulso medio por debajo del 90 % de tu máxima")
+            case .belowThreshold: text = String(localized: "pulso medio por debajo de tu FC de umbral")
+            case .duration: text = String(localized: "duración fuera de 8–75 min")
+            case .distance: text = String(localized: "menos de 3 km")
+            case .treadmill: text = String(localized: "en cinta (distancia estimada)")
+            case .hilly: text = String(localized: "mucho desnivel (más de 10 m por km)")
+            case .plannedEasy: text = String(localized: "había un rodaje suave o largo planificado")
+            case .rejected: text = String(localized: "lo descartaste tú")
+            case .quality: text = String(localized: "datos dudosos (distancia o ritmo)")
+            }
+            return String(localized: "Para el VDOT: no se usa (\(text)).")
         }
     }
 }
