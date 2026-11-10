@@ -554,19 +554,25 @@ extension RunSnapshot {
         case .elevationGain: WorkoutFieldValue(value: elevationGain.map { HalsynFormat.integer($0, locale: locale) }, unit: "m")
         case .heartRateZone: WorkoutFieldValue(value: heartRateZone.map { $0 == 0 ? "<Z1" : "Z\($0)" }, unit: "")
         case .targetPace: WorkoutFieldValue(value: paceTarget?.formatted(in: unit), unit: unit.paceUnitSymbol)
-        case .intervalTime: intervalValue(locale: locale)
+        case .intervalTime: intervalValue(unit: unit, locale: locale)
         case .runningPower: WorkoutFieldValue(value: power.map { HalsynFormat.integer($0, locale: locale) }, unit: "W")
         // La cadencia en vivo no se muestra hasta verificar su disponibilidad en dispositivo.
         case .cadence: WorkoutFieldValue(value: nil, unit: "")
         }
     }
 
-    /// Lo que falta del paso (tiempo o metros); en pasos abiertos, lo que lleva.
-    private func intervalValue(locale: Locale) -> WorkoutFieldValue {
+    /// Lo que falta del paso (tiempo o distancia); en pasos abiertos, lo que lleva.
+    /// Desde 1 km, en kilómetros (o millas) con dos decimales: «3.95 km», no «3.950 m».
+    private func intervalValue(unit: UnitSystem, locale: Locale) -> WorkoutFieldValue {
         guard let interval else { return WorkoutFieldValue(value: nil, unit: "") }
         switch interval.step.goal {
         case .time: return WorkoutFieldValue(value: HalsynFormat.duration(interval.remaining ?? 0), unit: "")
-        case .distance: return WorkoutFieldValue(value: HalsynFormat.integer(interval.remaining ?? 0, locale: locale), unit: "m")
+        case .distance:
+            let remaining = interval.remaining ?? 0
+            if remaining >= 1000 {
+                return WorkoutFieldValue(value: HalsynFormat.distance(meters: remaining, unit: unit, locale: locale), unit: unit.distanceUnitSymbol)
+            }
+            return WorkoutFieldValue(value: HalsynFormat.integer(remaining, locale: locale), unit: "m")
         case .open: return WorkoutFieldValue(value: HalsynFormat.duration(interval.elapsed), unit: "")
         }
     }

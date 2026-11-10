@@ -467,3 +467,24 @@ struct LiveChartTests {
         #expect([LiveSample]().downsampled(maxPoints: 5).isEmpty)
     }
 }
+
+@Suite("Intervalo por distancia en el reloj")
+struct IntervalDistanceDisplayTests {
+    @Test func longRemainingDistanceIsShownInKilometers() {
+        let start = Date(timeIntervalSince1970: 1_780_000_000)
+        let plan = IntervalPlan(id: "k", name: "1 × 4 km", warmup: nil, work: .distance(4000), workPace: nil, recovery: .time(30), repeats: 1, cooldown: nil)
+        var tracker = RunSessionTracker(settings: RunSettings(), plan: plan)
+        tracker.handle(.start, at: start)
+        tracker.handle(.began, at: start)
+        tracker.updateDistance(total: 50, at: start.addingTimeInterval(15))
+        let snapshot = tracker.snapshot(at: start.addingTimeInterval(15))
+        let posix = Locale(identifier: "en_US_POSIX")
+        let far = snapshot.value(for: .intervalTime, unit: .metric, locale: posix)
+        #expect(far.value == "3.95")
+        #expect(far.unit == "km")
+        tracker.updateDistance(total: 3300, at: start.addingTimeInterval(1000))
+        let near = tracker.snapshot(at: start.addingTimeInterval(1000)).value(for: .intervalTime, unit: .metric, locale: posix)
+        #expect(near.value == "700")
+        #expect(near.unit == "m")
+    }
+}
