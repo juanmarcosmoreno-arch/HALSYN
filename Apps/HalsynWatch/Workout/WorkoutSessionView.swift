@@ -419,7 +419,7 @@ private struct WorkoutIntervalRingView: View {
                     }
                 }
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, 2)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(alignment: .top) {
                 BannerOverlay(banner: workout.banner, now: context.date)
@@ -439,7 +439,8 @@ private struct WorkoutIntervalRingView: View {
     }
 
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
-        VStack(spacing: 2) {
+        // El anillo se queda con todo el alto libre: encabezado y pie en una línea cada uno.
+        VStack(spacing: 0) {
             ringHeader(interval, snapshot: snapshot)
             ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
                 .overlay {
@@ -448,9 +449,9 @@ private struct WorkoutIntervalRingView: View {
                         PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
                     }
                 }
-                .padding(.top, 10)
-                // Aire entre el anillo (y su arco) y OBJETIVO / PULS.
-                .padding(.bottom, 10)
+                .padding(.vertical, 5)
+                .frame(maxHeight: .infinity)
+                .layoutPriority(1)
             ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
         }
     }
@@ -505,7 +506,7 @@ private struct WorkoutIntervalRingView: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.5), value: remaining)
             ringCenter(value: value, tint: tint, isOpen: isOpen)
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 12)
         }
         .aspectRatio(1, contentMode: .fit)
         .accessibilityElement(children: .ignore)
@@ -517,10 +518,12 @@ private struct WorkoutIntervalRingView: View {
         VStack(spacing: 0) {
             Text(isOpen ? LocalizedStringKey("TID") : LocalizedStringKey("QUEDAN"))
                 .font(.system(size: 11, weight: .semibold))
+                .lineLimit(1)
+                .fixedSize()
                 .foregroundStyle(tint)
             Text(verbatim: value.value ?? "--")
-                .font(.system(size: 38, weight: .semibold, design: .rounded).monospacedDigit())
-                .minimumScaleFactor(0.5)
+                .font(.system(size: 40, weight: .semibold, design: .rounded).monospacedDigit())
+                .minimumScaleFactor(0.4)
                 .lineLimit(1)
                 .foregroundStyle(Color.white)
             if !value.unit.isEmpty {
@@ -538,7 +541,7 @@ private struct WorkoutIntervalRingView: View {
     }
 
     private func ringFooter(_ snapshot: RunSnapshot, tint: Color) -> some View {
-        HStack(alignment: .bottom) {
+        HStack(alignment: .firstTextBaseline) {
             if let target = snapshot.paceTarget {
                 // Con ritmo objetivo, el ritmo actual va arriba al centro.
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
@@ -550,18 +553,21 @@ private struct WorkoutIntervalRingView: View {
         }
     }
 
+    /// Etiqueta y valor en una sola línea, para dejarle el alto al anillo.
     private func compact(label: LocalizedStringKey, value: String?, tint: Color = .white) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
+        HStack(alignment: .firstTextBaseline, spacing: 3) {
             Text(label)
-                .font(.system(size: 11, weight: .semibold))
+                .font(.system(size: 9, weight: .semibold))
                 .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+                .fixedSize()
             Text(verbatim: value ?? "--")
-                .font(.system(size: 18, weight: .semibold, design: .rounded).monospacedDigit())
+                .font(.system(size: 15, weight: .semibold, design: .rounded).monospacedDigit())
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
                 .foregroundStyle(tint)
         }
     }
+
 }
 
 /// Paso actual de los intervalos: qué toca, cuánto falta y el ritmo objetivo.
