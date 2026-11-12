@@ -12,6 +12,11 @@ public struct PlanSnapshot: Codable, Hashable, Sendable {
 
     public static let days = 14
 
+    /// Ritmo suave del plan (de un rodaje suave), para calentar y volver a la calma en la cinta.
+    public var easyPace: PaceRange? {
+        sessions.first { ($0.kind == .easy || $0.kind == .recovery) && $0.pace != nil }?.pace
+    }
+
     public init(distance: RaceDistance, raceDate: Date, goalTime: TimeInterval?, sessions: [PlannedSession]) {
         self.distance = distance
         self.raceDate = raceDate

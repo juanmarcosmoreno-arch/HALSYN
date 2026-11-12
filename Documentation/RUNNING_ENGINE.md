@@ -307,3 +307,18 @@ Desde la 1.6 la configurada **no se reemplaza en silencio**: con la fuente manua
 - Le pasa al reloj una tabla con las 3 mejores de cada categoría y cuántas carreras hay.
 - Al terminar, el reloj compara la carrera con esa tabla, vibra y muestra el puesto en el resumen. Después suma la carrera a su tabla hasta que llegue la nueva del iPhone.
 - En el iPhone, cada carrera muestra los puestos que obtuvo el día que se corrió, y hay una pantalla con los 3 mejores de cada récord.
+
+## Equivalencia en cinta (`TreadmillEquivalent`, 0.10.0 (113))
+
+- **1 % de inclinación equivale a correr en llano al aire libre** (Jones & Doust, *J Sports Sci* 1996): compensa la falta de resistencia del aire.
+  - Se midió entre 2:51 y 4:43 min/km.
+  - A ritmos más lentos el 1 % queda algo más exigente que la calle: es una aproximación prudente.
+- **Con 2 % o 3 %**, la velocidad equivalente sale de la ecuación de carrera del ACSM, en la que el coste por metro es proporcional a 0,2 + 0,9 × pendiente:
+  - v_cinta = v_calle × 0,2 ÷ (0,2 + 0,9 × (pendiente − 0,01));
+  - se redondea a 0,1 km/h.
+- **Guía por sesión**:
+  - calentamiento y calma de 2 km al ritmo suave del plan;
+  - series o bloque al ritmo objetivo;
+  - recuperaciones de 2 min caminando o trotando;
+  - el test se recomienda al aire libre, porque en cinta la distancia es estimada.
+- **Durante la sesión en cinta**, el reloj muestra en el pie la velocidad a poner, con la inclinación elegida, en lugar del ritmo objetivo.

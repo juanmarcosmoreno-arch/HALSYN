@@ -404,6 +404,9 @@ struct TrainingPlanCard: View {
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
             }
+            if session.kind != .rest {
+                TreadmillGuideView(session: session, easyPace: store.displayPlan?.paces.easy, unitSystem: unitSystem)
+            }
             if session.kind == .test {
                 let found = GoalCoach.testCandidate(for: original, runs: workouts, calendar: .current)
                 Button {
@@ -417,6 +420,48 @@ struct TrainingPlanCard: View {
                 Text("Con el resultado se recalculan tu forma, tus ritmos y si el objetivo es alcanzable.")
                     .font(.caption2)
                     .foregroundStyle(.halsynSecondaryText)
+            }
+        }
+    }
+}
+
+/// La sesión de hoy hecha en la cinta: velocidad e inclinación equivalentes.
+struct TreadmillGuideView: View {
+    let session: PlannedSession
+    let easyPace: PaceRange?
+    let unitSystem: UnitSystem
+    @AppStorage(TreadmillText.inclineKey) private var incline = TreadmillEquivalent.referenceIncline
+
+    var body: some View {
+        let steps = TreadmillEquivalent.guide(for: session, easyPace: easyPace, incline: incline)
+        if !steps.isEmpty {
+            CollapsibleDetails("¿No puedes salir? Hazla en cinta") {
+                VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                    Picker("Inclinación", selection: $incline) {
+                        ForEach(TreadmillEquivalent.inclines, id: \.self) { value in
+                            Text(verbatim: TreadmillText.percent(value)).tag(value)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    ForEach(Array(steps.enumerated()), id: \.offset) { _, step in
+                        Label {
+                            Text(verbatim: TreadmillText.line(step, unit: unitSystem))
+                                .fixedSize(horizontal: false, vertical: true)
+                        } icon: {
+                            Image(systemName: "figure.run.treadmill")
+                                .foregroundStyle(.halsynAccentText)
+                        }
+                        .font(.halsynCaption)
+                    }
+                    Text("En el reloj elige «Empezar en cinta»: durante la sesión te muestra la velocidad a poner en lugar del ritmo.")
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text(LocalizedStringKey(TreadmillText.explanation))
+                        .font(.caption2)
+                        .foregroundStyle(.halsynSecondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
         }
     }

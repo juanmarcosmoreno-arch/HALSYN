@@ -542,7 +542,11 @@ private struct WorkoutIntervalRingView: View {
 
     private func ringFooter(_ snapshot: RunSnapshot, tint: Color) -> some View {
         HStack(alignment: .firstTextBaseline) {
-            if let target = snapshot.paceTarget {
+            if let target = snapshot.paceTarget, workout.isIndoor, !workout.isCycling {
+                // En cinta: la velocidad a poner, con la inclinación elegida.
+                let incline = TreadmillText.storedIncline
+                compact(label: LocalizedStringKey(TreadmillText.percent(incline)), value: TreadmillText.speed(TreadmillEquivalent.speedRange(target, incline: incline), unit: unitSystem))
+            } else if let target = snapshot.paceTarget {
                 // Con ritmo objetivo, el ritmo actual va arriba al centro.
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
             } else {

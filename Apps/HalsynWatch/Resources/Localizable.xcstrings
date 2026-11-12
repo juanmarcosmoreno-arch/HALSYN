@@ -766,6 +766,23 @@
         }
       }
     },
+    "(≈ %@ min)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(≈ %@ min)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(≈ %@ min)"
+          }
+        }
+      }
+    },
     "0.2-provisional": {
       "extractionState": "manual",
       "localizations": {
@@ -3571,6 +3588,23 @@
         }
       }
     },
+    "Bloque: %@ a %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block: %@ at %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block: %@ i %@"
+          }
+        }
+      }
+    },
     "Boca arriba, estira brazo y pierna contrarios sin despegar la zona lumbar del suelo.": {
       "extractionState": "manual",
       "localizations": {
@@ -4536,6 +4570,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uppvärmning klar"
+          }
+        }
+      }
+    },
+    "Calentamiento: %@ a %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warm-up: %@ at %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppvärmning: %@ i %@"
           }
         }
       }
@@ -6151,6 +6202,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Med %lld pass finns det fortfarande lite data: för prognosen blandas det med antagandet 85 % efter hur många det är, (pass × observerat + 4 × 85 %) ÷ (pass + 4) = %@."
+          }
+        }
+      }
+    },
+    "Con 1 % de inclinación, la cinta equivale a correr en llano al aire libre (compensa el aire que no hay en la cinta; Jones y Doust, 1996). Con más inclinación, el mismo esfuerzo pide menos velocidad (ecuación de carrera del ACSM): unos 0,4–0,5 km/h menos por cada punto. Es aproximado: si el pulso se dispara, baja la velocidad.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At a 1 % incline, the treadmill is equivalent to running on the flat outdoors (it makes up for the missing air resistance; Jones and Doust, 1996). With more incline, the same effort needs less speed (ACSM running equation): about 0.4–0.5 km/h less per point. It is approximate: if your heart rate shoots up, lower the speed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med 1 % lutning motsvarar löpbandet löpning på plan mark utomhus (det kompenserar för luftmotståndet som saknas; Jones och Doust, 1996). Med mer lutning kräver samma ansträngning lägre fart (ACSM:s löpekvation): ungefär 0,4–0,5 km/h mindre per procentenhet. Det är ungefärligt: om pulsen rusar, sänk farten."
           }
         }
       }
@@ -10524,6 +10592,23 @@
         }
       }
     },
+    "En el reloj elige «Empezar en cinta»: durante la sesión te muestra la velocidad a poner en lugar del ritmo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On the watch choose “Start on treadmill”: during the session it shows the speed to set instead of the pace."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Välj ”Starta på löpband” i klockan: under passet visar den farten att ställa in i stället för tempot."
+          }
+        }
+      }
+    },
     "En este período registraste: %@. Se marca como contexto: HÅLSYN no sabe si influyó en estos valores.": {
       "extractionState": "manual",
       "localizations": {
@@ -10945,6 +11030,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bland de cykelturer som sparats i Hälsa och som HÅLSYN läser in."
+          }
+        }
+      }
+    },
+    "Entre series: %@ × 2 min caminando o trotando muy suave": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Between reps: %@ × 2 min walking or jogging very easily"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mellan intervallerna: %@ × 2 min gång eller mycket lätt jogg"
           }
         }
       }
@@ -15467,6 +15569,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prognosens osäkerhet (VDOT, 1 standardavvikelse): %@ = roten ur summan av varianserna: %@."
+          }
+        }
+      }
+    },
+    "Inclinación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incline"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lutning"
           }
         }
       }
@@ -27694,6 +27813,23 @@
         }
       }
     },
+    "Series: %@ × %@ a %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reps: %@ × %@ at %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervaller: %@ × %@ i %@"
+          }
+        }
+      }
+    },
     "Sesgo": {
       "extractionState": "manual",
       "localizations": {
@@ -30155,6 +30291,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Test eller tävling"
+          }
+        }
+      }
+    },
+    "Test: %@ a tope. En cinta la distancia es estimada: para el VDOT, mejor al aire libre.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test: %@ all out. On a treadmill the distance is estimated: for VDOT, outdoors is better."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test: %@ för fullt. På löpband är distansen uppskattad: för VDOT är utomhus bättre."
           }
         }
       }
@@ -33831,6 +33984,23 @@
         }
       }
     },
+    "Vuelta a la calma: %@ a %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cool-down: %@ at %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nedvarvning: %@ i %@"
+          }
+        }
+      }
+    },
     "Vuelta automática": {
       "extractionState": "manual",
       "localizations": {
@@ -35629,6 +35799,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Var det ett test eller en tävling för fullt? Markera det så använder HÅLSYN tiden och distansen för din form, dina tempon och din plan."
+          }
+        }
+      }
+    },
+    "¿No puedes salir? Hazla en cinta": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can't go outside? Do it on a treadmill"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kan du inte springa ute? Kör på löpband"
           }
         }
       }

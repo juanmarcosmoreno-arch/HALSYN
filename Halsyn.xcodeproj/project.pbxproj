@@ -80,6 +80,7 @@
 		865EEC481B238F99D0EAB583 /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5047F8787DE2220D3FE3CB /* ProfilePhoto.swift */; };
 		86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FAE112449D9350EF7C4A8A /* ScaleWeighIn.swift */; };
 		875EDEB447F53BD99704B037 /* IntroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C945921E1BB13D0071A2B9 /* IntroVideoView.swift */; };
+		8C6F357C18301D67017E292E /* TreadmillText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7EF4D1E104EF9F29A5BB0 /* TreadmillText.swift */; };
 		8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C9E6640D89A5E92944ADB /* RideDetailView.swift */; };
 		8F4A9F08F7C21ACEB69604E7 /* RecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928934EF5A513D64F8F6F04E /* RecoveryView.swift */; };
 		8FD7D8FF09635A0C756E29AA /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102C2A0A397098A3444D807 /* DiagnosticsView.swift */; };
@@ -134,6 +135,7 @@
 		D62F77788E6DC657EAA6F730 /* ScoreTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2408F4DEAA79F86E9DBB9 /* ScoreTexts.swift */; };
 		D657E1B0EFB54B6150A65133 /* OnDeviceNarrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DF09C3DBD02197E5118454 /* OnDeviceNarrator.swift */; };
 		D68DAD84ACC8B780DC02CC15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212FD4C77719A56D78D06081 /* Assets.xcassets */; };
+		D6D8041E4B63D2FEF82C2389 /* TreadmillText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7EF4D1E104EF9F29A5BB0 /* TreadmillText.swift */; };
 		D71774A07F32F0DA9402B900 /* WeeklySummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FE41A2350AD8BE21E1937 /* WeeklySummaryCard.swift */; };
 		E2499AC0B4E163244284D73D /* WatchGoalRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EF3402D469A56663EED082 /* WatchGoalRunView.swift */; };
 		E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210D91C67294E38A972B396 /* HalsaView.swift */; };
@@ -330,6 +332,7 @@
 		E1FCAB2223FA0599DBC71D96 /* DiagnosticsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsStore.swift; sourceTree = "<group>"; };
 		E2B2E338F7F964255DA524D1 /* CoachPhrases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPhrases.swift; sourceTree = "<group>"; };
 		E3EC0BB3192419160DABBD46 /* WarmupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarmupView.swift; sourceTree = "<group>"; };
+		E7D7EF4D1E104EF9F29A5BB0 /* TreadmillText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreadmillText.swift; sourceTree = "<group>"; };
 		ED8672CD9BD7A9E9115FCD0F /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		EDE07533E91D0B4E58019475 /* MalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalView.swift; sourceTree = "<group>"; };
 		EE273EE9E332C0CD3173D9E8 /* PowerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerViews.swift; sourceTree = "<group>"; };
@@ -705,6 +708,7 @@
 				0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */,
 				BF596ECD0B2BF4C286184EA2 /* RunSettingsStore.swift */,
 				F27B24C04B11039002E2CD27 /* SessionText.swift */,
+				E7D7EF4D1E104EF9F29A5BB0 /* TreadmillText.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1052,6 +1056,7 @@
 				2B32A9B3EC216486011653B7 /* RunActivityAttributes.swift in Sources */,
 				49988339F4A816F130A03BA5 /* RunSettingsStore.swift in Sources */,
 				326B4EEA606A335FCD08E25A /* SessionText.swift in Sources */,
+				8C6F357C18301D67017E292E /* TreadmillText.swift in Sources */,
 				2C3B3A53FEBC0CFF16706FD6 /* VoiceCoach.swift in Sources */,
 				C62E6FCBE7E5328B402DF503 /* WarmupSession.swift in Sources */,
 				959A8FEF71AAB902243374B0 /* WarmupView.swift in Sources */,
@@ -1146,6 +1151,7 @@
 				190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */,
 				840224E9A346CC33C8289CBF /* TrainingLoadViews.swift in Sources */,
 				B33A0FA874A0E5B9F4B90588 /* TrainingPlanViews.swift in Sources */,
+				D6D8041E4B63D2FEF82C2389 /* TreadmillText.swift in Sources */,
 				9567A32313BE792ACA298B1F /* VilaView.swift in Sources */,
 				AC5B2F8616E283E9E74B70E7 /* VoiceCuesView.swift in Sources */,
 				2BF0AD3AABDE9E4FBFE0F98F /* VolumeIntensityViews.swift in Sources */,
@@ -1280,7 +1286,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 112;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1465,7 +1471,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 112;
+				CURRENT_PROJECT_VERSION = 113;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

@@ -13,7 +13,7 @@ struct WatchPlanSection: View {
         Section {
             if let today = snapshot.upcoming(from: .now, calendar: calendar).first(where: { calendar.isDateInToday($0.date) }) {
                 NavigationLink {
-                    WatchPlanSessionView(session: today)
+                    WatchPlanSessionView(session: today, easyPace: snapshot.easyPace)
                 } label: {
                     WatchPlanRow(session: today, showsDay: false)
                 }
@@ -46,7 +46,7 @@ struct WatchPlanView: View {
         List {
             ForEach(snapshot.upcoming(from: .now, calendar: .current), id: \.date) { session in
                 NavigationLink {
-                    WatchPlanSessionView(session: session)
+                    WatchPlanSessionView(session: session, easyPace: snapshot.easyPace)
                 } label: {
                     WatchPlanRow(session: session, showsDay: true)
                 }
@@ -87,7 +87,9 @@ struct WatchPlanRow: View {
 /// Una sesión: qué es, para qué sirve y empezar.
 struct WatchPlanSessionView: View {
     let session: PlannedSession
+    var easyPace: PaceRange? = nil
     @Environment(WorkoutManager.self) private var workout
+    @AppStorage(TreadmillText.inclineKey) private var incline = TreadmillEquivalent.referenceIncline
     private var unitSystem: UnitSystem { RunSettingsStore.shared.settings.unitSystem }
 
     var body: some View {
@@ -118,11 +120,46 @@ struct WatchPlanSessionView: View {
                     } label: {
                         Label("Empezar en cinta", systemImage: "figure.run.treadmill")
                     }
+                    treadmillGuide
                 }
             }
             .padding(.horizontal, 4)
         }
         .navigationTitle(Text(LocalizedStringKey(session.kind.title)))
+    }
+
+    /// Cómo hacer la sesión en la cinta: velocidad e inclinación.
+    @ViewBuilder
+    private var treadmillGuide: some View {
+        let steps = TreadmillEquivalent.guide(for: session, easyPace: easyPace, incline: incline)
+        if !steps.isEmpty {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("En cinta")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color(HalsynPalette.darkAccent))
+                    .padding(.top, 6)
+                HStack(spacing: 4) {
+                    ForEach(TreadmillEquivalent.inclines, id: \.self) { value in
+                        Button {
+                            incline = value
+                        } label: {
+                            Text(verbatim: TreadmillText.percent(value))
+                                .font(.caption2.weight(.semibold))
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .tint(value == incline ? Color(HalsynPalette.darkAccent) : .gray)
+                    }
+                }
+                ForEach(Array(steps.enumerated()), id: \.offset) { _, step in
+                    Text(verbatim: TreadmillText.line(step, unit: unitSystem))
+                        .font(.caption2)
+                }
+                Text(LocalizedStringKey(TreadmillText.explanation))
+                    .font(.system(size: 10))
+                    .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            }
+        }
     }
 
     private var intervalPlan: IntervalPlan? {
