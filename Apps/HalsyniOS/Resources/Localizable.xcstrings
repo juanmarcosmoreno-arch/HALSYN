@@ -20537,6 +20537,23 @@
         }
       }
     },
+    "No se pudo leer esa foto. Prueba con otra.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't read that photo. Try another one."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att läsa fotot. Prova ett annat."
+          }
+        }
+      }
+    },
     "No se pudo medir la recuperación": {
       "extractionState": "manual",
       "localizations": {

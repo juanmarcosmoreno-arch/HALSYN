@@ -1313,6 +1313,7 @@
  "No se pudo conectar con Apple Health. Puedes intentarlo de nuevo o continuar con datos demo.": "Couldn't connect to Apple Health. You can try again or continue with demo data.",
  "No se pudo guardar": "Couldn't save",
  "No se pudo guardar en Salud: %@": "Couldn't save to Health: %@",
+ "No se pudo leer esa foto. Prueba con otra.": "Couldn't read that photo. Try another one.",
  "No se pudo medir la recuperación": "Couldn't measure recovery",
  "No se pudo saber el clima de esta carrera.": "Couldn't get the weather for this run.",
  "No se pudo usar esa imagen. Prueba con otra.": "That image couldn't be used. Try another one.",

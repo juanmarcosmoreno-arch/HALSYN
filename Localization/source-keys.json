@@ -1214,6 +1214,7 @@
  "No se pudo conectar con Apple Health. Puedes intentarlo de nuevo o continuar con datos demo.": "Apps/HalsyniOS/Features/Onboarding/OnboardingView.swift",
  "No se pudo guardar": "Apps/HalsynWatch/Workout/RecoveryView.swift",
  "No se pudo guardar en Salud: %@": "Apps/HalsyniOS/Features/Halsa/ScaleWeighIn.swift",
+ "No se pudo leer esa foto. Prueba con otra.": "Apps/HalsyniOS/Features/Spring/ShoeViews.swift",
  "No se pudo medir la recuperación": "Apps/HalsynWatch/Workout/RecoveryView.swift",
  "No se pudo saber el clima de esta carrera.": "Apps/HalsyniOS/Features/Spring/RunWeatherCard.swift",
  "No se pudo usar esa imagen. Prueba con otra.": "Apps/HalsyniOS/Shared/ProfilePhoto.swift",

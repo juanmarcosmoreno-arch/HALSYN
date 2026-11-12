@@ -1313,6 +1313,7 @@
  "No se pudo conectar con Apple Health. Puedes intentarlo de nuevo o continuar con datos demo.": "Det gick inte att ansluta till Apple Health. Du kan försöka igen eller fortsätta med demodata.",
  "No se pudo guardar": "Kunde inte sparas",
  "No se pudo guardar en Salud: %@": "Kunde inte spara i Hälsa: %@",
+ "No se pudo leer esa foto. Prueba con otra.": "Det gick inte att läsa fotot. Prova ett annat.",
  "No se pudo medir la recuperación": "Kunde inte mäta återhämtningen",
  "No se pudo saber el clima de esta carrera.": "Kunde inte hämta vädret för det här passet.",
  "No se pudo usar esa imagen. Prueba con otra.": "Bilden kunde inte användas. Prova en annan.",

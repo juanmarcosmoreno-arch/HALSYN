@@ -347,6 +347,8 @@ struct ShoeEditorView: View {
     @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var draft: Shoe
     @State private var selection: PhotosPickerItem?
+    @State private var showsPicker = false
+    @State private var photoFailed = false
     @State private var processing = false
     @State private var processed: UIImage?
     @State private var confirmingDelete = false
@@ -385,8 +387,18 @@ struct ShoeEditorView: View {
                         Spacer()
                     }
                     .listRowBackground(Color.clear)
-                    PhotosPicker(selection: $selection, matching: .images) {
+                    // Botón normal + `.photosPicker` en la pantalla: el PhotosPicker dentro
+                    // de la fila del formulario (en una hoja) dejaba la app trabada al tocarlo.
+                    Button {
+                        showsPicker = true
+                    } label: {
                         Label(processed == nil && store.photos[draft.id] == nil ? LocalizedStringKey("Elegir foto") : LocalizedStringKey("Cambiar foto"), systemImage: "camera")
+                    }
+                    .disabled(processing)
+                    if photoFailed {
+                        Text("No se pudo leer esa foto. Prueba con otra.")
+                            .font(.caption)
+                            .foregroundStyle(.halsynCaution)
                     }
                 } footer: {
                     Text("El iPhone recorta la zapatilla y quita el fondo. Funciona mejor con una foto de lado, bien iluminada y sobre un fondo liso.")
@@ -433,13 +445,18 @@ struct ShoeEditorView: View {
                     dismiss()
                 }
             }
+            // `.current`: la foto tal cual (HEIC), sin convertirla antes; ImageIO la lee reducida.
+            .photosPicker(isPresented: $showsPicker, selection: $selection, matching: .images, preferredItemEncoding: .current)
             .onChange(of: selection) { _, item in
                 guard let item else { return }
                 Task {
                     processing = true
+                    photoFailed = false
+                    var result: UIImage?
                     if let data = try? await item.loadTransferable(type: Data.self) {
-                        processed = await ShoePhotoProcessor.process(data)
+                        result = await ShoePhotoProcessor.process(data)
                     }
+                    if let result { processed = result } else { photoFailed = true }
                     processing = false
                     selection = nil
                 }
