@@ -5,10 +5,10 @@ import Foundation
 /// fechas ISO, para que cualquier herramienta las lea sin ambigüedad.
 public enum DataExport {
     /// Versión del formato de exportación (columnas nuevas siempre al final).
-    public static let formatVersion = "4"
+    public static let formatVersion = "5"
 
     /// Columnas que calcula HÅLSYN (el resto viene tal cual de Apple Health o de lo que cargaste).
-    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility", "harder_than_planned", "rpe", "perceived_intensity", "plan_compliance"]
+    public static let computedWorkoutColumns = ["pace_min_km", "pace_s_per_km", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight", "session_type", "vdot_eligibility", "harder_than_planned", "rpe", "perceived_intensity", "plan_compliance", "steady_min", "efficiency_m_min_per_bpm", "decoupling_pct"]
     public static let computedDailyColumns = ["health_score", "recovery_score", "nap_h", "sleep_flags", "main_sleep_attributed_h", "naps_attributed_h", "recovery_mean", "recovery_hrv", "recovery_rhr", "recovery_sleep", "recovery_load", "recovery_warnings"]
 
     /// Identificador corto y estable para auditar duplicados sin exponer el
@@ -42,6 +42,10 @@ public enum DataExport {
         public var perceivedIntensity = ""
         /// as_planned, harder, easier o vacío.
         public var planCompliance = ""
+        /// Análisis aeróbico (formato 5): minutos de tramos estables, eficiencia y desacople.
+        public var steadyMinutes: Double?
+        public var efficiency: Double?
+        public var decoupling: Double?
 
         public init(intensity: String = "", intensityBasis: String = "", qualityFlags: [String] = [], modelRole: String = "", modelWeight: Double? = nil, sessionType: String = "", vdotEligibility: String = "") {
             self.intensity = intensity
@@ -217,6 +221,8 @@ public enum DataExport {
         "record_id", "source", "intensity", "intensity_basis", "quality_flags", "model_role", "model_weight",
         "session_type", "vdot_eligibility", "harder_than_planned",
         "rpe", "perceived_intensity", "plan_compliance",
+        "stride_length_m", "ground_contact_ms", "vertical_oscillation_cm", "running_power_w",
+        "steady_min", "efficiency_m_min_per_bpm", "decoupling_pct",
     ]
 
     /// Una fila por entrenamiento, del más antiguo al más nuevo.
@@ -258,6 +264,13 @@ public enum DataExport {
                 extras[workout.id]?.rpe.map(String.init) ?? "",
                 extras[workout.id]?.perceivedIntensity ?? "",
                 extras[workout.id]?.planCompliance ?? "",
+                workout.dynamics?.strideLength.map { number($0, digits: 2) } ?? "",
+                workout.dynamics?.groundContactTime.map { number($0, digits: 0) } ?? "",
+                workout.dynamics?.verticalOscillation.map { number($0, digits: 1) } ?? "",
+                workout.dynamics?.power.map { number($0, digits: 0) } ?? "",
+                extras[workout.id]?.steadyMinutes.map { number($0, digits: 1) } ?? "",
+                extras[workout.id]?.efficiency.map { number($0, digits: 3) } ?? "",
+                extras[workout.id]?.decoupling.map { number($0, digits: 1) } ?? "",
             ]
             rows.append(cells.joined(separator: ","))
         }

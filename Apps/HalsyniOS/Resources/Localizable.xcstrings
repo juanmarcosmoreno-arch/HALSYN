@@ -324,6 +324,40 @@
         }
       }
     },
+    "%@ lpm: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min: %@"
+          }
+        }
+      }
+    },
+    "%@ lpm: %@ (%@, %@ carreras) · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bpm: %@ (%@, %@ runs) · %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ slag/min: %@ (%@, %@ pass) · %@"
+          }
+        }
+      }
+    },
     "%@ min de ejercicio en los últimos 7 días (Apple Watch).": {
       "extractionState": "manual",
       "localizations": {
@@ -5271,6 +5305,23 @@
         }
       }
     },
+    "Capacidad aeróbica (AerobicAnalysis %@), ritmo a pulso fijo con los últimos 28 días:": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aerobic capacity (AerobicAnalysis %@), pace at a fixed heart rate over the last 28 days:"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aerob kapacitet (AerobicAnalysis %@), tempo vid fast puls de senaste 28 dagarna:"
+          }
+        }
+      }
+    },
     "Capacidad anaeróbica": {
       "extractionState": "manual",
       "localizations": {
@@ -7345,6 +7396,40 @@
         }
       }
     },
+    "Constancia (ConsistencyEngine %@): %@ de 100 = %@. Semanas seguidas: %@; pausas de 10 días o más en 12 semanas: %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistency (ConsistencyEngine %@): %@ of 100 = %@. Weeks in a row: %@; breaks of 10 days or more in 12 weeks: %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontinuitet (ConsistencyEngine %@): %@ av 100 = %@. Veckor i rad: %@; uppehåll på 10 dagar eller mer på 12 veckor: %@."
+          }
+        }
+      }
+    },
+    "Constancia: hacen falta 4 semanas con datos. Semanas seguidas: %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistency: 4 weeks with data are needed. Weeks in a row: %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontinuitet: det behövs 4 veckor med data. Veckor i rad: %@."
+          }
+        }
+      }
+    },
     "Consultado con la hora y el punto de salida aproximado (unos 1 km).": {
       "extractionState": "manual",
       "localizations": {
@@ -8701,6 +8786,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Frikoppling i långa pass"
+          }
+        }
+      }
+    },
+    "Desacople: última %@, mediana de 28 días %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decoupling: latest %@, 28-day median %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frikoppling: senaste %@, median 28 dagar %@"
           }
         }
       }
@@ -10078,6 +10180,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Effektivitet"
+          }
+        }
+      }
+    },
+    "Eficiencia (m/min por latido): %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efficiency (m/min per beat): %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effektivitet (m/min per slag): %@"
           }
         }
       }
@@ -12615,6 +12734,23 @@
         }
       }
     },
+    "Estado de entrenamiento: %@ (%@) · TrainingStatusEngine %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training status: %@ (%@) · TrainingStatusEngine %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsstatus: %@ (%@) · TrainingStatusEngine %@"
+          }
+        }
+      }
+    },
     "Estados": {
       "extractionState": "manual",
       "localizations": {
@@ -14107,6 +14243,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Format 4 (nya kolumner sist): pass med ”rpe” (upplevd ansträngning 1–10 som du angav), ”perceived_intensity” (enligt RPE) och ”plan_compliance” (as_planned, harder, easier); dagbok med ”main_sleep_attributed_h” och ”naps_attributed_h” (huvudsömn till dagen du vaknar, tupplurar till dagen de börjar), ”recovery_mean” (viktat medel före den försiktiga sammanvägningen), varje faktors poäng och ”recovery_warnings”. ”sleep_h” behåller sin tidigare betydelse."
+          }
+        }
+      }
+    },
+    "Formato 5 (columnas nuevas al final de entrenamientos): «stride_length_m», «ground_contact_ms», «vertical_oscillation_cm» y «running_power_w» (medias que guardó el Apple Watch; vacío si no las midió) y, en carreras al aire libre con GPS y pulso, «steady_min» (minutos a ritmo estable usados), «efficiency_m_min_per_bpm» (velocidad ÷ pulso en esos tramos) y «decoupling_pct» (desacople en carreras regulares de 30 min o más).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format 5 (new columns at the end of workouts): “stride_length_m”, “ground_contact_ms”, “vertical_oscillation_cm” and “running_power_w” (averages saved by the Apple Watch; empty if not measured) and, for outdoor runs with GPS and heart rate, “steady_min” (minutes at a steady pace used), “efficiency_m_min_per_bpm” (speed ÷ heart rate in those stretches) and “decoupling_pct” (decoupling in steady runs of 30 min or more)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format 5 (nya kolumner sist i passen): ”stride_length_m”, ”ground_contact_ms”, ”vertical_oscillation_cm” och ”running_power_w” (medelvärden som Apple Watch sparat; tomt om de inte mättes) och, för utomhuspass med GPS och puls, ”steady_min” (minuter i jämnt tempo som används), ”efficiency_m_min_per_bpm” (fart ÷ puls på de sträckorna) och ”decoupling_pct” (frikoppling i jämna pass på 30 min eller mer)."
           }
         }
       }
@@ -30006,6 +30159,23 @@
         }
       }
     },
+    "Sin datos: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data: %@"
+          }
+        }
+      }
+    },
     "Sin diabetes: ayunas <100 mg/dL (o HbA1c <5,7) 100 · 100–125 (5,7–6,4) 60. Con diabetes, HbA1c: <7: 40 · 7–7,9: 30 · 8–8,9: 20 · 9–9,9: 10 · ≥10: 0": {
       "extractionState": "manual",
       "localizations": {
@@ -33967,6 +34137,40 @@
         }
       }
     },
+    "Técnica de carrera (RunningDynamicsAnalysis %@), medias de 28 días; cambios a igual velocidad frente a hace 8 semanas:": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running form (RunningDynamicsAnalysis %@), 28-day averages; changes at the same speed versus 8 weeks ago:"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpteknik (RunningDynamicsAnalysis %@), medelvärden 28 dagar; förändringar vid samma fart jämfört med för 8 veckor sedan:"
+          }
+        }
+      }
+    },
+    "Técnica de carrera: sin datos suficientes (3 carreras al aire libre en 28 días con las medidas del Apple Watch).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running form: not enough data (3 outdoor runs in 28 days with Apple Watch measurements)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpteknik: otillräckliga data (3 utomhuspass på 28 dagar med mätningar från Apple Watch)."
+          }
+        }
+      }
+    },
     "Tú": {
       "extractionState": "manual",
       "localizations": {
@@ -37346,6 +37550,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "inga data (85 % antas)"
+          }
+        }
+      }
+    },
+    "sin datos de hace 8 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no data from 8 weeks ago"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inga data från för 8 veckor sedan"
           }
         }
       }

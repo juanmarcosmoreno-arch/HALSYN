@@ -30,6 +30,7 @@ struct DataExportView: View {
     }
 
     @Environment(AppModel.self) private var model
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
     @State private var period: Period = .year
     @State private var isWorking = false
     @State private var export: Export?
@@ -144,6 +145,11 @@ struct DataExportView: View {
                 evidenceByWorkout[item.id] = item
             }
         }
+        // Análisis aeróbico al día (no en demo: los datos de ejemplo no son tuyos).
+        if !model.isDemo {
+            await AerobicStore.shared.refresh(runs: workouts, provider: provider)
+        }
+        let aerobic = AerobicStore.shared.observations
         var extras: [UUID: DataExport.WorkoutExtra] = [:]
         for workout in workouts {
             let intensity = intensities[workout.id]
@@ -161,6 +167,11 @@ struct DataExportView: View {
             extra.rpe = intensity?.rpe
             extra.perceivedIntensity = intensity?.perceived.map(DataExport.code) ?? ""
             extra.planCompliance = intensity.map { $0.planCompliance == .notApplicable ? "" : $0.planCompliance.rawValue } ?? ""
+            if let observation = aerobic[workout.id] {
+                extra.steadyMinutes = observation.steadySeconds / 60
+                extra.efficiency = observation.efficiency
+                extra.decoupling = observation.decoupling
+            }
             extras[workout.id] = extra
         }
         let workoutsCSV = DataExport.workoutsCSV(workouts, marks: marks, shoes: shoes, extras: extras, calendar: calendar)
@@ -205,6 +216,72 @@ struct DataExportView: View {
             + "\n\n## " + String(localized: "Entrenamientos (CSV)") + "\n\n```csv\n" + workoutsCSV + "```\n"  // nolocalize
             + "\n## " + String(localized: "Datos de cada día (CSV)") + "\n\n```csv\n" + dailyCSV + "```\n"  // nolocalize
         export = Export(files: written, text: text, workouts: workouts.count, days: days.count)
+    }
+
+    /// Rendimiento (formato 5): estado, capacidad aeróbica, constancia y técnica.
+    private func performanceSection(runs: [WorkoutSummary], unit: UnitSystem) async -> [String] {
+        var lines: [String] = ["", "## " + String(localized: "Rendimiento")]
+        let status = await TrainingStatusBuilder.build(runs: runs, provider: model.provider, reloadKey: "\(model.reloadKey)")
+        let stateText = TrainingStatusText.title(status.state), confidenceText = TrainingStatusText.confidence(status.confidence)
+        lines.append("- " + String(localized: "Estado de entrenamiento: \(stateText) (\(confidenceText)) · TrainingStatusEngine \(TrainingStatusEngine.version)"))
+        for signal in status.supporting { lines.append("  - " + String(localized: "A favor:") + " " + TrainingStatusText.signal(signal)) }  // nolocalize
+        for signal in status.contradicting { lines.append("  - " + String(localized: "En contra:") + " " + TrainingStatusText.signal(signal)) }  // nolocalize
+        if !status.missing.isEmpty {
+            let missingText = status.missing.map(TrainingStatusText.missing).joined(separator: ", ")
+            lines.append("  - " + String(localized: "Sin datos: \(missingText)"))
+        }
+
+        let observations = AerobicStore.shared.valid
+        lines.append("- " + String(localized: "Capacidad aeróbica (AerobicAnalysis \(AerobicAnalysis.version)), ritmo a pulso fijo con los últimos 28 días:"))
+        for target in AerobicAnalysis.targets {
+            let targetText = String(Int(target))
+            switch AerobicAnalysis.trend(at: target, observations: observations, today: .now, calendar: .current) {
+            case let .success(trend):
+                let paceText = AerobicText.pace(trend.current.pace, unit: unit)
+                let rangeText = AerobicText.pace(trend.current.fastest, unit: unit) + "–" + AerobicText.pace(trend.current.slowest, unit: unit)  // nolocalize
+                let runsText = String(trend.current.runs)
+                let changeText = AerobicText.trend(trend, unit: unit) ?? String(localized: "sin datos de hace 8 semanas")
+                lines.append("  - " + String(localized: "\(targetText) lpm: \(paceText) (\(rangeText), \(runsText) carreras) · \(changeText)"))
+            case let .failure(error):
+                lines.append("  - " + String(localized: "\(targetText) lpm: \(AerobicText.unavailable(error.reason))"))
+            }
+        }
+        if let efficiency = AerobicAnalysis.efficiency(observations, today: .now, calendar: .current) {
+            let windowsText = efficiency.windows.map { window in
+                let label = window.days.map { "\($0) d" } ?? "todo"  // nolocalize
+                return "\(label): \(HalsynFormat.decimal(window.mean, fractionDigits: 3)) (n = \(window.runs))"  // nolocalize
+            }.joined(separator: " · ")
+            lines.append("  - " + String(localized: "Eficiencia (m/min por latido): \(windowsText)"))
+        }
+        if let decoupling = AerobicAnalysis.decoupling(observations, today: .now, calendar: .current) {
+            let latestText = HalsynFormat.decimal(decoupling.latest.value, fractionDigits: 1) + " %"  // nolocalize
+            let medianText = decoupling.median28.map { HalsynFormat.decimal($0, fractionDigits: 1) + " %" } ?? "—"  // nolocalize
+            lines.append("  - " + String(localized: "Desacople: última \(latestText), mediana de 28 días \(medianText)"))
+        }
+
+        let consistency = ConsistencyBuilder.build(runs: runs)
+        let streakText = String(consistency.streakWeeks), gapsText = String(consistency.interruptions)
+        if let score = consistency.score {
+            let scoreText = String(score)
+            let partsText = consistency.parts.map { "\(ConsistencyText.component($0.component)) \(Int(($0.value * 100).rounded())) % × \(Int(($0.weight * 100).rounded())) %" }.joined(separator: " · ")  // nolocalize
+            lines.append("- " + String(localized: "Constancia (ConsistencyEngine \(ConsistencyEngine.version)): \(scoreText) de 100 = \(partsText). Semanas seguidas: \(streakText); pausas de 10 días o más en 12 semanas: \(gapsText)."))
+        } else {
+            lines.append("- " + String(localized: "Constancia: hacen falta 4 semanas con datos. Semanas seguidas: \(streakText)."))
+        }
+
+        let dynamics = RunningDynamicsAnalysis.summaries(runs.filter { $0.activity == .outdoorRun }, today: .now, calendar: .current)
+        if dynamics.isEmpty {
+            lines.append("- " + String(localized: "Técnica de carrera: sin datos suficientes (3 carreras al aire libre en 28 días con las medidas del Apple Watch)."))
+        } else {
+            lines.append("- " + String(localized: "Técnica de carrera (RunningDynamicsAnalysis \(RunningDynamicsAnalysis.version)), medias de 28 días; cambios a igual velocidad frente a hace 8 semanas:"))
+            for summary in dynamics {
+                let title = String(localized: String.LocalizationValue(summary.metric.title))
+                let valueText = RunningDynamicsText.value(summary.metric, summary.recentMean)
+                let changeText = RunningDynamicsText.change(summary) ?? String(localized: "sin datos de hace 8 semanas")
+                lines.append("  - \(title): \(valueText) · \(changeText)")  // nolocalize
+            }
+        }
+        return lines
     }
 
     private func isoDay(_ date: Date) -> String {
@@ -406,6 +483,7 @@ struct DataExportView: View {
                 lines.append("- \(result.date.formatted(date: .abbreviated, time: .omitted)) · \(LabText.title(result)) · \(LabText.value(result))")  // nolocalize
             }
         }
+        lines += await performanceSection(runs: runs, unit: unitSystem)
         let projectionBacktest = FitnessStore.shared.projectionBacktest(runs: runs)
         let todayBacktest = FitnessStore.shared.backtest(runs: runs)
         lines.append("")
@@ -437,6 +515,7 @@ struct DataExportView: View {
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
         lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo."))
         lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
+        lines.append("- " + String(localized: "Formato 5 (columnas nuevas al final de entrenamientos): «stride_length_m», «ground_contact_ms», «vertical_oscillation_cm» y «running_power_w» (medias que guardó el Apple Watch; vacío si no las midió) y, en carreras al aire libre con GPS y pulso, «steady_min» (minutos a ritmo estable usados), «efficiency_m_min_per_bpm» (velocidad ÷ pulso en esos tramos) y «decoupling_pct» (desacople en carreras regulares de 30 min o más)."))
         lines.append("- " + String(localized: "Formato 4 (columnas nuevas al final): entrenamientos con «rpe» (esfuerzo percibido 1–10 que anotaste), «perceived_intensity» (según el RPE) y «plan_compliance» (as_planned, harder, easier); diario con «main_sleep_attributed_h» y «naps_attributed_h» (sueño principal al día en que te despiertas, siestas al día en que empiezan), «recovery_mean» (media ponderada antes de la agregación prudente), la puntuación de cada factor y «recovery_warnings». «sleep_h» mantiene su significado anterior."))
         lines.append("- " + String(localized: "Episodios de sueño (si hay): cada episodio con su hora real de inicio y fin, horas dormidas, tipo (main o nap) y el día al que se atribuye."))
         lines.append("- " + String(localized: "Pruebas (si hay): cada prueba del modelo con su VDOT, su papel, su peso y los factores (tipo × antigüedad × distancia × calidad × tope × coherencia). Eventos y laboratorio (si hay): lo que registraste."))
