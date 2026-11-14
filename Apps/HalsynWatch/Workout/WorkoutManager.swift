@@ -63,8 +63,9 @@ final class WorkoutManager: NSObject {
     private(set) var finalSnapshot: RunSnapshot?
     /// Récords de la carrera que terminó (1.º, 2.º o 3.º), frente a la tabla del iPhone.
     private(set) var records: [RunRecordPlacement] = []
-    /// Kilómetros completos de esta carrera (para los récords; independiente de las vueltas configuradas).
-    @ObservationIgnored private var kilometerLaps = LapTracker(autoLapDistance: 1000)
+    /// Distancia acumulada con el tiempo de reloj (con pausas), para los mejores esfuerzos.
+    @ObservationIgnored private var effortTimeline: [EffortPoint] = []
+    @ObservationIgnored private var effortStart: Date?
 
     var phase: WorkoutPhase { tracker.phase }
     var isActive: Bool { warmup.isActive || phase == .preparing || phase == .running || phase == .paused || phase == .stopping }
@@ -366,7 +367,8 @@ final class WorkoutManager: NSObject {
         errorMessage = nil
         finalSnapshot = nil
         records = []
-        kilometerLaps = LapTracker(autoLapDistance: 1000)
+        effortTimeline = []
+        effortStart = nil
         shouldSave = true
         measuresRecovery = false
         cooldownRecoveryMinutes = nil
@@ -471,14 +473,17 @@ final class WorkoutManager: NSObject {
     private func recordKilometers(at date: Date) {
         guard !isCycling, !isWalking, tracker.phase == .running else { return }
         let snapshot = tracker.snapshot(at: date)
-        kilometerLaps.update(distance: snapshot.distance, elapsed: snapshot.elapsed)
+        let start = effortStart ?? date
+        effortStart = start
+        let point = EffortPoint(time: date.timeIntervalSince(start), distance: snapshot.distance)
+        if point.distance > (effortTimeline.last?.distance ?? -1) { effortTimeline.append(point) }
     }
 
     /// Compara la carrera con tus mejores marcas y avisa si queda 1.ª, 2.ª o 3.ª.
     private func evaluateRecords(id: UUID, start: Date?, date: Date) {
         guard !isCycling, !isWalking else { return }
         let snapshot = tracker.snapshot(at: date)
-        let entry = RunRecords.entry(id: id, date: start ?? date.addingTimeInterval(-snapshot.elapsed), distance: snapshot.distance, duration: snapshot.elapsed, kilometerSplits: RunRecords.kilometerDurations(kilometerLaps.laps), usesGPS: !isIndoor)
+        let entry = RunRecords.entry(id: id, date: start ?? date.addingTimeInterval(-snapshot.elapsed), distance: snapshot.distance, duration: snapshot.elapsed, timeline: isIndoor ? [] : effortTimeline)
         let store = RunSettingsStore.shared
         records = store.recordBoard.placements(for: entry).sorted { $0.rank < $1.rank }
         store.addRecord(entry)

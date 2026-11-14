@@ -2,9 +2,15 @@ import Foundation
 
 /// Categoría de récord personal de carrera.
 public enum RunRecordCategory: String, Codable, CaseIterable, Hashable, Identifiable, Sendable {
+    case best400
+    case best800
     case fastestKilometer
+    case bestMile
+    case best3K
     case fastest5K
     case fastest10K
+    case bestHalf
+    case bestMarathon
     case longestDistance
     case longestDuration
 
@@ -12,26 +18,38 @@ public enum RunRecordCategory: String, Codable, CaseIterable, Hashable, Identifi
 
     public var title: String {
         switch self {
+        case .best400: "400 m más rápidos"
+        case .best800: "800 m más rápidos"
         case .fastestKilometer: "Kilómetro más rápido"
+        case .bestMile: "Milla más rápida"
+        case .best3K: "3 km más rápidos"
         case .fastest5K: "5 km más rápidos"
         case .fastest10K: "10 km más rápidos"
+        case .bestHalf: "Media maratón más rápida"
+        case .bestMarathon: "Maratón más rápida"
         case .longestDistance: "Distancia más larga"
         case .longestDuration: "Carrera más larga en tiempo"
         }
     }
 
-    /// Kilómetros seguidos que forman el esfuerzo (solo las de tiempo).
-    public var kilometers: Int? {
+    /// Distancia del esfuerzo en metros (solo las de tiempo).
+    public var effortDistance: Double? {
         switch self {
-        case .fastestKilometer: 1
-        case .fastest5K: 5
-        case .fastest10K: 10
+        case .best400: 400
+        case .best800: 800
+        case .fastestKilometer: 1000
+        case .bestMile: 1609.344
+        case .best3K: 3000
+        case .fastest5K: 5000
+        case .fastest10K: 10_000
+        case .bestHalf: 21_097.5
+        case .bestMarathon: 42_195
         case .longestDistance, .longestDuration: nil
         }
     }
 
     /// Mayor es mejor (distancia y duración); en los tiempos, menor.
-    public var higherIsBetter: Bool { kilometers == nil }
+    public var higherIsBetter: Bool { effortDistance == nil }
 
     func isBetter(_ a: Double, than b: Double) -> Bool {
         higherIsBetter ? a > b : a < b
@@ -43,11 +61,29 @@ public struct RunRecordEntry: Codable, Hashable, Identifiable, Sendable {
     public let id: UUID
     public let date: Date
     public var values: [RunRecordCategory: Double]
+    /// Segundo de la carrera en que empieza cada mejor esfuerzo (desde el inicio, con pausas).
+    public var starts: [RunRecordCategory: Double]?
+    /// Pulso medio de cada mejor esfuerzo, si hay muestras.
+    public var heartRates: [RunRecordCategory: Double]?
 
-    public init(id: UUID, date: Date, values: [RunRecordCategory: Double]) {
+    public init(id: UUID, date: Date, values: [RunRecordCategory: Double], starts: [RunRecordCategory: Double]? = nil, heartRates: [RunRecordCategory: Double]? = nil) {
         self.id = id
         self.date = date
         self.values = values
+        self.starts = starts
+        self.heartRates = heartRates
+    }
+}
+
+/// Un punto de la carrera: segundos desde el inicio (reloj de pared, con
+/// pausas) y metros acumulados.
+public struct EffortPoint: Hashable, Sendable {
+    public let time: TimeInterval
+    public let distance: Double
+
+    public init(time: TimeInterval, distance: Double) {
+        self.time = time
+        self.distance = distance
     }
 }
 
@@ -104,64 +140,101 @@ public struct RunRecordBoard: Codable, Hashable, Sendable {
     }
 }
 
-/// Récords personales de carrera.
+/// Récords personales y mejores esfuerzos de carrera.
 ///
-/// - **Tiempos** (1, 5 y 10 km): la mejor suma de kilómetros **completos y
-///   seguidos** de los parciales, con el mismo método en el reloj y en el
-///   iPhone (vueltas automáticas de 1 km interpoladas, `LapTracker`). Es algo
-///   más prudente que buscar el mejor tramo en cualquier punto, y nunca
-///   inventa un tiempo más rápido que el que corriste.
+/// - **Mejores esfuerzos** (400 m, 800 m, 1 km, milla, 3 km, 5 km, 10 km,
+///   media y maratón): el tramo continuo más rápido de esa distancia en
+///   cualquier parte de la carrera, no solo en kilómetros enteros. Ventana
+///   deslizante sobre la distancia acumulada con interpolación lineal del
+///   instante de inicio: O(n) por distancia.
+/// - **Las pausas cuentan**: el tiempo es el del reloj (inicio a fin del tramo,
+///   con pausas). Quitar las pausas fabricaría récords de esfuerzo continuo
+///   que no existieron.
 /// - Solo carreras al aire libre con GPS (en cinta la distancia es estimada).
-///   Se descarta un kilómetro por debajo de 2:30 (salto del GPS).
-/// - **Distancia** y **duración**: de toda la carrera (también en cinta).
+///   La distancia sale del mismo filtro GPS que en vivo (saltos y precisión
+///   pobre descartados; una pérdida de señal no inventa el tramo).
+/// - **Calidad**: si la distancia del GPS se aparta más de un 8 % de la que
+///   guardó Salud, la carrera no cuenta para los tiempos (ninguna de las dos
+///   se da por buena). Un esfuerzo más rápido que 2:30 /km se toma como error.
+/// - Sin 100 ni 200 m: con el error del GPS por punto (varios metros), serían
+///   segundos de error.
+/// - **Distancia** y **duración**: de la carrera entera (también en cinta).
 /// - Puesto = 1 + carreras anteriores estrictamente mejores. Se avisa del
 ///   1.º, 2.º y 3.º solo si hay al menos tantas carreras anteriores como el
-///   puesto (ser 2.º de dos no es una marca) y al menos una.
+///   puesto (ser 2.º de dos no es una marca) y al menos una. Cada carrera
+///   aporta un solo esfuerzo por distancia (no se superponen en el ranking).
 public enum RunRecords {
-    public static let version = "1.0"
+    public static let version = "2.0"
     public static let podium = 3
-    public static let minimumKilometerSeconds: TimeInterval = 150
-    public static let maximumKilometerSeconds: TimeInterval = 1200
+    /// 2:30 /km.
+    public static let maximumEffortSpeed = 1000.0 / 150
+    public static let maximumDistanceMismatch = 0.08
     /// Carreras más cortas que esto no cuentan para distancia ni duración.
     public static let minimumDistance = 1000.0
 
-    /// Valores de una carrera. `kilometerSplits`: duración de cada kilómetro completo, en orden.
-    public static func entry(id: UUID, date: Date, distance: Double, duration: TimeInterval, kilometerSplits: [TimeInterval], usesGPS: Bool) -> RunRecordEntry {
+    /// Valores de una carrera. `timeline`: puntos con tiempo (con pausas) y
+    /// distancia acumulada; vacío en cinta o sin ruta.
+    public static func entry(id: UUID, date: Date, distance: Double, duration: TimeInterval, timeline: [EffortPoint], recordedDistance: Double? = nil) -> RunRecordEntry {
         var values: [RunRecordCategory: Double] = [:]
+        var starts: [RunRecordCategory: Double] = [:]
         if distance >= minimumDistance, duration > 0 {
             values[.longestDistance] = distance
             values[.longestDuration] = duration
         }
-        if usesGPS {
-            let plausible = !kilometerSplits.contains { $0 < minimumKilometerSeconds || $0 > maximumKilometerSeconds }
-            if plausible {
-                for category in RunRecordCategory.allCases {
-                    guard let kilometers = category.kilometers, let best = bestSum(kilometerSplits, count: kilometers) else { continue }
-                    values[category] = best
-                }
+        let gpsDistance = timeline.last?.distance ?? 0
+        let consistent = recordedDistance.map { recorded in
+            recorded > 0 && abs(gpsDistance - recorded) / recorded <= maximumDistanceMismatch
+        } ?? true
+        if timeline.count > 1, consistent {
+            for category in RunRecordCategory.allCases {
+                guard let target = category.effortDistance, let effort = bestEffort(timeline, distance: target) else { continue }
+                values[category] = effort.duration
+                starts[category] = effort.start
             }
         }
-        return RunRecordEntry(id: id, date: date, values: values)
+        return RunRecordEntry(id: id, date: date, values: values, starts: starts.isEmpty ? nil : starts)
     }
 
-    /// Duraciones de los kilómetros completos de unos parciales.
-    public static func kilometerDurations(_ splits: [Split]) -> [TimeInterval] {
-        splits.filter { $0.isComplete && abs($0.distance - 1000) < 1 }.map(\.duration)
-    }
-
-    public static func kilometerDurations(_ laps: [Lap]) -> [TimeInterval] {
-        laps.filter { abs($0.distance - 1000) < 1 }.map(\.duration)
-    }
-
-    static func bestSum(_ values: [TimeInterval], count: Int) -> TimeInterval? {
-        guard count > 0, values.count >= count else { return nil }
-        var sum = values.prefix(count).reduce(0, +)
-        var best = sum
-        for index in count..<values.count {
-            sum += values[index] - values[index - count]
-            best = min(best, sum)
+    /// Tramo continuo más rápido de `distance` metros: (duración, inicio).
+    public static func bestEffort(_ timeline: [EffortPoint], distance target: Double) -> (duration: TimeInterval, start: TimeInterval)? {
+        guard target > 0, let last = timeline.last, last.distance >= target else { return nil }
+        var best: (duration: TimeInterval, start: TimeInterval)?
+        var i = 0
+        for j in timeline.indices {
+            let end = timeline[j]
+            guard end.distance >= target else { continue }
+            let startDistance = end.distance - target
+            // El último punto con distancia ≤ inicio del tramo.
+            while i + 1 < j && timeline[i + 1].distance <= startDistance { i += 1 }
+            let a = timeline[i], b = timeline[min(i + 1, j)]
+            let span = b.distance - a.distance
+            let fraction = span > 0 ? min(max((startDistance - a.distance) / span, 0), 1) : 0
+            let start = a.time + (b.time - a.time) * fraction
+            let duration = end.time - start
+            guard duration > 0, target / duration <= maximumEffortSpeed else { continue }
+            if best == nil || duration < best!.duration { best = (duration, start) }
         }
         return best
+    }
+
+    /// Línea de tiempo (con pausas) con el mismo filtro GPS que en vivo.
+    public static func timeline(from route: [LocationSample]) -> [EffortPoint] {
+        let sorted = route.sorted { $0.timestamp < $1.timestamp }
+        guard let first = sorted.first else { return [] }
+        var gps = GPSDistanceAccumulator()
+        var points: [EffortPoint] = []
+        for sample in sorted where gps.add(sample) {
+            let point = EffortPoint(time: sample.timestamp.timeIntervalSince(first.timestamp), distance: gps.distance)
+            if point.distance > (points.last?.distance ?? -1) || points.isEmpty { points.append(point) }
+        }
+        return points
+    }
+
+    /// Pulso medio de un tramo [inicio, inicio + duración] (desde el comienzo de la carrera).
+    public static func heartRate(_ samples: [HeartRatePoint], runStart: Date, start: TimeInterval, duration: TimeInterval) -> Double? {
+        let from = runStart.addingTimeInterval(start), to = from.addingTimeInterval(duration)
+        let values = samples.filter { $0.date >= from && $0.date <= to && $0.bpm > 0 }.map(\.bpm)
+        return values.count >= 3 ? values.reduce(0, +) / Double(values.count) : nil
     }
 
     static func placement(category: RunRecordCategory, value: Double, better: Int, previousCount: Int, previousBest: Double?) -> RunRecordPlacement? {
@@ -180,6 +253,29 @@ public enum RunRecords {
             let best = previous.sorted { category.isBetter($0, than: $1) }.first
             return placement(category: category, value: value, better: better, previousCount: previous.count, previousBest: best)
         }
+    }
+
+    /// La mejor marca de cada categoría entre dos fechas (récord del año, de 90 días…).
+    public static func bests(_ entries: [RunRecordEntry], from start: Date, to end: Date = .distantFuture) -> [RunRecordCategory: RunRecordBoard.Mark] {
+        var result: [RunRecordCategory: RunRecordBoard.Mark] = [:]
+        for entry in entries where entry.date >= start && entry.date <= end {
+            for (category, value) in entry.values {
+                if let current = result[category], !category.isBetter(value, than: current.value) { continue }
+                result[category] = RunRecordBoard.Mark(id: entry.id, date: entry.date, value: value)
+            }
+        }
+        return result
+    }
+
+    /// Cronología de un récord: cada marca que superó a todas las anteriores.
+    public static func progression(_ category: RunRecordCategory, entries: [RunRecordEntry]) -> [RunRecordBoard.Mark] {
+        var marks: [RunRecordBoard.Mark] = []
+        for entry in entries.sorted(by: { $0.date < $1.date }) {
+            guard let value = entry.values[category] else { continue }
+            if let last = marks.last, !category.isBetter(value, than: last.value) { continue }
+            marks.append(RunRecordBoard.Mark(id: entry.id, date: entry.date, value: value))
+        }
+        return marks
     }
 
     /// Tabla con las 3 mejores de cada categoría.

@@ -148,6 +148,7 @@ struct DataExportView: View {
         // Análisis aeróbico al día (no en demo: los datos de ejemplo no son tuyos).
         if !model.isDemo {
             await AerobicStore.shared.refresh(runs: workouts, provider: provider)
+            await RunRecordStore.shared.refresh(runs: workouts, provider: provider)
         }
         let aerobic = AerobicStore.shared.observations
         var extras: [UUID: DataExport.WorkoutExtra] = [:]
@@ -195,6 +196,10 @@ struct DataExportView: View {
         var extraFiles: [(URL, String)] = []
         if !attribution.isEmpty {
             extraFiles.append((folder.appendingPathComponent("halsyn-sueno-episodios-\(stamp).csv"), DataExport.sleepEpisodesCSV(attribution, calendar: calendar)))  // nolocalize
+        }
+        let effortEntries = RunRecordStore.shared.validEntries
+        if !effortEntries.isEmpty {
+            extraFiles.append((folder.appendingPathComponent("halsyn-mejores-esfuerzos-\(stamp).csv"), DataExport.bestEffortsCSV(effortEntries, marks: marks, calendar: calendar)))  // nolocalize
         }
         if let performance {
             extraFiles.append((folder.appendingPathComponent("halsyn-pruebas-\(stamp).csv"), DataExport.evidenceCSV(performance, results: FitnessStore.shared.results, calendar: calendar)))  // nolocalize
@@ -267,6 +272,19 @@ struct DataExportView: View {
             lines.append("- " + String(localized: "Constancia (ConsistencyEngine \(ConsistencyEngine.version)): \(scoreText) de 100 = \(partsText). Semanas seguidas: \(streakText); pausas de 10 días o más en 12 semanas: \(gapsText)."))
         } else {
             lines.append("- " + String(localized: "Constancia: hacen falta 4 semanas con datos. Semanas seguidas: \(streakText)."))
+        }
+
+        let recordEntries = RunRecordStore.shared.validEntries
+        if !recordEntries.isEmpty {
+            let yearStart = Calendar.current.date(from: Calendar.current.dateComponents([.year], from: .now)) ?? .now
+            let yearBests = RunRecords.bests(recordEntries, from: yearStart)
+            lines.append("- " + String(localized: "Récords y mejores esfuerzos (RunRecords \(RunRecords.version), tramo continuo más rápido de cada distancia, con pausas):"))
+            for (category, marks) in RunRecordStore.shared.podium {
+                let title = RunRecordText.title(category)
+                let topText = marks.map { "\(RunRecordText.value(category, $0.value, unit: unit)) (\($0.date.formatted(date: .numeric, time: .omitted)))" }.joined(separator: " · ")  // nolocalize
+                let yearText = yearBests[category].map { RunRecordText.value(category, $0.value, unit: unit) } ?? "—"  // nolocalize
+                lines.append("  - " + String(localized: "\(title): \(topText). Mejor del año: \(yearText)"))
+            }
         }
 
         let dynamics = RunningDynamicsAnalysis.summaries(runs.filter { $0.activity == .outdoorRun }, today: .now, calendar: .current)
@@ -515,6 +533,7 @@ struct DataExportView: View {
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
         lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo."))
         lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
+        lines.append("- " + String(localized: "Mejores esfuerzos (si hay): una fila por carrera y distancia con el tramo continuo más rápido (segundos, con pausas), el segundo de la carrera en que empieza, el pulso medio del tramo, el puesto que tuvo el día que se corrió (1–3) y si fue test o competición."))
         lines.append("- " + String(localized: "Formato 5 (columnas nuevas al final de entrenamientos): «stride_length_m», «ground_contact_ms», «vertical_oscillation_cm» y «running_power_w» (medias que guardó el Apple Watch; vacío si no las midió) y, en carreras al aire libre con GPS y pulso, «steady_min» (minutos a ritmo estable usados), «efficiency_m_min_per_bpm» (velocidad ÷ pulso en esos tramos) y «decoupling_pct» (desacople en carreras regulares de 30 min o más)."))
         lines.append("- " + String(localized: "Formato 4 (columnas nuevas al final): entrenamientos con «rpe» (esfuerzo percibido 1–10 que anotaste), «perceived_intensity» (según el RPE) y «plan_compliance» (as_planned, harder, easier); diario con «main_sleep_attributed_h» y «naps_attributed_h» (sueño principal al día en que te despiertas, siestas al día en que empiezan), «recovery_mean» (media ponderada antes de la agregación prudente), la puntuación de cada factor y «recovery_warnings». «sleep_h» mantiene su significado anterior."))
         lines.append("- " + String(localized: "Episodios de sueño (si hay): cada episodio con su hora real de inicio y fin, horas dormidas, tipo (main o nap) y el día al que se atribuye."))

@@ -308,6 +308,32 @@ public enum DataExport {
         }
     }
 
+    // MARK: Mejores esfuerzos
+
+    /// Una fila por carrera y distancia: el mejor esfuerzo de esa carrera, su
+    /// puesto el día que se corrió (1–3, si lo tuvo) y si fue test o competición.
+    public static func bestEffortsCSV(_ entries: [RunRecordEntry], marks: [UUID: String] = [:], calendar: Calendar) -> String {
+        var rows = ["date,record_id,category,value,unit,start_offset_s,avg_hr_bpm,rank_at_the_time,marked_as"]  // nolocalize
+        for entry in entries.sorted(by: { $0.date < $1.date }) {
+            let placements = Dictionary(RunRecords.placements(of: entry, among: entries).map { ($0.category, $0.rank) }, uniquingKeysWith: { first, _ in first })
+            for category in RunRecordCategory.allCases {
+                guard let value = entry.values[category] else { continue }
+                rows.append([
+                    isoDateTime(entry.date, calendar: calendar),
+                    recordID(entry.id),
+                    category.rawValue,
+                    number(value, digits: category == .longestDistance ? 0 : 1),
+                    category == .longestDistance ? "m" : "s",
+                    entry.starts?[category].map { number($0, digits: 0) } ?? "",
+                    entry.heartRates?[category].map { number($0, digits: 0) } ?? "",
+                    placements[category].map(String.init) ?? "",
+                    marks[entry.id] ?? "",
+                ].joined(separator: ","))
+            }
+        }
+        return rows.joined(separator: "\n") + "\n"
+    }
+
     // MARK: Sueño por episodios
 
     /// Un episodio por fila con su hora real y el día al que se atribuye.

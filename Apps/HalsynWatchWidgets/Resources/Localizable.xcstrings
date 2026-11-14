@@ -681,6 +681,23 @@
         }
       }
     },
+    "%@: %@. Mejor del año: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@. Best this year: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@. Bäst i år: %@"
+          }
+        }
+      }
+    },
     "%@: n = %@ · MAE %@ · sesgo %@ · cobertura del rango del 80 %: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -1225,6 +1242,23 @@
         }
       }
     },
+    "3 km más rápidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest 3 km"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste 3 km"
+          }
+        }
+      }
+    },
     "3 × 10 por pierna": {
       "extractionState": "manual",
       "localizations": {
@@ -1340,6 +1374,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "4 veckor"
+          }
+        }
+      }
+    },
+    "400 m más rápidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest 400 m"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste 400 m"
           }
         }
       }
@@ -1476,6 +1527,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "8 veckor"
+          }
+        }
+      }
+    },
+    "800 m más rápidos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest 800 m"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste 800 m"
           }
         }
       }
@@ -4383,6 +4451,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varje dag"
+          }
+        }
+      }
+    },
+    "Cada fila es una marca que superó a todas las anteriores.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each row is a mark that beat all the earlier ones."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varje rad är en tid som slog alla tidigare."
           }
         }
       }
@@ -7834,6 +7919,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Skapa plan"
+          }
+        }
+      }
+    },
+    "Cronología del récord": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record timeline"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rekordets historik"
           }
         }
       }
@@ -12785,6 +12887,23 @@
         }
       }
     },
+    "Este año, 90 días y cronología": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This year, 90 days and timeline"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I år, 90 dagar och historik"
+          }
+        }
+      }
+    },
     "Este dispositivo no tiene Bluetooth de bajo consumo.": {
       "extractionState": "manual",
       "localizations": {
@@ -16984,23 +17103,6 @@
         }
       }
     },
-    "Kilómetro, 5 km y 10 km: la mejor suma de kilómetros completos seguidos de cada carrera al aire libre con GPS (las de cinta no cuentan para los tiempos; un kilómetro por debajo de 2:30 se toma como salto del GPS). Distancia y duración: de la carrera entera. Sin duplicados ni carreras que excluiste. El reloj te avisa al terminar si una carrera queda 1.ª, 2.ª o 3.ª.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilometre, 5 km and 10 km: the best sum of consecutive full kilometres of each outdoor run with GPS (treadmill runs do not count for times; a kilometre under 2:30 is treated as a GPS jump). Distance and duration: of the whole run. No duplicates or runs you excluded. The watch tells you when you finish if a run ranks 1st, 2nd or 3rd."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilometer, 5 km och 10 km: den bästa summan av hela kilometrar i följd från varje utomhuspass med GPS (löpband räknas inte för tider; en kilometer under 2:30 räknas som ett GPS-hopp). Distans och tid: för hela passet. Utan dubbletter eller pass du uteslutit. Klockan säger till när du är klar om ett pass hamnar på 1:a, 2:a eller 3:e plats."
-          }
-        }
-      }
-    },
     "Kilómetros": {
       "extractionState": "manual",
       "localizations": {
@@ -18735,6 +18837,23 @@
         }
       }
     },
+    "Maratón más rápida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest marathon"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste maraton"
+          }
+        }
+      }
+    },
     "Marca lo que hubo hoy. Con unas semanas, INSIKT te muestra cómo influye en tu sueño, tu HRV y tu pulso en reposo.": {
       "extractionState": "manual",
       "localizations": {
@@ -19177,6 +19296,23 @@
         }
       }
     },
+    "Media maratón más rápida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest half marathon"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste halvmaraton"
+          }
+        }
+      }
+    },
     "Media ponderada de %lld pruebas; la más reciente, del %@": {
       "extractionState": "manual",
       "localizations": {
@@ -19398,6 +19534,40 @@
         }
       }
     },
+    "Mejor de los últimos 90 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best of the last 90 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bäst de senaste 90 dagarna"
+          }
+        }
+      }
+    },
+    "Mejor del año": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best this year"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bäst i år"
+          }
+        }
+      }
+    },
     "Mejor esfuerzo de tus entrenamientos de las últimas 6 semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -19466,6 +19636,23 @@
         }
       }
     },
+    "Mejora acumulada: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total improvement: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total förbättring: %@"
+          }
+        }
+      }
+    },
     "Mejora habitual: como mucho 1 punto de VDOT cada 4 a 6 semanas de entrenamiento constante (pauta de Daniels). Ambicioso es hasta el doble de rápido. La mejora real varía mucho entre personas.": {
       "extractionState": "manual",
       "localizations": {
@@ -19530,6 +19717,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bästa 20 min"
+          }
+        }
+      }
+    },
+    "Mejores esfuerzos (si hay): una fila por carrera y distancia con el tramo continuo más rápido (segundos, con pausas), el segundo de la carrera en que empieza, el pulso medio del tramo, el puesto que tuvo el día que se corrió (1–3) y si fue test o competición.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best efforts (if any): one row per run and distance with the fastest continuous stretch (seconds, including pauses), the second of the run where it starts, the average heart rate of the stretch, its rank on the day it was run (1–3) and whether it was a test or a race."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa insatser (om sådana finns): en rad per pass och distans med den snabbaste sammanhängande sträckan (sekunder, med pauser), sekunden i passet där den börjar, sträckans medelpuls, placeringen den dag den sprangs (1–3) och om det var ett test eller ett lopp."
+          }
+        }
+      }
+    },
+    "Mejores esfuerzos: el tramo continuo más rápido de cada distancia en cualquier parte de una carrera al aire libre con GPS (un 5 km puede estar dentro de una carrera de 8 km). El tiempo incluye las pausas: quitarlas inventaría un esfuerzo continuo que no existió. No cuentan las carreras en cinta, las que tienen una distancia GPS que se aparta más de un 8 % de la de Salud ni los tramos más rápidos que 2:30 /km (saltos del GPS). Sin 100 ni 200 m: el error del GPS sería de segundos. Distancia y duración: de la carrera entera. Sin duplicados ni carreras que excluiste. El reloj te avisa al terminar si una carrera queda 1.ª, 2.ª o 3.ª.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best efforts: the fastest continuous stretch of each distance anywhere in an outdoor run with GPS (a 5 km can be inside an 8 km run). Time includes pauses: removing them would invent a continuous effort that never happened. Treadmill runs, runs whose GPS distance differs by more than 8 % from the Health distance, and stretches faster than 2:30 /km (GPS jumps) do not count. No 100 or 200 m: GPS error would be seconds. Distance and duration: of the whole run. Without duplicates or runs you excluded. The watch tells you when you finish if a run ranks 1st, 2nd or 3rd."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bästa insatser: den snabbaste sammanhängande sträckan för varje distans var som helst i ett utomhuspass med GPS (en 5 km kan ligga inne i ett pass på 8 km). Tiden inkluderar pauser: att ta bort dem skulle hitta på en sammanhängande insats som inte fanns. Löpbandspass, pass där GPS-distansen avviker mer än 8 % från Hälsas och sträckor snabbare än 2:30 /km (GPS-hopp) räknas inte. Inga 100 eller 200 m: GPS-felet skulle vara sekunder. Distans och tid: för hela passet. Utan dubbletter eller pass du uteslutit. Klockan säger till när du är klar om ett pass hamnar på 1:a, 2:a eller 3:e plats."
           }
         }
       }
@@ -19785,6 +20006,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mile %lld"
+          }
+        }
+      }
+    },
+    "Milla más rápida": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest mile"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snabbaste mile"
           }
         }
       }
@@ -28306,6 +28544,23 @@
         }
       }
     },
+    "Récords y mejores esfuerzos (RunRecords %@, tramo continuo más rápido de cada distancia, con pausas):": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records and best efforts (RunRecords %@, fastest continuous stretch of each distance, including pauses):"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rekord och bästa insatser (RunRecords %@, snabbaste sammanhängande sträcka för varje distans, med pauser):"
+          }
+        }
+      }
+    },
     "SERIE": {
       "extractionState": "manual",
       "localizations": {
@@ -30342,6 +30597,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inte angivet"
+          }
+        }
+      }
+    },
+    "Sin marca en los últimos 90 días.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No mark in the last 90 days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen tid de senaste 90 dagarna."
+          }
+        }
+      }
+    },
+    "Sin marca este año.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No mark this year."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen tid i år."
           }
         }
       }
@@ -36666,6 +36955,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "löpband: uppskattad distans"
+          }
+        }
+      }
+    },
+    "en competición": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "in a race"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "i ett lopp"
+          }
+        }
+      }
+    },
+    "en un test": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "in a test"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "i ett test"
           }
         }
       }

@@ -423,3 +423,29 @@ Se usan solo carreras al aire libre: en cinta la velocidad es estimada. Los valo
 **Lenguaje neutro.** «Más» o «menos», nunca «mejor»: no hay una técnica óptima universal.
 
 **Velocidad por vatio** (m/min por W) es un indicador indirecto. No mide la economía metabólica de carrera, que necesita análisis de gases.
+
+
+## Mejores esfuerzos (`RunRecords` 2.0, 0.10.0 (126))
+
+Reemplaza a la 1.0, que solo sumaba kilómetros enteros.
+
+**Distancias.** 400 m, 800 m, 1 km, milla, 3 km, 5 km, 10 km, media y maratón, más la distancia y la duración más largas. No hay 100 ni 200 m: el error del GPS por punto sería de segundos.
+
+**Método.**
+- Se busca el tramo continuo más rápido de cada distancia en cualquier parte de la carrera.
+- Ventana deslizante sobre la distancia acumulada, con interpolación lineal del inicio: O(n) por distancia.
+- El tiempo es el del reloj, con pausas. Quitarlas fabricaría un esfuerzo continuo que no existió.
+- La distancia sale del mismo filtro GPS que en vivo: descarta saltos y precisión pobre, y una pérdida de señal no inventa el tramo.
+
+**Calidad.** Se descartan, sin dar por buena ninguna de las dos fuentes:
+- carreras con distancia GPS a más de un 8 % de la de Salud;
+- tramos más rápidos que 2:30 /km;
+- carreras en cinta.
+
+**Ranking.** Cada carrera aporta un solo esfuerzo por distancia, así que no hay solapes. Se guardan el inicio del tramo y su pulso medio.
+
+**Además se calculan:** mejor del año, mejor de los últimos 90 días y cronología de cada récord (cada marca que superó a todas las anteriores, y la mejora acumulada). Las marcas hechas en un test o una competición se señalan; un esfuerzo de entrenamiento no se trata como máximo.
+
+**Reloj.** Usa el mismo método con la distancia en vivo y el tiempo de reloj. Los récords guardados con la 1.0 se recalculan.
+
+**Exportación.** `halsyn-mejores-esfuerzos.csv` y una línea por distancia en el resumen.

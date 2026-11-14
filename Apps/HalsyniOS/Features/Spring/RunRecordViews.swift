@@ -8,7 +8,8 @@ import SwiftUI
 @Observable
 final class RunRecordStore {
     static let shared = RunRecordStore()
-    static let key = "halsyn.runRecordEntries"
+    /// v2 (0.10.0 (126)): mejores esfuerzos en cualquier tramo; las de la v1 (km enteros) se recalculan.
+    static let key = "halsyn.runRecordEntries.v2"
     /// Carreras nuevas que se analizan en cada pasada (cada una lee su ruta de Salud).
     static let batchSize = 80
 
@@ -25,7 +26,7 @@ final class RunRecordStore {
         validIDs = Set(entries.keys)
     }
 
-    private var validEntries: [RunRecordEntry] {
+    var validEntries: [RunRecordEntry] {
         entries.values.filter { validIDs.contains($0.id) }
     }
 
@@ -38,14 +39,27 @@ final class RunRecordStore {
         validIDs = Set(runs.map(\.id))
         let missing = runs.filter { entries[$0.id] == nil }.sorted { $0.start > $1.start }.prefix(Self.batchSize)
         for run in missing {
-            var splits: [TimeInterval] = []
-            var usesGPS = false
+            var timeline: [EffortPoint] = []
+            var heartRate: [HeartRatePoint] = []
+            var routeStart: Date?
             if run.activity == .outdoorRun {
                 let detail = await provider.workoutDetail(for: run)
-                usesGPS = detail.route.count > 1
-                splits = RunRecords.kilometerDurations(WorkoutAnalysis.splits(from: detail.route, splitDistance: 1000))
+                timeline = RunRecords.timeline(from: detail.route)
+                heartRate = detail.heartRate
+                routeStart = detail.route.map(\.timestamp).min()
             }
-            entries[run.id] = RunRecords.entry(id: run.id, date: run.start, distance: run.distanceMeters ?? 0, duration: run.duration, kilometerSplits: splits, usesGPS: usesGPS)
+            var entry = RunRecords.entry(id: run.id, date: run.start, distance: run.distanceMeters ?? 0, duration: run.duration, timeline: timeline, recordedDistance: run.distanceMeters)
+            // Pulso medio de cada mejor esfuerzo (desde el primer punto de la ruta).
+            if let starts = entry.starts, let routeStart {
+                var rates: [RunRecordCategory: Double] = [:]
+                for (category, start) in starts {
+                    if let duration = entry.values[category], let bpm = RunRecords.heartRate(heartRate, runStart: routeStart, start: start, duration: duration) {
+                        rates[category] = bpm
+                    }
+                }
+                entry.heartRates = rates.isEmpty ? nil : rates
+            }
+            entries[run.id] = entry
         }
         if !missing.isEmpty, let data = try? JSONEncoder().encode(Array(entries.values)) {
             defaults.set(data, forKey: Self.key)
@@ -175,27 +189,137 @@ struct RunRecordsView: View {
                 let (category, marks) = item
                 Section(RunRecordText.title(category)) {
                     ForEach(Array(marks.enumerated()), id: \.offset) { index, mark in
-                        LabeledContent {
-                            Text(verbatim: RunRecordText.value(category, mark.value, unit: unitSystem))
-                                .monospacedDigit()
-                        } label: {
-                            Label {
-                                Text(mark.date, format: .dateTime.day().month(.abbreviated).year())
-                            } icon: {
-                                Image(systemName: index == 0 ? "trophy.fill" : "medal.fill")
-                                    .foregroundStyle(RunRecordText.medal(index + 1))
-                            }
-                        }
+                        RunRecordMarkRow(category: category, mark: mark, rank: index + 1, unit: unitSystem)
+                    }
+                    NavigationLink {
+                        RunRecordDetailView(category: category)
+                    } label: {
+                        Text("Este año, 90 días y cronología")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynAccentText)
                     }
                 }
             }
             Section {
-                Text("Kilómetro, 5 km y 10 km: la mejor suma de kilómetros completos seguidos de cada carrera al aire libre con GPS (las de cinta no cuentan para los tiempos; un kilómetro por debajo de 2:30 se toma como salto del GPS). Distancia y duración: de la carrera entera. Sin duplicados ni carreras que excluiste. El reloj te avisa al terminar si una carrera queda 1.ª, 2.ª o 3.ª.")
+                Text("Mejores esfuerzos: el tramo continuo más rápido de cada distancia en cualquier parte de una carrera al aire libre con GPS (un 5 km puede estar dentro de una carrera de 8 km). El tiempo incluye las pausas: quitarlas inventaría un esfuerzo continuo que no existió. No cuentan las carreras en cinta, las que tienen una distancia GPS que se aparta más de un 8 % de la de Salud ni los tramos más rápidos que 2:30 /km (saltos del GPS). Sin 100 ni 200 m: el error del GPS sería de segundos. Distancia y duración: de la carrera entera. Sin duplicados ni carreras que excluiste. El reloj te avisa al terminar si una carrera queda 1.ª, 2.ª o 3.ª.")
                     .font(.caption2)
+                    .foregroundStyle(.halsynSecondaryText)
+                Text(verbatim: "RunRecords \(RunRecords.version)")  // nolocalize
+                    .font(.caption2.monospaced())
                     .foregroundStyle(.halsynSecondaryText)
             }
         }
         .navigationTitle("Récords")
+        .navigationBarTitleDisplayMode(.inline)
+        .scrollContentBackground(.hidden)
+        .halsynScreenBackground()
+    }
+}
+
+/// Una marca con su fecha, el pulso del tramo y si fue en un test o una competición.
+struct RunRecordMarkRow: View {
+    let category: RunRecordCategory
+    let mark: RunRecordBoard.Mark
+    let rank: Int?
+    let unit: UnitSystem
+
+    var body: some View {
+        let entry = RunRecordStore.shared.entries[mark.id]
+        let marked = FitnessStore.shared.results.first { $0.workoutID == mark.id }?.kind
+        LabeledContent {
+            Text(verbatim: RunRecordText.value(category, mark.value, unit: unit))
+                .monospacedDigit()
+        } label: {
+            Label {
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(mark.date, format: .dateTime.day().month(.abbreviated).year())
+                    let details = [
+                        entry?.heartRates?[category].map { "\(Int($0.rounded())) lpm" },  // nolocalize
+                        marked.map { $0 == .race ? String(localized: "en competición") : String(localized: "en un test") },
+                    ].compactMap { $0 }
+                    if !details.isEmpty {
+                        Text(verbatim: details.joined(separator: " · "))
+                            .font(.caption2)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                }
+            } icon: {
+                if let rank {
+                    Image(systemName: rank == 1 ? "trophy.fill" : "medal.fill")
+                        .foregroundStyle(RunRecordText.medal(rank))
+                } else {
+                    Image(systemName: "calendar")
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+            }
+        }
+    }
+}
+
+/// Una distancia: récord del año, de 90 días y cómo fue bajando la marca.
+struct RunRecordDetailView: View {
+    let category: RunRecordCategory
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+
+    var body: some View {
+        let entries = RunRecordStore.shared.validEntries
+        let calendar = Calendar.current
+        let yearStart = calendar.date(from: calendar.dateComponents([.year], from: .now)) ?? .now
+        let ninety = calendar.date(byAdding: .day, value: -90, to: .now) ?? .now
+        let progression = RunRecords.progression(category, entries: entries)
+        Form {
+            Section {
+                if let mark = RunRecords.bests(entries, from: yearStart)[category] {
+                    RunRecordMarkRow(category: category, mark: mark, rank: nil, unit: unitSystem)
+                } else {
+                    Text("Sin marca este año.").font(.halsynCaption).foregroundStyle(.halsynSecondaryText)
+                }
+            } header: {
+                Text("Mejor del año")
+            }
+            Section {
+                if let mark = RunRecords.bests(entries, from: ninety)[category] {
+                    RunRecordMarkRow(category: category, mark: mark, rank: nil, unit: unitSystem)
+                } else {
+                    Text("Sin marca en los últimos 90 días.").font(.halsynCaption).foregroundStyle(.halsynSecondaryText)
+                }
+            } header: {
+                Text("Mejor de los últimos 90 días")
+            }
+            if !progression.isEmpty {
+                Section {
+                    ForEach(Array(progression.enumerated().reversed()), id: \.offset) { index, mark in
+                        LabeledContent {
+                            VStack(alignment: .trailing, spacing: 1) {
+                                Text(verbatim: RunRecordText.value(category, mark.value, unit: unitSystem))
+                                    .monospacedDigit()
+                                if index > 0 {
+                                    let previous = progression[index - 1].value
+                                    let gain = category.higherIsBetter ? mark.value - previous : previous - mark.value
+                                    // Tiempos: cuánto bajó; distancia y duración: cuánto subió.
+                                    Text(verbatim: (category.higherIsBetter ? "+" : "−") + RunRecordText.value(category, gain, unit: unitSystem))  // nolocalize
+                                        .font(.caption2.monospacedDigit())
+                                        .foregroundStyle(.halsynPositive)
+                                }
+                            }
+                        } label: {
+                            Text(mark.date, format: .dateTime.day().month(.abbreviated).year())
+                        }
+                    }
+                    if let first = progression.first, let last = progression.last, progression.count > 1 {
+                        let total = category.higherIsBetter ? last.value - first.value : first.value - last.value
+                        let totalText = RunRecordText.value(category, total, unit: unitSystem)
+                        Text("Mejora acumulada: \(totalText)")
+                            .font(.halsynCaption.weight(.semibold))
+                    }
+                } header: {
+                    Text("Cronología del récord")
+                } footer: {
+                    Text("Cada fila es una marca que superó a todas las anteriores.")
+                }
+            }
+        }
+        .navigationTitle(Text(verbatim: RunRecordText.title(category)))
         .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
         .halsynScreenBackground()
