@@ -10,14 +10,11 @@ final class RunRecordStore {
     static let shared = RunRecordStore()
     /// v2 (0.10.0 (126)): mejores esfuerzos en cualquier tramo; las de la v1 (km enteros) se recalculan.
     static let key = "halsyn.runRecordEntries.v2"
-    /// Carreras nuevas que se analizan en cada pasada (cada una lee su ruta de Salud).
-    static let batchSize = 80
 
     private(set) var entries: [UUID: RunRecordEntry]
     /// Carreras válidas (sin duplicados ni excluidas) de la última pasada.
     private(set) var validIDs: Set<UUID> = []
     @ObservationIgnored private let defaults: UserDefaults
-    @ObservationIgnored private var refreshing = false
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -30,40 +27,33 @@ final class RunRecordStore {
         entries.values.filter { validIDs.contains($0.id) }
     }
 
-    /// Calcula los récords de las carreras que faltan y actualiza la tabla del reloj.
+    /// Calcula lo que falta (récords, análisis aeróbico y recorridos) leyendo cada carrera una sola vez.
     func refresh(runs allRuns: [WorkoutSummary], provider: any HealthDataProviding) async {
-        guard !refreshing else { return }
-        refreshing = true
-        defer { refreshing = false }
-        let runs = WorkoutQualityStore.shared.clean(allRuns.filter(\.activity.isRun))
-        validIDs = Set(runs.map(\.id))
-        let missing = runs.filter { entries[$0.id] == nil }.sorted { $0.start > $1.start }.prefix(Self.batchSize)
-        for run in missing {
-            var timeline: [EffortPoint] = []
-            var heartRate: [HeartRatePoint] = []
-            var routeStart: Date?
-            if run.activity == .outdoorRun {
-                let detail = await provider.workoutDetail(for: run)
-                timeline = RunRecords.timeline(from: detail.route)
-                heartRate = detail.heartRate
-                routeStart = detail.route.map(\.timestamp).min()
-            }
-            var entry = RunRecords.entry(id: run.id, date: run.start, distance: run.distanceMeters ?? 0, duration: run.duration, timeline: timeline, recordedDistance: run.distanceMeters)
-            // Pulso medio de cada mejor esfuerzo (desde el primer punto de la ruta).
-            if let starts = entry.starts, let routeStart {
-                var rates: [RunRecordCategory: Double] = [:]
-                for (category, start) in starts {
-                    if let duration = entry.values[category], let bpm = RunRecords.heartRate(heartRate, runStart: routeStart, start: start, duration: duration) {
-                        rates[category] = bpm
-                    }
+        await RunDetailPipeline.refresh(runs: allRuns, provider: provider)
+    }
+
+    func setValid(_ ids: Set<UUID>) { validIDs = ids }
+    func needs(_ id: UUID) -> Bool { entries[id] == nil }
+
+    /// Récords de una carrera; `detail` = ruta y pulso (nil en cinta).
+    func ingest(_ run: WorkoutSummary, detail: WorkoutDetailData?) {
+        let timeline = detail.map { RunRecords.timeline(from: $0.route) } ?? []
+        var entry = RunRecords.entry(id: run.id, date: run.start, distance: run.distanceMeters ?? 0, duration: run.duration, timeline: timeline, recordedDistance: run.distanceMeters)
+        // Pulso medio de cada mejor esfuerzo (desde el primer punto de la ruta).
+        if let starts = entry.starts, let detail, let routeStart = detail.route.map(\.timestamp).min() {
+            var rates: [RunRecordCategory: Double] = [:]
+            for (category, start) in starts {
+                if let duration = entry.values[category], let bpm = RunRecords.heartRate(detail.heartRate, runStart: routeStart, start: start, duration: duration) {
+                    rates[category] = bpm
                 }
-                entry.heartRates = rates.isEmpty ? nil : rates
             }
-            entries[run.id] = entry
+            entry.heartRates = rates.isEmpty ? nil : rates
         }
-        if !missing.isEmpty, let data = try? JSONEncoder().encode(Array(entries.values)) {
-            defaults.set(data, forKey: Self.key)
-        }
+        entries[run.id] = entry
+    }
+
+    func save() {
+        if let data = try? JSONEncoder().encode(Array(entries.values)) { defaults.set(data, forKey: Self.key) }
         RunSettingsStore.shared.shareRecords(RunRecords.board(validEntries))
     }
 
@@ -233,7 +223,7 @@ struct RunRecordMarkRow: View {
             Label {
                 VStack(alignment: .leading, spacing: 1) {
                     Text(mark.date, format: .dateTime.day().month(.abbreviated).year())
-                    let details = [
+                    let details: [String] = [
                         entry?.heartRates?[category].map { "\(Int($0.rounded())) lpm" },  // nolocalize
                         marked.map { $0 == .race ? String(localized: "en competición") : String(localized: "en un test") },
                     ].compactMap { $0 }

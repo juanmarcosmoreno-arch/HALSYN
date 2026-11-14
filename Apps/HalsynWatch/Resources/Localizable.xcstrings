@@ -528,6 +528,23 @@
         }
       }
     },
+    "%@ recorridos · el más repetido, %@ veces": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ routes · the most repeated, %@ times"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ rundor · den mest upprepade, %@ gånger"
+          }
+        }
+      }
+    },
     "%@ s/km más lento que hace 8 semanas": {
       "extractionState": "manual",
       "localizations": {
@@ -613,6 +630,40 @@
         }
       }
     },
+    "%@ veces · mejor %@ · última %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ times · best %@ · latest %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ gånger · bäst %@ · senast %@"
+          }
+        }
+      }
+    },
+    "%@ · lo corriste %@ veces": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · you ran it %@ times"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · du har sprungit den %@ gånger"
+          }
+        }
+      }
+    },
     "%@ → %@ de %@": {
       "extractionState": "manual",
       "localizations": {
@@ -664,6 +715,23 @@
         }
       }
     },
+    "%@.ª de %@ por tiempo en movimiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ of %@ by moving time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ av %@ efter tid i rörelse"
+          }
+        }
+      }
+    },
     "%@: %@ %@ (habitual %@)": {
       "extractionState": "manual",
       "localizations": {
@@ -677,6 +745,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@: %@ %@ (vanligt %@)"
+          }
+        }
+      }
+    },
+    "%@: %@ veces · mejor %@ · última %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ times · best %@ · latest %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ gånger · bäst %@ · senast %@"
           }
         }
       }
@@ -6223,6 +6308,23 @@
         }
       }
     },
+    "Circuito de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ loop"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slinga på %@"
+          }
+        }
+      }
+    },
     "Claro": {
       "extractionState": "manual",
       "localizations": {
@@ -9721,6 +9823,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du sov %@ mer än ditt snitt."
+          }
+        }
+      }
+    },
+    "Dos carreras son el mismo recorrido si al menos el 85 % de cada una pasa a menos de 30 m de la otra, en el mismo sentido y con inicio y fin a menos de 150 m (en circuitos puede empezar en otro punto). Una distancia parecida no alcanza. Cada carrera se compara con la primera vez del recorrido, para no juntar en cadena trayectos distintos. Los tiempos son en movimiento; si hubo pausas de más de 1 min, esa vez no se compara.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two runs are the same route if at least 85 % of each passes within 30 m of the other, in the same direction and with start and finish within 150 m (a loop can start at another point). A similar distance is not enough. Each run is compared with the first time on the route, so different routes are not chained together. Times are moving time; if there were pauses of more than 1 min, that run is not compared."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Två pass är samma runda om minst 85 % av varje går inom 30 m från den andra, i samma riktning och med start och mål inom 150 m (en slinga kan börja på en annan punkt). Liknande distans räcker inte. Varje pass jämförs med första gången på rundan, så att olika rundor inte kedjas ihop. Tiderna är tid i rörelse; vid pauser längre än 1 min jämförs inte det passet."
           }
         }
       }
@@ -14485,6 +14604,23 @@
         }
       }
     },
+    "Frente a la vez anterior: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versus last time: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med förra gången: %@"
+          }
+        }
+      }
+    },
     "Frente a tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -14498,6 +14634,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämfört med ditt snitt"
+          }
+        }
+      }
+    },
+    "Frente a tu mejor vez: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versus your best: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämfört med din bästa: %@"
           }
         }
       }
@@ -18578,6 +18731,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intervallen har kontrollerats mot dina egna resultat."
+          }
+        }
+      }
+    },
+    "Los trayectos que repites, comparados": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The routes you repeat, compared"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rundorna du upprepar, jämförda"
           }
         }
       }
@@ -25858,6 +26028,23 @@
         }
       }
     },
+    "Pulso medio frente a la vez anterior: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Average heart rate versus last time: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelpuls jämfört med förra gången: %@"
+          }
+        }
+      }
+    },
     "Pulso más alto": {
       "extractionState": "manual",
       "localizations": {
@@ -26857,6 +27044,91 @@
           "stringUnit": {
             "state": "translated",
             "value": "Påminnelse om ditt mål: %@"
+          }
+        }
+      }
+    },
+    "Recorrido de %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ route"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runda på %@"
+          }
+        }
+      }
+    },
+    "Recorrido repetido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repeated route"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upprepad runda"
+          }
+        }
+      }
+    },
+    "Recorridos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rundor"
+          }
+        }
+      }
+    },
+    "Recorridos (si hay): una fila por cada vez que corriste un recorrido repetido, con tiempo en movimiento y total, pulso, potencia, cadencia, desnivel, eficiencia, coincidencia con la primera vez (cobertura y sentido), si tuvo pausas de más de 1 min, su puesto y la diferencia con la vez anterior y con la mejor.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes (if any): one row for each time you ran a repeated route, with moving and total time, heart rate, power, cadence, elevation gain, efficiency, match with the first time (coverage and direction), whether it had pauses of more than 1 min, its rank and the difference from the previous and the best time."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rundor (om sådana finns): en rad för varje gång du sprang en upprepad runda, med tid i rörelse och total tid, puls, kraft, kadens, höjdmeter, effektivitet, matchning mot första gången (täckning och riktning), om den hade pauser längre än 1 min, placering och skillnad mot föregående och bästa gång."
+          }
+        }
+      }
+    },
+    "Recorridos repetidos (RouteMatching %@): mismo trayecto y sentido, ≥ 85 % a menos de 30 m:": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repeated routes (RouteMatching %@): same route and direction, ≥ 85 % within 30 m:"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upprepade rundor (RouteMatching %@): samma runda och riktning, ≥ 85 % inom 30 m:"
           }
         }
       }
@@ -32522,6 +32794,23 @@
         }
       }
     },
+    "Tiempo en movimiento de cada vez. Más abajo es más rápido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moving time of each run. Lower is faster."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tid i rörelse för varje gång. Lägre är snabbare."
+          }
+        }
+      }
+    },
     "Tiempo en zonas": {
       "extractionState": "manual",
       "localizations": {
@@ -32896,6 +33185,23 @@
         }
       }
     },
+    "Todas las veces": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla gånger"
+          }
+        }
+      }
+    },
     "Todavía no": {
       "extractionState": "manual",
       "localizations": {
@@ -32994,6 +33300,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det finns ännu inga pass med puls för att beräkna belastningen. Det behövs din vilopuls (från Hälsa) och din maxpuls (i dina zoner eller den högsta registrerade)."
+          }
+        }
+      }
+    },
+    "Todavía no hay recorridos repetidos: aparecen cuando corres al menos dos veces el mismo trayecto al aire libre, en el mismo sentido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No repeated routes yet: they appear when you run the same outdoor route at least twice, in the same direction."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga upprepade rundor ännu: de visas när du springer samma utomhusrunda minst två gånger, i samma riktning."
           }
         }
       }
@@ -34405,6 +34728,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dina senaste %lld mätningar liknar de %lld föregående (skillnaden ligger inom den normala variationen mellan mätningar)."
+          }
+        }
+      }
+    },
+    "Tuvo pausas de más de 1 min: el tiempo no se compara.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It had pauses of more than 1 min: the time is not compared."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den hade pauser längre än 1 min: tiden jämförs inte."
           }
         }
       }
@@ -36768,6 +37108,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "inmatat manuellt"
+          }
+        }
+      }
+    },
+    "coincidencia parcial": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "partial match"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "delvis matchning"
+          }
+        }
+      }
+    },
+    "con pausas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "with pauses"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "med pauser"
           }
         }
       }

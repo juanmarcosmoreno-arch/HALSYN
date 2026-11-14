@@ -449,3 +449,25 @@ Reemplaza a la 1.0, que solo sumaba kilómetros enteros.
 **Reloj.** Usa el mismo método con la distancia en vivo y el tiempo de reloj. Los récords guardados con la 1.0 se recalculan.
 
 **Exportación.** `halsyn-mejores-esfuerzos.csv` y una línea por distancia en el resumen.
+
+## Recorridos repetidos (`RouteMatching` 1.0, 0.10.0 (127))
+
+**Huella.** Puntos cada 25 m a lo largo de la ruta, con el mismo filtro GPS que en vivo. Sale de carreras al aire libre de 1 km o más.
+
+**Coincidencia.** Primero un filtro previo barato: distancias a ≤ 10 % y referencias a ≤ 2 km. Después:
+- **Corredor:** ≥ 85 % de los puntos de **cada** ruta a ≤ 30 m de la otra. Se busca con una cuadrícula de 30 m, en tiempo lineal. Una distancia parecida sola no alcanza.
+- **Sentido:** cada punto se empareja con el de la otra ruta más cercano a su avance esperado; así funciona en ida y vuelta. Al menos el 70 % de los pasos tiene que avanzar. El mismo trayecto al revés es otro recorrido.
+- **Inicio y fin:** a ≤ 150 m, salvo en circuitos, que pueden empezar en otro punto.
+
+**Grupos.**
+- Una carrera entra en un grupo solo si coincide con la **referencia** (la primera vez), no con cualquier miembro. Así no se encadenan rutas parcialmente parecidas.
+- Se reagrupa en cada pasada. El identificador es la referencia y cambia solo si aparece una carrera anterior.
+
+**Comparación.**
+- Tiempo en movimiento: puesto entre las comparables, diferencia con la vez anterior y con la mejor, y pulso frente a la anterior.
+- Las veces con pausas de más de 1 min no se comparan por tiempo (y se avisa).
+- Se informan la eficiencia y la coincidencia (cobertura y sentido); con cobertura < 90 % se marca «coincidencia parcial».
+
+**Lectura única.** `RunDetailPipeline` lee la ruta y el pulso de cada carrera una vez y alimenta récords, análisis aeróbico y recorridos. Las huellas se guardan en Application Support.
+
+**Exportación.** `halsyn-recorridos.csv` y una línea por recorrido en el resumen.

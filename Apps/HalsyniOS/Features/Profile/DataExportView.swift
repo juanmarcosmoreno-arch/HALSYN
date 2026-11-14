@@ -147,8 +147,7 @@ struct DataExportView: View {
         }
         // Análisis aeróbico al día (no en demo: los datos de ejemplo no son tuyos).
         if !model.isDemo {
-            await AerobicStore.shared.refresh(runs: workouts, provider: provider)
-            await RunRecordStore.shared.refresh(runs: workouts, provider: provider)
+            await RunDetailPipeline.refresh(runs: workouts, provider: provider)
         }
         let aerobic = AerobicStore.shared.observations
         var extras: [UUID: DataExport.WorkoutExtra] = [:]
@@ -196,6 +195,11 @@ struct DataExportView: View {
         var extraFiles: [(URL, String)] = []
         if !attribution.isEmpty {
             extraFiles.append((folder.appendingPathComponent("halsyn-sueno-episodios-\(stamp).csv"), DataExport.sleepEpisodesCSV(attribution, calendar: calendar)))  // nolocalize
+        }
+        let routeStore = RouteStore.shared
+        if !routeStore.groups.isEmpty {
+            let efficiencies = AerobicStore.shared.observations.compactMapValues(\.efficiency)
+            extraFiles.append((folder.appendingPathComponent("halsyn-recorridos-\(stamp).csv"), DataExport.routesCSV(routeStore.groups, runs: routeStore.runs, efficiency: efficiencies, calendar: calendar)))  // nolocalize
         }
         let effortEntries = RunRecordStore.shared.validEntries
         if !effortEntries.isEmpty {
@@ -284,6 +288,19 @@ struct DataExportView: View {
                 let topText = marks.map { "\(RunRecordText.value(category, $0.value, unit: unit)) (\($0.date.formatted(date: .numeric, time: .omitted)))" }.joined(separator: " · ")  // nolocalize
                 let yearText = yearBests[category].map { RunRecordText.value(category, $0.value, unit: unit) } ?? "—"  // nolocalize
                 lines.append("  - " + String(localized: "\(title): \(topText). Mejor del año: \(yearText)"))
+            }
+        }
+
+        let routeGroups = RouteStore.shared.groups
+        if !routeGroups.isEmpty {
+            lines.append("- " + String(localized: "Recorridos repetidos (RouteMatching \(RouteMatching.version)): mismo trayecto y sentido, ≥ 85 % a menos de 30 m:"))
+            for group in routeGroups.prefix(10) {
+                let members = group.members.compactMap { RouteStore.shared.runs[$0] }
+                let name = RouteText.name(group, unit: unit)
+                let timesText = String(group.members.count)
+                let bestText = members.map(\.duration).min().map { HalsynFormat.duration($0) } ?? "—"
+                let lastText = members.last.map { HalsynFormat.duration($0.duration) } ?? "—"
+                lines.append("  - " + String(localized: "\(name): \(timesText) veces · mejor \(bestText) · última \(lastText)"))
             }
         }
 
@@ -533,6 +550,7 @@ struct DataExportView: View {
         lines.append("- " + String(localized: "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas."))
         lines.append("- " + String(localized: "Entrenamientos, columnas calculadas: «intensity» es la intensidad fisiológica (recovery, easy, moderate, tempo, intervals, very_hard, test, race) e «intensity_basis» con qué se decidió; «session_type», el tipo de sesión (plan o estructura); «vdot_eligibility», si sirve para el VDOT (confirmed, candidate o not_eligible y el motivo); «model_role» y «model_weight», el papel y el peso en el modelo; «harder_than_planned», una sesión suave del plan hecha con intensidad alta. Un pulso alto (very_hard) no significa esfuerzo máximo."))
         lines.append("- " + String(localized: "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal."))
+        lines.append("- " + String(localized: "Recorridos (si hay): una fila por cada vez que corriste un recorrido repetido, con tiempo en movimiento y total, pulso, potencia, cadencia, desnivel, eficiencia, coincidencia con la primera vez (cobertura y sentido), si tuvo pausas de más de 1 min, su puesto y la diferencia con la vez anterior y con la mejor."))
         lines.append("- " + String(localized: "Mejores esfuerzos (si hay): una fila por carrera y distancia con el tramo continuo más rápido (segundos, con pausas), el segundo de la carrera en que empieza, el pulso medio del tramo, el puesto que tuvo el día que se corrió (1–3) y si fue test o competición."))
         lines.append("- " + String(localized: "Formato 5 (columnas nuevas al final de entrenamientos): «stride_length_m», «ground_contact_ms», «vertical_oscillation_cm» y «running_power_w» (medias que guardó el Apple Watch; vacío si no las midió) y, en carreras al aire libre con GPS y pulso, «steady_min» (minutos a ritmo estable usados), «efficiency_m_min_per_bpm» (velocidad ÷ pulso en esos tramos) y «decoupling_pct» (desacople en carreras regulares de 30 min o más)."))
         lines.append("- " + String(localized: "Formato 4 (columnas nuevas al final): entrenamientos con «rpe» (esfuerzo percibido 1–10 que anotaste), «perceived_intensity» (según el RPE) y «plan_compliance» (as_planned, harder, easier); diario con «main_sleep_attributed_h» y «naps_attributed_h» (sueño principal al día en que te despiertas, siestas al día en que empiezan), «recovery_mean» (media ponderada antes de la agregación prudente), la puntuación de cada factor y «recovery_warnings». «sleep_h» mantiene su significado anterior."))

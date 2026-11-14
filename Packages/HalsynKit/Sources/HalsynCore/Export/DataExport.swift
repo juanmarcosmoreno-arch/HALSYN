@@ -334,6 +334,38 @@ public enum DataExport {
         return rows.joined(separator: "\n") + "\n"
     }
 
+    // MARK: Recorridos repetidos
+
+    /// Una fila por carrera de cada recorrido repetido, con su coincidencia y su comparación.
+    public static func routesCSV(_ groups: [RouteGroup], runs: [UUID: WorkoutSummary], efficiency: [UUID: Double] = [:], calendar: Calendar) -> String {
+        var rows = ["route_id,record_id,date,distance_km,moving_s,elapsed_s,avg_hr_bpm,max_hr_bpm,avg_power_w,cadence_spm,elevation_gain_m,efficiency_m_min_per_bpm,coverage,same_direction,long_pauses,rank,vs_previous_s,vs_best_s"]  // nolocalize
+        for group in groups {
+            for id in group.members {
+                guard let run = runs[id] else { continue }
+                let comparison = RouteComparisonEngine.compare(id, group: group, runs: runs)
+                let quality = group.quality[id]
+                var cells: [String] = [recordID(group.id), recordID(id), isoDateTime(run.start, calendar: calendar)]
+                cells.append(run.distanceMeters.map { number($0 / 1000, digits: 3) } ?? "")
+                cells.append(number(run.duration, digits: 0))
+                cells.append(number(run.wallClockEnd.timeIntervalSince(run.start), digits: 0))
+                cells.append(run.averageHeartRate.map { number($0, digits: 0) } ?? "")
+                cells.append(run.maxHeartRate.map { number($0, digits: 0) } ?? "")
+                cells.append(run.dynamics?.power.map { number($0, digits: 0) } ?? "")
+                cells.append(run.averageCadence.map { number($0, digits: 0) } ?? "")
+                cells.append(run.elevationGain.map { number($0, digits: 0) } ?? "")
+                cells.append(efficiency[id].map { number($0, digits: 3) } ?? "")
+                cells.append(quality.map { number($0.coverage, digits: 2) } ?? "")
+                cells.append(quality.map { number($0.sameDirection, digits: 2) } ?? "")
+                cells.append(comparison?.hasLongPauses == true ? "yes" : "")
+                cells.append(comparison?.rank.map { String($0) } ?? "")
+                cells.append(comparison?.versusPrevious.map { number($0, digits: 0) } ?? "")
+                cells.append(comparison?.versusBest.map { number($0, digits: 0) } ?? "")
+                rows.append(cells.joined(separator: ","))
+            }
+        }
+        return rows.joined(separator: "\n") + "\n"
+    }
+
     // MARK: Sueño por episodios
 
     /// Un episodio por fila con su hora real y el día al que se atribuye.

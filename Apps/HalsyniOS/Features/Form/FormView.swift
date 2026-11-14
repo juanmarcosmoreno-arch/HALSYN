@@ -34,8 +34,7 @@ struct FormView: View {
                 refresh(recent)
                 // Récords y análisis aeróbico (no en demo: los datos de ejemplo no son tuyos).
                 if !model.isDemo {
-                    await RunRecordStore.shared.refresh(runs: recent, provider: model.provider)
-                    await AerobicStore.shared.refresh(runs: recent, provider: model.provider)
+                    await RunDetailPipeline.refresh(runs: recent, provider: model.provider)
                 }
                 // Estado de entrenamiento con todo lo anterior ya calculado.
                 status = await TrainingStatusBuilder.build(runs: runs, provider: model.provider, reloadKey: "\(model.reloadKey)")
@@ -86,6 +85,7 @@ struct FormOverview: View {
         AerobicAreaLink()
         ConsistencyAreaLink(runs: runs)
         RunningDynamicsAreaLink(runs: runs)
+        RoutesAreaLink()
         FormAreaLink(title: "Carga y forma", subtitle: "Carga reciente frente a la habitual, forma y fatiga", systemImage: "gauge.with.dots.needle.50percent") {
             FormAreaScreen(title: "Carga y forma") { TrainingLoadCard() }
         }

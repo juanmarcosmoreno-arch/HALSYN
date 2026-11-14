@@ -55,6 +55,7 @@ struct WorkoutDetailView: View {
 
             if workout.activity.isRun {
                 RunRecordCard(workout: workout, unitSystem: unitSystem)
+                RouteComparisonCard(workout: workout, unitSystem: unitSystem)
             }
 
             WorkoutShoePicker(workout: workout)

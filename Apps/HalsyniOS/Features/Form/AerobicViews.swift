@@ -9,14 +9,12 @@ import SwiftUI
 final class AerobicStore {
     static let shared = AerobicStore()
     static let key = "halsyn.aerobicObservations"
-    static let batchSize = 60
 
     private(set) var observations: [UUID: AerobicRunObservation]
     private(set) var validIDs: Set<UUID> = []
     /// Carreras ya revisadas sin tramos útiles (cinta, sin GPS o sin pulso).
     @ObservationIgnored private var skipped: Set<UUID> = []
     @ObservationIgnored private let defaults: UserDefaults
-    @ObservationIgnored private var refreshing = false
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -31,25 +29,22 @@ final class AerobicStore {
     }
 
     func refresh(runs allRuns: [WorkoutSummary], provider: any HealthDataProviding) async {
-        guard !refreshing else { return }
-        refreshing = true
-        defer { refreshing = false }
-        let runs = WorkoutQualityStore.shared.clean(allRuns.filter { $0.activity == .outdoorRun })
-        validIDs = Set(runs.map(\.id))
-        let missing = runs.filter { observations[$0.id] == nil && !skipped.contains($0.id) }.sorted { $0.start > $1.start }.prefix(Self.batchSize)
-        var changed = false
-        for run in missing {
-            let detail = await provider.workoutDetail(for: run)
-            if let observation = AerobicAnalysis.observe(id: run.id, date: run.start, route: detail.route, heartRate: detail.heartRate) {
-                observations[run.id] = observation
-                changed = true
-            } else {
-                skipped.insert(run.id)
-            }
+        await RunDetailPipeline.refresh(runs: allRuns, provider: provider)
+    }
+
+    func setValid(_ ids: Set<UUID>) { validIDs = ids }
+    func needs(_ id: UUID) -> Bool { observations[id] == nil && !skipped.contains(id) }
+
+    func ingest(_ run: WorkoutSummary, detail: WorkoutDetailData) {
+        if let observation = AerobicAnalysis.observe(id: run.id, date: run.start, route: detail.route, heartRate: detail.heartRate) {
+            observations[run.id] = observation
+        } else {
+            skipped.insert(run.id)
         }
-        if changed, let data = try? JSONEncoder().encode(Array(observations.values)) {
-            defaults.set(data, forKey: Self.key)
-        }
+    }
+
+    func save() {
+        if let data = try? JSONEncoder().encode(Array(observations.values)) { defaults.set(data, forKey: Self.key) }
     }
 }
 

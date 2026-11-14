@@ -18,6 +18,7 @@
 		0C3C05C5BCC96C8F915CA204 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 141D80A1200D264175073355 /* HalsynDesign */; };
 		0FF4C84553B55372CC80C84E /* RecoveryHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF465CB2CD88239021617B7 /* RecoveryHistoryStore.swift */; };
 		106352E96AA729CBB2C7D869 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = 079211252545801103B3F265 /* HalsynCore */; };
+		12B8A269B2E7BC9ABC6F9BBA /* RunDetailPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFB3DE5C83B3AE3EF7A58E /* RunDetailPipeline.swift */; };
 		14E49DFE91A16EA2F031ECE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6174D26D455C2284DE7D28E4 /* Localizable.xcstrings */; };
 		152BEB2871B5D4587AF414B9 /* HalsynAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF212713B7D0C847F8B1081B /* HalsynAppDelegate.swift */; };
 		15879167671C319CA4CF2ECC /* CoachSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EB0050B5243C3667893CE /* CoachSpeech.swift */; };
@@ -142,6 +143,7 @@
 		D6D8041E4B63D2FEF82C2389 /* TreadmillText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D7EF4D1E104EF9F29A5BB0 /* TreadmillText.swift */; };
 		D71774A07F32F0DA9402B900 /* WeeklySummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FE41A2350AD8BE21E1937 /* WeeklySummaryCard.swift */; };
 		E2499AC0B4E163244284D73D /* WatchGoalRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EF3402D469A56663EED082 /* WatchGoalRunView.swift */; };
+		E3A26BEC38A834E7224C04A1 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E5913A1F175AB6D437D2B /* RouteViews.swift */; };
 		E5E507AD1F238A88E5B861ED /* HalsaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0210D91C67294E38A972B396 /* HalsaView.swift */; };
 		E7796B63BA5E90D09B0637B6 /* WidgetBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5711AA1DABFEBBDD3FEC4 /* WidgetBridge.swift */; };
 		E8005DD2C5E9A5F65CA1F2C7 /* WatchSpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F963F39CF4B032680EB5A1 /* WatchSpringView.swift */; };
@@ -301,6 +303,7 @@
 		8C7EB0050B5243C3667893CE /* CoachSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSpeech.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		8D12E86A3843D802F7D50216 /* PlanSessionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSessionEditView.swift; sourceTree = "<group>"; };
+		8F2E5913A1F175AB6D437D2B /* RouteViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViews.swift; sourceTree = "<group>"; };
 		90A1B548893B46F9A85AD153 /* AerobicViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerobicViews.swift; sourceTree = "<group>"; };
 		928934EF5A513D64F8F6F04E /* RecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryView.swift; sourceTree = "<group>"; };
 		939F34004CFB80BC6D63DB2E /* GoalProbabilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalProbabilityViews.swift; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 		9AB7B59EFDB1BDA90364BE10 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		9D9BADE74BDCB8B1B1AB7241 /* ReferenceComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceComparison.swift; sourceTree = "<group>"; };
 		9E15B74FBEEA0484B9658D8E /* WatchPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPermissionsView.swift; sourceTree = "<group>"; };
+		9ECFB3DE5C83B3AE3EF7A58E /* RunDetailPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailPipeline.swift; sourceTree = "<group>"; };
 		A102C2A0A397098A3444D807 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		A4E7D23DEFE990E9F08826F1 /* RunnerStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerStrengthView.swift; sourceTree = "<group>"; };
 		A6C909D9099CDC1376C25870 /* Halsyn.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Halsyn.xcconfig; sourceTree = "<group>"; };
@@ -479,6 +483,8 @@
 				90A1B548893B46F9A85AD153 /* AerobicViews.swift */,
 				C605BA697DBF43B47CD8BA12 /* ConsistencyViews.swift */,
 				5B569479DDCF7C472766341E /* FormView.swift */,
+				8F2E5913A1F175AB6D437D2B /* RouteViews.swift */,
+				9ECFB3DE5C83B3AE3EF7A58E /* RunDetailPipeline.swift */,
 				068DA77614A4F2A7F5E43AC1 /* RunningDynamicsViews.swift */,
 				653D6524B6F946D737AB03C9 /* TrainingStatusViews.swift */,
 			);
@@ -1156,8 +1162,10 @@
 				8F0317CDA854506EF32F16A5 /* RideDetailView.swift in Sources */,
 				72FDAA2B910DD04FBD952227 /* RideSettingsView.swift in Sources */,
 				230640766D8EE53D010BF610 /* RootTabView.swift in Sources */,
+				E3A26BEC38A834E7224C04A1 /* RouteViews.swift in Sources */,
 				1A5A85413363B1815DD2DA43 /* RunActivityAttributes.swift in Sources */,
 				5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */,
+				12B8A269B2E7BC9ABC6F9BBA /* RunDetailPipeline.swift in Sources */,
 				987E8ECD1520CA57DB08A769 /* RunRecordViews.swift in Sources */,
 				48BFDE792B801622564B514B /* RunSettingsStore.swift in Sources */,
 				9102FE8564E7D4D01C24B41F /* RunSettingsView.swift in Sources */,
@@ -1314,7 +1322,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1499,7 +1507,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

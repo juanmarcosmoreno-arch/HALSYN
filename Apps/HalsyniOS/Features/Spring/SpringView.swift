@@ -53,7 +53,7 @@ struct SpringView: View {
                 refresh(recent)
                 // Récords (no en demo: los datos de ejemplo no son tuyos).
                 if !model.isDemo {
-                    await RunRecordStore.shared.refresh(runs: recent, provider: model.provider)
+                    await RunDetailPipeline.refresh(runs: recent, provider: model.provider)
                 }
             }
             .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
