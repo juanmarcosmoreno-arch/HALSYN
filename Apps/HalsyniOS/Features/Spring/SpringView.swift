@@ -73,7 +73,7 @@ struct SpringView: View {
         let clean = WorkoutQualityStore.shared.clean(recent)
         allWorkouts = clean
         IntensityContext.history = clean.filter(\.activity.isRun)
-        workouts = Array(recent.prefix(20))
+        workouts = Array(recent.prefix(10))
         // Con pruebas (tests, competiciones o esfuerzos a tope), el modelo de
         // rendimiento; si no, Riegel con tus mejores carreras.
         performance = FitnessStore.shared.performance(runs: clean)
@@ -123,7 +123,67 @@ struct SpringView: View {
                     }
                     .buttonStyle(.plain)
                 }
+                if rawWorkouts.count > workouts.count {
+                    NavigationLink {
+                        AllWorkoutsView(initial: rawWorkouts)
+                    } label: {
+                        HStack {
+                            Text("Ver todas")
+                                .font(.halsynHeadline)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.footnote.weight(.semibold))
+                        }
+                        .foregroundStyle(.halsynAccentText)
+                        .padding(.vertical, HalsynSpacing.s)
+                        .padding(.horizontal, HalsynSpacing.m)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                }
             }
+        }
+    }
+}
+
+/// Historial completo, agrupado por mes (lo más reciente arriba).
+struct AllWorkoutsView: View {
+    let initial: [WorkoutSummary]
+    @Environment(AppModel.self) private var model
+    @AppStorage(AppPreferences.unitSystemKey) private var unitSystem: UnitSystem = .metric
+    @State private var workouts: [WorkoutSummary]?
+
+    var body: some View {
+        let list = workouts ?? initial
+        let months = Self.months(list)
+        HalsynScreen {
+            ForEach(months, id: \.start) { month in
+                let countText = String(month.workouts.count)
+                HalsynSectionHeader(month.start.formatted(.dateTime.month(.wide).year()).capitalized, eyebrow: String(localized: "\(countText) entrenamientos"))
+                VStack(spacing: HalsynSpacing.s) {
+                    ForEach(month.workouts) { workout in
+                        NavigationLink(value: workout) {
+                            WorkoutRow(workout: workout, unitSystem: unitSystem)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Todas las carreras")
+        .navigationBarTitleDisplayMode(.inline)
+        .task {
+            // Más allá de las que ya se leyeron para SPRING.
+            let all = await model.provider.recentWorkouts(limit: 5000)
+            if all.count > initial.count { workouts = all }
+        }
+    }
+
+    private static func months(_ list: [WorkoutSummary]) -> [(start: Date, workouts: [WorkoutSummary])] {
+        let calendar = Calendar.current
+        let grouped = Dictionary(grouping: list) { calendar.dateInterval(of: .month, for: $0.start)?.start ?? $0.start }
+        return grouped.keys.sorted(by: >).map { key in
+            (start: key, workouts: grouped[key, default: []].sorted { $0.start > $1.start })
         }
     }
 }

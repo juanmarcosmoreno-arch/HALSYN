@@ -33355,6 +33355,23 @@
         }
       }
     },
+    "Todas las carreras": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All workouts"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla pass"
+          }
+        }
+      }
+    },
     "Todas las veces": {
       "extractionState": "manual",
       "localizations": {
@@ -36343,6 +36360,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Visa satellit"
+          }
+        }
+      }
+    },
+    "Ver todas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See all"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visa alla"
           }
         }
       }
