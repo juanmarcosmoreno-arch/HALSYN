@@ -352,3 +352,32 @@ El pulso de cada tramo se toma 30 s después, porque el corazón tarda en respon
 - Se muestran la última, la mediana de 28 días y la serie.
 
 Son indicadores orientativos: el calor, la hidratación, el cansancio y el terreno también influyen.
+
+## Estado de entrenamiento (`TrainingStatusEngine` 1.0, 0.10.0 (121))
+
+El estado combina indicadores que HÅLSYN ya calcula y aplica reglas explícitas. Ninguna métrica sola decide.
+
+**Entradas.** Ninguna se inventa: lo que falta baja la confianza.
+- Ritmo a pulso fijo frente a 8 semanas antes (`AerobicAnalysis`).
+- Cambio del VDOT en 4 semanas. Es claro si |Δ| > 1,96 × √(u₁² + u₂²).
+- Carga por pulso de 7 días ÷ media semanal de las 4 semanas anteriores: la misma de «Carga y forma». Describe el cambio de carga; no predice lesiones.
+- Fracción del tiempo de carrera moderado o intenso en 14 días. Se marca si supera el 25 % (referencia polarizada de unos 80/20, Seiler).
+- Rodajes suaves del plan hechos más intensos (se informan con 3 o más rodajes suaves).
+- Días de los últimos 7 con HRV, FC en reposo o sueño peor que tu basal, según `RecoveryEngine`.
+- Carreras en 28 días.
+
+**Reglas, en orden:**
+1. **Datos insuficientes:** menos de 4 carreras en 28 días y ninguna tendencia.
+2. **Recuperación necesaria:** dos o más de estas señales.
+   - HRV baja ≥ 3 de 7 días.
+   - FC en reposo alta ≥ 3 de 7 días.
+   - Sueño corto ≥ 4 de 7 noches.
+3. **Carga elevada:** relación de carga > 1,3.
+4. **Progreso incierto:** la forma va a menos (ritmo a pulso fijo más lento, o VDOT claramente más bajo) o las tendencias se contradicen.
+5. **Productivo:** mejora clara, con como mucho una señal de recuperación en contra.
+6. **Mantenimiento:** el resto.
+
+**Salida.**
+- Estado, señales a favor y en contra, lo que falta, confianza y fecha.
+- Confianza: con 6 o más de las 7 señales principales, alta; con 4 o más, media; si no, baja.
+- No es un diagnóstico médico.

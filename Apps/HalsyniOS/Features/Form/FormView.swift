@@ -15,12 +15,13 @@ struct FormView: View {
     @State private var predictions: [RacePrediction] = []
     @State private var performance: PerformanceAssessment?
     @State private var flaggedCount = 0
+    @State private var status: TrainingStatus?
 
     var body: some View {
         NavigationStack {
             HalsynScreen {
                 if loaded {
-                    FormOverview(isDemo: model.isDemo, predictions: predictions, performance: performance, runs: runs, rawWorkouts: rawWorkouts, flaggedCount: flaggedCount, unitSystem: unitSystem)
+                    FormOverview(isDemo: model.isDemo, predictions: predictions, performance: performance, runs: runs, rawWorkouts: rawWorkouts, flaggedCount: flaggedCount, unitSystem: unitSystem, status: status)
                 } else {
                     ModuleHeader(module: .form, isDemo: model.isDemo)
                         .padding(.top, HalsynSpacing.s)
@@ -36,6 +37,8 @@ struct FormView: View {
                     await RunRecordStore.shared.refresh(runs: recent, provider: model.provider)
                     await AerobicStore.shared.refresh(runs: recent, provider: model.provider)
                 }
+                // Estado de entrenamiento con todo lo anterior ya calculado.
+                status = await TrainingStatusBuilder.build(runs: runs, provider: model.provider, reloadKey: "\(model.reloadKey)")
             }
             .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
             .onChange(of: WorkoutQualityStore.shared.included) { _, _ in refresh(rawWorkouts) }
@@ -66,10 +69,14 @@ struct FormOverview: View {
     let rawWorkouts: [WorkoutSummary]
     let flaggedCount: Int
     let unitSystem: UnitSystem
+    var status: TrainingStatus? = nil
 
     var body: some View {
         ModuleHeader(module: .form, isDemo: isDemo)
             .padding(.top, HalsynSpacing.s)
+        if let status {
+            TrainingStatusCard(status: status)
+        }
         // Nivel 1: de un vistazo.
         RacePredictionCard(predictions: predictions, performance: performance, runs: runs, unitSystem: unitSystem)
         EvolutionCard(runs: runs)

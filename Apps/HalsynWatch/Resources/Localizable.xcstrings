@@ -1,6 +1,40 @@
 {
   "sourceLanguage": "es",
   "strings": {
+    "%@ % del tiempo de carrera fue moderado o intenso en 2 semanas (la referencia ronda el 20 %).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ % of running time was moderate or hard in 2 weeks (the reference is about 20 %)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ % av löptiden var måttlig eller hård under 2 veckor (riktmärket är runt 20 %)."
+          }
+        }
+      }
+    },
+    "%@ % del tiempo de carrera fue moderado o intenso en 2 semanas: buena base suave.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ % of running time was moderate or hard in 2 weeks: a good easy base."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ % av löptiden var måttlig eller hård under 2 veckor: en bra lugn bas."
+          }
+        }
+      }
+    },
     "%@ caminando y corriendo": {
       "extractionState": "manual",
       "localizations": {
@@ -14,6 +48,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ gång och löpning"
+          }
+        }
+      }
+    },
+    "%@ carreras en las últimas 4 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ runs in the last 4 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ löppass de senaste 4 veckorna."
           }
         }
       }
@@ -82,6 +133,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ av %@ planerade de senaste veckorna"
+          }
+        }
+      }
+    },
+    "%@ de %@ rodajes suaves fueron más intensos de lo previsto.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ of %@ easy runs were harder than planned."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ av %@ lugna pass var hårdare än planerat."
           }
         }
       }
@@ -1935,6 +2003,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fysisk aktivitet"
+          }
+        }
+      }
+    },
+    "Actualizado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updated"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppdaterad"
           }
         }
       }
@@ -5152,6 +5237,57 @@
         }
       }
     },
+    "Carga de 7 días: %@ tu media semanal anterior (en tu rango).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-day load: %@ your previous weekly average (within your range)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning 7 dagar: %@ ditt tidigare veckosnitt (inom ditt spann)."
+          }
+        }
+      }
+    },
+    "Carga de 7 días: %@ tu media semanal anterior (semana más liviana).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-day load: %@ your previous weekly average (a lighter week)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning 7 dagar: %@ ditt tidigare veckosnitt (en lättare vecka)."
+          }
+        }
+      }
+    },
+    "Carga de 7 días: %@ tu media semanal anterior (sube rápido).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-day load: %@ your previous weekly average (rising fast)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning 7 dagar: %@ ditt tidigare veckosnitt (ökar snabbt)."
+          }
+        }
+      }
+    },
     "Carga de cada entrenamiento: TRIMP de Banister, con la duración y la FC (tramo a tramo si hay lecturas; si no, la media) frente a tu FC en reposo y máxima. La forma física es la media exponencial de 42 días; la fatiga, la de 7; la frescura, su diferencia al terminar ayer (cómo llegas a hoy). Son tendencias para entrenar, no una medida médica.": {
       "extractionState": "manual",
       "localizations": {
@@ -5216,6 +5352,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Belastningen den senaste veckan jämfört med de senaste 4. 100 mellan 0,8 och 1,3 gånger det vanliga; drar av om du ökar plötsligt. Låg vikt eftersom kvoten är omdiskuterad som prediktor för skador."
+          }
+        }
+      }
+    },
+    "Carga elevada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High load"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hög belastning"
+          }
+        }
+      }
+    },
+    "Carga habitual y sin un cambio claro de forma: mantienes lo que tienes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usual load and no clear change in fitness: you are keeping what you have."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanlig belastning och ingen tydlig förändring i form: du behåller det du har."
           }
         }
       }
@@ -7362,6 +7532,40 @@
         }
       }
     },
+    "Corres más lento con el mismo pulso que hace 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You run slower at the same heart rate than 8 weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du springer långsammare på samma puls än för 8 veckor sedan."
+          }
+        }
+      }
+    },
+    "Corres más rápido con el mismo pulso que hace 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You run faster at the same heart rate than 8 weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du springer snabbare på samma puls än för 8 veckor sedan."
+          }
+        }
+      }
+    },
     "Corriste un %@ % más kilómetros esta semana que tu media de las 4 anteriores.": {
       "extractionState": "manual",
       "localizations": {
@@ -8106,6 +8310,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tillgängliga data: %@"
+          }
+        }
+      }
+    },
+    "Datos insuficientes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otillräckliga data"
           }
         }
       }
@@ -10218,6 +10439,23 @@
         }
       }
     },
+    "El ritmo a pulso fijo no cambió de forma clara en 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace at a fixed heart rate has not clearly changed in 8 weeks."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempot vid fast puls har inte ändrats tydligt på 8 veckor."
+          }
+        }
+      }
+    },
     "El ritmo no cambia: solo cuánto dura. Acortar un día no se recupera otro; el plan sigue con lo que hagas.": {
       "extractionState": "manual",
       "localizations": {
@@ -12088,6 +12326,23 @@
         }
       }
     },
+    "Esta semana la carga subió mucho frente a tu habitual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week your load rose a lot compared with your usual."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den här veckan ökade belastningen mycket jämfört med din vanliga."
+          }
+        }
+      }
+    },
     "Esta semana te faltaron %@ respecto a tu objetivo.": {
       "extractionState": "manual",
       "localizations": {
@@ -12105,6 +12360,23 @@
         }
       }
     },
+    "Estado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
     "Estado cardiovascular": {
       "extractionState": "manual",
       "localizations": {
@@ -12118,6 +12390,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kardiovaskulärt tillstånd"
+          }
+        }
+      }
+    },
+    "Estado de entrenamiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training status"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsstatus"
           }
         }
       }
@@ -12781,6 +13070,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lägsta vilopuls (7-dagarssnitt)"
+          }
+        }
+      }
+    },
+    "FC en reposo por encima de tu basal %@ de los últimos 7 días.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resting HR above your baseline on %@ of the last 7 days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilopuls över din baslinje %@ av de senaste 7 dagarna."
           }
         }
       }
@@ -14617,6 +14923,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "HRV långt över det vanliga. Det kan vara ett gott tecken men följer ibland med ackumulerad trötthet: därför räknas det inte mer än ett något högt värde."
+          }
+        }
+      }
+    },
+    "HRV por debajo de tu basal %@ de los últimos 7 días.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV below your baseline on %@ of the last 7 days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HRV under din baslinje %@ av de senaste 7 dagarna."
           }
         }
       }
@@ -17001,6 +17324,23 @@
         }
       }
     },
+    "Las señales no van en la misma dirección o la forma va a menos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The signals do not point the same way, or fitness is declining."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signalerna pekar inte åt samma håll, eller så går formen nedåt."
+          }
+        }
+      }
+    },
     "Las vibraciones del reloj siguen igual aunque apagues un aviso de voz.": {
       "extractionState": "manual",
       "localizations": {
@@ -17511,6 +17851,23 @@
         }
       }
     },
+    "Lo respalda": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supported by"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stöds av"
+          }
+        }
+      }
+    },
     "Local-first: tus datos se procesan en el dispositivo.": {
       "extractionState": "manual",
       "localizations": {
@@ -17813,6 +18170,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Behåll den ursprungliga planen"
+          }
+        }
+      }
+    },
+    "Mantenimiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintaining"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bibehåller"
           }
         }
       }
@@ -18680,6 +19054,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "De förbättrar fjädringen och löpekonomin. Bara med en styrkebas."
+          }
+        }
+      }
+    },
+    "Mejoras con una carga que puedes sostener.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are improving with a load you can sustain."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du blir bättre med en belastning du kan hålla."
           }
         }
       }
@@ -23359,6 +23750,23 @@
         }
       }
     },
+    "Pocas carreras recientes para decir algo con sentido.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too few recent runs to say anything meaningful."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För få senaste pass för att säga något meningsfullt."
+          }
+        }
+      }
+    },
     "Poco fiable: tus carreras son mucho más cortas": {
       "extractionState": "manual",
       "localizations": {
@@ -23644,6 +24052,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Över planen"
+          }
+        }
+      }
+    },
+    "Por qué": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Why"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varför"
           }
         }
       }
@@ -24158,6 +24583,23 @@
         }
       }
     },
+    "Productivo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Productive"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Produktiv"
+          }
+        }
+      }
+    },
     "Profundo": {
       "extractionState": "manual",
       "localizations": {
@@ -24171,6 +24613,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Djupsömn"
+          }
+        }
+      }
+    },
+    "Progreso incierto": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uncertain progress"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osäker utveckling"
           }
         }
       }
@@ -25756,6 +26215,23 @@
         }
       }
     },
+    "Recuperación necesaria": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovery needed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återhämtning behövs"
+          }
+        }
+      }
+    },
     "Redactado en tu iPhone con Apple Intelligence a partir de estos datos.": {
       "extractionState": "manual",
       "localizations": {
@@ -26126,6 +26602,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hälsoregister"
+          }
+        }
+      }
+    },
+    "Reglas, en orden: con 2 o más señales de recuperación peores que tu basal (HRV, FC en reposo, sueño) → recuperación necesaria. Si la carga de 7 días supera 1,3 veces tu media semanal anterior → carga elevada (describe el cambio de carga, no predice lesiones). Si la forma va a menos o las tendencias se contradicen → progreso incierto. Con una mejora clara (ritmo a pulso fijo o VDOT) → productivo. Si no, mantenimiento. Ninguna métrica sola decide. Es orientativo, no un diagnóstico.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules, in order: with 2 or more recovery signals worse than your baseline (HRV, resting HR, sleep) → recovery needed. If the 7-day load exceeds 1.3 times your previous weekly average → high load (it describes the change in load, it does not predict injuries). If fitness is declining or trends contradict each other → uncertain progress. With a clear improvement (pace at a fixed heart rate or VDOT) → productive. Otherwise, maintaining. No single metric decides. It is indicative, not a diagnosis."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regler, i ordning: med 2 eller fler återhämtningssignaler sämre än din baslinje (HRV, vilopuls, sömn) → återhämtning behövs. Om belastningen 7 dagar överstiger 1,3 gånger ditt tidigare veckosnitt → hög belastning (beskriver förändringen, förutsäger inte skador). Om formen går nedåt eller trenderna motsäger varandra → osäker utveckling. Med en tydlig förbättring (tempo vid fast puls eller VDOT) → produktiv. Annars bibehåller. Inget enskilt mått avgör. Det är vägledande, ingen diagnos."
           }
         }
       }
@@ -28476,6 +28969,23 @@
         }
       }
     },
+    "Señales": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signals"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signaler"
+          }
+        }
+      }
+    },
     "Si eliges un campo que ya está en otra posición, se intercambian. Sin dato en vivo se muestra «--»: cadencia (pendiente de verificar en dispositivo), potencia si tu reloj no la mide, zona sin FC máxima configurada, objetivo e intervalo fuera de un plan.": {
       "extractionState": "manual",
       "localizations": {
@@ -28897,6 +29407,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga data"
+          }
+        }
+      }
+    },
+    "Sin datos (bajan la confianza)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data (lowers confidence)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data (sänker säkerheten)"
           }
         }
       }
@@ -29900,6 +30427,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Genomsnittlig sömn per natt"
+          }
+        }
+      }
+    },
+    "Sueño por debajo de lo habitual %@ de las últimas 7 noches.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep below your usual on %@ of the last 7 nights."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sömn under det vanliga %@ av de senaste 7 nätterna."
           }
         }
       }
@@ -33474,6 +34018,40 @@
         }
       }
     },
+    "VDOT %@ en 4 semanas, dentro de su incertidumbre.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@ in 4 weeks, within its uncertainty."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@ på 4 veckor, inom osäkerheten."
+          }
+        }
+      }
+    },
+    "VDOT %@ en 4 semanas, más allá de su incertidumbre.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@ in 4 weeks, beyond its uncertainty."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT %@ på 4 veckor, utöver osäkerheten."
+          }
+        }
+      }
+    },
     "VDOT %@ · %@": {
       "extractionState": "manual",
       "localizations": {
@@ -33623,6 +34201,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "VO₂max"
+          }
+        }
+      }
+    },
+    "Va en contra": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Against it"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Talar emot"
           }
         }
       }
@@ -33895,6 +34490,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Variation i tiden mellan hjärtslag (SDNN, i millisekunder). Den varierar mycket mellan personer och från dag till dag; det som är relevant är dina personliga trender."
+          }
+        }
+      }
+    },
+    "Varias señales de recuperación están peor que tu basal: conviene aflojar unos días.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Several recovery signals are worse than your baseline: it is worth easing off for a few days."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flera återhämtningssignaler är sämre än din baslinje: det är klokt att ta det lugnare några dagar."
           }
         }
       }
@@ -35327,6 +35939,23 @@
         }
       }
     },
+    "evolución del VDOT": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT trend"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VDOT-utveckling"
+          }
+        }
+      }
+    },
     "faltan días para conocer tu media": {
       "extractionState": "manual",
       "localizations": {
@@ -36007,6 +36636,23 @@
         }
       }
     },
+    "ritmo a pulso fijo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pace at a fixed heart rate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tempo vid fast puls"
+          }
+        }
+      }
+    },
     "rpm": {
       "extractionState": "manual",
       "localizations": {
@@ -36173,6 +36819,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "ingen puls eller tempo att klassa det med"
+          }
+        }
+      }
+    },
+    "sueño": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sleep"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sömn"
           }
         }
       }
