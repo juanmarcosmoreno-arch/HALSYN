@@ -84,6 +84,7 @@ struct FormOverview: View {
         // Nivel 2: cada área abre su detalle.
         HalsynSectionHeader("Áreas", eyebrow: HalsynLexicon.form.rawValue)
         AerobicAreaLink()
+        ConsistencyAreaLink(runs: runs)
         FormAreaLink(title: "Carga y forma", subtitle: "Carga reciente frente a la habitual, forma y fatiga", systemImage: "gauge.with.dots.needle.50percent") {
             FormAreaScreen(title: "Carga y forma") { TrainingLoadCard() }
         }

@@ -381,3 +381,24 @@ El estado combina indicadores que HÅLSYN ya calcula y aplica reglas explícitas
 - Estado, señales a favor y en contra, lo que falta, confianza y fecha.
 - Confianza: con 6 o más de las 7 señales principales, alta; con 4 o más, media; si no, baja.
 - No es un diagnóstico médico.
+
+## Constancia (`ConsistencyEngine` 1.0, 0.10.0 (122))
+
+Puntaje de 0 a 100 con las 8 semanas completas anteriores (lunes a domingo). Hacen falta 4 semanas con datos. Es la suma ponderada de cuatro partes, cada una de 0 a 1:
+
+| Parte | Peso | Cálculo |
+|---|---|---|
+| Frecuencia | 35 % | carreras por semana ÷ objetivo, como mucho 1 |
+| Regularidad | 25 % | semanas con al menos (objetivo − 1, mínimo 1) carreras; en semanas livianas del plan basta una |
+| Estabilidad | 20 % | 1 − CV de los km semanales, entre 0 y 1, sin semanas livianas |
+| Plan | 20 % | adherencia (sesiones hechas ÷ programadas); sin plan, su peso se reparte entre las otras |
+
+- **Objetivo:** el del plan. Sin plan, la mediana de carreras por semana de las últimas 12 semanas, como mínimo 2.
+- **Qué no se penaliza:**
+  - semanas con 4 días o más de enfermedad o lesión (eventos de salud o motivo de la sesión): se quitan del cálculo;
+  - semanas de descarga, afinamiento o carrera del plan;
+  - descansos programados.
+- **Además se informan:**
+  - semanas seguidas con al menos una carrera (las semanas con enfermedad no cortan la racha);
+  - pausas de 10 días o más en 12 semanas, sin contar los días de enfermedad o lesión;
+  - la pausa más larga.

@@ -64,6 +64,7 @@
 		5BCEF8B8586483F251FCDCE3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDDA395B13EEDF085E1836 /* HistoryView.swift */; };
 		5F3849A28C496AEDCEB45621 /* RunAnalysisViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EFADBE6152CE81566D411 /* RunAnalysisViews.swift */; };
 		62E1F09CEC9F569C4C269EFD /* InsiktView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17B6D6A0876C711FE13FDE /* InsiktView.swift */; };
+		65822D85ED82337C0CA83DA4 /* ConsistencyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C605BA697DBF43B47CD8BA12 /* ConsistencyViews.swift */; };
 		69C907F100EF07EC27AC924E /* PerceivedEffortViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC82585B60753F10C616CDF /* PerceivedEffortViews.swift */; };
 		6A2E9BFC50748387218AC858 /* RunLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42603E71F7291B7A86DA3A23 /* RunLiveActivityWidget.swift */; };
 		6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD9A47F733DB3EA9EBA12B /* GoalEditorView.swift */; };
@@ -324,6 +325,7 @@
 		C287A71EB2C50957EA5FACDE /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
 		C309410DCB678925A4740B86 /* TrainingPlanViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanViews.swift; sourceTree = "<group>"; };
 		C38FE41A2350AD8BE21E1937 /* WeeklySummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklySummaryCard.swift; sourceTree = "<group>"; };
+		C605BA697DBF43B47CD8BA12 /* ConsistencyViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsistencyViews.swift; sourceTree = "<group>"; };
 		C684F62352CB5E8552F5DF92 /* InsightCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCards.swift; sourceTree = "<group>"; };
 		C8F55D34A7B04630BCDD83DE /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		C933D034DBBF7CD0507A6802 /* DataQualityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataQualityViews.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				90A1B548893B46F9A85AD153 /* AerobicViews.swift */,
+				C605BA697DBF43B47CD8BA12 /* ConsistencyViews.swift */,
 				5B569479DDCF7C472766341E /* FormView.swift */,
 				653D6524B6F946D737AB03C9 /* TrainingStatusViews.swift */,
 			);
@@ -1103,6 +1106,7 @@
 				30A0B3020C9F7F66E6D0F79D /* CoachPhrases.swift in Sources */,
 				92E0245370FAADF85D7FF649 /* CoachSpeaker.swift in Sources */,
 				727232DC1838F9B8ED3B5FFC /* CoachSpeech.swift in Sources */,
+				65822D85ED82337C0CA83DA4 /* ConsistencyViews.swift in Sources */,
 				0A127F8AEFCB8AD7C0B4AFDB /* CykelView.swift in Sources */,
 				F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */,
 				0486237A3E764CD25399A843 /* DataExportView.swift in Sources */,
@@ -1306,7 +1310,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 122;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1491,7 +1495,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 122;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

@@ -35,6 +35,23 @@
         }
       }
     },
+    "%@ (peso %@ %)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (weight %@ %)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (vikt %@ %)"
+          }
+        }
+      }
+    },
     "%@ caminando y corriendo": {
       "extractionState": "manual",
       "localizations": {
@@ -5815,6 +5832,23 @@
         }
       }
     },
+    "Carreras por semana frente a %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runs per week versus %@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löppass per vecka jämfört med %@."
+          }
+        }
+      }
+    },
     "Carreras por semana: %@": {
       "extractionState": "manual",
       "localizations": {
@@ -7205,6 +7239,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Försiktigt"
+          }
+        }
+      }
+    },
+    "Constancia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistency"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontinuitet"
           }
         }
       }
@@ -8667,6 +8718,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vila, sömn och vatten. Om signalerna är tillbaka i ditt intervall i morgon kan du gradvis komma igång igen."
+          }
+        }
+      }
+    },
+    "Descarga del plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan recovery week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planens avlastningsvecka"
           }
         }
       }
@@ -11408,6 +11476,23 @@
         }
       }
     },
+    "Enfermedad o lesión": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illness or injury"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sjukdom eller skada"
+          }
+        }
+      }
+    },
     "Enfermedades, síntomas, fiebre, medicación, lesiones, vacunas, estrés fuera de lo común o días de recuperación. Se marcan en las gráficas como contexto. HÅLSYN no diagnostica ni dice que un evento causó un cambio: solo te ayuda a recordarlo al mirar tus tendencias. Con enfermedad, fiebre o lesión, las sesiones de esos días no cuentan como incumplidas y el plan baja la intensidad.": {
       "extractionState": "manual",
       "localizations": {
@@ -12356,6 +12441,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "I veckan saknades %@ till ditt mål."
+          }
+        }
+      }
+    },
+    "Estabilidad del volumen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume stability"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volymens stabilitet"
           }
         }
       }
@@ -15080,6 +15182,23 @@
         }
       }
     },
+    "Hacen falta 4 semanas con datos para calcular el puntaje.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 weeks with data are needed to calculate the score."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs 4 veckor med data för att beräkna poängen."
+          }
+        }
+      }
+    },
     "Hacen falta al menos 3 carreras al aire libre con GPS y pulso en el período, con tramos a ritmo estable.": {
       "extractionState": "manual",
       "localizations": {
@@ -16946,6 +17065,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tung styrketräning och plyometri förbättrar löpekonomin (du gör av med mindre energi i samma tempo) utan att öka vikten, och styrketräning minskar idrottsskador. Din tränare justerar vikt, set och teknik; gör något ont, sluta."
+          }
+        }
+      }
+    },
+    "La línea es tu objetivo de %@ carreras por semana (el del plan; sin plan, tu mediana de las últimas 12 semanas).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The line is your target of %@ runs per week (the plan's; without a plan, your median of the last 12 weeks)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Linjen är ditt mål på %@ pass per vecka (planens; utan plan, din median de senaste 12 veckorna)."
           }
         }
       }
@@ -21540,6 +21676,23 @@
         }
       }
     },
+    "Normal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal"
+          }
+        }
+      }
+    },
     "Nota": {
       "extractionState": "manual",
       "localizations": {
@@ -23070,6 +23223,23 @@
         }
       }
     },
+    "Pausas de 10 días o más (12 semanas)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breaks of 10 days or more (12 weeks)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppehåll på 10 dagar eller mer (12 veckor)"
+          }
+        }
+      }
+    },
     "Pautas habituales de entrenamiento, no una prescripción. Si tienes dolor o una lesión, para y consulta a un profesional.": {
       "extractionState": "manual",
       "localizations": {
@@ -23576,6 +23746,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Plan"
+          }
+        }
+      }
+    },
+    "Plan cumplido": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan completed"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppfylld plan"
           }
         }
       }
@@ -25161,6 +25348,40 @@
         }
       }
     },
+    "Puntaje %@ de 100 · %@ semanas seguidas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score %@ of 100 · %@ weeks in a row"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poäng %@ av 100 · %@ veckor i rad"
+          }
+        }
+      }
+    },
+    "Puntaje de 0 a 100 con las 8 semanas completas anteriores: frecuencia (35 %, carreras por semana frente al objetivo, como mucho el 100 %), regularidad (25 %, semanas con al menos el objetivo menos una carrera; en las de descarga, una), estabilidad (20 %, 1 menos el coeficiente de variación de los kilómetros semanales, sin semanas de descarga) y plan (20 %, sesiones cumplidas; sin plan, su peso se reparte). No penaliza las semanas con 4 días o más de enfermedad o lesión (se quitan), las de descarga o afinamiento del plan ni los descansos programados.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score from 0 to 100 over the previous 8 full weeks: frequency (35 %, runs per week versus the target, at most 100 %), regularity (25 %, weeks with at least the target minus one run; in recovery weeks, one), stability (20 %, 1 minus the coefficient of variation of weekly kilometres, without recovery weeks) and plan (20 %, sessions completed; without a plan, its weight is shared out). Weeks with 4 or more days of illness or injury (they are removed), plan recovery or taper weeks and scheduled rest days are not penalised."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poäng från 0 till 100 över de 8 föregående hela veckorna: frekvens (35 %, pass per vecka jämfört med målet, högst 100 %), regelbundenhet (25 %, veckor med minst målet minus ett pass; i avlastningsveckor räcker ett), stabilitet (20 %, 1 minus variationskoefficienten för veckokilometrarna, utan avlastningsveckor) och plan (20 %, genomförda pass; utan plan fördelas vikten). Veckor med 4 dagar eller mer av sjukdom eller skada (de tas bort), planens avlastnings- eller nedtrappningsveckor och planerade vilodagar straffas inte."
+          }
+        }
+      }
+    },
     "Puntos: el VDOT de cada test o competición (las cruces pesan poco o nada). Línea discontinua: lo esperado; la banda, entre el percentil 10 y el 90 de la distribución predictiva (sin calibrar con tus resultados). La línea vertical es la fecha de la carrera y la horizontal, el VDOT de tu objetivo. Lo observado y lo proyectado se dibujan distinto: lo proyectado no es un dato.": {
       "extractionState": "manual",
       "localizations": {
@@ -25548,6 +25769,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vad du vill uppnå"
+          }
+        }
+      }
+    },
+    "Qué tan parejos son tus kilómetros semana a semana.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How even your kilometres are week to week."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur jämna dina kilometrar är vecka för vecka."
           }
         }
       }
@@ -26653,6 +26891,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämnhet"
+          }
+        }
+      }
+    },
+    "Regularidad del entrenamiento, semana a semana": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training regularity, week by week"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningens regelbundenhet, vecka för vecka"
           }
         }
       }
@@ -28629,6 +28884,23 @@
         }
       }
     },
+    "Semanas con el mínimo de carreras (en las de descarga basta una).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weeks with the minimum number of runs (in recovery weeks one is enough)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckor med minsta antal pass (i avlastningsveckor räcker ett)."
+          }
+        }
+      }
+    },
     "Semanas con plan": {
       "extractionState": "manual",
       "localizations": {
@@ -28659,6 +28931,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Träningsveckor till loppet (utan nedtrappning): %@. Förbättringstakt: %@ VDOT per vecka (1 poäng var %@:e vecka)."
+          }
+        }
+      }
+    },
+    "Semanas seguidas corriendo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weeks in a row running"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veckor i rad med löpning"
           }
         }
       }
@@ -28863,6 +29152,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pass %@ · %@ av %@ löppass per vecka"
+          }
+        }
+      }
+    },
+    "Sesiones del plan hechas (las de enfermedad o lesión no cuentan).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan sessions done (illness or injury do not count)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genomförda pass i planen (sjukdom eller skada räknas inte)."
           }
         }
       }
@@ -35786,6 +36092,23 @@
         }
       }
     },
+    "de 100": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "of 100"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "av 100"
+          }
+        }
+      }
+    },
     "de hace más de 12 meses": {
       "extractionState": "manual",
       "localizations": {
@@ -37057,6 +37380,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Radera det här målet?"
+          }
+        }
+      }
+    },
+    "¿Entrenas con regularidad, más allá de cumplir el plan?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you train regularly, beyond following the plan?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tränar du regelbundet, utöver att följa planen?"
           }
         }
       }
