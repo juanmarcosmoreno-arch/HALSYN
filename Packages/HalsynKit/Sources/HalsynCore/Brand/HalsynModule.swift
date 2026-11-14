@@ -6,6 +6,8 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
     case halsa
     case spring
     case cykel
+    /// Rendimiento: si estás mejorando (forma, carga, intensidad, récords).
+    case form
     case vila
     case insikt
     case mal
@@ -18,6 +20,7 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
         case .halsa: "HÄLSA"
         case .spring: "SPRING"
         case .cykel: "CYKEL"
+        case .form: "FORM"
         case .vila: "VILA"
         case .insikt: "INSIKT"
         case .mal: "MÅL"
@@ -30,6 +33,7 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
         case .halsa: "Salud"
         case .spring: "Correr"
         case .cykel: "Bici"
+        case .form: "Rendimiento"
         case .vila: "Descanso"
         case .insikt: "Análisis"
         case .mal: "Objetivos"
@@ -41,6 +45,7 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
         case .halsa: "Tu estado fisiológico diario, de un vistazo."
         case .spring: "Entrenamientos de carrera con métricas avanzadas."
         case .cykel: "Salidas en bici con velocidad, desnivel y potencia."
+        case .form: "Si estás mejorando: forma, carga, intensidad y récords."
         case .vila: "Sueño, recuperación y equilibrio esfuerzo-descanso."
         case .insikt: "Tendencias, comparaciones y evolución a largo plazo."
         case .mal: "Objetivos de salud y de entrenamiento, paso a paso."
@@ -53,6 +58,7 @@ public enum HalsynModule: String, CaseIterable, Identifiable, Sendable {
         case .halsa: "heart"
         case .spring: "figure.run"
         case .cykel: "bicycle"
+        case .form: "chart.line.uptrend.xyaxis"
         case .vila: "moon"
         case .insikt: "chart.bar.xaxis"
         case .mal: "target"

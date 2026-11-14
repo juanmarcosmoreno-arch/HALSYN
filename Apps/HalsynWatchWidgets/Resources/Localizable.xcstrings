@@ -307,6 +307,23 @@
         }
       }
     },
+    "%@ para revisar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ to review"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ att granska"
+          }
+        }
+      }
+    },
     "%@ por %@ más lenta que tu mediana en esta distancia (%@).": {
       "extractionState": "manual",
       "localizations": {
@@ -1731,6 +1748,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Öppnar klockan…"
+          }
+        }
+      }
+    },
+    "Abrir CYKEL": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open CYKEL"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna CYKEL"
           }
         }
       }
@@ -3979,23 +4013,6 @@
         }
       }
     },
-    "CYKEL como pestaña": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CYKEL as a tab"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CYKEL som flik"
-          }
-        }
-      }
-    },
     "Cada": {
       "extractionState": "manual",
       "localizations": {
@@ -4608,23 +4625,6 @@
         }
       }
     },
-    "Calidad de los datos: %@ para revisar": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Data quality: %@ to review"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Datakvalitet: %@ att granska"
-          }
-        }
-      }
-    },
     "Calienta 10–15 min suave sin grabar y haz 3 o 4 aceleraciones. Luego inicia el test en el reloj y corre %@ a tope, a ritmo parejo. Cuando el reloj diga «Intervalos completados», detén el entrenamiento enseguida.": {
       "extractionState": "manual",
       "localizations": {
@@ -5203,6 +5203,23 @@
         }
       }
     },
+    "Carga reciente frente a la habitual, forma y fatiga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent load versus your usual, fitness and fatigue"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste belastning jämfört med den vanliga, form och trötthet"
+          }
+        }
+      }
+    },
     "Carga reciente más baja que tu habitual": {
       "extractionState": "manual",
       "localizations": {
@@ -5216,6 +5233,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Belastningen på sistone är lägre än din vanliga"
+          }
+        }
+      }
+    },
+    "Carga y forma": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load and fitness"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning och form"
           }
         }
       }
@@ -7583,6 +7617,23 @@
         }
       }
     },
+    "Cuánto acierta la predicción contigo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How accurate the prediction is for you"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur träffsäker prognosen är för dig"
+          }
+        }
+      }
+    },
     "Cuánto avanzas con cada latido. Si sube con el tiempo a ritmos parecidos, estás más en forma.": {
       "extractionState": "manual",
       "localizations": {
@@ -7596,6 +7647,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hur långt du kommer med varje hjärtslag. Om det ökar över tid vid liknande tempo kommer du i bättre form."
+          }
+        }
+      }
+    },
+    "Cuánto baja el pulso al terminar": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How much your heart rate drops when you finish"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur mycket pulsen sjunker när du slutar"
           }
         }
       }
@@ -8841,6 +8909,23 @@
         }
       }
     },
+    "Distancia, tiempo y ritmo por semana, mes y año": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance, time and pace by week, month and year"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distans, tid och tempo per vecka, månad och år"
+          }
+        }
+      }
+    },
     "Distribución de intensidad": {
       "extractionState": "manual",
       "localizations": {
@@ -9024,6 +9109,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dubblett: samma pass finns två gånger"
+          }
+        }
+      }
+    },
+    "Duplicados y datos dudosos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicates and doubtful data"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dubbletter och tveksamma data"
           }
         }
       }
@@ -11901,6 +12003,23 @@
         }
       }
     },
+    "Estadísticas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistics"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistik"
+          }
+        }
+      }
+    },
     "Este dispositivo no tiene Bluetooth de bajo consumo.": {
       "extractionState": "manual",
       "localizations": {
@@ -12288,6 +12407,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prestationsutveckling"
+          }
+        }
+      }
+    },
+    "Evolución, predicción, carga, intensidad y récords": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progress, prediction, load, intensity and records"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utveckling, prognos, belastning, intensitet och rekord"
           }
         }
       }
@@ -16011,6 +16147,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kilometer"
+          }
+        }
+      }
+    },
+    "Kilómetros por semana y cuánto fue suave o intenso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometres per week and how much was easy or hard"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometer per vecka och hur mycket som var lätt eller hårt"
           }
         }
       }
@@ -25807,6 +25960,23 @@
         }
       }
     },
+    "Rendimiento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Performance"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prestation"
+          }
+        }
+      }
+    },
     "Rendimiento de hoy": {
       "extractionState": "manual",
       "localizations": {
@@ -28030,6 +28200,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Har den dagen redan ett pass byter de plats. Undvik två hårda pass i rad."
+          }
+        }
+      }
+    },
+    "Si estás mejorando: forma, carga, intensidad y récords.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whether you are improving: fitness, load, intensity and records."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du blir bättre: form, belastning, intensitet och rekord."
           }
         }
       }
@@ -32097,6 +32284,23 @@
         }
       }
     },
+    "Tus 3 mejores de cada récord": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your top 3 for each record"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina 3 bästa för varje rekord"
+          }
+        }
+      }
+    },
     "Tus datos son tuyos": {
       "extractionState": "manual",
       "localizations": {
@@ -35986,6 +36190,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Har du en Xiaomi-våg? Väg dig med knappen nedan: HÅLSYN läser den via Bluetooth. Du kan också använda Zepp Life (eller Mi Fit): Profil › Lägg till konton › Apple Hälsa, och slå på vikt och kroppsfett."
+          }
+        }
+      }
+    },
+    "Áreas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Areas"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Områden"
           }
         }
       }

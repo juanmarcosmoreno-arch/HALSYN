@@ -70,6 +70,7 @@ struct HalsynApp: App {
                     switch url.host {
                     case "spring": model.selectedTab = .spring
                     case "cykel": model.openCykel()
+                    case "form": model.selectedTab = .form
                     case "insikt": model.selectedTab = .insikt
                     case "profile": model.selectedTab = .profile
                     default: model.selectedTab = .halsa

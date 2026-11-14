@@ -66,6 +66,11 @@ final class ChartSnapshotTests: XCTestCase {
         }
         let predictions = RacePredictor.predictions(from: await provider.recentWorkouts(limit: 60), endingOn: today, calendar: .current)
         views.append(("18-prediccion", AnyView(RacePredictionCard(predictions: predictions, unitSystem: .metric))))
+        // Pestaña Rendimiento (FORM) con datos demo.
+        let demoRuns = await provider.recentWorkouts(limit: 60)
+        views.append(("20-rendimiento", AnyView(VStack(alignment: .leading, spacing: HalsynSpacing.l) {
+            FormOverview(isDemo: true, predictions: predictions, performance: nil, runs: demoRuns, rawWorkouts: demoRuns, flaggedCount: 0, unitSystem: .metric)
+        })))
         // Diario de hábitos de ejemplo.
         let habits = await provider.habitReport(journal: DemoHabitJournal.make(endingOn: today, calendar: .current), endingOn: today, calendar: .current)
         if let impact = habits.impacts.first {

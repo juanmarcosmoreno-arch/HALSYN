@@ -31,6 +31,7 @@
 		2780B5E6A966FCDD0F83C4DE /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E2B3491782961A00596E7 /* WatchHomeView.swift */; };
 		289648AD0090935FB31B2913 /* HalsynCore in Frameworks */ = {isa = PBXBuildFile; productRef = FEE0748ACB8908F954609411 /* HalsynCore */; };
 		29980F067AAE47A94CE20E66 /* SleepDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */; };
+		2AABC823F4D717F22B5ABF7D /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B569479DDCF7C472766341E /* FormView.swift */; };
 		2B32A9B3EC216486011653B7 /* RunActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A5701A083E54540706CF03 /* RunActivityAttributes.swift */; };
 		2BDE292B83CDEBCC7C660F99 /* ThemeAndLanguageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D791B9AFD443C30F9FE846 /* ThemeAndLanguageViews.swift */; };
 		2BF0AD3AABDE9E4FBFE0F98F /* VolumeIntensityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F7CC97BEA070D8FF3F8EB8 /* VolumeIntensityViews.swift */; };
@@ -263,6 +264,7 @@
 		5718F54E426C64C6E2183DE8 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		572F68D555D13942BB8FD46E /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
 		5763DE70B5A95B09EC7DD533 /* SleepDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDetailViews.swift; sourceTree = "<group>"; };
+		5B569479DDCF7C472766341E /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		5C94E383EC169ABED0215031 /* RunWeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunWeatherCard.swift; sourceTree = "<group>"; };
 		5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		5DC82585B60753F10C616CDF /* PerceivedEffortViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceivedEffortViews.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				4E82B11746F89BB7B970958E /* Cykel */,
+				2498656E8423364419DF9C5F /* Form */,
 				F7B6FB1470846B1A72CC84D2 /* Halsa */,
 				94A3A811412D07B584AA8576 /* Insikt */,
 				39D830EA03192C0871F9DE23 /* Mal */,
@@ -460,6 +463,14 @@
 				FACF7FE4DE16A3FB0BC823CF /* Vila */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		2498656E8423364419DF9C5F /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				5B569479DDCF7C472766341E /* FormView.swift */,
+			);
+			path = Form;
 			sourceTree = "<group>";
 		};
 		2AE58940C381D97F1B0FB11D /* Spring */ = {
@@ -1094,6 +1105,7 @@
 				8FD7D8FF09635A0C756E29AA /* DiagnosticsView.swift in Sources */,
 				2634ACF724DD93CC043212F2 /* EvolutionView.swift in Sources */,
 				427EE4162AACE8049B7FE878 /* ExpandableText.swift in Sources */,
+				2AABC823F4D717F22B5ABF7D /* FormView.swift in Sources */,
 				BEB49695DBC0C742BBF5ED71 /* GoalCoachViews.swift in Sources */,
 				6B68EA4243A03210A6D8554A /* GoalEditorView.swift in Sources */,
 				A9227B874921CF02BD5E36B8 /* GoalIndicatorsViews.swift in Sources */,
@@ -1286,7 +1298,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 119;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1471,7 +1483,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 118;
+				CURRENT_PROJECT_VERSION = 119;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

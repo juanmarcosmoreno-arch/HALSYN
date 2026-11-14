@@ -8,6 +8,7 @@ import SwiftUI
 enum AppTab: Hashable {
     case halsa
     case spring
+    case form
     case cykel
     case insikt
     case profile
@@ -24,13 +25,9 @@ final class AppModel {
     /// CYKEL abierto como hoja (cuando no es pestaña).
     var isShowingCykel = false
 
-    /// Abre CYKEL: su pestaña si está activada; si no, como hoja.
+    /// Abre CYKEL como hoja (desde 0.10.0 (119) ya no es una pestaña: va dentro de Correr).
     func openCykel() {
-        if UserDefaults.standard.bool(forKey: AppPreferences.cykelTabKey) {
-            selectedTab = .cykel
-        } else {
-            isShowingCykel = true
-        }
+        isShowingCykel = true
     }
     private(set) var provider: any HealthDataProviding
     private(set) var authorizationState: HealthAuthorizationState = .notRequired

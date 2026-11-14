@@ -33,32 +33,11 @@ struct SpringView: View {
                     TrainingPlanCard(workouts: allWorkouts)
                     ShoesCard(workouts: allWorkouts)
                     StrengthCard()
-                    EvolutionCard(runs: allWorkouts)
-                    AnalysisSection("spring") {
-                        RunningStatsCard(workouts: allWorkouts)
-                        VolumeIntensityCard(runs: allWorkouts)
-                        TrainingLoadCard()
-                        HeartRateRecoveryCard()
-                        RacePredictionCard(predictions: predictions, performance: performance, runs: allWorkouts, unitSystem: unitSystem)
-                    }
-                    if flaggedCount > 0 {
-                        NavigationLink {
-                            DataQualityView(workouts: rawWorkouts)
-                        } label: {
-                            HalsynCard {
-                                HStack {
-                                    Label("Calidad de los datos: \(String(flaggedCount)) para revisar", systemImage: "checkmark.shield")
-                                        .font(.halsynCaption.weight(.semibold))
-                                        .foregroundStyle(.halsynPrimaryText)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .font(.footnote.weight(.semibold))
-                                        .foregroundStyle(.halsynSecondaryText)
-                                }
-                            }
-                        }
-                        .buttonStyle(.plain)
-                    }
+                    // Bici: plegada, se abre al tocar (ya no es una pestaña).
+                    BikeSection()
+                    // Evolución, carga, intensidad, estadísticas, predicción y
+                    // calidad de datos están ahora en la pestaña Rendimiento.
+                    RendimientoHint()
                     history(workouts)
                 } else {
                     HalsynLoadingState()
@@ -134,15 +113,6 @@ struct SpringView: View {
     @ViewBuilder
     private func history(_ workouts: [WorkoutSummary]) -> some View {
         HalsynSectionHeader("Historial", eyebrow: HalsynLexicon.tid.rawValue)
-        if !RunRecordStore.shared.podium.isEmpty {
-            NavigationLink {
-                RunRecordsView()
-            } label: {
-                Label("Tus récords", systemImage: "trophy")
-                    .font(.halsynCaption.weight(.semibold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
         if workouts.isEmpty {
             HalsynEmptyState(systemImage: "figure.run", title: "Sin carreras todavía", message: "Tus entrenamientos aparecerán aquí.")
         } else {
@@ -155,6 +125,87 @@ struct SpringView: View {
                 }
             }
         }
+    }
+}
+
+/// Bici plegada dentro de Correr: un botón que despliega el acceso a CYKEL.
+private struct BikeSection: View {
+    @Environment(AppModel.self) private var model
+    @AppStorage("halsyn.spring.bikeExpanded") private var expanded = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: HalsynSpacing.s) {
+            Button {
+                withAnimation(.easeInOut(duration: 0.25)) { expanded.toggle() }
+            } label: {
+                HStack {
+                    Label(LocalizedStringKey(HalsynModule.cykel.meaning), systemImage: HalsynModule.cykel.systemImage)
+                        .font(.halsynHeadline)
+                        .foregroundStyle(.halsynPrimaryText)
+                    Spacer()
+                    Text(expanded ? LocalizedStringKey("Ocultar") : LocalizedStringKey("Ver"))
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynAccentText)
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(expanded ? 180 : 0))
+                        .foregroundStyle(.halsynAccentText)
+                }
+                .padding(.vertical, HalsynSpacing.s)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            if expanded {
+                HalsynCard {
+                    VStack(alignment: .leading, spacing: HalsynSpacing.m) {
+                        Text(verbatim: HalsynModule.cykel.brandName)
+                            .font(.halsynTitle)
+                            .foregroundStyle(.halsynPrimaryText)
+                        Text(LocalizedStringKey(HalsynModule.cykel.summary))
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                        HalsynPrimaryButton("Abrir CYKEL", systemImage: HalsynModule.cykel.systemImage) {
+                            model.isShowingCykel = true
+                        }
+                    }
+                }
+                .transition(.opacity)
+            }
+        }
+    }
+}
+
+/// Aviso breve: el análisis está en Rendimiento.
+private struct RendimientoHint: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        Button {
+            model.selectedTab = .form
+        } label: {
+            HalsynCard {
+                HStack(spacing: HalsynSpacing.m) {
+                    Image(systemName: HalsynModule.form.systemImage)
+                        .font(.title2)
+                        .foregroundStyle(.halsynAccentText)
+                        .frame(width: 36)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(LocalizedStringKey(HalsynModule.form.meaning))
+                            .font(.halsynHeadline)
+                            .foregroundStyle(.halsynPrimaryText)
+                        Text("Evolución, predicción, carga, intensidad y récords")
+                            .font(.halsynCaption)
+                            .foregroundStyle(.halsynSecondaryText)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.halsynSecondaryText)
+                        .accessibilityHidden(true)
+                }
+            }
+        }
+        .buttonStyle(.plain)
     }
 }
 
