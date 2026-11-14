@@ -113,7 +113,7 @@ final class AppLayerTests: XCTestCase {
     }
 
     func testEveryModuleHasAScreenEntryPoint() {
-        // HÄLSA, SPRING, CYKEL e INSIKT son pestañas; VILA y MÅL se abren desde HÄLSA e INSIKT.
-        XCTAssertEqual(Set(HalsynModule.allCases), [.halsa, .spring, .cykel, .insikt, .vila, .mal])
+        // HÄLSA, SPRING, FORM e INSIKT son pestañas; CYKEL se abre desde SPRING; VILA y MÅL desde HÄLSA e INSIKT.
+        XCTAssertEqual(Set(HalsynModule.allCases), [.halsa, .spring, .form, .cykel, .insikt, .vila, .mal])
     }
 }
