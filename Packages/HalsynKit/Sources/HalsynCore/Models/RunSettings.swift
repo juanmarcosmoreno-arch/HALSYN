@@ -159,7 +159,9 @@ public struct RunSettings: Hashable, Codable, Sendable {
 
     /// Pantallas válidas (al menos una). Corrige perfiles incoherentes en vez de fallar.
     public var validScreens: [WorkoutScreenProfile] {
-        let valid = screens.prefix(Self.maximumScreens).map { $0.normalized() }
+        // Desde 0.10.0 (124) todas las pantallas tienen 6 campos (se conservan
+        // los elegidos y se completan los que faltan).
+        let valid = screens.prefix(Self.maximumScreens).map { $0.withLayout(.six) }
         return valid.isEmpty ? [.easyRun] : Array(valid)
     }
 

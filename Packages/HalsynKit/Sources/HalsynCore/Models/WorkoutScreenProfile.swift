@@ -91,18 +91,18 @@ public struct WorkoutScreenProfile: Hashable, Codable, Identifiable, Sendable {
     }
 
     public static let easyRun = WorkoutScreenProfile(
-        id: "easy-run", name: "Easy Run", layout: .four,
-        fields: [.elapsedTime, .currentPace, .heartRate, .heartRateZone]
+        id: "easy-run", name: "Easy Run", layout: .six,
+        fields: [.elapsedTime, .distance, .currentPace, .averagePace, .heartRate, .heartRateZone]
     )
 
     public static let intervals = WorkoutScreenProfile(
-        id: "intervals", name: "Intervals", layout: .four,
-        fields: [.intervalTime, .currentPace, .targetPace, .heartRate]
+        id: "intervals", name: "Intervals", layout: .six,
+        fields: [.intervalTime, .currentPace, .targetPace, .heartRate, .distance, .elapsedTime]
     )
 
     public static let race = WorkoutScreenProfile(
-        id: "race", name: "Race", layout: .four,
-        fields: [.distance, .averagePace, .elapsedTime, .lapPace]
+        id: "race", name: "Race", layout: .six,
+        fields: [.distance, .averagePace, .elapsedTime, .lapPace, .currentPace, .heartRate]
     )
 
     public static let defaults: [WorkoutScreenProfile] = [.easyRun, .intervals, .race]

@@ -307,7 +307,6 @@
  "Caminata lateral con banda": "Packages/HalsynKit/Sources/HalsynCore/Engines/Running/RunnerStrength.swift",
  "Campo %lld": "Apps/HalsyniOS/Features/Spring/RunSettingsView.swift",
  "Campos": "Apps/HalsyniOS/Features/Spring/RunSettingsView.swift",
- "Campos en pantalla": "Apps/HalsyniOS/Features/Spring/RunSettingsView.swift",
  "Cancelar": "Apps/HalsynWatch/Workout/WarmupView.swift",
  "Capacidad aeróbica": "Apps/HalsyniOS/Features/Form/AerobicViews.swift",
  "Capacidad anaeróbica": "Packages/HalsynKit/Sources/HalsynCore/Engines/Cycling/CyclingPower.swift",

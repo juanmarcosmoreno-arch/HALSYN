@@ -5237,23 +5237,6 @@
         }
       }
     },
-    "Campos en pantalla": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fields on screen"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fält på skärmen"
-          }
-        }
-      }
-    },
     "Cancelar": {
       "extractionState": "manual",
       "localizations": {

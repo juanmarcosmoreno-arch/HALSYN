@@ -66,13 +66,13 @@ struct RunSettingsView: View {
                     ScreenEditorView(profileID: profile.id)
                 } label: {
                     HStack(spacing: HalsynSpacing.m) {
-                        WatchScreenPreview(profile: profile.normalized())
+                        WatchScreenPreview(profile: profile.withLayout(.six))
                             .frame(width: 54)
                             .allowsHitTesting(false)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(verbatim: profile.name)
                                 .font(.halsynHeadline)
-                            Text(verbatim: profile.normalized().fields.map { NSLocalizedString($0.title, comment: "") }.joined(separator: " · "))
+                            Text(verbatim: profile.withLayout(.six).fields.map { NSLocalizedString($0.title, comment: "") }.joined(separator: " · "))
                                 .font(.halsynCaption)
                                 .foregroundStyle(.halsynSecondaryText)
                                 .lineLimit(2)
@@ -96,8 +96,8 @@ struct RunSettingsView: View {
                         settings.screens.append(WorkoutScreenProfile(
                             id: "screen-\(UUID().uuidString)",
                             name: String(localized: "Pantalla \(number)"),
-                            layout: .three,
-                            fields: [.distance, .currentPace, .heartRate]
+                            layout: .six,
+                            fields: [.distance, .currentPace, .heartRate, .elapsedTime, .averagePace, .heartRateZone]
                         ))
                     }
                 } label: {
@@ -330,7 +330,7 @@ struct ScreenEditorView: View {
 
     var body: some View {
         if let index {
-            let profile = store.settings.screens[index].normalized()
+            let profile = store.settings.screens[index].withLayout(.six)
             Form {
                 Section {
                     HStack {
@@ -350,22 +350,13 @@ struct ScreenEditorView: View {
                         get: { profile.name },
                         set: { name in update(index) { $0.name = name.isEmpty ? $0.name : String(name.prefix(24)) } }
                     ))
-                    Picker("Campos en pantalla", selection: Binding(
-                        get: { profile.layout },
-                        set: { layout in update(index) { $0 = $0.withLayout(layout) } }
-                    )) {
-                        ForEach(WorkoutScreenLayout.allCases, id: \.self) { layout in
-                            Text(verbatim: "\(layout.fieldCount)").tag(layout)
-                        }
-                    }
-                    .pickerStyle(.segmented)
                 }
 
                 Section {
                     ForEach(Array(profile.fields.enumerated()), id: \.offset) { slot, field in
                         Picker(selection: Binding(
                             get: { field },
-                            set: { newField in update(index) { $0 = $0.replacing(fieldAt: slot, with: newField) } }
+                            set: { newField in update(index) { $0 = $0.withLayout(.six).replacing(fieldAt: slot, with: newField) } }
                         )) {
                             ForEach(WorkoutFieldKind.allCases) { kind in
                                 Text(LocalizedStringKey(kind.title)).tag(kind)

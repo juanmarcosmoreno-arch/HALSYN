@@ -305,15 +305,20 @@ struct RunSettingsTests {
 
     @Test func layoutChangeKeepsFields() {
         let profile = WorkoutScreenProfile.easyRun.withLayout(.two)
-        #expect(profile.fields == [.elapsedTime, .currentPace])
-        let back = profile.withLayout(.four)
+        #expect(profile.fields == [.elapsedTime, .distance])
+        let back = profile.withLayout(.six)
         #expect(back.isValid)
-        #expect(Array(back.fields.prefix(2)) == [.elapsedTime, .currentPace])
+        #expect(Array(back.fields.prefix(2)) == [.elapsedTime, .distance])
+        // Desde 0.10.0 (124) el reloj siempre usa 6 campos, conservando los elegidos.
+        let old = RunSettings(screens: [WorkoutScreenProfile(id: "o", name: "O", layout: .three, fields: [.heartRate, .distance, .currentPace])]).validScreens
+        #expect(old.first?.layout == .six)
+        #expect(Array(old.first?.fields.prefix(3) ?? []) == [.heartRate, .distance, .currentPace])
+        #expect(old.first?.isValid == true)
     }
 
     @Test func replacingSwapsInsteadOfDuplicating() {
         let profile = WorkoutScreenProfile.easyRun.replacing(fieldAt: 0, with: .heartRate)
-        #expect(profile.fields == [.heartRate, .currentPace, .elapsedTime, .heartRateZone])
+        #expect(profile.fields == [.heartRate, .distance, .currentPace, .averagePace, .elapsedTime, .heartRateZone])
         #expect(profile.isValid)
     }
 
