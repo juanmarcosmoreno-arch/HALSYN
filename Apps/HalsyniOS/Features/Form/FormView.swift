@@ -31,8 +31,10 @@ struct FormView: View {
             .task(id: model.reloadKey) {
                 let recent = await model.provider.recentWorkouts(limit: 400)
                 refresh(recent)
+                // Récords y análisis aeróbico (no en demo: los datos de ejemplo no son tuyos).
                 if !model.isDemo {
                     await RunRecordStore.shared.refresh(runs: recent, provider: model.provider)
+                    await AerobicStore.shared.refresh(runs: recent, provider: model.provider)
                 }
             }
             .onChange(of: WorkoutQualityStore.shared.excluded) { _, _ in refresh(rawWorkouts) }
@@ -74,6 +76,7 @@ struct FormOverview: View {
 
         // Nivel 2: cada área abre su detalle.
         HalsynSectionHeader("Áreas", eyebrow: HalsynLexicon.form.rawValue)
+        AerobicAreaLink()
         FormAreaLink(title: "Carga y forma", subtitle: "Carga reciente frente a la habitual, forma y fatiga", systemImage: "gauge.with.dots.needle.50percent") {
             FormAreaScreen(title: "Carga y forma") { TrainingLoadCard() }
         }

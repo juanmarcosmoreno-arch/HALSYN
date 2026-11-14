@@ -35,6 +35,23 @@
         }
       }
     },
+    "%@ carreras · 28 días": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ runs · 28 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ löppass · 28 dagar"
+          }
+        }
+      }
+    },
     "%@ continuos a %@, con calentamiento y vuelta a la calma": {
       "extractionState": "manual",
       "localizations": {
@@ -388,6 +405,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ över ditt snitt"
+          }
+        }
+      }
+    },
+    "%@ s/km más lento que hace 8 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s/km slower than 8 weeks ago"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s/km långsammare än för 8 veckor sedan"
+          }
+        }
+      }
+    },
+    "%@ s/km más rápido que hace 8 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s/km faster than 8 weeks ago"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s/km snabbare än för 8 veckor sedan"
           }
         }
       }
@@ -5016,6 +5067,23 @@
         }
       }
     },
+    "Capacidad aeróbica": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aerobic capacity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aerob kapacitet"
+          }
+        }
+      }
+    },
     "Capacidad anaeróbica": {
       "extractionState": "manual",
       "localizations": {
@@ -7668,6 +7736,23 @@
         }
       }
     },
+    "Cuánto cae la eficiencia de la primera a la segunda mitad. Más bajo = el corazón sostiene mejor el ritmo. Por debajo de un 5 % suele considerarse bajo, pero el calor, la duración y el terreno lo cambian: compáralo con tus propias carreras parecidas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How much efficiency drops from the first to the second half. Lower = your heart holds the pace better. Below 5 % is usually considered low, but heat, duration and terrain change it: compare it with your own similar runs."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur mycket effektiviteten sjunker från första till andra halvan. Lägre = hjärtat håller tempot bättre. Under 5 % brukar räknas som lågt, men värme, längd och terräng påverkar: jämför med dina egna liknande pass."
+          }
+        }
+      }
+    },
     "Cálculo": {
       "extractionState": "manual",
       "localizations": {
@@ -8225,6 +8310,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulsdrift"
+          }
+        }
+      }
+    },
+    "Desacople en carreras largas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decoupling in long runs"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frikoppling i långa pass"
           }
         }
       }
@@ -9572,6 +9674,23 @@
         }
       }
     },
+    "Eficiencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efficiency"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effektivitet"
+          }
+        }
+      }
+    },
     "Ejercicio": {
       "extractionState": "manual",
       "localizations": {
@@ -10690,6 +10809,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Emot: %@"
+          }
+        }
+      }
+    },
+    "En el período no corriste a ese pulso: no se estima fuera de lo que observaste.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You did not run at that heart rate in the period: nothing is estimated outside what was observed."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du sprang inte på den pulsen under perioden: inget skattas utanför det som observerats."
           }
         }
       }
@@ -14621,6 +14757,23 @@
         }
       }
     },
+    "Hacen falta al menos 3 carreras al aire libre con GPS y pulso en el período, con tramos a ritmo estable.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At least 3 outdoor runs with GPS and heart rate are needed in the period, with steady-pace stretches."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det behövs minst 3 utomhuspass med GPS och puls under perioden, med sträckor i jämnt tempo."
+          }
+        }
+      }
+    },
     "Hacen falta al menos 4 componentes. Escribe tus datos en los que dicen «Añadir».": {
       "extractionState": "manual",
       "localizations": {
@@ -16950,6 +17103,23 @@
         }
       }
     },
+    "Lento": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slow"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Långsamt"
+          }
+        }
+      }
+    },
     "Lesión": {
       "extractionState": "manual",
       "localizations": {
@@ -18293,6 +18463,23 @@
         }
       }
     },
+    "Mediana de los últimos 28 días: %@ (%@ carreras)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Median of the last 28 days: %@ (%@ runs)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Median för de senaste 28 dagarna: %@ (%@ pass)"
+          }
+        }
+      }
+    },
     "Mediana del grupo: %@ %@. Tu último valor: %@ %@.": {
       "extractionState": "manual",
       "localizations": {
@@ -18663,6 +18850,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Meter per hjärtslag"
+          }
+        }
+      }
+    },
+    "Metros por minuto por cada latido en los tramos estables. Más alto = más velocidad con el mismo pulso.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metres per minute per heartbeat in the steady stretches. Higher = more speed at the same heart rate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meter per minut per hjärtslag på de jämna sträckorna. Högre = mer fart med samma puls."
           }
         }
       }
@@ -19394,6 +19598,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fler analyser när det finns data"
+          }
+        }
+      }
+    },
+    "Más arriba es más rápido. La banda es la incertidumbre de cada estimación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Higher is faster. The band is the uncertainty of each estimate."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Högre är snabbare. Bandet är osäkerheten i varje skattning."
           }
         }
       }
@@ -25280,6 +25501,23 @@
         }
       }
     },
+    "Rango probable: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Likely range: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troligt intervall: %@"
+          }
+        }
+      }
+    },
     "Rangos orientativos del modelo (sin calibrar con tus resultados).": {
       "extractionState": "manual",
       "localizations": {
@@ -26402,6 +26640,40 @@
         }
       }
     },
+    "Ritmo a %@ lpm: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace at %@ bpm: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo vid %@ slag/min: %@"
+          }
+        }
+      }
+    },
+    "Ritmo a %@ lpm: %@ · %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace at %@ bpm: %@ · %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo vid %@ slag/min: %@ · %@"
+          }
+        }
+      }
+    },
     "Ritmo a lo largo de la carrera": {
       "extractionState": "manual",
       "localizations": {
@@ -26415,6 +26687,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tempo under löppasset"
+          }
+        }
+      }
+    },
+    "Ritmo a pulso fijo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace at a fixed heart rate"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo vid fast puls"
           }
         }
       }
@@ -27405,6 +27694,23 @@
         }
       }
     },
+    "Se calcula en carreras continuas y regulares de 30 min o más al aire libre. Todavía no hay ninguna.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It is calculated on continuous, steady outdoor runs of 30 min or more. There are none yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det beräknas på sammanhängande, jämna utomhuspass på 30 min eller mer. Det finns inga ännu."
+          }
+        }
+      }
+    },
     "Se consulta a  Weather con la hora y el punto de salida. Hace falta conexión y que WeatherKit esté activado para la app (en Xcode, Signing & Capabilities › WeatherKit, y en developer.apple.com › Identifiers › la app › Capabilities y App Services). Las carreras de la app Entreno traen el clima guardado en Salud.": {
       "extractionState": "manual",
       "localizations": {
@@ -28374,6 +28680,23 @@
         }
       }
     },
+    "Sin cambio claro frente a hace 8 semanas (la diferencia cabe en la incertidumbre)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No clear change from 8 weeks ago (the difference fits within the uncertainty)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingen tydlig förändring jämfört med för 8 veckor sedan (skillnaden ryms i osäkerheten)"
+          }
+        }
+      }
+    },
     "Sin carrera este día": {
       "extractionState": "manual",
       "localizations": {
@@ -29152,6 +29475,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Om CYKEL"
+          }
+        }
+      }
+    },
+    "Solo carreras al aire libre con GPS y pulso, sin duplicados. De cada una se usan los tramos de 200 m a ritmo estable: después del calentamiento, sin aceleraciones (ritmo a menos de un 8 % de los tramos vecinos), casi llanos y con el pulso tomado 30 s después, porque el corazón tarda en responder. El ritmo a un pulso sale de una recta velocidad–pulso con las carreras de los últimos 28 días, solo dentro de los pulsos que corriste (no se extrapola); la incertidumbre cuenta cada carrera como una observación. Se compara con el mismo cálculo de hace 8 semanas y solo se habla de cambio si supera esa incertidumbre. Eficiencia = velocidad (m/min) ÷ pulso. Desacople = cuánto cae la eficiencia de la primera a la segunda mitad (Friel), solo en carreras regulares de 30 min o más. El calor, la hidratación, el cansancio y el terreno también influyen: es orientativo, no un diagnóstico.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only outdoor runs with GPS and heart rate, without duplicates. From each one, the 200 m stretches at a steady pace are used: after the warm-up, without accelerations (pace within 8 % of the neighbouring stretches), nearly flat, and with heart rate taken 30 s later because the heart takes time to respond. Pace at a heart rate comes from a speed–heart rate line fitted to the runs of the last 28 days, only within the heart rates you ran at (no extrapolation); the uncertainty counts each run as one observation. It is compared with the same calculation from 8 weeks ago, and a change is only reported if it exceeds that uncertainty. Efficiency = speed (m/min) ÷ heart rate. Decoupling = how much efficiency drops from the first to the second half (Friel), only in steady runs of 30 min or more. Heat, hydration, fatigue and terrain also play a part: it is indicative, not a diagnosis."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bara utomhuspass med GPS och puls, utan dubbletter. Från varje pass används 200 m-sträckorna i jämnt tempo: efter uppvärmningen, utan accelerationer (tempo inom 8 % av grannsträckorna), nästan platta och med pulsen tagen 30 s senare eftersom hjärtat reagerar med fördröjning. Tempot vid en puls kommer från en linje fart–puls anpassad till passen de senaste 28 dagarna, bara inom de pulser du sprungit på (ingen extrapolering); osäkerheten räknar varje pass som en observation. Det jämförs med samma beräkning för 8 veckor sedan och en förändring nämns bara om den överstiger osäkerheten. Effektivitet = fart (m/min) ÷ puls. Frikoppling = hur mycket effektiviteten sjunker från första till andra halvan (Friel), bara i jämna pass på 30 min eller mer. Värme, vätska, trötthet och terräng spelar också in: det är vägledande, ingen diagnos."
           }
         }
       }
@@ -31094,6 +31434,23 @@
         }
       }
     },
+    "Todavía no hay datos de hace 8 semanas para comparar.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There is no data from 8 weeks ago to compare yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det finns ännu inga data från för 8 veckor sedan att jämföra med."
+          }
+        }
+      }
+    },
     "Todavía no hay datos suficientes de hoy para un resumen.": {
       "extractionState": "manual",
       "localizations": {
@@ -31175,6 +31532,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Inga tidigare pass ännu: prognosen använder varje scenarios antagande."
+          }
+        }
+      }
+    },
+    "Todo (%@ carreras)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All (%@ runs)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allt (%@ pass)"
           }
         }
       }
@@ -32297,6 +32671,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dina 3 bästa för varje rekord"
+          }
+        }
+      }
+    },
+    "Tus datos no muestran una relación clara entre pulso y velocidad todavía.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data do not show a clear relationship between heart rate and speed yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dina data visar ännu inget tydligt samband mellan puls och fart."
           }
         }
       }
@@ -35922,6 +36313,40 @@
         }
       }
     },
+    "¿Corres más rápido con el mismo esfuerzo del corazón?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you running faster with the same effort from your heart?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Springer du snabbare med samma ansträngning för hjärtat?"
+          }
+        }
+      }
+    },
+    "¿Corres más rápido con el mismo pulso?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you running faster at the same heart rate?"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Springer du snabbare med samma puls?"
+          }
+        }
+      }
+    },
     "¿Cómo aprende HÅLSYN?": {
       "extractionState": "manual",
       "localizations": {
@@ -36279,6 +36704,23 @@
         }
       }
     },
+    "Última: %@ (%@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest: %@ (%@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste: %@ (%@)"
+          }
+        }
+      }
+    },
     "Últimas %lld a %@ millas por hora": {
       "extractionState": "manual",
       "localizations": {
@@ -36415,6 +36857,23 @@
         }
       }
     },
+    "Últimos %@ días (%@ carreras)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last %@ days (%@ runs)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste %@ dagarna (%@ pass)"
+          }
+        }
+      }
+    },
     "Últimos %lld a %@ kilómetros por hora": {
       "extractionState": "manual",
       "localizations": {
@@ -36428,6 +36887,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste %lld i %@ kilometer i timmen"
+          }
+        }
+      }
+    },
+    "Últimos 28 días frente a los 28 anteriores: %@. Dentro de tu variación habitual: todavía no es un cambio claro.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 28 days versus the previous 28: %@. Within your usual variation: not a clear change yet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 28 dagarna jämfört med de 28 föregående: %@. Inom din vanliga variation: ännu ingen tydlig förändring."
+          }
+        }
+      }
+    },
+    "Últimos 28 días frente a los 28 anteriores: %@. Supera tu variación habitual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 28 days versus the previous 28: %@. Beyond your usual variation."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 28 dagarna jämfört med de 28 föregående: %@. Över din vanliga variation."
           }
         }
       }

@@ -322,3 +322,33 @@ Desde la 1.6 la configurada **no se reemplaza en silencio**: con la fuente manua
   - recuperaciones de 2 min caminando o trotando;
   - el test se recomienda al aire libre, porque en cinta la distancia es estimada.
 - **Durante la sesión en cinta**, el reloj muestra en el pie la velocidad a poner, con la inclinación elegida, en lugar del ritmo objetivo.
+
+## Capacidad aeróbica (`AerobicAnalysis` 1.0, 0.10.0 (120))
+
+¿Corres más rápido con el mismo pulso? Solo carreras al aire libre con GPS y pulso, sin duplicados ni excluidas.
+
+**Tramos estables.** De los tramos de 200 m de `RunAnalyzer` se usan los que cumplen todo esto:
+- están después del calentamiento (15 % del tiempo, como mucho 10 min);
+- están completos;
+- tienen velocidad entre 100 y 400 m/min y pulso entre 90 y 210 lpm;
+- su ritmo se aparta como mucho un 8 % de la media de los tramos vecinos;
+- son casi llanos: desnivel neto ≤ 3 %.
+
+El pulso de cada tramo se toma 30 s después, porque el corazón tarda en responder a un cambio de ritmo. Cada carrera guarda la velocidad media por franja de 5 lpm.
+
+**Ritmo a pulso fijo** (130, 140, 150 o 160 lpm).
+- Recta velocidad = a + b × pulso por mínimos cuadrados ponderados por tiempo, con las carreras de los últimos 28 días.
+- Si la pendiente no se puede estimar o sale negativa (todo a pulsos parecidos), se usa la velocidad media a ±5 lpm.
+- Solo dentro de los pulsos observados (franjas con al menos 1 min): no se extrapola. Hacen falta 3 carreras o más.
+- **Incertidumbre:** varianza del residuo medio por carrera ÷ n, más la de la pendiente con n efectivo = carreras, porque los tramos de una carrera no son independientes. IC del 95 %.
+- **Tendencia:** se compara con los 28 días que terminan 8 semanas antes. Hay cambio solo si |Δ| > 1,96 × √(EE₁² + EE₂²); si no, «sin cambio claro».
+
+**Eficiencia** = velocidad (m/min) ÷ pulso (lpm) en los tramos estables.
+- Promedios de 7, 28 y 90 días y de todo el historial.
+- Cambio de los últimos 28 días frente a los 28 anteriores. Es claro si supera 1,96 errores estándar.
+
+**Desacople** = 100 × (EF₁ − EF₂) ÷ EF₁, primera frente a segunda mitad tras el calentamiento (Friel). Positivo significa que el pulso sube al final.
+- Solo en carreras de 30 min o más con variación de ritmo entre tramos ≤ 8 %.
+- Se muestran la última, la mediana de 28 días y la serie.
+
+Son indicadores orientativos: el calor, la hidratación, el cansancio y el terreno también influyen.

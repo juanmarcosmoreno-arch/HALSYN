@@ -145,6 +145,7 @@
 		EA6D1553D8C58A85F8DE7417 /* RecoveryMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3B1D71FF3C2D6D7A15D1F /* RecoveryMeter.swift */; };
 		EBB4D2A84AA9C4C642EEEBFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5D65F64F154013952A7C34B7 /* InfoPlist.xcstrings */; };
 		ED7E89149B35AA9B1013E455 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2CAFDD0E774C0AF10FB45E /* OnboardingView.swift */; };
+		F14C32DD0F8F69CADC466CBB /* AerobicViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A1B548893B46F9A85AD153 /* AerobicViews.swift */; };
 		F3B38566EE6BD279CA219386 /* HalsynDesign in Frameworks */ = {isa = PBXBuildFile; productRef = DA74733AD7520078DDAC71FF /* HalsynDesign */; };
 		F5CC535C6A6E38120A2325FC /* WatchPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E15B74FBEEA0484B9658D8E /* WatchPermissionsView.swift */; };
 		F9152C082EF2608420B09E0A /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F68D555D13942BB8FD46E /* DailySummaryView.swift */; };
@@ -295,6 +296,7 @@
 		8C7EB0050B5243C3667893CE /* CoachSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSpeech.swift; sourceTree = "<group>"; };
 		8CE122FBBD9A99C8679D8CCA /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		8D12E86A3843D802F7D50216 /* PlanSessionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanSessionEditView.swift; sourceTree = "<group>"; };
+		90A1B548893B46F9A85AD153 /* AerobicViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerobicViews.swift; sourceTree = "<group>"; };
 		928934EF5A513D64F8F6F04E /* RecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryView.swift; sourceTree = "<group>"; };
 		939F34004CFB80BC6D63DB2E /* GoalProbabilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalProbabilityViews.swift; sourceTree = "<group>"; };
 		94C6725E6C8D5D9BF4E4D8E9 /* CoachSpeaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSpeaker.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 		2498656E8423364419DF9C5F /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				90A1B548893B46F9A85AD153 /* AerobicViews.swift */,
 				5B569479DDCF7C472766341E /* FormView.swift */,
 			);
 			path = Form;
@@ -1088,6 +1091,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14C32DD0F8F69CADC466CBB /* AerobicViews.swift in Sources */,
 				A6315F6D4603B4D0AECB41DC /* AppModel.swift in Sources */,
 				9B803ECDCC9A6030A50E772A /* BodyCard.swift in Sources */,
 				A8A695403D6B4A5B009C7CA4 /* CardioHealthViews.swift in Sources */,
@@ -1298,7 +1302,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 119;
+				CURRENT_PROJECT_VERSION = 120;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1483,7 +1487,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 119;
+				CURRENT_PROJECT_VERSION = 120;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
