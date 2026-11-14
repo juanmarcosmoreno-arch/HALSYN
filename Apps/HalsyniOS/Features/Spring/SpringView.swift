@@ -157,10 +157,12 @@ struct AllWorkoutsView: View {
         let list = workouts ?? initial
         let months = Self.months(list)
         HalsynScreen {
-            ForEach(months, id: \.start) { month in
-                let countText = String(month.workouts.count)
-                HalsynSectionHeader(month.start.formatted(.dateTime.month(.wide).year()).capitalized, eyebrow: String(localized: "\(countText) entrenamientos"))
-                VStack(spacing: HalsynSpacing.s) {
+            // Perezosa: con años de historial solo se arman las filas a la vista.
+            LazyVStack(alignment: .leading, spacing: HalsynSpacing.s) {
+                ForEach(months, id: \.start) { month in
+                    let countText = String(month.workouts.count)
+                    HalsynSectionHeader(month.start.formatted(.dateTime.month(.wide).year()).capitalized, eyebrow: String(localized: "\(countText) entrenamientos"))
+                        .padding(.top, HalsynSpacing.m)
                     ForEach(month.workouts) { workout in
                         NavigationLink(value: workout) {
                             WorkoutRow(workout: workout, unitSystem: unitSystem)

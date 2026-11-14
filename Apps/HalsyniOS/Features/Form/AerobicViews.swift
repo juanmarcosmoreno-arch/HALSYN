@@ -9,11 +9,14 @@ import SwiftUI
 final class AerobicStore {
     static let shared = AerobicStore()
     static let key = "halsyn.aerobicObservations"
+    /// Carreras ya leídas sin tramos útiles: no se vuelven a leer de Salud en cada arranque.
+    static let skippedKey = "halsyn.aerobicSkipped"
 
     private(set) var observations: [UUID: AerobicRunObservation]
     private(set) var validIDs: Set<UUID> = []
     /// Carreras ya revisadas sin tramos útiles (cinta, sin GPS o sin pulso).
     @ObservationIgnored private var skipped: Set<UUID> = []
+    @ObservationIgnored private var unread: Set<UUID> = []
     @ObservationIgnored private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
@@ -21,6 +24,7 @@ final class AerobicStore {
         let stored = defaults.data(forKey: Self.key).flatMap { try? JSONDecoder().decode([AerobicRunObservation].self, from: $0) } ?? []
         observations = Dictionary(stored.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
         validIDs = Set(observations.keys)
+        skipped = Set((defaults.stringArray(forKey: Self.skippedKey) ?? []).compactMap(UUID.init(uuidString:)))
     }
 
     /// Carreras válidas (sin duplicados ni excluidas), de la más vieja a la más nueva.
@@ -33,11 +37,14 @@ final class AerobicStore {
     }
 
     func setValid(_ ids: Set<UUID>) { validIDs = ids }
-    func needs(_ id: UUID) -> Bool { observations[id] == nil && !skipped.contains(id) }
+    func needs(_ id: UUID) -> Bool { observations[id] == nil && !skipped.contains(id) && !unread.contains(id) }
 
     func ingest(_ run: WorkoutSummary, detail: WorkoutDetailData) {
         if let observation = AerobicAnalysis.observe(id: run.id, date: run.start, route: detail.route, heartRate: detail.heartRate) {
             observations[run.id] = observation
+        } else if detail.route.isEmpty && detail.heartRate.isEmpty {
+            // Sin nada de nada puede ser un fallo de lectura: se reintenta en otro arranque.
+            unread.insert(run.id)
         } else {
             skipped.insert(run.id)
         }
@@ -45,6 +52,7 @@ final class AerobicStore {
 
     func save() {
         if let data = try? JSONEncoder().encode(Array(observations.values)) { defaults.set(data, forKey: Self.key) }
+        defaults.set(skipped.map(\.uuidString), forKey: Self.skippedKey)
     }
 }
 

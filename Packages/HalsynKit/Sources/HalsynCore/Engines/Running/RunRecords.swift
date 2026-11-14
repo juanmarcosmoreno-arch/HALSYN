@@ -255,6 +255,30 @@ public enum RunRecords {
         }
     }
 
+    /// Mejor puesto (1…3) de cada carrera el día que se corrió, para todas a la vez.
+    /// Equivale a `placements(of:among:)` carrera por carrera, pero en una sola pasada
+    /// (la lista del historial lo pide para cada fila).
+    public static func bestRanks(_ entries: [RunRecordEntry]) -> [UUID: Int] {
+        var result: [UUID: Int] = [:]
+        var top: [RunRecordCategory: [Double]] = [:]
+        var counts: [RunRecordCategory: Int] = [:]
+        for entry in entries.sorted(by: { $0.date < $1.date }) {
+            for (category, value) in entry.values {
+                let best = top[category] ?? []
+                let previousCount = counts[category] ?? 0
+                let better = best.filter { category.isBetter($0, than: value) }.count
+                if placement(category: category, value: value, better: better, previousCount: previousCount, previousBest: best.first) != nil {
+                    result[entry.id] = min(result[entry.id] ?? Int.max, better + 1)
+                }
+                var updated = best
+                updated.insert(value, at: better)
+                top[category] = Array(updated.prefix(podium))
+                counts[category] = previousCount + 1
+            }
+        }
+        return result
+    }
+
     /// La mejor marca de cada categoría entre dos fechas (récord del año, de 90 días…).
     public static func bests(_ entries: [RunRecordEntry], from start: Date, to end: Date = .distantFuture) -> [RunRecordCategory: RunRecordBoard.Mark] {
         var result: [RunRecordCategory: RunRecordBoard.Mark] = [:]

@@ -111,4 +111,20 @@ struct RunRecordsTests {
         #expect(abs((points.last?.distance ?? 0) - 1800) < 40)
         #expect(abs((RunRecords.bestEffort(points, distance: 1000)?.duration ?? 0) - 333) < 15)
     }
+
+    @Test func bestRanksMatchPlacementsOneByOne() {
+        var entries: [RunRecordEntry] = []
+        let t0 = Date(timeIntervalSince1970: 1_700_000_000)
+        // Distancias y tiempos variados, deterministas.
+        for index in 0..<40 {
+            let distance = 3000 + Double((index * 7919) % 9000)
+            let pace = 280 + Double((index * 104_729) % 90)
+            entries.append(RunRecords.entry(id: UUID(), date: t0.addingTimeInterval(Double(index) * 86_400), distance: distance, duration: distance / 1000 * pace, timeline: []))
+        }
+        let ranks = RunRecords.bestRanks(entries)
+        for entry in entries {
+            let expected = RunRecords.placements(of: entry, among: entries).map(\.rank).min()
+            #expect(ranks[entry.id] == expected)
+        }
+    }
 }

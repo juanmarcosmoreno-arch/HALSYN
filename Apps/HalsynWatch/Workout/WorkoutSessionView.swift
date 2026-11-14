@@ -137,7 +137,8 @@ private struct WorkoutPagesView: View {
                 .onEnded { value in
                     let fromBottom = value.startLocation.y > pagesHeight - 44
                     let upward = value.translation.height < -25 && abs(value.translation.width) < abs(value.translation.height)
-                    if fromBottom, upward { showingMusic = true }
+                    // En Vueltas se desliza hacia arriba para recorrer la lista: ahí no abre la música.
+                    if fromBottom, upward, page != .run(.laps) { showingMusic = true }
                 }
         )
         .sheet(isPresented: $showingMusic) {

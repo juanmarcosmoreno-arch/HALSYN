@@ -14,6 +14,8 @@ final class RunRecordStore {
     private(set) var entries: [UUID: RunRecordEntry]
     /// Carreras válidas (sin duplicados ni excluidas) de la última pasada.
     private(set) var validIDs: Set<UUID> = []
+    /// Mejor puesto de cada carrera (1…3), calculado una vez para toda la lista.
+    private(set) var bestRanks: [UUID: Int] = [:]
     @ObservationIgnored private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
@@ -21,6 +23,7 @@ final class RunRecordStore {
         let stored = defaults.data(forKey: Self.key).flatMap { try? JSONDecoder().decode([RunRecordEntry].self, from: $0) } ?? []
         entries = Dictionary(stored.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
         validIDs = Set(entries.keys)
+        bestRanks = RunRecords.bestRanks(validEntries)
     }
 
     var validEntries: [RunRecordEntry] {
@@ -54,7 +57,10 @@ final class RunRecordStore {
 
     func save() {
         if let data = try? JSONEncoder().encode(Array(entries.values)) { defaults.set(data, forKey: Self.key) }
-        RunSettingsStore.shared.shareRecords(RunRecords.board(validEntries))
+        let valid = validEntries
+        let ranks = RunRecords.bestRanks(valid)
+        if ranks != bestRanks { bestRanks = ranks }
+        RunSettingsStore.shared.shareRecords(RunRecords.board(valid))
     }
 
     /// Puestos de esta carrera el día que se corrió (frente a las anteriores).
@@ -117,7 +123,7 @@ struct RunRecordBadge: View {
     let workoutID: UUID
 
     var body: some View {
-        if let best = RunRecordStore.shared.placements(for: workoutID).map(\.rank).min(), best <= 2 {
+        if let best = RunRecordStore.shared.bestRanks[workoutID], best <= 2 {
             Image(systemName: "medal.fill")
                 .font(.caption)
                 .foregroundStyle(RunRecordText.medal(best))

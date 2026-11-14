@@ -1,16 +1,21 @@
 import HalsynCore
 import SwiftUI
+import UIKit
 
 /// Lee de Salud la ruta y el pulso de cada carrera **una sola vez** y alimenta
 /// los récords, el análisis aeróbico y los recorridos repetidos.
 @MainActor
 enum RunDetailPipeline {
-    /// Carreras al aire libre que se leen de Salud en cada pasada.
-    static let batchSize = 60
+    /// Cada cuántas carreras leídas de Salud se guarda el avance.
+    static let batchSize = 40
     private static var running = false
 
+    /// Lee todo lo que falta, de la más nueva a la más vieja. Se recorre el historial
+    /// completo en la misma pasada: con el historial a medias, una carrera puede
+    /// figurar como récord solo porque todavía no se leyeron las anteriores.
     static func refresh(runs allRuns: [WorkoutSummary], provider: any HealthDataProviding) async {
-        guard !running else { return }
+        // Con el iPhone bloqueado Salud no entrega datos: se leería todo vacío.
+        guard !running, UIApplication.shared.isProtectedDataAvailable else { return }
         running = true
         defer { running = false }
         let runs = WorkoutQualityStore.shared.clean(allRuns.filter(\.activity.isRun)).sorted { $0.start > $1.start }
@@ -28,14 +33,23 @@ enum RunDetailPipeline {
             guard needsRecord || needsAerobic || needsRoute else { continue }
             var detail: WorkoutDetailData?
             if outdoor {
-                guard fetched < batchSize else { continue }
                 detail = await provider.workoutDetail(for: run)
+                // Si se canceló a mitad de la lectura, el detalle puede venir vacío: no se guarda.
+                if Task.isCancelled { break }
                 fetched += 1
             }
             if needsRecord { records.ingest(run, detail: detail) }
             if let detail, needsAerobic { aerobic.ingest(run, detail: detail) }
             if let detail, needsRoute { routes.ingest(run, detail: detail) }
             changed = true
+            if outdoor, fetched % batchSize == 0 {
+                // Avance guardado y pantalla al día sin esperar al final.
+                aerobic.save()
+                routes.save()
+                records.save()
+                routes.regroup()
+                await Task.yield()
+            }
         }
         if changed {
             aerobic.save()
@@ -59,7 +73,10 @@ final class RouteStore {
     /// Resúmenes de las carreras válidas (para comparar tiempos y pulso).
     private(set) var runs: [UUID: WorkoutSummary] = [:]
     @ObservationIgnored private var skipped: Set<UUID> = []
+    @ObservationIgnored private var unread: Set<UUID> = []
     @ObservationIgnored private let url: URL
+    /// Carreras ya leídas sin ruta útil: no se vuelven a leer de Salud en cada arranque.
+    private static let skippedKey = "halsyn.routeSkipped"
 
     init() {
         let base = (try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)) ?? FileManager.default.temporaryDirectory
@@ -67,6 +84,7 @@ final class RouteStore {
         let stored = (try? Data(contentsOf: url)).flatMap { try? JSONDecoder().decode([RouteFingerprint].self, from: $0) } ?? []
         fingerprints = Dictionary(stored.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
         validIDs = Set(fingerprints.keys)
+        skipped = Set((UserDefaults.standard.stringArray(forKey: Self.skippedKey) ?? []).compactMap(UUID.init(uuidString:)))
         regroup()
     }
 
@@ -75,7 +93,7 @@ final class RouteStore {
         runs = Dictionary(list.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
     }
 
-    func needs(_ id: UUID) -> Bool { fingerprints[id] == nil && !skipped.contains(id) }
+    func needs(_ id: UUID) -> Bool { fingerprints[id] == nil && !skipped.contains(id) && !unread.contains(id) }
 
     func comparison(for id: UUID) -> RouteComparison? {
         group(for: id).flatMap { RouteComparisonEngine.compare(id, group: $0, runs: runs) }
@@ -84,6 +102,9 @@ final class RouteStore {
     func ingest(_ run: WorkoutSummary, detail: WorkoutDetailData) {
         if let fingerprint = RouteMatching.fingerprint(id: run.id, date: run.start, route: detail.route) {
             fingerprints[run.id] = fingerprint
+        } else if detail.route.isEmpty && detail.heartRate.isEmpty {
+            // Sin nada de nada puede ser un fallo de lectura: se reintenta en otro arranque.
+            unread.insert(run.id)
         } else {
             skipped.insert(run.id)
         }
@@ -93,6 +114,7 @@ final class RouteStore {
         if let data = try? JSONEncoder().encode(Array(fingerprints.values)) {
             try? data.write(to: url, options: [.atomic, .completeFileProtection])
         }
+        UserDefaults.standard.set(skipped.map(\.uuidString), forKey: Self.skippedKey)
     }
 
     /// Vuelve a agrupar (también cuando entra una carrera más vieja que la referencia).
