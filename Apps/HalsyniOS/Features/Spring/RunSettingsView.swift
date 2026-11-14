@@ -23,6 +23,7 @@ struct RunSettingsView: View {
     var body: some View {
         Form {
             screensSection
+            pageOrderSection
             lapsSection
             recoverySection
             Section {
@@ -59,6 +60,67 @@ struct RunSettingsView: View {
 
     // MARK: Pantallas
 
+    /// Orden de todas las pantallas de la sesión del reloj.
+    private var pageOrderSection: some View {
+        Section {
+            ForEach(settings.pageOrder, id: \.self) { page in
+                pageRow(page)
+            }
+            .onMove { from, to in
+                store.update { $0.movePages(fromOffsets: from, toOffset: to) }
+            }
+            if settings.pageOrderIDs != nil, settings.pageOrder != settings.defaultPageOrder {
+                Button("Volver al orden predeterminado") {
+                    store.update { $0.pageOrderIDs = nil }
+                }
+            }
+        } header: {
+            HStack {
+                Text("Orden en el reloj")
+                Spacer()
+                EditButton().font(.caption)
+            }
+        } footer: {
+            Text("Durante la carrera se pasa de una a otra deslizando en horizontal; los controles quedan siempre a la izquierda. La primera de la lista es la que se ve al empezar. Deslizando desde abajo hacia arriba, la música.")
+        }
+    }
+
+    private func pageRow(_ page: RunPage) -> some View {
+        let info = pageInfo(page)
+        return HStack(spacing: HalsynSpacing.m) {
+            Image(systemName: info.systemImage)
+                .foregroundStyle(.halsynAccentText)
+                .frame(width: 24)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(verbatim: info.title)
+                if let note = info.note {
+                    Text(verbatim: note)
+                        .font(.halsynCaption)
+                        .foregroundStyle(.halsynSecondaryText)
+                }
+            }
+        }
+    }
+
+    private func pageInfo(_ page: RunPage) -> (title: String, note: String?, systemImage: String) {
+        switch page {
+        case .interval:
+            return (String(localized: "Anillo del tramo"), String(localized: "Solo con sesión del plan o series"), "circle.dashed")
+        case .intervalDetail:
+            return (String(localized: "Detalle del tramo"), String(localized: "Solo con sesión del plan o series"), "list.bullet.rectangle")
+        case .screen(let id):
+            let name = settings.screens.first { $0.id == id }?.name ?? "—"  // nolocalize
+            return (name, String(localized: "Pantalla de datos"), "square.grid.2x2")
+        case .chart:
+            return (String(localized: "Gráfico de ritmo y pulso"), nil, "chart.xyaxis.line")
+        case .map:
+            return (String(localized: "Mapa"), String(localized: "Solo al aire libre"), "map")
+        case .laps:
+            return (String(localized: "Vueltas"), nil, "flag")
+        }
+    }
+
     private var screensSection: some View {
         Section {
             ForEach(settings.screens) { profile in
@@ -79,9 +141,6 @@ struct RunSettingsView: View {
                         }
                     }
                 }
-            }
-            .onMove { from, to in
-                store.update { $0.screens.move(fromOffsets: from, toOffset: to) }
             }
             .onDelete { offsets in
                 store.update { settings in
@@ -111,7 +170,7 @@ struct RunSettingsView: View {
                 EditButton().font(.caption)
             }
         } footer: {
-            Text("Durante la carrera se pasa de una a otra deslizando en horizontal. Hasta 4 pantallas.")
+            Text("Hasta 4 pantallas de datos. El orden en que aparecen se elige abajo.")
         }
     }
 

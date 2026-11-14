@@ -2959,6 +2959,23 @@
         }
       }
     },
+    "Anillo del tramo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step ring"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stegring"
+          }
+        }
+      }
+    },
     "Anillo y métricas": {
       "extractionState": "manual",
       "localizations": {
@@ -9351,6 +9368,23 @@
         }
       }
     },
+    "Detalle del tramo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step details"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stegdetaljer"
+          }
+        }
+      }
+    },
     "Diagnóstico": {
       "extractionState": "manual",
       "localizations": {
@@ -9997,19 +10031,19 @@
         }
       }
     },
-    "Durante la carrera se pasa de una a otra deslizando en horizontal. Hasta 4 pantallas.": {
+    "Durante la carrera se pasa de una a otra deslizando en horizontal; los controles quedan siempre a la izquierda. La primera de la lista es la que se ve al empezar. Deslizando desde abajo hacia arriba, la música.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "During a run, swipe sideways to move between them. Up to 4 screens."
+            "value": "During the run, swipe sideways to move between them; the controls always stay on the left. The first one in the list is shown when you start. Swipe up from the bottom for music."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Under passet sveper du i sidled för att byta mellan dem. Upp till 4 skärmar."
+            "value": "Under passet sveper du i sidled mellan dem; kontrollerna ligger alltid till vänster. Den första i listan visas när du startar. Svep uppåt från nederkant för musik."
           }
         }
       }
@@ -15335,6 +15369,23 @@
         }
       }
     },
+    "Gráfico de ritmo y pulso": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pace and heart rate chart"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diagram för tempo och puls"
+          }
+        }
+      }
+    },
     "Guardada (la verás en el iPhone)": {
       "extractionState": "manual",
       "localizations": {
@@ -15892,6 +15943,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Till"
+          }
+        }
+      }
+    },
+    "Hasta 4 pantallas de datos. El orden en que aparecen se elige abajo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to 4 data screens. Choose the order they appear in below."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upp till 4 dataskärmar. Välj ordningen nedan."
           }
         }
       }
@@ -18939,6 +19007,23 @@
         }
       }
     },
+    "Mapa": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Karta"
+          }
+        }
+      }
+    },
     "Mapa de la ruta": {
       "extractionState": "manual",
       "localizations": {
@@ -21285,6 +21370,23 @@
         }
       }
     },
+    "Música": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musik"
+          }
+        }
+      }
+    },
     "Nada": {
       "extractionState": "manual",
       "localizations": {
@@ -23053,6 +23155,23 @@
         }
       }
     },
+    "Orden en el reloj": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Order on the watch"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordning på klockan"
+          }
+        }
+      }
+    },
     "Oscilación vertical": {
       "extractionState": "manual",
       "localizations": {
@@ -23270,6 +23389,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Skärm %lld"
+          }
+        }
+      }
+    },
+    "Pantalla de datos": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data screen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dataskärm"
           }
         }
       }
@@ -31213,6 +31349,23 @@
         }
       }
     },
+    "Solo al aire libre": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outdoors only"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endast utomhus"
+          }
+        }
+      }
+    },
     "Solo carreras al aire libre con GPS y pulso, sin duplicados. De cada una se usan los tramos de 200 m a ritmo estable: después del calentamiento, sin aceleraciones (ritmo a menos de un 8 % de los tramos vecinos), casi llanos y con el pulso tomado 30 s después, porque el corazón tarda en responder. El ritmo a un pulso sale de una recta velocidad–pulso con las carreras de los últimos 28 días, solo dentro de los pulsos que corriste (no se extrapola); la incertidumbre cuenta cada carrera como una observación. Se compara con el mismo cálculo de hace 8 semanas y solo se habla de cambio si supera esa incertidumbre. Eficiencia = velocidad (m/min) ÷ pulso. Desacople = cuánto cae la eficiencia de la primera a la segunda mitad (Friel), solo en carreras regulares de 30 min o más. El calor, la hidratación, el cansancio y el terreno también influyen: es orientativo, no un diagnóstico.": {
       "extractionState": "manual",
       "localizations": {
@@ -31226,6 +31379,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bara utomhuspass med GPS och puls, utan dubbletter. Från varje pass används 200 m-sträckorna i jämnt tempo: efter uppvärmningen, utan accelerationer (tempo inom 8 % av grannsträckorna), nästan platta och med pulsen tagen 30 s senare eftersom hjärtat reagerar med fördröjning. Tempot vid en puls kommer från en linje fart–puls anpassad till passen de senaste 28 dagarna, bara inom de pulser du sprungit på (ingen extrapolering); osäkerheten räknar varje pass som en observation. Det jämförs med samma beräkning för 8 veckor sedan och en förändring nämns bara om den överstiger osäkerheten. Effektivitet = fart (m/min) ÷ puls. Frikoppling = hur mycket effektiviteten sjunker från första till andra halvan (Friel), bara i jämna pass på 30 min eller mer. Värme, vätska, trötthet och terräng spelar också in: det är vägledande, ingen diagnos."
+          }
+        }
+      }
+    },
+    "Solo con sesión del plan o series": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only with a plan session or intervals"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endast med planpass eller intervaller"
           }
         }
       }
@@ -36513,6 +36683,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Skriv igen"
+          }
+        }
+      }
+    },
+    "Volver al orden predeterminado": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore default order"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställ standardordning"
           }
         }
       }

@@ -43,6 +43,8 @@ public struct RunSettings: Hashable, Codable, Sendable {
     public var ringColorChoice: WorkoutRingColor?
     /// Plan de entrenamiento para el reloj (objetivo y próximos días). `nil` = sin plan.
     public var planSnapshot: PlanSnapshot?
+    /// Orden de las pantallas de la sesión (ver `pageOrder`). `nil` = predeterminado.
+    public var pageOrderIDs: [String]?
 
     public var ringColor: WorkoutRingColor {
         get { ringColorChoice ?? .green }

@@ -42,6 +42,8 @@ final class WorkoutManager: NSObject {
     private(set) var plan: IntervalPlan?
     /// Pantallas de métricas de esta carrera (fijadas al empezar).
     private(set) var screens: [WorkoutScreenProfile] = [.easyRun]
+    /// Orden de las pantallas de la sesión, elegido en el iPhone.
+    private(set) var pageOrder: [RunPage] = RunSettings().pageOrder
     /// Puntos fiables de la ruta, reducidos para el mapa.
     private(set) var routeCoordinates: [CLLocationCoordinate2D] = []
     /// Último aviso (vuelta, paso de intervalo, alerta) para mostrarlo unos segundos.
@@ -357,6 +359,7 @@ final class WorkoutManager: NSObject {
             : RunSessionTracker(settings: settings, plan: plan)
         self.plan = plan
         screens = settings.validScreens
+        pageOrder = settings.pageOrder
         routeCoordinates = []
         lastRoutePoint = nil
         banner = nil

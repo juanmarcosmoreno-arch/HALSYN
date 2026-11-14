@@ -3,9 +3,11 @@ import HalsynCore
 import HalsynDesign
 import MapKit
 import SwiftUI
+import WatchKit
 
 /// Pantalla de carrera, deslizando en horizontal:
-/// controles · intervalo (si hay plan) · pantallas de métricas configuradas · mapa (exterior) · vueltas.
+/// controles y después las pantallas en el orden elegido en el iPhone (tramo, datos, gráfico,
+/// mapa, vueltas). Deslizando desde abajo hacia arriba, la música.
 /// Al terminar muestra el resumen.
 struct WorkoutSessionView: View {
     @Environment(WorkoutManager.self) private var workout
@@ -101,54 +103,102 @@ private struct PrimaryActionShortcut: ViewModifier {
 
 private struct WorkoutPagesView: View {
     enum Page: Hashable {
-        case controls, interval, intervalDetail, screen(Int), chart, map, laps
+        case controls, ride(Int), run(RunPage)
     }
 
     @Environment(WorkoutManager.self) private var workout
-    @State private var page: Page = .screen(0)
+    @State private var page: Page = .ride(0)
+    @State private var showingMusic = false
+    @State private var pagesHeight: CGFloat = 0
 
     var body: some View {
         TabView(selection: $page) {
-            WorkoutControlsView().tag(Page.controls)
+            WorkoutControlsView(showingMusic: $showingMusic).tag(Page.controls)
             if workout.isCycling {
                 // CYKEL: velocidad y pulso; después potencia, cadencia y desnivel.
-                RideMetricsView(page: .main).tag(Page.screen(0))
-                RideMetricsView(page: .sensors).tag(Page.screen(1))
+                RideMetricsView(page: .main).tag(Page.ride(0))
+                RideMetricsView(page: .sensors).tag(Page.ride(1))
                 if !workout.isIndoor {
-                    WorkoutMapView().tag(Page.map)
+                    WorkoutMapView().tag(Page.run(.map))
                 }
-                WorkoutLapsView().tag(Page.laps)
+                WorkoutLapsView().tag(Page.run(.laps))
             } else {
-                runPages
+                ForEach(runPages, id: \.self) { runPage in
+                    runPageView(runPage).tag(Page.run(runPage))
+                }
             }
         }
         .tabViewStyle(.page)
+        // Música: deslizando desde abajo hacia arriba (en horizontal están las pantallas).
+        // Gesto simultáneo: no le quita los toques a los botones ni el paso de pantallas.
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { pagesHeight = $0 }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 15)
+                .onEnded { value in
+                    let fromBottom = value.startLocation.y > pagesHeight - 44
+                    let upward = value.translation.height < -25 && abs(value.translation.width) < abs(value.translation.height)
+                    if fromBottom, upward { showingMusic = true }
+                }
+        )
+        .sheet(isPresented: $showingMusic) {
+            WorkoutMusicView()
+        }
         .onAppear {
-            page = workout.plan != nil ? .interval : .screen(0)
+            page = firstPage
         }
         .onChange(of: workout.phase) { _, phase in
             // Al pausar o reanudar se vuelve a la pantalla principal.
             if phase == .running || phase == .paused {
-                withAnimation { page = workout.plan != nil ? .interval : .screen(0) }
+                withAnimation { page = firstPage }
             }
         }
     }
 
+    /// Pantallas de carrera en el orden elegido en el iPhone (Ajustes de carrera).
+    private var runPages: [RunPage] {
+        let screenIDs = Set(workout.screens.map(\.id))
+        return workout.pageOrder.filter { runPage in
+            switch runPage {
+            case .interval, .intervalDetail: return workout.plan != nil
+            case .map: return !workout.isIndoor
+            case .screen(let id): return screenIDs.contains(id)
+            case .chart, .laps: return true
+            }
+        }
+    }
+
+    private var firstPage: Page {
+        if workout.isCycling { return .ride(0) }
+        return runPages.first.map(Page.run) ?? .controls
+    }
+
     @ViewBuilder
-    private var runPages: some View {
-        if workout.plan != nil {
-            // Primero el anillo que se vacía con lo que falta; después el detalle.
-            WorkoutIntervalRingView().tag(Page.interval)
-            WorkoutIntervalView().tag(Page.intervalDetail)
+    private func runPageView(_ runPage: RunPage) -> some View {
+        switch runPage {
+        case .interval:
+            // El anillo que se vacía con lo que falta.
+            WorkoutIntervalRingView()
+        case .intervalDetail:
+            WorkoutIntervalView()
+        case .screen(let id):
+            if let profile = workout.screens.first(where: { $0.id == id }) {
+                WorkoutMetricsView(profile: profile)
+            }
+        case .chart:
+            WorkoutChartView()
+        case .map:
+            WorkoutMapView()
+        case .laps:
+            WorkoutLapsView()
         }
-        ForEach(Array(workout.screens.enumerated()), id: \.offset) { index, profile in
-            WorkoutMetricsView(profile: profile).tag(Page.screen(index))
-        }
-        WorkoutChartView().tag(Page.chart)
-        if !workout.isIndoor {
-            WorkoutMapView().tag(Page.map)
-        }
-        WorkoutLapsView().tag(Page.laps)
+    }
+}
+
+/// Lo que suena (Spotify, Música o cualquier app, en el reloj o en el iPhone):
+/// reproducir/pausar, anterior, siguiente y volumen con la corona.
+private struct WorkoutMusicView: View {
+    var body: some View {
+        NowPlayingView()
     }
 }
 
@@ -693,6 +743,7 @@ private struct WorkoutMapView: View {
 
 private struct WorkoutControlsView: View {
     @Environment(WorkoutManager.self) private var workout
+    @Binding var showingMusic: Bool
     @State private var confirmingEnd = false
 
     var body: some View {
@@ -713,8 +764,13 @@ private struct WorkoutControlsView: View {
                 }
                 .disabled(workout.phase != .running)
             }
-            controlButton("Terminar", systemImage: "stop.fill", tint: Color(HalsynPalette.alertDark)) {
-                confirmingEnd = true
+            HStack(spacing: 10) {
+                controlButton("Música", systemImage: "music.note", tint: Color(HalsynRGBColor(hex: 0x64D2FF))) {
+                    showingMusic = true
+                }
+                controlButton("Terminar", systemImage: "stop.fill", tint: Color(HalsynPalette.alertDark)) {
+                    confirmingEnd = true
+                }
             }
         }
         .confirmationDialog("¿Terminar el entrenamiento?", isPresented: $confirmingEnd) {
