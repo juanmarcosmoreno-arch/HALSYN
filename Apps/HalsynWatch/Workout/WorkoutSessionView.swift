@@ -441,16 +441,16 @@ private struct WorkoutIntervalRingView: View {
     private func ring(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
         // El anillo se queda con todo el alto libre: encabezado y pie en una línea cada uno.
         VStack(spacing: 0) {
-            ringHeader(interval, snapshot: snapshot)
-            ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot))
+            // Debajo de la franja de la hora: el anillo no la toca.
+            Color.clear.frame(height: 24)
+            ringDial(interval, value: snapshot.value(for: .intervalTime, unit: unitSystem), tint: dialTint(interval, snapshot: snapshot), snapshot: snapshot)
                 .overlay {
                     // El arco de ritmo acompaña al anillo por fuera, sin achicarlo.
                     if let target = interval.step.paceTarget {
                         PaceArcView(target: target, current: snapshot.currentPace, unit: unitSystem, tint: dialTint(interval, snapshot: snapshot))
                     }
                 }
-                // Arriba un poco más de aire: el arco de ritmo no toca el ritmo actual.
-                .padding(.top, 9)
+                .padding(.top, 4)
                 .padding(.bottom, 5)
                 .frame(maxHeight: .infinity)
                 .layoutPriority(1)
@@ -478,19 +478,14 @@ private struct WorkoutIntervalRingView: View {
         }
     }
 
-    private func ringHeader(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
-        // Solo el ritmo actual, arriba al centro (en la franja de la hora). El tipo
-        // de paso ya lo dice el color del anillo, y la repetición va dentro del anillo:
-        // en las esquinas de arriba se cortaban con el borde de la pantalla.
-        Text(verbatim: interval.step.paceTarget == nil ? " " : (snapshot.currentPace?.formatted(in: unitSystem) ?? "--"))
-            .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
-            .minimumScaleFactor(0.7)
-            .lineLimit(1)
-            .foregroundStyle(snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot))
-            .frame(maxWidth: .infinity)
+    /// Ritmo actual dentro del anillo, arriba de lo que queda (solo con ritmo objetivo).
+    private func currentPaceText(_ interval: IntervalProgress, snapshot: RunSnapshot) -> (text: String, color: Color)? {
+        guard interval.step.paceTarget != nil else { return nil }
+        let color = snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot)
+        return (snapshot.currentPace?.formatted(in: unitSystem) ?? "--", color)
     }
 
-    private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue, tint: Color) -> some View {
+    private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue, tint: Color, snapshot: RunSnapshot) -> some View {
         let isOpen = interval.step.goal == .open
         let remaining: Double = isOpen ? 1 : 1 - (interval.fraction ?? 0)
         return ZStack {
@@ -501,7 +496,7 @@ private struct WorkoutIntervalRingView: View {
                 .stroke(tint.opacity(isOpen && interval.step.paceTarget == nil ? 0.5 : 1), style: StrokeStyle(lineWidth: 9, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.5), value: remaining)
-            ringCenter(value: value, tint: tint, isOpen: isOpen, repetition: repetitionText(interval))
+            ringCenter(value: value, tint: tint, isOpen: isOpen, repetition: repetitionText(interval), pace: currentPaceText(interval, snapshot: snapshot))
                 .padding(.horizontal, 12)
         }
         .aspectRatio(1, contentMode: .fit)
@@ -516,8 +511,17 @@ private struct WorkoutIntervalRingView: View {
         return "\(repetition)/\(repeats)"
     }
 
-    private func ringCenter(value: WorkoutFieldValue, tint: Color, isOpen: Bool, repetition: String? = nil) -> some View {
+    private func ringCenter(value: WorkoutFieldValue, tint: Color, isOpen: Bool, repetition: String? = nil, pace: (text: String, color: Color)? = nil) -> some View {
         VStack(spacing: 0) {
+            if let pace {
+                // Tu ritmo actual, en el color del estado (verde en ritmo, rojo lento, amarillo rápido).
+                Text(verbatim: pace.text)
+                    .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                    .minimumScaleFactor(0.7)
+                    .lineLimit(1)
+                    .foregroundStyle(pace.color)
+                    .padding(.bottom, 2)
+            }
             Text(isOpen ? LocalizedStringKey("TID") : LocalizedStringKey("QUEDAN"))
                 .font(.system(size: 11, weight: .semibold))
                 .lineLimit(1)
@@ -555,7 +559,7 @@ private struct WorkoutIntervalRingView: View {
                 let incline = TreadmillText.storedIncline
                 compact(label: LocalizedStringKey(TreadmillText.percent(incline)), value: TreadmillText.speed(TreadmillEquivalent.speedRange(target, incline: incline), unit: unitSystem))
             } else if let target = snapshot.paceTarget {
-                // Con ritmo objetivo, el ritmo actual va arriba al centro.
+                // Con ritmo objetivo, el ritmo actual va dentro del anillo.
                 compact(label: "OBJETIVO", value: target.formatted(in: unitSystem))
             } else {
                 compact(label: "RITMO", value: snapshot.currentPace.map { "\($0.formatted(in: unitSystem)) \(unitSystem.paceUnitSymbol)" })
