@@ -402,3 +402,24 @@ Puntaje de 0 a 100 con las 8 semanas completas anteriores (lunes a domingo). Hac
   - semanas seguidas con al menos una carrera (las semanas con enfermedad no cortan la racha);
   - pausas de 10 días o más en 12 semanas, sin contar los días de enfermedad o lesión;
   - la pausa más larga.
+
+## Técnica de carrera (`RunningDynamicsAnalysis` 1.0, 0.10.0 (123))
+
+**Datos.** Son las medias de cada carrera que guarda el Apple Watch (watchOS 9 o posterior). Se leen con las estadísticas del entrenamiento; los permisos ya estaban pedidos.
+- Cadencia: pasos ÷ minutos.
+- Zancada (m).
+- Tiempo de contacto con el suelo (ms).
+- Oscilación vertical (cm).
+- Potencia (W).
+
+Se usan solo carreras al aire libre: en cinta la velocidad es estimada. Los valores fuera de rangos físicos se descartan. Nada se estima.
+
+**Comparación a igual velocidad.**
+- Al correr más rápido, cadencia, zancada y contacto cambian solos.
+- Por eso se ajusta una recta métrica = a + b × velocidad con todas las carreras.
+- Se comparan los residuos medios de los últimos 28 días con los de los 28 días que terminan 8 semanas antes.
+- Hay cambio si |Δ| > 1,96 × EE; si no, «sin cambio claro».
+
+**Lenguaje neutro.** «Más» o «menos», nunca «mejor»: no hay una técnica óptima universal.
+
+**Velocidad por vatio** (m/min por W) es un indicador indirecto. No mide la economía metabólica de carrera, que necesita análisis de gases.

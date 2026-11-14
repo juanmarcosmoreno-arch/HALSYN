@@ -1786,6 +1786,57 @@
         }
       }
     },
+    "A igual velocidad, %@ menos que hace 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the same speed, %@ less than 8 weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid samma fart, %@ mindre än för 8 veckor sedan."
+          }
+        }
+      }
+    },
+    "A igual velocidad, %@ más que hace 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the same speed, %@ more than 8 weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid samma fart, %@ mer än för 8 veckor sedan."
+          }
+        }
+      }
+    },
+    "A igual velocidad, sin cambio claro frente a hace 8 semanas.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At the same speed, no clear change from 8 weeks ago."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vid samma fart, ingen tydlig förändring jämfört med för 8 veckor sedan."
+          }
+        }
+      }
+    },
     "A ritmo de conversación: deberías poder hablar en frases. Es la base del plan: mejora tu resistencia aeróbica y te ayuda a recuperar de las sesiones duras. Si dudas, ve más lento.": {
       "extractionState": "manual",
       "localizations": {
@@ -4506,6 +4557,40 @@
         }
       }
     },
+    "Cadencia %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cadence %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kadens %@"
+          }
+        }
+      }
+    },
+    "Cadencia %@ · zancada %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cadence %@ · stride %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kadens %@ · steglängd %@"
+          }
+        }
+      }
+    },
     "Cadencia 0: se ignora": {
       "extractionState": "manual",
       "localizations": {
@@ -4536,6 +4621,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Omöjlig kadens: ignoreras"
+          }
+        }
+      }
+    },
+    "Cadencia, zancada, contacto y potencia": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cadence, stride, contact and power"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kadens, steglängd, kontakt och kraft"
           }
         }
       }
@@ -8038,6 +8140,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Beräkning: 75 % av det viktade medelvärdet (%@) + 25 % av den lägsta komponenten (%@) = %@. På så sätt vägs en dålig signal inte helt upp av de goda."
+          }
+        }
+      }
+    },
+    "Cómo corres: pasos, zancada, apoyo y potencia. Describe tu forma de correr; no hay una técnica ideal para todos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How you run: steps, stride, ground contact and power. It describes your running form; there is no ideal technique for everyone."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hur du springer: steg, steglängd, markkontakt och kraft. Det beskriver din löpstil; det finns ingen ideal teknik för alla."
           }
         }
       }
@@ -16321,6 +16440,23 @@
         }
       }
     },
+    "Indicador indirecto: velocidad por cada vatio. No mide la economía de carrera real, que necesita análisis de gases.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirect indicator: speed per watt. It does not measure true running economy, which requires gas analysis."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirekt mått: fart per watt. Det mäter inte verklig löpekonomi, som kräver gasanalys."
+          }
+        }
+      }
+    },
     "Indicador orientativo, no un diagnóstico.": {
       "extractionState": "manual",
       "localizations": {
@@ -18038,6 +18174,23 @@
         }
       }
     },
+    "Longitud de zancada": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stride length"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steglängd"
+          }
+        }
+      }
+    },
     "Los avisos de voz (si se oyen, dónde suenan y qué dicen) son los mismos que en SPRING.": {
       "extractionState": "manual",
       "localizations": {
@@ -19003,6 +19156,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gruppens median: %@ %@. Ditt senaste värde: %@ %@."
+          }
+        }
+      }
+    },
+    "Medias de cada carrera al aire libre que guardó el Apple Watch (en cinta la velocidad es estimada y no se usa). Al correr más rápido la cadencia, la zancada y el contacto cambian solos; por eso los cambios se comparan a igual velocidad: con todas tus carreras se ajusta una recta métrica–velocidad y se comparan los últimos 28 días con los 28 días que terminan 8 semanas antes. Solo se habla de cambio si supera 1,96 errores estándar. «Más» o «menos» no significa mejor o peor: una cadencia más alta o un contacto más corto no son mejoras por sí mismos.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Averages of each outdoor run saved by the Apple Watch (on a treadmill the speed is estimated and not used). Running faster changes cadence, stride and contact by itself, so changes are compared at the same speed: a metric–speed line is fitted to all your runs and the last 28 days are compared with the 28 days ending 8 weeks earlier. A change is only reported if it exceeds 1.96 standard errors. “More” or “less” does not mean better or worse: a higher cadence or a shorter contact time are not improvements in themselves."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medelvärden för varje utomhuspass som Apple Watch sparat (på löpband är farten uppskattad och används inte). Snabbare löpning ändrar kadens, steglängd och kontakt av sig själv, så förändringar jämförs vid samma fart: en linje mått–fart anpassas till alla dina pass och de senaste 28 dagarna jämförs med de 28 dagar som slutar 8 veckor tidigare. En förändring nämns bara om den överstiger 1,96 standardfel. ”Mer” eller ”mindre” betyder inte bättre eller sämre: högre kadens eller kortare kontakttid är inte förbättringar i sig."
           }
         }
       }
@@ -22335,6 +22505,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Optimistiskt"
+          }
+        }
+      }
+    },
+    "Oscilación vertical": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vertical oscillation"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vertikal oscillation"
           }
         }
       }
@@ -31791,6 +31978,23 @@
         }
       }
     },
+    "Tiempo de contacto con el suelo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground contact time"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Markkontakttid"
+          }
+        }
+      }
+    },
     "Tiempo de ejercicio": {
       "extractionState": "manual",
       "localizations": {
@@ -32314,6 +32518,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Det finns ännu inte tillräckligt med data från i dag för en sammanfattning."
+          }
+        }
+      }
+    },
+    "Todavía no hay datos: hacen falta 3 carreras al aire libre en los últimos 28 días. La zancada, el tiempo de contacto, la oscilación y la potencia las guarda el Apple Watch (Series 6, SE de 2.ª generación o posterior, con watchOS 9 o posterior) en las carreras al aire libre.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data yet: 3 outdoor runs in the last 28 days are needed. Stride, ground contact time, oscillation and power are saved by Apple Watch (Series 6, SE 2nd generation or later, with watchOS 9 or later) on outdoor runs."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inga data ännu: det behövs 3 utomhuspass de senaste 28 dagarna. Steglängd, markkontakttid, oscillation och kraft sparas av Apple Watch (Series 6, SE 2:a generationen eller senare, med watchOS 9 eller senare) vid utomhuspass."
           }
         }
       }
@@ -33746,6 +33967,23 @@
         }
       }
     },
+    "Técnica de carrera": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running form"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löpteknik"
+          }
+        }
+      }
+    },
     "Tú": {
       "extractionState": "manual",
       "localizations": {
@@ -34983,6 +35221,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Medelhastighet %@ miles i timmen"
+          }
+        }
+      }
+    },
+    "Velocidad por vatio": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speed per watt"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fart per watt"
           }
         }
       }
@@ -36496,6 +36751,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "slag/min"
+          }
+        }
+      }
+    },
+    "m/min por W": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m/min per W"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m/min per W"
           }
         }
       }

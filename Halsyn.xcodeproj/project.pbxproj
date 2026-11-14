@@ -24,6 +24,7 @@
 		190E2E0AA42973FC859B7CA5 /* TodayGuidanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A660A794C8609DC3D3968E6 /* TodayGuidanceCard.swift */; };
 		1A5A85413363B1815DD2DA43 /* RunActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A5701A083E54540706CF03 /* RunActivityAttributes.swift */; };
 		1CD55B8B71C60F19D7BC6224 /* intro-light.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */; };
+		1DC00D0AF6E644E59F1BCEE7 /* RunningDynamicsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068DA77614A4F2A7F5E43AC1 /* RunningDynamicsViews.swift */; };
 		223D07D42C5AAD92B8F26B92 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6683A16BF5216CF3290D7F7A /* SpringView.swift */; };
 		230640766D8EE53D010BF610 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F54E426C64C6E2183DE8 /* RootTabView.swift */; };
 		2634ACF724DD93CC043212F2 /* EvolutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0160A341E443A5CD30809139 /* EvolutionView.swift */; };
@@ -227,6 +228,7 @@
 		0160A341E443A5CD30809139 /* EvolutionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionView.swift; sourceTree = "<group>"; };
 		0210D91C67294E38A972B396 /* HalsaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalsaView.swift; sourceTree = "<group>"; };
 		028CFD6FEBE463CB5FA87EE2 /* intro-light.mp4 */ = {isa = PBXFileReference; path = "intro-light.mp4"; sourceTree = "<group>"; };
+		068DA77614A4F2A7F5E43AC1 /* RunningDynamicsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningDynamicsViews.swift; sourceTree = "<group>"; };
 		06DE702C636A9F7D6B1B672D /* CloudBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackup.swift; sourceTree = "<group>"; };
 		06F7CC97BEA070D8FF3F8EB8 /* VolumeIntensityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIntensityViews.swift; sourceTree = "<group>"; };
 		076BE91FF6016BAB5F98966A /* GoalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStore.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				90A1B548893B46F9A85AD153 /* AerobicViews.swift */,
 				C605BA697DBF43B47CD8BA12 /* ConsistencyViews.swift */,
 				5B569479DDCF7C472766341E /* FormView.swift */,
+				068DA77614A4F2A7F5E43AC1 /* RunningDynamicsViews.swift */,
 				653D6524B6F946D737AB03C9 /* TrainingStatusViews.swift */,
 			);
 			path = Form;
@@ -1161,6 +1164,7 @@
 				D0B1393FD1D047FF0B9D9E39 /* RunShareCard.swift in Sources */,
 				FB4CF95A4E3BB9C94B733084 /* RunWeatherCard.swift in Sources */,
 				02C46DF83C27D6AF165A69CE /* RunnerStrengthView.swift in Sources */,
+				1DC00D0AF6E644E59F1BCEE7 /* RunningDynamicsViews.swift in Sources */,
 				770D1E42B1D57A4A3CDFFDF2 /* RunningStatsCard.swift in Sources */,
 				86CBCDE5D98FF601F3226065 /* ScaleWeighIn.swift in Sources */,
 				C04CE845DE34927D64378499 /* ScoreDetailView.swift in Sources */,
@@ -1310,7 +1314,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 122;
+				CURRENT_PROJECT_VERSION = 123;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1495,7 +1499,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 122;
+				CURRENT_PROJECT_VERSION = 123;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

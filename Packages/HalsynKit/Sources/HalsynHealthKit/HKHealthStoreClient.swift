@@ -417,6 +417,19 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         if let temperature, !isIndoor {
             summary.weather = RunWeather(temperature: temperature, humidity: humidity, source: .health)
         }
+        // Técnica de carrera: las medias que guardó el reloj con el entrenamiento.
+        if activity.isRun {
+            func average(_ identifier: HKQuantityTypeIdentifier, _ unit: HKUnit) -> Double? {
+                workout.statistics(for: HKQuantityType(identifier))?.averageQuantity()?.doubleValue(for: unit)
+            }
+            let dynamics = RunningDynamics(
+                strideLength: average(.runningStrideLength, .meter()),
+                groundContactTime: average(.runningGroundContactTime, .secondUnit(with: .milli)),
+                verticalOscillation: average(.runningVerticalOscillation, .meterUnit(with: .centi)),
+                power: average(.runningPower, .watt())
+            )
+            summary.dynamics = dynamics.isEmpty ? nil : dynamics
+        }
         return summary
     }
 

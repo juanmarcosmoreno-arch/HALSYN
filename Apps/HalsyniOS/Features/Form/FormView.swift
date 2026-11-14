@@ -85,6 +85,7 @@ struct FormOverview: View {
         HalsynSectionHeader("Áreas", eyebrow: HalsynLexicon.form.rawValue)
         AerobicAreaLink()
         ConsistencyAreaLink(runs: runs)
+        RunningDynamicsAreaLink(runs: runs)
         FormAreaLink(title: "Carga y forma", subtitle: "Carga reciente frente a la habitual, forma y fatiga", systemImage: "gauge.with.dots.needle.50percent") {
             FormAreaScreen(title: "Carga y forma") { TrainingLoadCard() }
         }

@@ -324,7 +324,8 @@ public struct DemoHealthDataProvider: HealthDataProviding {
         let paceSeconds = Double.random(in: 285...345, using: &rng)
         let startHour = Double.random(in: 6.5...19.5, using: &rng)
         let average = Double.random(in: 138...158, using: &rng).rounded()
-        return WorkoutSummary(
+        let cadence = Double.random(in: 162...178, using: &rng).rounded()
+        var run = WorkoutSummary(
             id: UUID(uuid: uuidBytes(for: day)),
             activity: .outdoorRun,
             start: day.addingTimeInterval(startHour * 3600),
@@ -333,9 +334,18 @@ public struct DemoHealthDataProvider: HealthDataProviding {
             averageHeartRate: average,
             maxHeartRate: average + Double.random(in: 12...24, using: &rng).rounded(),
             activeEnergyKilocalories: (distance / 1000 * 68).rounded(),
-            averageCadence: Double.random(in: 162...178, using: &rng).rounded(),
+            averageCadence: cadence,
             origin: .demo
         )
+        // Técnica de ejemplo derivada del ritmo (sin consumir más números aleatorios).
+        let speed = 1000 / paceSeconds
+        run.dynamics = RunningDynamics(
+            strideLength: (speed * 60 / cadence * 100).rounded() / 100,
+            groundContactTime: (190 + (paceSeconds - 285) * 0.9).rounded(),
+            verticalOscillation: ((8.0 + (345 - paceSeconds) * 0.02) * 10).rounded() / 10,
+            power: (70 * speed * 1.04).rounded()
+        )
+        return run
     }
 
     private func makeRide(on day: Date, using rng: inout SeededRandomNumberGenerator) -> WorkoutSummary {

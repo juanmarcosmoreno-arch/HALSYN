@@ -55,6 +55,28 @@ public enum WorkoutSport: String, Codable, CaseIterable, Sendable {
     case other
 }
 
+/// Medias de técnica de carrera de un entrenamiento (Apple Watch, watchOS 9 o
+/// posterior). Cada una es `nil` si el reloj no la midió.
+public struct RunningDynamics: Hashable, Codable, Sendable {
+    /// Longitud de zancada (m).
+    public var strideLength: Double?
+    /// Tiempo de contacto con el suelo (ms).
+    public var groundContactTime: Double?
+    /// Oscilación vertical (cm).
+    public var verticalOscillation: Double?
+    /// Potencia de carrera (W).
+    public var power: Double?
+
+    public init(strideLength: Double? = nil, groundContactTime: Double? = nil, verticalOscillation: Double? = nil, power: Double? = nil) {
+        self.strideLength = strideLength
+        self.groundContactTime = groundContactTime
+        self.verticalOscillation = verticalOscillation
+        self.power = power
+    }
+
+    public var isEmpty: Bool { strideLength == nil && groundContactTime == nil && verticalOscillation == nil && power == nil }
+}
+
 /// Resumen de un entrenamiento terminado. Los campos opcionales son `nil`
 /// cuando el reloj no los midió: nunca se rellenan con estimaciones.
 public struct WorkoutSummary: Hashable, Identifiable, Sendable {
@@ -77,6 +99,8 @@ public struct WorkoutSummary: Hashable, Identifiable, Sendable {
     public let endDate: Date?
     /// Tiempo que hacía, si el entrenamiento lo guardó en Salud.
     public var weather: RunWeather?
+    /// Técnica de carrera que guardó el Apple Watch (medias del entrenamiento).
+    public var dynamics: RunningDynamics?
 
     public init(
         id: UUID = UUID(),
