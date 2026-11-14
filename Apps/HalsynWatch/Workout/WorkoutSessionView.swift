@@ -456,6 +456,10 @@ private struct WorkoutIntervalRingView: View {
                 .layoutPriority(1)
             ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
         }
+        // Usa también la franja de arriba (la de la hora), que quedaba vacía.
+        .padding(.top, 2)
+        .frame(maxHeight: .infinity)
+        .ignoresSafeArea(edges: .top)
     }
 
     /// Con ritmo objetivo el anillo dice cómo vas: verde en ritmo, rojo si vas
@@ -472,22 +476,23 @@ private struct WorkoutIntervalRingView: View {
     }
 
     private func ringHeader(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
-        // El ritmo actual ocupa su propio alto (no va encima de la fila): más
-        // grande y separado del anillo.
-        ZStack {
+        // Sube hasta la franja de la hora: «SERIE» y la repetición a la izquierda
+        // (la hora está arriba a la derecha) y el ritmo actual arriba al centro.
+        ZStack(alignment: .top) {
             HStack(alignment: .top) {
-                Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
-                    .font(.caption2.weight(.bold))
-                    .tracking(1)
-                    .foregroundStyle(intervalTint(interval.step.kind))
-                Spacer()
-                if let repetition = interval.step.repetition {
-                    Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
-                        .font(.caption2.monospacedDigit())
-                        .foregroundStyle(Color.white)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
+                        .font(.caption2.weight(.bold))
+                        .tracking(1)
+                        .foregroundStyle(intervalTint(interval.step.kind))
+                    if let repetition = interval.step.repetition {
+                        Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(Color.white)
+                    }
                 }
+                Spacer()
             }
-            .frame(maxHeight: .infinity, alignment: .top)
             if interval.step.paceTarget != nil {
                 // Con ritmo objetivo, tu ritmo actual arriba al centro, en el color del estado.
                 Text(verbatim: snapshot.currentPace?.formatted(in: unitSystem) ?? "--")
