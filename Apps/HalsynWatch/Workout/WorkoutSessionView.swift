@@ -455,11 +455,14 @@ private struct WorkoutIntervalRingView: View {
                 .frame(maxHeight: .infinity)
                 .layoutPriority(1)
             ringFooter(snapshot, tint: dialTint(interval, snapshot: snapshot))
+                // Más abajo, justo sobre los puntos de página, sin meterse en las esquinas.
+                .padding(.horizontal, 8)
+                .padding(.bottom, 14)
         }
-        // Usa también la franja de arriba (la de la hora), que quedaba vacía.
+        // Usa también las franjas de arriba (la de la hora) y de abajo.
         .padding(.top, 2)
         .frame(maxHeight: .infinity)
-        .ignoresSafeArea(edges: .top)
+        .ignoresSafeArea(edges: [.top, .bottom])
     }
 
     /// Con ritmo objetivo el anillo dice cómo vas: verde en ritmo, rojo si vas
@@ -476,33 +479,15 @@ private struct WorkoutIntervalRingView: View {
     }
 
     private func ringHeader(_ interval: IntervalProgress, snapshot: RunSnapshot) -> some View {
-        // Sube hasta la franja de la hora: «SERIE» y la repetición a la izquierda
-        // (la hora está arriba a la derecha) y el ritmo actual arriba al centro.
-        ZStack(alignment: .top) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(LocalizedStringKey(workout.plan?.kind.label(for: interval.step.kind) ?? interval.step.kind.label))
-                        .font(.caption2.weight(.bold))
-                        .tracking(1)
-                        .foregroundStyle(intervalTint(interval.step.kind))
-                    if let repetition = interval.step.repetition {
-                        Text(verbatim: "\(repetition)/\(workout.plan?.repeats ?? repetition)")
-                            .font(.caption2.monospacedDigit())
-                            .foregroundStyle(Color.white)
-                    }
-                }
-                Spacer()
-            }
-            if interval.step.paceTarget != nil {
-                // Con ritmo objetivo, tu ritmo actual arriba al centro, en el color del estado.
-                Text(verbatim: snapshot.currentPace?.formatted(in: unitSystem) ?? "--")
-                    .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
-                    .minimumScaleFactor(0.7)
-                    .lineLimit(1)
-                    .foregroundStyle(snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot))
-            }
-        }
-        .fixedSize(horizontal: false, vertical: true)
+        // Solo el ritmo actual, arriba al centro (en la franja de la hora). El tipo
+        // de paso ya lo dice el color del anillo, y la repetición va dentro del anillo:
+        // en las esquinas de arriba se cortaban con el borde de la pantalla.
+        Text(verbatim: interval.step.paceTarget == nil ? " " : (snapshot.currentPace?.formatted(in: unitSystem) ?? "--"))
+            .font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+            .minimumScaleFactor(0.7)
+            .lineLimit(1)
+            .foregroundStyle(snapshot.currentPace == nil ? Color(HalsynPalette.secondaryTextDark) : dialTint(interval, snapshot: snapshot))
+            .frame(maxWidth: .infinity)
     }
 
     private func ringDial(_ interval: IntervalProgress, value: WorkoutFieldValue, tint: Color) -> some View {
@@ -516,7 +501,7 @@ private struct WorkoutIntervalRingView: View {
                 .stroke(tint.opacity(isOpen && interval.step.paceTarget == nil ? 0.5 : 1), style: StrokeStyle(lineWidth: 9, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.5), value: remaining)
-            ringCenter(value: value, tint: tint, isOpen: isOpen)
+            ringCenter(value: value, tint: tint, isOpen: isOpen, repetition: repetitionText(interval))
                 .padding(.horizontal, 12)
         }
         .aspectRatio(1, contentMode: .fit)
@@ -525,7 +510,13 @@ private struct WorkoutIntervalRingView: View {
         .accessibilityValue(Text(verbatim: "\(value.value ?? "--") \(value.unit)"))
     }
 
-    private func ringCenter(value: WorkoutFieldValue, tint: Color, isOpen: Bool) -> some View {
+    /// "2/5" solo si hay más de una repetición.
+    private func repetitionText(_ interval: IntervalProgress) -> String? {
+        guard let repetition = interval.step.repetition, let repeats = workout.plan?.repeats, repeats > 1 else { return nil }
+        return "\(repetition)/\(repeats)"
+    }
+
+    private func ringCenter(value: WorkoutFieldValue, tint: Color, isOpen: Bool, repetition: String? = nil) -> some View {
         VStack(spacing: 0) {
             Text(isOpen ? LocalizedStringKey("TID") : LocalizedStringKey("QUEDAN"))
                 .font(.system(size: 11, weight: .semibold))
@@ -541,6 +532,12 @@ private struct WorkoutIntervalRingView: View {
                 Text(LocalizedStringKey(value.unit))
                     .font(.caption2)
                     .foregroundStyle(Color(HalsynPalette.secondaryTextDark))
+            }
+            if let repetition {
+                Text(verbatim: repetition)
+                    .font(.caption2.weight(.semibold).monospacedDigit())
+                    .foregroundStyle(tint)
+                    .padding(.top, 1)
             }
             if isOpen, workout.plan?.isGoalRun != true {
                 Text("Pulsa Vuelta para continuar")
