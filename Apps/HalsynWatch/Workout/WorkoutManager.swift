@@ -389,6 +389,12 @@ final class WorkoutManager: NSObject {
         tracker.handle(.fail, at: .now)
         errorMessage = error.localizedDescription
         outcome = .failed(error.localizedDescription)
+        // Si la sesión de Salud llegó a abrirse, se cierra: si no, seguía activa en
+        // segundo plano (batería y pulso encendidos) aunque la pantalla dijera que falló.
+        if let session, session.state != .ended, session.state != .stopped {
+            shouldSave = false
+            session.end()
+        }
     }
 
     // MARK: Eventos (en el hilo principal)
@@ -411,9 +417,12 @@ final class WorkoutManager: NSObject {
             WKInterfaceDevice.current().play(.stop)
             sendLiveUpdate(force: true)
         case .stopped:
+            if case .failed = outcome { break }
             tracker.handle(.end, at: date)
         case .ended:
-            if tracker.phase != .stopping {
+            if case .failed = outcome {
+                // Cierre de una sesión que falló al empezar: el estado ya es «falló».
+            } else if tracker.phase != .stopping {
                 tracker.handle(.end, at: date)
             }
             Task { await finish(at: date) }
@@ -426,6 +435,13 @@ final class WorkoutManager: NSObject {
         ticker?.cancel()
         locationManager.stopUpdatingLocation()
         guard let builder else { return }
+        if case .failed = outcome {
+            // Falló al empezar: se cierra sin guardar y se deja el aviso del error.
+            try? await builder.endCollection(at: date)
+            builder.discardWorkout()
+            routeBuilder?.discard()
+            return
+        }
         do {
             try await builder.endCollection(at: date)
             if shouldSave {

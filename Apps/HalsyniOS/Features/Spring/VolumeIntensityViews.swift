@@ -238,7 +238,7 @@ struct VolumeIntensityCard: View {
         var samples: [UUID: [HeartRatePoint]] = [:]
         for run in workouts.filter({ $0.activity.isRun && $0.start >= samplesStart && $0.averageHeartRate != nil }).prefix(40) {
             guard !Task.isCancelled else { return }
-            let points = await model.provider.workoutDetail(for: run).heartRate
+            let points = await model.provider.workoutHeartRate(for: run)
             if !points.isEmpty { samples[run.id] = points }
         }
         let intensities = IntensityContext.intensities(workouts, samples: samples)

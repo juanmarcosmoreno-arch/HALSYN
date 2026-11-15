@@ -38,7 +38,7 @@ final class TrainingLoadStore {
             var samples: [UUID: [HeartRatePoint]] = [:]
             for workout in workouts.filter({ $0.start >= samplesStart && $0.averageHeartRate != nil }).prefix(60) {
                 guard !Task.isCancelled else { return }
-                let points = await provider.workoutDetail(for: workout).heartRate
+                let points = await provider.workoutHeartRate(for: workout)
                 if !points.isEmpty { samples[workout.id] = points }
             }
             // Ritmo umbral para estimar la carga de carreras sin pulso.

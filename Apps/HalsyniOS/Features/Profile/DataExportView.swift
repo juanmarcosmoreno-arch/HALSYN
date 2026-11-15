@@ -109,8 +109,11 @@ struct DataExportView: View {
         }
         let sleep = await provider.sleepNights(endingOn: end, days: count)
         var seen = Set<UUID>()
-        let workouts = (await provider.recentWorkouts(limit: 5000) + (await provider.recentRides(limit: 5000)))
-            .filter { $0.start >= start && seen.insert($0.id).inserted }
+        // Todo el historial: el modelo de rendimiento, los récords y los recorridos se
+        // calculan igual que en la app, no solo con el período exportado.
+        let history = (await provider.recentWorkouts(limit: 5000) + (await provider.recentRides(limit: 5000)))
+            .filter { seen.insert($0.id).inserted }
+        let workouts = history.filter { $0.start >= start }
         let days = (0..<count).compactMap { calendar.date(byAdding: .day, value: $0, to: start) }
 
         var marks: [UUID: String] = [:]
@@ -131,12 +134,11 @@ struct DataExportView: View {
         let samplesStart = calendar.date(byAdding: .day, value: -42, to: end) ?? end
         var samples: [UUID: [HeartRatePoint]] = [:]
         for run in workouts.filter({ $0.activity.isRun && $0.start >= samplesStart && $0.averageHeartRate != nil }).prefix(60) {
-            let points = await provider.workoutDetail(for: run).heartRate
+            let points = await provider.workoutHeartRate(for: run)
             if !points.isEmpty { samples[run.id] = points }
         }
         let intensities = IntensityContext.intensities(workouts, samples: samples)
-        let runs = workouts.filter(\.activity.isRun)
-        let performance = FitnessStore.shared.performance(runs: runs, today: end)
+        let performance = FitnessStore.shared.performance(runs: WorkoutQualityStore.shared.clean(history).filter(\.activity.isRun), today: end)
         var evidenceByWorkout: [UUID: PerformanceEvidence] = [:]
         for item in performance?.evidence ?? [] {
             if let result = FitnessStore.shared.results.first(where: { $0.id == item.id }), let workoutID = result.workoutID {
@@ -147,7 +149,7 @@ struct DataExportView: View {
         }
         // Análisis aeróbico al día (no en demo: los datos de ejemplo no son tuyos).
         if !model.isDemo {
-            await RunDetailPipeline.refresh(runs: workouts, provider: provider)
+            await RunDetailPipeline.refresh(runs: history, provider: provider)
         }
         let aerobic = AerobicStore.shared.observations
         var extras: [UUID: DataExport.WorkoutExtra] = [:]
@@ -181,7 +183,8 @@ struct DataExportView: View {
         // posterior no existe todavía para la recuperación de esa mañana.
         let attribution = SleepAttribution.days(sleep, now: end, calendar: calendar)
         let dailyCSV = DataExport.dailyCSV(series: series, healthScores: health, recoveryScores: recovery, sleep: sleep, days: days, recovery: estimatesByDay, attribution: attribution, calendar: calendar)
-        let summary = await summaryText(start: start, end: end, workouts: workouts, sleep: sleep)
+        // El resumen usa los mismos datos que la app: historial completo y limpio (sin duplicados ni excluidos).
+        let summary = await summaryText(start: start, end: end, workouts: WorkoutQualityStore.shared.clean(history), sleep: sleep)
 
         let stamp = isoDay(end)
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("HALSYN-\(stamp)", isDirectory: true)  // nolocalize

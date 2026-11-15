@@ -134,6 +134,11 @@ public struct LiveHealthDataProvider: HealthDataProviding {
         return WorkoutDetailData(route: await route ?? [], heartRate: await heartRate ?? [], power: await power, origin: workout.origin)
     }
 
+    public func workoutHeartRate(for workout: WorkoutSummary) async -> [HeartRatePoint] {
+        guard client.isHealthDataAvailable else { return [] }
+        return (try? await client.heartRateSamples(in: DateInterval(start: workout.start, end: workout.wallClockEnd))) ?? []
+    }
+
     public func ridePower(for workout: WorkoutSummary) async -> [PowerSample] {
         guard client.isHealthDataAvailable, workout.activity.isRide else { return [] }
         return (try? await client.cyclingPowerSamples(in: DateInterval(start: workout.start, end: workout.wallClockEnd))) ?? []

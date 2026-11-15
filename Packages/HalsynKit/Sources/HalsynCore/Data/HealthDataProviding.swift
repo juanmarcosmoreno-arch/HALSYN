@@ -56,6 +56,8 @@ public protocol HealthDataProviding: Sendable {
     func heartRateRecoveries(days: Int) async -> [RecoveryReading]
     /// Ruta y FC de un entrenamiento (vacíos si no existen).
     func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData
+    /// Solo el pulso de un entrenamiento (sin leer la ruta, que es lo más costoso).
+    func workoutHeartRate(for workout: WorkoutSummary) async -> [HeartRatePoint]
     /// Puntuación diaria (`HealthScoreEngine`) si hay datos suficientes.
     func dailyScore(on day: Date) async -> DailyScore?
     /// Puntuaciones de los últimos `days` días que terminan en `endingOn`.
@@ -77,6 +79,10 @@ public protocol HealthDataProviding: Sendable {
 extension HealthDataProviding {
     public func workoutDetail(for workout: WorkoutSummary) async -> WorkoutDetailData {
         .empty(workout.origin)
+    }
+
+    public func workoutHeartRate(for workout: WorkoutSummary) async -> [HeartRatePoint] {
+        await workoutDetail(for: workout).heartRate
     }
 
     public func recoveryEstimates(endingOn end: Date, days: Int) async -> [RecoveryEstimate] { [] }
