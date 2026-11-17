@@ -246,8 +246,11 @@ extension RunSettingsStore: WCSessionDelegate {
             return
         }
         Task { @MainActor in
-            let spoken = CoachSpeaker.shared.say(text)
-            replyHandler([RunSettingsStore.spokenReplyKey: spoken])
+            // Se responde cuando la voz empezó de verdad (o no pudo): si no, el reloj
+            // lo dice él mismo.
+            CoachSpeaker.shared.say(text) { spoken in
+                replyHandler([RunSettingsStore.spokenReplyKey: spoken])
+            }
         }
     }
     #endif
