@@ -108,6 +108,13 @@ public enum HealthKitTypeCatalog {
             HKQuantityType(.cyclingPower),
             HKQuantityType(.cyclingCadence),
             HKQuantityType(.cyclingSpeed),
+            // Dinámica de carrera que mide el reloj al correr: sin permiso para guardarla,
+            // las carreras grabadas con HÅLSYN quedaban sin zancada, contacto ni oscilación.
+            HKQuantityType(.runningSpeed),
+            HKQuantityType(.runningPower),
+            HKQuantityType(.runningStrideLength),
+            HKQuantityType(.runningVerticalOscillation),
+            HKQuantityType(.runningGroundContactTime),
         ]
     }
 

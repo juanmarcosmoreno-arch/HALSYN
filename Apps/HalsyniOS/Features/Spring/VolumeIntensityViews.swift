@@ -52,7 +52,8 @@ enum IntensityContext {
                 samples: samples[workout.id],
                 perceivedEffort: PerceivedEffortStore.shared.rpe(for: workout.id).map(Double.init),
                 marked: marks[workout.id],
-                plannedKind: workout.activity.isRun ? planned[Calendar.current.startOfDay(for: workout.start)] : nil,
+                // Un registro roto (unos metros, sin distancia o ritmo imposible) no es la sesión del plan.
+                plannedKind: workout.activity.isRun && (quality[workout.id]?.usableForPerformance ?? true) ? planned[Calendar.current.startOfDay(for: workout.start)] : nil,
                 quality: quality[workout.id],
                 lactateThreshold: workout.activity.isRun ? lactateThreshold : nil,
                 zones: workout.activity.isRun && zones.method == .heartRateReserve ? personalZones(zones, max: maxHeartRate) : nil

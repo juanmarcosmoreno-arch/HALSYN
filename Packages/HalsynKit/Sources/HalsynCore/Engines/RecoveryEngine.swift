@@ -104,11 +104,13 @@ public struct RecoveryContextSource: Hashable, Sendable {
         self.hardSessionEnds = hardSessionEnds
     }
 
-    /// Las horas desde la sesión intensa se cuentan hasta las 8:00 de ese día
-    /// (la recuperación es la de la mañana).
-    public func context(for day: Date, calendar: Calendar) -> RecoveryContext {
+    /// Las horas desde la sesión intensa se cuentan hasta que te despertaste (`wake`)
+    /// o, sin ese dato, hasta las 8:00: la recuperación es la de la mañana, medida
+    /// con la noche. Una sesión hecha después de despertarte no cambia esa mañana.
+    public func context(for day: Date, calendar: Calendar, wake: Date? = nil) -> RecoveryContext {
         let start = calendar.startOfDay(for: day)
-        let morning = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: start) ?? start
+        let defaultMorning = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: start) ?? start
+        let morning = wake.flatMap { $0 >= start && $0 <= defaultMorning.addingTimeInterval(4 * 3600) ? $0 : nil } ?? defaultMorning
         let last = hardSessionEnds.filter { $0 <= morning }.max()
         return RecoveryContext(activeIllness: illnessDays.contains(start), hoursSinceHardSession: last.map { morning.timeIntervalSince($0) / 3600 })
     }
@@ -222,7 +224,7 @@ public struct RecoveryEngine: Sendable {
     /// - `context`: si falta, el de `RecoveryContextSource.current` para ese día.
     public func evaluate(day: Date, history: DailyHistory, origin: DataOrigin, nights: [Date: SleepNight] = [:], context explicitContext: RecoveryContext? = nil) -> RecoveryEstimate {
         let start = history.calendar.startOfDay(for: day)
-        let context = explicitContext ?? RecoveryContextSource.current.context(for: start, calendar: history.calendar)
+        let context = explicitContext ?? RecoveryContextSource.current.context(for: start, calendar: history.calendar, wake: nights[start]?.sleepEnd)
         let components = RecoveryComponentKind.allCases.map { component($0, day: start, history: history, nights: nights) }
         let totalWeight = components.reduce(0) { $0 + $1.weight }
         let available = components.filter { $0.score != nil && $0.weight > 0 }

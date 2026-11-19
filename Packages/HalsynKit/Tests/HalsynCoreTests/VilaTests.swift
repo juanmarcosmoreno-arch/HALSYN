@@ -334,4 +334,15 @@ struct RecoveryContextSourceTests {
         #expect(context.hoursSinceHardSession == 14)
         #expect(!source.context(for: date(21, 0), calendar: calendar).activeIllness)
     }
+
+    @Test func aSessionAfterWakingDoesNotCountForThatMorning() {
+        // Te despiertas 5:15 y corres de 5:46 a 6:11: la recuperación de esa mañana
+        // (medida con la noche) no cambia; la sesión cuenta para el día siguiente.
+        let wake = date(20, 5).addingTimeInterval(15 * 60)
+        let run = date(20, 6).addingTimeInterval(11 * 60)
+        let source = RecoveryContextSource(hardSessionEnds: [run])
+        #expect(source.context(for: date(20, 0), calendar: calendar, wake: wake).hoursSinceHardSession == nil)
+        // Sin la hora de despertar se usa las 8:00 (como antes).
+        #expect(source.context(for: date(20, 0), calendar: calendar).hoursSinceHardSession != nil)
+    }
 }

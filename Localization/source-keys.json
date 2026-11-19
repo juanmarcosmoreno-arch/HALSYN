@@ -560,7 +560,7 @@
  "Diario": "Apps/HalsyniOS/Features/Insikt/HabitJournalViews.swift",
  "Diario de ejemplo (modo demo).": "Apps/HalsyniOS/Features/Insikt/HabitJournalViews.swift",
  "Diario de hoy": "Apps/HalsyniOS/Features/Insikt/HabitJournalViews.swift",
- "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas.": "Apps/HalsyniOS/Features/Profile/DataExportView.swift",
+ "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca durante el sueño (°C, valor absoluto) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas.": "Apps/HalsyniOS/Features/Profile/DataExportView.swift",
  "Diario: «nap_h» son horas de siesta incluidas en «sleep_h»; «sleep_start» y «sleep_end» son del sueño principal.": "Apps/HalsyniOS/Features/Profile/DataExportView.swift",
  "Diastólica (mínima)": "Apps/HalsyniOS/Features/Halsa/CardioHealthViews.swift",
  "Dimensiones": "Apps/HalsyniOS/Features/Halsa/ScoreDetailView.swift",

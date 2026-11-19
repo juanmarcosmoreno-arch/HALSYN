@@ -236,6 +236,13 @@ final class WorkoutManager: NSObject {
                     dataSource.enableCollection(for: HKQuantityType(identifier), predicate: nil)
                 }
             }
+            if configuration.activityType == .running {
+                // Dinámica de carrera (Apple Watch SE 2, Series 6 o posterior): se pide
+                // explícitamente para que quede guardada con la carrera.
+                for identifier in [HKQuantityTypeIdentifier.runningSpeed, .runningPower, .runningStrideLength, .runningVerticalOscillation, .runningGroundContactTime] {
+                    dataSource.enableCollection(for: HKQuantityType(identifier), predicate: nil)
+                }
+            }
             builder.dataSource = dataSource
             session.delegate = self
             builder.delegate = self

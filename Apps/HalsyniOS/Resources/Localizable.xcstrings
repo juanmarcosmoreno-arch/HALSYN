@@ -9538,19 +9538,19 @@
         }
       }
     },
-    "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca (desvío) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas.": {
+    "Diario: una fila por día con lo que hay en Salud (vacío = sin dato): pulso en reposo, HRV (SDNN, ms), respiración, VO₂ máx., SpO₂ en %, pasos, distancia, energía activa, ejercicio, sueño en horas y sus fases, peso, grasa, temperatura de muñeca durante el sueño (°C, valor absoluto) y luz del día. «health_score» y «recovery_score» son puntuaciones de HÅLSYN de 0 a 100, orientativas y no clínicas.": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily: one row per day with what's in Health (empty = no data): resting heart rate, HRV (SDNN, ms), breathing, VO₂ max, SpO₂ in %, steps, distance, active energy, exercise, sleep in hours and its stages, weight, body fat, wrist temperature (deviation) and daylight. \"health_score\" and \"recovery_score\" are HÅLSYN scores from 0 to 100, indicative and not clinical."
+            "value": "Daily: one row per day with what is in Health (empty = no data): resting heart rate, HRV (SDNN, ms), respiratory rate, VO₂ max, SpO₂ in %, steps, distance, active energy, exercise, sleep in hours and its stages, weight, body fat, wrist temperature during sleep (°C, absolute value) and daylight. «health_score» and «recovery_score» are HÅLSYN scores from 0 to 100, for guidance only and not clinical."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dagligt: en rad per dag med det som finns i Hälsa (tomt = ingen data): vilopuls, HRV (SDNN, ms), andning, VO₂ max, SpO₂ i %, steg, sträcka, aktiv energi, träning, sömn i timmar och dess faser, vikt, fett, handledstemperatur (avvikelse) och dagsljus. ”health_score” och ”recovery_score” är HÅLSYN-poäng från 0 till 100, vägledande och inte kliniska."
+            "value": "Dagbok: en rad per dag med det som finns i Hälsa (tomt = ingen data): vilopuls, HRV (SDNN, ms), andningsfrekvens, VO₂ max, SpO₂ i %, steg, distans, aktiv energi, träning, sömn i timmar och dess faser, vikt, kroppsfett, handledstemperatur under sömnen (°C, absolut värde) och dagsljus. «health_score» och «recovery_score» är HÅLSYN-poäng från 0 till 100, vägledande och inte kliniska."
           }
         }
       }
