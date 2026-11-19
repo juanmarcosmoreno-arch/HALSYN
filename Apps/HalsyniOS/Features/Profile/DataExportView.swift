@@ -230,6 +230,80 @@ struct DataExportView: View {
         export = Export(files: written, text: text, workouts: workouts.count, days: days.count)
     }
 
+    /// Volumen por semana, zonas cardíacas, próximas sesiones del plan y recuperación del pulso.
+    private func trainingSection(runs: [WorkoutSummary], end: Date, calendar: Calendar) -> [String] {
+        var lines: [String] = ["", "## " + String(localized: "Volumen de las últimas 12 semanas")]
+        lines.append("- " + String(localized: "Semana (lunes) · carreras · km · tiempo · carrera más larga"))
+        var weekCalendar = calendar
+        weekCalendar.firstWeekday = 2
+        let thisWeek = weekCalendar.dateInterval(of: .weekOfYear, for: end)?.start ?? end
+        for offset in (0..<12).reversed() {
+            guard let start = weekCalendar.date(byAdding: .weekOfYear, value: -offset, to: thisWeek),
+                  let next = weekCalendar.date(byAdding: .weekOfYear, value: 1, to: start) else { continue }
+            let week = runs.filter { $0.start >= start && $0.start < next }
+            let km = week.compactMap(\.distanceMeters).reduce(0, +) / 1000
+            let longest = (week.compactMap(\.distanceMeters).max() ?? 0) / 1000
+            let time = week.map(\.duration).reduce(0, +)
+            let current = offset == 0 ? " " + String(localized: "(en curso)") : ""
+            lines.append("- \(start.formatted(date: .numeric, time: .omitted)) · \(week.count) · \(DataExport.number(km, digits: 1)) · \(HalsynFormat.duration(time)) · \(DataExport.number(longest, digits: 1))" + current)  // nolocalize
+        }
+
+        let zones = RunSettingsStore.shared.settings.zones.zones
+        if !zones.isEmpty {
+            let zonesText = zones.map { "Z\($0.index) \(Int($0.lowerBound))–\(Int($0.upperBound))" }.joined(separator: " · ")  // nolocalize
+            lines.append("")
+            lines.append("## " + String(localized: "Zonas cardíacas en uso (lpm)"))
+            lines.append("- " + zonesText)  // nolocalize
+        }
+
+        if let plan = TrainingPlanStore.shared.displayPlan {
+            let today = calendar.startOfDay(for: end)
+            let upcoming = plan.weeks.flatMap(\.sessions).filter { $0.date >= today }.sorted { $0.date < $1.date }.prefix(7)
+            if !upcoming.isEmpty {
+                lines.append("")
+                lines.append("## " + String(localized: "Próximas sesiones del plan"))
+                for session in upcoming {
+                    let kind = String(localized: String.LocalizationValue(session.kind.title))
+                    let distanceText = session.distance > 0 ? " · " + DataExport.number(session.distance / 1000, digits: 1) + " km" : ""  // nolocalize
+                    lines.append("- \(session.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated))) · \(kind)\(distanceText) · \(SessionText.detail(session, unit: unitSystem))")  // nolocalize
+                }
+            }
+        }
+
+        let recoveries = RecoveryHistoryStore.shared.results.sorted { $0.date > $1.date }.prefix(5)
+        if !recoveries.isEmpty {
+            lines.append("")
+            lines.append("## " + String(localized: "Recuperación del pulso al terminar (últimas mediciones)"))
+            for result in recoveries {
+                let one = result.oneMinute.map { "−\(Int($0.rounded())) lpm" } ?? "—"  // nolocalize
+                let two = result.twoMinutes.map { "−\(Int($0.rounded())) lpm" } ?? "—"  // nolocalize
+                lines.append("- \(result.date.formatted(date: .numeric, time: .omitted)) · " + String(localized: "al terminar \(String(Int(result.endHeartRate.rounded()))) lpm · 1 min \(one) · 2 min \(two)"))
+            }
+        }
+        return lines
+    }
+
+    /// Carga por pulso (la de «Carga y forma»): reciente frente a la habitual y forma/fatiga.
+    private func loadSection() -> [String] {
+        guard let summary = TrainingLoadStore.shared.summaries[.heartRate]?.summary else { return [] }
+        var lines: [String] = ["", "## " + String(localized: "Carga de entrenamiento (por pulso)")]
+        let lastText = DataExport.number(summary.last7Days, digits: 0)
+        let previousText = summary.previousWeeklyAverage.map { DataExport.number($0, digits: 0) } ?? "—"
+        let ratioText = summary.ratio.map { DataExport.number($0, digits: 2) } ?? "—"
+        lines.append("- " + String(localized: "Últimos 7 días: \(lastText) · media semanal de las 4 anteriores: \(previousText) · cociente: \(ratioText)"))
+        if let today = summary.today {
+            let fitnessText = DataExport.number(today.fitness, digits: 1), fatigueText = DataExport.number(today.fatigue, digits: 1)
+            let formText = DataExport.number(today.fitness - today.fatigue, digits: 1)
+            lines.append("- " + String(localized: "Forma física (42 d): \(fitnessText) · fatiga (7 d): \(fatigueText) · balance: \(formText)"))
+        }
+        let weeksText = summary.weeks.suffix(8).map { DataExport.number($0.total, digits: 0) }.joined(separator: " · ")
+        lines.append("- " + String(localized: "Carga por semana (8 semanas, de la más vieja a la actual): \(weeksText)"))
+        if summary.isBuildingUp {
+            lines.append("  - " + String(localized: "Menos de 90 días de historial: la forma física todavía se está armando."))
+        }
+        return lines
+    }
+
     /// Rendimiento (formato 5): estado, capacidad aeróbica, constancia y técnica.
     private func performanceSection(runs: [WorkoutSummary], unit: UnitSystem) async -> [String] {
         var lines: [String] = ["", "## " + String(localized: "Rendimiento")]
@@ -333,10 +407,15 @@ struct DataExportView: View {
         var lines: [String] = []
         lines.append("# HÅLSYN")
         lines.append(String(localized: "Exportado el \(end.formatted(date: .long, time: .shortened)). Período: \(start.formatted(date: .abbreviated, time: .omitted)) – \(end.formatted(date: .abbreviated, time: .omitted))."))
-        if model.isDemo {
-            lines.append("")
+        // El aviso depende de los datos exportados, no solo del modo de la app.
+        let demoData = model.isDemo || workouts.contains(where: \.origin.isDemo) || sleep.contains(where: \.origin.isDemo)
+        lines.append("")
+        if demoData {
             lines.append(String(localized: "ATENCIÓN: son datos de demostración (sintéticos), no datos reales."))
+        } else {
+            lines.append(String(localized: "Datos reales de esta persona, leídos de Apple Health y de lo que cargó en HÅLSYN. No son datos de ejemplo."))
         }
+        lines.append(String(localized: "Para la IA: usa este resumen para el contexto y los CSV para los detalles. Si algo falta, dilo en lugar de suponerlo."))
 
         lines.append("")
         lines.append("## " + String(localized: "Cálculo"))
@@ -473,6 +552,7 @@ struct DataExportView: View {
                 lines.append("- " + String(localized: "VDOT (Daniels): \(RaceGoalText.vdot(estimate.vdot)), \(sourceText) del \(dateText)"))
             }
         }
+        lines += trainingSection(runs: runs, end: end, calendar: calendar)
         if let performance = FitnessStore.shared.performance(runs: runs, today: end), !performance.evidence.isEmpty {
             lines.append("")
             lines.append("## " + String(localized: "Pruebas que usa el modelo"))
@@ -522,6 +602,7 @@ struct DataExportView: View {
             }
         }
         lines += await performanceSection(runs: runs, unit: unitSystem)
+        lines += loadSection()
         let projectionBacktest = FitnessStore.shared.projectionBacktest(runs: runs)
         let todayBacktest = FitnessStore.shared.backtest(runs: runs)
         lines.append("")

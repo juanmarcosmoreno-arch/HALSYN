@@ -1055,6 +1055,23 @@
         }
       }
     },
+    "(en curso)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(in progress)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(pågår)"
+          }
+        }
+      }
+    },
     "(≈ %@ min)": {
       "extractionState": "manual",
       "localizations": {
@@ -5679,6 +5696,23 @@
         }
       }
     },
+    "Carga de entrenamiento (por pulso)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training load (heart rate)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Träningsbelastning (puls)"
+          }
+        }
+      }
+    },
     "Carga de la última semana frente a la de las últimas 4. 100 entre 0,8 y 1,3 veces lo habitual; resta si subes de golpe. Peso bajo porque este cociente es discutido como predictor de lesiones.": {
       "extractionState": "manual",
       "localizations": {
@@ -5726,6 +5760,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vanlig belastning och ingen tydlig förändring i form: du behåller det du har."
+          }
+        }
+      }
+    },
+    "Carga por semana (8 semanas, de la más vieja a la actual): %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load per week (8 weeks, oldest to current): %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belastning per vecka (8 veckor, äldst till nuvarande): %@"
           }
         }
       }
@@ -8837,6 +8888,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Data som saknas"
+          }
+        }
+      }
+    },
+    "Datos reales de esta persona, leídos de Apple Health y de lo que cargó en HÅLSYN. No son datos de ejemplo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Real data from this person, read from Apple Health and from what they entered in HÅLSYN. This is not sample data."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verkliga data från den här personen, lästa från Apple Hälsa och från det som angetts i HÅLSYN. Det är inte exempeldata."
           }
         }
       }
@@ -14447,6 +14515,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Form"
+          }
+        }
+      }
+    },
+    "Forma física (42 d): %@ · fatiga (7 d): %@ · balance: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitness (42 d): %@ · fatigue (7 d): %@ · balance: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kondition (42 d): %@ · trötthet (7 d): %@ · balans: %@"
           }
         }
       }
@@ -20095,6 +20180,23 @@
         }
       }
     },
+    "Menos de 90 días de historial: la forma física todavía se está armando.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less than 90 days of history: fitness is still building up."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mindre än 90 dagars historik: konditionen byggs fortfarande upp."
+          }
+        }
+      }
+    },
     "Menos que antes": {
       "extractionState": "manual",
       "localizations": {
@@ -23716,6 +23818,23 @@
         }
       }
     },
+    "Para la IA: usa este resumen para el contexto y los CSV para los detalles. Si algo falta, dilo en lugar de suponerlo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the AI: use this summary for context and the CSVs for details. If something is missing, say so instead of assuming it."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Till AI:n: använd sammanfattningen för sammanhanget och CSV-filerna för detaljer. Om något saknas, säg det i stället för att anta."
+          }
+        }
+      }
+    },
     "Para llegar a %@ necesitas mejorar unos %@ s por %@ (de %@ a %@ %@).": {
       "extractionState": "manual",
       "localizations": {
@@ -25960,6 +26079,23 @@
         }
       }
     },
+    "Próximas sesiones del plan": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upcoming plan sessions"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kommande pass i planen"
+          }
+        }
+      }
+    },
     "Próximos días": {
       "extractionState": "manual",
       "localizations": {
@@ -27435,6 +27571,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pulsåterhämtning"
+          }
+        }
+      }
+    },
+    "Recuperación del pulso al terminar (últimas mediciones)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate recovery after finishing (latest measurements)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulsåterhämtning efter passet (senaste mätningarna)"
           }
         }
       }
@@ -29832,6 +29985,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vecka %lld av %lld · %@"
+          }
+        }
+      }
+    },
+    "Semana (lunes) · carreras · km · tiempo · carrera más larga": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week (Monday) · runs · km · time · longest run"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vecka (måndag) · löppass · km · tid · längsta pass"
           }
         }
       }
@@ -36636,6 +36806,23 @@
         }
       }
     },
+    "Volumen de las últimas 12 semanas": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume over the last 12 weeks"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volym de senaste 12 veckorna"
+          }
+        }
+      }
+    },
     "Volumen e intensidad": {
       "extractionState": "manual",
       "localizations": {
@@ -37146,6 +37333,23 @@
         }
       }
     },
+    "Zonas cardíacas en uso (lpm)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate zones in use (bpm)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulszoner som används (slag/min)"
+          }
+        }
+      }
+    },
     "Zonas de Coggan en porcentaje del FTP: 55, 75, 90, 105, 120 y 150. El límite del 150 entre Z6 y Z7 es una convención de las apps; Z7 son esfuerzos máximos y cortos.": {
       "extractionState": "manual",
       "localizations": {
@@ -37261,6 +37465,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "per dag"
+          }
+        }
+      }
+    },
+    "al terminar %@ lpm · 1 min %@ · 2 min %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "at the finish %@ bpm · 1 min %@ · 2 min %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "vid målgång %@ slag/min · 1 min %@ · 2 min %@"
           }
         }
       }
@@ -39437,6 +39658,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Senaste 7 dagarna"
+          }
+        }
+      }
+    },
+    "Últimos 7 días: %@ · media semanal de las 4 anteriores: %@ · cociente: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days: %@ · weekly average of the previous 4: %@ · ratio: %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senaste 7 dagarna: %@ · veckosnitt för de 4 föregående: %@ · kvot: %@"
           }
         }
       }
