@@ -620,6 +620,24 @@ struct DataExportView: View {
         let horizonText = projectionBacktest.errorByHorizon.map { "\($0.label): n = \($0.count), MAE \($0.meanAbsoluteError.map { HalsynFormat.duration($0) } ?? "—")" }.joined(separator: " · ")  // nolocalize
         lines.append("- " + String(localized: "Error de la proyección por horizonte: \(horizonText)"))
 
+        let vitals = await model.provider.unusualSignals(on: end, calendar: calendar)
+        if !vitals.checked.isEmpty {
+            lines.append("")
+            lines.append("## " + String(localized: "Signos vitales de hoy frente a tus 28 días anteriores"))
+            if vitals.signals.isEmpty {
+                lines.append("- " + String(localized: "Todos dentro de tu rango habitual."))
+            }
+            for signal in vitals.signals {
+                let name = String(localized: String.LocalizationValue(signal.metric.title))
+                let valueText = HalsynFormat.metricValue(signal.value, kind: signal.metric, unit: unitSystem)
+                let usualText = HalsynFormat.metricValue(signal.baselineMean, kind: signal.metric, unit: unitSystem)
+                let zText = DataExport.number(signal.deviation, digits: 1)
+                lines.append("- " + String(localized: "\(name): \(valueText) (habitual \(usualText), z = \(zText))"))
+            }
+            let checkedText = vitals.checked.map { String(localized: String.LocalizationValue($0.title)) }.joined(separator: ", ")
+            lines.append("- " + String(localized: "Comparados: \(checkedText). Fuera de rango = 2 desviaciones o más en la dirección de cuerpo cargado. No es un diagnóstico."))
+        }
+
         if let latest = await model.provider.recoveryEstimates(endingOn: end, days: 1).last, latest.value != nil {
             lines.append("")
             lines.append("## " + String(localized: "Recuperación de hoy explicada") + " (RecoveryEngine \(RecoveryEngine.version))")  // nolocalize

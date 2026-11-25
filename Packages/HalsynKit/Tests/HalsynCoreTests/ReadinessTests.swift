@@ -46,6 +46,15 @@ struct ReadinessTests {
         #expect(ReadinessEngine().signals(history: high, on: today).signals.isEmpty)
     }
 
+    @Test func lowOxygenIsASignalAndSmallDropsAreNot() {
+        let low = DailyHistory(series: [series(.oxygenSaturation, base: 96, wobble: 0.3, today: 92.5)], calendar: calendar)
+        #expect(ReadinessEngine().signals(history: low, on: today).signals.map(\.metric) == [.oxygenSaturation])
+        let small = DailyHistory(series: [series(.oxygenSaturation, base: 96, wobble: 0.3, today: 94.5)], calendar: calendar)
+        #expect(ReadinessEngine().signals(history: small, on: today).signals.isEmpty)
+        let high = DailyHistory(series: [series(.oxygenSaturation, base: 96, wobble: 0.3, today: 99.5)], calendar: calendar)
+        #expect(ReadinessEngine().signals(history: high, on: today).signals.isEmpty)
+    }
+
     @Test func guidanceFromRecovery() {
         let none = UnusualSignals(day: today, signals: [], checked: [])
         #expect(ReadinessEngine.guidance(recovery: 80, signals: none) == .push)

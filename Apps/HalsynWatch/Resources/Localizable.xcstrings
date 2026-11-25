@@ -749,6 +749,23 @@
         }
       }
     },
+    "%@: %@ (habitual %@, z = %@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ (usual %@, z = %@)"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@ (vanligt %@, z = %@)"
+          }
+        }
+      }
+    },
     "%@: %@ veces · mejor %@ · última %@": {
       "extractionState": "manual",
       "localizations": {
@@ -6695,6 +6712,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jämfört bara med dig (din baslinje på 28 dagar). Tillgängliga data: %@ av vikten; säkerhet %@."
+          }
+        }
+      }
+    },
+    "Comparados: %@. Fuera de rango = 2 desviaciones o más en la dirección de cuerpo cargado. No es un diagnóstico.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compared: %@. Out of range = 2 deviations or more in the strained direction. This is not a diagnosis."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jämförda: %@. Utanför intervallet = 2 avvikelser eller mer i belastad riktning. Det är ingen diagnos."
           }
         }
       }
@@ -30601,6 +30635,57 @@
         }
       }
     },
+    "Signos vitales de hoy dentro de tu rango habitual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's vital signs are within your usual range."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens vitala värden ligger inom ditt vanliga intervall."
+          }
+        }
+      }
+    },
+    "Signos vitales de hoy frente a tus 28 días anteriores": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's vital signs compared with your previous 28 days"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens vitala värden jämfört med dina 28 föregående dagar"
+          }
+        }
+      }
+    },
+    "Signos vitales de hoy fuera de tu rango habitual: %@ (FC en reposo, HRV, respiración, temperatura u oxígeno).": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's vital signs outside your usual range: %@ (resting heart rate, HRV, breathing, temperature or oxygen)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagens vitala värden utanför ditt vanliga intervall: %@ (vilopuls, HRV, andning, temperatur eller syre)."
+          }
+        }
+      }
+    },
     "Simulador": {
       "extractionState": "manual",
       "localizations": {
@@ -33810,6 +33895,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Allt som inte är fett: muskler, skelett, organ och vatten. Vågen beräknar den utifrån bioimpedans."
+          }
+        }
+      }
+    },
+    "Todos dentro de tu rango habitual.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All within your usual range."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla inom ditt vanliga intervall."
           }
         }
       }

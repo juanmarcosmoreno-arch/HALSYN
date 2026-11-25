@@ -67,10 +67,17 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
         }
         var dayComponents = DateComponents()
         dayComponents.day = 1
+        // Lo que se mide durmiendo (temperatura de muñeca) va al día en que te despiertas:
+        // la muestra empieza al dormirte (la noche anterior) y, por día calendario, quedaba
+        // en «ayer». Ventanas de mediodía a mediodía, con el día del final.
+        let nightly = kind.isMeasuredOvernight
+        let dayStart = calendar.startOfDay(for: interval.start)
+        let anchor = nightly ? (calendar.date(byAdding: .hour, value: -12, to: dayStart) ?? dayStart) : dayStart
+        let queryInterval = nightly ? DateInterval(start: min(anchor, interval.start), end: interval.end) : interval
         let descriptor = HKStatisticsCollectionQueryDescriptor(
-            predicate: HKSamplePredicate.quantitySample(type: type, predicate: Self.predicate(for: interval)),
+            predicate: HKSamplePredicate.quantitySample(type: type, predicate: Self.predicate(for: queryInterval)),
             options: options,
-            anchorDate: calendar.startOfDay(for: interval.start),
+            anchorDate: anchor,
             intervalComponents: dayComponents
         )
         do {
@@ -84,7 +91,8 @@ public final class HKHealthStoreClient: HealthStoreClient, @unchecked Sendable {
                 case .latest: quantity = statistics.mostRecentQuantity()
                 }
                 if let quantity {
-                    values.append(DailyValue(day: statistics.startDate, value: quantity.doubleValue(for: unit)))
+                    let day = nightly ? calendar.startOfDay(for: statistics.endDate) : statistics.startDate
+                    values.append(DailyValue(day: day, value: quantity.doubleValue(for: unit)))
                 }
             }
             return values

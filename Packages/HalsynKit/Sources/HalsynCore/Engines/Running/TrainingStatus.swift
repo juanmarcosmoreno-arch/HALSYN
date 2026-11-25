@@ -20,6 +20,9 @@ public struct TrainingStatusInputs: Hashable, Sendable {
     public var hrvLowDays: Int?
     public var restingHighDays: Int?
     public var shortSleepDays: Int?
+    /// Signos vitales de hoy fuera de tu rango habitual (FC en reposo, HRV, respiración,
+    /// temperatura de muñeca, oxígeno). `nil` sin base para comparar.
+    public var unusualVitals: Int?
     /// Carreras en los últimos 28 días.
     public var runsLast28 = 0
 
@@ -57,6 +60,7 @@ public struct TrainingStatus: Hashable, Sendable {
         case restingHeartRate(highDays: Int)
         case sleep(shortDays: Int)
         case consistency(runs: Int)
+        case vitals(unusual: Int)
 
         public var tone: Tone {
             switch self {
@@ -78,6 +82,8 @@ public struct TrainingStatus: Hashable, Sendable {
                 return days >= TrainingStatusEngine.shortSleepDays ? .negative : .positive
             case let .consistency(runs):
                 return runs >= TrainingStatusEngine.regularRuns ? .positive : .neutral
+            case let .vitals(unusual):
+                return unusual >= TrainingStatusEngine.unusualVitals ? .negative : (unusual == 0 ? .positive : .neutral)
             }
         }
     }
@@ -138,6 +144,8 @@ public enum TrainingStatusEngine {
     public static let adverseDays = 3
     public static let shortSleepDays = 4
     public static let regularRuns = 8
+    /// Dos signos vitales fuera de lo habitual el mismo día (como el aviso de Hoy).
+    public static let unusualVitals = 2
     public static let minimumRuns = 4
 
     public static func evaluate(_ inputs: TrainingStatusInputs, date: Date = .now) -> TrainingStatus {
@@ -153,6 +161,7 @@ public enum TrainingStatusEngine {
         if let days = inputs.hrvLowDays { signals.append(.hrv(lowDays: days)); available += 1 } else { missing.append("hrv") }
         if let days = inputs.restingHighDays { signals.append(.restingHeartRate(highDays: days)); available += 1 } else { missing.append("restingHeartRate") }
         if let days = inputs.shortSleepDays { signals.append(.sleep(shortDays: days)); available += 1 } else { missing.append("sleep") }
+        if let unusual = inputs.unusualVitals { signals.append(.vitals(unusual: unusual)) }
         signals.append(.consistency(runs: inputs.runsLast28))
 
         let confidence: TrainingStatus.Confidence = available >= 6 ? .high : (available >= 4 ? .medium : .low)
@@ -160,7 +169,7 @@ public enum TrainingStatusEngine {
             (inputs.hrvLowDays ?? 0) >= adverseDays,
             (inputs.restingHighDays ?? 0) >= adverseDays,
             (inputs.shortSleepDays ?? 0) >= shortSleepDays,
-        ].filter { $0 }.count
+        ].filter { $0 }.count + ((inputs.unusualVitals ?? 0) >= unusualVitals ? 2 : 0)
         let improving = inputs.aerobicVerdict == .faster || (inputs.vdotChangeIsClear && (inputs.vdotChange ?? 0) > 0)
         let declining = inputs.aerobicVerdict == .slower || (inputs.vdotChangeIsClear && (inputs.vdotChange ?? 0) < 0)
         let hasTrend = inputs.aerobicVerdict != nil || inputs.vdotChange != nil

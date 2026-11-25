@@ -61,6 +61,11 @@ enum TrainingStatusBuilder {
         inputs.hrvLowDays = adverseDays(.heartRateVariability)
         inputs.restingHighDays = adverseDays(.restingHeartRate)
         inputs.shortSleepDays = adverseDays(.sleep)
+
+        // Signos vitales de hoy (FC en reposo, HRV, respiración, temperatura de muñeca y oxígeno)
+        // frente a tus 28 días anteriores: los mismos del aviso de Hoy.
+        let vitals = await provider.unusualSignals(on: now, calendar: calendar)
+        if !vitals.checked.isEmpty { inputs.unusualVitals = vitals.signals.count }
         return TrainingStatusEngine.evaluate(inputs, date: now)
     }
 }
@@ -142,6 +147,10 @@ enum TrainingStatusText {
         case let .consistency(runs):
             let runsText = String(runs)
             return String(localized: "\(runsText) carreras en las últimas 4 semanas.")
+        case let .vitals(unusual):
+            if unusual == 0 { return String(localized: "Signos vitales de hoy dentro de tu rango habitual.") }
+            let unusualText = String(unusual)
+            return String(localized: "Signos vitales de hoy fuera de tu rango habitual: \(unusualText) (FC en reposo, HRV, respiración, temperatura u oxígeno).")
         }
     }
 

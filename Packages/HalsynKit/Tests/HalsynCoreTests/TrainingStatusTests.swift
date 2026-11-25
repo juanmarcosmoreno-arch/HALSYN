@@ -77,4 +77,14 @@ struct TrainingStatusTests {
         #expect(status.confidence == .low)
         #expect(status.missing.contains("hrv"))
     }
+
+    @Test func twoUnusualVitalsTodayMeanRecoveryNeeded() {
+        var inputs = TrainingStatusInputs()
+        inputs.runsLast28 = 12
+        inputs.loadRatio = 1.0
+        inputs.unusualVitals = 2
+        #expect(TrainingStatusEngine.evaluate(inputs).state == .recoveryNeeded)
+        inputs.unusualVitals = 1
+        #expect(TrainingStatusEngine.evaluate(inputs).state != .recoveryNeeded)
+    }
 }

@@ -35,12 +35,12 @@ public enum TrainingGuidance: String, Hashable, Sendable {
 /// Chequeo matutino: recuperación y señales inusuales → sugerencia del día.
 ///
 /// - Señales: FC en reposo, temperatura de muñeca y frecuencia respiratoria
-///   por encima de lo habitual, o HRV por debajo, con |z| ≥ 2 frente a los
+///   por encima de lo habitual, o HRV y oxígeno en sangre por debajo, con |z| ≥ 2 frente a los
 ///   28 días anteriores (mínimo 14 días de base). Cada métrica tiene una
 ///   variación mínima para no reaccionar a diferencias minúsculas.
 /// - Es una observación de bienestar, no un diagnóstico: el texto lo dice.
 public struct ReadinessEngine: Sendable {
-    public static let signalMetrics: [MetricKind] = [.restingHeartRate, .heartRateVariability, .respiratoryRate, .wristTemperature]
+    public static let signalMetrics: [MetricKind] = [.restingHeartRate, .heartRateVariability, .respiratoryRate, .wristTemperature, .oxygenSaturation]
 
     public var threshold = 2.0
     public var baselineDays = 28
@@ -55,13 +55,15 @@ public struct ReadinessEngine: Sendable {
         case .heartRateVariability: 5
         case .respiratoryRate: 0.4
         case .wristTemperature: 0.15
+        // SpO₂ en %: la medición del reloj varía ±1–2 puntos de por sí.
+        case .oxygenSaturation: 1.5
         default: 1
         }
     }
 
     /// `true` si subir es la dirección de "cuerpo cargado".
     static func risesWhenStrained(_ metric: MetricKind) -> Bool {
-        metric != .heartRateVariability
+        metric != .heartRateVariability && metric != .oxygenSaturation
     }
 
     public func signals(history: DailyHistory, on day: Date) -> UnusualSignals {

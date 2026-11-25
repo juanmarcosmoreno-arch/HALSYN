@@ -110,6 +110,9 @@ public enum MetricKind: String, CaseIterable, Identifiable, Codable, Sendable {
         }
     }
 
+    /// Se mide durmiendo y cuenta para el día en que te despiertas.
+    public var isMeasuredOvernight: Bool { self == .wristTemperature }
+
     /// Días hacia atrás en los que se busca el último valor de las métricas
     /// `.latest`. El VO₂ máx. se estima con poca frecuencia; la FC en reposo, a diario.
     public var latestLookbackDays: Int {
