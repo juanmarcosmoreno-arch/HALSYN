@@ -6070,6 +6070,23 @@
         }
       }
     },
+    "Carrera libre: sigo grabando": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free run: still recording"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fri löpning: spelar fortfarande in"
+          }
+        }
+      }
+    },
     "Carrera más larga": {
       "extractionState": "manual",
       "localizations": {
@@ -20401,23 +20418,6 @@
         }
       }
     },
-    "Mido tu recuperación": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measuring your recovery"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mäter din återhämtning"
-          }
-        }
-      }
-    },
     "Milla %lld": {
       "extractionState": "manual",
       "localizations": {
@@ -22947,6 +22947,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Målet nått"
+          }
+        }
+      }
+    },
+    "Objetivo cumplido. Si paras o caminas, mido tu recuperación. Si sigues corriendo, sigo grabando.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal reached. If you stop or walk, I'll measure your recovery. If you keep running, I'll keep recording."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målet uppnått. Om du stannar eller går mäter jag din återhämtning. Om du fortsätter springa fortsätter jag spela in."
           }
         }
       }
@@ -30278,23 +30295,6 @@
         }
       }
     },
-    "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intervals done. Cool-down: walk or jog easy, I'm measuring your recovery."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intervallerna klara. Nedvarvning: gå eller jogga lugnt, jag mäter din återhämtning."
-          }
-        }
-      }
-    },
     "Series y recuperaciones": {
       "extractionState": "manual",
       "localizations": {
@@ -30584,6 +30584,23 @@
         }
       }
     },
+    "Si paras o caminas, mido tu recuperación": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you stop or walk, I'll measure your recovery"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du stannar eller går mäter jag din återhämtning"
+          }
+        }
+      }
+    },
     "Si prefieres, explora la app con datos de demostración claramente identificados y conecta Apple Health más tarde desde Perfil.": {
       "extractionState": "manual",
       "localizations": {
@@ -30682,6 +30699,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dagens vitala värden utanför ditt vanliga intervall: %@ (vilopuls, HRV, andning, temperatur eller syre)."
+          }
+        }
+      }
+    },
+    "Sigues corriendo": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're still running"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du springer fortfarande"
+          }
+        }
+      }
+    },
+    "Sigues corriendo. Sigo grabando.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're still running. Still recording."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du springer fortfarande. Spelar fortfarande in."
           }
         }
       }
@@ -37159,6 +37210,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nedvarvning: %@ i %@"
+          }
+        }
+      }
+    },
+    "Vuelta a la calma: mido tu recuperación.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cool-down: measuring your recovery."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nedvarvning: jag mäter din återhämtning."
           }
         }
       }

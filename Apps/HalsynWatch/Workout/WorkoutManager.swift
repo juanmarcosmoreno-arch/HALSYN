@@ -382,6 +382,7 @@ final class WorkoutManager: NSObject {
         shouldSave = true
         measuresRecovery = false
         cooldownRecoveryMinutes = nil
+        recoveryDecision = nil
         recoverySkipped = false
         pausedAt = nil
         recentHeartRates = []
@@ -519,6 +520,41 @@ final class WorkoutManager: NSObject {
         }
     }
 
+    // MARK: Seguir corriendo tras el objetivo
+
+    /// Objetivo cumplido con medición de recuperación pendiente: desde cuándo y con qué distancia.
+    @ObservationIgnored private var recoveryDecision: (start: Date, distance: Double)?
+    /// Segundos que se miran antes de decidir.
+    static let recoveryDecisionSeconds: TimeInterval = 20
+    /// Más rápido que esto (≈ 8:45 /km) es seguir corriendo; más lento, caminar o parar.
+    static let keepRunningSpeed = 1.9
+
+    /// Si al cumplir el objetivo paras (pausa) o caminas, termina y mide la recuperación;
+    /// si sigues corriendo, sigue grabando como carrera libre.
+    private func decideRecovery(at date: Date) {
+        guard let decision = recoveryDecision, phase == .running || phase == .paused else { return }
+        if phase == .paused {
+            recoveryDecision = nil
+            end(save: true, measureRecovery: true)
+            return
+        }
+        let elapsed = date.timeIntervalSince(decision.start)
+        guard elapsed >= Self.recoveryDecisionSeconds else { return }
+        recoveryDecision = nil
+        let speed = (tracker.snapshot(at: date).distance - decision.distance) / elapsed
+        if speed >= Self.keepRunningSpeed {
+            // Sigue la carrera: al terminar con «Terminar» se ofrece medir la recuperación.
+            WKInterfaceDevice.current().play(.click)
+            banner = Banner(title: String(localized: "Sigues corriendo"), detail: String(localized: "Carrera libre: sigo grabando"), date: .now)
+            if RunSettingsStore.shared.settings.cues.intervals {
+                VoiceCoach.shared.say(String(localized: "Sigues corriendo. Sigo grabando."))
+            }
+        } else {
+            VoiceCoach.shared.say(String(localized: "Vuelta a la calma: mido tu recuperación."))
+            end(save: true, measureRecovery: true)
+        }
+    }
+
     /// Cada segundo: pasos de intervalos por tiempo y alertas.
     private func startTicker() {
         ticker?.cancel()
@@ -528,6 +564,7 @@ final class WorkoutManager: NSObject {
                 guard let self, !Task.isCancelled else { return }
                 self.tracker.tick(at: .now)
                 self.handleCues()
+                self.decideRecovery(at: .now)
                 self.sendLiveUpdate()
             }
         }
@@ -615,12 +652,13 @@ final class WorkoutManager: NSObject {
             case .intervalsCompleted:
                 haptic = .success
                 if cooldownRecoveryMinutes != nil {
-                    // La vuelta a la calma del plan es la medición de recuperación:
-                    // se guarda el entrenamiento y empieza a medir.
-                    title = String(localized: "Vuelta a la calma")
-                    detail = String(localized: "Mido tu recuperación")
-                    spoken = cues.intervals ? String(localized: "Series terminadas. Vuelta a la calma: camina o trota suave, mido tu recuperación.") : nil
-                    end(save: true, measureRecovery: true)
+                    // La vuelta a la calma del plan es la medición de recuperación, pero no
+                    // se corta de golpe: si sigues corriendo, sigue grabando (ver `decideRecovery`).
+                    title = String(localized: "Objetivo cumplido")
+                    detail = String(localized: "Si paras o caminas, mido tu recuperación")
+                    spoken = cues.intervals ? String(localized: "Objetivo cumplido. Si paras o caminas, mido tu recuperación. Si sigues corriendo, sigo grabando.") : nil
+                    let snapshot = tracker.snapshot(at: .now)
+                    recoveryDecision = (start: .now, distance: snapshot.distance)
                 } else if plan?.isGoalRun == true {
                     title = String(localized: "Objetivo cumplido")
                     spoken = cues.intervals ? title : nil
