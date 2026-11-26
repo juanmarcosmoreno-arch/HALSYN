@@ -3367,6 +3367,23 @@
         }
       }
     },
+    "Automático": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisk"
+          }
+        }
+      }
+    },
     "Avisar a los": {
       "extractionState": "manual",
       "localizations": {
@@ -22339,6 +22356,23 @@
         }
       }
     },
+    "No se pudo cambiar el ícono. Prueba de nuevo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The icon couldn't be changed. Try again."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det gick inte att byta symbol. Försök igen."
+          }
+        }
+      }
+    },
     "No se pudo completar": {
       "extractionState": "manual",
       "localizations": {
@@ -39471,6 +39505,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Områden"
+          }
+        }
+      }
+    },
+    "Ícono de la app": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App icon"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appsymbol"
           }
         }
       }

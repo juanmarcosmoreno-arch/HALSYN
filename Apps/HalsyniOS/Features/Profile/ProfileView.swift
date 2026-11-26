@@ -92,6 +92,7 @@ struct ProfileView: View {
                             Text(option.title).tag(option)
                         }
                     }
+                    AppIconPicker()
                     NavigationLink {
                         ThemePickerView()
                     } label: {
@@ -314,5 +315,51 @@ private struct MorningReadinessSection: View {
         let scheduled = await MorningReadinessNotifications.schedule(minutesAfterMidnight: minutes)
         notificationsDenied = !scheduled
         if !scheduled { enabled = false }
+    }
+}
+
+/// Ícono de la app: el automático (claro, o el oscuro si la pantalla de inicio está en
+/// «Oscuro») o siempre el oscuro.
+private struct AppIconPicker: View {
+    enum Choice: String, CaseIterable, Identifiable {
+        case automatic
+        case dark
+
+        var id: String { rawValue }
+        /// Nombre del ícono alternativo (`nil` = el principal).
+        var iconName: String? { self == .dark ? "AppIconDark" : nil }  // nolocalize
+        var title: LocalizedStringKey {
+            switch self {
+            case .automatic: "Automático"
+            case .dark: "Oscuro"
+            }
+        }
+    }
+
+    @State private var choice: Choice = UIApplication.shared.alternateIconName == nil ? .automatic : .dark
+    @State private var failed = false
+
+    var body: some View {
+        Picker("Ícono de la app", selection: $choice) {
+            ForEach(Choice.allCases) { Text($0.title).tag($0) }
+        }
+        .onChange(of: choice) { _, newValue in
+            guard UIApplication.shared.supportsAlternateIcons,
+                  UIApplication.shared.alternateIconName != newValue.iconName else { return }
+            Task { @MainActor in
+                do {
+                    try await UIApplication.shared.setAlternateIconName(newValue.iconName)
+                    failed = false
+                } catch {
+                    failed = true
+                    choice = UIApplication.shared.alternateIconName == nil ? .automatic : .dark
+                }
+            }
+        }
+        if failed {
+            Text("No se pudo cambiar el ícono. Prueba de nuevo.")
+                .font(.caption)
+                .foregroundStyle(.halsynCaution)
+        }
     }
 }
